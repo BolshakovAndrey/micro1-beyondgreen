@@ -1,0 +1,14 @@
+{
+  "name": "stateshift-guardian-control-plane",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.3 <23"
+  },
+  "scripts": {
+    "test": "node --test tests/preflight-check.test.ts",
+    "preflight:control": "node scripts/preflight-check.ts --phase control-plane --denylist \"$MICRO1_PRIVATE_DENYLIST\"",
+    "preflight:implementation": "node scripts/preflight-check.ts --phase implementation --denylist \"$MICRO1_PRIVATE_DENYLIST\""
+  }
+}

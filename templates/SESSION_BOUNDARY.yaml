@@ -1,0 +1,31 @@
+schema_version: "1.0"
+session_id: "REQUIRED"
+started_at_utc: "REQUIRED"
+agent:
+  tool: "REQUIRED"
+  model: "REQUIRED"
+  purpose: "REQUIRED"
+context:
+  repository_root: "REQUIRED"
+  allowed_paths: []
+  public_sources: []
+  inherited_private_context: false
+  external_private_workspaces_available: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  browser_private_state_available: false
+  global_memory_reviewed: false
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+controls:
+  cleanroom_policy_read: false
+  trace_policy_read: false
+  challenge_contract_read: false
+  private_denylist_available_to_scanner_only: false
+  private_paths_resolve_outside_repository: false
+  raw_trace_location: "external_local_only"
+attestation:
+  submission_eligible_at_start: false
+  human_approved: false
+  approved_at_utc: ""

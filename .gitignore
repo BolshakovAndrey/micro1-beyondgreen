@@ -1,0 +1,19 @@
+# Local clean-room material; never submit or commit.
+.private/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Generated or temporary material.
+dist/
+tmp/
+node_modules/
+.npm/
+coverage/
+.DS_Store
+
+# Raw agent exports must be reviewed before entering artifacts/trajectories/.
+raw-traces/
+*.raw-trace.*

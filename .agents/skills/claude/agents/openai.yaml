@@ -1,0 +1,7 @@
+interface:
+  display_name: "Claude Opus 5 Reviewer"
+  short_description: "Независимое read-only ревью по rubric micro1"
+  default_prompt: "Use $claude to review the current micro1 change against the qualification gate and judging rubric."
+policy:
+  allow_implicit_invocation: true
+

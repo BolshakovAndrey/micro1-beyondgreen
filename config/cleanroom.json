@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "current_phase": "control_plane",
+  "submission_root": ".",
+  "runtime": {
+    "name": "node",
+    "version": "22.22.3"
+  },
+  "private_environment": {
+    "denylist_variable": "MICRO1_PRIVATE_DENYLIST",
+    "raw_trace_directory_variable": "MICRO1_PRIVATE_TRACE_DIR",
+    "must_resolve_outside_worktree": true
+  },
+  "current_thread": {
+    "submission_eligible": false,
+    "reason": "Private ideation context preceded the clean-room boundary."
+  },
+  "allowed_source_classes": [
+    "official_challenge_material",
+    "public_documentation",
+    "public_licensed_source",
+    "original_synthetic_material",
+    "general_professional_knowledge_without_private_expression"
+  ],
+  "forbidden_source_classes": [
+    "employer_or_client_source",
+    "employer_or_client_tests",
+    "employer_or_client_data",
+    "private_product_identifiers",
+    "private_git_history_or_tickets",
+    "unreviewed_private_conversation",
+    "unreviewed_raw_agent_trace"
+  ],
+  "required_control_plane_paths": [
+    "docs/CHALLENGE.md",
+    "docs/HACKATHON_RULES.md",
+    "docs/SUBMISSION_ARTIFACTS_SPEC.md",
+    "docs/CLEAN_ROOM_POLICY.md",
+    "docs/TRACE_POLICY.md",
+    "docs/PROVENANCE.md",
+    "docs/PREFLIGHT_CHECKLIST.md",
+    "docs/CONTROL_PLANE_LOG.md",
+    "docs/CONTROL_PLANE_SHA256SUMS",
+    "templates/SESSION_BOUNDARY.yaml",
+    "templates/ITERATION_RECORD.md",
+    "templates/PROVENANCE_ENTRY.yaml",
+    "package.json",
+    ".node-version",
+    "scripts/preflight-check.ts",
+    "tests/preflight-check.test.ts"
+  ],
+  "required_implementation_paths": [
+    "config/topic.yaml",
+    "docs/PROJECT_SPEC.md",
+    "docs/EVALUATION.md",
+    "docs/IMPROVEMENT_CHANGELOG.md",
+    "artifacts/trajectories/index.yaml",
+    "artifacts/provenance/index.yaml"
+  ],
+  "scan_ignored_paths": [
+    ".git/",
+    ".private/",
+    "dist/",
+    "node_modules/",
+    "tmp/",
+    "coverage/"
+  ],
+  "submission_excluded_paths": [
+    ".git/",
+    ".private/",
+    "dist/",
+    "node_modules/",
+    "tmp/",
+    "raw-traces/"
+  ],
+  "binary_extensions_requiring_human_review": [
+    ".gif",
+    ".heic",
+    ".ico",
+    ".jpeg",
+    ".jpg",
+    ".mov",
+    ".mp3",
+    ".mp4",
+    ".pdf",
+    ".png",
+    ".webm",
+    ".webp",
+    ".zip"
+  ],
+  "forbidden_implementation_branches": [
+    "main",
+    "master"
+  ],
+  "minimum_evaluation_cases": 10,
+  "require_private_denylist_for_control_plane": true,
+  "require_private_denylist_for_implementation": true,
+  "implementation_placeholder_tokens": [
+    "REQUIRED",
+    "TBD",
+    "TODO"
+  ]
+}

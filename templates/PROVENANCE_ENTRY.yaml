@@ -1,0 +1,33 @@
+schema_version: "1.0"
+artifact_id: "REQUIRED"
+artifact_path: "REQUIRED"
+artifact_type: "fixture|source|test|instruction|dataset|evaluation|evidence"
+created_at_utc: "REQUIRED"
+created_during_event: true
+author:
+  kind: "human|agent|human_with_agent"
+  name_or_agent_id: "REQUIRED"
+  model: ""
+public_anchors:
+  - source_id: "REQUIRED"
+    title: "REQUIRED"
+    url: "REQUIRED"
+    owner_or_author: "REQUIRED"
+    accessed_at: "REQUIRED"
+    license_or_terms: "REQUIRED"
+    fact_or_behavior_used: "REQUIRED"
+derivation:
+  behavior_spec_path: "REQUIRED"
+  behavior_spec_sha256: "REQUIRED"
+  copied_source_expression: false
+  private_material_used_as_source: false
+evaluation_visibility: "development|held_out|not_applicable"
+review:
+  automated_scan: "pending"
+  human_review: "pending"
+  reviewer: ""
+  reviewed_at_utc: ""
+redistribution:
+  allowed: false
+  rationale: "REQUIRED"
+
