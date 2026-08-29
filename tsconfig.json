@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "lib": ["ES2024", "DOM"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2024",
+    "types": ["node"]
+  },
+  "include": [
+    "candidates/BG-D01/**/*.ts",
+    "evaluation/arm-visible/BG-D01/**/*.ts",
+    "evaluation/verifier-only/BG-D01/**/*.ts",
+    "scripts/d01-*.ts",
+    "scripts/reconcile-control-checksums.ts",
+    "scripts/task.ts",
+    "scripts/tasks/**/*.ts",
+    "tests/d01-*.ts",
+    "tests/task-runner.test.ts"
+  ]
+}

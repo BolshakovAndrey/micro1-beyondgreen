@@ -802,3 +802,140 @@ failure, and final hot take remain unclaimed until evidence exists.
   Both processes were stopped without claiming success. The final unchanged export
   used non-canonical, no-echo input plus the exact byte count and completed. These
   retries changed transport only, not transcript content.
+
+## ITR-016 — D01 fixture/candidate foundation
+
+- **Observed problem:** the owner-approved D01 behavior freeze had no executable
+  arm-visible package, immutable candidate pair, verifier-only oracle, or physical
+  runtime boundary. Green single-adjustment tests therefore could not yet
+  demonstrate the frozen false-green construction.
+- **Hypothesis:** a shared React reference plus two neutral signals candidates,
+  exactly five unchanged visible tests, a separate canonical driver, and Node's
+  filesystem permission system can reproduce the single stale-snapshot defect while
+  preventing pre-verdict oracle access.
+- **Exact change:** created `SES-20260829-004`; implemented the deterministic
+  300-card museum fixture API, DOM observations, microtask/render settlement,
+  action-log contract, shared legacy React reference, `candidate-a` preserving
+  migration, and `candidate-b` with only the frozen lost-accumulation family. Added
+  the five visible tests, verifier-only canonical driver and ground truth, D01-pair
+  evaluator self-check, physical denied-access process test, and four immutable
+  SHA-256 manifests. Added provenance, trajectory plan/index, and the Russian owner
+  review card.
+- **Evaluation commands/version:** `npm run compile`; `npm run
+  test:d01:visible`; `npm run test:d01:contract`; `npm run test:d01:verifier`;
+  `npm run test:d01:boundary`;
+  `npm run manifests:d01:check`; `npm test`; `micro1-safe-preflight probe`;
+  `micro1-safe-preflight control`; `micro1-safe-preflight implementation`;
+  `git diff --check`; evaluation version `eval-v1.1.0`.
+- **Evidence:** visible gate passed `5/5` with both candidates; the separate
+  positive-step contract passed `1/1` for the legacy reference and both candidates;
+  D01 evaluator passed `3/3`, accepting the legacy reference and preserving
+  candidate and rejecting the false green at `allocate-1x2`; physical boundary
+  passed `2/2` for both arms and both candidates.
+  Each permission-restricted arm process executed its candidate while eight
+  verifier operations remained denied and existing/missing error probes were
+  indistinguishable. Manifest reconciliation SHA-256 is
+  `5273199f8d591068ae827874d80352947eb511844fdf6ccabbcbce9edacccdcf`.
+  Run record: `RUN-BG-D01-FOUNDATION-001`.
+- **Scanner/privacy evidence:** the owner-controlled scanner-only probe confirmed
+  both external resources through boolean fields only. Real control preflight
+  returned `READY_FOR_CLEAN_BRANCH`; implementation returned
+  `READY_FOR_IMPLEMENTATION` with the expected dirty-worktree warning. Both reported
+  only the four pre-existing official binary human-review notices and zero
+  contamination findings. The self-excluding control checksum projection verifies
+  exactly 112 intended files with zero digest or coverage mismatch.
+- **Errors/retries:** the first compile included historical untyped Phase 0.5/control
+  scripts and failed strict TypeScript checks outside the D01 surface. `tsconfig.json`
+  was narrowed to all new D01 implementation, manifest, and boundary sources; no
+  candidate or visible test changed, and compile then passed. The first boundary
+  version proved denial but did not execute an allowed candidate. It was strengthened
+  before freeze to execute each candidate inside the permitted surface while keeping
+  verifier access denied; no behavior or defect family changed. The first YAML
+  validation command used a Psych convenience method unavailable in the local Ruby;
+  the identical five files passed the supported `safe_load(File.read(...))` form
+  without artifact changes.
+- **Cost/runtime policy:** fixed subscription; per-run USD was not calculated or
+  estimated. Model invocation count `0`; Chromium calls `0`; no tokens were observed
+  or recorded. Exact configured model identity is not claimed because it is not
+  machine-exported in this task evidence.
+- **Decision:** `pending_owner_review`. Preserve this runnable D01 foundation and
+  stop. No official/scored arm run, orchestrator beyond the minimal boundary harness,
+  replay generation, repair, other fixture, model/Chromium, GUI, commit, or push is
+  authorized or performed.
+
+## ITR-017 — Coordinator-requested D01 oracle and evidence corrections
+
+- **Observed problem:** independent coordinator review accepted the architecture but
+  found three owner-review blockers: the shared legacy reference was not run through
+  the canonical oracle; repeated reset asserted only part of the observable state;
+  and new pending artifacts claimed an exact model identity absent from machine
+  evidence. The numeric public step type also needed explicit enforcement of the
+  frozen positive-integer domain.
+- **Hypothesis:** bounded test/evidence corrections can close all four gaps without a
+  sixth visible legacy test, new invalid-action semantics, another defect family, or
+  any official/model/browser work.
+- **Exact change:** added one verifier self-check for `LegacyMuseumBoard`; changed
+  repeated reset to reuse the full canonical observation assertion, including card
+  IDs/order and canonical log plus one additional `reset`; added one separate
+  arm-visible contract test and a shared fail-closed positive-integer guard before
+  label/state/log mutation; replaced exact model claims only in the new pending
+  SES/provenance/trajectory records with an explicit machine-evidence limitation.
+  Historical approved artifacts were not rewritten.
+- **Evaluation:** `npm run compile`; exact visible `5/5`; arm-visible contract `1/1`;
+  verifier `3/3`; denied-access `2/2`; repository tests `19/19`; four D01 manifests;
+  hash-before/after reconciliation; real scanner-only control and implementation
+  preflights; checksum coverage; `git diff --check`; `eval-v1.1.0`.
+- **Evidence/decision:** `kept_pending_owner_review`. The visible legacy contract
+  remains exactly five tests, both candidates remain green there, candidate source
+  hashes remain unchanged, and the false green still differs by one stale-snapshot
+  hunk only. Model calls and Chromium calls remain zero; fixed-subscription monetary
+  cost remains `not_applicable` or `not_measured` with no estimate or cap.
+
+## ITR-018 — Typed task orchestration registry
+
+- **Observed problem:** the root `package.json` exposed a growing set of D01 and
+  Phase 0.5 script aliases that would scale poorly as fixtures and phases are added.
+- **Hypothesis:** a small stable npm interface backed by a typed, discoverable task
+  registry can preserve exact reproduction while preventing package-script sprawl
+  and arbitrary shell execution.
+- **Exact change:** retained only general `test`, `compile`, and `task` entrypoints
+  plus the two stable preflight entrypoints. Moved phase- and fixture-specific
+  process sequences to `scripts/tasks/`, then split definitions across `common.ts`,
+  `d01.ts`, and `phase0.5.ts`; `registry.ts` now only aggregates, rejects duplicate
+  names, and sorts. Stable `npm test` delegates to `test:all`, which discovers sorted
+  `*.test.ts` only under `tests/` and `evaluation/arm-visible/`, rejects symlinks,
+  empty results, duplicates, and out-of-bound paths, and deliberately excludes
+  verifier-only self-checks. Added `npm run task -- list`; unknown names and all
+  unexpected arguments fail closed. Every process uses fixed argument arrays with
+  `shell: false`. Removed historical live model, diagnostic, network, and Chromium
+  run tasks from the ordinary registry; retained one safe `phase0.5:verify` audit and
+  harness-test task. Added eight registry/discovery tests. Historical commands in
+  ITR-016 and ITR-017 remain unchanged as records of their actual runs.
+- **Evaluation:** `npm run task -- list`; `npm run task -- d01:verify`; `npm test`;
+  `npm run task -- phase0.5:verify`;
+  `npm run task -- checksums:check`; `micro1-safe-preflight control`;
+  `micro1-safe-preflight implementation`; `git diff --check`; evaluation version
+  `eval-v1.1.0`.
+- **Evidence/decision:** `kept_pending_owner_review`. D01 remains visible `5/5`,
+  positive-step contract `1/1`, evaluator `3/3`, and denied access `2/2`. Candidate
+  SHA-256 values remain `f46b2ed8c85e8558b5c8812491c09d89530099b0890454415579ea4c5d69e8a5`
+  and `9e2a9151531aa961cf0ace3e20520fdcfa45ff0bff0f13ae214f7e5fbdad7d2b`;
+  the combined D01 manifest digest remains
+  `5273199f8d591068ae827874d80352947eb511844fdf6ccabbcbce9edacccdcf`.
+  No candidate, oracle, visible-test contract, evaluation semantics, model call,
+  Chromium call, commit, or push changed. Safe control preflight returned
+  `READY_FOR_CLEAN_BRANCH`; safe implementation preflight returned
+  `READY_FOR_IMPLEMENTATION` with the expected dirty-worktree warning. Both retained
+  the four existing binary human-review notices and reported zero contamination
+  findings.
+- **Coordinator correction evidence:** stable `npm test` passed `32/32`, including
+  the five visible D01 tests and eight task-runner tests, while verifier-only tests
+  remained excluded from discovery. `phase0.5:verify` passed license audit `54/54`
+  and test groups `11/11`, `6/6`, `3/3`, `4/4`, `3/3`, and `4/4` without launching a
+  model, diagnostic command, network probe, or Chromium. Duplicate names fail closed,
+  and no historical `phase0.5:run:*` name appears in the registry.
+- **Retry:** the first post-refactor `npm test` passed 22/23 but showed that the
+  repository scanner did not mirror the owner-confirmed `.gitignore` exclusion for
+  `.idea/`. No file in that directory was intentionally opened or changed. The
+  existing scanner and submission exclusion lists were aligned with `.gitignore`,
+  after which the same test command was rerun.

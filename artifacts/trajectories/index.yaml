@@ -4,7 +4,7 @@ requirement_ids:
   - "AR-002"
   - "AR-005"
   - "NFR-004"
-status: "trace_first_and_phase_0_5_representative_traces_eligible"
+status: "d01_implementation_checkpoint_trace_pending_owner_review"
 session_boundaries:
   - session_id: "SES-20260828-001"
     path: "artifacts/trajectories/session-boundaries/SES-20260828-001.yaml"
@@ -27,6 +27,13 @@ session_boundaries:
     behavior_provenance_freeze_exact_confirmation: "Подтверждаю BG-D01 freeze"
     authoring_transcript_eligible: false
     reason: "The behavior/provenance artifacts are approved and clean, but the authoring transcript is excluded because the initial coordinator instruction contained a prohibited private identifier. The identifier is not recorded."
+  - session_id: "SES-20260829-004"
+    path: "artifacts/trajectories/session-boundaries/SES-20260829-004.yaml"
+    approval_status: "approved"
+    approval_question_exact: "Разрешаете закоммитить утверждённый D01 freeze и начать описанный implementation checkpoint в новой нейтральной задаче?"
+    selected_response_exact: "Commit и код (Recommended)"
+    approval_scope: "Implement and validate only the D01 fixture/candidate foundation, then stop for owner review without commit or push."
+    authoring_transcript_eligible: "pending_automated_and_human_trace_review"
 capture_validation:
   status: "pipeline_canary_passed_not_a_representative_trace"
   category: "external_raw_trace_canary"
@@ -111,7 +118,27 @@ actual_traces:
     indexed_in_actual_traces: true
     eligible_representative_trace: true
     approval_scope: "Promote this Phase 0.5 trace only; no product/scored work, model/browser run, commit, or push."
-pending_trace_capture_and_review: []
+pending_trace_capture_and_review:
+  - trace_id: "TRC-BG-D01-IMPL-001"
+    agent_id: "COD-CODEX-004"
+    category: "coding_agent"
+    tool_and_model: "Codex desktop configured model; exact model identity not machine-exported in task evidence"
+    model_identity_limitation: "No machine-exported exact model identity is present in the task evidence."
+    purpose: "Neutral BG-D01 fixture/candidate foundation, physical verifier boundary, and checkpoint evidence."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260829-004.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-IMPL-001.md"
+    human_review_companion_ru_path: "artifacts/trajectories/reviews/BG-D01-IMPLEMENTATION-CHECKPOINT_RU.md"
+    related_iteration_ids:
+      - "ITR-016"
+      - "ITR-017"
+      - "ITR-018"
+    related_run_ids:
+      - "RUN-BG-D01-FOUNDATION-001"
+    capture_status: "pending_external_immutable_capture"
+    automated_scan: "pending"
+    human_review: "pending"
+    technical_meaning_preserved: false
+    eligible_representative_trace: false
 excluded_transcripts:
   - exclusion_id: "EXC-001"
     category: "prohibited_internal_identifier_in_prompt"
@@ -154,6 +181,13 @@ declared_agents:
       excluded_trace_id: "TRC-BG-D01-001"
       safe_artifacts_status: "frozen_and_repository_owner_approved"
       reason: "The raw authoring transcript is excluded by EXC-002; the separately scanned EN/RU behavior/provenance artifacts remain clean and approved."
+    - agent_id: "COD-CODEX-004"
+      tool_and_model: "Codex desktop configured model; exact model identity not machine-exported in task evidence"
+      model_identity_limitation: "No machine-exported exact model identity is present in the task evidence."
+      purpose: "Neutral BG-D01 fixture/candidate foundation implementation and verification."
+      pending_trace_id: "TRC-BG-D01-IMPL-001"
+      eligible_representative_trace: false
+      reason: "Implementation validation passed; external immutable trace capture, automated trace review, and repository-owner review remain pending."
   solution_agents:
     - agent_id: "SOL-BEYONDGREEN-001"
       tool_and_model: "optional codex-exec-jsonl-v1 / gpt-5.6-sol runtime unverified under owner waiver; offline-replay-jsonl-v1 verified"
@@ -186,4 +220,6 @@ tool_call_audit:
   public_web_documentation_calls: 2
   claude_read_only_review_invocations: 2
   claude_review_completed_invocations: 1
+  d01_implementation_model_invocations: 0
+  d01_implementation_chromium_calls: 0
 release_rule: "A future agent is covered only by an eligible chronological trace with instructions, raw digest, automated scan, human review, related iteration IDs, and related run IDs."

@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0",
+  "run_id": "RUN-BG-D01-FOUNDATION-001",
+  "fixture_id": "BG-D01",
+  "evaluation_version": "eval-v1.1.0",
+  "run_type": "unscored_fixture_candidate_foundation_checkpoint",
+  "session_boundary": "artifacts/trajectories/session-boundaries/SES-20260829-004.yaml",
+  "started_from": {
+    "branch": "impl/beyondgreen",
+    "commit": "3a549d415a9b1b2a0d2f73a66890d533936f271f",
+    "worktree": "clean"
+  },
+  "completed_at_utc": "2026-08-29T15:17:59Z",
+  "coordinator_corrections_completed_at_utc": "2026-08-29T15:26:36Z",
+  "task_orchestration_refactor_completed_at_utc": "2026-08-29T15:54:04Z",
+  "results": {
+    "compile": "passed",
+    "visible_tests": "passed_5_of_5_for_both_candidates",
+    "arm_visible_step_contract": "passed_1_of_1_positive_integer_fail_closed_for_reference_and_both_candidates",
+    "verifier_self_check": "passed_3_of_3_reference_accept_preserving_accept_false_green_reject",
+    "denied_access": "passed_2_of_2_for_both_arms_and_both_candidates",
+    "repository_tests": "passed_32_of_32_via_stable_test_entrypoint",
+    "task_registry_tests": "passed_8_of_8",
+    "manifest_check": "passed_4_of_4",
+    "json_validation": "passed",
+    "yaml_validation": "passed_5_files",
+    "privacy_pattern_scan": "passed_no_findings",
+    "git_diff_check": "passed",
+    "scanner_probe": "passed_boolean_fields_only",
+    "control_preflight": "READY_FOR_CLEAN_BRANCH",
+    "implementation_preflight": "READY_FOR_IMPLEMENTATION_with_expected_dirty_worktree_warning",
+    "contamination_findings": 0,
+    "existing_binary_human_review_notices": 4
+  },
+  "task_orchestration": {
+    "canonical_verification_command": "npm run task -- d01:verify",
+    "discovery_command": "npm run task -- list",
+    "stable_test_command": "npm test",
+    "stable_test_task": "test:all",
+    "bounded_test_roots": ["tests/", "evaluation/arm-visible/"],
+    "verifier_only_discovered_by_test_all": false,
+    "registry_definition_modules": ["common.ts", "d01.ts", "phase0.5.ts"],
+    "registry_tests": "passed_8_of_8",
+    "unknown_task_policy": "fail_closed_before_process_execution",
+    "shell_execution": false,
+    "historical_live_tasks_registered": false,
+    "safe_phase_0_5_verification": "passed_license_54_of_54_and_tests_11_of_11_6_of_6_3_of_3_4_of_4_3_of_3_4_of_4_without_live_execution",
+    "candidate_hashes_changed": false,
+    "evaluation_semantics_changed": false
+  },
+  "task_orchestration_scalability_corrections": [
+    "Stable npm test delegates to bounded deterministic test:all discovery without fixture paths in package.json.",
+    "Task definitions are split across common, D01, and safe Phase 0.5 modules with duplicate-name rejection.",
+    "Historical live model, diagnostic, network, and Chromium run names are absent from the ordinary registry."
+  ],
+  "oracle_boundary": {
+    "mechanism": "Node_22_permission_system_filesystem_allowlist",
+    "candidate_executed_inside_boundary": true,
+    "arms_checked": ["status-quo", "beyondgreen"],
+    "candidates_checked": ["candidate-a", "candidate-b"],
+    "denied_operation_count_per_process": 8,
+    "existing_and_missing_error_probes_indistinguishable": true,
+    "pre_verdict_feedback_rounds": 0
+  },
+  "canonical_oracle": {
+    "legacy_reference": "accepted",
+    "candidate_a": "accepted",
+    "candidate_b": "rejected_at_allocate-1x2",
+    "repeated_reset_full_observation": true,
+    "repeated_reset_action_log": "canonical_log_plus_one_reset"
+  },
+  "positive_step_contract": {
+    "frozen_domain_assumption": "step is a positive integer",
+    "public_type_remains": "number",
+    "invalid_values_checked": ["zero", "negative", "fractional", "NaN"],
+    "failure_policy": "RangeError before label, state, or action-log mutation",
+    "visible_legacy_test_count_changed": false
+  },
+  "candidate_diff_audit": {
+    "unified_diff_hunks": 1,
+    "semantic_change": "allocate multiplicity reuses one stale allocations snapshot instead of reading the latest logical value",
+    "frozen_defect_family": "lost_accumulation_within_one_allocate_twice_event",
+    "additional_defect_families": 0
+  },
+  "hash_reconciliation": {
+    "algorithm": "SHA-256",
+    "before": "5273199f8d591068ae827874d80352947eb511844fdf6ccabbcbce9edacccdcf",
+    "after": "5273199f8d591068ae827874d80352947eb511844fdf6ccabbcbce9edacccdcf",
+    "unchanged": true
+  },
+  "resource_policy": {
+    "billing": "fixed_subscription",
+    "model_identity": "Codex desktop configured model; exact model identity not machine-exported in task evidence",
+    "model_identity_limitation": "No machine-exported exact model identity is present in this task evidence.",
+    "monetary_cost": "not_applicable_or_not_measured",
+    "per_run_usd_calculated_or_estimated": false,
+    "model_invocation_count": 0,
+    "chromium_calls": 0,
+    "automatic_retries": 0
+  },
+  "validation_retries": [
+    {
+      "category": "compile_scope",
+      "outcome": "Initial strict compile included historical untyped control/spike scripts; compile scope was corrected to all new D01 sources without changing candidates or visible tests."
+    },
+    {
+      "category": "boundary_positive_capability",
+      "outcome": "The denial-only probe was strengthened before freeze to execute each allowed candidate while preserving verifier denial."
+    },
+    {
+      "category": "yaml_validator_compatibility",
+      "outcome": "The local Psych version lacked safe_load_file; the same five files passed safe_load(File.read(...)) without artifact changes."
+    },
+    {
+      "category": "local_ide_directory_exclusion",
+      "outcome": "The first post-refactor repository test found that the preflight scanner did not yet mirror the owner-confirmed .gitignore exclusion for .idea/. The scanner and submission exclusions were aligned without reading or modifying that directory, then the unchanged test command was rerun."
+    }
+  ],
+  "coordinator_corrections": [
+    "Canonical oracle now accepts the shared legacy React reference.",
+    "Repeated reset now asserts the complete observable state and deterministic appended reset log.",
+    "Pending task artifacts no longer claim an exact model identity absent from machine-exported evidence."
+  ],
+  "official_or_scored_run": false,
+  "owner_review": "pending"
+}

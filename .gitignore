@@ -13,6 +13,7 @@ node_modules/
 .npm/
 coverage/
 .DS_Store
+.idea/
 
 # Raw agent exports must be reviewed before entering artifacts/trajectories/.
 raw-traces/

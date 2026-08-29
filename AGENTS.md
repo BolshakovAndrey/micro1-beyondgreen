@@ -32,6 +32,33 @@ For every meaningful iteration:
    tests, and evaluation.
 5. Never put credentials or private information in the repository or submitted traces.
 
+## Owner-facing language
+
+- Judge-facing and machine-readable artifacts may remain in English.
+- Every report, review card, status update, or approval packet intended for the
+  repository owner must have a complete, natural Russian translation. A mixture of
+  Russian sentences with untranslated English working vocabulary is not a Russian
+  translation.
+- Keep English only for exact commands, paths, code identifiers, library names, and
+  official product names. Explain every unavoidable English term in Russian on its
+  first use.
+- Before requesting owner approval, independently check that the Russian companion
+  explains the result, evidence, retries, risks, and approval scope without requiring
+  the owner to read the English artifact.
+
+## Code documentation
+
+- Document public functions, exported types, important modules, and non-obvious
+  contracts with concise English JSDoc.
+- Add short English comments to key implementation fragments when a reviewer needs
+  context about an invariant, design decision, security or privacy boundary,
+  failure mode, or deliberately constrained behavior.
+- Comments must explain why the code is written this way or what contract it
+  protects. Do not narrate obvious syntax or comment every line.
+- Keep documentation sufficient for an independent reviewer to understand the
+  architecture, critical data flow, hidden-oracle boundary, and correctness risks
+  without making the source noisy.
+
 ## Clean-room access contract
 
 For every agent task:

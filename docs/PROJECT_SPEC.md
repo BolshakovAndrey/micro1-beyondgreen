@@ -3,7 +3,7 @@
 **Normative status:** single source of truth
 **Version:** `1.1.0`
 **State:** normative v1.1 approved; Phase 0.5 frozen under explicit nested-CLI waiver;
-implementation separately gated and not authorized
+the bounded D01 foundation checkpoint is implemented and pending owner review
 **Human approval:** 2026-08-29T10:46:39Z
 **Clean session:** `SES-20260829-001`
 
@@ -478,30 +478,42 @@ Required command families:
 ```text
 npm ci
 npm test
+npm run compile
+npm run task -- list
+npm run task -- d01:verify
 npm run preflight:implementation
-npm run spike:phase-0.5
-npm run verify:baseline -- --evaluation-version eval-v1.1.0
-npm run verify:beyondgreen -- --evaluation-version eval-v1.1.0
-npm run eval -- --evaluation-version eval-v1.1.0
-npm run replay -- --evaluation-version eval-v1.1.0
-npm run demo -- --fixture BG-D01
-npm run performance:chromium -- --scenario BG-D01
-npm run artifacts:check
-npm run submission
+npm run task -- baseline:verify --evaluation-version eval-v1.1.0
+npm run task -- beyondgreen:verify --evaluation-version eval-v1.1.0
+npm run task -- evaluation:run --evaluation-version eval-v1.1.0
+npm run task -- replay --evaluation-version eval-v1.1.0
+npm run task -- demo:d01
+npm run task -- performance:d01
+npm run task -- artifacts:check
+npm run task -- submission:build
 ```
+
+The root `package.json` keeps only stable general entrypoints. Phase- and
+fixture-specific orchestration lives in the typed, reviewable registry under
+`scripts/tasks/`; `npm run task -- list` shows only tasks whose implementation is
+currently present. Future command-family names above are registered only when their
+corresponding scoped implementation is authorized and exists.
+`npm test` delegates to `test:all`, which deterministically discovers `*.test.ts`
+only under the fixed public roots `tests/` and `evaluation/arm-visible/`, rejects
+empty or out-of-bound discovery, and intentionally excludes verifier-only oracle
+self-checks. Historical live Phase 0.5 commands are not ordinary registered tasks.
 
 The required top-level Make interface is a thin one-to-one wrapper:
 
 ```text
 make setup           -> npm ci
-make baseline        -> npm run verify:baseline
-make solution        -> npm run verify:beyondgreen
+make baseline        -> npm run task -- baseline:verify
+make solution        -> npm run task -- beyondgreen:verify
 make test            -> npm test
-make eval            -> npm run eval
-make replay          -> npm run replay
-make demo            -> npm run demo -- --fixture BG-D01
-make artifacts-check -> npm run artifacts:check
-make submission      -> npm run submission
+make eval            -> npm run task -- evaluation:run
+make replay          -> npm run task -- replay
+make demo            -> npm run task -- demo:d01
+make artifacts-check -> npm run task -- artifacts:check
+make submission      -> npm run task -- submission:build
 ```
 
 The CLI is mandatory. JSON output must pass a versioned Zod schema. The static HTML
@@ -559,12 +571,12 @@ Claude receives the minimum sufficient clean packet, cannot edit, and does not
 authorize changes. Codex independently verifies every actionable finding. Human
 approval remains the gate after each review where specified.
 
-Approval of this specification and the Phase 0.5 freeze does not authorize product
-development. The approved boundary and trace-first gate have passed, and Phase 0.5
-is frozen under the explicit nested-CLI waiver. Product implementation still begins
-only after its own explicit repository-owner authorization, the Phase 0.5 trajectory
-is captured and reviewed under `docs/TRACE_POLICY.md`, and the independently authored
-fixture behavior/provenance gate for the applicable slice is frozen.
+Approval of this specification and the Phase 0.5 freeze did not itself authorize
+product development. The bounded D01 foundation began under explicit
+repository-owner authorization in `SES-20260829-004`, after the Phase 0.5 trajectory
+review and D01 behavior/provenance freeze. This authorization covers only the
+fixture/candidate foundation and physical oracle boundary; the full vertical slice
+and every later phase remain separately gated.
 
 ## 19. Critical path and milestones
 

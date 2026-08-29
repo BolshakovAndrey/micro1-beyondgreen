@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-D01",
+  "package_id": "BG-D01-candidate-a",
+  "package_kind": "candidate",
+  "immutable": true,
+  "hash_algorithm": "SHA-256",
+  "source_files": [
+    {
+      "path": "candidates/BG-D01/candidate-a/MuseumBoard.ts",
+      "sha256": "f46b2ed8c85e8558b5c8812491c09d89530099b0890454415579ea4c5d69e8a5"
+    }
+  ],
+  "package_sha256": "ec15e2414911fd8ad81946b1a185bdb2db1f75b5b81a068ed9319a62371c148b"
+}

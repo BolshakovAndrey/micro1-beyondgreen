@@ -8,7 +8,7 @@ requirement_ids:
   - "AR-001..AR-009"
 project:
   name: "BeyondGreen"
-  normative_spec_status: "approved_phase_0_5_frozen_implementation_not_authorized"
+  normative_spec_status: "approved_phase_0_5_frozen_d01_foundation_pending_owner_review"
   normative_spec_approved_at_utc: "2026-08-29T10:46:39Z"
   one_sentence_summary: "An evidence-backed verify-existing workflow for deciding whether immutable React state-to-signals candidates are safe to merge despite incomplete legacy tests."
   rename_scope: "Marketing rename only; proven v1 scope remains React state to signals."
@@ -138,3 +138,25 @@ phase_0_5:
     cpu_improvement_demonstrated: false
     claim_scope: "synthetic_spike_render_count_only"
 phase_0_5_source: "docs/PROJECT_SPEC.md#20-open-decisions-and-locked-decisions"
+d01_implementation_checkpoint:
+  session_boundary: "artifacts/trajectories/session-boundaries/SES-20260829-004.yaml"
+  status: "fixture_candidate_foundation_pending_owner_review"
+  official_or_scored_run: false
+  model_invocation_count: 0
+  chromium_calls: 0
+  visible_gate: "passed_5_of_5_for_both_candidates"
+  arm_visible_step_contract: "passed_positive_integer_fail_closed_without_changing_five_visible_tests"
+  evaluator_self_check: "passed_reference_accept_preserving_accept_false_green_reject"
+  verifier_capability_boundary: "passed_for_both_arms_and_both_candidates"
+  manifest_reconciliation_sha256: "5273199f8d591068ae827874d80352947eb511844fdf6ccabbcbce9edacccdcf"
+  canonical_verification_command: "npm run task -- d01:verify"
+  task_registry_command: "npm run task -- list"
+  stable_test_command: "npm test"
+  stable_test_task: "test:all"
+  bounded_test_roots:
+    - "tests/"
+    - "evaluation/arm-visible/"
+  verifier_only_in_ordinary_tests: false
+  safe_phase_0_5_verification_command: "npm run task -- phase0.5:verify"
+  historical_live_tasks_registered: false
+  task_orchestration_semantics: "refactored_only_no_candidate_or_evaluation_change"

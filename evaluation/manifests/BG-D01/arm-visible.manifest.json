@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-D01",
+  "package_id": "BG-D01-arm-visible",
+  "package_kind": "arm_visible",
+  "immutable": true,
+  "hash_algorithm": "SHA-256",
+  "source_files": [
+    {
+      "path": "evaluation/arm-visible/BG-D01/LegacyMuseumBoard.ts",
+      "sha256": "fd48e961ca4700c2ed1be2e11da4b150a491b278c31f018fd22d2684512d33e8"
+    },
+    {
+      "path": "evaluation/arm-visible/BG-D01/contract.ts",
+      "sha256": "c2b7e7963e2b50d0d735b424a8509d4ffb13c70ea2e36d2ae0e04439ced35903"
+    },
+    {
+      "path": "evaluation/arm-visible/BG-D01/denied-probe.mjs",
+      "sha256": "250ecc6b6651df4a5574641a67420264a7a5a8665a8560ace5844da5ae805b1d"
+    },
+    {
+      "path": "evaluation/arm-visible/BG-D01/harness.ts",
+      "sha256": "1a840407dd66235a4b8368fbbe06df05350cdff92b9a9b0c89c27d6e749eec4c"
+    },
+    {
+      "path": "evaluation/arm-visible/BG-D01/render.ts",
+      "sha256": "4075026b4a2c65931863b0ab15f7e01de268955ca1076cc56e010b8aa6b1558e"
+    },
+    {
+      "path": "evaluation/arm-visible/BG-D01/step-contract.test.ts",
+      "sha256": "90daa65e14a4ba886eb70ebecc3183308b487f3b0f3cb00618c19fec5605c37d"
+    },
+    {
+      "path": "evaluation/arm-visible/BG-D01/visible.test.ts",
+      "sha256": "4ec4ae37d00181484bb26c70209d208c230fdb738b3735122320efb92f7d1c5e"
+    }
+  ],
+  "package_sha256": "c37e238f693a87cdae4c04aff5ffc3cd56c851bfa2f351c01c6c9325d5ab9882"
+}

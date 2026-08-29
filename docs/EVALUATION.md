@@ -3,8 +3,8 @@
 **Projection of:** `docs/PROJECT_SPEC.md@1.1.0`
 **Normative:** no; the global product-semantics specification wins on conflict
 **Evaluation version:** `eval-v1.1.0`
-**State:** Phase 0.5 inputs frozen under explicit nested-CLI waiver; no scored
-fixtures, candidates, or official runs exist
+**State:** Phase 0.5 inputs frozen under explicit nested-CLI waiver; the unscored
+BG-D01 fixture/candidate foundation is pending owner review; no official/scored run exists
 
 This projection specializes `FR-001`–`FR-012`, `NFR-001`–`NFR-009`,
 `EV-001`–`EV-013`, and `AR-003`–`AR-007`. It claims no result.
@@ -157,11 +157,19 @@ Operational uncertainty must never be mislabeled as a proven defect.
 Required command families:
 
 ```text
-npm run verify:baseline -- --evaluation-version eval-v1.1.0
-npm run verify:beyondgreen -- --evaluation-version eval-v1.1.0
-npm run eval -- --evaluation-version eval-v1.1.0
-npm run replay -- --evaluation-version eval-v1.1.0
+npm run task -- baseline:verify --evaluation-version eval-v1.1.0
+npm run task -- beyondgreen:verify --evaluation-version eval-v1.1.0
+npm run task -- evaluation:run --evaluation-version eval-v1.1.0
+npm run task -- replay --evaluation-version eval-v1.1.0
 ```
+
+The current unscored D01 foundation is reproduced with `npm run task -- d01:verify`.
+The typed registry under `scripts/tasks/` lists only implemented tasks and rejects
+unknown names or arguments before process execution.
+Ordinary `npm test` uses bounded deterministic discovery under `tests/` and
+`evaluation/arm-visible/`; it never discovers `evaluation/verifier-only/`. The safe
+frozen Phase 0.5 audit and harness tests are available only as
+`npm run task -- phase0.5:verify`; live historical run commands are not registered.
 
 ## Per-candidate evidence fields (`EV-009`)
 

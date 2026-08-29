@@ -1,17 +1,14 @@
 # Clean-Room Preflight Checklist
 
 **Current scanner state:** `READY_FOR_IMPLEMENTATION` (automated structure only).
-**Product work state:** normative `docs/PROJECT_SPEC.md@1.1.0` is human-approved, but
-the current branch is `impl/beyondgreen` at checkpoint
-`2a41d4d2bab8a8b25406400a8ec7d8cd21112a4e`. The approved implementation boundary
-and real scanner-only contamination preflight remove those two earlier blockers.
-The eligible trace-first gate and Phase 0.5 freeze have now passed. The immutable
-Phase 0.5 raw capture exists, but its raw automated scan failed; a redacted EN/RU
-reviewed layer passed its real-denylist scan and repository-owner human review and is
-now indexed in `actual_traces`. Product implementation is still unauthorized pending
-explicit owner authorization for product work and the applicable fixture
-behavior/provenance freeze; scanner output or trace promotion alone is not
-authorization.
+**Product work state:** normative `docs/PROJECT_SPEC.md@1.1.0`, the Phase 0.5 freeze,
+and the BG-D01 behavior/provenance freeze are human-approved. The bounded neutral
+D01 implementation checkpoint began from `impl/beyondgreen` at
+`3a549d415a9b1b2a0d2f73a66890d533936f271f` under exact authorization recorded in
+`SES-20260829-004`. Its fixture/candidate foundation and physical verifier boundary
+pass automated validation and now await repository-owner review. Full orchestrator,
+official/scored runs, repair, other fixtures, model/Chromium, GUI, commit, and push
+remain unauthorized in this checkpoint. Scanner output is evidence, not approval.
 
 ## Phase 1 — Control plane
 
@@ -335,6 +332,28 @@ remaining semantic gates above still apply.
   `TRC-BG-D01-001` transcript is excluded under `EXC-002`, while the clean artifact
   freeze remains valid. D01 implementation must begin in a new neutral task packet;
   product code still requires a separate explicit owner checkpoint.
+- The owner then selected `«Commit и код (Recommended)»` for the exact question
+  recorded in `SES-20260829-004`, authorizing only the described neutral D01
+  implementation checkpoint. The checkpoint created the arm-visible fixture/API,
+  shared legacy React reference, two neutral signals candidates, exactly five frozen
+  visible tests, verifier-only canonical driver, physical Node permission boundary,
+  and four immutable SHA-256 manifests. No commit or push was performed because this
+  checkpoint explicitly forbids both. Visible tests passed 5/5 for both candidates;
+  separate positive-step contract passed 1/1 without adding a sixth visible test;
+  evaluator self-check passed 3/3, including the shared legacy reference; denied
+  access passed 2/2 for both arms and both candidates while each candidate remained executable. Model and Chromium calls
+  remained zero. Real scanner-only probe/control/implementation checks passed with
+  zero contamination findings, the expected dirty-worktree warning, and the four
+  pre-existing official binary human-review notices. The implementation artifacts,
+  provenance, and trajectory remain pending repository-owner review.
+- The canonical active command for the complete bounded D01 path is now
+  `npm run task -- d01:verify`. The typed registry is discoverable through
+  `npm run task -- list`; this orchestration-only refactor did not change candidate
+  hashes, manifests, oracle behavior, visible-test semantics, or evaluation results.
+- Stable `npm test` delegates to `test:all`, which discovers sorted tests only below
+  `tests/` and `evaluation/arm-visible/`, fails closed on empty or out-of-bound
+  discovery, and excludes verifier-only self-checks. Registry definitions are split
+  into common, D01, and safe Phase 0.5 groups; historical live run tasks are absent.
 
 ## Stop conditions
 

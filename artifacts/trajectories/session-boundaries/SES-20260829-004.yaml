@@ -1,0 +1,128 @@
+schema_version: "1.1"
+session_id: "SES-20260829-004"
+started_at_utc: "2026-08-29T15:07:42Z"
+agent:
+  tool: "Codex desktop"
+  model: "Codex desktop configured model; exact model identity not machine-exported in task evidence"
+  model_identity_limitation: "No machine-exported exact model identity is present in this task evidence."
+  purpose: "Implement and validate only the approved BG-D01 fixture/candidate foundation, physical verifier boundary, immutable manifests, and checkpoint evidence; stop for repository-owner review without commit or push."
+context:
+  repository_root: "."
+  allowed_paths:
+    - "AGENTS.md"
+    - "package.json"
+    - "package-lock.json"
+    - "tsconfig.json"
+    - "config/"
+    - "docs/"
+    - "evaluation/"
+    - "fixtures/"
+    - "candidates/"
+    - "scripts/"
+    - "tests/"
+    - "artifacts/"
+    - "templates/"
+  public_sources:
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/PROJECT_SPEC_RU.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "evaluation/behavior-specs/BG-D01_BEHAVIOR.md"
+    - "evaluation/behavior-specs/BG-D01_BEHAVIOR_RU.md"
+    - "evaluation/behavior-specs/BG-D01_FREEZE.yaml"
+    - "artifacts/provenance/BG-D01-BEHAVIOR.yaml"
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  private_environment_variables_present: []
+controls:
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  private_denylist_available_to_scanner_only: true
+  private_paths_resolve_outside_repository: "not_resolved_by_general_task_shell"
+  raw_trace_location: "external_local_only"
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: true
+  repository_artifacts_status: "d01_implementation_candidate_pending_owner_review"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: ""
+human_approval:
+  status: "approved"
+  approver: "repository owner"
+  approved_at_utc: "2026-08-29T15:07:42Z"
+  approval_question_exact: "Разрешаете закоммитить утверждённый D01 freeze и начать описанный implementation checkpoint в новой нейтральной задаче?"
+  selected_response_exact: "Commit и код (Recommended)"
+  approval_interpretation: "The selected response authorizes starting the described D01 implementation checkpoint in this new neutral task. The checkpoint itself explicitly forbids commit and push, so neither Git action is performed."
+  approval_scope: "Implement only the BG-D01 fixture/candidate foundation and its physical verifier boundary, validate it, update required evidence projections, and stop for owner review."
+git_state:
+  expected_branch: "impl/beyondgreen"
+  expected_commit: "3a549d415a9b1b2a0d2f73a66890d533936f271f"
+  expected_worktree: "clean"
+  verified_branch: "impl/beyondgreen"
+  verified_commit: "3a549d415a9b1b2a0d2f73a66890d533936f271f"
+  verified_initial_worktree: "clean"
+boundary_review:
+  required_contracts_read_in_full: true
+  shared_memory: "Not read because it is outside the clean repository root and explicitly forbidden by this task."
+  tool_scope: "Repository shell and file tools only; no browser, connected app, private MCP, model subprocess, Chromium, or GUI call."
+  environment_probe: "Boolean presence only; no variable value, external path, credential, or private content was printed."
+  general_shell_result: "MICRO1_PRIVATE_DENYLIST and MICRO1_PRIVATE_TRACE_DIR were absent from the general task shell."
+  scanner_only_contract: "The approved scanner interface may supply the denylist only to the scanner subprocess without exposing its value or path to this task."
+tool_call_audit:
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  outside_root_reads: 0
+  outside_root_writes: 0
+  model_subprocess_calls: 0
+  chromium_calls: 0
+scope_guards:
+  d01_fixture_foundation_authorized: true
+  d01_candidate_pair_authorized: true
+  d01_verifier_oracle_foundation_authorized: true
+  minimal_fixture_boundary_harness_authorized: true
+  beyondgreen_orchestrator_implementation_authorized: false
+  scored_or_official_runs_authorized: false
+  repair_demo_authorized: false
+  other_fixtures_authorized: false
+  model_or_chromium_calls_authorized: false
+  gui_authorized: false
+  commit_authorized_in_this_checkpoint: false
+  push_authorized: false
+  next_gate: "Repository-owner review of the complete D01 implementation checkpoint."
+cost_policy:
+  billing: "fixed_subscription"
+  per_run_usd_calculation_or_estimate: false
+  model_invocation_count_required: 0
+  actual_model_invocation_count: 0
+validation:
+  status: "automated_checkpoint_validation_passed_owner_review_pending"
+  run_id: "RUN-BG-D01-FOUNDATION-001"
+  evidence_path: "artifacts/evaluation/BG-D01-FOUNDATION-CHECKPOINT.json"
+  compile: "passed"
+  visible_tests: "passed_5_of_5_for_both_candidates"
+  arm_visible_step_contract: "passed_1_of_1"
+  verifier_self_check: "passed_3_of_3"
+  denied_access: "passed_2_of_2_for_both_arms_and_both_candidates"
+  repository_tests: "passed_19_of_19"
+  model_invocation_count: 0
+  chromium_calls: 0
+  commit_performed: false
+  push_performed: false

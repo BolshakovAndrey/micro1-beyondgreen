@@ -4,7 +4,7 @@ requirement_ids:
   - "AR-002"
   - "AR-006"
   - "EV-002"
-status: "d01_behavior_provenance_frozen_no_fixture_candidate_or_oracle_records"
+status: "d01_fixture_candidate_foundation_pending_owner_review"
 record_type_schemas:
   artifact_candidate:
     required_fields:
@@ -290,5 +290,9 @@ library_selection:
     - "artifacts/phase-0.5-license-audit.json"
     - "THIRD_PARTY_NOTICES.md"
   capability_validation: "passed_stack_11_of_11"
-fixture_records: []
+fixture_records:
+  - record_id: "PRV-BG-D01-IMPLEMENTATION-001"
+    path: "artifacts/provenance/BG-D01-IMPLEMENTATION.yaml"
+    fixture_id: "BG-D01"
+    status: "automated_validation_passed_owner_review_pending"
 future_fixture_rule: "Each future fixture uses record_type fixture_provenance and requires both manifest hashes, anchors, clean-room attestation, automated scan, and human review before implementation."

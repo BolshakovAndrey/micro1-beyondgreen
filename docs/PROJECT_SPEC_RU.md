@@ -4,7 +4,7 @@
 **Нормативный источник:** `docs/PROJECT_SPEC.md`
 **Версия:** `1.1.0`
 **Состояние:** нормативная v1.1 одобрена; Phase 0.5 зафиксирована с явным исключением
-для вложенного CLI; implementation отдельно gated и не разрешён
+для вложенного CLI; ограниченный D01 foundation checkpoint реализован и ожидает owner review
 **Одобрение человеком:** 2026-08-29T10:46:39Z
 **Чистая сессия:** `SES-20260829-001`
 
@@ -480,35 +480,50 @@ capabilities, а не отсутствие в version control, запрещаю�
 или читать `evaluation/verifier-only/`. Clean-extraction evaluation воспроизводит и
 проверяет эту denied-access boundary.
 
-Обязательные command families:
+Обязательные семейства команд:
 
 ```text
 npm ci
 npm test
+npm run compile
+npm run task -- list
+npm run task -- d01:verify
 npm run preflight:implementation
-npm run spike:phase-0.5
-npm run verify:baseline -- --evaluation-version eval-v1.1.0
-npm run verify:beyondgreen -- --evaluation-version eval-v1.1.0
-npm run eval -- --evaluation-version eval-v1.1.0
-npm run replay -- --evaluation-version eval-v1.1.0
-npm run demo -- --fixture BG-D01
-npm run performance:chromium -- --scenario BG-D01
-npm run artifacts:check
-npm run submission
+npm run task -- baseline:verify --evaluation-version eval-v1.1.0
+npm run task -- beyondgreen:verify --evaluation-version eval-v1.1.0
+npm run task -- evaluation:run --evaluation-version eval-v1.1.0
+npm run task -- replay --evaluation-version eval-v1.1.0
+npm run task -- demo:d01
+npm run task -- performance:d01
+npm run task -- artifacts:check
+npm run task -- submission:build
 ```
+
+В корневом `package.json` остаются только устойчивые общие точки запуска. Команды,
+относящиеся к конкретному этапу или примеру, описываются в типизированном и удобном
+для проверки реестре `scripts/tasks/`. Команда `npm run task -- list` показывает
+только уже реализованные задачи. Имена будущих семейств команд из списка выше будут
+добавляться в реестр лишь после отдельного разрешения и появления соответствующей
+реализации.
+Команда `npm test` передаёт работу задаче `test:all`, которая в постоянном порядке
+находит файлы `*.test.ts` только внутри заранее разрешённых открытых каталогов
+`tests/` и `evaluation/arm-visible/`. Пустой набор, путь за пределами этих каталогов
+или символическая ссылка приводят к безопасному отказу. Скрытые эталонные проверки
+намеренно не входят в обычный набор. Исторические команды живых запусков Phase 0.5
+в повседневном реестре отсутствуют.
 
 Обязательный top-level Make interface — тонкие one-to-one wrappers:
 
 ```text
 make setup           -> npm ci
-make baseline        -> npm run verify:baseline
-make solution        -> npm run verify:beyondgreen
+make baseline        -> npm run task -- baseline:verify
+make solution        -> npm run task -- beyondgreen:verify
 make test            -> npm test
-make eval            -> npm run eval
-make replay          -> npm run replay
-make demo            -> npm run demo -- --fixture BG-D01
-make artifacts-check -> npm run artifacts:check
-make submission      -> npm run submission
+make eval            -> npm run task -- evaluation:run
+make replay          -> npm run task -- replay
+make demo            -> npm run task -- demo:d01
+make artifacts-check -> npm run task -- artifacts:check
+make submission      -> npm run task -- submission:build
 ```
 
 CLI обязателен. JSON output проходит versioned Zod schema. Static HTML report
@@ -568,10 +583,11 @@ Claude получает minimum sufficient clean packet, не может ред�
 
 Одобрение этой спецификации и фиксация Phase 0.5 не разрешают product development.
 Approved boundary и trace-first gate уже пройдены, а Phase 0.5 зафиксирована с явным
-исключением для вложенного CLI. Product implementation начинается только после
-отдельного явного разрешения владельца, capture и review траектории Phase 0.5 по
-`docs/TRACE_POLICY.md` и фиксации независимо созданных behavior/provenance материалов
-для соответствующей fixture.
+исключением для вложенного CLI. Ограниченный D01 foundation начат по явному
+разрешению владельца в `SES-20260829-004`, после review траектории Phase 0.5 и
+фиксации D01 behavior/provenance. Это разрешение покрывает только fixture/candidate
+foundation и физическую oracle boundary; полный vertical slice и следующие фазы
+gated отдельно.
 
 ## 19. Critical path и milestones
 

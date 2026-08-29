@@ -7,19 +7,9 @@
     "node": ">=22.22.3 <23"
   },
   "scripts": {
-    "test": "node --test tests/*.test.ts",
-    "audit:licenses": "node scripts/license-audit.ts --output artifacts/phase-0.5-license-audit.json --notices THIRD_PARTY_NOTICES.md",
-    "test:phase-0.5:stack": "node --test spikes/phase-0.5/stack-capabilities.test.ts",
-    "test:phase-0.5:model": "node --test spikes/phase-0.5/model-probe.test.ts",
-    "spike:phase-0.5:model": "node spikes/phase-0.5/run-model-probe.ts",
-    "test:phase-0.5:cli-diagnostics": "node --test spikes/phase-0.5/cli-diagnostics.test.ts",
-    "spike:phase-0.5:cli-diagnostics": "node spikes/phase-0.5/cli-diagnostics.ts",
-    "test:phase-0.5:doctor-diagnostic": "node --test spikes/phase-0.5/doctor-diagnostic.test.ts",
-    "spike:phase-0.5:doctor-diagnostic": "node spikes/phase-0.5/doctor-diagnostic.ts",
-    "test:phase-0.5:network-diagnostic": "node --test spikes/phase-0.5/network-diagnostic.test.ts",
-    "spike:phase-0.5:network-diagnostic": "node spikes/phase-0.5/network-diagnostic.ts",
-    "test:phase-0.5:chromium": "node --test spikes/phase-0.5/chromium-runner.test.ts",
-    "spike:phase-0.5:chromium": "node spikes/phase-0.5/chromium-runner.ts",
+    "test": "node scripts/task.ts test:all",
+    "compile": "tsc -p tsconfig.json --noEmit",
+    "task": "node scripts/task.ts",
     "preflight:control": "node scripts/preflight-check.ts --phase control-plane --denylist \"$MICRO1_PRIVATE_DENYLIST\"",
     "preflight:implementation": "node scripts/preflight-check.ts --phase implementation --denylist \"$MICRO1_PRIVATE_DENYLIST\""
   },
