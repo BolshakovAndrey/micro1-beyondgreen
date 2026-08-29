@@ -19,6 +19,14 @@ session_boundaries:
     approval_scope: "Transition to the separately gated eligible trace-first checkpoint only."
     authoring_transcript_eligible: true
     reason: "TRC-BG-TRACEFIRST-001 passed automated and repository-owner review and is indexed as the eligible representative trace."
+  - session_id: "SES-20260829-003"
+    path: "artifacts/trajectories/session-boundaries/SES-20260829-003.yaml"
+    approval_status: "approved"
+    approval_scope: "D01 behavior/provenance packet frozen at 2026-08-29T14:50:15Z; only a request for a separate implementation checkpoint is permitted."
+    behavior_provenance_freeze_status: "approved_exact_confirmation_Подтверждаю_BG-D01_freeze"
+    behavior_provenance_freeze_exact_confirmation: "Подтверждаю BG-D01 freeze"
+    authoring_transcript_eligible: false
+    reason: "The behavior/provenance artifacts are approved and clean, but the authoring transcript is excluded because the initial coordinator instruction contained a prohibited private identifier. The identifier is not recorded."
 capture_validation:
   status: "pipeline_canary_passed_not_a_representative_trace"
   category: "external_raw_trace_canary"
@@ -111,6 +119,19 @@ excluded_transcripts:
     identifier_recorded: false
     repository_occurrence_scan: "passed_no_occurrence"
     disposition: "exclude_transcript_and_start_future_implementation_in_new_neutral_task"
+  - exclusion_id: "EXC-002"
+    trace_id: "TRC-BG-D01-001"
+    category: "prohibited_private_identifier_in_initial_coordinator_instruction"
+    scope: "d01_behavior_provenance_authoring_transcript"
+    identifier_recorded: false
+    behavior_provenance_artifacts_affected: false
+    raw_capture: "immutable_external_capture_succeeded_after_two_transport_retries"
+    raw_bytes: 671032
+    raw_sha256: "aade138543e0b2f56be3d1501a5e38b84ae9c8a8e14536be66b5bffd1602abbb"
+    raw_path_disclosed: false
+    raw_review_status: "failed_known_prohibited_identifier; no submission-layer trace created"
+    repository_occurrence_scan: "passed_no_occurrence_in_frozen_behavior_or_provenance_packet"
+    disposition: "exclude_raw_transcript; preserve approved clean artifacts; start implementation in a new neutral task packet"
 declared_agents:
   coding_agents:
     - agent_id: "COD-CODEX-001"
@@ -126,6 +147,13 @@ declared_agents:
       additional_eligible_trace_ids:
         - "TRC-BG-PHASE05-001"
       reason: "Covered by the approved trace-first trace and the approved Phase 0.5 representative trace. The Phase 0.5 raw scan remains failed, while its redacted reviewed layer passed automated and owner review."
+    - agent_id: "COD-CODEX-003"
+      tool_and_model: "Codex desktop / GPT-5.6 Sol"
+      purpose: "D01 behavior/provenance freeze authoring."
+      eligible_representative_trace: false
+      excluded_trace_id: "TRC-BG-D01-001"
+      safe_artifacts_status: "frozen_and_repository_owner_approved"
+      reason: "The raw authoring transcript is excluded by EXC-002; the separately scanned EN/RU behavior/provenance artifacts remain clean and approved."
   solution_agents:
     - agent_id: "SOL-BEYONDGREEN-001"
       tool_and_model: "optional codex-exec-jsonl-v1 / gpt-5.6-sol runtime unverified under owner waiver; offline-replay-jsonl-v1 verified"

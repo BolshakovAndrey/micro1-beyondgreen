@@ -4,7 +4,7 @@ requirement_ids:
   - "AR-002"
   - "AR-006"
   - "EV-002"
-status: "candidate_artifacts_only_no_fixture_records"
+status: "d01_behavior_provenance_frozen_no_fixture_candidate_or_oracle_records"
 record_type_schemas:
   artifact_candidate:
     required_fields:
@@ -171,6 +171,40 @@ records:
     human_review: "owner_conditional_freeze_satisfied_and_trace_review_passed"
     redistribution: "project_authored_phase_0_5_frozen_packet"
     trace_review: "immutable_raw_capture_exists_but_raw_scan_failed; reviewed_layer_real_denylist_scan_and_repository_owner_review_passed; technical_meaning_preserved"
+  - record_id: "PRV-005"
+    record_type: "artifact_candidate"
+    artifact_paths:
+      - "artifacts/trajectories/session-boundaries/SES-20260829-003.yaml"
+      - "evaluation/behavior-specs/BG-D01_BEHAVIOR.md"
+      - "evaluation/behavior-specs/BG-D01_BEHAVIOR_RU.md"
+      - "evaluation/behavior-specs/BG-D01_FREEZE.yaml"
+      - "artifacts/provenance/BG-D01-BEHAVIOR.yaml"
+      - "artifacts/trajectories/instructions/TRC-BG-D01-001.md"
+      - "artifacts/trajectories/reviews/BG-D01-BEHAVIOR-FREEZE_RU.md"
+    requirement_ids:
+      - "EV-002"
+      - "EV-005"
+      - "EV-006"
+      - "EV-012"
+      - "AR-004"
+      - "AR-006"
+    created_during_event: true
+    author:
+      kind: "human_with_agent"
+      agent_id: "COD-CODEX-003"
+      model: "GPT-5.6 Sol"
+    origin: "Independently authored BG-D01 synthetic museum-group behavior/provenance candidate from approved repository contracts and public React anchors."
+    copied_source_expression: false
+    private_material_used_as_source: false
+    automated_scan: "passed_real_scanner_only_control_and_implementation_preflights_zero_contamination_findings"
+    human_review: "passed"
+    human_reviewed_at_utc: "2026-08-29T14:50:15Z"
+    exact_confirmation: "Подтверждаю BG-D01 freeze"
+    approval_scope: "Frozen safe behavior/provenance source; only a request for a separate implementation checkpoint is permitted."
+    redistribution: "project_authored_public_synthetic_frozen_packet"
+    candidate_construction_performed: false
+    oracle_implementation_performed: false
+    editorial_review_reconciliation: "cost_reporting_and_action_vocabulary_findings_applied_without_product_semantics_or_evaluation_method_change_and_owner_approved"
 public_anchors:
   - record_id: "SRC-001"
     record_type: "public_anchor"

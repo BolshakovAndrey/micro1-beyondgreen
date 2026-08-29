@@ -721,3 +721,84 @@ failure, and final hot take remain unclaimed until evidence exists.
   implementation returned `READY_FOR_IMPLEMENTATION` with the expected dirty-tree
   warning and four binary-review notices. Contamination findings were zero;
   automated readiness is not product authorization.
+
+## ITR-015 — D01 behavior and provenance freeze candidate
+
+- **Observed problem:** D01 implementation is owner-authorized only after an
+  independently authored behavior/provenance checkpoint. Without exact prose, a
+  future false green could be tailored after code or hidden results exist.
+- **Hypothesis:** freezing a neutral museum-group contract, reasonable incomplete
+  visible tests, candidate-construction constraints, and a capability-enforced
+  verifier boundary before code makes the stale-snapshot failure reproducible
+  without private expression or oracle leakage.
+- **Exact change:** created `SES-20260829-003`; authored full EN/RU D01 behavior
+  prose, machine freeze and provenance records, Russian owner card, and trajectory
+  plan. The contract fixes 300 synthetic cards, the canonical action sequence,
+  `old + 2 * step` accumulation, five visible-test obligations that omit the double
+  update, and future preserving/one-defect false-green rules. No candidate or oracle
+  was constructed.
+- **Evaluation command/version:** structural/privacy/preflight checkpoint only for
+  `eval-v1.1.0`; no candidate, arm, model, Chromium, scored, or official benchmark
+  run.
+- **Evidence:** `evaluation/behavior-specs/BG-D01_BEHAVIOR.md`, its Russian
+  companion, `BG-D01_FREEZE.yaml`, `PRV-BG-D01-BEHAVIOR-001`, and
+  `TRC-BG-D01-001` plan.
+- **Cost clarification:** fixed subscription; no USD calculation or estimate.
+  Reproducibility records model/mode, invocation count, and technical limits only;
+  monetary cost is `not_applicable` or `not_measured`.
+- **Decision:** `pending_owner_review`; stop before React/signals code, fixtures,
+  candidates, oracle implementation, model/Chromium calls, official benchmark,
+  commit, or push.
+- **Human checkpoint:** exact question is recorded in
+  `artifacts/trajectories/reviews/BG-D01-BEHAVIOR-FREEZE_RU.md`.
+- **Checkpoint validation:** YAML, EN/RU key parity, privacy patterns, placeholder
+  scan, and `git diff --check` passed; repository tests passed 16/16. The approved
+  scanner-only probe confirmed both external resources without exposing values or
+  paths. Control returned `READY_FOR_CLEAN_BRANCH`; implementation returned
+  `READY_FOR_IMPLEMENTATION` with only the expected dirty-worktree warning and four
+  existing binary-review notices. Contamination findings were zero. Automated
+  readiness does not advance the owner checkpoint.
+- **Validation retry:** the first final control preflight correctly rejected a
+  projection that changed `config/cleanroom.json.current_thread` to eligible. That
+  field represents the permanently excluded original control-plane transcript, not
+  this clean D01 task. The projection was corrected; D01 eligibility remains in
+  `SES-20260829-003`. This was a metadata-scope error, not contamination and not a
+  behavior-contract change.
+- **Independent editorial review retry:** before owner approval, review found two
+  narrow issues. First, active projections still mixed fixed-subscription accounting
+  with `token/cost cap`, marginal/estimated USD language. PROJECT_SPEC EN/RU,
+  EVALUATION, topic, and D01 now consistently record billing mode, monetary-cost
+  applicability/status (`not_applicable` or `not_measured`), model/mode, invocation
+  count, technical limits, and tokens only when stably reported; no per-run USD
+  calculation, estimate, or cap is projected. Second, D01 now explicitly defines
+  `allocate once`/`remove once` as permitted single-adjustment test actions and maps
+  canonical parameterized labels to step and multiplicity. No version, metric,
+  evaluation method, test obligation, candidate, or defect family changed. Decision
+  remained `pending_owner_review` until the owner decision below.
+- **Owner freeze approval:** at `2026-08-29T14:50:15Z`, the repository owner gave
+  the exact confirmation `«Подтверждаю BG-D01 freeze»`. Decision is now `kept` and
+  status `frozen_repository_owner_approved`. The EN/RU behavior/provenance packet is
+  the safe source for future independently authored D01 implementation. This permits
+  only a request for a separate implementation checkpoint and does not authorize
+  React/signals component code, fixture/candidate/oracle implementation,
+  model/Chromium, official/scored benchmark, commit, or push.
+- **Approval-projection validation retry:** the first exact-text parity validator
+  found that the provenance index encoded the approval only inside a normalized
+  status token. Separate `exact_confirmation` and timestamp fields were added to the
+  provenance and trajectory indexes. Approval text and scope did not change.
+- **Post-freeze trace review and exclusion:** external immutable capture of
+  `TRC-BG-D01-001` succeeded with `671032` bytes and SHA-256
+  `aade138543e0b2f56be3d1501a5e38b84ae9c8a8e14536be66b5bffd1602abbb`.
+  Review then found that the initial coordinator instruction itself contained one
+  prohibited private-identifier category, even though it appeared only in a denial
+  rule. The identifier is not recorded. The raw transcript is excluded under
+  `EXC-002`; no reviewed submission layer is created. Repository scans found no
+  occurrence in the frozen EN/RU behavior/provenance packet, so its owner-approved
+  freeze remains valid. Future implementation must start in a new neutral task whose
+  packet contains only repository-relative contracts and synthetic terminology.
+- **Capture transport retries:** the first external capture waited for EOF that the
+  PTY control channel did not deliver. The second exact-byte attempt was rejected as
+  an empty payload because canonical terminal buffering exceeded its line limit.
+  Both processes were stopped without claiming success. The final unchanged export
+  used non-canonical, no-echo input plus the exact byte count and completed. These
+  retries changed transport only, not transcript content.

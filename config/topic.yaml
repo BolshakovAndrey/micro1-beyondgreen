@@ -107,7 +107,9 @@ phase_0_5:
     status: "verified_reproducibility_path"
   budget:
     billing: "fixed_subscription"
-    marginal_usd_cost: "not_measured"
+    monetary_cost_applicability: "not_applicable_or_not_measured"
+    per_run_usd_calculation_or_estimate: false
+    per_run_usd_cap: "not_projected"
     token_usage: "not_measured_unless_stably_reported"
     engine_deadline_seconds: 165
     finalization_reserve_seconds: 15

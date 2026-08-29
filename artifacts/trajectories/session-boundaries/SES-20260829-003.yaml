@@ -1,0 +1,150 @@
+schema_version: "1.1"
+session_id: "SES-20260829-003"
+started_at_utc: "2026-08-29T14:15:57Z"
+agent:
+  tool: "Codex desktop"
+  model: "GPT-5.6 Sol"
+  purpose: "Author and validate the BG-D01 behavior/provenance freeze packet only; stop for repository-owner review before any React/signals code or evaluation artifact is created."
+context:
+  repository_root: "."
+  allowed_paths:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/PROJECT_SPEC_RU.md"
+    - "docs/EVALUATION.md"
+    - "docs/PHASE_0_5_DECISIONS.md"
+    - "docs/PHASE_0_5_DECISIONS_RU.md"
+    - "docs/IMPROVEMENT_CHANGELOG.md"
+    - "docs/CONTROL_PLANE_SHA256SUMS"
+    - "config/topic.yaml"
+    - "config/cleanroom.json"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "templates/PROVENANCE_ENTRY.yaml"
+    - "artifacts/provenance/"
+    - "artifacts/trajectories/"
+    - "evaluation/behavior-specs/"
+    - "package.json"
+    - "scripts/preflight-check.ts"
+    - "tests/preflight-check.test.ts"
+  public_sources:
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/PROJECT_SPEC_RU.md"
+    - "docs/EVALUATION.md"
+    - "docs/PHASE_0_5_DECISIONS.md"
+    - "docs/PHASE_0_5_DECISIONS_RU.md"
+    - "artifacts/provenance/index.yaml#SRC-REACT-SNAPSHOT"
+    - "artifacts/provenance/index.yaml#SRC-REACT-QUEUE"
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  private_environment_variables_present: []
+controls:
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  private_denylist_available_to_scanner_only: true
+  private_paths_resolve_outside_repository: true
+  raw_trace_location: "external_local_only"
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "d01_behavior_provenance_frozen_owner_approved"
+  authoring_transcript_status: "excluded_after_trace_review"
+  authoring_transcript_exclusion_category: "prohibited_private_identifier_in_initial_coordinator_instruction"
+  identifier_recorded: false
+  frozen_artifacts_affected: false
+human_approval:
+  status: "approved"
+  approver: "repository owner"
+  approved_at_utc: "2026-08-29T14:15:57Z"
+  approval_question_exact: "Разрешаете начать D01 product work в новой clean задаче от d576539, сначала с behavior/provenance freeze, затем с синтетическими React/Signals-компонентами после отдельного checkpoint?"
+  selected_response_exact: "Разрешаю D01 (Recommended)"
+  approval_interpretation: "The selected response explicitly authorizes this clean D01 task and its behavior/provenance checkpoint. React/signals components require a separate later checkpoint."
+  owner_cost_clarification_exact: "Уточнение владельца для D01 и последующих evaluation-артефактов: подписочная Codex CLI-сессия имеет фиксированную оплату, поэтому не пытайся вычислять или оценивать стоимость запусков в долларах. Чем проще, тем лучше. Если для воспроизводимости нужно, фиксируй только модель/режим, число запусков и технические лимиты; monetary cost = not applicable / not measured. Это уточнение не расширяет текущий первый checkpoint: всё ещё только SESSION_BOUNDARY и behavior/provenance freeze, без product code."
+  monetary_cost_clarification: "The subscription session has fixed billing. Do not calculate or estimate USD run cost; record only model/mode, invocation count, and technical limits when needed. Monetary cost is not_applicable or not_measured."
+  approval_scope: "Create and validate only the D01 session boundary and behavior/provenance freeze packet, then stop for owner review."
+git_state:
+  expected_branch: "impl/beyondgreen"
+  expected_commit: "d576539b3cb3d32a7092f05a31166f59dc2ac05e"
+  expected_worktree: "clean"
+  verified_branch: "impl/beyondgreen"
+  verified_commit: "d576539b3cb3d32a7092f05a31166f59dc2ac05e"
+  verified_initial_worktree: "clean"
+boundary_review:
+  shared_memory: "Not read because it is outside the clean repository root and explicitly forbidden by this task."
+  tool_scope: "Repository shell and file tools only; no browser, connected app, private MCP, model subprocess, or Chromium call."
+  environment_probe: "Boolean presence only; no variable value, external path, or private content was printed."
+  general_shell_result: "MICRO1_PRIVATE_DENYLIST and MICRO1_PRIVATE_TRACE_DIR were absent from the general task shell."
+  scanner_only_contract: "The previously approved scanner-only interface may inject both values only into the scanner subprocess without exposing them to this task."
+tool_call_audit:
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  outside_root_reads: 0
+  outside_root_writes: 0
+  model_subprocess_calls: 0
+  chromium_calls: 0
+scope_guards:
+  react_or_signals_component_code_authorized: false
+  fixture_implementation_authorized: false
+  candidate_construction_authorized: false
+  hidden_oracle_implementation_authorized: false
+  scored_or_official_runs_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  next_gate: "Separate explicit D01 implementation checkpoint; no implementation action is authorized by the freeze approval."
+validation:
+  required_contracts_read_in_full: true
+  initial_git_branch: "passed_impl/beyondgreen"
+  initial_git_commit: "passed_d576539b3cb3d32a7092f05a31166f59dc2ac05e"
+  initial_git_worktree: "passed_clean"
+  boolean_environment_presence: "both_absent_from_general_shell"
+  yaml: "passed_5_files"
+  en_ru_key_parity: "passed_8_tokens"
+  privacy_patterns: "passed"
+  placeholder_scan: "passed"
+  git_diff_check: "passed"
+  repository_tests: "passed_16_of_16"
+  scanner_only_probe: "passed_both_external_resources_available_and_outside_repository"
+  control_preflight: "READY_FOR_CLEAN_BRANCH_exit_0"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION_exit_0_with_expected_dirty_worktree_warning"
+  contamination_findings: 0
+  binary_human_review_notices: 4
+  product_code_created: false
+  candidate_or_oracle_created: false
+  model_or_chromium_calls: 0
+  owner_behavior_provenance_review: "passed_2026-08-29T14:50:15Z_exact_confirmation_Подтверждаю_BG-D01_freeze"
+  post_freeze_trace_review: "raw_transcript_excluded_by_EXC-002; frozen_repository_artifacts_remain_clean_and_approved"
+  validation_retries:
+    - "The first final control preflight found that config/cleanroom.json.current_thread had been incorrectly repurposed for this clean D01 task. That field normatively represents the permanently excluded original control-plane transcript. The projection was corrected; D01 eligibility remains recorded only in this session boundary."
+    - "Independent pre-owner review found cost-reporting drift and ambiguity between single-adjustment test actions and canonical parameterized actions. Active EN/RU projections and D01 prose were reconciled without changing version, metrics, evaluation methodology, checks, or defect families."
+freeze_approval:
+  status: "approved"
+  approved_at_utc: "2026-08-29T14:50:15Z"
+  exact_confirmation: "Подтверждаю BG-D01 freeze"
+  approved_scope: "Freeze EN/RU behavior/provenance as a safe source and permit only a request for a separate implementation checkpoint."
+  react_or_signals_component_code_authorized: false
+  fixture_candidate_or_oracle_implementation_authorized: false
+  model_or_chromium_authorized: false
+  official_or_scored_benchmark_authorized: false
+  commit_authorized: false
+  push_authorized: false

@@ -50,7 +50,8 @@ The usable output for every candidate is a **verification evidence bundle**:
 - additional probe and behavioral-contract results;
 - final `accept`, `reject`, or `abstain` verdict with rationale;
 - schema-validated JSON and a static HTML report;
-- runtime, human-time, token, and cost metadata; and
+- runtime, human-time, model/token reporting, billing mode, and monetary-cost
+  applicability/status metadata; and
 - evidence digests sufficient to reproduce the decision.
 
 ## 2. Scope, non-goals, and product boundary
@@ -223,8 +224,11 @@ edit, regenerate, repair, or request a second candidate. The evaluator owns fina
 ground-truth scoring and never gives repair feedback during the run.
 
 Each candidate has exactly one official scored run, exactly one attempt, and a
-maximum wall-clock duration of three minutes. A token/cost cap is frozen after the
-Phase 0.5 spike and before fixtures. A timeout produces `abstain`.
+maximum wall-clock duration of three minutes. The model/mode, invocation count,
+timeout/retry limits, token-reporting policy, fixed-subscription billing mode, and
+monetary-cost applicability/status are frozen after Phase 0.5 and before fixtures;
+no per-run USD calculation, estimate, or cap is required. A timeout produces
+`abstain`.
 Provider transport or rate-limit failures permit no model retry or second attempt;
 they produce `abstain`. Offline replay is evidence reproduction, not a retry.
 
@@ -287,8 +291,10 @@ Fairness rules:
   wall-clock ceiling;
 - environment, compilation, visible tests, scoring, seeds, and operational ceilings
   are identical;
-- the BeyondGreen reasoning cap is frozen after Phase 0.5; actual calls, tokens,
-  runtime, human time, and cost are disclosed;
+- the BeyondGreen reasoning controls are frozen after Phase 0.5; actual model/mode,
+  calls, technical limits, runtime, human time, tokens when the CLI reports them
+  explicitly and stably, fixed-subscription billing, and monetary-cost status are
+  disclosed without a per-run USD calculation or estimate;
 - baseline resource differences are disclosed, not hidden or artificially equalized;
 - all decisions are scored only by the independent evaluator; and
 - no held-out result may tune evaluation v1.1 after unblinding.
@@ -345,8 +351,11 @@ synthetic benchmark only; statistical significance and production generalization
 not claimed.
 
 Supporting measures are per-arm and per-candidate runtime, completion, human time,
-model calls/tokens, and estimated cost. Missing observations are `not_measured`, not
-zero. Aggregates include totals and clearly defined median/p95 where meaningful.
+model/mode, invocation count, technical limits, tokens only when the CLI reports
+them explicitly and stably, billing mode, and monetary-cost applicability/status.
+Fixed-subscription per-run USD is `not_applicable` or `not_measured`, never estimated
+or represented as zero. Missing observations are `not_measured`, not zero.
+Aggregates include totals and clearly defined median/p95 where meaningful.
 Human time means agent-supervision time only. No human-time-savings claim is made
 against the automated status-quo arm; manual review time is out of scope and is not
 estimated.
@@ -391,7 +400,7 @@ scored decisions.
 | NFR-001 | Use Node.js/TypeScript, TypeScript Compiler API, Zod, `node:test`, minimal React harness, and jsdom for formal checks. | Lockfile, language and dependency audit | RUB-REP, QG-REPRO |
 | NFR-002 | Fail closed to `abstain` on timeout, failed required probe, nondeterminism, ambiguity, or incomplete evidence. | Negative tests | RUB-ASE, QG-ORIG |
 | NFR-003 | Enforce exactly one attempt, no model transport retry, and a maximum three-minute official run per candidate. | Run-policy audit | RUB-MI, RUB-REP |
-| NFR-004 | Freeze model, adapter policy, token/cost cap, dependencies, and evaluator before fixture implementation. | Versioned manifests and hashes | RUB-REP, QG-ORIG |
+| NFR-004 | Freeze model/mode, adapter policy, invocation/time/retry limits, token-reporting policy, fixed-subscription billing and monetary-cost status, dependencies, and evaluator before fixture implementation; do not project a per-run USD estimate or cap. | Versioned manifests and hashes | RUB-REP, QG-ORIG |
 | NFR-005 | Keep hidden-oracle, private workspace, browser, connected-app, private-MCP, and global-memory access unavailable or unused as required. | Capability audit and denied-access tests | RUB-ASE, QG-ORIG |
 | NFR-006 | Never expose secrets, private paths/terms, oracle details, or unsupported claims. | Preflight and human review | RUB-REP, QG-ORIG |
 | NFR-007 | Preserve every failure, abstention, negative result, retry prohibition, resource observation, and decision. | Immutable evidence reconciliation | RUB-MI, QG-TRACE |
@@ -410,7 +419,7 @@ scored decisions.
 | EV-006 | Enforce physical oracle isolation, denied-access testing, and `K=0`. | Boundary evidence | RUB-ASE, QG-ORIG |
 | EV-007 | Compute decision accuracy `/20`, accuracy advantage, reason-correct defect recall `/10`, false-alarm rate `/10`, and completion `/20` exactly as frozen. | Independent aggregate recomputation | RUB-MI |
 | EV-008 | Preserve the five predeclared targets and publish honest actuals when missed. | Rubric/hash and final report | RUB-MI, QG-ORIG |
-| EV-009 | Record runtime, human time, cost, tokens, errors, abstentions, evidence paths, and hashes per candidate. | Immutable per-candidate records | RUB-PUV, RUB-REP |
+| EV-009 | Record runtime, human time, model/mode, invocation count, technical limits, tokens when stably reported, fixed-subscription billing, monetary-cost applicability/status, errors, abstentions, evidence paths, and hashes per candidate. | Immutable per-candidate records | RUB-PUV, RUB-REP |
 | EV-010 | Iterate only on development evidence and unblind held-out results once. | Changelog and unblinding record | RUB-MI, QG-ORIG |
 | EV-011 | Keep D01 repair unscored and require approval plus independent reverification. | Demo/run classification audit | RUB-E2E, QG-ORIG |
 | EV-012 | Gate the single Chromium performance comparison on identical actions and passed behavioral invariants. | Performance evidence record | RUB-MI |
@@ -500,9 +509,11 @@ report is generated only from validated JSON and requires no server. A full GUI 
 not a v1 gate.
 
 Every command records exit status, environment versions, evaluation version,
-candidate/fixture IDs, hashes, duration, model usage, human time, cost where
-applicable, and output paths. Offline replay must reproduce report artifacts from
-submitted records without credentials.
+candidate/fixture IDs, hashes, duration, model/mode, invocation count, technical
+limits, tokens only when stably reported, fixed-subscription billing,
+monetary-cost applicability/status, human time, and output paths. Per-run USD is not
+calculated, estimated, or capped. Offline replay must reproduce report artifacts
+from submitted records without credentials.
 
 ## 16. Improvement and unblinding protocol
 
@@ -599,9 +610,10 @@ one negative or removed experiment.
    retries. Nested-desktop runtime validation is owner-waived, deferred, and
    unverified; two failures remain failures and app-level Sol operation is not
    submission evidence. Unavailability produces `abstain`; no substitute model.
-4. Budget: fixed subscription; marginal USD and tokens are `not_measured` unless the
-   CLI reports tokens explicitly and stably. Enforce one call, zero retries, 165
-   engine seconds plus 15 finalization seconds, and no unverifiable USD cap.
+4. Budget/accounting: fixed subscription; per-run USD is `not_applicable` or
+   `not_measured` and is not calculated, estimated, or capped. Tokens are recorded
+   only if the CLI reports them explicitly and stably. Enforce one call, zero
+   retries, 165 engine seconds plus 15 finalization seconds.
 5. Replay: `offline-replay-jsonl-v1` / `beyondgreen-replay-jsonl@1.0.0`, UTF-8/LF,
    RFC 8785 JCS, SHA-256 chain, schema-valid single final output, no network,
    subprocess, or workspace write. This is the verified reproducibility path, not a

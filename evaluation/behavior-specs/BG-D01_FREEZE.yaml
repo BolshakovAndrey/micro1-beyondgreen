@@ -1,0 +1,97 @@
+schema_version: "1.0"
+record_id: "BG-D01-BEHAVIOR-FREEZE-001"
+fixture_id: "BG-D01"
+membership: "development"
+behavior_class: "stale_snapshots"
+neutral_domain: "synthetic_museum_visit_group_allocation_board"
+status: "frozen_repository_owner_approved"
+frozen_at_utc: "2026-08-29T14:50:15Z"
+automated_validation:
+  yaml: "passed"
+  en_ru_key_parity: "passed"
+  privacy_patterns: "passed"
+  placeholders: "passed"
+  git_diff_check: "passed"
+  repository_tests: "passed_16_of_16"
+  scanner_probe: "passed_values_and_paths_not_disclosed"
+  control_preflight: "READY_FOR_CLEAN_BRANCH"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION_with_expected_dirty_worktree_warning"
+  contamination_findings: 0
+  existing_binary_human_review_notices: 4
+session_boundary: "artifacts/trajectories/session-boundaries/SES-20260829-003.yaml"
+normative_projection: "docs/PROJECT_SPEC.md@1.1.0"
+english_behavior_path: "evaluation/behavior-specs/BG-D01_BEHAVIOR.md"
+english_behavior_sha256: "4c44c6938f5a309f9fa507aed7e288dc0d90d9584a73c5542ebb85ae6f18a23f"
+russian_behavior_path: "evaluation/behavior-specs/BG-D01_BEHAVIOR_RU.md"
+russian_behavior_sha256: "0d8aaffbf5d13a9d6ec482aeecb0d1fdc9ca82435c1e3ae42412a8078047d0f0"
+public_anchor_ids:
+  - "SRC-REACT-SNAPSHOT"
+  - "SRC-REACT-QUEUE"
+observable_contract:
+  card_count: 300
+  first_card_id: "MVG-001"
+  last_card_id: "MVG-300"
+  visible_test_ids:
+    - "BG-D01-VIS-001"
+    - "BG-D01-VIS-002"
+    - "BG-D01-VIS-003"
+    - "BG-D01-VIS-004"
+    - "BG-D01-VIS-005"
+  canonical_actions:
+    - "mount"
+    - "select-all"
+    - "allocate-1x2"
+    - "step-3"
+    - "allocate-3x2"
+    - "select-every-third"
+    - "remove-3x1"
+    - "reset"
+  action_vocabulary:
+    allocate_once: {step_multiplicity: 1, permitted_visible_test_action: true}
+    remove_once: {step_multiplicity: 1, permitted_visible_test_action: true}
+    allocate_twice: {step_multiplicity: 2, permitted_visible_test_action: false}
+    canonical_label_format: "action-stepxmultiplicity"
+    deterministic_labels: true
+false_green_construction:
+  constructed_at_this_checkpoint: false
+  future_allowed_defect_family: "lost_accumulation_within_one_allocate_twice_event"
+  compilation_and_all_visible_tests_must_pass: true
+  unrelated_behavior_must_be_preserved: true
+oracle_boundary:
+  implemented_at_this_checkpoint: false
+  future_path: "evaluation/verifier-only/"
+  arm_mount_allowed: false
+  pre_verdict_feedback_rounds: 0
+  denied_access_test_required: true
+performance_claim:
+  render_measurement_scope: "secondary_synthetic_scenario_only"
+  production_cpu_gain_proven: false
+cost_policy:
+  billing: "fixed_subscription"
+  monetary_cost: "not_applicable_or_not_measured"
+  usd_estimation_allowed: false
+  usd_cap_projected: false
+  tokens: "record_only_if_cli_reports_explicitly_and_stably"
+  reproducibility_fields: "billing_mode_monetary_cost_status_model_mode_invocation_count_and_technical_limits"
+authorization:
+  react_signals_code: false
+  candidates: false
+  verifier_oracle_implementation: false
+  model_or_chromium_calls: false
+  official_benchmark: false
+  commit: false
+  push: false
+owner_approval:
+  status: "approved"
+  approver: "repository owner"
+  approved_at_utc: "2026-08-29T14:50:15Z"
+  exact_confirmation: "Подтверждаю BG-D01 freeze"
+  scope: "Freeze the EN/RU behavior/provenance packet as the safe source for future independently authored D01 implementation and permit only a request for a separate implementation checkpoint."
+  does_not_authorize:
+    - "react_or_signals_component_code"
+    - "fixture_candidate_or_oracle_implementation"
+    - "model_or_chromium_calls"
+    - "official_or_scored_benchmark"
+    - "commit"
+    - "push"
+next_gate: "separate_explicit_d01_implementation_checkpoint"

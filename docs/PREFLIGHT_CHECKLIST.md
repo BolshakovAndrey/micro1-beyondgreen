@@ -328,6 +328,13 @@ remaining semantic gates above still apply.
   `READY_FOR_IMPLEMENTATION` with the expected dirty-worktree warning and four
   binary-review notices. No contamination finding occurred, and automated readiness
   still does not authorize product work.
+- The owner approved the clean BG-D01 EN/RU behavior/provenance packet at
+  `2026-08-29T14:50:15Z`. Post-freeze trace review found a prohibited private
+  identifier category in the initial coordinator instruction; the identifier is not
+  recorded and does not occur in the frozen repository packet. The raw
+  `TRC-BG-D01-001` transcript is excluded under `EXC-002`, while the clean artifact
+  freeze remains valid. D01 implementation must begin in a new neutral task packet;
+  product code still requires a separate explicit owner checkpoint.
 
 ## Stop conditions
 

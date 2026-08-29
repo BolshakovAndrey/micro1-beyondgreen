@@ -56,7 +56,8 @@ BeyondGreen строит инвентаризацию рисков, выводи
 - результаты дополнительных probes и поведенческих контрактов;
 - финальный вердикт `accept`, `reject` или `abstain` с обоснованием;
 - JSON, проверенный схемой, и статический HTML-отчёт;
-- метаданные runtime, human time, tokens и cost; и
+- метаданные runtime, human time, model/token reporting, billing mode и статуса
+  применимости monetary cost; и
 - digests доказательств, достаточные для воспроизведения решения.
 
 ## 2. Scope, нецели и граница продукта
@@ -234,8 +235,10 @@ Hash кандидата проверяется до и после каждого
 владеет финальным ground-truth scoring и не передаёт repair feedback во время run.
 
 Для каждого candidate существует ровно один официальный scored run, ровно одна
-попытка и максимум три минуты wall-clock. Token/cost cap замораживается после Phase
-0.5 spike и до fixtures. Timeout даёт `abstain`.
+попытка и максимум три минуты wall-clock. После Phase 0.5 и до fixtures
+замораживаются model/mode, число вызовов, timeout/retry limits, правило учёта
+tokens, fixed-subscription billing mode и статус применимости monetary cost;
+расчёт, оценка или cap per-run USD не требуются. Timeout даёт `abstain`.
 Provider transport или rate-limit failure не разрешает model retry или вторую
 attempt и даёт `abstain`. Offline replay воспроизводит evidence и не является retry.
 
@@ -298,8 +301,10 @@ mismatch делает scored record недействительным и блок
   трёхминутный wall-clock ceiling;
 - environment, compilation, visible tests, scoring, seeds и operational ceilings
   идентичны;
-- reasoning cap BeyondGreen замораживается после Phase 0.5; фактические calls, tokens,
-  runtime, human time и cost раскрываются;
+- reasoning controls BeyondGreen замораживаются после Phase 0.5; раскрываются
+  фактические model/mode, calls, technical limits, runtime, human time, tokens только
+  при их явном стабильном выводе CLI, fixed-subscription billing и monetary-cost
+  status без расчёта или оценки per-run USD;
 - различия baseline по ресурсам честно раскрываются, а не скрываются и не
   выравниваются искусственно;
 - все decisions оценивает только independent evaluator; и
@@ -353,8 +358,11 @@ target или сокрытия failures. Результаты являются d
 этого synthetic benchmark; statistical significance и production generalization не
 заявляются.
 
-Supporting measures: runtime, completion, human time, model calls/tokens и estimated
-cost по arm и candidate. Отсутствующее наблюдение — `not_measured`, а не ноль.
+Supporting measures: runtime, completion, human time, model/mode, invocation count,
+technical limits, tokens только при их явном стабильном выводе CLI, billing mode и
+статус применимости monetary cost по arm и candidate. Для fixed subscription per-run
+USD имеет статус `not_applicable` или `not_measured`, не оценивается и не записывается
+нулём. Отсутствующее наблюдение — `not_measured`, а не ноль.
 Aggregates включают totals и явно определённые median/p95, где это уместно.
 Human time означает только agent-supervision time. Экономия human time относительно
 автоматического status-quo arm не заявляется; manual review time вне scope и не
@@ -400,7 +408,7 @@ decisions.
 | NFR-001 | Использовать Node.js/TypeScript, TypeScript Compiler API, Zod, `node:test`, minimal React harness и jsdom для formal checks. | Lockfile, language и dependency audit | RUB-REP, QG-REPRO |
 | NFR-002 | Fail closed в `abstain` при timeout, failed required probe, nondeterminism, ambiguity или incomplete evidence. | Negative tests | RUB-ASE, QG-ORIG |
 | NFR-003 | Обеспечить ровно одну attempt, отсутствие model transport retry и максимум три минуты на официальный run каждого candidate. | Run-policy audit | RUB-MI, RUB-REP |
-| NFR-004 | Заморозить model, adapter policy, token/cost cap, dependencies и evaluator до fixture implementation. | Versioned manifests и hashes | RUB-REP, QG-ORIG |
+| NFR-004 | До fixture implementation заморозить model/mode, adapter policy, invocation/time/retry limits, token-reporting policy, fixed-subscription billing и monetary-cost status, dependencies и evaluator; не проектировать per-run USD estimate или cap. | Versioned manifests и hashes | RUB-REP, QG-ORIG |
 | NFR-005 | Сделать hidden oracle, private workspace, browser, connected app, private MCP и global memory недоступными или неиспользуемыми по контракту. | Capability audit и denied-access tests | RUB-ASE, QG-ORIG |
 | NFR-006 | Никогда не раскрывать secrets, private paths/terms, oracle details или unsupported claims. | Preflight и human review | RUB-REP, QG-ORIG |
 | NFR-007 | Сохранять каждый failure, abstention, negative result, retry prohibition, resource observation и decision. | Immutable evidence reconciliation | RUB-MI, QG-TRACE |
@@ -419,7 +427,7 @@ decisions.
 | EV-006 | Обеспечить physical oracle isolation, denied-access testing и `K=0`. | Boundary evidence | RUB-ASE, QG-ORIG |
 | EV-007 | Точно вычислять decision accuracy `/20`, accuracy advantage, reason-correct defect recall `/10`, false-alarm rate `/10` и completion `/20`. | Independent aggregate recomputation | RUB-MI |
 | EV-008 | Сохранить пять predeclared targets и публиковать честные actuals при недостижении. | Rubric/hash и final report | RUB-MI, QG-ORIG |
-| EV-009 | Записывать runtime, human time, cost, tokens, errors, abstentions, evidence paths и hashes по каждому candidate. | Immutable per-candidate records | RUB-PUV, RUB-REP |
+| EV-009 | Записывать runtime, human time, model/mode, invocation count, technical limits, tokens при стабильном выводе, fixed-subscription billing, monetary-cost applicability/status, errors, abstentions, evidence paths и hashes по каждому candidate. | Immutable per-candidate records | RUB-PUV, RUB-REP |
 | EV-010 | Итерировать только по development evidence и раскрыть held-out один раз. | Changelog и unblinding record | RUB-MI, QG-ORIG |
 | EV-011 | Оставить D01 repair unscored и требовать approval плюс independent reverification. | Demo/run classification audit | RUB-E2E, QG-ORIG |
 | EV-012 | Разрешить single Chromium performance comparison только после identical actions и passed behavioral invariants. | Performance evidence record | RUB-MI |
@@ -508,9 +516,11 @@ CLI обязателен. JSON output проходит versioned Zod schema. Sta
 является gate v1.
 
 Каждая command записывает exit status, environment versions, evaluation version,
-candidate/fixture IDs, hashes, duration, model usage, human time, cost при наличии и
-output paths. Offline replay воспроизводит report artifacts из submitted records без
-credentials.
+candidate/fixture IDs, hashes, duration, model/mode, invocation count, technical
+limits, tokens только при стабильном выводе CLI, fixed-subscription billing,
+monetary-cost applicability/status, human time и output paths. Per-run USD не
+рассчитывается, не оценивается и не ограничивается cap. Offline replay воспроизводит
+report artifacts из submitted records без credentials.
 
 ## 16. Протокол improvement и unblinding
 
@@ -607,9 +617,10 @@ exact reproduction; public video максимум пять минут; ZIP clean
    повторов. Проверка во вложенной desktop-среде пропущена владельцем, отложена и не
    доказана; два отказа остаются отказами, а app-level Sol не является submission
    evidence. При недоступности — `abstain`, substitute model запрещён.
-4. Budget: fixed subscription; marginal USD и tokens записываются `not_measured`,
-   если CLI не сообщает tokens явно и стабильно. Один вызов, ноль повторов, 165
-   секунд engine + 15 секунд finalization; непроверяемый USD cap не заявляется.
+4. Budget/accounting: fixed subscription; per-run USD имеет статус `not_applicable`
+   или `not_measured` и не рассчитывается, не оценивается и не ограничивается cap.
+   Tokens записываются только при явном стабильном выводе CLI. Один вызов, ноль
+   повторов, 165 секунд engine + 15 секунд finalization.
 5. Replay: `offline-replay-jsonl-v1` / `beyondgreen-replay-jsonl@1.0.0`, UTF-8/LF,
    RFC 8785 JCS, SHA-256 chain, один schema-valid final output, без network,
    subprocess и workspace write. Это проверенный путь воспроизводимости, а не model

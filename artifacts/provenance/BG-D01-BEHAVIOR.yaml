@@ -1,0 +1,49 @@
+schema_version: "1.0"
+record_id: "PRV-BG-D01-BEHAVIOR-001"
+record_type: "artifact_candidate"
+artifact_paths:
+  - "evaluation/behavior-specs/BG-D01_BEHAVIOR.md"
+  - "evaluation/behavior-specs/BG-D01_BEHAVIOR_RU.md"
+  - "evaluation/behavior-specs/BG-D01_FREEZE.yaml"
+  - "artifacts/trajectories/reviews/BG-D01-BEHAVIOR-FREEZE_RU.md"
+requirement_ids:
+  - "EV-002"
+  - "EV-005"
+  - "EV-006"
+  - "EV-012"
+  - "AR-004"
+  - "AR-006"
+created_during_event: true
+author:
+  kind: "human_with_agent"
+  name_or_agent_id: "COD-CODEX-003"
+  model: "GPT-5.6 Sol"
+origin: "Independently authored synthetic behavior prose from approved repository contracts and the public React snapshot/queued-update anchors; no candidate, fixture code, or oracle implementation exists."
+public_anchor_ids:
+  - "SRC-REACT-SNAPSHOT"
+  - "SRC-REACT-QUEUE"
+clean_room_attestation:
+  copied_source_expression: false
+  private_material_used_as_source: false
+  employer_or_client_artifact_accessed: false
+  private_structure_imitation: false
+  outside_repository_read: false
+  browser_or_connected_app_state_used: false
+review:
+  automated_scan: "passed_real_scanner_only_control_and_implementation_preflights_zero_contamination_findings"
+  human_review: "passed"
+  reviewer: "repository owner"
+  reviewed_at_utc: "2026-08-29T14:50:15Z"
+  exact_confirmation: "Подтверждаю BG-D01 freeze"
+  approval_scope: "Frozen safe behavior/provenance source; only a request for a separate implementation checkpoint is permitted."
+redistribution:
+  allowed: true
+  rationale: "Project-authored public/synthetic behavior and provenance packet passed automated checks and repository-owner review."
+candidate_construction_performed: false
+oracle_implementation_performed: false
+editorial_review_reconciliation:
+  status: "applied_and_owner_approved"
+  findings:
+    - "Aligned active fixed-subscription accounting contracts: no per-run USD calculation, estimate, or cap; tokens only when stably reported."
+    - "Defined arm-visible single/double action vocabulary and deterministic parameterized labels without adding checks or defect families."
+  product_semantics_or_evaluation_method_changed: false

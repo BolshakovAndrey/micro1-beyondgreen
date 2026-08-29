@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "current_phase": "phase_0_5_frozen_product_implementation_separately_gated",
+  "current_phase": "d01_behavior_provenance_frozen_separate_implementation_checkpoint_required",
   "submission_root": ".",
   "runtime": {
     "name": "node",
@@ -13,7 +13,7 @@
   },
   "current_thread": {
     "submission_eligible": false,
-    "reason": "Normative BeyondGreen v1.1, the approved implementation boundary, trace-first gate, real contamination preflight, and Phase 0.5 freeze are complete. Product implementation remains unauthorized pending eligible capture/review of the Phase 0.5 trajectory, explicit owner authorization for product work, and the independently authored fixture behavior/provenance freeze for the applicable slice."
+    "reason": "The original control-plane conversation remains permanently submission-ineligible. Under separate clean boundary SES-20260829-003, the D01 behavior/provenance packet was owner-approved and frozen at 2026-08-29T14:50:15Z; implementation still requires a separate explicit checkpoint."
   },
   "allowed_source_classes": [
     "official_challenge_material",

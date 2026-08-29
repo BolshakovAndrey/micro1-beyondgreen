@@ -42,9 +42,11 @@ yet exist.
 
 Both arms share candidates, visible inputs, environment, compilation, tests, scoring,
 seed policy, evidence recorder, wall-clock ceiling, and operational limits. Baseline
-resource differences are disclosed. BeyondGreen's live engine and token/cost cap
-freeze after Phase 0.5; actual runtime, calls, tokens, human time, and cost are
-reported.
+resource differences are disclosed. BeyondGreen's live engine, model/mode,
+invocation count, timeout/retry limits, and token-reporting policy freeze after
+Phase 0.5. Actual runtime, calls, human time, tokens only when stably reported,
+fixed-subscription billing, and monetary-cost applicability/status are reported;
+per-run USD is not calculated, estimated, or capped.
 
 The optional live adapter contract is frozen as `codex-exec-jsonl-v1` targeting
 `gpt-5.6-sol` through locally ChatGPT-authenticated `codex exec`, with one call,
@@ -53,8 +55,8 @@ runtime validation is owner-waived and remains deferred/unverified; two historic
 failures remain failures. Model unavailability or transport failure produces
 `abstain`, never a substitute or retry. Deterministic `offline-replay-jsonl-v1` is
 the verified reproducibility path but does not prove live model behavior. Fixed
-subscription marginal USD cost and tokens are `not_measured` unless tokens are
-reported explicitly and stably.
+subscription per-run USD is `not_applicable` or `not_measured` and is not calculated
+or estimated. Tokens are recorded only when reported explicitly and stably.
 
 ## Metrics and exact target semantics (`EV-007`, `EV-008`)
 
@@ -139,8 +141,10 @@ Operational uncertainty must never be mislabeled as a proven defect.
 
 ## Run protocol (`EV-004`–`EV-010`)
 
-1. Validate clean-room state, evaluation version, candidate/manifests hashes, model
-   adapter, token/cost cap, three-minute ceiling, and policy digests.
+1. Validate clean-room state, evaluation version, candidate/manifests hashes,
+   model/mode and adapter, invocation/time/retry limits, token-reporting policy,
+   fixed-subscription billing and monetary-cost status, three-minute ceiling, and
+   policy digests.
 2. Prove denied oracle access for both arms.
 3. Self-test all 20 visible gates, then self-test evaluator ground truth.
 4. Run status quo exactly once on every candidate.
@@ -167,7 +171,9 @@ arm-visible and verifier-only manifest digests; candidate hash before/after; att
 ordinal fixed to one; start/end/duration; timeout ceiling; compilation and visible
 test results; risk/probe summaries where applicable; verdict; evidence-completeness
 state; correct-decision bit; defect-recall bit; false-alarm bit; completion bit;
-errors; model calls/tokens/cost; human time; and evidence paths/digests.
+errors; model/mode, invocation count and technical limits; tokens when stably
+reported; fixed-subscription billing and monetary-cost applicability/status; human
+time; and evidence paths/digests.
 
 Human time is agent-supervision time. No time-savings claim is made against the
 automated status-quo arm, and manual review time is not estimated.
