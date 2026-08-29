@@ -3,7 +3,8 @@
 **Статус перевода:** полная ненормативная русская копия для проверки человеком
 **Нормативный источник:** `docs/PROJECT_SPEC.md`
 **Версия:** `1.1.0`
-**Состояние:** нормативная v1.1 одобрена; implementation не разрешён
+**Состояние:** нормативная v1.1 одобрена; Phase 0.5 зафиксирована с явным исключением
+для вложенного CLI; implementation отдельно gated и не разрешён
 **Одобрение человеком:** 2026-08-29T10:46:39Z
 **Чистая сессия:** `SES-20260829-001`
 
@@ -18,8 +19,9 @@
 планы реализации, схемы и отчёты являются проекциями ID требований этой
 спецификации. При конфликте действует нормативный файл, а проекция исправляется.
 
-Код продукта, реализации фикстур, benchmark runs и результаты моделей не являются
-частью этой спецификации.
+Код продукта, реализации фикстур, official benchmark runs и scored model results не
+являются частью этой спецификации. Phase 0.5 feasibility evidence упоминается только
+для фиксации pre-product contracts и ограничений.
 
 ## 1. Тезис продукта
 
@@ -443,11 +445,25 @@ Canonical tokens: `RUB-PUV` (15), `RUB-ASE` (30), `RUB-E2E` (20), `RUB-MI`
 
 ## 15. Контракт воспроизводимости и интерфейса
 
-Runtime — Node.js `22.22.3`. Точные dependency versions фиксируются в lockfile до
-fixtures. Public signals ecosystem anchor записан для feasibility, но не означает
-package selection. Signals npm package остаётся `TBD` до безопасного public
-package-name lookup; его нельзя выводить из private code. Точные package, version и
-license записываются в Phase 0.5 и замораживаются до fixture prose или implementation.
+Runtime — Node.js `22.22.3` и npm `10.9.8`. В `package-lock.json` версии 3
+зафиксированы точные версии: TypeScript `5.9.3`, React и ReactDOM `19.2.8`, jsdom
+`30.0.1`, Zod `4.5.2`, `@types/node` `22.20.1`, `@types/react` `19.2.18`,
+`@types/react-dom` `19.2.5` и `@types/jsdom` `30.0.0`. Выбран публичный signals-пакет
+`@preact/signals-react@3.12.0` с лицензией MIT. Его возможности и аудит косвенных
+лицензий зафиксированы в `config/phase-0.5.candidate.yaml` и
+`artifacts/phase-0.5-license-audit.json`.
+
+Необязательный live-adapter `codex-exec-jsonl-v1` использует локально авторизованную
+команду `codex exec --ephemeral --ignore-user-config --json --output-schema <schema>
+--sandbox read-only --model gpt-5.6-sol`: один вызов на candidate, без model или
+transport retry, общий лимит 180 секунд с резервом 15 секунд на финализацию. Во
+вложенной Codex desktop-среде его runtime-поведение отложено и не проверено по явному
+решению владельца для Phase 0.5. Два измеренных CLI-отказа остаются отказами; работа
+Sol, наблюдаемая владельцем в приложении, не является submission evidence.
+Проверенный путь воспроизводимости — deterministic `offline-replay-jsonl-v1` с
+форматом `beyondgreen-replay-jsonl@1.0.0`, UTF-8/LF, canonical JSON RFC 8785,
+SHA-256 chain, без сети, subprocess и записи в workspace. Он не доказывает живую
+работу модели.
 
 Archive резервирует `evaluation/arm-visible/` для task packages и
 `evaluation/verifier-only/` для oracle packages и ground-truth manifests. Оба
@@ -540,10 +556,12 @@ Claude получает minimum sufficient clean packet, не может ред�
 авторизует changes. Codex независимо проверяет каждое actionable finding. Где
 указано, human approval остаётся gate после review.
 
-Одобрение этой спецификации не разрешает product development. Разработка начинается
-только после переноса одобренных изменений в основную ветку, успешного real
-contamination preflight с разрешёнными external paths, явного одобрения нового
-implementation `SESSION_BOUNDARY` и успешного eligible trace-first gate.
+Одобрение этой спецификации и фиксация Phase 0.5 не разрешают product development.
+Approved boundary и trace-first gate уже пройдены, а Phase 0.5 зафиксирована с явным
+исключением для вложенного CLI. Product implementation начинается только после
+отдельного явного разрешения владельца, capture и review траектории Phase 0.5 по
+`docs/TRACE_POLICY.md` и фиксации независимо созданных behavior/provenance материалов
+для соответствующей fixture.
 
 ## 19. Critical path и milestones
 
@@ -551,7 +569,7 @@ implementation `SESSION_BOUNDARY` и успешного eligible trace-first gat
 | --- | --- | --- |
 | 0. Normative v1.1 | Одобренная BeyondGreen spec и согласованные projections | Claude read-only review, Codex reconciliation, final human spec approval |
 | Trace-first gate | Submission-eligible implementation session и trajectory plan | Approved boundary, control preflight, verified trace capture и structural implementation preflight, чистый кроме перечисленных в section 20 решений Phase 0.5 |
-| 0.5 Stack spike | Public stack, lockfile, model adapter, offline replay, проверка трёх минут, frozen token/cost cap | Runtime детерминированно показывает все десять behavior classes; все `TBD` package/model decisions разрешены до fixtures; затем проходит полный implementation preflight |
+| 0.5 Stack spike | Зафиксированные public stack, lockfile, optional/unverified live adapter, verified offline replay, budget policy, behavior assignment и Chromium protocol | Закрыта с явным nested-CLI waiver после license 54/54, stack 11/11, replay controls и PASS правильности Chromium-сценария на 300 карточек; CPU improvement не доказано |
 | D01 vertical slice | Один полный verify-existing case, reports, isolation и E2E demo path | Все contracts, denied-access test, clean replay и второй Claude checkpoint проходят |
 | Early package rehearsal | ZIP собран и запущен после clean extraction | Required files, commands, licenses, traces и manifests согласованы |
 | Remaining fixtures | `BG-D02`–`BG-D04` и `BG-H01`–`BG-H06` prose, candidates, oracles и development validation | Provenance, hashes, evaluator self-tests, challenging-case label и split 4/6 заморожены |
@@ -575,19 +593,47 @@ exact reproduction; public video максимум пять минут; ZIP clean
   performance.
 - Реализация Codex и три bounded Claude read-only checkpoints.
 
-### Решается в Phase 0.5 и замораживается до fixtures
+### Зафиксировано Phase 0.5 в `2026-08-29T13:41:51Z`
 
-1. Точный public signals npm package, version, license и capability profile после
-   safe public-name lookup.
-2. Точные versions TypeScript, React, jsdom, Zod и supporting packages.
-3. Live reasoning engine/provider и configuration provider-neutral adapter.
-4. Token/cost cap внутри фиксированного трёхминутного ceiling.
-5. Offline replay record format и deterministic acceptance checks.
-6. Точное распределение fixture-to-behavior-class и membership 4/6.
-7. Единственный Chromium scenario, action script, repeat count и variance reporting.
+1. Signals: `@preact/signals-react@3.12.0`, лицензия MIT; public repository и
+   проверенные React/signals capabilities записаны в frozen decision packet.
+2. Stack: Node `22.22.3`, npm `10.9.8`, TypeScript `5.9.3`, React/ReactDOM `19.2.8`,
+   jsdom `30.0.1`, Zod `4.5.2` и точные type packages из раздела 15. Обязательны
+   lockfile версии 3 и `npm ci`. Transitive-license gate прошёл 54/54;
+   `THIRD_PARTY_NOTICES.md` обязателен для реально распространяемых dependencies.
+3. Live reasoning: optional provider-neutral `codex-exec-jsonl-v1` с
+   `gpt-5.6-sol` через ChatGPT-authenticated local `codex exec`, read-only sandbox,
+   ephemeral session, ignored user config, JSONL/schema output, один вызов и ноль
+   повторов. Проверка во вложенной desktop-среде пропущена владельцем, отложена и не
+   доказана; два отказа остаются отказами, а app-level Sol не является submission
+   evidence. При недоступности — `abstain`, substitute model запрещён.
+4. Budget: fixed subscription; marginal USD и tokens записываются `not_measured`,
+   если CLI не сообщает tokens явно и стабильно. Один вызов, ноль повторов, 165
+   секунд engine + 15 секунд finalization; непроверяемый USD cap не заявляется.
+5. Replay: `offline-replay-jsonl-v1` / `beyondgreen-replay-jsonl@1.0.0`, UTF-8/LF,
+   RFC 8785 JCS, SHA-256 chain, один schema-valid final output, без network,
+   subprocess и workspace write. Это проверенный путь воспроизводимости, а не model
+   retry и не доказательство live operation.
+6. Assignment: `BG-D01` stale snapshots (museum visit group allocation board),
+   `BG-D02` queued/batched updates, `BG-D03` derived state, `BG-D04` subscription
+   cleanup; `BG-H01` prop reset, `BG-H02` async ordering и заранее объявленный
+   challenging case, `BG-H03` identity stability, `BG-H04` conditional lifecycle,
+   `BG-H05` external store, `BG-H06` rollback. Fixture prose и oracle contents пока
+   не создавались и будут отдельно независимо authored.
+7. Chromium: независимая museum-board CSS grid на 300 карточек; порядок действий
+   `mount`, `select-all`, `allocate-1x2`, `step-3`, `allocate-3x2`,
+   `select-every-third`, `remove-3x1`, `reset`; 5 warmups и 30 measured samples на
+   arm с чередованием. Correctness прошёл для всех значений, selections, action
+   digest, reset и нулевых page errors. Synthetic card renders: 2400 baseline и 1900
+   advanced, то есть на 20,83% меньше. Средний CDP `TaskDuration`: 4,7071 мс и
+   5,0037 мс, поэтому CPU improvement явно не доказано. Render-count result относится
+   только к этому synthetic spike, не влияет на scored decisions и не является
+   production-performance claim.
 
-До measured evidence не заявляются benchmark result, performance win, cost advantage,
-strongest change, removed experiment, failure distribution или hot take.
+Ранее владелец условно решил закрыть Phase 0.5, если после Chromium не останется
+других препятствий. Координатор подтвердил correctness и reproducibility evidence,
+поэтому условие выполнено. Эта фиксация закрывает только Phase 0.5 и не разрешает
+product code, scored fixtures/candidates/oracles, official benchmark, commit или push.
 
 ## 21. Traceability и полнота rubric
 

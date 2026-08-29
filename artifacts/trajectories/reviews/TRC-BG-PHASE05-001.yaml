@@ -1,0 +1,109 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-PHASE05-001"
+status: "passed"
+category: "coding_agent"
+agent_id: "COD-CODEX-002"
+tool_and_model: "Codex desktop / GPT-5.6 Sol (owner-observed current default; raw export has no model field)"
+purpose: "Phase 0.5 research, decisions, measured stack/replay/Chromium spike, nested-CLI waiver, conditional freeze, and validation."
+session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260829-002.yaml"
+instructions_path: "artifacts/trajectories/instructions/TRC-BG-PHASE05-001.md"
+reviewed_trace_path: "artifacts/trajectories/reviewed/TRC-BG-PHASE05-001.md"
+reviewed_trace_ru_path: "artifacts/trajectories/reviewed/TRC-BG-PHASE05-001_RU.md"
+human_review_companion_ru_path: "artifacts/trajectories/reviews/TRC-BG-PHASE05-001_RU.md"
+related_iteration_ids:
+  - "ITR-005"
+  - "ITR-006"
+  - "ITR-007"
+  - "ITR-008"
+  - "ITR-009"
+  - "ITR-010"
+  - "ITR-011"
+  - "ITR-012"
+  - "ITR-013"
+  - "ITR-014"
+related_run_ids: []
+raw_capture:
+  bytes: 3511076
+  sha256: "031477de3fd7e42591ba5e7c1820ac39cb2dd1b691dbae29ae850a2aee895b86"
+  immutable_capture: "succeeded_coordinator_supplied_fact"
+  outside_repository: true
+  raw_path_disclosed: false
+  raw_file_accessed_by_packaging_task: false
+raw_automated_scan:
+  status: "failed"
+  absolute_user_path_matches: 667
+  private_term_matches_total: 2
+  private_term_matches_after_path_redaction: 1
+  email_matches: 0
+  secret_assignment_matches: 0
+reviewed_layer_redactions_and_omissions:
+  - category: "absolute_user_paths"
+    source_matches: 667
+    disposition: "Replaced by repository-relative paths or <REDACTED_MACHINE_PATH>."
+  - category: "remaining_private_term_match"
+    source_matches_after_path_redaction: 1
+    disposition: "Omitted without copying, naming, describing, or guessing the term."
+  - category: "internal_thread_message_tool_identifiers"
+    source_count: "not_supplied"
+    disposition: "Excluded as non-technical internal metadata."
+  - category: "unrelated_pre_phase_0_5_transcript"
+    source_count: "not_supplied"
+    disposition: "Excluded from this bounded Phase 0.5 trajectory."
+  - category: "email"
+    source_matches: 0
+    disposition: "No redaction required."
+  - category: "secret_assignment"
+    source_matches: 0
+    disposition: "No redaction required."
+reviewed_layer_automated_scan:
+  command: "micro1-safe-preflight control"
+  status: "passed"
+  scanned_at_utc: "2026-08-29T14:02:45Z"
+  verdict: "READY_FOR_CLEAN_BRANCH"
+  contamination_findings: 0
+  machine_path_findings: 0
+  internal_metadata_findings: 0
+  binary_human_review_notices: 4
+review:
+  candidate_preparer: "Codex"
+  coordinator_review: "automated_scan_and_repository_owner_review_passed"
+  repository_evidence_chronology_complete_candidate: true
+  technical_meaning_preserved: true
+  limitation: "The raw scan failed and one private-term match remained after path redaction; although the reviewed layer passed the real-denylist repository scan, preservation cannot be attested before repository-owner EN/RU review."
+  limitation_resolution: "The repository owner reviewed the EN/RU layer after the stated exclusions and explicitly confirmed that technical meaning was preserved. The raw scan remains failed and is not relabelled."
+human_review:
+  status: "passed"
+  reviewer_role: "repository owner"
+  reviewed_at_utc: "2026-08-29T14:07:36Z"
+  approval_question_exact: "Подтверждаете русскую и английскую версии TRC-BG-PHASE05-001 как точный и безопасный отчёт, в котором после указанных исключений сохранён технический смысл?"
+  selected_response_exact: "Подтверждаю одобрение (Recommended)"
+  approval_interpretation: "The selected response explicitly confirms the statement in approval_question_exact; it does not claim that the owner typed the full question text verbatim."
+  owner_approval_evidence: "Structured repository-owner checkpoint with the exact question and selected response recorded separately."
+  russian_companions_available:
+    - "artifacts/trajectories/reviewed/TRC-BG-PHASE05-001_RU.md"
+    - "artifacts/trajectories/reviews/TRC-BG-PHASE05-001_RU.md"
+  russian_companions_available_at_approval: true
+promotion:
+  final_pass_allowed: true
+  actual_trace_indexed: true
+  rule: "Reviewed-layer automated scan and repository-owner EN/RU human review passed; this trace is promoted within the narrow approval scope."
+  authorized_scope: "Trace promotion only."
+  approval_would_not_authorize: "Product code, scored fixtures/candidates/oracles, official benchmark, model or Chromium rerun, commit, or push."
+post_promotion_validation:
+  repository_tests: "passed_16_of_16"
+  phase_0_5_stack_tests: "passed_11_of_11"
+  phase_0_5_model_offline_tests: "passed_6_of_6_no_model_invocation"
+  cli_privacy_tests: "passed_3_of_3"
+  doctor_privacy_tests: "passed_4_of_4"
+  network_privacy_tests: "passed_3_of_3"
+  chromium_harness_tests: "passed_4_of_4_no_browser_invocation"
+  yaml: "passed"
+  en_ru_approval_parity: "passed"
+  privacy_pattern_check: "passed"
+  git_diff_check: "passed"
+  checksum_manifest: "passed_79_files"
+  control_preflight: "READY_FOR_CLEAN_BRANCH"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION_with_dirty_worktree_warning"
+  contamination_findings: 0
+  binary_human_review_notices: 4
+  automated_readiness_is_product_authorization: false

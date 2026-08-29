@@ -1,0 +1,54 @@
+{
+  "schema_version": "beyondgreen-model-probe@1.1.0",
+  "status": "abstain",
+  "command": "codex exec --ephemeral --ignore-user-config --json --output-schema spikes/phase-0.5/model-output.schema.json --sandbox read-only --model gpt-5.6-sol",
+  "model": "gpt-5.6-sol",
+  "total_calls": 2,
+  "owner_authorized_diagnostic_retries": 1,
+  "automatic_retries": 0,
+  "substitute_model_used": false,
+  "attempts": [
+    {
+      "attempt": 1,
+      "purpose": "initial_live_feasibility_probe",
+      "completed_at_utc": "2026-08-29T13:07:50Z",
+      "status": "abstain",
+      "error_code": "MODEL_TRANSPORT_FAILURE",
+      "process_exit_code": 1,
+      "stderr_sha256": "3b93186506b30e5901974d0a6f8f0c3c876309b7920735f66205cef575d0c264",
+      "elapsed_seconds": 3.931689709,
+      "calls": 1,
+      "model_retries": 0,
+      "transport_retries": 0,
+      "substitute_model_used": false,
+      "raw_stderr_persisted_or_disclosed": false
+    },
+    {
+      "attempt": 2,
+      "purpose": "owner_authorized_privacy_safe_diagnostic_retry",
+      "completed_at_utc": "2026-08-29T13:12:45.852Z",
+      "status": "abstain",
+      "error_code": "MODEL_TRANSPORT_FAILURE",
+      "process_exit_code": 1,
+      "elapsed_ms": 3006,
+      "stderr_diagnostic": {
+        "safe_class": "unknown",
+        "stderr_sha256": "1393963b62d2b0ef4064d9462d967f6b8688db20939a0fcc4b024e7b06ec4ba5",
+        "redaction_counts": {
+          "absolute_paths": 0,
+          "emails": 0,
+          "account_project_ids": 0,
+          "tokens_or_secrets": 0,
+          "machine_identifiers": 0
+        },
+        "sanitized_excerpt_persisted": false,
+        "raw_stderr_persisted_or_disclosed": false
+      },
+      "calls": 1,
+      "model_retries": 0,
+      "transport_retries": 0,
+      "substitute_model_used": false
+    }
+  ],
+  "required_action": "stop_for_repository_owner_review_no_third_call"
+}

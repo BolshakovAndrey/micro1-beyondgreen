@@ -1,0 +1,5 @@
+Return only the JSON object required by the supplied output schema.
+This is a synthetic transport feasibility probe, not a coding task.
+Do not inspect files, run tools, modify anything, or include paths or private data.
+Use probe_id BG-P05-LIVE-001, status passed, model gpt-5.6-sol,
+sandbox read-only, and a short message confirming schema compliance.

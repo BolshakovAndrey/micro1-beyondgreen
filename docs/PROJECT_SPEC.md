@@ -2,7 +2,8 @@
 
 **Normative status:** single source of truth
 **Version:** `1.1.0`
-**State:** normative v1.1 approved; implementation not authorized
+**State:** normative v1.1 approved; Phase 0.5 frozen under explicit nested-CLI waiver;
+implementation separately gated and not authorized
 **Human approval:** 2026-08-29T10:46:39Z
 **Clean session:** `SES-20260829-001`
 
@@ -14,8 +15,9 @@ implementation plans, schemas, and reports are projections of requirement IDs in
 this specification. If a projection conflicts with this file, this file wins and the
 projection must be corrected.
 
-No product code, fixture implementation, benchmark run, or model result is part of
-this specification.
+No product code, fixture implementation, official benchmark run, or scored model
+result is part of this specification. Phase 0.5 feasibility evidence is referenced
+only to freeze pre-product contracts and limitations.
 
 ## 1. Product thesis
 
@@ -434,12 +436,26 @@ Canonical tokens are `RUB-PUV` (15), `RUB-ASE` (30), `RUB-E2E` (20), `RUB-MI`
 
 ## 15. Reproducibility and interface contract
 
-The runtime is Node.js `22.22.3`. Exact dependency versions are frozen in the
-lockfile before fixtures. A public signals ecosystem anchor has been recorded for
-feasibility without implying package selection. The signals npm package remains
-`TBD` until a safe public package-name lookup; it must not be inferred from private
-code. Its exact package, version, and license are recorded during Phase 0.5 and
-frozen before fixture prose or implementation.
+The runtime is Node.js `22.22.3` with npm `10.9.8`. Exact dependency versions are
+frozen in `package-lock.json` (lockfile version 3): TypeScript `5.9.3`, React and
+ReactDOM `19.2.8`, jsdom `30.0.1`, Zod `4.5.2`, `@types/node` `22.20.1`,
+`@types/react` `19.2.18`, `@types/react-dom` `19.2.5`, and `@types/jsdom` `30.0.0`.
+The selected public signals package is `@preact/signals-react@3.12.0`, MIT-licensed,
+with the capability profile and transitive-license evidence frozen in
+`config/phase-0.5.candidate.yaml` and `artifacts/phase-0.5-license-audit.json`.
+
+The optional live adapter contract is `codex-exec-jsonl-v1` using the locally
+authenticated command `codex exec --ephemeral --ignore-user-config --json
+--output-schema <schema> --sandbox read-only --model gpt-5.6-sol`, one call per
+candidate, no model or transport retry, and a 180-second total deadline with a
+15-second finalization reserve. Its runtime behavior is deferred and unverified in
+the nested Codex desktop environment under the repository owner's explicit Phase
+0.5 waiver. Both measured CLI failures remain failures; app-level Sol operation is
+owner-observed context, not submission evidence. Deterministic
+`offline-replay-jsonl-v1` using `beyondgreen-replay-jsonl@1.0.0`, UTF-8/LF,
+RFC 8785 JCS canonicalization, SHA-256 chaining, no network, no subprocess, and no
+workspace writes is the verified reproducibility path. It does not prove live model
+operation.
 
 The archive reserves `evaluation/arm-visible/` for task packages and
 `evaluation/verifier-only/` for oracle packages and ground-truth manifests. Both are
@@ -532,12 +548,12 @@ Claude receives the minimum sufficient clean packet, cannot edit, and does not
 authorize changes. Codex independently verifies every actionable finding. Human
 approval remains the gate after each review where specified.
 
-Approval of this specification does not authorize product development. The approved
-changes have been transferred to the named clean branch; that transfer removes only
-the prior detached-HEAD/handoff blocker. Development begins only after Phase 0.5 is
-resolved as specified below, real contamination preflight passes with authorized
-external paths, a new implementation `SESSION_BOUNDARY` receives explicit approval,
-and the eligible trace-first gate passes.
+Approval of this specification and the Phase 0.5 freeze does not authorize product
+development. The approved boundary and trace-first gate have passed, and Phase 0.5
+is frozen under the explicit nested-CLI waiver. Product implementation still begins
+only after its own explicit repository-owner authorization, the Phase 0.5 trajectory
+is captured and reviewed under `docs/TRACE_POLICY.md`, and the independently authored
+fixture behavior/provenance gate for the applicable slice is frozen.
 
 ## 19. Critical path and milestones
 
@@ -545,7 +561,7 @@ and the eligible trace-first gate passes.
 | --- | --- | --- |
 | 0. Normative v1.1 | Approved BeyondGreen spec and consistent projections | Claude read-only review, Codex reconciliation, final human spec approval |
 | Trace-first gate | Submission-eligible implementation session and trajectory plan | Approved boundary, control preflight, trace capture verified, and structural implementation preflight clean except for the enumerated section 20 Phase 0.5 decisions |
-| 0.5 Stack spike | Public stack, lockfile, model adapter, offline replay, three-minute feasibility, frozen token/cost cap | Runtime deterministically exposes all ten behavior classes; all `TBD` package/model decisions resolved before fixtures; full implementation preflight then passes |
+| 0.5 Stack spike | Frozen public stack, lockfile, optional/unverified live adapter, verified offline replay, budget policy, behavior assignment, and Chromium protocol | Closed under explicit nested-CLI waiver after license 54/54, stack 11/11, replay controls, and 300-card Chromium correctness PASS; CPU improvement not demonstrated |
 | D01 vertical slice | One complete verify-existing case, reports, isolation, E2E demo path | All contracts, denied-access test, clean replay, and second Claude checkpoint pass |
 | Early package rehearsal | ZIP built and run after clean extraction | Required files, commands, licenses, traces, and manifests reconcile |
 | Remaining fixtures | `BG-D02`–`BG-D04` and `BG-H01`–`BG-H06` prose, candidates, oracles, and development validation | Provenance, hashes, evaluator self-tests, challenging-case label, and 4/6 split freeze |
@@ -569,19 +585,48 @@ one negative or removed experiment.
   Chromium performance.
 - Codex implementation and three bounded Claude read-only checkpoints.
 
-### Must be resolved during Phase 0.5 and frozen before fixtures
+### Frozen by Phase 0.5 at `2026-08-29T13:41:51Z`
 
-1. Exact public signals npm package, version, license, and capability profile after a
-   safe public-name lookup.
-2. Exact versions of TypeScript, React, jsdom, Zod, and supporting packages.
-3. Live reasoning engine/provider and provider-neutral adapter configuration.
-4. Token/cost cap within the fixed three-minute ceiling.
-5. Offline replay record format and deterministic acceptance checks.
-6. Exact fixture-to-behavior-class and 4/6 membership assignment.
-7. The single Chromium scenario, action script, repeat count, and variance reporting.
+1. Signals: `@preact/signals-react@3.12.0`, MIT, with public repository and tested
+   React/signals capability profile recorded in the frozen decision packet.
+2. Stack: Node `22.22.3`, npm `10.9.8`, TypeScript `5.9.3`, React/ReactDOM `19.2.8`,
+   jsdom `30.0.1`, Zod `4.5.2`, and exact type packages listed in section 15;
+   lockfile version 3 and `npm ci` are mandatory. The transitive-license gate passed
+   54/54 and `THIRD_PARTY_NOTICES.md` is required for distributed dependencies.
+3. Live reasoning: provider-neutral optional `codex-exec-jsonl-v1` contract targeting
+   `gpt-5.6-sol` through ChatGPT-authenticated local `codex exec`, read-only sandbox,
+   ephemeral session, ignored user config, JSONL and schema output, one call and zero
+   retries. Nested-desktop runtime validation is owner-waived, deferred, and
+   unverified; two failures remain failures and app-level Sol operation is not
+   submission evidence. Unavailability produces `abstain`; no substitute model.
+4. Budget: fixed subscription; marginal USD and tokens are `not_measured` unless the
+   CLI reports tokens explicitly and stably. Enforce one call, zero retries, 165
+   engine seconds plus 15 finalization seconds, and no unverifiable USD cap.
+5. Replay: `offline-replay-jsonl-v1` / `beyondgreen-replay-jsonl@1.0.0`, UTF-8/LF,
+   RFC 8785 JCS, SHA-256 chain, schema-valid single final output, no network,
+   subprocess, or workspace write. This is the verified reproducibility path, not a
+   model retry and not proof of live operation.
+6. Assignment: `BG-D01` stale snapshots (museum visit group allocation board),
+   `BG-D02` queued/batched updates, `BG-D03` derived state, `BG-D04` subscription
+   cleanup; `BG-H01` prop reset, `BG-H02` async ordering and predeclared challenging
+   case, `BG-H03` identity stability, `BG-H04` conditional lifecycle, `BG-H05`
+   external store, and `BG-H06` rollback. Fixture prose and oracle contents remain
+   future independently authored artifacts.
+7. Chromium: independent 300-card museum-board CSS grid; frozen ordered actions
+   `mount`, `select-all`, `allocate-1x2`, `step-3`, `allocate-3x2`,
+   `select-every-third`, `remove-3x1`, `reset`; five warmups and 30 measured samples
+   per arm in alternating order. Correctness passed for all values, selections,
+   action digest, reset, and zero page errors. Synthetic card renders were 2400
+   baseline versus 1900 advanced (20.83% fewer). Mean CDP `TaskDuration` was 4.7071
+   ms versus 5.0037 ms, so CPU improvement is explicitly not demonstrated. This
+   synthetic render-count result is secondary evidence only and cannot affect scored
+   decisions or support a production-performance claim.
 
-No benchmark result, performance win, cost advantage, strongest change, removed
-experiment, failure distribution, or hot take is claimed before measured evidence.
+The repository owner's earlier conditional decision to close Phase 0.5 if no other
+obstacle remained is satisfied by the coordinator-verified Chromium correctness and
+reproducibility evidence. This freeze closes only Phase 0.5; it does not authorize
+product code, scored fixtures/candidates/oracles, an official benchmark, commit, or
+push.
 
 ## 21. Traceability and rubric completeness
 

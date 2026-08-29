@@ -8,7 +8,7 @@ requirement_ids:
   - "AR-001..AR-009"
 project:
   name: "BeyondGreen"
-  normative_spec_status: "approved_implementation_not_authorized"
+  normative_spec_status: "approved_phase_0_5_frozen_implementation_not_authorized"
   normative_spec_approved_at_utc: "2026-08-29T10:46:39Z"
   one_sentence_summary: "An evidence-backed verify-existing workflow for deciding whether immutable React state-to-signals candidates are safe to merge despite incomplete legacy tests."
   rename_scope: "Marketing rename only; proven v1 scope remains React state to signals."
@@ -73,5 +73,66 @@ stack:
   tests: "node:test"
   formal_behavior: "minimal React harness with jsdom"
   browser_scope: "Chromium for demo and secondary performance only"
-  signals_package: "TBD pending safe public-name lookup before fixtures"
-open_decisions_source: "docs/PROJECT_SPEC.md#20-open-decisions-and-locked-decisions"
+  signals_package: "@preact/signals-react@3.12.0"
+  signals_license: "MIT"
+  exact_versions:
+    npm: "10.9.8"
+    typescript: "5.9.3"
+    react: "19.2.8"
+    react_dom: "19.2.8"
+    jsdom: "30.0.1"
+    zod: "4.5.2"
+    types_node: "22.20.1"
+    types_react: "19.2.18"
+    types_react_dom: "19.2.5"
+    types_jsdom: "30.0.0"
+phase_0_5:
+  status: "frozen_under_explicit_nested_cli_waiver"
+  frozen_at_utc: "2026-08-29T13:41:51Z"
+  decision_contract: "config/phase-0.5.candidate.yaml"
+  lockfile: {path: "package-lock.json", version: 3, clean_install: "npm ci"}
+  license_audit: {status: "passed_54_of_54", notices: "THIRD_PARTY_NOTICES.md"}
+  live_adapter:
+    status: "optional_runtime_deferred_unverified_in_nested_desktop_environment"
+    adapter: "codex-exec-jsonl-v1"
+    model: "gpt-5.6-sol"
+    attempts_per_candidate: 1
+    automatic_retries: 0
+    unavailable_action: "abstain"
+    historical_failures_preserved: 2
+    app_level_sol_is_submission_evidence: false
+  replay:
+    adapter: "offline-replay-jsonl-v1"
+    format: "beyondgreen-replay-jsonl@1.0.0"
+    status: "verified_reproducibility_path"
+  budget:
+    billing: "fixed_subscription"
+    marginal_usd_cost: "not_measured"
+    token_usage: "not_measured_unless_stably_reported"
+    engine_deadline_seconds: 165
+    finalization_reserve_seconds: 15
+  fixture_behavior_assignment:
+    BG-D01: "stale_snapshots"
+    BG-D02: "queued_batched_updates"
+    BG-D03: "derived_state"
+    BG-D04: "subscription_cleanup"
+    BG-H01: "prop_reset"
+    BG-H02: "asynchronous_ordering_challenging_case"
+    BG-H03: "identity_stability"
+    BG-H04: "conditional_lifecycle"
+    BG-H05: "external_store_semantics"
+    BG-H06: "rollback"
+  chromium:
+    scenario: "independent_synthetic_museum_visit_group_allocation_board"
+    card_count: 300
+    correctness: "passed"
+    measured_samples_per_arm: 30
+    warmups_per_arm: 5
+    baseline_card_renders: 2400
+    advanced_card_renders: 1900
+    render_reduction_percent: 20.83
+    baseline_task_duration_mean_ms: 4.7071
+    advanced_task_duration_mean_ms: 5.0037
+    cpu_improvement_demonstrated: false
+    claim_scope: "synthetic_spike_render_count_only"
+phase_0_5_source: "docs/PROJECT_SPEC.md#20-open-decisions-and-locked-decisions"

@@ -52,7 +52,7 @@ controls:
 attestation:
   submission_eligible_at_start: false
   submission_eligible_after_boundary: true
-  repository_artifacts_status: "reviewed_trace_first_approved"
+  repository_artifacts_status: "reviewed_trace_first_and_phase_0_5_trajectory_approved"
   authoring_transcript_status: "eligible"
   authoring_transcript_exclusion_category: ""
 human_approval:
@@ -72,13 +72,14 @@ git_state:
       commit_history_rewritten: false
       evidence: "Factual provenance supplied by the repository owner in the clean task packet; current branch and commit independently verified."
 boundary_review:
-  status: "trace_first_passed_phase_0_5_pending"
+  status: "trace_first_and_phase_0_5_trace_review_passed"
   shared_memory: "Not read because it is outside the clean repository root and forbidden by this task."
   tool_scope: "Repository shell and file tools only; browser, connected apps, private MCP resources, external workspaces, and shared memory were not used."
   environment_probe: "Variable presence and repository-path relationship only; no values or private contents were printed."
   environment_result: "The variables remain absent from the general task shell. The owner-authorized scanner-only launcher confirmed boolean presence and outside-repository resolution, then injected values only into the scanner subprocess. No values or external paths were exposed, persisted, or guessed."
   blockers:
-    - "Two expected Phase 0.5 placeholder tokens block implementation readiness."
+    - "Product implementation requires separate explicit repository-owner authorization."
+    - "Fixture behavior prose, public provenance, and verifier-only oracle boundaries must be independently authored and frozen before scored fixture work."
 tool_call_audit:
   browser_calls: 0
   connected_app_calls: 0
@@ -105,7 +106,7 @@ validation:
   binary_human_review_notices: 4
   dirty_worktree_warning: "expected_uncommitted_boundary_file"
   product_implementation_authorized: false
-  product_implementation_blocker: "Resolution and freeze of the Phase 0.5 decisions are required before product implementation."
+  product_implementation_blocker: "Separate explicit product authorization and the applicable fixture behavior/provenance freeze remain required."
 boundary_follow_up:
   checked_at_utc: "2026-08-29T11:15:49Z"
   scope: "Boolean-only environment probe and real package-script preflight attempts; no product work."
@@ -194,3 +195,77 @@ trace_first_gate:
     binary_human_review_notices: 4
     checksum_digest_verification: "passed"
     checksum_exact_coverage: "passed_47_files"
+phase_0_5_gate:
+  frozen_at_utc: "2026-08-29T13:41:51Z"
+  status: "frozen_under_explicit_nested_cli_waiver"
+  owner_conditional_decision_exact: "Я не вижу смысла в этом запуске, мы и так работаем через Sol сейчас, когда я отправляю эти запросы. Возможно, это не работает при вызове из приложения ChatGPT на Mac, но это и не важно, потому что запросы проходят и ответы приходят. Я хочу скипнуть эту проверку и, если других препятствий нет, закрыть эту часть"
+  condition: "Close Phase 0.5 if no obstacle remains after the waived nested-CLI check."
+  coordinator_condition_verification:
+    measured_samples: 60
+    measured_samples_per_arm: 30
+    frozen_ordering_and_n_300: true
+    correctness_and_digests: "passed"
+    card_renders: {baseline: 2400, advanced: 1900, reduction_percent: 20.83}
+    task_duration_mean_ms: {baseline: 4.7071, advanced: 5.0037}
+    cpu_improvement_claimed: false
+    listed_tests_and_git_diff_check: "passed"
+  condition_satisfied: true
+  cli_failures_relabelled_as_pass: false
+  cli_runtime_proven: false
+  app_level_sol_is_submission_evidence: false
+  offline_replay_status: "verified_reproducibility_path"
+  phase_0_5_trajectory_status: "approved_reviewed_layer_indexed_in_actual_traces_raw_scan_remains_failed"
+  product_implementation_authorized: false
+  scored_artifacts_authorized: false
+  official_benchmark_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  post_freeze_validation:
+    control_preflight: "READY_FOR_CLEAN_BRANCH_exit_0"
+    implementation_preflight: "READY_FOR_IMPLEMENTATION_exit_0"
+    resolved_phase_0_5_placeholder_errors: 2
+    contamination_findings: 0
+    dirty_worktree_warning: true
+    binary_human_review_notices: 4
+    automated_readiness_is_product_authorization: false
+    checksum_digest_verification: "passed"
+    checksum_exact_coverage: "passed_74_files"
+phase_0_5_trace_review_gate:
+  reviewed_at_utc: "2026-08-29T14:07:36Z"
+  status: "passed"
+  trace_id: "TRC-BG-PHASE05-001"
+  raw_scan_status: "failed"
+  raw_absolute_user_path_matches: 667
+  raw_private_term_matches_total: 2
+  raw_private_term_matches_after_path_redaction: 1
+  raw_email_matches: 0
+  raw_secret_assignment_matches: 0
+  reviewed_layer_automated_scan: "passed"
+  reviewed_layer_contamination_findings: 0
+  reviewed_layer_machine_thread_tool_metadata_findings: 0
+  reviewed_layer_binary_human_review_notices: 4
+  human_review: "passed"
+  technical_meaning_preserved: true
+  actual_trace_indexed: true
+  approval_question_exact: "Подтверждаете русскую и английскую версии TRC-BG-PHASE05-001 как точный и безопасный отчёт, в котором после указанных исключений сохранён технический смысл?"
+  selected_response_exact: "Подтверждаю одобрение (Recommended)"
+  approval_interpretation: "The selected response explicitly confirms the exact question; it does not claim that the owner typed the full question verbatim."
+  russian_materials_available_at_approval:
+    - "artifacts/trajectories/reviewed/TRC-BG-PHASE05-001_RU.md"
+    - "artifacts/trajectories/reviews/TRC-BG-PHASE05-001_RU.md"
+  authorized_scope: "Promote this trace only."
+  product_implementation_authorized: false
+  scored_artifacts_authorized: false
+  model_or_browser_run_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  post_promotion_validation:
+    repository_tests: "passed_16_of_16"
+    phase_0_5_test_suites: "passed_11_of_11_6_of_6_3_of_3_4_of_4_3_of_3_4_of_4_without_model_or_browser_execution"
+    yaml_en_ru_privacy_diff: "passed"
+    checksum_manifest: "passed_79_files"
+    control_preflight: "READY_FOR_CLEAN_BRANCH"
+    implementation_preflight: "READY_FOR_IMPLEMENTATION_with_dirty_worktree_warning"
+    contamination_findings: 0
+    binary_human_review_notices: 4
+    automated_readiness_is_product_authorization: false

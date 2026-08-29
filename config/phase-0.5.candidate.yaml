@@ -1,0 +1,399 @@
+schema_version: "1.0"
+status: frozen_under_explicit_nested_cli_waiver
+checkpoint:
+  branch: impl/beyondgreen
+  commit: 2a41d4d2bab8a8b25406400a8ec7d8cd21112a4e
+scope:
+  research_only: false
+  decision_packet_approved: true
+  measured_spike_authorized: true
+  stack_spike_executed: true
+  stack_spike_started: true
+  product_implementation_authorized: false
+human_approval:
+  status: approved_for_measured_spike
+  approver_role: repository_owner
+  approved_at_utc: "2026-08-29T12:52:58Z"
+  question: "Одобряете технический Phase 0.5 spike с подписочным codex exec/gpt-5.6-sol без API, одним вызовом без повторов и сценарием на 300 карточек?"
+  selected_response: "Одобряю spike (Recommended)"
+  evidence_interpretation: explicit_confirmation_of_question_not_verbatim_typed_statement
+  exact_scope: measured_phase_0_5_spike_only
+measured_spike_status:
+  phase_0_5_ready_to_freeze: true
+  phase_0_5_frozen: true
+  ready_for_owner_freeze_review_under_cli_waiver: false
+  npm_lockfile_generation: passed
+  npm_ci_ignore_scripts: passed
+  installed_dependency_packages: 54
+  audited_total_packages: 55
+  reported_vulnerabilities: 0
+  transitive_license_audit: passed_after_owner_policy_amendment
+  corrected_audit_completed_at_utc: "2026-08-29T13:00:10Z"
+  corrected_audit_report: artifacts/phase-0.5-license-audit.json
+  corrected_audit_inventory_sha256: da4ea21744663f8a0343fc8020da92791369ea426eb298141ceb513121efede9
+  corrected_audit_report_payload_sha256: d0d2db07447216439ac6f93a5dc7118fc4039a2e1b3ebc98cd05db28dd1d0b55
+  corrected_audit_lockfile_sha256: 1beb2987e3e0654cb525b80c2f97a2f6577f92399e8a78fcd8eb9f9ab6487d4c
+  corrected_audit_installed_packages: 54
+  corrected_audit_allowed_packages: 51
+  corrected_audit_findings: 3
+  corrected_audit_missing: 0
+  corrected_audit_unknown: 0
+  corrected_audit_non_allowlisted: 3
+  corrected_audit_non_allowlisted_packages:
+    - "@csstools/color-helpers@6.1.1: MIT-0"
+    - "@csstools/css-syntax-patches-for-csstree@1.1.9: MIT-0"
+    - "lru-cache@11.5.2: BlueOak-1.0.0"
+  historical_failure_code: EQUERYNODEPTYPE
+  historical_failure_category: unsupported_npm_query_selector
+  historical_downstream_parser_failed: true
+  machine_path_emitted_to_raw_tool_output: true
+  machine_path_opened_or_persisted: false
+  submission_redaction_required: machine_path_metadata
+  audit_retry_count: 2
+  final_audit_attempt_count: 1
+  final_audit_status: passed
+  final_audit_completed_at_utc: not_recorded
+  final_audit_allowed_packages: 54
+  final_audit_findings: 0
+  final_audit_inventory_sha256: 68519a270c035c5cb2c8cb92f6d27b44ed47958a4c31b134bcbdb7f4a364ef18
+  final_audit_report_payload_sha256: 7d4d0477585c61e7179fbb6bdd1ff7bf019083536e93362b7fc12a173595ec92
+  third_party_notices_sha256: 6345e22330c67f4091526d3b516bf5a2e06c2694e61b057cd05aabfd8a6f35de
+  stack_capability_tests: passed_11_of_11_after_one_harness_retry
+  model_call_count: 2
+  model_call_status: operational_abstain
+  model_call_error_code: MODEL_TRANSPORT_FAILURE
+  model_call_exit_code: 1
+  model_call_stderr_sha256: 3b93186506b30e5901974d0a6f8f0c3c876309b7920735f66205cef575d0c264
+  model_retry_count: 0
+  owner_authorized_diagnostic_retry_count: 1
+  automatic_model_or_transport_retry_count: 0
+  second_model_call_completed_at_utc: "2026-08-29T13:12:45.852Z"
+  second_model_call_status: operational_abstain
+  second_model_call_safe_class: unknown
+  second_model_call_exit_code: 1
+  second_model_call_elapsed_ms: 3006
+  second_model_call_stderr_sha256: 1393963b62d2b0ef4064d9462d967f6b8688db20939a0fcc4b024e7b06ec4ba5
+  second_model_call_redaction_counts: {absolute_paths: 0, emails: 0, account_project_ids: 0, tokens_or_secrets: 0, machine_identifiers: 0}
+  raw_stderr_persisted_or_disclosed: false
+  substitute_model_used: false
+  chromium_protocol_attempt_count: 2
+  chromium_instrumentation_retry_count: 1
+  chromium_run_count: 2
+  chromium_sample_execution_count_across_attempts: 140
+  chromium_final_warmup_runs: 10
+  chromium_final_measured_runs: 60
+  chromium_status: passed
+  nested_cli_gate: owner_waived_for_phase_0_5_only
+  cli_runtime_validation: deferred_unverified_in_nested_desktop_environment
+  offline_replay_reproducibility: verified
+  stop_reason: phase_0_5_closed_product_implementation_separately_gated
+phase_0_5_freeze:
+  status: approved_and_frozen
+  frozen_at_utc: "2026-08-29T13:41:51Z"
+  approver_role: repository_owner
+  owner_conditional_decision_exact: "Я не вижу смысла в этом запуске, мы и так работаем через Sol сейчас, когда я отправляю эти запросы. Возможно, это не работает при вызове из приложения ChatGPT на Mac, но это и не важно, потому что запросы проходят и ответы приходят. Я хочу скипнуть эту проверку и, если других препятствий нет, закрыть эту часть"
+  condition: no_remaining_phase_0_5_obstacle_after_chromium
+  coordinator_verification:
+    measured_samples: 60
+    measured_samples_per_arm: 30
+    frozen_ordering_and_card_count_verified: true
+    correctness_and_identical_digests: passed
+    baseline_card_renders: 2400
+    advanced_card_renders: 1900
+    render_reduction_percent: 20.83
+    baseline_task_duration_mean_ms: 4.7071
+    advanced_task_duration_mean_ms: 5.0037
+    cpu_improvement_demonstrated: false
+    listed_tests_and_git_diff_check: passed
+  condition_satisfied: true
+  nested_cli_waiver: explicit_phase_0_5_only
+  cli_failures_relabelled_as_pass: false
+  cli_runtime_proven: false
+  offline_replay_verified: true
+  authorizes_product_or_scored_work: false
+  authorizes_official_benchmark: false
+  authorizes_commit_or_push: false
+owner_nested_cli_waiver:
+  status: approved_to_continue_phase_0_5
+  approver_role: repository_owner
+  decided_at_utc: "2026-08-29T13:30:50Z"
+  exact_decision: "Я не вижу смысла в этом запуске, мы и так работаем через Sol сейчас, когда я отправляю эти запросы. Возможно, это не работает при вызове из приложения ChatGPT на Mac, но это и не важно, потому что запросы проходят и ответы приходят. Я хочу скипнуть эту проверку и, если других препятствий нет, закрыть эту часть"
+  failures_relabelled_as_pass: false
+  cli_path_proven: false
+  app_level_sol_operation: owner_observed_context_not_submission_evidence
+  normal_terminal_adapter_contract: optional_codex_exec_no_retry
+  normal_terminal_runtime_validation: deferred_unverified
+  offline_replay: verified_reproducibility_path
+  authorizes_chromium_spike: true
+  authorizes_product_or_scored_work: false
+  authorizes_commit_or_push: false
+license_audit_retry_approval:
+  status: approved_once_and_consumed
+  approver_role: repository_owner
+  approved_at_utc: "2026-08-29T12:58:49Z"
+  question: "Разрешаете одну исправленную попытку transitive-license audit через локальный Node-сканер, после которой spike продолжится только при полном PASS?"
+  selected_response: "Разрешаю retry (Recommended)"
+  evidence_interpretation: explicit_confirmation_of_question_not_verbatim_typed_statement
+  maximum_corrected_audit_attempts: 1
+  continuation_requires: full_license_audit_pass
+license_policy_amendment_approval:
+  status: approved_for_one_final_audit
+  approver_role: repository_owner
+  approved_at_utc: "2026-08-29T13:03:36Z"
+  question: "Одобряете MIT-0 и BlueOak-1.0.0 как допустимые permissive-лицензии, обязательный THIRD_PARTY_NOTICES.md и один финальный повтор audit?"
+  selected_response: "Одобряю и продолжить (Recommended)"
+  evidence_interpretation: explicit_confirmation_of_question_not_verbatim_typed_statement
+  allowlist_additions: [MIT-0, BlueOak-1.0.0]
+  required_packaging_artifact: THIRD_PARTY_NOTICES.md
+  maximum_final_audit_attempts: 1
+  continuation_requires: final_audit_54_of_54_pass
+  unchanged_tree_expectations:
+    stable_inventory_sha256: 68519a270c035c5cb2c8cb92f6d27b44ed47958a4c31b134bcbdb7f4a364ef18
+    package_lock_sha256: 1beb2987e3e0654cb525b80c2f97a2f6577f92399e8a78fcd8eb9f9ab6487d4c
+    historical_policy_coupled_inventory_sha256: da4ea21744663f8a0343fc8020da92791369ea426eb298141ceb513121efede9
+model_diagnostic_retry_approval:
+  status: approved_once_and_consumed
+  approver_role: repository_owner
+  approved_at_utc: "2026-08-29T13:11:21Z"
+  question: "Разрешаете один privacy-safe диагностический повтор той же подписочной команды codex exec без замены модели?"
+  selected_response: "Разрешаю один retry (Recommended)"
+  evidence_interpretation: explicit_confirmation_of_question_not_verbatim_typed_statement
+  exact_command_unchanged: true
+  model: gpt-5.6-sol
+  substitute_model_allowed: false
+  maximum_diagnostic_retries: 1
+  maximum_total_phase_0_5_live_calls: 2
+  automatic_retries: 0
+  raw_stderr_persistence_or_disclosure_allowed: false
+  safe_diagnostic_classes: [auth, model_unavailable, schema, argument, network_transport, sandbox_repository, unknown]
+  failure_action: stop_without_third_invocation
+non_model_cli_diagnostics_approval:
+  status: approved_and_completed
+  approver_role: repository_owner
+  approved_at_utc: "2026-08-29T13:17:17Z"
+  question: "Разрешаете non-model диагностику Codex CLI (login status в exact-mode и codex doctor) с сохранением только безопасного класса результата?"
+  selected_response: "Разрешаю диагностику (Recommended)"
+  evidence_interpretation: explicit_confirmation_of_question_not_verbatim_typed_statement
+  allowed_scope: [exact_mode_login_status, codex_doctor, advertised_subscription_usage_or_limit_status]
+  model_or_agent_invocations_allowed: false
+  raw_output_persistence_or_disclosure_allowed: false
+non_model_cli_diagnostics_result:
+  completed_at_utc: "2026-08-29T13:18:30.666Z"
+  evidence: artifacts/phase-0.5-cli-diagnostics.json
+  cli_version: "0.148.0"
+  model_or_agent_invocations: 0
+  raw_output_persisted_or_disclosed: false
+  exact_mode_authentication: {status: inconclusive, safe_class: exact_mode_flag_unsupported, exit_code: 2}
+  doctor: {status: failed, safe_class: network_transport, exit_code: 1}
+  subscription_usage_or_limit: {command: codex_usage, status: failed, safe_class: unknown, exit_code: 1}
+  command_availability: {doctor: true, usage: true, limits: false, status: false}
+  doctor_detail_completed_at_utc: "2026-08-29T13:21:30Z"
+  doctor_diagnostic_reruns: 3
+  doctor_detail:
+    status: failed
+    safe_class: dns
+    safe_error_code: DNS_RESOLUTION
+    safe_message: Codex doctor reported a DNS resolution failure.
+    exit_code: 1
+    elapsed_ms: 1883
+    failed_hostname: null
+    failed_hostname_extraction: unknown_or_non_allowlisted_redacted
+    failed_hostname_dns: {attempted: false, hostname: null, pass: false, error_class: not_attempted_no_allowlisted_hostname}
+    stdout_sha256: 0f66f6cd971e53f86845e67202e5450e5d8de261d437640e407e60b983c40035
+    stderr_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    combined_output_sha256: 94d219b3ae1eac135d107d6abb0eb5ea1eef48ef03d6906539f5540f1d02cacf
+    redaction_counts: {absolute_paths: 14, emails: 0, account_project_ids: 1, tokens_or_secrets: 0, machine_identifiers: 0}
+    sanitized_excerpt_persisted: false
+    raw_output_persisted_or_disclosed: false
+  diagnostic_inference: reproducible_doctor_specific_dns_failure_with_no_extractable_allowlisted_official_hostname_and_no_followup_lookup
+  chromium_authorized_to_continue: false
+  public_service_reachability_matrix:
+    completed_at_utc: "2026-08-29T13:23:23.014Z"
+    allowed_hosts_only: true
+    credentials_used: false
+    resolved_ips_persisted_or_disclosed: false
+    headers_cookies_or_bodies_persisted_or_disclosed: false
+    model_or_agent_invocations: 0
+    rows:
+      - {hostname: chatgpt.com, dns_pass: true, dns_error_class: none, tls_connect: true, https_error_class: none, http_status_class: 4xx, dns_elapsed_bucket: under_250ms, https_elapsed_bucket: under_250ms}
+      - {hostname: auth.openai.com, dns_pass: true, dns_error_class: none, tls_connect: true, https_error_class: none, http_status_class: 4xx, dns_elapsed_bucket: under_250ms, https_elapsed_bucket: under_250ms}
+      - {hostname: api.openai.com, dns_pass: true, dns_error_class: none, tls_connect: true, https_error_class: none, http_status_class: 4xx, dns_elapsed_bucket: under_250ms, https_elapsed_bucket: under_250ms}
+    interpretation: public_service_reachability_passed
+    relation_to_doctor_dns_failure: not_reproduced_on_allowlisted_public_hosts_may_be_transient_or_other_unretained_host
+license_audit_policy:
+  scanner: scripts/license-audit.ts
+  report: artifacts/phase-0.5-license-audit.json
+  report_schema: beyondgreen-license-audit@1.1.0
+  metadata_sources:
+    - package-lock.json
+    - node_modules_package_json_under_repository_root
+  permissive_spdx_allowlist: [0BSD, Apache-2.0, BSD-2-Clause, BSD-3-Clause, BlueOak-1.0.0, CC0-1.0, ISC, MIT, MIT-0, Python-2.0, Unlicense, X11, Zlib]
+  allowed_exceptions: [LLVM-exception]
+  hard_stop_on: [missing_license, unknown_expression, non_allowlisted_identifier, lock_install_mismatch]
+  packaging_requirement:
+    artifact: THIRD_PARTY_NOTICES.md
+    generated_by: npm run audit:licenses
+    must_cover: every_dependency_actually_distributed
+    preserves: license_text_or_spdx_link
+    node_modules_must_be_shipped: false
+signals:
+  package: "@preact/signals-react"
+  version: "3.12.0"
+  license: MIT
+  repository: https://github.com/preactjs/signals
+  approval_requires_measured_spike: true
+runtime:
+  node: "22.22.3"
+  npm: "10.9.8"
+dependencies:
+  typescript: "5.9.3"
+  react: "19.2.8"
+  react_dom: "19.2.8"
+  jsdom: "30.0.1"
+  zod: "4.5.2"
+  types_node: "22.20.1"
+  types_react: "19.2.18"
+  types_react_dom: "19.2.5"
+  types_jsdom: "30.0.0"
+lockfile:
+  package_manager: npm
+  lockfile_version: 3
+  exact_direct_versions: true
+  clean_install_command: npm ci
+  overrides_require_owner_approval: true
+  transitive_license_audit_after_install: hard_spike_gate
+reasoning_engine:
+  primary_transport: local_authenticated_codex_exec
+  adapter_id: codex-exec-jsonl-v1
+  cli_version_observed: "0.148.0"
+  command: "codex exec --ephemeral --ignore-user-config --json --output-schema <schema> --sandbox read-only --model gpt-5.6-sol"
+  authentication: chatgpt_subscription
+  coordinator_login_status: Logged in using ChatGPT
+  model_candidate: gpt-5.6-sol
+  model_selection_reason: strongest_current_flagship_with_fixed_subscription_cost
+  model_availability_check: current_chatgpt_authenticated_cli_session
+  substitute_model_allowed: false
+  unavailable_model_action: stop_for_owner_review
+  calls_per_candidate: 1
+  model_retries: 0
+  transport_retries: 0
+  owner_authorized_spike_diagnostic_retries: 1
+  maximum_total_phase_0_5_live_calls: 2
+  sandbox: read-only
+  session_persistence: disabled
+  user_config: ignored
+  event_stream: JSONL
+  final_output: frozen_json_schema
+  claude_solution_engine_allowed: false
+  offline_fallback: offline-replay-jsonl-v1
+  nested_desktop_runtime_gate: owner_waived_for_phase_0_5
+  runtime_validation: deferred_unverified_in_this_environment
+  app_level_sol_observation_is_submission_evidence: false
+  spike_checks:
+    - deterministic_jsonl_event_parsing
+    - schema_valid_final_output
+    - read_only_sandbox
+    - timeout
+    - unavailable_model_failure
+    - no_retry
+    - offline_replay
+budget:
+  status: pending_measured_spike
+  calls_per_candidate: 1
+  model_retries: 0
+  transport_retries: 0
+  billing: fixed_subscription
+  marginal_usd_cost: not_measured
+  token_usage: measured_only_if_cli_reports_stably_otherwise_not_measured
+  usd_cap_claimed: false
+  wall_seconds_max: 180
+  engine_deadline_seconds: 165
+  finalization_reserve_seconds: 15
+replay:
+  format: beyondgreen-replay-jsonl@1.0.0
+  encoding: UTF-8
+  line_ending: LF
+  canonicalization: RFC_8785_JCS
+  digest: SHA-256
+  network_allowed: false
+  subprocess_allowed: false
+  workspace_writes_allowed: false
+behavior_assignment:
+  development:
+    BG-D01: {class: stale_snapshots, domain: museum_visit_group_allocation_board, first_vertical_slice: true}
+    BG-D02: {class: queued_batched_updates, domain: game_scoreboard_increment_queue}
+    BG-D03: {class: derived_state, domain: trip_packing_weight_summary}
+    BG-D04: {class: subscription_cleanup, domain: public_clock_timezone_feed}
+  held_out:
+    BG-H01: {class: prop_reset, domain: quiz_question_editor}
+    BG-H02: {class: asynchronous_ordering, domain: public_astronomy_catalog_search, challenging: true}
+    BG-H03: {class: identity_stability, domain: reading_list_selection}
+    BG-H04: {class: conditional_lifecycle, domain: weather_detail_panel}
+    BG-H05: {class: external_store_semantics, domain: shared_unit_preference_store}
+    BG-H06: {class: rollback, domain: theme_preference_save_rollback}
+chromium:
+  scenario: BG-D01
+  synthetic_card_count: 300
+  card_ids: MVG-001_through_MVG-300
+  layout: ordinary_css_grid
+  browser_version: Chrome/152.0.7977.64
+  viewport: {width: 1280, height: 720, device_scale_factor: 1}
+  action_log:
+    - mount
+    - select-all
+    - allocate-1x2
+    - step-3
+    - allocate-3x2
+    - select-every-third
+    - remove-3x1
+    - reset
+  correctness_observables:
+    - all_300_ordered_ids_and_values_after_each_bulk_action
+    - ordered_selection_ids
+    - ordered_action_log_and_canonical_sha256
+    - reset_state
+    - zero_console_errors
+    - zero_unhandled_rejections
+  primary_render_metric: explicit_userland_board_and_card_render_counters
+  react_profiler_actual_duration: profiling_build_only
+  cpu_metric: cdp_task_duration_after_minus_before_action_window
+  safe_environment_fields:
+    - os_family_and_major
+    - cpu_architecture
+    - logical_core_count
+    - rounded_ram_bucket
+  warmups_per_arm: 5
+  measured_samples_per_arm: 30
+  ordering: 15_reference_candidate_pairs_then_15_candidate_reference_pairs
+  behavior_mismatch_allows_performance_claim: false
+  infeasible_protocol_action: return_to_owner_without_tuning_card_count
+  result:
+    completed_at_utc: "2026-08-29T13:34:35Z"
+    evidence: artifacts/phase-0.5-chromium-spike.json
+    evidence_schema: beyondgreen-chromium-spike@1.1.0
+    evidence_sha256: 688baad33e10966944f8d73dd09e03af1f7aa4301cd2d2c66d7efe1b03bf6b41
+    correctness_gate: passed
+    all_300_values_and_selections_verified_after_every_action: true
+    action_log_and_digest_verified: true
+    reset_verified: true
+    console_errors: 0
+    unhandled_exceptions: 0
+    observable_sha256: 064dc4a20841c306c1fff12c94fb2a6c8a12f510e6154e8c0f70b4322aef01a8
+    action_log_sha256: 5273d540115aa4e44a4d47738a0b5537ef78450f5e042132d6fd2310de83cabf
+    baseline_card_renders_per_sample: 2400
+    advanced_card_renders_per_sample: 1900
+    card_render_reduction_fraction: 0.20833333333333334
+    baseline_task_duration_mean_ms: 4.7071
+    advanced_task_duration_mean_ms: 5.003666666666665
+    cpu_improvement_observed: false
+    performance_claim: card_render_count_reduction_only_no_cpu_improvement_claim
+    measured_samples_persisted: 60
+    first_attempt_summary_only: true
+    instrumentation_retry_reason: persist_every_raw_measured_sample_required_by_frozen_contract
+    protocol_or_card_count_changed_between_attempts: false
+    react_profiler_used: false
+    environment: {os_family: darwin, os_major: "24", cpu_architecture: arm64, logical_core_count: 10, rounded_ram_bucket: 16_to_31_gib}
+approval_scope:
+  authorizes_phase_0_5_spike_only: true
+  authorizes_product_code: false
+  authorizes_commit_or_push: false

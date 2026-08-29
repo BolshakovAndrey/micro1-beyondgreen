@@ -3,7 +3,8 @@
 **Projection of:** `docs/PROJECT_SPEC.md@1.1.0`
 **Normative:** no; the global product-semantics specification wins on conflict
 **Evaluation version:** `eval-v1.1.0`
-**State:** specification only; no fixtures, candidates, or runs exist
+**State:** Phase 0.5 inputs frozen under explicit nested-CLI waiver; no scored
+fixtures, candidates, or official runs exist
 
 This projection specializes `FR-001`–`FR-012`, `NFR-001`–`NFR-009`,
 `EV-001`–`EV-013`, and `AR-003`–`AR-007`. It claims no result.
@@ -25,6 +26,13 @@ conditional lifecycle, external store, and rollback. Exact case assignment freez
 before fixture code as a bijection. At least one fixture is labeled challenging
 before code, with rationale and final-result disclosure.
 
+Frozen assignment: `BG-D01` stale snapshots, `BG-D02` queued/batched updates,
+`BG-D03` derived state, `BG-D04` subscription cleanup, `BG-H01` prop reset,
+`BG-H02` async ordering (predeclared challenging case), `BG-H03` identity stability,
+`BG-H04` conditional lifecycle, `BG-H05` external store, and `BG-H06` rollback.
+This freezes membership/classes only; fixture prose, candidates, and oracles do not
+yet exist.
+
 ## Two scored arms (`FR-011`, `EV-003`, `EV-004`)
 
 | Arm | Inputs | Decision policy | Oracle visibility |
@@ -37,6 +45,16 @@ seed policy, evidence recorder, wall-clock ceiling, and operational limits. Base
 resource differences are disclosed. BeyondGreen's live engine and token/cost cap
 freeze after Phase 0.5; actual runtime, calls, tokens, human time, and cost are
 reported.
+
+The optional live adapter contract is frozen as `codex-exec-jsonl-v1` targeting
+`gpt-5.6-sol` through locally ChatGPT-authenticated `codex exec`, with one call,
+zero retries, a read-only sandbox, and a 180-second total deadline. Nested-desktop
+runtime validation is owner-waived and remains deferred/unverified; two historical
+failures remain failures. Model unavailability or transport failure produces
+`abstain`, never a substitute or retry. Deterministic `offline-replay-jsonl-v1` is
+the verified reproducibility path but does not prove live model behavior. Fixed
+subscription marginal USD cost and tokens are `not_measured` unless tokens are
+reported explicitly and stably.
 
 ## Metrics and exact target semantics (`EV-007`, `EV-008`)
 
@@ -170,6 +188,13 @@ Exactly one synthetic before/after scenario may compare React renders and CPU. I
 must first run identical actions and prove all behavioral invariants and observables
 equal. A behavioral failure forbids a performance-win claim. Chromium results never
 affect decision scoring.
+
+The frozen independent 300-card museum-board spike passed all correctness observables
+and retained 30 measured samples per arm after five warmups. It observed 2400 versus
+1900 card renders (20.83% fewer) for this synthetic scenario only. Mean CDP
+`TaskDuration` was 4.7071 ms versus 5.0037 ms, so CPU improvement is not demonstrated
+or claimed. These Phase 0.5 measurements are feasibility evidence, not an official
+benchmark result and not part of any scored denominator.
 
 ## Challenging case (`EV-013`)
 

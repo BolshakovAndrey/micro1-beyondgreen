@@ -1,0 +1,372 @@
+{
+  "schema_version": "beyondgreen-license-audit@1.1.0",
+  "status": "passed",
+  "policy": {
+    "rule": "Every SPDX identifier must be in the permissive allowlist; unknown, missing, or non-allowlisted expressions fail.",
+    "permissive_allowlist": [
+      "0BSD",
+      "Apache-2.0",
+      "BSD-2-Clause",
+      "BSD-3-Clause",
+      "CC0-1.0",
+      "ISC",
+      "MIT",
+      "MIT-0",
+      "BlueOak-1.0.0",
+      "Python-2.0",
+      "Unlicense",
+      "X11",
+      "Zlib"
+    ],
+    "allowed_exceptions": [
+      "LLVM-exception"
+    ]
+  },
+  "source": {
+    "lockfile": "package-lock.json",
+    "installed_metadata_root": "node_modules",
+    "package_lock_sha256": "1beb2987e3e0654cb525b80c2f97a2f6577f92399e8a78fcd8eb9f9ab6487d4c"
+  },
+  "counts": {
+    "installed_packages": 54,
+    "allowed_packages": 54,
+    "findings": 0,
+    "missing": 0,
+    "unknown": 0,
+    "non_allowlisted": 0
+  },
+  "inventory_sha256": "68519a270c035c5cb2c8cb92f6d27b44ed47958a4c31b134bcbdb7f4a364ef18",
+  "report_payload_sha256": "7d4d0477585c61e7179fbb6bdd1ff7bf019083536e93362b7fc12a173595ec92",
+  "packages": [
+    {
+      "name": "@asamuzakjp/css-color",
+      "version": "6.0.7",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "@asamuzakjp/dom-selector",
+      "version": "8.3.2",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "@bramus/specificity",
+      "version": "2.4.2",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "@csstools/color-helpers",
+      "version": "6.1.1",
+      "license": "MIT-0",
+      "status": "allowed"
+    },
+    {
+      "name": "@csstools/css-calc",
+      "version": "3.3.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "@csstools/css-color-parser",
+      "version": "4.2.1",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "@csstools/css-parser-algorithms",
+      "version": "4.0.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "@csstools/css-syntax-patches-for-csstree",
+      "version": "1.1.9",
+      "license": "MIT-0",
+      "status": "allowed"
+    },
+    {
+      "name": "@csstools/css-tokenizer",
+      "version": "4.0.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "@exodus/bytes",
+      "version": "1.15.1",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "@preact/signals-core",
+      "version": "1.14.4",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "@preact/signals-react",
+      "version": "3.12.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "@types/jsdom",
+      "version": "30.0.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "@types/node",
+      "version": "22.20.1",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "@types/react-dom",
+      "version": "19.2.5",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "@types/react",
+      "version": "19.2.18",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "@types/tough-cookie",
+      "version": "4.0.5",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "bidi-js",
+      "version": "1.0.3",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "css-tree",
+      "version": "3.2.1",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "csstype",
+      "version": "3.2.3",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "data-urls",
+      "version": "7.0.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "decimal.js",
+      "version": "10.6.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "entities",
+      "version": "8.0.0",
+      "license": "BSD-2-Clause",
+      "status": "allowed"
+    },
+    {
+      "name": "html-encoding-sniffer",
+      "version": "6.0.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "is-potential-custom-element-name",
+      "version": "1.0.1",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "jsdom",
+      "version": "30.0.1",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "lru-cache",
+      "version": "11.5.2",
+      "license": "BlueOak-1.0.0",
+      "status": "allowed"
+    },
+    {
+      "name": "mdn-data",
+      "version": "2.27.1",
+      "license": "CC0-1.0",
+      "status": "allowed"
+    },
+    {
+      "name": "parse5",
+      "version": "8.0.1",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "punycode",
+      "version": "2.3.1",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "react-dom",
+      "version": "19.2.8",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "react",
+      "version": "19.2.8",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "require-from-string",
+      "version": "2.0.2",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "saxes",
+      "version": "6.0.0",
+      "license": "ISC",
+      "status": "allowed"
+    },
+    {
+      "name": "scheduler",
+      "version": "0.27.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "source-map-js",
+      "version": "1.2.1",
+      "license": "BSD-3-Clause",
+      "status": "allowed"
+    },
+    {
+      "name": "symbol-tree",
+      "version": "3.2.4",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "tldts-core",
+      "version": "7.4.11",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "tldts",
+      "version": "7.4.11",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "tough-cookie",
+      "version": "6.0.2",
+      "license": "BSD-3-Clause",
+      "status": "allowed"
+    },
+    {
+      "name": "tr46",
+      "version": "6.0.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "typescript",
+      "version": "5.9.3",
+      "license": "Apache-2.0",
+      "status": "allowed"
+    },
+    {
+      "name": "undici-types",
+      "version": "6.21.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "undici-types",
+      "version": "8.10.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "undici",
+      "version": "8.10.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "use-sync-external-store",
+      "version": "1.6.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "w3c-xmlserializer",
+      "version": "5.0.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "webidl-conversions",
+      "version": "8.0.1",
+      "license": "BSD-2-Clause",
+      "status": "allowed"
+    },
+    {
+      "name": "whatwg-mimetype",
+      "version": "5.0.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "whatwg-url",
+      "version": "16.0.1",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "whatwg-url",
+      "version": "17.1.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "xml-name-validator",
+      "version": "5.0.0",
+      "license": "Apache-2.0",
+      "status": "allowed"
+    },
+    {
+      "name": "xmlchars",
+      "version": "2.2.0",
+      "license": "MIT",
+      "status": "allowed"
+    },
+    {
+      "name": "zod",
+      "version": "4.5.2",
+      "license": "MIT",
+      "status": "allowed"
+    }
+  ],
+  "findings": [],
+  "packaging_notice": {
+    "path": "THIRD_PARTY_NOTICES.md",
+    "sha256": "6345e22330c67f4091526d3b516bf5a2e06c2694e61b057cd05aabfd8a6f35de",
+    "rule": "Regenerate before packaging and preserve license text or SPDX links for every dependency actually distributed; node_modules need not be shipped."
+  }
+}

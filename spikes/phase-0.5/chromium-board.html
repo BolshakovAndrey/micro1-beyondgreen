@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Museum visit group allocation board</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 16px; }
+  #board { display: grid; grid-template-columns: repeat(15, minmax(64px, 1fr)); gap: 4px; }
+  .card { border: 1px solid #bbb; padding: 4px; min-height: 34px; }
+  .selected { border-color: #2457d6; background: #eef3ff; }
+  .id { display: block; font-size: 9px; }
+  .value { font-variant-numeric: tabular-nums; }
+</style>
+<h1>Museum visit group allocation board</h1>
+<div id="board" aria-label="Museum visit groups"></div>
+<script>
+(() => {
+  "use strict";
+  const COUNT = 300;
+  const arm = new URLSearchParams(location.search).get("arm") === "advanced" ? "advanced" : "baseline";
+  const ids = Array.from({ length: COUNT }, (_, index) => `MVG-${String(index + 1).padStart(3, "0")}`);
+  const values = Array(COUNT).fill(0);
+  let selected = new Set();
+  let step = 1;
+  let boardRenders = 0;
+  const cardRenders = Array(COUNT).fill(0);
+  const actionLog = [];
+  const snapshots = [];
+  const errors = [];
+  const board = document.querySelector("#board");
+  const cards = ids.map((id, index) => {
+    const card = document.createElement("article");
+    card.className = "card";
+    card.dataset.id = id;
+    const idNode = document.createElement("span");
+    idNode.className = "id";
+    idNode.textContent = id;
+    const valueNode = document.createElement("span");
+    valueNode.className = "value";
+    card.append(idNode, valueNode);
+    board.append(card);
+    return { card, valueNode, index };
+  });
+
+  addEventListener("error", (event) => errors.push(`error:${event.message ? "present" : "unknown"}`));
+  addEventListener("unhandledrejection", () => errors.push("unhandledrejection"));
+
+  function renderCard(index) {
+    const entry = cards[index];
+    cardRenders[index] += 1;
+    entry.valueNode.textContent = String(values[index]);
+    entry.card.classList.toggle("selected", selected.has(index));
+  }
+
+  function render(indices = null) {
+    boardRenders += 1;
+    if (arm === "baseline" || indices === null) {
+      for (let index = 0; index < COUNT; index += 1) renderCard(index);
+    }
+    else {
+      for (const index of [ ...new Set(indices) ].sort((a, b) => a - b)) renderCard(index);
+    }
+  }
+
+  function snapshot(action) {
+    actionLog.push(action);
+    snapshots.push({
+      action,
+      ordered_ids: ids,
+      values: [ ...values ],
+      selection_ids: [ ...selected ].sort((a, b) => a - b).map((index) => ids[index]),
+      step,
+    });
+  }
+
+  async function digest(value) {
+    const bytes = new TextEncoder().encode(JSON.stringify(value));
+    const hash = await crypto.subtle.digest("SHA-256", bytes);
+    return [ ...new Uint8Array(hash) ].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+  }
+
+  async function runProtocol() {
+    render();
+    snapshot("mount");
+
+    selected = new Set(values.map((_, index) => index));
+    render();
+    snapshot("select-all");
+
+    for (let repeat = 0; repeat < 2; repeat += 1) {
+      for (const index of selected) values[index] = values[index] + step;
+    }
+    render([ ...selected ]);
+    snapshot("allocate-1x2");
+
+    step = 3;
+    render([]);
+    snapshot("step-3");
+
+    for (let repeat = 0; repeat < 2; repeat += 1) {
+      for (const index of selected) values[index] = values[index] + step;
+    }
+    render([ ...selected ]);
+    snapshot("allocate-3x2");
+
+    const previousSelection = selected;
+    selected = new Set(values.map((_, index) => index).filter((index) => (index + 1) % 3 === 0));
+    render([ ...previousSelection, ...selected ]);
+    snapshot("select-every-third");
+
+    for (const index of selected) values[index] = values[index] - step;
+    render([ ...selected ]);
+    snapshot("remove-3x1");
+
+    values.fill(0);
+    selected = new Set();
+    step = 1;
+    render();
+    snapshot("reset");
+
+    return {
+      arm,
+      card_count: COUNT,
+      snapshots,
+      final_values: [ ...values ],
+      final_selection_ids: [],
+      action_log: actionLog,
+      action_log_sha256: await digest(actionLog),
+      reset_pass: values.every((value) => value === 0) && selected.size === 0 && step === 1,
+      error_count: errors.length,
+      board_render_count: boardRenders,
+      total_card_render_count: cardRenders.reduce((sum, value) => sum + value, 0),
+      card_render_counts: cardRenders,
+    };
+  }
+
+  window.runProtocol = runProtocol;
+})();
+</script>
+</html>

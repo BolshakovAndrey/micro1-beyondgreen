@@ -1,0 +1,256 @@
+{
+  "schema_version": "beyondgreen-cli-diagnostics@1.0.0",
+  "completed_at_utc": "2026-08-29T13:18:30.666Z",
+  "scope": "non_model_cli_diagnostics_only",
+  "cli_version": "0.148.0",
+  "model_or_agent_invocations": 0,
+  "raw_output_persisted_or_disclosed": false,
+  "command_availability": {
+    "doctor": true,
+    "usage": true,
+    "limits": false,
+    "status": false
+  },
+  "subscription_usage_or_limit_diagnostic": "executed",
+  "records": [
+    {
+      "label": "cli_version",
+      "command": "codex --version",
+      "passed": true,
+      "exit_code": 0,
+      "safe_class": "passed",
+      "stdout_sha256": "2f005648e13f0ae583f38af1efc9065f3c77d656c2c88b95e0708cb1c4d28133",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redaction_counts": {
+        "absolute_paths": 0,
+        "emails": 0,
+        "account_project_ids": 0,
+        "tokens_or_secrets": 0,
+        "machine_identifiers": 0
+      },
+      "raw_output_persisted_or_disclosed": false,
+      "sanitized_excerpt_persisted": false
+    },
+    {
+      "label": "command_discovery",
+      "command": "codex --help",
+      "passed": true,
+      "exit_code": 0,
+      "safe_class": "passed",
+      "stdout_sha256": "072c26be8e71651ea9d303a3bd0966eb5b0cca064b768f335f0544c7ad9eb392",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redaction_counts": {
+        "absolute_paths": 0,
+        "emails": 0,
+        "account_project_ids": 0,
+        "tokens_or_secrets": 0,
+        "machine_identifiers": 2
+      },
+      "raw_output_persisted_or_disclosed": false,
+      "sanitized_excerpt_persisted": false
+    },
+    {
+      "label": "exact_mode_authentication",
+      "command": "codex login status --ignore-user-config",
+      "passed": false,
+      "exit_code": 2,
+      "safe_class": "exact_mode_flag_unsupported",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "7672a1952b402c6aca5d9747d86c2c5e698b6dfac00bef53bcc5819f369ab097",
+      "redaction_counts": {
+        "absolute_paths": 0,
+        "emails": 0,
+        "account_project_ids": 0,
+        "tokens_or_secrets": 0,
+        "machine_identifiers": 0
+      },
+      "raw_output_persisted_or_disclosed": false,
+      "sanitized_excerpt_persisted": false
+    },
+    {
+      "label": "doctor",
+      "command": "codex doctor",
+      "passed": false,
+      "exit_code": 1,
+      "safe_class": "network_transport",
+      "stdout_sha256": "7a9075d72a0ce0ff11896b74215276d1b6c8bc4e0a6a13ee7aea91e4aa3e8031",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redaction_counts": {
+        "absolute_paths": 14,
+        "emails": 0,
+        "account_project_ids": 1,
+        "tokens_or_secrets": 0,
+        "machine_identifiers": 0
+      },
+      "raw_output_persisted_or_disclosed": false,
+      "sanitized_excerpt_persisted": false
+    },
+    {
+      "label": "subscription_usage_or_limit",
+      "command": "codex usage",
+      "passed": false,
+      "exit_code": 1,
+      "safe_class": "unknown",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4f901e602b75712fbb31041653adc1817a96c56b968b76d3e8f4ee6c8474f925",
+      "redaction_counts": {
+        "absolute_paths": 0,
+        "emails": 0,
+        "account_project_ids": 0,
+        "tokens_or_secrets": 0,
+        "machine_identifiers": 0
+      },
+      "raw_output_persisted_or_disclosed": false,
+      "sanitized_excerpt_persisted": false
+    }
+  ],
+  "doctor_detail": {
+    "command": "codex doctor",
+    "passed": false,
+    "exit_code": 1,
+    "elapsed_ms": 1883,
+    "safe_class": "dns",
+    "safe_error_code": "DNS_RESOLUTION",
+    "safe_message": "Codex doctor reported a DNS resolution failure.",
+    "failed_hostname": null,
+    "failed_hostname_extraction": "unknown_or_non_allowlisted_redacted",
+    "stdout_sha256": "0f66f6cd971e53f86845e67202e5450e5d8de261d437640e407e60b983c40035",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "combined_output_sha256": "94d219b3ae1eac135d107d6abb0eb5ea1eef48ef03d6906539f5540f1d02cacf",
+    "redaction_counts": {
+      "absolute_paths": 14,
+      "emails": 0,
+      "account_project_ids": 1,
+      "tokens_or_secrets": 0,
+      "machine_identifiers": 0
+    },
+    "placeholders_applied_before_excerpt_selection": true,
+    "sanitized_excerpt": null,
+    "raw_output_persisted_or_disclosed": false,
+    "failed_hostname_dns": {
+      "attempted": false,
+      "hostname": null,
+      "pass": false,
+      "error_class": "not_attempted_no_allowlisted_hostname"
+    }
+  },
+  "doctor_diagnostic_reruns": 3,
+  "reachability_matrix": {
+    "schema_version": "beyondgreen-network-diagnostic@1.0.0",
+    "completed_at_utc": "2026-08-29T13:23:23.014Z",
+    "allowed_hosts_only": true,
+    "credentials_used": false,
+    "resolved_ips_persisted_or_disclosed": false,
+    "headers_cookies_or_bodies_persisted_or_disclosed": false,
+    "model_or_agent_invocations": 0,
+    "rows": [
+      {
+        "hostname": "chatgpt.com",
+        "dns_pass": true,
+        "dns_error_class": "none",
+        "dns_elapsed_bucket": "under_250ms",
+        "tls_connect": true,
+        "https_error_class": "none",
+        "http_status_class": "4xx",
+        "https_elapsed_bucket": "under_250ms"
+      },
+      {
+        "hostname": "auth.openai.com",
+        "dns_pass": true,
+        "dns_error_class": "none",
+        "dns_elapsed_bucket": "under_250ms",
+        "tls_connect": true,
+        "https_error_class": "none",
+        "http_status_class": "4xx",
+        "https_elapsed_bucket": "under_250ms"
+      },
+      {
+        "hostname": "api.openai.com",
+        "dns_pass": true,
+        "dns_error_class": "none",
+        "dns_elapsed_bucket": "under_250ms",
+        "tls_connect": true,
+        "https_error_class": "none",
+        "http_status_class": "4xx",
+        "https_elapsed_bucket": "under_250ms"
+      }
+    ],
+    "interpretation": "public_service_reachability_passed"
+  },
+  "doctor_attempts": [
+    {
+      "command": "codex doctor",
+      "passed": false,
+      "exit_code": 1,
+      "elapsed_ms": 1329,
+      "safe_class": "dns",
+      "safe_error_code": "DNS_RESOLUTION",
+      "safe_message": "Codex doctor reported a DNS resolution failure.",
+      "stdout_sha256": "862ce104bdab383665ccc8a7bc8e411f6298bea88dbfc687df6c631a13600e08",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_output_sha256": "bd4c5e02a6e422990d8259f8b7903db0d9f80038170cd5ff7d46b6fa4375bb2f",
+      "redaction_counts": {
+        "absolute_paths": 14,
+        "emails": 0,
+        "account_project_ids": 1,
+        "tokens_or_secrets": 0,
+        "machine_identifiers": 0
+      },
+      "placeholders_applied_before_excerpt_selection": true,
+      "sanitized_excerpt": null,
+      "raw_output_persisted_or_disclosed": false
+    },
+    {
+      "command": "codex doctor",
+      "passed": false,
+      "exit_code": 1,
+      "elapsed_ms": 1259,
+      "safe_class": "dns",
+      "safe_error_code": "DNS_RESOLUTION",
+      "safe_message": "Codex doctor reported a DNS resolution failure.",
+      "stdout_sha256": "dcb8a2c15ce3727412039c74d5080db37ce00859bcc74d2baca806666d8c4d26",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_output_sha256": "acd43b1a5a2f2ccb608ad8407291d8f1d88000be64a5dbee5c4fff9107dabf27",
+      "redaction_counts": {
+        "absolute_paths": 14,
+        "emails": 0,
+        "account_project_ids": 1,
+        "tokens_or_secrets": 0,
+        "machine_identifiers": 0
+      },
+      "placeholders_applied_before_excerpt_selection": true,
+      "sanitized_excerpt": null,
+      "raw_output_persisted_or_disclosed": false
+    },
+    {
+      "command": "codex doctor",
+      "passed": false,
+      "exit_code": 1,
+      "elapsed_ms": 1883,
+      "safe_class": "dns",
+      "safe_error_code": "DNS_RESOLUTION",
+      "safe_message": "Codex doctor reported a DNS resolution failure.",
+      "failed_hostname": null,
+      "failed_hostname_extraction": "unknown_or_non_allowlisted_redacted",
+      "stdout_sha256": "0f66f6cd971e53f86845e67202e5450e5d8de261d437640e407e60b983c40035",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "combined_output_sha256": "94d219b3ae1eac135d107d6abb0eb5ea1eef48ef03d6906539f5540f1d02cacf",
+      "redaction_counts": {
+        "absolute_paths": 14,
+        "emails": 0,
+        "account_project_ids": 1,
+        "tokens_or_secrets": 0,
+        "machine_identifiers": 0
+      },
+      "placeholders_applied_before_excerpt_selection": true,
+      "sanitized_excerpt": null,
+      "raw_output_persisted_or_disclosed": false,
+      "failed_hostname_dns": {
+        "attempted": false,
+        "hostname": null,
+        "pass": false,
+        "error_class": "not_attempted_no_allowlisted_hostname"
+      }
+    }
+  ]
+}

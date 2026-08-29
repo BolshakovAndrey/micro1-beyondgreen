@@ -4,7 +4,7 @@ requirement_ids:
   - "AR-002"
   - "AR-005"
   - "NFR-004"
-status: "schema_valid_with_eligible_representative_trace"
+status: "trace_first_and_phase_0_5_representative_traces_eligible"
 session_boundaries:
   - session_id: "SES-20260828-001"
     path: "artifacts/trajectories/session-boundaries/SES-20260828-001.yaml"
@@ -53,6 +53,57 @@ actual_traces:
     technical_meaning_preserved: true
     eligible_representative_trace: true
     approval_scope: "Trace-first promotion and transition only to separately gated Phase 0.5 discussion and freeze; no product code, commit, or push."
+  - trace_id: "TRC-BG-PHASE05-001"
+    agent_id: "COD-CODEX-002"
+    category: "coding_agent"
+    tool_and_model: "Codex desktop / GPT-5.6 Sol (owner-observed current default; raw export has no model field)"
+    purpose: "Phase 0.5 research, measured stack/model/replay/Chromium spike, owner-waiver decision, and freeze projections."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260829-002.yaml"
+    related_iteration_ids:
+      - "ITR-005"
+      - "ITR-006"
+      - "ITR-007"
+      - "ITR-008"
+      - "ITR-009"
+      - "ITR-010"
+      - "ITR-011"
+      - "ITR-012"
+      - "ITR-013"
+      - "ITR-014"
+    related_run_ids: []
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-PHASE05-001.md"
+    trace_path: "artifacts/trajectories/reviewed/TRC-BG-PHASE05-001.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-PHASE05-001_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-PHASE05-001.yaml"
+    human_review_companion_ru_path: "artifacts/trajectories/reviews/TRC-BG-PHASE05-001_RU.md"
+    raw_capture: "immutable_external_capture_succeeded"
+    raw_bytes: 3511076
+    raw_sha256: "031477de3fd7e42591ba5e7c1820ac39cb2dd1b691dbae29ae850a2aee895b86"
+    raw_path_disclosed: false
+    raw_file_accessed_by_packaging_task: false
+    raw_scan_status: "failed"
+    raw_absolute_user_path_matches: 667
+    raw_private_term_matches_total: 2
+    raw_private_term_matches_after_path_redaction: 1
+    raw_email_matches: 0
+    raw_secret_assignment_matches: 0
+    reviewed_layer_automated_scan: "passed"
+    reviewed_layer_scan_verdict: "READY_FOR_CLEAN_BRANCH"
+    reviewed_layer_contamination_findings: 0
+    reviewed_layer_machine_thread_tool_metadata_findings: 0
+    reviewed_layer_binary_human_review_notices: 4
+    russian_plain_language_companion: "available_at_approval"
+    automated_scan: "passed"
+    automated_scan_scope: "reviewed_layer_after_redaction_and_omission"
+    human_review: "passed"
+    human_reviewed_at_utc: "2026-08-29T14:07:36Z"
+    approval_question_exact: "Подтверждаете русскую и английскую версии TRC-BG-PHASE05-001 как точный и безопасный отчёт, в котором после указанных исключений сохранён технический смысл?"
+    selected_response_exact: "Подтверждаю одобрение (Recommended)"
+    technical_meaning_preserved: true
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    approval_scope: "Promote this Phase 0.5 trace only; no product/scored work, model/browser run, commit, or push."
+pending_trace_capture_and_review: []
 excluded_transcripts:
   - exclusion_id: "EXC-001"
     category: "prohibited_internal_identifier_in_prompt"
@@ -72,10 +123,12 @@ declared_agents:
       purpose: "Minimal trace-first branch-status correction and boundary/preflight verification."
       eligible_trace_id: "TRC-BG-TRACEFIRST-001"
       eligible_representative_trace: true
-      reason: "Covered by the approved and indexed trace-first representative trace."
+      additional_eligible_trace_ids:
+        - "TRC-BG-PHASE05-001"
+      reason: "Covered by the approved trace-first trace and the approved Phase 0.5 representative trace. The Phase 0.5 raw scan remains failed, while its redacted reviewed layer passed automated and owner review."
   solution_agents:
     - agent_id: "SOL-BEYONDGREEN-001"
-      tool_and_model: "open_decision_in_PROJECT_SPEC_section_20"
+      tool_and_model: "optional codex-exec-jsonl-v1 / gpt-5.6-sol runtime unverified under owner waiver; offline-replay-jsonl-v1 verified"
       purpose: "Future single orchestrator; not implemented or run."
       eligible_representative_trace: false
       reason: "No product implementation or execution exists."

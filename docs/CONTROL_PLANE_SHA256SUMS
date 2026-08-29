@@ -1,7 +1,7 @@
-# Scope: approved trace-first repository surface after repository-owner review.
-# Excludes this self-referential manifest and the two local-only documents excluded
+# Scope: Phase 0.5 frozen repository control, evidence, and approved trace-review surface.
+# Excludes this self-referential manifest and two local-only documents excluded
 # by the clean task boundary. Private denylist and raw traces are external and
-# intentionally absent.
+# intentionally absent. The Phase 0.5 raw scan remains failed; its reviewed layer is approved.
 755f6182f34243435e4ee06ec2d152a3182d90a094b35dea118070cfdcad4a73  ./.agents/skills/claude/SKILL.md
 4cbc369194aaa2d38ec5d224c6d326039a645770bbcf12ab8fd2e9aa1713f16a  ./.agents/skills/claude/agents/openai.yaml
 b014ad92986cfbe2cf810b2a73b2533c915b960165372e2ecb6b41aa57d0ecb7  ./.agents/skills/claude/references/context-contract.md
@@ -10,30 +10,44 @@ a4ea205ef27666e1eca67e359f27d7d17e5d64204f7a9e44861eb52a92e57e63  ./.gitignore
 9c579c4eab1d526e689fe7cda201a0ab2f39070304043bb55c459a3d90954250  ./.node-version
 156131b30ba569ebcb3eb9396ea004a38245e07e5dc2a798b7f2922a6fc35e8f  ./AGENTS.md
 c22ff1b900a43a16c6bae387a89d7b6941bfef90d7e1176be765d219c3f17dcf  ./README.md
-b1122a2a5061d13e498ba225f1118f83640ff43021a99309bae97b818e53ebf6  ./artifacts/provenance/index.yaml
+6345e22330c67f4091526d3b516bf5a2e06c2694e61b057cd05aabfd8a6f35de  ./THIRD_PARTY_NOTICES.md
+688baad33e10966944f8d73dd09e03af1f7aa4301cd2d2c66d7efe1b03bf6b41  ./artifacts/phase-0.5-chromium-spike.json
+b14dc3e4e0384ea4b4c57304b33e15a219330fe83e49da2cc5301236bedc294c  ./artifacts/phase-0.5-cli-diagnostics.json
+6d9db0180ba92e775f5e4461d5815b6391fef7ac23302ca9160ddc059073b014  ./artifacts/phase-0.5-license-audit.json
+298167a1446d2af58956ddb167473680883d6206236049b3dee2d8faeb6102d9  ./artifacts/phase-0.5-model-probe.json
+a42354fc1691eb0dad2d62f1a0b55c18fc491b1a18e3164d6a5f6b1c6aee5f9f  ./artifacts/provenance/index.yaml
 dd549160809e21e1ea72797ad3ca0080d66c9751e3125a00b4a30edf0733b018  ./artifacts/trajectories/TRACE_CAPTURE_DRY_RUN.md
-4e585f432dbb90bfafaeabb4f06e30f2e44d34a1b3a26944394b2cddb7102411  ./artifacts/trajectories/index.yaml
+cf139b5ad4d1149c73f8d2baca9aeac022f13a739dcca2db8d94821438d2b2f9  ./artifacts/trajectories/index.yaml
+f96caa2fde91064eea6617fbaeda931b163a7ae9bb8871d81a0ca5c8fae03342  ./artifacts/trajectories/instructions/TRC-BG-PHASE05-001.md
 bb30cba6d8afdd294328da79e9c6ca8ec75e8adf79ff3d8d2bb9ef04ac2d9551  ./artifacts/trajectories/instructions/TRC-BG-TRACEFIRST-001.md
+baea3dade77d380dfcb0ef28aefc5de98421c0946231dbbf1a1b219a988a5dbf  ./artifacts/trajectories/reviewed/TRC-BG-PHASE05-001.md
+275104d71a8759d05b22a76c67a3cf700953229a094ad9b2b4d2387f418927d2  ./artifacts/trajectories/reviewed/TRC-BG-PHASE05-001_RU.md
 c090a8fa646598b5942175dbbae15f8110110d3347eba2ef812a22dc7287a0cf  ./artifacts/trajectories/reviewed/TRC-BG-TRACEFIRST-001.md
 8ad0b4526ed7a0291d4adbc3f0f0cfd3c3cdb5086c06560a2ad11d6c03988ce9  ./artifacts/trajectories/reviewed/TRC-BG-TRACEFIRST-001_RU.md
+a0ec5e2cd7239d2c9a4c014fd0d6dd98ce7ea06ccc05b134feb598d31b541b1c  ./artifacts/trajectories/reviews/TRC-BG-PHASE05-001.yaml
+30edd472311ec510c04e371a18f3bf050ad147009d5aeb435cae48b4bad12788  ./artifacts/trajectories/reviews/TRC-BG-PHASE05-001_RU.md
 e42a798c5545b523c756d3e74c45c91a4edd301c561cad2affe0d331bc12478c  ./artifacts/trajectories/reviews/TRC-BG-TRACEFIRST-001.yaml
 8bdc3d63af92227bf7b50d9d9298f99353bc0ce449fdbda940b3473eb4fa3a81  ./artifacts/trajectories/reviews/TRC-BG-TRACEFIRST-001_RU.md
 de688fa7138cc7bb23f6af3cc89ade703d9dc35df093e17120563f5d6cbca581  ./artifacts/trajectories/session-boundaries/SES-20260828-001.yaml
 60be38dedea136fb834e2b304240057813125c07bd6bbb36c631c79f77800d18  ./artifacts/trajectories/session-boundaries/SES-20260829-001.yaml
-8bca087d3ba80d23c8efac42c106f2fdaca64051f75906e27ea83f6ec37cd461  ./artifacts/trajectories/session-boundaries/SES-20260829-002.yaml
-db3097ae6a95a4941b07a14ed1726ba49c0b46ba26f78ac8ec42ad67dccde1d6  ./config/cleanroom.json
-4ef07c6132c4c5e2807b735a8d4b5195b94c3bca1baff1fcc876d60e90e0f835  ./config/topic.yaml
+0c5dccc6fcd0330f1172c9f71471c53da1426da26d927a87b04499e6ffbdd98c  ./artifacts/trajectories/session-boundaries/SES-20260829-002.yaml
+9519055dc437efc601ebe87ea5770cfb58806cd5be98d581e3abc76fd722d741  ./config/cleanroom.json
+8cd10753af79c5774bfb19f78238ca3c9e0dc89217750aed39bf7079a79e48e0  ./config/phase-0.5.candidate.yaml
+dfa58c2a895b7bd728c445fe8949b857316e3be595728d88cb07e002ba3df3ed  ./config/topic.yaml
 2f62f6015b04d3b3cc692bd7f207d0cdf1df1c5f994955c85daa8639831c60cd  ./docs/CHALLENGE.md
 037c8b943a211eb100ebea288877f9ecc9439ccf53528dc24fcec3e6c34a5afa  ./docs/CLEAN_ROOM_POLICY.md
 2387a038826853ba76bb31db25e64dbabba547e57827009e8fef93346680697d  ./docs/CONTROL_PLANE_LOG.md
 30d80bcace6e62ca8f7e488c670c604bede6a8dc5085c79bbc126cc7830d1283  ./docs/DIAGRAMS_RU.md
-e11ccf51a44ac77bb86628c6a4ccb62f0c5c27a79a41768b06bb1d8bf2dc3d74  ./docs/EVALUATION.md
+2c593c555b3eb74be8cb0e5e24d7737c81df47261248b8f6100b72e11c564475  ./docs/EVALUATION.md
 be08f592c3735134a75e20b76dc697e2ab786faa6fd245eed6813fdf10c98972  ./docs/HACKATHON_RULES.md
-6b833570d5367b9b8a92104e086965871244f2ccc7daec50a03aec9833383653  ./docs/IMPROVEMENT_CHANGELOG.md
+787899f82a89e95b933c6c78dda3f31efad792a30a97728f13926f5fffc89bb9  ./docs/IMPROVEMENT_CHANGELOG.md
 80261cd4b72eb9698b544009ed178ec3cfe43146c2845d2f9102fd277d42ffa2  ./docs/MICRO1_INSTRUCTIONS_RU.md
-009bab71a2769e6c3fde8e1ebac8af8db9832acae1165f41e04dad4106480c8f  ./docs/PREFLIGHT_CHECKLIST.md
-fed6d468cfb649248d9cce02cece8c9b11cfade856dd71a88735e93e9818a860  ./docs/PROJECT_SPEC.md
-f128d54d13157476b199c428c1354e69f7f954b8cbad3a106e77e19567eb20dc  ./docs/PROJECT_SPEC_RU.md
+4a4a93d7b5d600643cc718a3ec6eee66c14bca68b48e8d76032449395f9aaed4  ./docs/PHASE_0_5_DECISIONS.md
+747c0e2c91a8e4061a7df5f2b9f269df7f681c46777eed6a9825be2a2ad80632  ./docs/PHASE_0_5_DECISIONS_RU.md
+f29034d51e9522f1bb22c639e5d71eabd1b65fa8158798ea7c6dc271edbccd3e  ./docs/PHASE_0_5_REVIEW_RU.md
+e5c80fa16f507d29b33d504d3eff4b15f9882d228a0cf476f70fc1c5bca8ddb7  ./docs/PREFLIGHT_CHECKLIST.md
+56277ef010d56178457742db4e8f20e15588408e51b7655c1ce9a7624195ea30  ./docs/PROJECT_SPEC.md
+1cd6624e0f19c35a36d2d4e0f6db459881d5480234f45688e62d3ee923cec7ea  ./docs/PROJECT_SPEC_RU.md
 61d91935438bfbe54b895b7e5697284061447b3c61dfe332c917576db3eff885  ./docs/PROVENANCE.md
 f60234d69816de324fbad015d126db4b0cb681830ec57afdbd8f9fdf1f67752b  ./docs/SUBMISSION_ARTIFACTS_SPEC.md
 aaf1a4d651c84f5ff8b6afc6d585ff61f6df3e72c5e55f83263e32ecf7445e7c  ./docs/TRACE_POLICY.md
@@ -43,9 +57,27 @@ aaf1a4d651c84f5ff8b6afc6d585ff61f6df3e72c5e55f83263e32ecf7445e7c  ./docs/TRACE_P
 be811a1d09ebedef2fc853544132b287924fd0f76d04301ea554b4c7e2d88fc4  ./docs/evidence/micro1-first-hackathon-instructions.pdf
 10901ec7d06f49163a4fbd54d499b7de33ba7442e5cf7e1586f5d5a07ca5f296  ./docs/evidence/tie-break-order.png
 5914a6e00d393aa43dfc30824f3c94318f1b4d1f84bc4c9046a94ee77c67e76c  ./docs/evidence/timeline.png
-6a875b0dc8193004607eee624611440618bf8016cf34e2d96a9b1faaea08a70e  ./package.json
+1beb2987e3e0654cb525b80c2f97a2f6577f92399e8a78fcd8eb9f9ab6487d4c  ./package-lock.json
+3c430279f69a25014494945b604025851df0316935a0a04ab2a1ba5ead73680d  ./package.json
+cba8893c814b32e887237b102ec3f94c6f58f844cba9e58019edef431f3888e7  ./scripts/license-audit.ts
 243f600a8a331096f84fd0d1bc212bb5cf82ebb5aa480349e720efbf4e87af3d  ./scripts/preflight-check.ts
+e17a7a6d91f7a61d8c4fbd928623ad8f012ced6cb9572332ddaaf433d0a1b39d  ./spikes/phase-0.5/chromium-board.html
+37e280c33a3986f11b0d0c6c7299e8eeb8cf49432c41d0b03e2dff6f7192d766  ./spikes/phase-0.5/chromium-runner.test.ts
+fc8f9298e9e2402b4540da3793842e72a906a33c4d7964a15ccd524266627aa9  ./spikes/phase-0.5/chromium-runner.ts
+bf772a54249c52d80b255ce5b8c201a5443a5ad0885b902ad41d64f9ba2a7cac  ./spikes/phase-0.5/cli-diagnostics.test.ts
+7af629137fffa324a809762ad8a7ef15f2fa60f6b19d46bff665b1553380bdf8  ./spikes/phase-0.5/cli-diagnostics.ts
+7ef1f3ae1826e0076a1f50c1842fa2da5613cef167f685a00248d42439684fc4  ./spikes/phase-0.5/doctor-diagnostic.test.ts
+f87eccd3a11d2503b03fe0fa120481e2b79f5143ae59acad9225fedc62eccc0a  ./spikes/phase-0.5/doctor-diagnostic.ts
+ff412a946b8a965774d36f383b897f42597be223ac6fbd2cd68d4098d0c4ba77  ./spikes/phase-0.5/model-output.schema.json
+7f0d1caa5fe90618ec54517fcf64d112304049fc41f846e670a2abf8087caf1d  ./spikes/phase-0.5/model-probe-prompt.txt
+7960d5b493ed13c961bfc09892350ff29ef8ce5cd67aa3756b9fd313c03eef33  ./spikes/phase-0.5/model-probe.test.ts
+29010dc3daef54c34132d7f73dd2771b174e168439628a3d70a4c6b40f5aecf1  ./spikes/phase-0.5/model-probe.ts
+021f622326b127d54e1023c59a077b16eaff52b2b5e6ca9b408208dc9f1396fc  ./spikes/phase-0.5/network-diagnostic.test.ts
+2d8a3e1738684ddf61260e99b795d55d79c216936a9c812849e747f1cda27ac9  ./spikes/phase-0.5/network-diagnostic.ts
+3a4861d2ad99563321b6296f47ab0e2f9110fd4651ff2a0bef08fd94066be593  ./spikes/phase-0.5/run-model-probe.ts
+c629513bb08d08411287d58d726e53c78dad9f6ca9b38fd5aaf02b01cd3c2b25  ./spikes/phase-0.5/stack-capabilities.test.ts
 7caf48c72542d071da26ae93af0e91e65eca4d69f3433df4cc88378f04c9da30  ./templates/ITERATION_RECORD.md
 20288c22d76f72c131aa4cacf015f6d8438a58b26e56826369efafe08779cef8  ./templates/PROVENANCE_ENTRY.yaml
 95e865cf835fdab789671e1f62f091b7009758426be2c8790d45f7109432f491  ./templates/SESSION_BOUNDARY.yaml
+82568c719ed8f309931869b40972cb5aa338e7bfde6c22519ed586af7897eba0  ./tests/license-audit.test.ts
 9ac3a91a4edfd96f66e6621f8fcfaaf4e43023e5f3126ad7200345e6c1066b00  ./tests/preflight-check.test.ts

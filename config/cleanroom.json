@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "current_phase": "post_handoff_reconciled_implementation_blocked",
+  "current_phase": "phase_0_5_frozen_product_implementation_separately_gated",
   "submission_root": ".",
   "runtime": {
     "name": "node",
@@ -13,7 +13,7 @@
   },
   "current_thread": {
     "submission_eligible": false,
-    "reason": "Normative BeyondGreen v1.1 is human-approved and transferred to a named clean branch. Implementation remains blocked pending Phase 0.5, real contamination preflight, a new approved implementation SESSION_BOUNDARY, and a successful eligible trace-first gate."
+    "reason": "Normative BeyondGreen v1.1, the approved implementation boundary, trace-first gate, real contamination preflight, and Phase 0.5 freeze are complete. Product implementation remains unauthorized pending eligible capture/review of the Phase 0.5 trajectory, explicit owner authorization for product work, and the independently authored fixture behavior/provenance freeze for the applicable slice."
   },
   "allowed_source_classes": [
     "official_challenge_material",
