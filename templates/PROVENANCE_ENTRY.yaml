@@ -1,33 +1,29 @@
-schema_version: "1.0"
-artifact_id: "REQUIRED"
-artifact_path: "REQUIRED"
-artifact_type: "fixture|source|test|instruction|dataset|evaluation|evidence"
-created_at_utc: "REQUIRED"
+schema_version: "1.1"
+record_id: "REQUIRED"
+record_type: "artifact_candidate|fixture_provenance"
+artifact_paths: []
+requirement_ids: []
 created_during_event: true
 author:
   kind: "human|agent|human_with_agent"
   name_or_agent_id: "REQUIRED"
   model: ""
-public_anchors:
-  - source_id: "REQUIRED"
-    title: "REQUIRED"
-    url: "REQUIRED"
-    owner_or_author: "REQUIRED"
-    accessed_at: "REQUIRED"
-    license_or_terms: "REQUIRED"
-    fact_or_behavior_used: "REQUIRED"
-derivation:
-  behavior_spec_path: "REQUIRED"
-  behavior_spec_sha256: "REQUIRED"
+origin: "REQUIRED"
+fixture_provenance:
+  fixture_id: ""
+  arm_visible_manifest_path: ""
+  arm_visible_manifest_sha256: ""
+  verifier_oracle_manifest_path: ""
+  verifier_oracle_manifest_sha256: ""
+  public_anchor_ids: []
+clean_room_attestation:
   copied_source_expression: false
   private_material_used_as_source: false
-evaluation_visibility: "development|held_out|not_applicable"
 review:
-  automated_scan: "pending"
-  human_review: "pending"
+  automated_scan: "pending|passed|failed"
+  human_review: "pending|passed|failed"
   reviewer: ""
   reviewed_at_utc: ""
 redistribution:
   allowed: false
   rationale: "REQUIRED"
-

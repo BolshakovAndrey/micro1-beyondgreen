@@ -1,11 +1,17 @@
 # Submission Artifact Harness — Specification
 
-**Status:** implementation contract  
+**Status:** subordinate but binding delivery contract
 **Created:** 2026-08-28  
 **Audience:** developer building the solution and the evidence package  
-**Scope:** topic-independent; the project topic is intentionally unresolved  
+**Scope:** topic-independent artifact and packaging obligations
 **Authoritative sources:** [CHALLENGE.md](CHALLENGE.md),
 [HACKATHON_RULES.md](HACKATHON_RULES.md), and the preserved official PDF
+
+`docs/PROJECT_SPEC.md` is the sole normative product-semantics contract. This file is
+binding for delivery, evidence, command-surface, and packaging obligations but may
+not override product semantics. Topic-unresolved statements below describe the
+control-plane baseline when this generic harness was authored; current topic values
+and stricter requirements come from `docs/PROJECT_SPEC.md` and its projections.
 
 ## 1. Goal
 

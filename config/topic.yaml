@@ -1,0 +1,56 @@
+schema_version: "1.0"
+projection_of: "docs/PROJECT_SPEC.md@1.0.0"
+normative: false
+requirement_ids:
+  - "FR-001..FR-012"
+  - "NFR-001..NFR-009"
+  - "EV-001..EV-012"
+  - "AR-001..AR-009"
+project:
+  name: "StateShift Guardian"
+  one_sentence_summary: "A guarded React-state-to-signals migration workflow that accepts synthetic patches only with independently verified behavioral evidence."
+user:
+  persona: "Frontend/platform engineer modernizing React components in a mature TypeScript codebase with incomplete legacy tests."
+  bottleneck: "A migration can pass visible legacy tests while changing observable behavior, lifecycle or subscription semantics, or another hidden invariant."
+  practical_value: "Increase behavior-preserving migration rate and stop false-green migrations with a reviewable evidence bundle."
+workflow:
+  realistic_scenario: "Using already frozen arm-visible and verifier-only artifacts created outside evaluated arms, inventory one synthetic editor fixture, derive only a visible per-attempt migration contract, plan and approve a sandboxed migration, then obtain an independent evidence-backed verdict."
+  usable_output: "State inventory, frozen contracts, approved plan, sandboxed patch, all check results, risk verdict, evidence report, and final human checkpoint."
+baseline:
+  description: "Two baselines: a deterministic mechanical transform and a general coding agent that stops when compile and visible legacy tests are green."
+  fairness_rationale: "All three arms use exactly 12 fixtures, exactly one frozen scored seed, the same environment, frozen scoring, and hidden-oracle isolation; coding-agent and Guardian arms use the same selected model/provider and total inference cap."
+agent_solution:
+  necessity: "Legacy-green stopping is insufficient when behavior and lifecycle oracles are incomplete or hidden."
+  capabilities:
+    - "single StateShift Guardian orchestrator"
+    - "narrow typed inventory, contract, planning, patch, test, risk, and report stages"
+    - "process- and filesystem-isolated hidden-oracle verifier boundary"
+    - "K=0 verifier-derived repair rounds"
+    - "verifier-internal mutation and adversarial adequacy checks"
+    - "interactive_human checkpoints with real approval evidence"
+    - "benchmark_policy_gate with one real pre-suite policy approval and mechanical per-case checks"
+evaluation:
+  primary_metric: "Behavior-Preserving Migration Rate (BPMR)"
+  primary_metric_direction: "higher_is_better"
+  success_threshold: "Guardian >=9/12 overall and >=5/7 held-out, with >=3/12 over mechanical, >=2/12 over coding-agent baseline, decision accuracy >=10/12, completion >=11/12, accepted precision 1.00 when applicable, and false-green stop rate >=0.80 when applicable."
+  minimum_case_count: 12
+  challenging_case_ids: []
+  challenging_case_status: "unset_until_behavior_assignments_receive_human_approval"
+  scored_attempts_per_fixture_per_arm: 1
+  scored_seed: "one_frozen_seed"
+  verifier_repair_rounds: 0
+data:
+  source: "Twelve independently authored synthetic editor behavior specifications: five development and seven held-out/hash-frozen."
+  license_or_permission: "Project-authored prose plus public anchors whose licenses or terms must be recorded before fixture implementation."
+  privacy_classification: "public_or_synthetic"
+safety:
+  consequential_actions: false
+  human_review_required: true
+  boundaries:
+    - "Synthetic fixtures and sandboxed patches only."
+    - "No proprietary components, identifiers, code, tests, data, builds, traces, screenshots, or video."
+    - "No hidden-oracle access by evaluated migration paths."
+    - "Arm sandboxes never mount verifier-only paths."
+    - "No external patch application without explicit human approval."
+    - "Fail closed on ambiguity, mismatch, nondeterminism, timeout, or incomplete evidence."
+open_decisions_source: "docs/PROJECT_SPEC.md#19-open-decisions-and-assumptions"

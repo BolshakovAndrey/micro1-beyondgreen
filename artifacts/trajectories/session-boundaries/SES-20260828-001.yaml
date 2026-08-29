@@ -1,0 +1,101 @@
+schema_version: "1.1"
+session_id: "SES-20260828-001"
+started_at_utc: "2026-08-28T19:02:10Z"
+agent:
+  tool: "Codex desktop"
+  model: "GPT-5"
+  purpose: "Establish the clean-room boundary and prepare StateShift Guardian specifications only after all gates pass."
+context:
+  repository_root: "."
+  allowed_paths:
+    - "."
+  public_sources:
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/SUBMISSION_ARTIFACTS_SPEC.md"
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled:
+    - "node_repl"
+    - "public_documentation_connectors"
+    - "browser_automation_not_authorized_for_this_session"
+    - "connected_apps_not_authorized_for_this_session"
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "use_unauthorized"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+controls:
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  private_denylist_available_to_scanner_only: true
+  private_paths_resolve_outside_repository: true
+  raw_trace_location: "external_local_only"
+  broader_read_surface_control: "No reads outside the repository except scanner-only denylist access and raw-trace canary write/readback."
+  exposed_capability_control: "Browser, connected-app, and private MCP use is unauthorized; auditable tool-call count is zero."
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "candidate_pending_human_review"
+  authoring_transcript_status: "excluded"
+  authoring_transcript_exclusion_category: "prohibited_internal_identifier_in_prompt"
+human_approval:
+  status: "pending"
+  approver: ""
+  approved_at_utc: ""
+  approval_evidence: ""
+boundary_review:
+  status: "controls_verified_human_approval_pending"
+  shared_memory: "Declared by global instructions but not read because it is outside the clean repository root."
+  tool_scope: "Repository shell/file tools and public documentation web lookup only; browser, connected-app, and private MCP state were not used."
+  environment_probe: "Variable presence and path relationship only; no values or denylist contents were printed."
+  filesystem_scope: "A broader technical read capability is exposed but is not evidence of access; the tool-call audit confirms no unauthorized outside-root reads."
+  writable_non_workspace_surface: "Only the authorized raw-trace canary target was used outside the repository."
+  capability_risk: "Capabilities are exposed; external state was not inspected, use remains unauthorized, and the tool-call audit records zero unauthorized calls."
+  blockers:
+    - "Human boundary approval is pending."
+    - "Current authoring transcript is excluded; future implementation requires a new neutral task."
+tool_call_audit:
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  outside_root_reads:
+    scanner_only_denylist: "authorized_preflight_reads_recorded_in_task_log"
+    other: 0
+  outside_root_writes:
+    raw_trace_canary: 1
+    other: 0
+validation:
+  unit_tests: "passed_10_of_10"
+  control_preflight: "READY_FOR_CLEAN_BRANCH"
+  binary_review_notices: 4
+  python_source_files_found: 0
+  implementation_preflight_run: true
+  implementation_preflight: "READY_FOR_IMPLEMENTATION"
+  implementation_preflight_warnings:
+    - "dirty_worktree_checkpoint_required_before_implementation"
+    - "four_official_binary_evidence_files_require_human_release_review"
+  product_implementation_authorized: false
+  product_implementation_blocker: "Global PROJECT_SPEC and open decisions await explicit human approval; future implementation must start in a new neutral task."
+  yaml_parse: "passed_6_files"
+  requirement_projection_consistency: "passed_42_requirements_11_tokens_5_projections"
+  raw_trace_canary:
+    category: "external_raw_trace_canary"
+    environment_variable: "MICRO1_PRIVATE_TRACE_DIR"
+    sha256: "522aeeb01e2bc611a755b3ef047b56c3566c9b94629f4431e05390d48454e884"
+    bytes: 119
+    outside_repository: true
+    write_readback_verified: true
+    raw_path_disclosed: false

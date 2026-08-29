@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "current_phase": "control_plane",
+  "current_phase": "candidate_spec_review",
   "submission_root": ".",
   "runtime": {
     "name": "node",
@@ -13,7 +13,7 @@
   },
   "current_thread": {
     "submission_eligible": false,
-    "reason": "Private ideation context preceded the clean-room boundary."
+    "reason": "Authoring transcript excluded by category prohibited_internal_identifier_in_prompt; repository artifacts remain candidates pending human review."
   },
   "allowed_source_classes": [
     "official_challenge_material",
@@ -71,7 +71,15 @@
     "dist/",
     "node_modules/",
     "tmp/",
-    "raw-traces/"
+    "raw-traces/",
+    "docs/evidence/",
+    "docs/MICRO1_INSTRUCTIONS_RU.md",
+    "docs/PROJECT_SPEC_RU.md",
+    "docs/CONTROL_STATUS_RU.md",
+    "docs/DIAGRAMS_RU.md",
+    "docs/PREMORTEM_RU.md",
+    "docs/CHALLENGE.md",
+    "docs/HACKATHON_RULES.md"
   ],
   "binary_extensions_requiring_human_review": [
     ".gif",
@@ -92,7 +100,7 @@
     "main",
     "master"
   ],
-  "minimum_evaluation_cases": 10,
+  "minimum_evaluation_cases": 12,
   "require_private_denylist_for_control_plane": true,
   "require_private_denylist_for_implementation": true,
   "implementation_placeholder_tokens": [

@@ -1,4 +1,4 @@
-schema_version: "1.0"
+schema_version: "1.1"
 session_id: "REQUIRED"
 started_at_utc: "REQUIRED"
 agent:
@@ -9,12 +9,19 @@ context:
   repository_root: "REQUIRED"
   allowed_paths: []
   public_sources: []
-  inherited_private_context: false
-  external_private_workspaces_available: false
+  inherited_private_transcript: false
   additional_workspace_roots: []
   mcp_resources_enabled: []
-  browser_private_state_available: false
-  global_memory_reviewed: false
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed|not_exposed|not_verified"
+    external_private_workspace_state: "state_not_inspected|inspected"
+    browser_automation: "capability_exposed|not_exposed|not_verified"
+    browser_private_state: "state_not_inspected|inspected"
+    connected_apps: "capability_exposed|not_exposed|not_verified"
+    connected_app_state: "state_not_inspected|inspected"
+    private_mcp_state: "state_not_inspected|inspected"
+    global_memory_state: "state_not_inspected|inspected"
+    use_policy: "use_unauthorized|public_only|task_authorized"
   private_environment_variables_present:
     - "MICRO1_PRIVATE_DENYLIST"
     - "MICRO1_PRIVATE_TRACE_DIR"
@@ -27,5 +34,12 @@ controls:
   raw_trace_location: "external_local_only"
 attestation:
   submission_eligible_at_start: false
-  human_approved: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "candidate_pending_human_review"
+  authoring_transcript_status: "eligible|excluded|pending_review"
+  authoring_transcript_exclusion_category: ""
+human_approval:
+  status: "pending|approved|rejected"
+  approver: ""
   approved_at_utc: ""
+  approval_evidence: ""
