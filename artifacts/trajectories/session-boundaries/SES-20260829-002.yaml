@@ -1,0 +1,166 @@
+schema_version: "1.1"
+session_id: "SES-20260829-002"
+started_at_utc: "2026-08-29T11:11:04Z"
+agent:
+  tool: "Codex desktop"
+  model: "GPT-5"
+  purpose: "Establish the BeyondGreen implementation boundary and assess preflight readiness only; do not create product code, Phase 0.5 spikes, fixtures, candidates, or runs before explicit human approval."
+context:
+  repository_root: "."
+  allowed_paths:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "artifacts/trajectories/session-boundaries/"
+    - "package.json"
+    - "scripts/preflight-check.ts"
+    - "tests/preflight-check.test.ts"
+  public_sources:
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  private_environment_variables_present: []
+controls:
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  private_denylist_available_to_scanner_only: true
+  private_paths_resolve_outside_repository: true
+  raw_trace_location: "external_local_only"
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "candidate_pending_human_review"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: ""
+human_approval:
+  status: "approved"
+  approver: "repository owner"
+  approved_at_utc: "2026-08-29T11:36:10Z"
+  approval_evidence: "Одобряю SESSION_BOUNDARY SES-20260829-002"
+  approval_scope: "Transition to the separately gated eligible trace-first checkpoint only; product implementation, Phase 0.5, commit, and push remain unauthorized."
+git_state:
+  branch: "impl/beyondgreen"
+  commit: "9bfc358c0681e49f3d0aad6f38d5840c93ba90e4"
+  initial_worktree: "clean"
+  provenance_events:
+    - event: "branch_renamed_before_session"
+      from: "impl/stateshift-guardian"
+      to: "impl/beyondgreen"
+      commit_history_rewritten: false
+      evidence: "Factual provenance supplied by the repository owner in the clean task packet; current branch and commit independently verified."
+boundary_review:
+  status: "approved_for_trace_first_transition_only"
+  shared_memory: "Not read because it is outside the clean repository root and forbidden by this task."
+  tool_scope: "Repository shell and file tools only; browser, connected apps, private MCP resources, external workspaces, and shared memory were not used."
+  environment_probe: "Variable presence and repository-path relationship only; no values or private contents were printed."
+  environment_result: "The variables remain absent from the general task shell. The owner-authorized scanner-only launcher confirmed boolean presence and outside-repository resolution, then injected values only into the scanner subprocess. No values or external paths were exposed, persisted, or guessed."
+  blockers:
+    - "Two expected Phase 0.5 placeholder tokens block implementation readiness."
+    - "The uncommitted boundary file produces the expected dirty-worktree warning."
+    - "Eligible trace-first capture remains pending."
+tool_call_audit:
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  outside_root_reads: 0
+  outside_root_writes: 0
+validation:
+  required_contracts_read_in_full: true
+  initial_git_branch: "passed_impl/beyondgreen"
+  initial_git_commit: "passed_9bfc358"
+  initial_git_worktree: "passed_clean"
+  environment_presence_check: "blocked_both_required_variables_absent_on_initial_and_follow_up_probes"
+  private_paths_outside_repository_check: "passed_via_authorized_scanner_only_launcher"
+  unit_tests: "passed_10_of_10"
+  boundary_yaml_review: "passed_after_two_parser_command_retries"
+  boundary_yaml_review_retries:
+    - "Node yaml module unavailable; no repository change resulted."
+    - "Ruby Psych safe_load_file API unavailable; no repository change resulted."
+  trailing_whitespace: "passed"
+  final_worktree_scope: "only_new_untracked_boundary_file"
+  control_preflight: "READY_FOR_CLEAN_BRANCH_exit_0"
+  implementation_preflight: "BLOCKED_exit_1_on_two_expected_phase_0_5_placeholders"
+  contamination_scan: "passed_no_contamination_findings"
+  binary_human_review_notices: 4
+  dirty_worktree_warning: "expected_uncommitted_boundary_file"
+  product_implementation_authorized: false
+  product_implementation_blocker: "Eligible trace-first capture and resolution and freeze of the Phase 0.5 decisions are required before product implementation."
+boundary_follow_up:
+  checked_at_utc: "2026-08-29T11:15:49Z"
+  scope: "Boolean-only environment probe and real package-script preflight attempts; no product work."
+  private_environment_variable_names:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+  presence_probe: "both_absent"
+  outside_repository_probe: "not_verifiable_values_absent"
+  control_preflight:
+    command: "npm run preflight:control"
+    exit_code: 2
+    verdict: "ERROR_configuration_missing_value_for_denylist"
+    contamination_clearance: false
+  implementation_preflight:
+    command: "npm run preflight:implementation"
+    exit_code: 2
+    verdict: "ERROR_configuration_missing_value_for_denylist"
+    contamination_clearance: false
+  expected_phase_0_5_placeholder_blockers_observed: false
+  expected_phase_0_5_placeholder_blockers_note: "The implementation scanner did not reach repository analysis because configuration validation failed first."
+  submission_eligible_after_boundary: false
+  human_approval_status: "approved_for_trace_first_transition_only"
+authorized_scanner_launcher_follow_up:
+  checked_at_utc: "2026-08-29T11:17:40Z"
+  launcher_command_name: "micro1-safe-preflight"
+  launcher_sha256:
+    value: "10cd5af2f1db2df3cafe7d287eb848e3e34ffe26421202e96b75037a997a57ee"
+    provenance: "owner_provided"
+    independently_verified_in_this_task: false
+  launcher_file_or_external_path_inspected: false
+  general_task_shell_variables_present: false
+  scanner_only_probe:
+    exit_code: 0
+    denylist_present: true
+    denylist_outside_repository: true
+    denylist_regular_file: true
+    trace_directory_present: true
+    trace_directory_outside_repository: true
+    trace_directory_is_directory: true
+    trace_directory_readable_and_writable: true
+  control_preflight:
+    exit_code: 0
+    verdict: "READY_FOR_CLEAN_BRANCH"
+    contamination_clearance: true
+    binary_human_review_notices: 4
+  implementation_preflight:
+    exit_code: 1
+    verdict: "BLOCKED"
+    contamination_clearance: true
+    contamination_findings: 0
+    expected_phase_0_5_placeholder_errors: 2
+    dirty_worktree_warning: true
+    binary_human_review_notices: 4
+  implementation_readiness: false
+  submission_eligible_after_boundary: false
+  human_approval_status: "approved_for_trace_first_transition_only"
