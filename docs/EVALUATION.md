@@ -1,175 +1,179 @@
-# StateShift Guardian — Evaluation Projection
+# BeyondGreen — Evaluation Projection
 
-**Projection of:** `docs/PROJECT_SPEC.md@1.0.0`
+**Projection of:** `docs/PROJECT_SPEC.md@1.1.0`
 **Normative:** no; the global product-semantics specification wins on conflict
-**Evaluation version:** `eval-v1.0.0`
+**Evaluation version:** `eval-v1.1.0`
+**State:** specification only; no fixtures, candidates, or runs exist
 
-This projection specializes `FR-006`–`FR-012`, `NFR-006`–`NFR-009`,
-`EV-001`–`EV-012`, and `AR-003`–`AR-007`. No result is claimed.
+This projection specializes `FR-001`–`FR-012`, `NFR-001`–`NFR-009`,
+`EV-001`–`EV-013`, and `AR-003`–`AR-007`. It claims no result.
 
-## Fixed design
+## Fixed cases and decisions
 
-- Exactly 12 cases: `SSG-D01`–`SSG-D05` and `SSG-H01`–`SSG-H07`.
-- Exactly one scored attempt per fixture per arm.
-- One frozen scored seed shared by all arms.
-- Determinism repeats are a separate diagnostic and never enter BPMR.
-- Exact behavior assignments and challenging-case IDs remain unset until human
-  approval; no membership file or fixture prose exists yet.
-- Results are directional evidence for this synthetic benchmark only. Statistical
-  significance, population generalization, and production claims are forbidden.
+- Exactly ten independently authored synthetic fixtures: `BG-D01`–`BG-D04` and
+  `BG-H01`–`BG-H06`.
+- Exactly one preserving and one seeded false-green candidate per fixture.
+- Exactly 20 frozen ground-truth decisions: ten accept and ten reject.
+- All 20 candidates compile and pass 100% of visible legacy tests at freeze.
+- Exactly one official attempt per arm/candidate and a three-minute maximum.
+- Candidate hashes are identical across arms and checked before and after runs.
+- Held-out evidence is unblinded once and never tunes v1.1 afterward.
 
-## Three fair arms (`FR-012`, `EV-007`, `EV-012`)
+The ten fixture behavior classes are stale snapshots, queued/batched updates,
+derived state, subscription cleanup, prop reset, async ordering, identity stability,
+conditional lifecycle, external store, and rollback. Exact case assignment freezes
+before fixture code as a bijection. At least one fixture is labeled challenging
+before code, with rationale and final-result disclosure.
 
-| Arm | Final-delivery semantics | Stop policy | Oracle visibility |
+## Two scored arms (`FR-011`, `EV-003`, `EV-004`)
+
+| Arm | Inputs | Decision policy | Oracle visibility |
 | --- | --- | --- | --- |
-| A: mechanical | Final patch is implicit accept; failure/no patch is reject | Fixed transform, then visible tests | none |
-| B: coding-agent baseline | Final patch is implicit accept; failure/no patch is reject | Genuine best-effort frozen prompt; stop when compile and visible tests are green | none |
-| C: Guardian | Explicit accept/reject after all pre-verdict stages | One orchestrator; final patch immutable before verifier; K=0 verifier feedback rounds | final gate outcome only after scoring |
+| Status quo | Immutable candidate, compilation, visible legacy tests | Accept if compilation and all visible tests pass; reject on proven visible failure; abstain on operationally inconclusive execution | none |
+| BeyondGreen | Identical candidate and visible inputs | Risk inventory, additional probes/contracts, independent evidence, then accept/reject/abstain | final evidence only after decision finalization |
 
-Arm B's prompt, tool policy, model/provider, stop rule, and digest are published before
-any run. Arms B/C share the same model/provider and total inference cap; actual calls,
-tokens, time, and cost are reported even below caps. All arms share fixtures, seed,
-environment, visible inputs, wall/memory ceilings, and frozen scoring.
+Both arms share candidates, visible inputs, environment, compilation, tests, scoring,
+seed policy, evidence recorder, wall-clock ceiling, and operational limits. Baseline
+resource differences are disclosed. BeyondGreen's live engine and token/cost cap
+freeze after Phase 0.5; actual runtime, calls, tokens, human time, and cost are
+reported.
 
-## Verdict-aware metrics (`EV-004`–`EV-006`)
-
-```text
-delivered_accept = final_patch_delivered AND final_verdict_is_accept
-behavior_preserving_success = delivered_accept AND hidden_verifier_pass
-BPMR = behavior_preserving_successes / 12
-
-potential_false_green = visible_legacy_pass AND hidden_verifier_fail
-false_green_stop_rate = potential_false_greens_rejected / all_potential_false_greens
-false_greens_delivered_per_12 = delivered_patches_that_fail_hidden_verifier / 12
-
-accepted_precision = behavior_preserving_accepted / all_accepted
-non_preserving = no_final_patch OR compile_or_build_failure OR timeout_or_missing_result OR hidden_verifier_fail
-correct_decision = (accept AND preserving) OR (reject AND non_preserving)
-decision_accuracy = correct_decisions / 12
-task_completion_rate = complete_evidence_bundles / 12
-```
-
-Reject/no patch, compile failure, timeout, and missing result score zero in BPMR.
-Exact gates, without rounded equivalents:
-
-- Guardian overall BPMR `>=9/12`;
-- Guardian held-out BPMR `>=5/7`;
-- Guardian minus Arm A overall BPMR `>=3/12`;
-- Guardian minus Arm B overall BPMR `>=2/12`;
-- Guardian accepted precision `=1.00` when applicable;
-- Guardian decision accuracy `>=10/12`;
-- Guardian completion `>=11/12`;
-- Guardian false-green stop rate `>=0.80` when applicable.
-
-If `all_accepted=0`, accepted precision is `not_applicable` and cannot satisfy its
-gate. If `all_potential_false_greens=0`, stop rate is `not_applicable` and supports no
-claim. Missing runtime/cost observations are `not_measured`, never zero. BPMR `>=9/12`
-already prevents reject-all, so there is no separate minimum-accept gate.
-
-The central false-green comparison uses `false_greens_delivered_per_12` and the fixed
-verifier-control set below, not the endogenous stop-rate denominator alone.
-
-## Dual-manifest oracle boundary (`FR-002`, `FR-007`, `EV-003`)
-
-The pre-benchmark fixture-authoring pipeline, outside all evaluated arms, creates and
-freezes two separately hashed artifacts for each future fixture:
-
-1. `ArmVisibleTaskContractManifest`, owned by the benchmark harness, contains task,
-   visible tests/contracts, allowed inputs, and public contract IDs. It is mounted
-   read-only into Arms A/B/C.
-2. `VerifierOracleManifest`, owned by the verifier, contains hidden expected behavior,
-   lifecycle/subscription checks, known-good/bad controls, and oracle contract IDs. It
-   is mounted only into the verifier process.
-
-Arm B and Arm C sandboxes never mount verifier-only directories. Separate process and
-filesystem capability controls are mandatory; typed API design alone is insufficient.
-Access-denial tests target both arms.
-
-Guardian receives only the arm-visible manifest, visible tests, and its inventory.
-Its `deriveVisibleContracts` stage outputs only a per-attempt
-`VisibleMigrationContract` used by the migration plan. The verifier independently
-owns and loads the verifier-only manifest.
-
-Evaluation v1 has `K=0` verifier-derived repair rounds. Before final patch immutability
-and score, no failure category, action sequence, mutant ID, expected value, oracle
-diff, or diagnostic reaches an arm. Mutation/adversarial checks run fully behind the
-verifier boundary. Post-score evidence may contain safe counterexamples but cannot
-alter the v1 output.
-
-## VerifierResult
-
-After immutable scoring, the verifier returns only:
-
-- `verdict`: `pass|fail`;
-- `category`: `preserving|compile_failure|visible_test_failure|behavior_mismatch|lifecycle_mismatch|subscription_mismatch|mutation_gate_failure|timeout|nondeterministic|oracle_access_denied|evidence_incomplete`;
-- arm-visible contract IDs and manifest digest;
-- verifier oracle contract IDs and manifest digest for post-score reporting; and
-- evidence record digests.
-
-It never returns oracle source, expected values, reference diffs, or mutant IDs.
-
-## Evaluator controls (`EV-011`)
-
-Every fixture must later supply one known-good reference migration and one seeded
-known-bad false-green control. Before arm execution, evaluator self-test must accept
-all 12 known-good controls and reject all 12 known-bad controls. Any miss blocks the
-benchmark.
-
-Exactly four candidates are selected before runs from the 12 per-fixture seeded
-known-bad controls and frozen as the v1 verifier-control set. That unchanged set is
-used for the comparable detection/rejection result. Controls are evaluator tests,
-not naturally produced arm outputs and not benchmark fixtures.
-
-## Checkpoint modes (`FR-004`, `FR-011`, `EV-009`)
-
-- `interactive_human`: real approver, timestamp, approval evidence, plan digest, and
-  separate final external-application approval.
-- `benchmark_policy_gate`: one real human approves the frozen policy/digest before
-  the suite; per-case checks are mechanical and never labeled human approval.
-
-Every record includes `checkpoint_mode`, approver/evidence reference where applicable,
-mechanical policy result, and honest human time.
-
-## Secondary and operational metrics
-
-Runtime, calls, tokens where available, human seconds, and estimated cost are reported
-as median, p95, and total per arm. Over the 12 scored observations, p95 is nearest-rank
-at rank `ceil(0.95 * 12) = 12` after ascending sort.
-
-Render, CPU, and memory metrics are secondary. Each metric is claim-eligible only
-when three non-scored repeat runs have identical functional digests and coefficient
-of variation `<=10%` for that metric. Otherwise raw values are published as
-exploratory and no improvement claim is made. They cannot offset correctness failure
-(`NFR-009`).
-
-## Run protocol (`EV-009`, `EV-010`, `EV-012`)
-
-1. Validate clean state, v1 hashes, frozen seed, budgets, controls, and policy digest.
-2. Self-test every fixture's known-good and known-bad candidates.
-3. Run fixed false-green verifier controls.
-4. Execute exactly one scored attempt for each arm/fixture pair.
-5. Preserve all failures, timeouts, actual resource use, checkpoint mode, and human
-   time.
-6. Recompute counts only from immutable per-case records.
-7. Run repeat diagnostics separately and label them non-scored.
-8. Unblind held-out results once; never tune v1 afterward.
-
-Command families:
+## Metrics and exact target semantics (`EV-007`, `EV-008`)
 
 ```text
-npm run benchmark:mechanical -- --evaluation-version eval-v1.0.0
-npm run benchmark:agent-baseline -- --evaluation-version eval-v1.0.0
-npm run guardian -- --evaluation-version eval-v1.0.0
-npm run eval -- --evaluation-version eval-v1.0.0
+correct_decision =
+  (verdict == accept AND ground_truth == preserving) OR
+  (verdict == reject AND ground_truth == false_green)
+
+decision_accuracy = correct_decisions / 20
+reason_correct_reject = verdict == reject AND rationale identifies the violated frozen behavior class or invariant family
+defect_recall = false_green_candidates_with_reason_correct_reject / 10
+false_alarm_rate = preserving_candidates_blocked / 10
+preserving_candidate_blocked = verdict == reject OR verdict == abstain
+completion_rate = completed_decisions / 20
+completed_decision = schema_valid_complete_report AND verdict IN {accept, reject}
+accuracy_advantage = BeyondGreen correct decisions - baseline correct decisions
 ```
 
-The required Makefile later wraps the normative npm commands one-to-one as specified
-in `docs/PROJECT_SPEC.md` section 15.
+An abstention blocks merge but is not a correct decision, not defect recall, not
+completion, and is a false alarm when ground truth is preserving.
+Reason correctness is evaluated only after verdict immutability and creates no
+pre-decision feedback.
 
-## Per-case evidence fields
+Predeclared BeyondGreen targets, without rounded substitutes:
 
-Each record contains evaluation version; arm; fixture, source, and both manifest
-digests; scored seed; attempt ordinal fixed to one; final-patch presence; accept/reject
-verdict; visible-test result; verifier result; mutation gate; BPMR success bit;
-false-green classification; decision correctness; evidence completeness; checkpoint
-mode; actual resource use; human time; errors; and evidence paths.
+- decision accuracy `>=16/20`;
+- accuracy advantage over status quo `>=6/20`;
+- defect recall `>=8/10`;
+- false alarms `<=2/10`;
+- completion `>=18/20`.
+
+If a target is missed, the unchanged target and honest actual result are both
+published. No score is inferred from missing observations.
+
+By construction the status-quo baseline should accept all 20 candidates and score
+exactly `10/20`, with `0/10` recall and `0/10` false alarms. Any different completed
+baseline result invalidates the candidate set or run. The advantage target is an
+explicit restatement of the absolute accuracy target, not an independent empirical
+claim.
+
+## Candidate and oracle boundary (`EV-002`, `EV-005`, `EV-006`)
+
+The fixture-authoring path is outside both arms. For every fixture it separately
+freezes:
+
+1. an arm-visible task package containing public task, source, visible tests,
+   contracts, and allowed inputs;
+2. a verifier-only oracle package containing hidden expected behavior and invariant
+   checks; and
+3. preserving and false-green candidates with immutable hashes and ground truth.
+
+Arm processes and filesystems never mount `evaluation/verifier-only/`; arm-visible
+packages are stored under `evaluation/arm-visible/`. Both directories ship in the
+reproducible archive, while runtime capabilities enforce isolation. A denied-access
+test must prove the boundary before scoring. Typed APIs or prompt instructions alone
+are insufficient.
+
+Before scored runs, the freeze self-test must show all 20 compilation/visible gates
+green; the evaluator must then accept all ten preserving candidates and reject all
+ten false-green candidates. Any miss blocks the benchmark.
+
+BeyondGreen's oracle-free internal checker executes only the arm-derived ProbePlan
+and arm-visible contracts. Evaluation uses `K=0`: no independent-evaluator verdict,
+category, expected value, action-level diagnostic, diff, or oracle detail reaches
+either arm before its decision is immutable and scored. The candidate itself is never
+modified during a scored run.
+
+## Verdict and completion rules (`FR-008`, `NFR-002`)
+
+- `accept`: complete evidence supports merge and all blocking checks pass.
+- `reject`: complete evidence proves a reproducible blocking defect. A proven
+  compilation failure or deterministic visible-test failure forces reject.
+- `abstain`: timeout, failed required probe, nondeterminism, missing evidence,
+  ambiguity, provider transport failure, or denied oracle access. It blocks merge.
+
+An evaluator version/hash mismatch invalidates the run at harness level and blocks
+the benchmark; it is not arm-observable and cannot alter the arm verdict. Provider
+transport failures permit no retry or second attempt.
+
+Only schema-valid complete accept/reject records count as completed decisions.
+Operational uncertainty must never be mislabeled as a proven defect.
+
+## Run protocol (`EV-004`–`EV-010`)
+
+1. Validate clean-room state, evaluation version, candidate/manifests hashes, model
+   adapter, token/cost cap, three-minute ceiling, and policy digests.
+2. Prove denied oracle access for both arms.
+3. Self-test all 20 visible gates, then self-test evaluator ground truth.
+4. Run status quo exactly once on every candidate.
+5. Run BeyondGreen exactly once on every candidate without candidate mutation or
+   verifier feedback.
+6. Preserve timeouts, failures, abstentions, resource use, hashes, and evidence paths.
+7. Recompute aggregates only from immutable per-candidate JSON records.
+8. Unblind held-out results once and prohibit v1.1 tuning afterward.
+
+Required command families:
+
+```text
+npm run verify:baseline -- --evaluation-version eval-v1.1.0
+npm run verify:beyondgreen -- --evaluation-version eval-v1.1.0
+npm run eval -- --evaluation-version eval-v1.1.0
+npm run replay -- --evaluation-version eval-v1.1.0
+```
+
+## Per-candidate evidence fields (`EV-009`)
+
+Each record contains: schema and evaluation versions; arm; fixture and candidate IDs;
+development/held-out class; ground-truth reference available only to evaluator;
+arm-visible and verifier-only manifest digests; candidate hash before/after; attempt
+ordinal fixed to one; start/end/duration; timeout ceiling; compilation and visible
+test results; risk/probe summaries where applicable; verdict; evidence-completeness
+state; correct-decision bit; defect-recall bit; false-alarm bit; completion bit;
+errors; model calls/tokens/cost; human time; and evidence paths/digests.
+
+Human time is agent-supervision time. No time-savings claim is made against the
+automated status-quo arm, and manual review time is not estimated.
+
+JSON must pass a versioned Zod schema. Static HTML is generated only from the
+validated JSON. Offline replay must reproduce the report without network credentials.
+
+## Unscored D01 repair (`FR-012`, `EV-011`)
+
+Only after the scored D01 verdict is final and a human explicitly approves may one
+targeted repair demo run. It receives a distinct unscored run type and candidate
+hash, then undergoes a fresh independent verification. It cannot enter any scored
+denominator, target, or resource comparison.
+
+## Secondary Chromium evidence (`EV-012`, `NFR-009`)
+
+Exactly one synthetic before/after scenario may compare React renders and CPU. It
+must first run identical actions and prove all behavioral invariants and observables
+equal. A behavioral failure forbids a performance-win claim. Chromium results never
+affect decision scoring.
+
+## Challenging case (`EV-013`)
+
+Before fixture code, at least one fixture is recorded in
+`evaluation/challenging-cases.yaml` with its behavior class and reason for difficulty.
+The final report explains what its result revealed, including a failure or abstention
+without suppression.

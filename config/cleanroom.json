@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "current_phase": "candidate_spec_review",
+  "current_phase": "post_handoff_reconciled_implementation_blocked",
   "submission_root": ".",
   "runtime": {
     "name": "node",
@@ -13,7 +13,7 @@
   },
   "current_thread": {
     "submission_eligible": false,
-    "reason": "Authoring transcript excluded by category prohibited_internal_identifier_in_prompt; repository artifacts remain candidates pending human review."
+    "reason": "Normative BeyondGreen v1.1 is human-approved and transferred to a named clean branch. Implementation remains blocked pending Phase 0.5, real contamination preflight, a new approved implementation SESSION_BOUNDARY, and a successful eligible trace-first gate."
   },
   "allowed_source_classes": [
     "official_challenge_material",
@@ -63,7 +63,9 @@
     "dist/",
     "node_modules/",
     "tmp/",
-    "coverage/"
+    "coverage/",
+    "docs/CONTROL_STATUS_RU.md",
+    "docs/PREMORTEM_RU.md"
   ],
   "submission_excluded_paths": [
     ".git/",
@@ -100,7 +102,7 @@
     "main",
     "master"
   ],
-  "minimum_evaluation_cases": 12,
+  "minimum_evaluation_cases": 10,
   "require_private_denylist_for_control_plane": true,
   "require_private_denylist_for_implementation": true,
   "implementation_placeholder_tokens": [

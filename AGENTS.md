@@ -9,6 +9,14 @@ of these contracts in full:
 4. `docs/TRACE_POLICY.md`
 5. `docs/PREFLIGHT_CHECKLIST.md`
 
+After normative v1.1 receives final human approval, every implementation, review,
+evaluation, or packaging task must also read these current product projections before
+acting:
+
+1. `docs/PROJECT_SPEC.md` (sole normative product-semantics contract)
+2. `docs/EVALUATION.md`
+3. `config/topic.yaml`
+
 Treat the qualification gate and the published 100-point judging rubric as product
 requirements. Every meaningful implementation decision must be traceable to at least
 one rubric criterion or to the final problem statement released at kickoff.
@@ -56,3 +64,10 @@ When the user explicitly says `клод`, `claude`, `$claude`, or asks to invite
 as a reviewer, use the project skill at `.agents/skills/claude/SKILL.md`. Claude is a
 read-only external reviewer; Codex must select the minimum sufficient context and
 verify every actionable finding before adopting it.
+
+## Git commit convention
+
+- Write commit messages in English.
+- Use the format `type(Scope):[Domain] Imperative summary`.
+- The bracketed value is a product or business domain, not a ticket ID or repository
+  name. Use `[BeyondGreen]` for the current hackathon product domain.

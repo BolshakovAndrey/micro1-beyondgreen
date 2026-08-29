@@ -102,13 +102,15 @@ The final ZIP repeats this review over the complete extracted archive.
 
 ## 7. Human checkpoints
 
-For StateShift Guardian, traces should preserve at least these decision points when
+For BeyondGreen, traces should preserve at least these decision points when
 they occur:
 
-- approval of a migration/state-inventory plan;
-- approval of generated behavioral contracts;
-- approval or rejection of the proposed final patch;
+- final approval of normative v1.1 before product code;
+- approval of the trace-first implementation boundary and Phase 0.5 freezes;
+- approval of the complete D01 vertical slice before scaling;
+- approval of the optional unscored D01 repair demonstration;
 - acceptance of an evaluation change before unblinding held-out results;
+- approval of the final clean-extracted ZIP; and
 - explicit decision to retain, revise, or remove an experiment.
 
 Synthetic approval text must never be presented as a real human checkpoint.

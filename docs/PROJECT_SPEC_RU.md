@@ -1,646 +1,607 @@
-# StateShift Guardian — глобальная спецификация продукта
+# BeyondGreen — глобальная спецификация продукта
 
 **Статус перевода:** полная ненормативная русская копия для проверки человеком
 **Нормативный источник:** `docs/PROJECT_SPEC.md`
-**Версия:** `1.0.0`
-**Состояние:** кандидат спецификации, ожидающий одобрения человеком
-**Чистая сессия:** `SES-20260828-001`
-
-Наглядные схемы процесса и независимой верификации вынесены в локальное приложение
-[`DIAGRAMS_RU.md`](DIAGRAMS_RU.md). Это ненормативные draft-диаграммы для обсуждения;
-до использования в submission или видео они должны быть независимо пересозданы и
-проверены в чистой задаче.
-
-**До одобрения этой версии:** cross-AI premortem в
-[`PREMORTEM_RU.md`](PREMORTEM_RU.md) показал, что scope v1.0 не соответствует
-оставшемуся времени, а generation-first workflow хуже совпадает с реальной задачей
-проверки уже существующей signals-ветки. Рекомендованный v1.1 rescope ожидает решения
-Андрея; этот перевод пока описывает исходную v1.0 без внесения rescope.
+**Версия:** `1.1.0`
+**Состояние:** нормативная v1.1 одобрена; implementation не разрешён
+**Одобрение человеком:** 2026-08-29T10:46:39Z
+**Чистая сессия:** `SES-20260829-001`
 
 Этот документ полностью переводит нормативную спецификацию продукта на русский
-язык, чтобы её мог проверить владелец проекта. При любом расхождении действует
-английский `docs/PROJECT_SPEC.md`; исправлять нужно русский перевод, а не менять
-смысл нормативного источника.
+язык. При любом расхождении действует английский `docs/PROJECT_SPEC.md`; исправлять
+следует перевод, а не смысл нормативного источника.
 
 `docs/PROJECT_SPEC.md` — единственный нормативный контракт семантики продукта.
 `docs/SUBMISSION_ARTIFACTS_SPEC.md` — подчинённый, но обязательный контракт поставки:
 он может добавлять требования к упаковке и доказательствам, но не может менять
-семантику продукта. `config/topic.yaml`, `docs/EVALUATION.md`,
-`docs/IMPROVEMENT_CHANGELOG.md`, индексы траекторий и происхождения, планы реализации
-и отчёты являются проекциями ID требований из этой спецификации. Если любая проекция
-противоречит нормативному файлу, действует нормативный файл, а проекцию нужно
-исправить.
+семантику продукта. `config/topic.yaml`, `docs/EVALUATION.md`, диаграммы, changelog,
+планы реализации, схемы и отчёты являются проекциями ID требований этой
+спецификации. При конфликте действует нормативный файл, а проекция исправляется.
 
-Код продукта, реализации фикстур, результаты бенчмарка и результаты моделей не
-являются частью этой спецификации.
+Код продукта, реализации фикстур, benchmark runs и результаты моделей не являются
+частью этой спецификации.
 
 ## 1. Тезис продукта
 
-StateShift Guardian помогает frontend/platform-инженеру переносить React-компоненты
-с обычного состояния на сигналы в зрелой кодовой базе, где существующие тесты
-неполны. Опасный результат — правдоподобный патч, который проходит видимые legacy-
-тесты, но меняет наблюдаемое поведение, семантику жизненного цикла или подписок либо
-другое поведение, которого старые тесты никогда не проверяли.
+**BeyondGreen** помогает frontend-инженеру решить, безопасно ли сливать уже
+существующую миграцию React state на signals, когда зрелые legacy-тесты зелёные, но
+могут быть неполными. Опасный результат — правдоподобный кандидат, который
+компилируется и проходит видимые тесты, но меняет наблюдаемое поведение, порядок
+обновлений, идентичность, жизненный цикл, подписку или rollback-инвариант, не
+покрытый этими тестами.
 
-> Миграцию следует принимать только тогда, когда независимый верификатор может
-> связать предложенный патч с замороженными поведенческими доказательствами; один
-> лишь зелёный legacy-набор тестов не является достаточным условием остановки.
+> Зелёная компиляция и legacy-тесты — это доказательства, но не доказанность.
+> Сливать следует только тогда, когда независимый верификатор может связать
+> неизменяемого кандидата с полными воспроизводимыми поведенческими доказательствами.
 
-Основная демонстрируемая ценность — более высокая доля миграций с сохранением
-поведения и более высокая доля остановленных ложно-зелёных миграций. Улучшения числа
-рендеров, CPU или памяти вторичны и не могут компенсировать ошибку корректности.
+Judge-facing имя — BeyondGreen. Это только marketing rename; доказанный scope v1
+остаётся React state → signals. Основной пользователь — frontend-инженер, мигрирующий
+зрелый React-код при зелёных, но потенциально неполных legacy-тестах.
 
-Пользователь — frontend/platform-инженер, отвечающий за безопасную модернизацию
-React-компонентов и ревью миграционных патчей в зрелой TypeScript-кодовой базе. Его
-узкое место — доказать, что владение состоянием, момент чтения, распространение
-обновлений, владение подписками, batching, очистка жизненного цикла и производные
-значения остаются эквивалентными несмотря на неполные видимые тесты.
+Единственный scored workflow — **verify-existing**. Кандидат уже существует до
+оцениваемого запуска и остаётся неизменяемым на всём протяжении проверки.
+BeyondGreen строит инвентаризацию рисков, выводит дополнительные probes и
+поведенческие контракты, выполняет независимые проверки и возвращает подтверждённое
+доказательствами решение о merge. Во время scored run он не создаёт и не исправляет
+кандидата.
 
-В реалистичном сценарии инженер выбирает одну независимо созданную синтетическую
-фикстуру редактора, два манифеста которой уже созданы и заморожены внешним конвейером
-подготовки фикстур. Guardian инвентаризирует состояние и подписки, выводит только
-видимый контракт миграции для конкретной попытки, предлагает план, останавливается на
-человеческой контрольной точке, применяет кандидатный патч только в песочнице,
-запускает видимые legacy-тесты, делегирует независимые дифференциальные,
-поведенческие, мутационные и состязательные проверки, после чего возвращает
-подтверждённый доказательствами вердикт принятия или отклонения.
+Полезный результат для каждого кандидата — **пакет доказательств проверки**:
 
-Полезный результат — **пакет доказательств миграции**, содержащий:
+- неизменяемая идентичность кандидата и хеши;
+- инвентаризация рисков состояния, зависимостей, lifecycle, подписок, порядка,
+  identity и rollback;
+- результаты компиляции и видимых legacy-тестов;
+- результаты дополнительных probes и поведенческих контрактов;
+- финальный вердикт `accept`, `reject` или `abstain` с обоснованием;
+- JSON, проверенный схемой, и статический HTML-отчёт;
+- метаданные runtime, human time, tokens и cost; и
+- digests доказательств, достаточные для воспроизведения решения.
 
-- инвентаризацию состояния и подписок;
-- замороженные поведенческие контракты и их хеши;
-- план миграции и запись настоящей человеческой контрольной точки;
-- предложенный TypeScript-патч, созданный в песочнице;
-- результаты видимых legacy-тестов;
-- результаты дифференциальных и поведенческих проверок;
-- результаты мутационных и состязательных проверок;
-- выявленные риски и обоснование принятия или отклонения;
-- метаданные времени выполнения и стоимости; и
-- финальную человеческую контрольную точку для применения патча во внешней системе.
+## 2. Scope, нецели и граница продукта
 
-## 2. Связь с реальной проблемой
+### Обязательный scope v1
 
-Процесс спроектирован так, чтобы позднее его можно было повторно использовать для
-разрешённых внутренних миграций после отдельного одобрения безопасности, юридических
-условий, доступа к репозиторию и человеческого ревью. Хакатонная реализация и все
-подаваемые доказательства ограничены независимо созданным синтетическим редактором и
-синтетическими фикстурами. Результаты синтетического бенчмарка не доказывают
-корректность на проприетарной или production-кодовой базе.
+- Только проверка существующих кандидатов React state → signals.
+- Десять независимо созданных синтетических фикстур: четыре development и шесть
+  held-out.
+- Один behavior-preserving и один seeded false-green candidate на фикстуру: ровно 20
+  фиксированных решений accept/reject.
+- Два scored arms с одинаковыми неизменяемыми кандидатами: status-quo baseline и
+  BeyondGreen.
+- Воспроизводимый CLI, schema-validated JSON и статический HTML report.
+- Полностью Node.js/TypeScript stack: TypeScript Compiler API, Zod, `node:test`,
+  минимальный React harness, формальные поведенческие проверки в jsdom, а Chromium —
+  только для demo и вторичных performance-доказательств.
+- Provider-neutral adapter reasoning-модели и offline replay.
+- Физическая изоляция скрытого оракула, `K=0` feedback верификатора и обязательный
+  denied-access test.
+- Один реалистичный E2E demo, полный changelog/reproduction evidence, eligible traces
+  и репетиция submission после clean extraction.
 
-Ни один реальный компонент, идентификатор, структура, код, тест, набор данных,
-сборка, трасса, скриншот или видео работодателя, клиента либо существующего продукта
-не может попасть в репозиторий, промпты, трассы, демонстрацию или архив заявки.
+### Не оценивается и жёстко ограничено
 
-## 3. Терминология
+После вердикта и явного человеческого одобрения допускается одна демонстрация
+targeted repair для development-фикстуры `BG-D01`. Она не оценивается, явно
+маркируется и после неё выполняется новая независимая проверка. Она не может менять
+scored result.
+
+### Отложено до прохождения обязательных gates
+
+- generation-migration как scored mode;
+- третий scored arm;
+- полноценный GUI;
+- широкий mutation catalog;
+- performance как primary claim; и
+- дополнительные control docs, не требуемые qualification, judging или release.
+
+### Явные нецели
+
+- Автоматическое изменение реального или проприетарного репозитория.
+- Заявления об общем codemod coverage, production readiness, статистической
+  значимости или production performance.
+- Обучение или fine-tuning модели.
+- Оптимизация по held-out-результатам после unblinding.
+- Доступ к browser, connected apps, private MCP, private memory, sibling workspace
+  или private repository.
+- Product source, fixtures, tests или scripts на Python.
+
+## 3. Термины и семантика решений
 
 | Термин | Нормативное определение |
 | --- | --- |
-| Миграция с сохранением поведения | Кандидат, который компилируется и соответствует всем замороженным проверкам наблюдаемого поведения, жизненного цикла, подписок, порядка и инвариантов своей фикстуры. |
-| Ложный зелёный результат | Кандидат, который проходит все видимые legacy-тесты, но проваливает хотя бы одну независимую скрытую проверку поведенческого оракула. |
-| Видимые legacy-тесты | Тесты, доступные оцениваемому пути миграции и используемые простым baseline с coding agent как сигнал остановки. Они неполны, но не сломаны намеренно. |
-| Скрытый поведенческий оракул | Замороженные ожидаемое поведение и проверки, недоступные оцениваемому пути миграции и доступные только внутри границы независимого верификатора. |
-| Пакет доказательств миграции | Полный набор инвентаризации, контрактов, плана, контрольных точек, патча, проверок, вердикта риска, метаданных и ссылок на доказательства для одной попытки. |
-| Принятая миграция | Кандидат, для которого пройдены все блокирующие проверки, не осталось высокого риска, доказательства полны и соблюдена настроенная политика одобрения. |
-| Отклонённая миграция | Попытка, остановленная из-за неподдерживаемого объёма, отсутствующего одобрения, ошибки компиляции/теста, расхождения поведения, слабой чувствительности мутаций, неустранённого риска, исчерпанного бюджета или неполных доказательств. |
-| Solution agent | Оркестратор StateShift Guardian, оцениваемый как продукт. |
-| Coding agent | Агент, использованный для проектирования/реализации этого репозитория либо в контролируемом сравнительном плече coding agent; раскрывается отдельно от solution agent. |
+| Candidate | Уже существующее изменение React state → signals, замороженное и хешированное до запуска любого scored arm. |
+| Behavior-preserving candidate | Кандидат, который компилируется и выполняет все замороженные observable-, lifecycle-, subscription-, ordering-, identity- и rollback-инварианты своей фикстуры. |
+| Seeded false green | Фиксированный кандидат, который компилируется и проходит видимые legacy-тесты, но нарушает хотя бы один verifier-only поведенческий инвариант. |
+| Status-quo baseline | Политика, принимающая кандидата при успешной компиляции и зелёных видимых legacy-тестах без дополнительных probes, contracts или анализа риска. |
+| Hidden behavior oracle | Замороженное ожидаемое поведение и проверки, физически недоступные обоим scored arms и принадлежащие только независимому evaluator. |
+| Внутренний checker BeyondGreen | Принадлежащий arm oracle-free jsdom checker, который выполняет только выведенный arm `ProbePlan` и arm-visible contracts. |
+| Независимый evaluator | Принадлежащий harness post-decision scorer, который единолично владеет verifier-only oracles и ground truth и запускается только после фиксации arm verdict. |
+| `K=0` | Ноль evaluator-derived feedback или repair rounds до того, как arm verdict станет immutable и будет оценён. |
+| `accept` | Доказательства полны, и все блокирующие проверки поддерживают merge неизменяемого кандидата. |
+| `reject` | Доказательства выявляют воспроизводимый блокирующий дефект или нарушение контракта. |
+| `abstain` | Решение нельзя доказательно принять из-за неполных evidence, операционной ошибки обязательного probe, timeout или иной неопределённости. Abstention блокирует merge. |
+| Завершённое решение | Schema-valid финальный `accept` или `reject` с полными обязательными evidence. `abstain` не является completion. |
+| Пакет доказательств проверки | Неизменяемая идентичность входа, risk inventory, результаты проверок, verdict, rationale, resource metadata и report artifacts для одного кандидата. |
 
-## 4. Область, нецели и инварианты clean-room
+Любой timeout, operational failure обязательного probe, недостаток evidence,
+nondeterminism или попытка доступа к oracle приводит к fail-closed `abstain` и
+блокирует merge. Такое событие нельзя молча превращать в `accept` или в доказанный
+`reject`.
 
-### В области проекта
+## 4. Инварианты clean-room и oracle
 
-- Оркестрация, фикстуры, тесты, evaluator и отчёты только на Node.js/TypeScript.
-- Небольшой независимо созданный синтетический домен редактора.
-- Двенадцать поведенческих спецификаций фикстур с публичными источниками и
-  происхождением.
-- Три плеча сравнения: механический baseline, baseline coding agent с остановкой на
-  зелёных legacy-тестах и продвинутый процесс Guardian.
-- Создание патча в песочнице, независимая верификация и детерминированные
-  доказательства.
+1. Работа над продуктом читает и пишет только внутри clean repository root.
+2. Единственные допустимые операции вне корня — scanner-only чтение denylist и
+   проверенная запись/чтение raw trace через именованные env-переменные.
+3. Employer/client code, tests, data, identifiers, structures, screenshots, traces и
+   private documentation не могут попадать в source, prompts, reports или artifacts.
+4. Behavior prose фикстуры независимо создаётся по public anchors до появления кода
+   фикстуры или кандидата, затем хешируется и проходит provenance review.
+5. Arm-visible task package и verifier-only oracle package отдельно хешируются и
+   хранятся. Ни process, ни filesystem mounts scored arms не содержат verifier-only
+   paths.
+6. Oracle isolation обеспечивается capabilities, а не текстом prompt. До scored runs
+   обязателен denied-access test.
+7. Evaluation использует `K=0`: никакой independent-evaluator result, category,
+   expected value, action-level diagnostic, diff или mutant information не достигает
+   arm до финализации и оценки его вердикта.
+8. Scanner findings, неопределённые provenance/license или сходство с запомненной
+   приватной структурой останавливают затронутую задачу для human review.
+9. Judge-facing records раскрывают имена env-переменных и digests, но не приватные
+   значения, denylist contents или raw absolute paths.
 
-### Нецели
+## 5. Фиксированный benchmark и создание candidates
 
-- Автоматическое изменение реального репозитория.
-- Заявления об общем покрытии React-codemod или production-готовности.
-- Обучение или дообучение модели.
-- Оптимизация бенчмарка после раскрытия held-out-набора.
-- Использование снижения ресурсов вместо доказательства корректности.
-- Доступ к браузеру, connected apps, приватному MCP, приватной памяти или приватному
-  workspace.
-- Исходники, тесты, bytecode, runtime или команды сборки на Python.
+Evaluation v1.1 содержит ровно десять независимо созданных синтетических фикстур:
 
-### Инварианты clean-room
+- `BG-D01`–`BG-D04`: development fixtures;
+- `BG-H01`–`BG-H06`: held-out fixtures.
 
-1. Работа над продуктом читает и пишет только внутри чистого репозитория.
-2. Единственные разрешённые операции вне корня — чтение denylist только scanner-ом и
-   запись/повторное чтение сырых трасс через именованные переменные окружения.
-3. Доступ к браузеру, connected apps, приватному MCP, соседним workspace и глобальной
-   памяти не разрешён и должен отсутствовать в аудите вызовов инструментов.
-4. Текст фикстур независимо создаётся из общих классов поведения и публичных
-   источников до появления кода фикстур.
-5. Каждый текстовый файл фикстуры хешируется и проходит проверку происхождения до
-   реализации.
-6. Скрытые оракулы недоступны через интерфейс инструментов оцениваемой миграции.
-7. Совпадения scanner-а, неопределённое происхождение или сходство с запомненной
-   приватной структурой останавливают затронутую задачу для человеческого ревью.
-8. Записи для судей содержат имена переменных окружения и хеши, но никогда не
-   содержат приватные значения, содержимое denylist или сырые абсолютные пути.
+До fixture code каждой фикстуре назначается ровно один behavior class. Assignment
+является bijection: каждый class используется ровно одной fixture.
 
-## 5. Нормативный процесс
+1. stale snapshots;
+2. queued или batched updates;
+3. derived state;
+4. subscription cleanup;
+5. prop reset;
+6. async ordering;
+7. identity stability;
+8. conditional lifecycle;
+9. external store; и
+10. rollback.
 
-До запуска любого оцениваемого плеча внешний относительно Arms A/B/C конвейер
-подготовки фикстур выполняет:
+До fixture code минимум одна fixture маркируется challenging case. Её manifest
+записывает причину сложности и behavior class, а final report объясняет, что показал
+её результат.
 
-```text
-author public behavior prose
-  -> create and hash ArmVisibleTaskContractManifest
-  -> independently create and hash VerifierOracleManifest
-  -> provenance and human freeze approval
-  -> mount arm-visible artifact in benchmark harness
-  -> load verifier-only artifact exclusively in verifier storage
-```
+Для каждой фикстуры независимый fixture-authoring path создаёт и замораживает:
 
-Оцениваемый процесс Guardian:
+- behavior-first prose, public anchors, neutral domain, provenance, license/terms,
+  observable actions, invariants и SHA-256 digest;
+- один behavior-preserving candidate; и
+- один seeded false-green candidate, который остаётся зелёным при compilation и
+  visible legacy tests, но нарушает хотя бы один verifier-only invariant.
 
-```text
-inventory
-  -> derive VisibleMigrationContract from arm-visible manifest, visible tests, inventory
-  -> migration plan
-  -> human plan checkpoint
-  -> sandboxed patch
-  -> visible legacy tests
-  -> make final patch immutable
-  -> independent verifier final gate (behavioral/differential/mutation/adversarial)
-  -> accept or reject
-  -> migration evidence report
-  -> human external-application checkpoint
-```
+Каждый behavior-preserving candidate также обязан компилироваться и проходить 100%
+visible legacy tests своей fixture. Freeze self-test фиксирует этот факт; preserving
+candidate, проваливший visible gate, недействителен и независимо создаётся заново до
+benchmark freeze.
 
-Оркестратор обязан остановиться, а не пропустить обязательный этап. Отклонение —
-допустимый результат продукта; неподтверждённое принятие — недопустимый.
+Итого ровно 20 фиксированных ground-truth решений: десять `accept` и десять `reject`.
+Оба scored arms получают те же candidates. Development/held-out membership, hashes
+кандидатов, ground truth, visible inputs и oracle hashes замораживаются до
+оптимизации solution. Development workflow и оба arms capability-denied доступ к
+held-out oracle packages; evaluator открывает их только при единственном записанном
+unblinding.
 
-Семантика контрольных точек зависит от режима:
+До scored run любого arm evaluator self-tests обязаны принять все десять preserving
+candidates и отклонить все десять false-green candidates. Любая ошибка блокирует
+evaluation.
 
-- интерактивный/demo-режим требует настоящую личность одобряющего, плановое
-  одобрение с timestamp, доказательство одобрения и отдельное финальное одобрение
-  внешнего применения;
-- автоматический benchmark-режим использует один замороженный
-  `benchmark_policy_gate`, политика и digest которого получают настоящее человеческое
-  одобрение до запуска набора, после чего выполняются механические проверки политики
-  для каждого кейса;
-- записи каждого benchmark-кейса используют
-  `checkpoint_mode: benchmark_policy_gate` и никогда не называют механический
-  результат человеческим одобрением; и
-- человеческое время честно записывается при одобрении политики и интерактивных
-  контрольных точках.
+## 6. Нормативный scored workflow
 
-## 6. Целенаправленная агентная архитектура
-
-Минимальная архитектура состоит из одного оркестратора **StateShift Guardian** с
-узкими типизированными инструментами и одной **границы независимого верификатора**.
-Инвентаризация, вывод контрактов, планирование, миграция, тестирование и отчётность —
-типизированные этапы/инструменты, а не декоративные автономные агенты.
-
-Верификатор находится вне границ процесса и файловых возможностей пути миграции. Он
-владеет скрытыми оракулами, дифференциальным сравнением, мутационными/состязательными
-проверками и окончательными фактами о корректности. Evaluation v1 использует `K=0`
-раундов исправления, основанных на данных верификатора: никакая категория ошибки,
-последовательность действий, ID мутанта, ожидаемое значение, diff оракула или
-диагностика не достигает оцениваемого пути миграции до того, как его финальный патч
-станет неизменяемым и будет оценён. Контрпримеры после оценки могут появиться только
-в доказательствах и не могут менять результат v1.
-
-Coding agents, использованные для создания репозитория, документируются в артефактах
-траекторий и не являются частью архитектуры продукта. Benchmark-плечо coding agent —
-контролируемая политика сравнения, а не дополнительный субагент Guardian.
-
-## 7. Концептуальные типизированные контракты инструментов
-
-| Инструмент/этап | Вход | Выход | Условия остановки/ошибки | Человеческая контрольная точка |
-| --- | --- | --- | --- | --- |
-| `authorFixtureContracts` (до бенчмарка, вне оцениваемых плеч) | Одобренный публичный текст поведения и публичные источники | Замороженный хешированный `ArmVisibleTaskContractManifest` и отдельно замороженный хешированный `VerifierOracleManifest`, переданные напрямую соответствующим владельцам | Нет источника, нестабильный контракт, ошибка происхождения | Одобрение заморозки фикстуры |
-| `inventoryState` | Исходник фикстуры, видимые типы | `StateInventory` с владельцами, чтениями, записями, производными рёбрами, эффектами и подписками | Неподдерживаемый синтаксис, неоднозначный владелец, внешний импорт | Нет |
-| `deriveVisibleContracts` | Видимый плечу манифест, видимые тесты, инвентаризация | `VisibleMigrationContract` для конкретной попытки | Нет видимого контракта, несогласованная инвентаризация | Нет |
-| `planMigration` | Инвентаризация, `VisibleMigrationContract`, выбранный профиль возможностей signals | `MigrationPlan` с инвариантами и гипотезами риска | Неподдерживаемая семантика, неразрешённое владение | Обязательное одобрение плана |
-| `applySandboxPatch` | Одобренный план, исходник фикстуры | `CandidatePatch` и манифест компиляции | Запись вне песочницы, drift зависимостей, ошибка трансформации | Одобрение уже обязательно |
-| `runVisibleTests` | Кандидатная сборка, ID видимых тестов | `LegacyTestResult` | Timeout, crash, nondeterminism | Нет |
-| `verifyIndependently` (принадлежит верификатору) | Неизменяемая ссылка на кандидата, ID фикстуры, замороженный seed; верификатор сам загружает свой артефакт оракула | `VerifierResult`, определённый ниже | Попытка доступа к оракулу, несовпадение evaluator, недетерминизм | Изменения evaluator требуют одобрения до раскрытия held-out |
-| `runMutationChecks` (принадлежит верификатору) | Внутренний контекст верификатора и одобренный каталог мутаций | Внутренний для верификатора результат мутационной/состязательной проверки | Утечка оракула, недопустимый мутант, недостаточная чувствительность | Нет |
-| `assessRisk` | Инвентаризация, план, сводки проверок | `RiskVerdict` с тяжестью/обоснованием | Нет доказательств, неразрешённая высокая тяжесть | Одобрение патча только после pass |
-| `buildEvidenceBundle` | Все неизменяемые записи этапов | `MigrationEvidenceBundle` | Висячие ID, несовпадение хеша, неподтверждённое утверждение | Финальное одобрение внешнего применения |
-
-Типизированные реализации проверяют входы и выходы во время выполнения. Инструменты
-получают явные данные, а не произвольные пути файловой системы или shell-команды.
-
-`VerifierResult` содержит ровно следующие доступные для отчёта судьям поля:
-
-- `verdict`: `pass` или `fail`;
-- `category`: одно безопасное enum-значение из `preserving`, `compile_failure`,
-  `visible_test_failure`, `behavior_mismatch`, `lifecycle_mismatch`,
-  `subscription_mismatch`, `mutation_gate_failure`, `timeout`, `nondeterministic`,
-  `oracle_access_denied` или `evidence_incomplete`;
-- `arm_visible_contract_ids` и digest их манифеста;
-- `verifier_oracle_contract_ids` и digest их манифеста, раскрываемые только после
-  неизменяемой оценки; и
-- digests записей доказательств.
-
-До финализации оценки результат никогда не содержит исходник оракула, ожидаемые
-значения, reference diffs, ID мутантов или диагностику отдельных действий. Arms B и C
-работают в процессах, песочницы которых не монтируют verifier-only-пути. Тесты отказа
-в доступе должны проверять оба плеча; одних типизированных API недостаточно как
-доказательства изоляции.
-
-## 8. Контракт честного сравнения
-
-### Arm A — детерминированный механический baseline
-
-Фиксированная синтаксически направленная трансформация переносит распознанные
-объявления состояния и прямые обновления, запускает видимые legacy-тесты и возвращает
-патч/результат. У неё нет модели, инвентаризации, вывода контрактов, обратной связи
-независимого верификатора, исправления или risk-gate. Возврат финального патча означает
-неявное принятие; ошибка или отсутствие патча означает отклонение.
-
-### Arm B — baseline coding agent с остановкой на зелёных legacy-тестах
-
-Универсальный coding agent получает фикстуру, задачу, видимые тесты, выбранную
-документацию публичной библиотеки и инструменты песочницы. Он останавливается, когда
-компиляция и видимые legacy-тесты становятся зелёными. Доступа к скрытым оракулам у
-него нет. После одобрения выбора он использует те же модель/provider и общий лимит
-inference, что и Guardian. Его настоящий best-effort-промпт и политика остановки
-замораживаются и публикуются до любого запуска. Возврат финального патча означает
-неявное принятие; ошибка или отсутствие патча означает отклонение.
-
-### Arm C — StateShift Guardian
-
-Единственный оркестратор следует нормативному процессу. Он использует те же фикстуру,
-видимые входы, окружение, модель/provider, общий inference-бюджет, wall-clock ceiling
-и замороженный scoring, что и Arm B. Работа верификатора без модели измеряется
-отдельно.
-
-### Правила честности
-
-- Все плечи запускаются на одних и тех же 12 фикстурах в одном окружении.
-- Evaluation v1 оценивает ровно одну попытку на фикстуру для каждого плеча с одним
-  замороженным seed. Повторы детерминизма — отдельная диагностика, они никогда не
-  объединяются в BPMR.
-- Все кандидаты оцениваются только независимым evaluator.
-- Отсутствие стоимости модели у Arm A раскрывается, а не искусственно выравнивается.
-- Arms B и C получают одинаковые общие лимиты модели; фактические вызовы, токены,
-  время и стоимость сообщаются даже при использовании ниже лимита. Декомпозиция
-  вызовов может различаться.
-- Timeouts, retries, failures, человеческое время и оценочная стоимость сообщаются
-  для каждого плеча.
-- Видимые тесты неполны по замыслу, но корректны для заявленного поведения.
-- После раскрытия held-out-результатов ни одно плечо по ним не настраивается.
-
-## 9. Контракт бенчмарка
-
-Evaluation v1 содержит ровно 12 независимо созданных синтетических спецификаций
-фикстур:
-
-- `SSG-D01`–`SSG-D05`: development-фикстуры;
-- `SSG-H01`–`SSG-H07`: held-out, hash-frozen-фикстуры.
-
-До реализации фикстуры каждый кейс должен иметь замороженный текст поведения,
-действия пользователя, наблюдаемые результаты, инварианты жизненного цикла/подписок,
-область видимых тестов, область скрытого оракула, публичные источники, происхождение,
-лицензию/условия и SHA-256 digest.
-
-Development-кейсы могут направлять реализацию. Хеши held-out-текстов и входы оракула
-замораживаются до оптимизации. Оцениваемый путь видит задачу фикстуры и видимые тесты,
-но не может читать логику скрытого оракула или ожидаемые значения. Это правило
-обеспечивается изоляцией возможностей, а не формулировкой промпта.
-
-Контракт каждой фикстуры разделяется на два разных хешированных артефакта:
-
-- манифест задачи/контракта, видимый плечам, принадлежит benchmark harness и
-  монтируется read-only в Arms A, B и C; и
-- verifier-only-манифест оракула принадлежит независимому верификатору и никогда не
-  монтируется в песочницу плеча.
-
-Для каждой фикстуры обязательны одна заведомо хорошая reference migration и один
-засеянный заведомо плохой false-green-control. До запуска плеч self-tests evaluator
-должны принять хороший control и отклонить плохой control для всех 12 фикстур.
-Фиксированный набор ровно из четырёх verifier-controls выбирается и замораживается до
-запусков из 12 засеянных плохих controls каждой фикстуры, а затем оценивается отдельно
-для сопоставимого теста обнаружения/отклонения.
-
-Обязательные классы поведения включают timing snapshot/closure, queued updates и
-batching, derived dependencies, сохранение identity, подписку external store,
-очистку effect, reset props/state, async ordering, rollback при ошибке и
-состязательно неполное legacy-покрытие. Точные назначения замораживаются после
-одобрения спецификации.
-
-## 10. Замороженные метрики и пороги
-
-### Основная метрика — доля миграций с сохранением поведения
+Подготовка fixture и evaluator происходит вне обоих scored arms:
 
 ```text
-delivered_accept = final_patch_delivered AND final_verdict_is_accept
-behavior_preserving_success = delivered_accept AND hidden_verifier_pass
-BPMR(arm) = behavior_preserving_successes / 12
+author behavior prose and public provenance
+  -> freeze arm-visible task package
+  -> independently freeze verifier-only oracle package
+  -> create and hash preserving and false-green candidates
+  -> evaluator self-test on all 20 candidates
+  -> human freeze approval
 ```
 
-Для Arms A и B возврат финального патча является неявным вердиктом accept.
-Reject/no patch, compile failure, timeout и missing result дают ноль. Агрегация —
-точный подсчёт по 12 фикстурам; development и held-out также показываются отдельно.
-
-Для успеха необходимо:
-
-- Guardian BPMR не ниже `9/12` в целом;
-- Guardian held-out BPMR не ниже `5/7`;
-- Guardian превосходит Arm A минимум на `3/12` в целом; и
-- Guardian превосходит Arm B минимум на `2/12` в целом.
-
-### Диагностическая метрика — доля остановленных false-green
+Scored workflow BeyondGreen:
 
 ```text
-potential_false_green = visible_legacy_pass AND hidden_oracle_fail
-false_green_stop_rate = potential_false_greens_rejected / all_potential_false_greens
+ingest immutable existing candidate
+  -> inventory migration risk
+  -> run compilation and visible legacy tests
+  -> derive additional probes and behavioral contracts
+  -> execute arm-owned oracle-free jsdom checks from the ProbePlan
+  -> assemble complete evidence
+  -> accept | reject | abstain
+  -> emit JSON and static HTML report
+  -> freeze arm verdict
+  -> independent evaluator scores against verifier-only oracle
 ```
 
-Если знаменатель равен нулю, результат — `not_applicable` и не подтверждает никаких
-заявлений. Guardian должен остановить не менее `0.80` потенциальных false greens.
-Отчёты также показывают принятые false greens и precision принятых миграций. Поскольку
-этот знаменатель эндогенен внутри плеча, центральное сравнение также сообщает:
+Hash кандидата проверяется до и после каждого scored run. BeyondGreen не может
+редактировать, регенерировать, исправлять candidate или запрашивать второй. Evaluator
+владеет финальным ground-truth scoring и не передаёт repair feedback во время run.
+
+Для каждого candidate существует ровно один официальный scored run, ровно одна
+попытка и максимум три минуты wall-clock. Token/cost cap замораживается после Phase
+0.5 spike и до fixtures. Timeout даёт `abstain`.
+Provider transport или rate-limit failure не разрешает model retry или вторую
+attempt и даёт `abstain`. Offline replay воспроизводит evidence и не является retry.
+
+Status-quo baseline запускает тот же candidate, compilation command, visible tests,
+environment, wall-clock ceiling и evidence recorder. Он принимает только при зелёной
+компиляции и всех видимых legacy-тестах. Он не строит risk inventory, additional
+probes, behavioral contracts или oracle-aware verification.
+
+Для BeyondGreen доказанная compilation failure или deterministic visible legacy-test
+failure является blocking defect и принудительно даёт `reject`. Crash, timeout или
+nondeterministic legacy-gate result даёт `abstain`. BeyondGreen никогда не может
+выдать `accept`, если legacy gate не зелёный.
+
+## 7. Целенаправленная архитектура и typed contracts
+
+Минимальный solution — один BeyondGreen orchestrator с узкими typed stages,
+arm-owned oracle-free internal checker и отдельной independent evaluator boundary.
+Этапы не являются декоративными autonomous agents.
+
+| Этап | Вход | Выход | Fail-closed condition |
+| --- | --- | --- | --- |
+| `ingestCandidate` | Candidate path, fixture ID, frozen manifest | `ImmutableCandidateRef` с hashes | Missing input, hash mismatch, outside-root path |
+| `inventoryRisk` | Immutable candidate и visible source/types | `RiskInventory` | Unsupported syntax, ambiguous ownership, external import |
+| `runLegacyGate` | Candidate, compile command, visible test IDs | `LegacyGateResult` | Crash, timeout, nondeterminism |
+| `deriveProbePlan` | Risk inventory и arm-visible contracts | `ProbePlan` со связями risk-to-check | Missing coverage или unsupported risk |
+| `runInternalChecks` | Immutable candidate reference, arm-derived `ProbePlan`, arm-visible contracts | `InternalCheckResult` и evidence digests | Oracle access attempt, required-probe failure, timeout, nondeterminism |
+| `decide` | Полные immutable stage records | `accept`, `reject` или `abstain` с rationale | Missing или inconsistent evidence |
+| `buildReport` | Финальный evidence bundle | Schema-valid JSON и static HTML | Schema failure, dangling evidence, unsupported claim |
+
+Runtime schemas используют Zod. Анализ source и types использует TypeScript Compiler
+API. Формальные поведенческие проверки выполняются в jsdom через минимальный React
+harness и `node:test`. Chromium исключён из formal correctness scoring и применяется
+только для E2E demo и одного secondary performance scenario.
+
+Reasoning engine подключается через provider-neutral adapter. Live engine выбирается
+в Phase 0.5 и замораживается до fixtures. Каждый live result должен записываться и
+воспроизводиться offline adapter без network. Offline replay воспроизводит submitted
+evidence и не является новой scored attempt.
+
+`InternalCheckResult` содержит только outcomes arm-visible probes и их evidence
+digests и не имеет oracle capability. После фиксации arm verdict независимый
+evaluator создаёт `EvaluatorResult` с ground-truth score и evidence digests. До
+финализации он не раскрывает ни одному arm oracle source, expected values, action
+sequences, reference diffs, failure category или diagnostics. Evaluator version/hash
+mismatch делает scored record недействительным и блокирует benchmark; arm не может
+наблюдать это событие или менять из-за него свой verdict.
+
+## 8. Честное сравнение двух arms
+
+| Arm | Входы | Decision policy | Дополнительная verification |
+| --- | --- | --- | --- |
+| Status quo | Тот же immutable candidate, compiler, visible tests, environment и limits | Accept при зелёной compilation и visible tests; иначе reject либо abstain при операционно неопределённом execution | Нет |
+| BeyondGreen | Идентичный candidate и visible inputs | Построить risk inventory и independent evidence, затем `accept`, `reject` либо fail-closed `abstain` | Additional probes/contracts и oracle-free internal behavioral checks |
+
+Правила fairness:
+
+- оба arms получают те же 20 candidates и frozen visible inputs;
+- candidates остаются byte-identical между arms и на всём протяжении scoring;
+- каждый arm получает одну официальную попытку на candidate и одинаковый
+  трёхминутный wall-clock ceiling;
+- environment, compilation, visible tests, scoring, seeds и operational ceilings
+  идентичны;
+- reasoning cap BeyondGreen замораживается после Phase 0.5; фактические calls, tokens,
+  runtime, human time и cost раскрываются;
+- различия baseline по ресурсам честно раскрываются, а не скрываются и не
+  выравниваются искусственно;
+- все decisions оценивает только independent evaluator; и
+- ни один held-out result не может настраивать evaluation v1.1 после unblinding.
+
+## 9. Замороженные метрики и targets
+
+Ground truth содержит десять preserving и десять seeded false-green candidates.
 
 ```text
-false_greens_delivered_per_12 = delivered_patches_that_fail_hidden_verifier / 12
+correct_decision =
+  (verdict == accept AND ground_truth == preserving) OR
+  (verdict == reject AND ground_truth == false_green)
+
+decision_accuracy = correct_decisions / 20
+reason_correct_reject = verdict == reject AND rationale identifies the violated frozen behavior class or invariant family
+defect_recall = false_green_candidates_with_reason_correct_reject / 10
+false_alarm_rate = preserving_candidates_blocked / 10
+preserving_candidate_blocked = verdict == reject OR verdict == abstain
+completion_rate = completed_decisions / 20
+completed_decision = schema_valid_complete_report AND verdict IN {accept, reject}
+accuracy_advantage = BeyondGreen correct decisions - status_quo correct decisions
 ```
 
-Фиксированный набор verifier-controls сообщает число отклонённых controls из ровно
-четырёх замороженных засеянных false-green-кандидатов. Центральные утверждения
-используют этот результат и `false_greens_delivered_per_12`, а не только stop rate.
+`abstain` работает fail-closed и блокирует merge, но не является правильным
+accept/reject-решением, не учитывается в defect recall, считается false alarm на
+preserving candidate и не считается completion.
 
-### Вспомогательные метрики
+Reason correctness оценивает post hoc только independent evaluator после фиксации
+arm verdict и rationale. Это не создаёт evaluator feedback и не ослабляет `K=0`.
 
-```text
-accepted_precision = behavior_preserving_accepted / all_accepted
-non_preserving = no_final_patch OR compile_or_build_failure OR timeout_or_missing_result OR hidden_verifier_fail
-correct_decision = (accept AND preserving) OR (reject AND non_preserving)
-decision_accuracy = correct_decisions / 12
-task_completion_rate = complete_evidence_bundles / 12
-```
+По construction все 20 candidates компилируются и проходят visible legacy tests.
+Status-quo policy поэтому заранее должна принять все 20: ровно `10/20` correct
+decisions, `0/10` defect recall и `0/10` false alarms. Это construction-validity
+control, а не empirical finding. Любой иной completed baseline result делает
+candidate set или run недействительным. Утверждённый target преимущества `>=6/20`
+алгебраически эквивалентен абсолютному target accuracy `>=16/20` и сохраняется как
+явное comparison requirement. Основной evidence-weight имеют абсолютная accuracy
+BeyondGreen, reason-correct defect recall, false-alarm rate и held-out results.
 
-Если `all_accepted=0`, accepted precision равна `not_applicable` и не может пройти
-gate. Если знаменатель false-green равен нулю, stop rate равна `not_applicable`.
-Runtime или cost без наблюдений — `not_measured`, а не ноль. Guardian требует
-accepted precision `1.00`, decision accuracy не ниже `10/12` и task completion не
-ниже `11/12`. Отдельный minimum-accept gate не нужен, потому что BPMR `>=9/12`
-исключает reject-all. Runtime, calls, доступные token counts, human seconds и
-estimated cost агрегируются как median, p95 и total для каждого плеча. Для 12
-оцениваемых наблюдений p95 — nearest-rank-значение на позиции
-`ceil(0.95 * 12) = 12` после сортировки по возрастанию.
+Заранее объявленные targets BeyondGreen:
 
-Число рендеров, CPU time и memory — только вторичные показатели. Метрика допускается
-к заявлению лишь тогда, когда три неоцениваемых повторных запуска имеют одинаковые
-functional digests, а коэффициент вариации метрики `<=10%`. Иначе сырые значения
-публикуются как exploratory и заявление об улучшении не делается. Вторичные метрики
-не могут компенсировать провал корректности.
+- decision accuracy не менее `16/20`;
+- преимущество над status-quo baseline не менее `6/20` correct decisions;
+- defect recall не менее `8/10`;
+- false alarms не более `2/10`; и
+- completion не менее `18/20`.
 
-При `N=12` результаты являются только направленным доказательством для этого
-синтетического бенчмарка. Запрещены заявления о статистической значимости,
-генерализации на популяцию и production-performance.
+Если target не достигнут, публикуются полные фактические результаты без изменения
+target или сокрытия failures. Результаты являются directional evidence только для
+этого synthetic benchmark; statistical significance и production generalization не
+заявляются.
 
-`docs/EVALUATION.md` проецирует эти определения в исполняемые схемы, таблицы кейсов,
-бюджеты и команды, не меняя их смысла.
+Supporting measures: runtime, completion, human time, model calls/tokens и estimated
+cost по arm и candidate. Отсутствующее наблюдение — `not_measured`, а не ноль.
+Aggregates включают totals и явно определённые median/p95, где это уместно.
+Human time означает только agent-supervision time. Экономия human time относительно
+автоматического status-quo arm не заявляется; manual review time вне scope и не
+оценивается.
 
-### Канонические токены критериев и qualification gate
+## 10. Вторичные performance-доказательства
 
-- `RUB-PUV`: Problem & User Value (15)
-- `RUB-ASE`: Agent Solution & Engineering (30)
-- `RUB-E2E`: End-to-End Quality (20)
-- `RUB-MI`: Measured Improvement (15)
-- `RUB-REP`: Reproducibility (15)
-- `RUB-HT`: Hot Take / Insights (5)
-- `QG-ELIG`: eligibility
-- `QG-COMP`: completeness
-- `QG-ORIG`: integrity, originality, provenance, and clean-room compliance
-- `QG-TRACE`: coding-agent trace availability and integrity
-- `QG-REPRO`: qualification-level reproducibility
+Performance не является primary metric. Допускается ровно один воспроизводимый
+synthetic Chromium before/after scenario как secondary evidence.
+
+Порядок protocol:
+
+1. выполнить идентичные user actions для before и after implementations;
+2. доказать идентичность всех объявленных behavioral invariants и observable outputs;
+3. только после прохождения behavioral equivalence сравнить React render counts и CPU;
+4. опубликовать environment, actions, repeats, raw measurements и variance; и
+5. при провале любого behavioral check не заявлять performance win.
+
+Performance не может компенсировать correctness failure и не влияет на 20 scored
+decisions.
 
 ## 11. Функциональные требования
 
-| ID | Требование | Приёмочное доказательство | Связь с критериями |
+| ID | Требование | Приёмочное доказательство | Mapping |
 | --- | --- | --- | --- |
-| FR-001 | Инвентаризировать владельцев состояния, чтения, записи, производные рёбра, эффекты и подписки. | Тесты схемы инвентаризации и demo bundle | RUB-ASE, RUB-E2E |
-| FR-002 | До выполнения бенчмарка создать отдельные arm-visible и verifier-only-манифесты вне оцениваемых плеч и заморозить оба digest. | Тесты манифеста/хеша и mount | RUB-ASE, RUB-REP, QG-ORIG |
-| FR-003 | Создать связанный с инвариантами план миграции. | Схема плана и trace | RUB-ASE |
-| FR-004 | Обеспечить настоящие интерактивные одобрения и правдивую семантику benchmark policy gate. | Записи контрольных точек и negative tests | RUB-ASE, QG-ORIG |
-| FR-005 | Создавать изменения только в эфемерной песочнице плеча без verifier-only mount. | Тесты filesystem/mount | RUB-ASE, RUB-REP, QG-ORIG |
-| FR-006 | Запускать видимые legacy-тесты и сохранять полные результаты. | Доказательства запуска каждого кейса | RUB-MI |
-| FR-007 | Вызывать верификатор только после фиксации неизменяемого финального патча, при K=0 раундов обратной связи. | Тесты отказа в доступе и неизменяемости | RUB-ASE, QG-ORIG |
-| FR-008 | Выполнять мутационные и состязательные проверки полностью внутри границы верификатора. | Граница/результаты мутаций | RUB-ASE, RUB-E2E |
-| FR-009 | Принимать/отклонять fail-closed на основе полных доказательств и risk policy. | Тесты вердикта/ошибочные фикстуры | RUB-E2E, RUB-ASE |
-| FR-010 | Создавать пакет доказательств миграции для каждой попытки. | Demo output/проверка схемы | RUB-E2E, RUB-REP |
-| FR-011 | Требовать настоящее одобрение до внешнего применения патча. | Negative test/trace контрольной точки | RUB-E2E, QG-ORIG |
-| FR-012 | Выполнить все три плеча на фиксированном бенчмарке. | Сопоставимый набор запусков | RUB-MI |
+| FR-001 | Принять существующий immutable candidate и постоянно проверять его hash. | Hash/immutability contract tests | RUB-ASE, RUB-REP |
+| FR-002 | Инвентаризировать state, reads/writes, derived edges, subscriptions, lifecycle, ordering, identity и rollback risks. | Risk-inventory schema и D01 report | RUB-ASE, RUB-E2E |
+| FR-003 | Запустить compilation и все visible legacy tests без изменения их semantics. | Per-candidate legacy-gate records | RUB-MI, RUB-REP |
+| FR-004 | Вывести дополнительные risk-linked probes и behavioral contracts только из arm-visible evidence. | Probe-plan schema и trace | RUB-ASE |
+| FR-005 | Выполнить выведенные arm формальные jsdom behavioral checks в oracle-free internal checker. | Contract tests и internal-check evidence | RUB-ASE, RUB-E2E |
+| FR-006 | Физически изолировать hidden oracles и доказать denied access до scoring. | Process/mount и denied-access tests | RUB-ASE, QG-ORIG |
+| FR-007 | Обеспечить `K=0` и immutable one-attempt scored execution. | Capability и run-cardinality tests | RUB-ASE, RUB-MI |
+| FR-008 | Выдавать fail-closed `accept`, `reject` или `abstain` из полных evidence. | Verdict-policy negative tests | RUB-E2E, RUB-ASE |
+| FR-009 | Предоставить reproducible CLI, schema-valid JSON и static HTML reports. | CLI/E2E/schema tests | RUB-E2E, RUB-REP |
+| FR-010 | Поддержать provider-neutral live adapter и deterministic offline replay. | Adapter contract и replay tests | RUB-ASE, RUB-REP |
+| FR-011 | Выполнить оба scored arms на тех же 20 immutable candidates. | Candidate/hash/run reconciliation | RUB-MI |
+| FR-012 | Допустить только один approved unscored D01 repair demo с последующей fresh independent verification. | Demo label, approval и rerun evidence | RUB-E2E, QG-ORIG |
 
-## 12. Требования к качеству и безопасности
+## 12. Требования качества и безопасности
 
-| ID | Требование | Приёмочное доказательство | Связь с критериями |
+| ID | Требование | Приёмочное доказательство | Mapping |
 | --- | --- | --- | --- |
-| NFR-001 | Использовать только Node.js/TypeScript для исходников продукта, тестов и скриптов. | Сканирование языков | RUB-REP, QG-REPRO |
-| NFR-002 | Работать fail-closed при неоднозначности, отсутствии доказательств, timeout, nondeterminism или попытке доступа к оракулу. | Negative tests | RUB-ASE, QG-ORIG |
-| NFR-003 | Ограничивать инструменты, процессы, mounts и пути разрешёнными возможностями плеча. | Тесты границ/аудит | RUB-ASE, QG-ORIG |
-| NFR-004 | Сохранять число вызовов браузера, connected apps, private MCP, private memory и неразрешённых outside-root-инструментов равным нулю. | Аудит вызовов инструментов | RUB-REP, QG-ORIG |
-| NFR-005 | Никогда не раскрывать secrets, denylist terms, environment values или raw absolute paths. | Preflight/человеческое ревью | RUB-REP, QG-ORIG |
-| NFR-006 | Использовать один замороженный оцениваемый seed; повторы детерминизма держать отдельно от BPMR. | Seed manifest/repeat diagnostic | RUB-REP, RUB-MI |
-| NFR-007 | Сохранять все failures и negative results. | Сверка запусков | RUB-MI, QG-ORIG |
-| NFR-008 | Зафиксировать runtimes/dependencies до первого исполняемого baseline. | Lockfile/version report | RUB-REP, QG-REPRO |
-| NFR-009 | Считать performance вторичным относительно behavioral correctness. | Тест gating evaluator | RUB-PUV, RUB-MI |
+| NFR-001 | Использовать Node.js/TypeScript, TypeScript Compiler API, Zod, `node:test`, minimal React harness и jsdom для formal checks. | Lockfile, language и dependency audit | RUB-REP, QG-REPRO |
+| NFR-002 | Fail closed в `abstain` при timeout, failed required probe, nondeterminism, ambiguity или incomplete evidence. | Negative tests | RUB-ASE, QG-ORIG |
+| NFR-003 | Обеспечить ровно одну attempt, отсутствие model transport retry и максимум три минуты на официальный run каждого candidate. | Run-policy audit | RUB-MI, RUB-REP |
+| NFR-004 | Заморозить model, adapter policy, token/cost cap, dependencies и evaluator до fixture implementation. | Versioned manifests и hashes | RUB-REP, QG-ORIG |
+| NFR-005 | Сделать hidden oracle, private workspace, browser, connected app, private MCP и global memory недоступными или неиспользуемыми по контракту. | Capability audit и denied-access tests | RUB-ASE, QG-ORIG |
+| NFR-006 | Никогда не раскрывать secrets, private paths/terms, oracle details или unsupported claims. | Preflight и human review | RUB-REP, QG-ORIG |
+| NFR-007 | Сохранять каждый failure, abstention, negative result, retry prohibition, resource observation и decision. | Immutable evidence reconciliation | RUB-MI, QG-TRACE |
+| NFR-008 | Обеспечить offline replay live runs и независимость judge-critical checks от network credentials. | Clean replay/extraction test | RUB-REP, QG-REPRO |
+| NFR-009 | Считать performance вторичным и behavior-gated; полноценный GUI не требуется для v1. | Performance protocol и scope audit | RUB-PUV, RUB-MI |
 
-## 13. Требования к оценке
+## 13. Требования к evaluation
 
-| ID | Требование | Приёмочное доказательство | Связь с критериями |
+| ID | Требование | Приёмочное доказательство | Mapping |
 | --- | --- | --- | --- |
-| EV-001 | Использовать ровно 5 development и 7 held-out/hash-frozen-фикстур в evaluation v1. | Case manifest/hashes | RUB-MI, RUB-REP |
-| EV-002 | Заморозить текст и публичные источники до реализации фикстур. | Timestamps/hashes происхождения | RUB-REP, QG-ORIG |
-| EV-003 | Сделать манифесты и пути верификатора недоступными процессам и файловым системам Arms B/C. | Тесты отказа в доступе обоих плеч | RUB-ASE, QG-ORIG |
-| EV-004 | Оценивать доставленные/принятые патчи, прошедшие верификатор, с фиксированным знаменателем BPMR 12. | Повторный расчёт агрегата | RUB-MI |
-| EV-005 | Сообщать false-green stop rate, false greens delivered per 12 и все состояния с нулевым знаменателем. | Тесты схемы результатов | RUB-MI |
-| EV-006 | Сообщать verdict-aware precision, decision accuracy, completion, runtime и cost. | Отчёт сравнения | RUB-PUV, RUB-MI |
-| EV-007 | Применять правила честности, публиковать политику Arm B и раскрывать фактическое использование ресурсов в рамках лимитов. | Хеш политики и аудит budget/run | RUB-MI, QG-ORIG |
-| EV-008 | Запускать mutation/adversarial checks за границей верификатора; challenging IDs остаются unset до одобрения. | Результаты boundary/mutation | RUB-ASE, RUB-E2E |
-| EV-009 | Сохранять failures, retries, версию evaluator, checkpoint mode и human time каждого кейса. | Неизменяемые каталоги запусков | RUB-REP, QG-ORIG |
-| EV-010 | Запретить tuning по held-out после раскрытия. | Аудит changelog/release | RUB-MI, QG-ORIG |
-| EV-011 | Самотестировать каждую фикстуру known-good и known-bad controls и запустить ровно четыре заранее выбранных замороженных false-green controls. | Отчёт controls evaluator | RUB-ASE, RUB-MI |
-| EV-012 | Оценивать ровно одну попытку на фикстуру для каждого плеча с одним замороженным seed; никогда не объединять repeat diagnostics. | Аудит cardinality/seed запусков | RUB-MI, RUB-REP |
+| EV-001 | Использовать ровно 10 fixtures со split 4 development/6 held-out и десятью frozen behavior classes. | Fixture manifest и hashes | RUB-MI, RUB-REP |
+| EV-002 | Заморозить один preserving и один seeded false-green candidate на fixture до arm runs; оба компилируются и проходят 100% visible legacy tests. | 20-candidate/visible-gate manifest | RUB-MI, QG-ORIG |
+| EV-003 | Дать обоим scored arms одинаковые immutable candidates, visible inputs, environment и scoring. | Cross-arm digest audit | RUB-MI, RUB-REP |
+| EV-004 | Оценивать ровно одну official attempt на arm/candidate с лимитом три минуты. | Run cardinality и timeout audit | RUB-MI |
+| EV-005 | Выполнить self-test visible gate и evaluator на всех 20 candidates: все visible gates зелёные, затем 10 oracle accepts и 10 oracle rejects. | Visible/evaluator control report | RUB-ASE, RUB-MI |
+| EV-006 | Обеспечить physical oracle isolation, denied-access testing и `K=0`. | Boundary evidence | RUB-ASE, QG-ORIG |
+| EV-007 | Точно вычислять decision accuracy `/20`, accuracy advantage, reason-correct defect recall `/10`, false-alarm rate `/10` и completion `/20`. | Independent aggregate recomputation | RUB-MI |
+| EV-008 | Сохранить пять predeclared targets и публиковать честные actuals при недостижении. | Rubric/hash и final report | RUB-MI, QG-ORIG |
+| EV-009 | Записывать runtime, human time, cost, tokens, errors, abstentions, evidence paths и hashes по каждому candidate. | Immutable per-candidate records | RUB-PUV, RUB-REP |
+| EV-010 | Итерировать только по development evidence и раскрыть held-out один раз. | Changelog и unblinding record | RUB-MI, QG-ORIG |
+| EV-011 | Оставить D01 repair unscored и требовать approval плюс independent reverification. | Demo/run classification audit | RUB-E2E, QG-ORIG |
+| EV-012 | Разрешить single Chromium performance comparison только после identical actions и passed behavioral invariants. | Performance evidence record | RUB-MI |
+| EV-013 | До fixture code маркировать минимум одну fixture как challenging case, записать причину и behavior class и сообщить, что показал финальный результат. | Challenging-case manifest и report | RUB-MI, RUB-E2E |
 
-## 14. Требования к артефактам и доказательствам
+## 14. Требования к artifacts и evidence
 
-| ID | Требование | Приёмочное доказательство | Связь с критериями |
+| ID | Требование | Приёмочное доказательство | Mapping |
 | --- | --- | --- | --- |
-| AR-001 | Сохранять нормативный английский файл единственным контрактом семантики продукта, а artifact spec — подчинённым обязательным контрактом поставки. | Тест согласованности иерархии | RUB-REP, QG-ORIG |
-| AR-002 | Связать каждую проекцию/решение с ID требований и каноническими токенами. | Валидатор трассируемости | RUB-PUV, RUB-ASE, RUB-E2E, RUB-MI, RUB-REP, RUB-HT |
-| AR-003 | Сохранить запускаемые baselines и точные npm- и make-команды. | Запуски baseline/руководство воспроизведения | RUB-MI, RUB-REP |
-| AR-004 | Записывать каждую итерацию с гипотезой, изменением, командой, доказательством и решением. | Improvement Changelog | RUB-MI, RUB-HT |
-| AR-005 | Сохранить проверенные траектории каждого использованного coding/solution/review agent, исключая неподходящие transcripts. | Индекс/ревью траекторий | RUB-ASE, QG-TRACE |
-| AR-006 | Записать происхождение, источники, license/terms, хеш текста и ревью каждой фикстуры. | Индекс происхождения | RUB-REP, QG-ORIG |
-| AR-007 | Связать каждое judge-facing утверждение с неизменяемыми доказательствами и run IDs. | Проверка claims | RUB-PUV, RUB-ASE, RUB-E2E, RUB-MI, RUB-REP, RUB-HT |
-| AR-008 | Создать архив с manifest, проверенный в чистом окружении, и доступное видео. | Release checklist/checksums | RUB-REP, QG-COMP, QG-REPRO |
-| AR-009 | Поставить `README.md`, `LICENSES.md`, `Makefile`, `docs/SUBMISSION_REPORT.md`, `docs/ARCHITECTURE.md`, `docs/EVALUATION.md`, `docs/IMPROVEMENT_CHANGELOG.md`, `docs/REPRODUCTION.md`, `docs/DISCLOSURES.md`, `docs/VIDEO_SCRIPT.md`, `docs/VIDEO_LINK.md`, `evaluation/cases.jsonl`, `evaluation/scoring-rubric.yaml`, `evaluation/challenging-cases.yaml`, `artifacts/claims.yaml`, артефакты run/comparison/trajectory/demo/provenance, `submission/MANIFEST.yaml`, `submission/CHECKLIST.md`, `submission/SHA256SUMS`, исходники, тесты, инструкции агентов и проверенный `dist/submission.zip`, требуемые подчинённым контрактом артефактов. | Аудит путей манифеста | QG-COMP, RUB-REP |
+| AR-001 | Сохранять этот файл единственным product-semantics contract, а artifact spec — подчинённым. | Hierarchy consistency test | RUB-REP, QG-ORIG |
+| AR-002 | Связать projections, schemas, decisions, claims и diagrams с requirement IDs и canonical rubric tokens. | Traceability validator | Все rubric criteria |
+| AR-003 | Сохранить точные CLI, npm и Make commands и включённые в archive arm-visible/verifier-only packages для baseline, BeyondGreen, tests, evaluation, replay, demo и packaging. | Clean reproduction и oracle-boundary log | RUB-MI, RUB-REP |
+| AR-004 | Записывать каждую meaningful retained, revised, removed, neutral и negative iteration с hypothesis, change, command, evidence и decision. | Improvement Changelog | RUB-MI, RUB-HT |
+| AR-005 | Сохранить eligible representative trajectories реализации Codex и read-only checkpoints Claude с retries и human approvals. | Reviewed trajectory index | RUB-ASE, QG-TRACE |
+| AR-006 | Записать public anchors, provenance, license/terms, prose hashes, candidate hashes, oracle hashes и reviews. | Provenance index | RUB-REP, QG-ORIG |
+| AR-007 | Связать каждый judge-facing claim с immutable evidence и run IDs; unsupported claims блокируют release. | Claims ledger validation | Все rubric criteria |
+| AR-008 | Поставить один E2E demo, public video не более пяти минут и manifest-backed ZIP, прошедший clean extraction. | Demo/video/extraction records | RUB-E2E, RUB-REP, QG-COMP |
+| AR-009 | Сохранить один documented negative или removed experiment и все must-not-cut artifacts. | Changelog, report, manifest audit | RUB-HT, QG-COMP |
 
-## 15. Контракт воспроизводимости
+Canonical tokens: `RUB-PUV` (15), `RUB-ASE` (30), `RUB-E2E` (20), `RUB-MI`
+(15), `RUB-REP` (15), `RUB-HT` (5), а также qualification gates `QG-ELIG`,
+`QG-COMP`, `QG-ORIG`, `QG-TRACE` и `QG-REPRO`.
 
-Стек должен быть зафиксирован до исполняемой работы над baseline:
+## 15. Контракт воспроизводимости и интерфейса
 
-- Node.js `22.22.3`;
-- TypeScript compiler, React-compatible test runtime, signals library, schema library
-  и test runner: точные варианты пока открыты и требуют человеческого одобрения и
-  lockfile;
-- никакого Python и никаких критичных для судей network, credential, browser или
-  private service.
+Runtime — Node.js `22.22.3`. Точные dependency versions фиксируются в lockfile до
+fixtures. Public signals ecosystem anchor записан для feasibility, но не означает
+package selection. Signals npm package остаётся `TBD` до безопасного public
+package-name lookup; его нельзя выводить из private code. Точные package, version и
+license записываются в Phase 0.5 и замораживаются до fixture prose или implementation.
 
-Обязательные семейства команд:
+Archive резервирует `evaluation/arm-visible/` для task packages и
+`evaluation/verifier-only/` для oracle packages и ground-truth manifests. Оба
+каталога входят в final ZIP для воспроизведения scoring. Runtime process/filesystem
+capabilities, а не отсутствие в version control, запрещают scored arms монтировать
+или читать `evaluation/verifier-only/`. Clean-extraction evaluation воспроизводит и
+проверяет эту denied-access boundary.
+
+Обязательные command families:
 
 ```text
 npm ci
 npm test
 npm run preflight:implementation
-npm run benchmark:mechanical -- --evaluation-version eval-v1.0.0
-npm run benchmark:agent-baseline -- --evaluation-version eval-v1.0.0
-npm run guardian -- --evaluation-version eval-v1.0.0
-npm run eval -- --evaluation-version eval-v1.0.0
-npm run demo
+npm run spike:phase-0.5
+npm run verify:baseline -- --evaluation-version eval-v1.1.0
+npm run verify:beyondgreen -- --evaluation-version eval-v1.1.0
+npm run eval -- --evaluation-version eval-v1.1.0
+npm run replay -- --evaluation-version eval-v1.1.0
+npm run demo -- --fixture BG-D01
+npm run performance:chromium -- --scenario BG-D01
 npm run artifacts:check
 npm run submission
 ```
 
-Обязательный верхнеуровневый `make`-интерфейс подчинённого контракта поставки
-сохраняется тонким Makefile с взаимно однозначными wrappers:
+Обязательный top-level Make interface — тонкие one-to-one wrappers:
 
 ```text
 make setup           -> npm ci
-make baseline        -> npm run benchmark:mechanical
-make solution        -> npm run guardian
+make baseline        -> npm run verify:baseline
+make solution        -> npm run verify:beyondgreen
 make test            -> npm test
 make eval            -> npm run eval
-make demo            -> npm run demo
+make replay          -> npm run replay
+make demo            -> npm run demo -- --fixture BG-D01
 make artifacts-check -> npm run artifacts:check
 make submission      -> npm run submission
 ```
 
-Сравнительное плечо coding agent остаётся напрямую доступным через
-`npm run benchmark:agent-baseline`. Make-wrappers не добавляют логики и передают exit
-status без изменений.
+CLI обязателен. JSON output проходит versioned Zod schema. Static HTML report
+генерируется только из validated JSON и не требует server. Полноценный GUI не
+является gate v1.
 
-Финальный архив исключает официальные PDF/скриншоты, `docs/evidence/`, полный перевод
-официальной инструкции и транскрипции challenge/rules либо производные материалы
-организатора, если не зафиксировано разрешение на распространение. Документация
-проекта для судей должна быть самодостаточной без включения этих исходных
-доказательств.
+Каждая command записывает exit status, environment versions, evaluation version,
+candidate/fixture IDs, hashes, duration, model usage, human time, cost при наличии и
+output paths. Offline replay воспроизводит report artifacts из submitted records без
+credentials.
 
-Каждая команда записывает пути результатов, exit status, версии окружения, seed, ID
-фикстур, duration и существенную стоимость. До измерений поля runtime/cost используют
-`not_measured_pre_implementation`; никакой числовой результат не выдумывается. После
-валидных запусков честные приблизительные диапазоны выводятся из доказательств.
+## 16. Протокол improvement и unblinding
 
-## 16. Протокол улучшения
-
-1. Сохранить запускаемые механический baseline и legacy-green baseline coding agent.
-2. Заморозить evaluation version, хеши, метрики и пороги до оптимизации.
-3. Для каждого значимого изменения записать наблюдаемую ошибку, гипотезу, точное
-   изменение/команду, доказательства/run IDs, результат, решение и следующее действие.
+1. Заморозить v1.1 requirements, evaluation formulas, targets, budgets, candidates и
+   oracle isolation до optimization.
+2. Сохранить runnable status-quo baseline и каждую BeyondGreen iteration.
+3. Для каждой iteration записывать hypothesis, exact change, exact command/version,
+   evidence/run IDs, result, decision, retry/failure information и human checkpoint.
 4. Сохранять retained, revised, removed, neutral и negative experiments.
-5. Итерировать только на development-фикстурах.
-6. Раскрыть held-out-результаты один раз на объявленном gate.
-7. Не настраивать версию 1 по held-out-результатам после раскрытия; исправительная
-   работа создаёт новую версию бенчмарка и теряет утверждение о нетронутом сравнении.
-8. Называть strongest change, removed experiment, remaining failure и hot take
-   только на основании измеренных доказательств.
+5. Итерировать только по development evidence `BG-D01`–`BG-D04`.
+6. Выполнить ровно одно объявленное unblinding `BG-H01`–`BG-H06`.
+7. Не настраивать evaluation v1.1 после unblinding. Corrections требуют новой
+   benchmark version и лишают утверждения untouched-held-out.
+8. Выводить strongest change, removed experiment, remaining failure и hot take только
+   из measured evidence.
 
-## 17. Контракт демонстрации
+## 17. Контракт demo, repair и video
 
-Финальное видео длится не более пяти минут и показывает: узкое место неполных тестов;
-false-green baseline на синтетической фикстуре; ту же миграцию через Guardian;
-обнаруженную регрессию и безопасное отклонение либо безопасный принятый патч;
-сравнение метрик трёх плеч; самое сильное измеренное изменение; один удалённый
-эксперимент; оставшуюся ошибку; и подтверждённый доказательствами hot take.
-Показанный запуск сохраняется как demo evidence, и ни один mock не выдаётся за
-исполнение.
+Один E2E demo показывает уже существующий candidate, зелёное решение status quo,
+risk/probe evidence BeyondGreen и финальные decision/report. Demo является
+сохранённым реальным run, а не hand-authored mock.
 
-## 18. Поэтапный roadmap и gates
+После неизменяемого scored verdict и явного human approval `BG-D01` можно использовать
+для одной targeted unscored repair demonstration. Repaired candidate — новый demo
+artifact, который проходит fresh independent verification. Его result и resource use
+не входят в 20 scored decisions.
 
-| Фаза | Результат | Блокирующий gate |
+Public video длится не более пяти минут и покрывает: user и bottleneck; status-quo
+baseline; одну E2E verification; two-arm comparison; strongest measured change; один
+removed/negative experiment; remaining limitation; practical hot take; и
+reproduction path. Link открывается без запроса permission.
+
+## 18. Coding workflow и checkpoints независимого review
+
+Codex реализует repository. Claude — bounded read-only independent reviewer ровно на
+трёх checkpoints:
+
+1. normative v1.1 до product code;
+2. полный `BG-D01` vertical slice до масштабирования; и
+3. final ZIP после clean extraction.
+
+Claude получает minimum sufficient clean packet, не может редактировать и не
+авторизует changes. Codex независимо проверяет каждое actionable finding. Где
+указано, human approval остаётся gate после review.
+
+Одобрение этой спецификации не разрешает product development. Разработка начинается
+только после переноса одобренных изменений в основную ветку, успешного real
+contamination preflight с разрешёнными external paths, явного одобрения нового
+implementation `SESSION_BOUNDARY` и успешного eligible trace-first gate.
+
+## 19. Critical path и milestones
+
+| Фаза | Результат | Blocking gate |
 | --- | --- | --- |
-| 0. Заморозка спецификации | Одобренная глобальная спецификация/согласованные проекции | Человек одобряет решения, необходимые для работы над фикстурами |
-| 0.5 Runtime feasibility spike | Одноразовое, не являющееся фикстурой доказательство, что выбранный публичный стек детерминированно показывает каждый запланированный класс поведения | Доказательства spike проходят без проприетарной структуры или реализации фикстуры |
-| 1. Заморозка текста/происхождения фикстур | 12 текстовых спецификаций, источники, хеши, split 5/7 | Scan и человеческое ревью происхождения проходят |
-| 2. Baselines | Запускаемые Arms A/B и сохранённые runs | Одинаковые environment/cases/scoring; видимые тесты валидны |
-| 3. Evaluator/oracles | Верификатор, каталог мутаций, контроль доступа | Проходят тесты isolation/evaluator contract |
-| 4. Продвинутый процесс | Guardian и пакет доказательств | Проходят тесты typed stages/checkpoints/fail-closed |
-| 5. Измеренные итерации | Development-эксперименты | Changelog/trajectories согласованы с runs |
-| 6. Held-out evaluation | Объявленное раскрытие/финальное сравнение | После этого не выполняется tuning версии 1 по held-out |
-| 7. Упаковка/видео | Архив, demo, доступное видео | Проходят qualification/safety/rubric/extraction checks |
+| 0. Normative v1.1 | Одобренная BeyondGreen spec и согласованные projections | Claude read-only review, Codex reconciliation, final human spec approval |
+| Trace-first gate | Submission-eligible implementation session и trajectory plan | Approved boundary, control preflight, verified trace capture и structural implementation preflight, чистый кроме перечисленных в section 20 решений Phase 0.5 |
+| 0.5 Stack spike | Public stack, lockfile, model adapter, offline replay, проверка трёх минут, frozen token/cost cap | Runtime детерминированно показывает все десять behavior classes; все `TBD` package/model decisions разрешены до fixtures; затем проходит полный implementation preflight |
+| D01 vertical slice | Один полный verify-existing case, reports, isolation и E2E demo path | Все contracts, denied-access test, clean replay и второй Claude checkpoint проходят |
+| Early package rehearsal | ZIP собран и запущен после clean extraction | Required files, commands, licenses, traces и manifests согласованы |
+| Remaining fixtures | `BG-D02`–`BG-D04` и `BG-H01`–`BG-H06` prose, candidates, oracles и development validation | Provenance, hashes, evaluator self-tests, challenging-case label и split 4/6 заморожены |
+| Single unblinding | Один официальный two-arm run по всем 20 decisions | После него нет v1.1 held-out tuning; публикуются честные results |
+| Final package | Public video, changelog, reports, traces и ZIP | Clean extraction и final Claude checkpoint, затем human release approval |
 
-Реализация не может начаться, пока preflight не вернёт
-`READY_FOR_IMPLEMENTATION` и человек не одобрит открытые решения ниже.
+Must not cut: десять cases/двадцать decisions; same candidates/scoring; physical
+oracle isolation; eligible traces; clean-room/provenance; один E2E demo; changelog и
+exact reproduction; public video максимум пять минут; ZIP clean-extraction rehearsal;
+и один negative или removed experiment.
 
-## 19. Открытые решения и предположения
+## 20. Открытые и зафиксированные решения
 
-Намеренно не решены:
+### Зафиксировано v1.1
 
-1. Поверхность исполнения React: настоящий test renderer, минимальный совместимый
-   harness или другой публичный adapter.
-2. Signals library: точный публичный package, version, license и integration mode.
-3. AST stack: TypeScript compiler API или другой публичный лицензированный transformer.
-4. Schema/test packages и точные версии.
-5. Model/provider: external, local или deterministic; если используется модель —
-   точная model, offline fallback для судей и сбор cost.
-6. Adapter baseline coding agent, обеспечивающий одинаковый model budget и изоляцию
-   оракула.
-7. Формат доказательства одобрения и название роли одобряющего для уже замороженной
-   семантики interactive и `benchmark_policy_gate`.
-8. Каталог мутаций и порог достаточности сверх замороженных correctness gates.
-9. Точное распределение классов поведения по 12 текстовым фикстурам.
-10. Ожидаемые runtime/cost, сейчас `not_measured_pre_implementation`.
+- Имя BeyondGreen и scored workflow только verify-existing.
+- Два scored arms и одинаковые 20 immutable candidates.
+- Десять fixtures, split 4/6, десять behavior classes, metrics, formulas и targets.
+- Лимит три минуты, одна attempt, `K=0`, physical oracle isolation, fail-closed
+  abstention, CLI/JSON/HTML interface, Node/TypeScript stack и secondary-only Chromium
+  performance.
+- Реализация Codex и три bounded Claude read-only checkpoints.
 
-Предположения для проверки: 12 кейсов показывают направленное улучшение, но не
-production-generalization; выбранный runtime моделирует нужную семантику
-lifecycle/subscriptions; одинаковые model budgets остаются практичными; и
-типизированные capabilities могут обеспечить изоляцию оракула в одном
-распространяемом репозитории.
+### Решается в Phase 0.5 и замораживается до fixtures
 
-Не заявляются никакие benchmark result, failure distribution, strongest change,
-removed experiment или cost advantage.
+1. Точный public signals npm package, version, license и capability profile после
+   safe public-name lookup.
+2. Точные versions TypeScript, React, jsdom, Zod и supporting packages.
+3. Live reasoning engine/provider и configuration provider-neutral adapter.
+4. Token/cost cap внутри фиксированного трёхминутного ceiling.
+5. Offline replay record format и deterministic acceptance checks.
+6. Точное распределение fixture-to-behavior-class и membership 4/6.
+7. Единственный Chromium scenario, action script, repeat count и variance reporting.
 
-## 20. Матрица трассируемости
+До measured evidence не заявляются benchmark result, performance win, cost advantage,
+strongest change, removed experiment, failure distribution или hot take.
 
-| Требование | Планируемый компонент | Доказательство evaluation/run | Критерий жюри |
+## 21. Traceability и полнота rubric
+
+| Область контракта | Требования | Основное доказательство | Rubric/gate |
 | --- | --- | --- | --- |
-| FR-001, FR-003 | Этапы inventory/planning | Contract tests; demo bundle | RUB-ASE, RUB-E2E |
-| FR-002, EV-001, EV-002 | Freezer двух манифестов | Хеши prose/manifest; provenance | RUB-REP, QG-ORIG |
-| FR-004, FR-011 | Политика checkpoint | Negative tests; genuine checkpoints | RUB-ASE, QG-ORIG |
-| FR-005, NFR-003 | Process/filesystem sandbox | Доказательство denied mount обоих плеч | RUB-ASE, RUB-REP, QG-ORIG |
-| FR-006 | Runner видимых тестов | Результаты legacy каждого кейса | RUB-MI |
-| FR-007, EV-003 | Независимый верификатор K=0 | Тесты access denial/immutability | RUB-ASE, QG-ORIG |
-| FR-008, EV-008 | Внутренний mutation runner верификатора | Boundary/mutant results | RUB-ASE, RUB-E2E |
-| FR-009, NFR-002 | Политика verdict/risk | Тесты false-green/fail-closed | RUB-E2E, RUB-ASE |
-| FR-010 | Bundle builder | Demo output/schema | RUB-E2E, RUB-REP |
-| FR-012, EV-004–EV-007, EV-011, EV-012 | Плечи, controls, aggregator | Сопоставимые runs/report | RUB-MI, RUB-PUV |
-| NFR-001, NFR-008 | Node/TypeScript stack | Language scan/lockfile | RUB-REP, QG-REPRO |
-| NFR-004, NFR-005 | Clean-room audit | Tool audit/scanner/human review | QG-ORIG, RUB-REP |
-| NFR-006, EV-009 | Recorder seed/run | Аудит scored seed; отдельные repeats | RUB-REP, RUB-MI |
-| NFR-007, EV-010 | Политика evidence/changelog | Failure ledger/unblinding audit | QG-ORIG, RUB-MI |
-| NFR-009 | Correctness gate | Тест отклонения incorrect-performance | RUB-PUV, RUB-MI |
-| AR-001, AR-002 | Валидатор spec/projection | Consistency/ID-token report | RUB-REP, QG-ORIG |
-| AR-003, AR-004 | Baselines/changelog | npm/make commands; iterations | RUB-MI, RUB-HT |
-| AR-005 | Конвейер траекторий | Проверенные eligible traces/exclusions | RUB-ASE, QG-TRACE |
-| AR-006 | Конвейер происхождения | Anchors/terms/hashes | RUB-REP, QG-ORIG |
-| AR-007 | Claims ledger | Сверка claim/run | RUB-PUV, RUB-ASE, RUB-E2E, RUB-MI, RUB-REP, RUB-HT |
-| AR-008, AR-009 | Submission builder | Required-path manifest, checksums, extraction, video | QG-COMP, QG-REPRO, RUB-REP |
+| User и decision value | Разделы 1–3 | README, D01 report, video | RUB-PUV, RUB-E2E |
+| Immutable verify-existing workflow | FR-001–FR-008 | Contract, boundary и verdict tests | RUB-ASE, RUB-E2E |
+| Required interface и replay | FR-009–FR-010, NFR-008 | CLI/schema/HTML/replay tests | RUB-ASE, RUB-REP |
+| Fair two-arm evaluation | FR-011, EV-001–EV-010 | Manifests, per-case records, aggregate recomputation | RUB-MI, QG-ORIG |
+| D01 repair и performance guard | FR-012, EV-011–EV-013, NFR-009 | Явно маркированные demo/performance/challenging-case evidence | RUB-E2E, RUB-MI |
+| Clean room и provenance | NFR-004–NFR-007, AR-005–AR-007 | Preflight, provenance, trajectories, claims | QG-ORIG, QG-TRACE |
+| Reproduction и release | AR-003, AR-008–AR-009 | Changelog, video, manifest, clean extraction | RUB-REP, RUB-HT, QG-COMP, QG-REPRO |
 
-## 21. Проверка полноты критериев
-
-| Критерий | Вес | Нормативное покрытие |
-| --- | ---: | --- |
-| RUB-PUV | 15 | Разделы 1–3: пользователь, bottleneck, тезис, сценарий, пакет доказательств. |
-| RUB-ASE | 30 | Разделы 5–7: один оркестратор, typed stages K=0, изолированный verifier, controls, checkpoints. |
-| RUB-E2E | 20 | Разделы 5, 7, 11, 17: полный процесс и полезный demo output. |
-| RUB-MI | 15 | Разделы 8–10, 16: честные плечи, verdict-aware formulas, точные gates, итерации. |
-| RUB-REP | 15 | Разделы 9, 13–15, 18: кейсы, pinned stack, npm/make surfaces, evidence, gates. |
-| RUB-HT | 5 | Разделы 16–17: подтверждённые доказательствами strongest/removed changes и insight, не выдуманные заранее. |
-
-Qualification gate дополнительно покрыт clean-room-инвариантами, требованиями к
-траекториям и происхождению, fail-closed gates и запретом неподтверждённых заявлений.
+Статус qualification gate остаётся evidence-based. Полнота спецификации сама по
+себе не доказывает eligibility, implementation completeness, trace integrity или
+reproducibility. Любой отсутствующий implementation artifact остаётся `UNKNOWN`,
+пока не создан и не проверен после final human approval.

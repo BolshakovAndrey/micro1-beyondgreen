@@ -1,455 +1,452 @@
-# StateShift Guardian — Global Product Specification
+# BeyondGreen — Global Product Specification
 
 **Normative status:** single source of truth
-**Version:** `1.0.0`
-**State:** specification candidate awaiting human approval
-**Clean session:** `SES-20260828-001`
+**Version:** `1.1.0`
+**State:** normative v1.1 approved; implementation not authorized
+**Human approval:** 2026-08-29T10:46:39Z
+**Clean session:** `SES-20260829-001`
 
 This document is the only normative product-semantics contract.
-`docs/SUBMISSION_ARTIFACTS_SPEC.md` is the subordinate but binding delivery contract;
-it may add packaging and evidence obligations but may not change product semantics.
-`config/topic.yaml`,
-`docs/EVALUATION.md`, `docs/IMPROVEMENT_CHANGELOG.md`, trajectory indexes, provenance
-indexes, implementation plans, and reports are projections of requirement IDs in
-this specification. If any projection conflicts with this file, this file wins and
-the projection must be corrected.
+`docs/SUBMISSION_ARTIFACTS_SPEC.md` is the subordinate but binding delivery
+contract; it may add packaging and evidence obligations but may not change product
+semantics. `config/topic.yaml`, `docs/EVALUATION.md`, diagrams, changelogs,
+implementation plans, schemas, and reports are projections of requirement IDs in
+this specification. If a projection conflicts with this file, this file wins and the
+projection must be corrected.
 
-No product code, fixture implementation, benchmark result, or model result is part
-of this specification.
+No product code, fixture implementation, benchmark run, or model result is part of
+this specification.
 
 ## 1. Product thesis
 
-StateShift Guardian helps a frontend/platform engineer migrate React components from
-conventional state to signals in a mature codebase whose existing tests are
-incomplete. The dangerous outcome is a plausible patch that passes visible legacy
-tests while changing observable behavior, lifecycle/subscription semantics, or
-another behavior the old tests never covered.
+**BeyondGreen** helps a frontend engineer decide whether an already-existing React
+state-to-signals migration is safe to merge when mature legacy tests are green but
+potentially incomplete. The dangerous outcome is a plausible candidate that compiles
+and passes visible tests while changing an observable behavior, update ordering,
+identity, lifecycle, subscription, or rollback invariant that those tests omit.
 
-> A migration should be accepted only when an independent verifier can connect the
-> proposed patch to frozen behavioral evidence; a green legacy suite alone is not an
-> adequate stop condition.
+> Green compilation and legacy tests are evidence, not proof. Merge only when an
+> independent verifier can connect an immutable candidate to complete, reproducible
+> behavioral evidence.
 
-The primary demonstrated value is a higher behavior-preserving migration rate and a
-higher rate of stopping false-green migrations. Render, CPU, or memory improvements
-are secondary and cannot compensate for a correctness failure.
+The judge-facing name is BeyondGreen. This is a marketing rename only; the proven v1
+scope remains React state to signals. The primary user is a frontend engineer
+migrating mature React code with green but potentially incomplete legacy tests.
 
-The user is a frontend/platform engineer responsible for safely modernizing React
-components and reviewing migration patches across a mature TypeScript codebase.
-Their bottleneck is proving that state ownership, read timing, update propagation,
-subscription ownership, batching, lifecycle cleanup, and derived values remain
-equivalent despite incomplete visible tests.
+The only scored workflow is **verify-existing**. A candidate already exists before a
+scored run and remains immutable throughout verification. BeyondGreen inventories
+risk, derives additional probes and behavioral contracts, executes independent
+checks, and returns an evidence-backed merge decision. It does not generate or repair
+the candidate during a scored run.
 
-In the realistic scenario the engineer selects one independently authored synthetic
-editor fixture whose two manifests were already created and frozen by the external
-fixture-authoring pipeline. Guardian inventories state and subscriptions, derives
-only a per-attempt visible migration contract, proposes a plan, pauses for a human checkpoint, applies a
-candidate patch only in a sandbox, runs visible legacy tests, delegates independent
-differential, behavioral, mutation, and adversarial checks, then returns an accepted
-or rejected verdict with evidence.
+The usable output for every candidate is a **verification evidence bundle**:
 
-The usable output is a **migration evidence bundle** containing:
+- immutable candidate identity and hashes;
+- state, dependency, lifecycle, subscription, ordering, identity, and rollback risk
+  inventory;
+- compilation and visible legacy-test results;
+- additional probe and behavioral-contract results;
+- final `accept`, `reject`, or `abstain` verdict with rationale;
+- schema-validated JSON and a static HTML report;
+- runtime, human-time, token, and cost metadata; and
+- evidence digests sufficient to reproduce the decision.
 
-- state and subscription inventory;
-- frozen behavior contracts and hashes;
-- migration plan and genuine human checkpoint record;
-- proposed sandboxed TypeScript patch;
-- visible legacy-test results;
-- differential and behavioral results;
-- mutation and adversarial-check results;
-- risk findings and accept/reject rationale;
-- runtime/cost metadata; and
-- final human approval checkpoint for external patch application.
+## 2. Scope, non-goals, and product boundary
 
-## 2. Relationship to the real problem
+### In scope for mandatory v1
 
-The workflow is designed to be reusable later for authorized internal migrations
-after separate security, legal, repository-access, and human-review approval. The
-hackathon implementation and all submitted evidence are limited to an independently
-authored synthetic editor and synthetic fixtures. Synthetic benchmark performance
-does not prove correctness on a proprietary or production codebase.
+- Verification of existing React state-to-signals candidates only.
+- Ten independently authored synthetic fixtures: four development and six held-out.
+- One behavior-preserving and one seeded false-green candidate per fixture: exactly
+  20 fixed accept/reject decisions.
+- Two scored arms receiving the same immutable candidates: a status-quo baseline and
+  BeyondGreen.
+- A reproducible CLI, schema-validated JSON, and static HTML report.
+- Node.js/TypeScript throughout: TypeScript Compiler API, Zod, `node:test`, a minimal
+  React harness, jsdom formal behavioral checks, and Chromium only for the demo and
+  secondary performance evidence.
+- A provider-neutral reasoning-model adapter and offline replay.
+- Physical hidden-oracle isolation, `K=0` verifier feedback, and a denied-access test.
+- One realistic end-to-end demo, complete changelog/reproduction evidence, eligible
+  traces, and a clean-extraction submission rehearsal.
 
-No real component, identifier, structure, code, test, data, build, trace, screenshot,
-or video from any employer, client, or existing product may enter the repository,
-prompts, traces, demo, or submission archive.
+### Not scored and tightly bounded
 
-## 3. Terminology
+After a verdict and explicit human approval, one targeted repair demonstration is
+allowed for development fixture `BG-D01`. It is unscored, clearly labeled, and must
+be followed by a fresh independent verification. It cannot change any scored result.
+
+### Deferred until all mandatory gates pass
+
+- generation-migration as a scored mode;
+- a third scored arm;
+- a full GUI;
+- a broad mutation catalog;
+- performance as a primary claim; and
+- additional control documents not required by qualification, judging, or release.
+
+### Explicit non-goals
+
+- Automatic modification of a real or proprietary repository.
+- Claims of general codemod coverage, production readiness, statistical
+  significance, or production performance.
+- Training or fine-tuning a model.
+- Optimization driven by held-out results after unblinding.
+- Browser, connected-app, private-MCP, private-memory, sibling-workspace, or private
+  repository access.
+- Product source, fixtures, tests, or scripts in Python.
+
+## 3. Terminology and decision semantics
 
 | Term | Normative definition |
 | --- | --- |
-| Behavior-preserving migration | A candidate that compiles and matches every frozen observable, lifecycle, subscription, ordering, and invariant check for its fixture. |
-| False green | A candidate that passes all visible legacy tests but fails at least one independent hidden behavior-oracle check. |
-| Visible legacy tests | Tests exposed to the evaluated migration path and used by the simple coding-agent baseline as its stop signal. They are incomplete but not intentionally broken. |
-| Hidden behavior oracle | Frozen expected behavior and checks inaccessible to the evaluated migration path and available only inside the independent verifier boundary. |
-| Migration evidence bundle | The complete inventory, contracts, plan, checkpoints, patch, checks, risk verdict, metadata, and evidence links for one attempt. |
-| Accepted migration | A candidate for which every blocking check passes, no high risk remains, evidence is complete, and the configured approval policy is satisfied. |
-| Rejected migration | An attempt stopped for unsupported scope, missing approval, compile/test failure, behavioral mismatch, weak mutation sensitivity, unresolved risk, exhausted budget, or incomplete evidence. |
-| Solution agent | The StateShift Guardian orchestrator evaluated as the product. |
-| Coding agent | An agent used to design/implement this repository or the controlled coding-agent comparison arm; it is disclosed separately from the solution agent. |
+| Candidate | A pre-existing React state-to-signals change frozen and hashed before either scored arm runs. |
+| Behavior-preserving candidate | A candidate that compiles and satisfies every frozen observable, lifecycle, subscription, ordering, identity, and rollback invariant for its fixture. |
+| Seeded false green | A fixed candidate that compiles and passes visible legacy tests but violates at least one verifier-only behavioral invariant. |
+| Status-quo baseline | The policy that accepts when compilation and visible legacy tests pass, without additional probes, contracts, or risk analysis. |
+| Hidden behavior oracle | Frozen expected behavior and checks physically unavailable to both scored arms and owned only by the independent evaluator. |
+| BeyondGreen internal checker | An arm-owned, oracle-free jsdom checker that executes only the arm-derived `ProbePlan` and arm-visible contracts. |
+| Independent evaluator | A harness-owned post-decision scorer that alone owns verifier-only oracles and ground truth; it runs only after the arm verdict is immutable. |
+| `K=0` | Zero evaluator-derived feedback or repair rounds before the arm verdict is immutable and scored. |
+| `accept` | Evidence is complete and every blocking check supports merging the immutable candidate. |
+| `reject` | Evidence identifies a reproducible blocking defect or contract violation. |
+| `abstain` | A decision cannot be supported because evidence is incomplete, a required probe fails operationally, a timeout occurs, or verification is otherwise inconclusive. Abstention blocks merge. |
+| Completed decision | A schema-valid final `accept` or `reject` with complete required evidence. `abstain` is not completion. |
+| Verification evidence bundle | The immutable input identity, risk inventory, check results, verdict, rationale, resource metadata, and report artifacts for one candidate. |
 
-## 4. Scope, non-goals, and clean-room invariants
+All timeouts, required-probe failures, missing evidence, nondeterminism, evaluator
+mismatch, and denied oracle-access attempts fail closed to `abstain` and block merge.
+No such event may be silently converted to `accept` or to a proven `reject`.
 
-### In scope
+## 4. Clean-room and oracle invariants
 
-- Node.js/TypeScript-only orchestration, fixtures, tests, evaluator, and reports.
-- A small independently authored synthetic editor domain.
-- Twelve behavior-first fixture specifications with public anchors and provenance.
-- Three comparison arms: mechanical baseline, legacy-green coding-agent baseline,
-  and advanced Guardian workflow.
-- Sandboxed patch generation, independent verification, and deterministic evidence.
-
-### Non-goals
-
-- Automatic modification of a real repository.
-- General React codemod coverage or production-readiness claims.
-- Training or fine-tuning a model.
-- Benchmark optimization after held-out unblinding.
-- Treating resource reduction as a substitute for correctness.
-- Browser, connected-app, private-MCP, private-memory, or private-workspace access.
-- Python source, tests, bytecode, runtime, or build commands.
-
-### Clean-room invariants
-
-1. Product work reads and writes only inside the clean repository.
+1. Product work reads and writes only inside the clean repository root.
 2. The only permitted outside-root operations are scanner-only denylist reads and
-   raw-trace writes/readback through their named environment variables.
-3. Browser, connected-app, private-MCP, sibling-workspace, and global-memory access
-   is unauthorized and must remain absent from the tool-call audit.
-4. Fixture prose is independently authored from general behavior classes and public
-   anchors before fixture code exists.
-5. Every fixture prose file is hashed and provenance-reviewed before implementation.
-6. Hidden oracles are unavailable through the evaluated migration tool interface.
-7. Scanner matches, uncertain provenance, or resemblance to remembered private
-   structure stop the affected task for human review.
-8. Judge-facing records contain environment-variable names and digests, never
+   reviewed raw-trace writes/readback through their named environment variables.
+3. No employer/client code, tests, data, identifiers, structures, screenshots,
+   traces, or private documentation may enter source, prompts, reports, or artifacts.
+4. Fixture behavior prose is independently authored from public anchors before any
+   fixture code or candidate exists, then hashed and provenance-reviewed.
+5. The arm-visible task package and verifier-only oracle package are separately
+   hashed and stored. Neither scored arm process or filesystem mounts verifier-only
+   paths.
+6. Oracle isolation is enforced by capabilities, not prompt wording. A denied-access
+   test is mandatory before scored runs.
+7. Evaluation uses `K=0`: no independent-evaluator result, category, expected value,
+   action-level diagnostic, diff, or mutant information reaches an arm before its
+   verdict is final and scored.
+8. Scanner findings, uncertain provenance/license, or resemblance to remembered
+   private structure stop the affected task for human review.
+9. Judge-facing records disclose environment-variable names and digests but never
    private values, denylist contents, or raw absolute paths.
 
-## 5. Normative workflow
+## 5. Fixed benchmark and candidate construction
 
-Before any evaluated arm runs, a fixture-authoring pipeline outside Arms A/B/C:
+Evaluation v1.1 contains exactly ten independently authored synthetic fixtures:
 
-```text
-author public behavior prose
-  -> create and hash ArmVisibleTaskContractManifest
-  -> independently create and hash VerifierOracleManifest
-  -> provenance and human freeze approval
-  -> mount arm-visible artifact in benchmark harness
-  -> load verifier-only artifact exclusively in verifier storage
-```
+- `BG-D01` through `BG-D04`: development fixtures;
+- `BG-H01` through `BG-H06`: held-out fixtures.
 
-The evaluated Guardian workflow is:
+Each fixture is assigned exactly one of these behavior classes before fixture code.
+The assignment is a bijection: every class is used by exactly one fixture.
 
-```text
-inventory
-  -> derive VisibleMigrationContract from arm-visible manifest, visible tests, inventory
-  -> migration plan
-  -> human plan checkpoint
-  -> sandboxed patch
-  -> visible legacy tests
-  -> make final patch immutable
-  -> independent verifier final gate (behavioral/differential/mutation/adversarial)
-  -> accept or reject
-  -> migration evidence report
-  -> human external-application checkpoint
-```
+1. stale snapshots;
+2. queued or batched updates;
+3. derived state;
+4. subscription cleanup;
+5. prop reset;
+6. async ordering;
+7. identity stability;
+8. conditional lifecycle;
+9. external store; and
+10. rollback.
 
-The orchestrator must stop rather than skip a required stage. A rejection is a valid
-product outcome; an unsupported acceptance is not.
+At least one fixture is labeled as the challenging case before fixture code. Its
+manifest records why it is challenging, its behavior class, and the final report
+explains what its result revealed.
 
-Checkpoint semantics differ by mode:
+For every fixture, an independent fixture-authoring path creates and freezes:
 
-- interactive/demo mode requires a real approver identity, timestamped plan approval,
-  approval evidence, and a separate final external-application approval;
-- automated benchmark mode uses one frozen `benchmark_policy_gate` whose policy and
-  digest receive genuine human approval before the suite, followed by mechanical
-  per-case policy checks;
-- per-case benchmark records use `checkpoint_mode: benchmark_policy_gate` and must
-  never label the mechanical result as human approval; and
-- human time is recorded honestly at policy approval and interactive checkpoints.
+- behavior-first prose, public anchors, neutral domain, provenance, license/terms,
+  observable actions, invariants, and SHA-256 digest;
+- one behavior-preserving candidate; and
+- one seeded false-green candidate that remains green under compilation and visible
+  legacy tests but fails at least one verifier-only invariant.
 
-## 6. Purposeful agent architecture
+Every behavior-preserving candidate must also compile and pass 100% of its fixture's
+visible legacy tests. The freeze self-test records this fact; a preserving candidate
+that fails the visible gate is invalid and must be independently reauthored before
+the benchmark freezes.
 
-The minimum architecture is one **StateShift Guardian orchestrator** with narrow
-typed tools and one **independent verifier boundary**. Inventory, contract derivation,
-planning, migration, testing, and reporting are typed stages/tools, not decorative
-autonomous agents.
+This yields exactly 20 fixed ground-truth decisions: ten `accept` and ten `reject`.
+Both scored arms receive those same candidates. The development/held-out membership,
+candidate hashes, ground truth, visible inputs, and oracle hashes freeze before
+solution optimization. The development workflow and both arms are capability-denied
+access to held-out oracle packages; the evaluator opens them only at the single
+recorded unblinding.
 
-The verifier is outside the migration path's process and filesystem capability
-boundary. It owns hidden oracles, differential comparison, mutation/adversarial
-checks, and final correctness facts. Evaluation v1 uses `K=0` verifier-derived repair
-rounds: no failure category, action sequence, mutant ID, expected value, oracle diff,
-or diagnostic reaches an evaluated migration path before its final patch is immutable
-and scored. Post-score counterexamples may appear only in evidence and cannot alter
-the v1 output.
+Before any scored arm run, evaluator self-tests must accept all ten preserving
+candidates and reject all ten false-green candidates. Any miss blocks evaluation.
 
-Coding agents used to build the repository are documented in trajectory artifacts
-and are not product architecture. The coding-agent benchmark arm is a controlled
-comparison policy, not an additional Guardian sub-agent.
+## 6. Normative scored workflow
 
-## 7. Conceptual typed tool contracts
-
-| Tool/stage | Input | Output | Stop/failure conditions | Human checkpoint |
-| --- | --- | --- | --- | --- |
-| `authorFixtureContracts` (pre-benchmark, outside evaluated arms) | Approved public behavior prose and public anchors | Frozen hashed `ArmVisibleTaskContractManifest` plus separately frozen hashed `VerifierOracleManifest` delivered directly to their respective owners | Missing anchor, unstable contract, provenance failure | Fixture freeze approval |
-| `inventoryState` | Fixture source, visible types | `StateInventory` with owners, reads, writes, derived edges, effects, subscriptions | Unsupported syntax, ambiguous owner, external import | None |
-| `deriveVisibleContracts` | Arm-visible manifest, visible tests, inventory | Per-attempt `VisibleMigrationContract` | Missing visible contract, inconsistent inventory | None |
-| `planMigration` | Inventory, `VisibleMigrationContract`, selected signals capability profile | `MigrationPlan` with invariants and risk hypotheses | Unsupported semantic, unresolved ownership | Required plan approval |
-| `applySandboxPatch` | Approved plan, fixture source | `CandidatePatch` and compile manifest | Outside-sandbox write, dependency drift, transform error | Approval already required |
-| `runVisibleTests` | Candidate build, visible test IDs | `LegacyTestResult` | Timeout, crash, nondeterminism | None |
-| `verifyIndependently` (verifier-owned) | Immutable candidate reference, fixture ID, frozen seed; verifier loads its own oracle artifact | `VerifierResult` defined below | Oracle access attempt, evaluator mismatch, nondeterminism | Evaluator changes require pre-unblinding approval |
-| `runMutationChecks` (verifier-owned) | Internal verifier context and approved mutation catalog | Verifier-internal mutation/adversarial outcome | Oracle leak, invalid mutant, inadequate sensitivity | None |
-| `assessRisk` | Inventory, plan, check summaries | `RiskVerdict` with severity/rationale | Missing evidence, unresolved high severity | Patch approval only after pass |
-| `buildEvidenceBundle` | All immutable stage records | `MigrationEvidenceBundle` | Dangling IDs, hash mismatch, unsupported claim | Final external-application approval |
-
-Typed implementations validate inputs and outputs at runtime. Tools receive explicit
-data, not arbitrary filesystem paths or shell commands.
-
-`VerifierResult` contains exactly these judge-reportable fields:
-
-- `verdict`: `pass` or `fail`;
-- `category`: one safe enum value from `preserving`, `compile_failure`,
-  `visible_test_failure`, `behavior_mismatch`, `lifecycle_mismatch`,
-  `subscription_mismatch`, `mutation_gate_failure`, `timeout`, `nondeterministic`,
-  `oracle_access_denied`, or `evidence_incomplete`;
-- `arm_visible_contract_ids` and their manifest digest;
-- `verifier_oracle_contract_ids` and their manifest digest, disclosed only after
-  immutable scoring; and
-- evidence record digests.
-
-It never contains oracle source, expected values, reference diffs, mutant IDs, or
-action-level diagnostics before score finalization. Arm B and Arm C run in processes
-whose sandboxes do not mount verifier-only paths. Access-denial tests must exercise
-both arms; typed APIs alone are not accepted as isolation evidence.
-
-## 8. Fair comparison contract
-
-### Arm A — deterministic mechanical baseline
-
-A fixed syntax-directed transformation migrates recognized state declarations and
-direct updates, runs visible legacy tests, and reports its patch/result. It has no
-model, inventory, contract derivation, independent verifier feedback, repair, or risk
-gate. Returning a final patch is an implicit accept; failure or no patch is reject.
-
-### Arm B — legacy-green coding-agent baseline
-
-A general coding agent receives the fixture, task, visible tests, selected public
-library documentation, and sandbox tools. It stops when compilation and visible
-legacy tests are green. It cannot access hidden oracles. It uses the same selected
-model/provider and total inference cap as Guardian once those choices are approved.
-Its genuine best-effort prompt and stop policy are frozen and published before any
-run. Returning a final patch is an implicit accept; failure or no patch is reject.
-
-### Arm C — StateShift Guardian
-
-The single orchestrator follows the normative workflow. It uses the same fixture,
-visible inputs, environment, model/provider, total inference budget, wall-clock
-ceiling, and frozen scoring as Arm B. Non-model verifier work is measured separately.
-
-### Fairness rules
-
-- All arms run the same 12 fixtures in the same environment.
-- Evaluation v1 scores exactly one attempt per fixture per arm with one frozen seed.
-  Determinism repeats are a separate diagnostic and are never pooled into BPMR.
-- All candidates are scored only by the independent evaluator.
-- Arm A's lack of model cost is disclosed rather than equalized away.
-- Arms B and C receive equal total model caps; actual calls, tokens, time, and cost
-  are reported even when usage is below the cap. Call decomposition may differ.
-- Timeouts, retries, failures, human time, and estimated cost are reported per arm.
-- Visible tests are incomplete by design but valid for their stated behavior.
-- No arm is tuned using held-out outputs after unblinding.
-
-## 9. Benchmark contract
-
-Evaluation v1 contains exactly 12 independently authored synthetic fixture
-specifications:
-
-- `SSG-D01` through `SSG-D05`: development fixtures;
-- `SSG-H01` through `SSG-H07`: held-out, hash-frozen fixtures.
-
-Before fixture implementation, every case must have frozen behavior prose, user
-actions, observables, lifecycle/subscription invariants, visible-test scope, hidden
-oracle scope, public anchors, provenance, license/terms, and SHA-256 digest.
-
-Development cases may guide implementation. Held-out prose hashes and oracle inputs
-are frozen before optimization. The evaluated path can see the fixture task and
-visible tests but cannot read hidden oracle logic or expected values. Capability
-isolation, not prompt wording, enforces this rule.
-
-Each fixture contract is split into two distinct hashed artifacts:
-
-- an arm-visible task/contract manifest owned by the benchmark harness and mounted
-  read-only into Arms A, B, and C; and
-- a verifier-only oracle manifest owned by the independent verifier and never
-  mounted into an arm sandbox.
-
-Every fixture requires one known-good reference migration and one seeded known-bad
-false-green control. Before arm execution, evaluator self-tests must accept the
-known-good control and reject the known-bad control for all 12 fixtures. A fixed
-verifier-control set of exactly four candidates is selected and frozen before runs
-from the 12 per-fixture seeded known-bad controls, then scored separately for a
-comparable detection/rejection test.
-
-Required behavior classes include snapshot/closure timing, queued updates and
-batching, derived dependencies, identity preservation, external-store subscription,
-effect cleanup, prop/state reset, async ordering, failure rollback, and adversarially
-incomplete legacy coverage. Exact assignments are frozen after spec approval.
-
-## 10. Frozen metrics and thresholds
-
-### Primary — behavior-preserving migration rate
+The fixture-authoring and evaluator setup occur outside both scored arms:
 
 ```text
-delivered_accept = final_patch_delivered AND final_verdict_is_accept
-behavior_preserving_success = delivered_accept AND hidden_verifier_pass
-BPMR(arm) = behavior_preserving_successes / 12
+author behavior prose and public provenance
+  -> freeze arm-visible task package
+  -> independently freeze verifier-only oracle package
+  -> create and hash preserving and false-green candidates
+  -> evaluator self-test on all 20 candidates
+  -> human freeze approval
 ```
 
-For Arms A and B, returning a final patch is the implicit accept verdict. Reject/no
-patch, compile failure, timeout, and missing result score zero. Aggregation is an
-exact count over 12 fixtures; development and held-out counts are also reported.
-
-Success requires:
-
-- Guardian BPMR at least `9/12` overall;
-- Guardian held-out BPMR at least `5/7`;
-- Guardian exceeds Arm A by at least `3/12` overall; and
-- Guardian exceeds Arm B by at least `2/12` overall.
-
-### Diagnostic — false-green stop rate
+The BeyondGreen scored workflow is:
 
 ```text
-potential_false_green = visible_legacy_pass AND hidden_oracle_fail
-false_green_stop_rate = potential_false_greens_rejected / all_potential_false_greens
+ingest immutable existing candidate
+  -> inventory migration risk
+  -> run compilation and visible legacy tests
+  -> derive additional probes and behavioral contracts
+  -> execute arm-owned oracle-free jsdom checks from the ProbePlan
+  -> assemble complete evidence
+  -> accept | reject | abstain
+  -> emit JSON and static HTML report
+  -> freeze arm verdict
+  -> independent evaluator scores against verifier-only oracle
 ```
 
-If the denominator is zero, the result is `not_applicable` and supports no claim.
-Guardian must stop at least `0.80` of potential false greens. Reports also show false
-greens accepted and accepted-migration precision. Since this denominator is
-endogenous within an arm, the central comparison also reports:
+The candidate hash is checked before and after every scored run. BeyondGreen must not
+edit, regenerate, repair, or request a second candidate. The evaluator owns final
+ground-truth scoring and never gives repair feedback during the run.
+
+Each candidate has exactly one official scored run, exactly one attempt, and a
+maximum wall-clock duration of three minutes. A token/cost cap is frozen after the
+Phase 0.5 spike and before fixtures. A timeout produces `abstain`.
+Provider transport or rate-limit failures permit no model retry or second attempt;
+they produce `abstain`. Offline replay is evidence reproduction, not a retry.
+
+The status-quo baseline runs the same candidate, compilation command, visible tests,
+environment, wall-clock ceiling, and evidence recorder. It accepts only when
+compilation and all visible legacy tests are green. It performs no risk inventory,
+additional probes, behavioral-contract derivation, or oracle-aware verification.
+
+For BeyondGreen, a proven compilation failure or deterministic visible legacy-test
+failure is a blocking defect and forces `reject`. A crash, timeout, or
+nondeterministic legacy-gate result forces `abstain`. BeyondGreen may never `accept`
+a candidate whose legacy gate is not green.
+
+## 7. Purposeful architecture and typed contracts
+
+The minimum solution is one BeyondGreen orchestrator with narrow typed stages, an
+arm-owned oracle-free internal checker, and a separate independent evaluator
+boundary. Stages are not decorative autonomous agents.
+
+| Stage | Input | Output | Fail-closed condition |
+| --- | --- | --- | --- |
+| `ingestCandidate` | Candidate path, fixture ID, frozen manifest | `ImmutableCandidateRef` with hashes | Missing input, hash mismatch, outside-root path |
+| `inventoryRisk` | Immutable candidate and visible source/types | `RiskInventory` | Unsupported syntax, ambiguous ownership, external import |
+| `runLegacyGate` | Candidate, compile command, visible test IDs | `LegacyGateResult` | Crash, timeout, nondeterminism |
+| `deriveProbePlan` | Risk inventory and arm-visible contracts | `ProbePlan` with risk-to-check links | Missing coverage or unsupported risk |
+| `runInternalChecks` | Immutable candidate reference, arm-derived `ProbePlan`, arm-visible contracts | `InternalCheckResult` and evidence digests | Oracle access attempt, required-probe failure, timeout, nondeterminism |
+| `decide` | Complete immutable stage records | `accept`, `reject`, or `abstain` with rationale | Missing or inconsistent evidence |
+| `buildReport` | Final evidence bundle | Schema-valid JSON and static HTML | Schema failure, dangling evidence, unsupported claim |
+
+Runtime schemas use Zod. Source and type analysis use the TypeScript Compiler API.
+Formal behavioral checks execute in jsdom through a minimal React harness using
+`node:test`. Chromium is excluded from formal correctness scoring and used only for
+the E2E demonstration and the single secondary performance scenario.
+
+The reasoning engine is accessed through a provider-neutral adapter. The live engine
+is selected during Phase 0.5 and frozen before fixtures. Every live result must be
+recordable and replayable through an offline adapter without network access. Offline
+replay reproduces submitted evidence; it is not a new scored attempt.
+
+`InternalCheckResult` contains only arm-visible probe outcomes and their evidence
+digests. It has no oracle capability. After the arm verdict is immutable, the
+independent evaluator produces an `EvaluatorResult` containing ground-truth score and
+evidence digests. Before finalization it exposes no oracle source, expected values,
+action sequences, reference diffs, failure category, or diagnostic to either arm.
+An evaluator version/hash mismatch invalidates the scored record and blocks the
+benchmark; it is not an arm-observable event and cannot alter the arm verdict.
+
+## 8. Fair two-arm comparison
+
+| Arm | Inputs | Decision policy | Additional verification |
+| --- | --- | --- | --- |
+| Status quo | Same immutable candidate, compiler, visible tests, environment, and limits | Accept when compilation and visible tests pass; otherwise reject, or abstain on operationally inconclusive execution | None |
+| BeyondGreen | The identical candidate and visible inputs | Build risk inventory and independent evidence, then `accept`, `reject`, or fail-closed `abstain` | Additional probes/contracts and oracle-free internal behavioral checks |
+
+Fairness rules:
+
+- both arms receive the same 20 candidates and frozen visible inputs;
+- candidates remain byte-identical across arms and throughout scoring;
+- each arm receives one official attempt per candidate and the same three-minute
+  wall-clock ceiling;
+- environment, compilation, visible tests, scoring, seeds, and operational ceilings
+  are identical;
+- the BeyondGreen reasoning cap is frozen after Phase 0.5; actual calls, tokens,
+  runtime, human time, and cost are disclosed;
+- baseline resource differences are disclosed, not hidden or artificially equalized;
+- all decisions are scored only by the independent evaluator; and
+- no held-out result may tune evaluation v1.1 after unblinding.
+
+## 9. Frozen metrics and targets
+
+Ground truth contains ten preserving candidates and ten seeded false-green
+candidates.
 
 ```text
-false_greens_delivered_per_12 = delivered_patches_that_fail_hidden_verifier / 12
+correct_decision =
+  (verdict == accept AND ground_truth == preserving) OR
+  (verdict == reject AND ground_truth == false_green)
+
+decision_accuracy = correct_decisions / 20
+reason_correct_reject = verdict == reject AND rationale identifies the violated frozen behavior class or invariant family
+defect_recall = false_green_candidates_with_reason_correct_reject / 10
+false_alarm_rate = preserving_candidates_blocked / 10
+preserving_candidate_blocked = verdict == reject OR verdict == abstain
+completion_rate = completed_decisions / 20
+completed_decision = schema_valid_complete_report AND verdict IN {accept, reject}
+accuracy_advantage = BeyondGreen correct decisions - status_quo correct decisions
 ```
 
-The fixed verifier-control set reports controls rejected out of exactly four frozen
-seeded false-green candidates. Central claims use that result and
-`false_greens_delivered_per_12`, not stop rate alone.
+An `abstain` is fail-closed and blocks merge, but it is not a correct accept/reject
+decision, does not count as defect recall, counts as a false alarm on a preserving
+candidate, and does not count as completion.
 
-### Supporting metrics
+Reason correctness is scored post hoc by the independent evaluator only after the arm
+verdict and rationale are immutable. This does not create evaluator feedback and does
+not weaken `K=0`.
 
-```text
-accepted_precision = behavior_preserving_accepted / all_accepted
-non_preserving = no_final_patch OR compile_or_build_failure OR timeout_or_missing_result OR hidden_verifier_fail
-correct_decision = (accept AND preserving) OR (reject AND non_preserving)
-decision_accuracy = correct_decisions / 12
-task_completion_rate = complete_evidence_bundles / 12
-```
+By construction, all 20 candidates compile and pass visible legacy tests. The
+status-quo policy is therefore predicted before execution to accept all 20: exactly
+`10/20` correct decisions, `0/10` defect recall, and `0/10` false alarms. This is a
+construction-validity control, not an empirical finding. Any different completed
+baseline result invalidates the candidate set or run. The approved `>=6/20`
+advantage target is consequently algebraically equivalent to the `>=16/20` absolute
+accuracy target and is retained as an explicit comparison requirement. Primary
+evidentiary weight rests on BeyondGreen's absolute accuracy, reason-correct defect
+recall, false-alarm rate, and held-out results.
 
-If `all_accepted=0`, accepted precision is `not_applicable` and cannot satisfy its
-gate. If the false-green denominator is zero, stop rate is `not_applicable`. Runtime
-or cost with no observations is `not_measured`, not zero. Guardian requires accepted
-precision `1.00`, decision accuracy at least `10/12`, and task completion at least
-`11/12`. No separate minimum-accept gate is needed because BPMR `>=9/12` prevents
-reject-all. Runtime, calls, tokens where available, human seconds, and estimated cost
-are aggregated as median, p95, and total per arm. For the 12 scored observations,
-p95 is the nearest-rank value at rank `ceil(0.95 * 12) = 12` after ascending sort.
+Predeclared targets for BeyondGreen:
 
-Render count, CPU time, and memory are secondary-only. A metric is claim-eligible
-only when three non-scored repeat runs have identical functional digests and that
-metric's coefficient of variation is `<=10%`. Otherwise raw values are published as
-exploratory and no improvement claim is made. Secondary metrics cannot offset a
-correctness failure.
+- decision accuracy at least `16/20`;
+- advantage over the status-quo baseline at least `6/20` correct decisions;
+- defect recall at least `8/10`;
+- false alarms at most `2/10`; and
+- completion at least `18/20`.
 
-With `N=12`, results are directional evidence for this synthetic benchmark only.
-Statistical-significance, population-generalization, and production-performance
-claims are forbidden.
+If any target is missed, the actual complete results are published without changing
+the target or suppressing failures. Results are directional evidence for this
+synthetic benchmark only; statistical significance and production generalization are
+not claimed.
 
-`docs/EVALUATION.md` projects these definitions into executable schemas, case tables,
-budgets, and commands without changing their meaning.
+Supporting measures are per-arm and per-candidate runtime, completion, human time,
+model calls/tokens, and estimated cost. Missing observations are `not_measured`, not
+zero. Aggregates include totals and clearly defined median/p95 where meaningful.
+Human time means agent-supervision time only. No human-time-savings claim is made
+against the automated status-quo arm; manual review time is out of scope and is not
+estimated.
 
-### Canonical rubric and qualification tokens
+## 10. Secondary performance evidence
 
-- `RUB-PUV`: Problem & User Value (15)
-- `RUB-ASE`: Agent Solution & Engineering (30)
-- `RUB-E2E`: End-to-End Quality (20)
-- `RUB-MI`: Measured Improvement (15)
-- `RUB-REP`: Reproducibility (15)
-- `RUB-HT`: Hot Take / Insights (5)
-- `QG-ELIG`: eligibility
-- `QG-COMP`: completeness
-- `QG-ORIG`: integrity, originality, provenance, and clean-room compliance
-- `QG-TRACE`: coding-agent trace availability and integrity
-- `QG-REPRO`: qualification-level reproducibility
+Performance is not a primary metric. Exactly one reproducible synthetic Chromium
+before/after scenario is allowed as secondary evidence.
+
+The protocol is ordered:
+
+1. run identical user actions against the before and after implementations;
+2. prove all declared behavioral invariants and observable outputs are identical;
+3. only after behavioral equivalence passes, compare React render counts and CPU;
+4. publish environment, actions, repeats, raw measurements, and variance; and
+5. if any behavioral check fails, make no performance-win claim.
+
+Performance cannot compensate for a correctness failure and cannot affect the 20
+scored decisions.
 
 ## 11. Functional requirements
 
-| ID | Requirement | Acceptance evidence | Rubric mapping |
+| ID | Requirement | Acceptance evidence | Mapping |
 | --- | --- | --- | --- |
-| FR-001 | Inventory state owners, reads, writes, derived edges, effects, and subscriptions. | Inventory schema tests and demo bundle | RUB-ASE, RUB-E2E |
-| FR-002 | Before benchmark execution, create separate arm-visible and verifier-only manifests outside evaluated arms and freeze both digests. | Manifest/hash and mount tests | RUB-ASE, RUB-REP, QG-ORIG |
-| FR-003 | Produce an invariant-linked migration plan. | Plan schema and trace | RUB-ASE |
-| FR-004 | Enforce genuine interactive approvals and truthful benchmark policy-gate semantics. | Checkpoint records and negative tests | RUB-ASE, QG-ORIG |
-| FR-005 | Generate changes only in an ephemeral arm sandbox with no verifier-only mount. | Filesystem/mount tests | RUB-ASE, RUB-REP, QG-ORIG |
-| FR-006 | Run visible legacy tests and preserve complete results. | Per-case run evidence | RUB-MI |
-| FR-007 | Invoke the verifier only after final patch immutability with K=0 feedback rounds. | Access-denial and immutability tests | RUB-ASE, QG-ORIG |
-| FR-008 | Run mutation and adversarial checks wholly inside the verifier boundary. | Mutation boundary/results | RUB-ASE, RUB-E2E |
-| FR-009 | Accept/reject fail-closed using complete evidence and risk policy. | Verdict tests/failure fixtures | RUB-E2E, RUB-ASE |
-| FR-010 | Produce a migration evidence bundle for every attempt. | Demo output/schema validation | RUB-E2E, RUB-REP |
-| FR-011 | Require genuine approval before external patch application. | Negative test/checkpoint trace | RUB-E2E, QG-ORIG |
-| FR-012 | Execute all three arms on the fixed benchmark. | Comparable run set | RUB-MI |
+| FR-001 | Ingest and continuously hash-check an existing immutable candidate. | Hash/immutability contract tests | RUB-ASE, RUB-REP |
+| FR-002 | Inventory state, reads/writes, derived edges, subscriptions, lifecycle, ordering, identity, and rollback risks. | Risk-inventory schema and D01 report | RUB-ASE, RUB-E2E |
+| FR-003 | Run compilation and all visible legacy tests without changing their semantics. | Per-candidate legacy-gate records | RUB-MI, RUB-REP |
+| FR-004 | Derive additional risk-linked probes and behavioral contracts from arm-visible evidence only. | Probe-plan schema and trace | RUB-ASE |
+| FR-005 | Execute arm-derived formal jsdom behavioral checks in the oracle-free internal checker. | Contract tests and internal-check evidence | RUB-ASE, RUB-E2E |
+| FR-006 | Physically isolate hidden oracles and prove denied access before scoring. | Process/mount and denied-access tests | RUB-ASE, QG-ORIG |
+| FR-007 | Enforce `K=0` and immutable one-attempt scored execution. | Capability and run-cardinality tests | RUB-ASE, RUB-MI |
+| FR-008 | Produce fail-closed `accept`, `reject`, or `abstain` decisions from complete evidence. | Verdict-policy negative tests | RUB-E2E, RUB-ASE |
+| FR-009 | Expose a reproducible CLI plus schema-valid JSON and static HTML reports. | CLI/E2E/schema tests | RUB-E2E, RUB-REP |
+| FR-010 | Support a provider-neutral live adapter and deterministic offline replay. | Adapter contract and replay tests | RUB-ASE, RUB-REP |
+| FR-011 | Execute both scored arms on the same 20 immutable candidates. | Candidate/hash/run reconciliation | RUB-MI |
+| FR-012 | Permit only one approved, unscored D01 repair demo followed by fresh independent verification. | Demo label, approval, and rerun evidence | RUB-E2E, QG-ORIG |
 
 ## 12. Quality and safety requirements
 
-| ID | Requirement | Acceptance evidence | Rubric mapping |
+| ID | Requirement | Acceptance evidence | Mapping |
 | --- | --- | --- | --- |
-| NFR-001 | Use only Node.js/TypeScript for product source, tests, and scripts. | Language scan | RUB-REP, QG-REPRO |
-| NFR-002 | Fail closed on ambiguity, missing evidence, timeout, nondeterminism, or oracle access attempt. | Negative tests | RUB-ASE, QG-ORIG |
-| NFR-003 | Restrict tools, processes, mounts, and paths to authorized arm capabilities. | Boundary tests/audit | RUB-ASE, QG-ORIG |
-| NFR-004 | Keep browser, connected-app, private-MCP, private-memory, and unauthorized outside-root calls at zero. | Tool-call audit | RUB-REP, QG-ORIG |
-| NFR-005 | Never expose secrets, denylist terms, environment values, or raw absolute paths. | Preflight/human review | RUB-REP, QG-ORIG |
-| NFR-006 | Use one frozen scored seed; keep determinism repeats separate from BPMR. | Seed manifest/repeat diagnostic | RUB-REP, RUB-MI |
-| NFR-007 | Preserve complete failures and negative results. | Run reconciliation | RUB-MI, QG-ORIG |
-| NFR-008 | Pin runtimes/dependencies before the first executable baseline. | Lockfile/version report | RUB-REP, QG-REPRO |
-| NFR-009 | Treat performance as secondary to behavioral correctness. | Evaluator gating test | RUB-PUV, RUB-MI |
+| NFR-001 | Use Node.js/TypeScript, TypeScript Compiler API, Zod, `node:test`, minimal React harness, and jsdom for formal checks. | Lockfile, language and dependency audit | RUB-REP, QG-REPRO |
+| NFR-002 | Fail closed to `abstain` on timeout, failed required probe, nondeterminism, ambiguity, or incomplete evidence. | Negative tests | RUB-ASE, QG-ORIG |
+| NFR-003 | Enforce exactly one attempt, no model transport retry, and a maximum three-minute official run per candidate. | Run-policy audit | RUB-MI, RUB-REP |
+| NFR-004 | Freeze model, adapter policy, token/cost cap, dependencies, and evaluator before fixture implementation. | Versioned manifests and hashes | RUB-REP, QG-ORIG |
+| NFR-005 | Keep hidden-oracle, private workspace, browser, connected-app, private-MCP, and global-memory access unavailable or unused as required. | Capability audit and denied-access tests | RUB-ASE, QG-ORIG |
+| NFR-006 | Never expose secrets, private paths/terms, oracle details, or unsupported claims. | Preflight and human review | RUB-REP, QG-ORIG |
+| NFR-007 | Preserve every failure, abstention, negative result, retry prohibition, resource observation, and decision. | Immutable evidence reconciliation | RUB-MI, QG-TRACE |
+| NFR-008 | Make live runs replayable offline and judge-critical checks independent of network credentials. | Clean replay/extraction test | RUB-REP, QG-REPRO |
+| NFR-009 | Keep performance secondary and behavior-gated; no full GUI is required for v1. | Performance protocol and scope audit | RUB-PUV, RUB-MI |
 
 ## 13. Evaluation requirements
 
-| ID | Requirement | Acceptance evidence | Rubric mapping |
+| ID | Requirement | Acceptance evidence | Mapping |
 | --- | --- | --- | --- |
-| EV-001 | Use exactly 5 development and 7 held-out/hash-frozen fixtures in evaluation v1. | Case manifest/hashes | RUB-MI, RUB-REP |
-| EV-002 | Freeze prose and public anchors before fixture implementation. | Provenance timestamps/hashes | RUB-REP, QG-ORIG |
-| EV-003 | Keep verifier manifests and paths unavailable to Arms B/C processes and filesystems. | Both-arm access-denial tests | RUB-ASE, QG-ORIG |
-| EV-004 | Score delivered/accepted verifier-passing patches with the fixed BPMR denominator 12. | Aggregate recomputation | RUB-MI |
-| EV-005 | Report false-green stop rate, false greens delivered per 12, and all zero-denominator states. | Result-schema tests | RUB-MI |
-| EV-006 | Report verdict-aware precision, decision accuracy, completion, runtime, and cost. | Comparison report | RUB-PUV, RUB-MI |
-| EV-007 | Apply fairness rules, publish Arm B policy, and disclose actual resource use under caps. | Policy hash and budget/run audit | RUB-MI, QG-ORIG |
-| EV-008 | Run mutation/adversarial checks behind the verifier boundary; challenging IDs remain unset until approved. | Boundary/mutation results | RUB-ASE, RUB-E2E |
-| EV-009 | Preserve per-case failures, retries, evaluator version, checkpoint mode, and human time. | Immutable run directories | RUB-REP, QG-ORIG |
-| EV-010 | Prohibit held-out-driven tuning after unblinding. | Changelog/release audit | RUB-MI, QG-ORIG |
-| EV-011 | Self-test every fixture with known-good and known-bad controls and run exactly four preselected frozen false-green controls. | Evaluator control report | RUB-ASE, RUB-MI |
-| EV-012 | Score exactly one attempt per fixture per arm using one frozen seed; never pool repeat diagnostics. | Run cardinality/seed audit | RUB-MI, RUB-REP |
+| EV-001 | Use exactly 10 fixtures with a 4-development/6-held-out split and the ten frozen behavior classes. | Fixture manifest and hashes | RUB-MI, RUB-REP |
+| EV-002 | Freeze one preserving and one seeded false-green candidate per fixture before arm runs; both must compile and pass 100% of visible legacy tests. | 20-candidate/visible-gate manifest | RUB-MI, QG-ORIG |
+| EV-003 | Give both scored arms exactly the same immutable candidates, visible inputs, environment, and scoring. | Cross-arm digest audit | RUB-MI, RUB-REP |
+| EV-004 | Score exactly one official attempt per arm/candidate with a three-minute ceiling. | Run cardinality and timeout audit | RUB-MI |
+| EV-005 | Self-test the visible gate and evaluator on all 20 candidates before scoring: all visible gates green, then 10 oracle accepts and 10 oracle rejects. | Visible/evaluator control report | RUB-ASE, RUB-MI |
+| EV-006 | Enforce physical oracle isolation, denied-access testing, and `K=0`. | Boundary evidence | RUB-ASE, QG-ORIG |
+| EV-007 | Compute decision accuracy `/20`, accuracy advantage, reason-correct defect recall `/10`, false-alarm rate `/10`, and completion `/20` exactly as frozen. | Independent aggregate recomputation | RUB-MI |
+| EV-008 | Preserve the five predeclared targets and publish honest actuals when missed. | Rubric/hash and final report | RUB-MI, QG-ORIG |
+| EV-009 | Record runtime, human time, cost, tokens, errors, abstentions, evidence paths, and hashes per candidate. | Immutable per-candidate records | RUB-PUV, RUB-REP |
+| EV-010 | Iterate only on development evidence and unblind held-out results once. | Changelog and unblinding record | RUB-MI, QG-ORIG |
+| EV-011 | Keep D01 repair unscored and require approval plus independent reverification. | Demo/run classification audit | RUB-E2E, QG-ORIG |
+| EV-012 | Gate the single Chromium performance comparison on identical actions and passed behavioral invariants. | Performance evidence record | RUB-MI |
+| EV-013 | Label at least one fixture as the challenging case before fixture code, record why it is challenging and its behavior class, and report what its final result revealed. | Challenging-case manifest and report | RUB-MI, RUB-E2E |
 
 ## 14. Artifact and evidence requirements
 
-| ID | Requirement | Acceptance evidence | Rubric mapping |
+| ID | Requirement | Acceptance evidence | Mapping |
 | --- | --- | --- | --- |
-| AR-001 | Keep this file as the sole product-semantics contract and the artifact spec as subordinate binding delivery contract. | Hierarchy consistency test | RUB-REP, QG-ORIG |
-| AR-002 | Link every projection/decision to requirement IDs and canonical tokens. | Traceability validator | RUB-PUV, RUB-ASE, RUB-E2E, RUB-MI, RUB-REP, RUB-HT |
-| AR-003 | Preserve runnable baselines and exact npm plus make commands. | Baseline runs/reproduction guide | RUB-MI, RUB-REP |
-| AR-004 | Record each iteration with hypothesis, change, command, evidence, and decision. | Improvement Changelog | RUB-MI, RUB-HT |
-| AR-005 | Preserve reviewed trajectories for every coding/solution/review agent used, excluding ineligible transcripts. | Trajectory index/reviews | RUB-ASE, QG-TRACE |
-| AR-006 | Record provenance, anchors, license/terms, prose hash, and review for each fixture. | Provenance index | RUB-REP, QG-ORIG |
-| AR-007 | Map each judge-facing claim to immutable evidence and run IDs. | Claims validation | RUB-PUV, RUB-ASE, RUB-E2E, RUB-MI, RUB-REP, RUB-HT |
-| AR-008 | Produce a manifest-backed, clean-tested archive and accessible video. | Release checklist/checksums | RUB-REP, QG-COMP, QG-REPRO |
-| AR-009 | Deliver `README.md`, `LICENSES.md`, `Makefile`, `docs/SUBMISSION_REPORT.md`, `docs/ARCHITECTURE.md`, `docs/EVALUATION.md`, `docs/IMPROVEMENT_CHANGELOG.md`, `docs/REPRODUCTION.md`, `docs/DISCLOSURES.md`, `docs/VIDEO_SCRIPT.md`, `docs/VIDEO_LINK.md`, `evaluation/cases.jsonl`, `evaluation/scoring-rubric.yaml`, `evaluation/challenging-cases.yaml`, `artifacts/claims.yaml`, run/comparison/trajectory/demo/provenance artifacts, `submission/MANIFEST.yaml`, `submission/CHECKLIST.md`, `submission/SHA256SUMS`, source, tests, agent instructions, and validated `dist/submission.zip` required by the subordinate artifact contract. | Manifest path audit | QG-COMP, RUB-REP |
+| AR-001 | Keep this file as the sole product-semantics contract and the artifact spec subordinate. | Hierarchy consistency test | RUB-REP, QG-ORIG |
+| AR-002 | Link projections, schemas, decisions, claims, and diagrams to requirement IDs and canonical rubric tokens. | Traceability validator | All rubric criteria |
+| AR-003 | Preserve exact CLI, npm, and Make reproduction commands and archive-included arm-visible/verifier-only packages for baseline, BeyondGreen, tests, evaluation, replay, demo, and packaging. | Clean reproduction and oracle-boundary log | RUB-MI, RUB-REP |
+| AR-004 | Record every meaningful retained, revised, removed, neutral, and negative iteration with hypothesis, change, command, evidence, and decision. | Improvement Changelog | RUB-MI, RUB-HT |
+| AR-005 | Preserve eligible representative trajectories for Codex implementation and Claude read-only checkpoints, with retries and human approvals. | Reviewed trajectory index | RUB-ASE, QG-TRACE |
+| AR-006 | Record public anchors, provenance, license/terms, prose hashes, candidate hashes, oracle hashes, and reviews. | Provenance index | RUB-REP, QG-ORIG |
+| AR-007 | Map every judge-facing claim to immutable evidence and run IDs; unsupported claims block release. | Claims ledger validation | All rubric criteria |
+| AR-008 | Deliver one E2E demo, public video no longer than five minutes, and a manifest-backed ZIP passing clean extraction. | Demo/video/extraction records | RUB-E2E, RUB-REP, QG-COMP |
+| AR-009 | Preserve one documented negative or removed experiment and all must-not-cut artifacts. | Changelog, report, manifest audit | RUB-HT, QG-COMP |
 
-## 15. Reproducibility contract
+Canonical tokens are `RUB-PUV` (15), `RUB-ASE` (30), `RUB-E2E` (20), `RUB-MI`
+(15), `RUB-REP` (15), `RUB-HT` (5), and qualification gates `QG-ELIG`,
+`QG-COMP`, `QG-ORIG`, `QG-TRACE`, and `QG-REPRO`.
 
-The stack must be pinned before executable baseline work:
+## 15. Reproducibility and interface contract
 
-- Node.js `22.22.3`;
-- TypeScript compiler, React-compatible test runtime, signals library, schema library,
-  and test runner: exact choices remain open and require human approval plus lockfile;
-- no Python and no judge-critical network, credential, browser, or private service.
+The runtime is Node.js `22.22.3`. Exact dependency versions are frozen in the
+lockfile before fixtures. A public signals ecosystem anchor has been recorded for
+feasibility without implying package selection. The signals npm package remains
+`TBD` until a safe public package-name lookup; it must not be inferred from private
+code. Its exact package, version, and license are recorded during Phase 0.5 and
+frozen before fixture prose or implementation.
+
+The archive reserves `evaluation/arm-visible/` for task packages and
+`evaluation/verifier-only/` for oracle packages and ground-truth manifests. Both are
+included in the final ZIP so judges can reproduce scoring. Runtime process and
+filesystem capabilities—not omission from version control—prevent either scored arm
+from mounting or reading `evaluation/verifier-only/`. Clean-extraction evaluation
+must reproduce and test this denied-access boundary.
 
 Required command families:
 
@@ -457,145 +454,148 @@ Required command families:
 npm ci
 npm test
 npm run preflight:implementation
-npm run benchmark:mechanical -- --evaluation-version eval-v1.0.0
-npm run benchmark:agent-baseline -- --evaluation-version eval-v1.0.0
-npm run guardian -- --evaluation-version eval-v1.0.0
-npm run eval -- --evaluation-version eval-v1.0.0
-npm run demo
+npm run spike:phase-0.5
+npm run verify:baseline -- --evaluation-version eval-v1.1.0
+npm run verify:beyondgreen -- --evaluation-version eval-v1.1.0
+npm run eval -- --evaluation-version eval-v1.1.0
+npm run replay -- --evaluation-version eval-v1.1.0
+npm run demo -- --fixture BG-D01
+npm run performance:chromium -- --scenario BG-D01
 npm run artifacts:check
 npm run submission
 ```
 
-The subordinate delivery contract's required top-level `make` interface is preserved
-through a thin Makefile with one-to-one wrappers:
+The required top-level Make interface is a thin one-to-one wrapper:
 
 ```text
 make setup           -> npm ci
-make baseline        -> npm run benchmark:mechanical
-make solution        -> npm run guardian
+make baseline        -> npm run verify:baseline
+make solution        -> npm run verify:beyondgreen
 make test            -> npm test
 make eval            -> npm run eval
-make demo            -> npm run demo
+make replay          -> npm run replay
+make demo            -> npm run demo -- --fixture BG-D01
 make artifacts-check -> npm run artifacts:check
 make submission      -> npm run submission
 ```
 
-The coding-agent comparison remains directly available through
-`npm run benchmark:agent-baseline`. Make wrappers add no logic and propagate exit
-status unchanged.
+The CLI is mandatory. JSON output must pass a versioned Zod schema. The static HTML
+report is generated only from validated JSON and requires no server. A full GUI is
+not a v1 gate.
 
-The final archive excludes official PDFs/screenshots, `docs/evidence/`, the full
-translation, and challenge/rules transcriptions or derived organizer material unless
-redistribution permission is recorded. Judge-facing project documentation must be
-self-contained without bundling those source-evidence files.
+Every command records exit status, environment versions, evaluation version,
+candidate/fixture IDs, hashes, duration, model usage, human time, cost where
+applicable, and output paths. Offline replay must reproduce report artifacts from
+submitted records without credentials.
 
-Every command records output paths, exit status, environment versions, seed, fixture
-IDs, duration, and material cost. Before measurement, runtime/cost fields use
-`not_measured_pre_implementation`; no numeric result is invented. After valid runs,
-honest approximate ranges are derived from evidence.
+## 16. Improvement and unblinding protocol
 
-## 16. Improvement protocol
+1. Freeze v1.1 requirements, evaluation formulas, targets, budgets, candidates, and
+   oracle isolation before optimization.
+2. Preserve the runnable status-quo baseline and every BeyondGreen iteration.
+3. Record hypothesis, exact change, exact command/version, evidence/run IDs, result,
+   decision, retry/failure information, and human checkpoint for every iteration.
+4. Preserve retained, revised, removed, neutral, and negative experiments.
+5. Iterate only on `BG-D01`–`BG-D04` development evidence.
+6. Perform exactly one declared unblinding of `BG-H01`–`BG-H06`.
+7. Do not tune evaluation v1.1 after unblinding. Corrections require a new benchmark
+   version and forfeit the untouched-held-out claim.
+8. Derive the strongest change, removed experiment, remaining failure, and hot take
+   only from measured evidence.
 
-1. Preserve runnable mechanical and legacy-green coding-agent baselines.
-2. Freeze evaluation version, hashes, metrics, and thresholds before optimization.
-3. Record observed failure, hypothesis, exact change/command, evidence/run IDs,
-   result, decision, and next action for every meaningful change.
-4. Keep retained, revised, removed, neutral, and negative experiments.
-5. Iterate only on development fixtures.
-6. Unblind held-out results once at the declared gate.
-7. Do not tune against version 1 held-out outcomes after unblinding; corrective work
-   creates a new benchmark version and loses the untouched comparison claim.
-8. Name strongest change, removed experiment, remaining failure, and hot take only
-   from measured evidence.
+## 17. Demo, repair, and video contract
 
-## 17. Demo contract
+One end-to-end demo must show an already-existing candidate, the green status-quo
+decision, BeyondGreen risk/probe evidence, and the final decision/report. The demo
+must be a preserved real run, not a hand-authored mock.
 
-The final video is at most five minutes and shows: the incomplete-test bottleneck;
-a false-green baseline on a synthetic fixture; the same migration through Guardian;
-a detected regression and safe rejection or safe accepted patch; the three-arm metric
-comparison; strongest measured change; one removed experiment; remaining failure;
-and evidence-backed hot take. The shown run is preserved as demo evidence and no mock
-is presented as execution.
+After its scored verdict is immutable and a human explicitly approves, `BG-D01` may
+be used for one targeted unscored repair demonstration. The repaired candidate is a
+new demo artifact and must undergo a fresh independent verification. Neither its
+result nor its resource use enters the scored 20 decisions.
 
-## 18. Phased roadmap and gates
+The public video is no longer than five minutes and covers: user and bottleneck;
+status-quo baseline; one E2E verification; two-arm comparison; strongest measured
+change; one removed/negative experiment; remaining limitation; practical hot take;
+and reproduction path. Its link must open without requesting permission.
+
+## 18. Coding workflow and independent review checkpoints
+
+Codex implements the repository. Claude is a bounded, read-only independent reviewer
+at exactly three checkpoints:
+
+1. normative v1.1 before any product code;
+2. complete `BG-D01` vertical slice before scaling; and
+3. final ZIP after clean extraction.
+
+Claude receives the minimum sufficient clean packet, cannot edit, and does not
+authorize changes. Codex independently verifies every actionable finding. Human
+approval remains the gate after each review where specified.
+
+Approval of this specification does not authorize product development. The approved
+changes have been transferred to the named clean branch; that transfer removes only
+the prior detached-HEAD/handoff blocker. Development begins only after Phase 0.5 is
+resolved as specified below, real contamination preflight passes with authorized
+external paths, a new implementation `SESSION_BOUNDARY` receives explicit approval,
+and the eligible trace-first gate passes.
+
+## 19. Critical path and milestones
 
 | Phase | Output | Blocking gate |
 | --- | --- | --- |
-| 0. Spec freeze | Approved global spec/consistent projections | Human approves decisions needed for fixture work |
-| 0.5 Runtime feasibility spike | Throwaway, non-fixture proof that the selected public stack deterministically exposes every planned behavior class | Spike evidence passes without proprietary structure or fixture implementation |
-| 1. Fixture prose/provenance freeze | 12 prose specs, anchors, hashes, 5/7 split | Scan and human provenance review pass |
-| 2. Baselines | Runnable Arms A/B and preserved runs | Same environment/cases/scoring; visible tests valid |
-| 3. Evaluator/oracles | Verifier, mutation catalog, access controls | Isolation/evaluator contract tests pass |
-| 4. Advanced workflow | Guardian and evidence bundle | Typed stages/checkpoints/fail-closed tests pass |
-| 5. Measured iterations | Development experiments | Changelog/trajectories reconcile with runs |
-| 6. Held-out evaluation | Declared unblinding/final comparison | No version 1 held-out tuning afterward |
-| 7. Packaging/video | Archive, demo, accessible video | Qualification/safety/rubric/extraction checks pass |
+| 0. Normative v1.1 | Approved BeyondGreen spec and consistent projections | Claude read-only review, Codex reconciliation, final human spec approval |
+| Trace-first gate | Submission-eligible implementation session and trajectory plan | Approved boundary, control preflight, trace capture verified, and structural implementation preflight clean except for the enumerated section 20 Phase 0.5 decisions |
+| 0.5 Stack spike | Public stack, lockfile, model adapter, offline replay, three-minute feasibility, frozen token/cost cap | Runtime deterministically exposes all ten behavior classes; all `TBD` package/model decisions resolved before fixtures; full implementation preflight then passes |
+| D01 vertical slice | One complete verify-existing case, reports, isolation, E2E demo path | All contracts, denied-access test, clean replay, and second Claude checkpoint pass |
+| Early package rehearsal | ZIP built and run after clean extraction | Required files, commands, licenses, traces, and manifests reconcile |
+| Remaining fixtures | `BG-D02`–`BG-D04` and `BG-H01`–`BG-H06` prose, candidates, oracles, and development validation | Provenance, hashes, evaluator self-tests, challenging-case label, and 4/6 split freeze |
+| Single unblinding | One official two-arm run on all 20 decisions | No subsequent v1.1 held-out tuning; honest results published |
+| Final package | Public video, changelog, reports, traces, ZIP | Clean extraction and final Claude checkpoint, then human release approval |
 
-Implementation cannot begin until preflight returns `READY_FOR_IMPLEMENTATION` and
-the human approves the open decisions below.
+Must not cut: ten cases/twenty decisions; same candidates/scoring; physical oracle
+isolation; eligible traces; clean-room/provenance; one E2E demo; changelog and exact
+reproduction; public video at most five minutes; ZIP clean-extraction rehearsal; and
+one negative or removed experiment.
 
-## 19. Open decisions and assumptions
+## 20. Open decisions and locked decisions
 
-Intentionally unresolved:
+### Locked by v1.1
 
-1. React execution surface: real test renderer, minimal compatible harness, or other
-   public adapter.
-2. Signals library: exact public package, version, license, and integration mode.
-3. AST stack: TypeScript compiler API or another public licensed transformer.
-4. Schema/test packages and exact versions.
-5. Model/provider: external, local, or deterministic; if model-backed, exact model,
-   offline judge fallback, and cost capture.
-6. Coding-agent baseline adapter that enforces equal model budget and oracle isolation.
-7. Approval-evidence format and approver-role naming for the already frozen
-   interactive and `benchmark_policy_gate` semantics.
-8. Mutation catalog and adequacy threshold beyond frozen correctness gates.
-9. Exact behavior-class assignment to the 12 prose fixtures.
-10. Runtime/cost expectations, currently `not_measured_pre_implementation`.
+- BeyondGreen name and verify-existing-only scored workflow.
+- Two scored arms and the same 20 immutable candidates.
+- Ten fixtures, 4/6 split, ten behavior classes, metrics, formulas, and targets.
+- Three-minute limit, one attempt, `K=0`, physical oracle isolation, fail-closed
+  abstention, CLI/JSON/HTML interface, Node/TypeScript stack, and secondary-only
+  Chromium performance.
+- Codex implementation and three bounded Claude read-only checkpoints.
 
-Assumptions to validate: 12 cases show directional improvement but not production
-generalization; the selected runtime models needed lifecycle/subscription semantics;
-equal model budgets remain practical; and typed capabilities can enforce oracle
-isolation in one distributable repository.
+### Must be resolved during Phase 0.5 and frozen before fixtures
 
-No benchmark result, failure distribution, strongest change, removed experiment, or
-cost advantage is claimed.
+1. Exact public signals npm package, version, license, and capability profile after a
+   safe public-name lookup.
+2. Exact versions of TypeScript, React, jsdom, Zod, and supporting packages.
+3. Live reasoning engine/provider and provider-neutral adapter configuration.
+4. Token/cost cap within the fixed three-minute ceiling.
+5. Offline replay record format and deterministic acceptance checks.
+6. Exact fixture-to-behavior-class and 4/6 membership assignment.
+7. The single Chromium scenario, action script, repeat count, and variance reporting.
 
-## 20. Traceability matrix
+No benchmark result, performance win, cost advantage, strongest change, removed
+experiment, failure distribution, or hot take is claimed before measured evidence.
 
-| Requirement | Planned component | Evaluation/run evidence | Judging criterion |
+## 21. Traceability and rubric completeness
+
+| Contract area | Requirements | Primary evidence | Rubric/gate |
 | --- | --- | --- | --- |
-| FR-001, FR-003 | Inventory/planning stages | Contract tests; demo bundle | RUB-ASE, RUB-E2E |
-| FR-002, EV-001, EV-002 | Dual-manifest freezer | Prose/manifest hashes; provenance | RUB-REP, QG-ORIG |
-| FR-004, FR-011 | Checkpoint policy | Negative tests; genuine checkpoints | RUB-ASE, QG-ORIG |
-| FR-005, NFR-003 | Process/filesystem sandbox | Both-arm denied-mount evidence | RUB-ASE, RUB-REP, QG-ORIG |
-| FR-006 | Visible-test runner | Per-case legacy results | RUB-MI |
-| FR-007, EV-003 | K=0 independent verifier | Access-denial/immutability tests | RUB-ASE, QG-ORIG |
-| FR-008, EV-008 | Verifier-internal mutation runner | Boundary/mutant results | RUB-ASE, RUB-E2E |
-| FR-009, NFR-002 | Verdict/risk policy | False-green/fail-closed tests | RUB-E2E, RUB-ASE |
-| FR-010 | Bundle builder | Demo output/schema | RUB-E2E, RUB-REP |
-| FR-012, EV-004–EV-007, EV-011, EV-012 | Arms, controls, aggregator | Comparable runs/report | RUB-MI, RUB-PUV |
-| NFR-001, NFR-008 | Node/TypeScript stack | Language scan/lockfile | RUB-REP, QG-REPRO |
-| NFR-004, NFR-005 | Clean-room audit | Tool audit/scanner/human review | QG-ORIG, RUB-REP |
-| NFR-006, EV-009 | Seed/run recorder | Scored-seed audit; separate repeats | RUB-REP, RUB-MI |
-| NFR-007, EV-010 | Evidence/changelog policy | Failure ledger/unblinding audit | QG-ORIG, RUB-MI |
-| NFR-009 | Correctness gate | Incorrect-performance rejection test | RUB-PUV, RUB-MI |
-| AR-001, AR-002 | Spec/projection validator | Consistency/ID-token report | RUB-REP, QG-ORIG |
-| AR-003, AR-004 | Baselines/changelog | npm/make commands; iterations | RUB-MI, RUB-HT |
-| AR-005 | Trajectory pipeline | Reviewed eligible traces/exclusions | RUB-ASE, QG-TRACE |
-| AR-006 | Provenance pipeline | Anchors/terms/hashes | RUB-REP, QG-ORIG |
-| AR-007 | Claims ledger | Claim/run reconciliation | RUB-PUV, RUB-ASE, RUB-E2E, RUB-MI, RUB-REP, RUB-HT |
-| AR-008, AR-009 | Submission builder | Required-path manifest, checksums, extraction, video | QG-COMP, QG-REPRO, RUB-REP |
+| User and decision value | Sections 1–3 | README, D01 report, video | RUB-PUV, RUB-E2E |
+| Immutable verify-existing workflow | FR-001–FR-008 | Contract, boundary, and verdict tests | RUB-ASE, RUB-E2E |
+| Required interface and replay | FR-009–FR-010, NFR-008 | CLI/schema/HTML/replay tests | RUB-ASE, RUB-REP |
+| Fair two-arm evaluation | FR-011, EV-001–EV-010 | Manifests, per-case records, aggregate recomputation | RUB-MI, QG-ORIG |
+| D01 repair and performance guard | FR-012, EV-011–EV-013, NFR-009 | Clearly labeled demo/performance/challenging-case evidence | RUB-E2E, RUB-MI |
+| Clean room and provenance | NFR-004–NFR-007, AR-005–AR-007 | Preflight, provenance, trajectories, claims | QG-ORIG, QG-TRACE |
+| Reproduction and release | AR-003, AR-008–AR-009 | Changelog, video, manifest, clean extraction | RUB-REP, RUB-HT, QG-COMP, QG-REPRO |
 
-## 21. Rubric completeness check
-
-| Criterion | Weight | Normative coverage |
-| --- | ---: | --- |
-| RUB-PUV | 15 | Sections 1–3: user, bottleneck, thesis, scenario, evidence bundle. |
-| RUB-ASE | 30 | Sections 5–7: one orchestrator, K=0 typed stages, isolated verifier, controls, checkpoints. |
-| RUB-E2E | 20 | Sections 5, 7, 11, 17: complete workflow and usable demo output. |
-| RUB-MI | 15 | Sections 8–10, 16: fair arms, verdict-aware formulas, exact gates, iterations. |
-| RUB-REP | 15 | Sections 9, 13–15, 18: cases, pinned stack, npm/make surfaces, evidence, gates. |
-| RUB-HT | 5 | Sections 16–17: evidence-backed strongest/removed changes and insight, not invented early. |
-
-Qualification is additionally covered by clean-room invariants, trajectory and
-provenance requirements, fail-closed gates, and the ban on unsupported claims.
+Qualification gate status remains evidence-based. Specification completeness alone
+does not prove eligibility, implementation completeness, trace integrity, or
+reproducibility. Any absent implementation artifact remains `UNKNOWN` until built and
+verified after final human approval.

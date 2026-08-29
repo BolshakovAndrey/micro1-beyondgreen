@@ -1,17 +1,35 @@
 # Submission Artifact Harness — Specification
 
 **Status:** subordinate but binding delivery contract
-**Created:** 2026-08-28  
-**Audience:** developer building the solution and the evidence package  
+
+**Created:** 2026-08-28
+
+**BeyondGreen amendment:** 2026-08-29, aligned with `PROJECT_SPEC.md@1.1.0`
+
+**Audience:** developer building the solution and the evidence package
+
 **Scope:** topic-independent artifact and packaging obligations
 **Authoritative sources:** [CHALLENGE.md](CHALLENGE.md),
 [HACKATHON_RULES.md](HACKATHON_RULES.md), and the preserved official PDF
 
 `docs/PROJECT_SPEC.md` is the sole normative product-semantics contract. This file is
 binding for delivery, evidence, command-surface, and packaging obligations but may
-not override product semantics. Topic-unresolved statements below describe the
-control-plane baseline when this generic harness was authored; current topic values
-and stricter requirements come from `docs/PROJECT_SPEC.md` and its projections.
+not override product semantics. Generic statements below describe the reusable
+harness; current BeyondGreen values and stricter requirements come from
+`docs/PROJECT_SPEC.md@1.1.0` and its projections.
+
+### BeyondGreen v1.1 binding interpretation
+
+- `baseline` means the status-quo verify-existing policy that accepts on green
+  compilation and visible legacy tests.
+- `advanced` or `solution` means BeyondGreen verification of the identical immutable
+  candidate; neither term authorizes generation during a scored run.
+- Evaluation contains ten fixtures, two candidates per fixture, two scored arms, and
+  20 decisions per arm.
+- The primary metric is decision accuracy `/20`; BPMR and a third scored arm are not
+  active v1.1 semantics.
+- Required interfaces are CLI, schema-validated JSON, and static HTML. A full GUI is
+  not a delivery gate.
 
 ## 1. Goal
 
@@ -25,13 +43,13 @@ reproduction instructions, disclosures, and package manifest agree with one anot
 
 ## 2. Operating model
 
-This conversation and this specification form the control plane for requirements and
-review. Implementation may happen in a separate Git branch, but that branch must
-adopt this specification and produce the artifacts defined here.
+This specification forms the delivery control plane. Implementation begins only
+after final human approval of normative v1.1 in a submission-eligible trace-first
+task and must produce the artifacts defined here.
 
-The project topic will be supplied later through a **Topic Profile**. Selecting a
-topic may fill domain-specific values and add domain-specific evidence, but must not
-remove or weaken any artifact, validation, or release gate in this specification.
+The selected topic is BeyondGreen and is projected through `config/topic.yaml`.
+Topic-specific values may add evidence but must not remove or weaken any artifact,
+validation, or release gate in this specification.
 
 The harness must support five moments in the project lifecycle:
 
@@ -83,12 +101,19 @@ subdirectories may be extended, but required paths and meanings are stable.
 ├── evaluation/
 │   ├── cases.jsonl
 │   ├── scoring-rubric.yaml
-│   └── challenging-cases.yaml
+│   ├── challenging-cases.yaml
+│   ├── arm-visible/
+│   └── verifier-only/
 ├── artifacts/
 │   ├── claims.yaml
 │   ├── runs/
 │   │   ├── baseline/
-│   │   └── advanced/
+│   │   ├── advanced/
+│   │   ├── repair-demo/
+│   │   ├── performance-secondary/
+│   │   └── replay/
+│   ├── evaluator-controls/
+│   ├── oracle-access-denial/
 │   ├── comparisons/
 │   ├── trajectories/
 │   │   ├── index.yaml
@@ -112,12 +137,13 @@ reviewed traces may enter `artifacts/trajectories/` or the final ZIP.
 
 ## 5. Topic Profile contract
 
-`config/topic.yaml` is the only required late-bound input to the generic scaffold.
-Before a topic is selected it may be absent. Once implementation starts, it must
-contain all fields below and no field may retain placeholder values.
+`config/topic.yaml` is the selected-topic projection for the generic scaffold. It
+contains the fields below plus stricter BeyondGreen v1.1 fields. The intentionally
+unresolved signals-package decision is governed by `PROJECT_SPEC.md` section 20 and
+must be resolved in Phase 0.5 before fixture work.
 
 ```yaml
-schema_version: "1.0"
+schema_version: "1.1"
 project:
   name: ""
   one_sentence_summary: ""
@@ -166,6 +192,7 @@ must expose these exact top-level commands through `make`:
 | `make solution` | Run the advanced agent solution and write a versioned advanced run. |
 | `make test` | Run deterministic unit/integration/contract tests. |
 | `make eval` | Evaluate baseline and advanced solution on the same fixed cases. |
+| `make replay` | Reproduce submitted reports from offline records without credentials. |
 | `make demo` | Run one realistic end-to-end scenario and preserve its usable output. |
 | `make artifacts-check` | Validate all schemas, links, claims, traces, disclosures, and release gates without modifying source evidence. |
 | `make submission` | Build `dist/submission.zip` only after every blocking check passes. |
@@ -232,15 +259,22 @@ control:
 Changing evaluation cases or scoring after seeing results requires a changelog entry,
 a reason, and a new evaluation-set version. The previous version remains preserved.
 
+For BeyondGreen v1.1, `cases.jsonl` and its linked manifests must represent exactly
+ten fixtures, one preserving and one false-green candidate per fixture, a 4/6
+development/held-out split, and the same 20 candidates for both arms. The scoring
+rubric must encode decision accuracy `/20`, defect recall `/10`, false-alarm rate
+`/10`, completion `/20`, the status-quo advantage, and all five frozen targets from
+`PROJECT_SPEC.md` section 9.
+
 ### 7.4 Run record
 
 Every baseline, advanced, evaluation, and demo execution used as evidence must have a
 unique immutable `run_id` and a metadata record containing at least:
 
 ```yaml
-schema_version: "1.0"
+schema_version: "1.1"
 run_id: ""
-run_type: "baseline|advanced|evaluation|demo"
+run_type: "baseline|advanced|evaluation|demo|repair_demo|performance_secondary|replay"
 started_at_utc: ""
 finished_at_utc: ""
 git_commit: ""
@@ -392,6 +426,12 @@ exception to be documented.
 configuration/instructions, tests, README, judge-facing documents, evaluation data
 that may legally be redistributed, evidence, and coding-agent traces.
 
+For BeyondGreen, redistributable `evaluation/arm-visible/` and
+`evaluation/verifier-only/` packages, evaluator-control reports, and denied-access
+evidence are mandatory archive contents. Runtime process/filesystem capabilities
+enforce oracle isolation; verifier-only artifacts are not hidden by omitting them
+from the reproducible archive.
+
 The archive must exclude at minimum:
 
 - credentials, `.env` values, tokens, cookies, and private keys;
@@ -471,7 +511,8 @@ Any failed gate blocks `make submission`.
 ## 10. Falsifiable requirements
 
 1. **Topic-independent initialization**
-   - Current: only the official rules and challenge contract exist.
+   - Current: the generic harness and BeyondGreen v1.1 topic projection exist; no
+     product code, fixture, candidate, or benchmark result exists.
    - Target: the harness can create all required artifact paths without knowing the
      domain implementation details.
    - Acceptance: initialization produces every required path with explicit incomplete
@@ -479,9 +520,9 @@ Any failed gate blocks `make submission`.
      than silently passing.
 
 2. **Late-bound Topic Profile**
-   - Current: the topic has not been selected.
-   - Target: all domain-specific requirements enter through `config/topic.yaml` and
-     populate judge-facing artifacts without weakening generic gates.
+   - Current: BeyondGreen is selected and projected through `config/topic.yaml`.
+   - Target: all domain-specific requirements remain consistent with normative v1.1
+     and populate judge-facing artifacts without weakening generic gates.
    - Acceptance: a schema-valid filled profile passes; a profile missing user,
      baseline, metric, data provenance, or safety boundaries fails validation.
 
@@ -568,18 +609,14 @@ Any failed gate blocks `make submission`.
 - [ ] `submission/CHECKLIST.md` records a pass for qualification gate and every rubric
   evidence category.
 
-## 12. Explicitly out of scope until the topic is selected
+## 12. Deferred BeyondGreen scope
 
-- Domain-specific application architecture.
-- Choice of agent framework, model, programming language, or infrastructure.
-- Actual baseline and advanced implementations.
-- Concrete evaluation inputs, primary metric values, and success threshold.
-- Domain-specific safety reviewer qualifications.
-- Final video recording and hosting provider.
-
-These choices belong to the implementation branch after the Topic Profile passes
-Gate A. They may extend this specification but must not invalidate its artifact and
-release contracts.
+Until mandatory v1.1 gates pass, the delivery harness excludes generation-migration
+scoring, a third scored arm, a full GUI, a broad mutation catalog, primary
+performance claims, and nonessential control documents. Exact package/model choices
+belong to Phase 0.5; fixtures, candidates, implementations, results, video recording,
+and hosting remain future work after explicit human approval. No later choice may
+invalidate this artifact or release contract.
 
 ## 13. Definition of done for the harness
 

@@ -1,5 +1,5 @@
 schema_version: "1.1"
-projection_of: "docs/PROJECT_SPEC.md@1.0.0"
+projection_of: "docs/PROJECT_SPEC.md@1.1.0"
 requirement_ids:
   - "AR-002"
   - "AR-005"
@@ -9,6 +9,10 @@ session_boundaries:
   - session_id: "SES-20260828-001"
     path: "artifacts/trajectories/session-boundaries/SES-20260828-001.yaml"
     authoring_transcript_eligible: false
+  - session_id: "SES-20260829-001"
+    path: "artifacts/trajectories/session-boundaries/SES-20260829-001.yaml"
+    authoring_transcript_eligible: false
+    reason: "Specification transcript remains pending automated and human trace review."
 capture_validation:
   status: "pipeline_canary_passed_not_a_representative_trace"
   category: "external_raw_trace_canary"
@@ -33,8 +37,8 @@ declared_agents:
       eligible_representative_trace: false
       reason: "Current authoring transcript excluded by EXC-001."
   solution_agents:
-    - agent_id: "SOL-GUARDIAN-001"
-      tool_and_model: "open_decision_in_PROJECT_SPEC_section_19"
+    - agent_id: "SOL-BEYONDGREEN-001"
+      tool_and_model: "open_decision_in_PROJECT_SPEC_section_20"
       purpose: "Future single orchestrator; not implemented or run."
       eligible_representative_trace: false
       reason: "No product implementation or execution exists."
@@ -46,6 +50,13 @@ declared_agents:
         - "ITR-001"
       raw_review_status: "external_pending_scan_and_human_review"
       eligible_representative_trace: false
+    - agent_id: "REV-CLAUDE-002"
+      tool_and_model: "Claude Opus 5 (claude-opus-5 via opus alias)"
+      purpose: "Bounded independent read-only review of normative BeyondGreen v1.1."
+      adopted_findings_iteration_ids:
+        - "ITR-002"
+      raw_review_status: "not_saved_to_repository; safe findings summary pending trace review"
+      eligible_representative_trace: false
 verifier_boundary:
   agent: false
   purpose: "Future deterministic owner of verifier-only oracle manifests and correctness facts."
@@ -55,4 +66,6 @@ tool_call_audit:
   private_mcp_calls: 0
   unauthorized_outside_root_calls: 0
   public_web_documentation_calls: 2
+  claude_read_only_review_invocations: 2
+  claude_review_completed_invocations: 1
 release_rule: "A future agent is covered only by an eligible chronological trace with instructions, raw digest, automated scan, human review, related iteration IDs, and related run IDs."

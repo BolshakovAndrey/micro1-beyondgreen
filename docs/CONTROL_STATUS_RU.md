@@ -2,7 +2,7 @@
 
 **Назначение:** локальный dashboard для Андрея и управляющей беседы
 **Не входит в submission ZIP:** да
-**Обновлено:** 2026-08-29 12:09 CEST
+**Обновлено:** 2026-08-29 12:55 CEST
 **Дедлайн:** 2026-08-31 20:00 CEST
 **Остаток на момент обновления:** примерно 55 часов 50 минут
 
@@ -17,22 +17,24 @@
 ## 1. Короткий статус
 
 **Control plane:** готов.
-**Global product spec:** нормативная v1.1 подготовлена в отдельном worktree,
-прошла bounded Claude review и Codex reconciliation; статус
-`NORMATIVE_V1_1_APPROVED`, ожидается перенос изменений в основной каталог.
+**Global product spec:** нормативная v1.1 прошла bounded Claude review, Codex
+reconciliation и human approval; изменения перенесены в основную ветку
+`impl/stateshift-guardian` поверх подготовительного checkpoint `dbf9d55`.
 **Product implementation:** не начата и правильно заблокирована.
 **Legacy-видео:** первая приватная часть «проблематизация и пользователь» записана;
-до публичного использования ожидается timestamped NDA/privacy review.
+public-safe копия прошла отдельный NDA/privacy review.
 **Submission evidence:** схемы подготовлены, реальные product runs и eligible traces
 ещё не созданы.
 
 Проверенное техническое состояние:
 
 - [x] Ветка: `impl/stateshift-guardian`.
-- [x] Контрольный snapshot: `5cae0e3b5a46ea56de7b36d1ef1f3799cfb19bcf`.
+- [x] Подготовительный checkpoint: `dbf9d55`.
 - [x] Node.js: `22.22.3`.
 - [x] Тесты preflight: 10/10.
-- [x] Implementation scanner: `READY_FOR_IMPLEMENTATION`.
+- [x] Реальный contamination scan: приватных совпадений не найдено.
+- [x] Implementation scanner ожидаемо `BLOCKED` только на незакрытых Phase 0.5
+  решениях и dirty-worktree checkpoint.
 - [x] Четыре официальных binary evidence-файла помечены для review и исключения из
   финального ZIP.
 - [x] Python-кода и Python-runtime в проекте нет.
@@ -61,8 +63,9 @@
 - [ ] **Закрыть только те архитектурные решения, которые остались необходимы для
   сокращённого verify-existing workflow.**
 
-Открыты два технических решения: публичное имя signals-пакета через безопасный
-lookup и live reasoning engine после spike.
+Открыты семь Phase 0.5 решений: signals package/license, точный lockfile, live
+reasoning engine, token/cost cap, offline replay format, fixture/class split и
+Chromium variance protocol.
 
 До выполнения этих пунктов нельзя создавать product fixtures или оптимизировать
 Guardian. Legacy-видео в отдельной приватной задаче может готовиться параллельно.
@@ -184,7 +187,7 @@ Guardian. Legacy-видео в отдельной приватной задач�
 - [x] Исправить подтверждённые Claude findings по K=0/oracle separation, green gate,
   challenging case, trace-first cycle и projection drift; повторные проверки прошли.
 - [x] Human approval глобальной спеки зафиксирован в spec-review session record.
-- [ ] После approval применить worktree changes к основной ветке и повторить проверки
+- [x] После approval применить worktree changes к основной ветке и повторить проверки
   в основном каталоге.
 - [ ] Human approval архитектурных решений.
 - [ ] Human approval session boundary.
@@ -350,21 +353,11 @@ bundle и честным accept/reject verdict.
 
 ## 5. Ближайший checkpoint для новой нейтральной задачи
 
-Следующая задача не пишет product code. Она должна независимо прочитать только
-разрешённые public/clean-room contracts и:
-
-1. создать новый правдивый `SESSION_BOUNDARY` и остановиться для human approval;
-2. после approval внести v1.1 normative amendment в `docs/PROJECT_SPEC.md`;
-3. синхронизировать обязательные English submission contracts, не копируя этот
-   локальный русский dashboard;
-4. доказать отсутствие противоречий: 10 fixtures, 20 candidates, два scored arms,
-   `verify-existing`, K=0, oracle isolation и предложенные thresholds;
-5. вернуть diff, список закрытых/открытых решений и запросить финальное human
-   approval спеки;
-6. не создавать fixtures и implementation до этого approval.
-
-После одобрения поправки следующая implementation-задача начинает не с кода, а с
-проверки trace capture. Первый product milestone — только `SSG-D01` vertical slice.
+Следующая submission-eligible задача начинает не с product code, а с нового
+implementation `SESSION_BOUNDARY`, его human approval и trace-first dry run. Затем
+она закрывает и замораживает только семь Phase 0.5 решений, повторяет полный
+implementation preflight и лишь после зелёного gate начинает один полный `BG-D01`
+vertical slice. `BG-D02`–`BG-D10` запрещены до review готового D01.
 
 ## 6. Параллельный путь legacy-видео — PARALLEL
 

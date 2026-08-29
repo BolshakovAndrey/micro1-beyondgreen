@@ -1,0 +1,125 @@
+schema_version: "1.1"
+session_id: "SES-20260829-001"
+started_at_utc: "2026-08-29T09:57:52Z"
+agent:
+  tool: "Codex desktop"
+  model: "GPT-5"
+  purpose: "Prepare and independently review the BeyondGreen normative v1.1 specification without creating product code, fixtures, benchmark runs, or implementation artifacts."
+context:
+  repository_root: "."
+  allowed_paths:
+    - "AGENTS.md"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260829-001.yaml"
+    - "artifacts/trajectories/index.yaml"
+    - "artifacts/provenance/index.yaml"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/PROJECT_SPEC_RU.md"
+    - "docs/EVALUATION.md"
+    - "docs/DIAGRAMS_RU.md"
+    - "docs/SUBMISSION_ARTIFACTS_SPEC.md"
+    - "docs/IMPROVEMENT_CHANGELOG.md"
+    - "docs/CONTROL_PLANE_SHA256SUMS"
+    - "config/cleanroom.json"
+    - "config/topic.yaml"
+    - "package.json"
+    - ".node-version"
+    - "scripts/"
+    - "test/"
+    - "tests/"
+    - ".agents/skills/claude/SKILL.md"
+    - ".agents/skills/claude/references/context-contract.md"
+    - ".agents/skills/claude/scripts/run-review.sh"
+    - "tmp/claude-v1.1-review/"
+  public_sources:
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  private_environment_variables_present: []
+controls:
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  private_denylist_available_to_scanner_only: false
+  private_paths_resolve_outside_repository: false
+  raw_trace_location: "external_local_only"
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "candidate_pending_human_review"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: ""
+human_approval:
+  status: "approved"
+  approver: "repository owner"
+  approved_at_utc: "2026-08-29T10:01:11Z"
+  approval_evidence: "Explicit user message approving SESSION_BOUNDARY SES-20260829-001."
+  post_approval_scope_evidence: "Explicit user message directing continuation with the bounded Claude review; scope limited to the project skill contract, read-only wrapper, and ignored local prompt directory."
+  reconciliation_scope_evidence: "User-required independent verification of every actionable Claude finding; added only the clean metadata paths cited by the reviewer."
+normative_spec_approval:
+  status: "approved"
+  approver: "repository owner"
+  approved_at_utc: "2026-08-29T10:46:39Z"
+  approval_evidence: "Explicit user message approving docs/PROJECT_SPEC.md@1.1.0 as the normative BeyondGreen specification and accepting Phase 0.5 TBD items as mandatory pre-implementation gates."
+  implementation_authorized: false
+  implementation_blockers:
+    - "Transfer approved changes to the main branch."
+    - "Run real contamination preflight with authorized external environment paths."
+    - "Create and obtain approval for a new implementation SESSION_BOUNDARY."
+    - "Pass the eligible trace-first gate."
+  git_commit_or_push_authorized: false
+boundary_review:
+  status: "approved_for_specification_only"
+  shared_memory: "Not read because it is outside the clean repository root."
+  tool_scope: "Repository shell and file tools only; browser, connected apps, private MCP state, and external workspaces were not used."
+  environment_probe: "Variable presence and path relationship only; no environment values or private contents were printed."
+  environment_result: "MICRO1_PRIVATE_DENYLIST and MICRO1_PRIVATE_TRACE_DIR were not present in this task environment; external-path validation remains pending until implementation preflight is run with user-supplied external paths."
+  blockers:
+    - "Product development remains prohibited after specification review until separate explicit human approval of normative v1.1."
+tool_call_audit:
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  outside_root_reads: 0
+  outside_root_writes: 0
+validation:
+  boundary_yaml_review: "passed"
+  unit_tests: "passed_10_of_10"
+  json_parse: "passed_package_and_cleanroom_config"
+  yaml_parse: "passed_topic_trajectory_provenance_and_boundary"
+  specification_parity: "passed_21_sections_43_requirement_rows"
+  requirement_reference_consistency: "passed"
+  target_projection_consistency: "passed_five_targets"
+  oracle_boundary_assertions: "passed"
+  git_diff_check: "passed"
+  claude_review:
+    model: "claude-opus-5_via_opus_alias"
+    pre_fix_verdict: "FAIL"
+    invocation_attempts: 2
+    completed_attempts: 1
+  codex_reconciliation: "confirmed_and_corrected_actionable_spec_findings"
+  structural_control_preflight: "READY_FOR_CLEAN_BRANCH_using_external_stdin_canary_not_real_private_denylist"
+  structural_implementation_preflight: "BLOCKED_on_two_intentional_phase_0_5_TBD_tokens_and_detached_HEAD"
+  real_private_denylist_scan: "not_run_environment_paths_absent"
+  product_implementation_authorized: false
+  product_implementation_blocker: "This task is specification-only; product code, fixtures, benchmark runs, and implementation artifacts are prohibited."

@@ -1,4 +1,6 @@
-# Scope: complete pre-Git control-plane surface except this manifest and ignored tmp/.
+# Scope: approved post-v1.1 repository surface at post-handoff reconciliation.
+# Excludes this self-referential manifest, ignored temporary/build paths, and the
+# local-only supervisor/premortem documents excluded by the task boundary.
 # Private denylist and raw traces are external and intentionally absent.
 755f6182f34243435e4ee06ec2d152a3182d90a094b35dea118070cfdcad4a73  ./.agents/skills/claude/SKILL.md
 4cbc369194aaa2d38ec5d224c6d326039a645770bbcf12ab8fd2e9aa1713f16a  ./.agents/skills/claude/agents/openai.yaml
@@ -6,27 +8,38 @@ b014ad92986cfbe2cf810b2a73b2533c915b960165372e2ecb6b41aa57d0ecb7  ./.agents/skil
 f19a7c539ed4054fad6f5671b4e2eac5f3a663562c18b29906165d72831ec429  ./.agents/skills/claude/scripts/run-review.sh
 a4ea205ef27666e1eca67e359f27d7d17e5d64204f7a9e44861eb52a92e57e63  ./.gitignore
 9c579c4eab1d526e689fe7cda201a0ab2f39070304043bb55c459a3d90954250  ./.node-version
-d44c144ad9aba5f8e255d702712379e33ddc6a6e158ae5f8923135f6be1b2e4c  ./AGENTS.md
+156131b30ba569ebcb3eb9396ea004a38245e07e5dc2a798b7f2922a6fc35e8f  ./AGENTS.md
 c22ff1b900a43a16c6bae387a89d7b6941bfef90d7e1176be765d219c3f17dcf  ./README.md
-2554510d407f1442dfaec0b054d6b25d0cd5adcb2e020dab612aefd26a6c3e56  ./config/cleanroom.json
+b1122a2a5061d13e498ba225f1118f83640ff43021a99309bae97b818e53ebf6  ./artifacts/provenance/index.yaml
+dd549160809e21e1ea72797ad3ca0080d66c9751e3125a00b4a30edf0733b018  ./artifacts/trajectories/TRACE_CAPTURE_DRY_RUN.md
+89c00fefec9cbbc95608f87dd7d3998323515ad0cc4ecfcceec5609bb37136c8  ./artifacts/trajectories/index.yaml
+de688fa7138cc7bb23f6af3cc89ade703d9dc35df093e17120563f5d6cbca581  ./artifacts/trajectories/session-boundaries/SES-20260828-001.yaml
+60be38dedea136fb834e2b304240057813125c07bd6bbb36c631c79f77800d18  ./artifacts/trajectories/session-boundaries/SES-20260829-001.yaml
+db3097ae6a95a4941b07a14ed1726ba49c0b46ba26f78ac8ec42ad67dccde1d6  ./config/cleanroom.json
+4ef07c6132c4c5e2807b735a8d4b5195b94c3bca1baff1fcc876d60e90e0f835  ./config/topic.yaml
 2f62f6015b04d3b3cc692bd7f207d0cdf1df1c5f994955c85daa8639831c60cd  ./docs/CHALLENGE.md
 037c8b943a211eb100ebea288877f9ecc9439ccf53528dc24fcec3e6c34a5afa  ./docs/CLEAN_ROOM_POLICY.md
 2387a038826853ba76bb31db25e64dbabba547e57827009e8fef93346680697d  ./docs/CONTROL_PLANE_LOG.md
+30d80bcace6e62ca8f7e488c670c604bede6a8dc5085c79bbc126cc7830d1283  ./docs/DIAGRAMS_RU.md
+e11ccf51a44ac77bb86628c6a4ccb62f0c5c27a79a41768b06bb1d8bf2dc3d74  ./docs/EVALUATION.md
 be08f592c3735134a75e20b76dc697e2ab786faa6fd245eed6813fdf10c98972  ./docs/HACKATHON_RULES.md
+a4049734aabd5584895f7acdc4d558b6117c70b6fe9af8f576cb82083f173b15  ./docs/IMPROVEMENT_CHANGELOG.md
 80261cd4b72eb9698b544009ed178ec3cfe43146c2845d2f9102fd277d42ffa2  ./docs/MICRO1_INSTRUCTIONS_RU.md
-dddd32fcbcfe166f3d70ba658e07b397c6bacd4d29b5a9d7ba46051c8ba4af41  ./docs/PREFLIGHT_CHECKLIST.md
+e54b3e526695b3098b944e2eeada18f58269cba9163c08101d74d763936eee24  ./docs/PREFLIGHT_CHECKLIST.md
+fed6d468cfb649248d9cce02cece8c9b11cfade856dd71a88735e93e9818a860  ./docs/PROJECT_SPEC.md
+f128d54d13157476b199c428c1354e69f7f954b8cbad3a106e77e19567eb20dc  ./docs/PROJECT_SPEC_RU.md
 61d91935438bfbe54b895b7e5697284061447b3c61dfe332c917576db3eff885  ./docs/PROVENANCE.md
-66104c521cbde2174931804df6bebae1bbcf8d5256b207c4ca26b40c83e2c990  ./docs/SUBMISSION_ARTIFACTS_SPEC.md
-4de57e76a896d7e7a1250930341eaa6bda97336bb184aa977e0431089dfc7b24  ./docs/TRACE_POLICY.md
+f60234d69816de324fbad015d126db4b0cb681830ec57afdbd8f9fdf1f67752b  ./docs/SUBMISSION_ARTIFACTS_SPEC.md
+16542e7533fe8466cac556ade96aa1b92b7bcc74dc4cd6e14f2c877332ebd5eb  ./docs/TRACE_POLICY.md
 1c2549ef51abee35a558a14f9f86531eddcc44183ad05326d498837cb914b7c3  ./docs/evidence/2026-08-27-reminder-email.md
 91fa449f442968be825b2b2f0a8537317c0cfc874c38b092cd4ec53b944916fe  ./docs/evidence/SHA256SUMS
 55eb8908085982e7ed0747cf2200fc6207acfce540166891c34fe27c6f5642eb  ./docs/evidence/judging-rubric.png
 be811a1d09ebedef2fc853544132b287924fd0f76d04301ea554b4c7e2d88fc4  ./docs/evidence/micro1-first-hackathon-instructions.pdf
 10901ec7d06f49163a4fbd54d499b7de33ba7442e5cf7e1586f5d5a07ca5f296  ./docs/evidence/tie-break-order.png
 5914a6e00d393aa43dfc30824f3c94318f1b4d1f84bc4c9046a94ee77c67e76c  ./docs/evidence/timeline.png
-34959fafc438f05f5783f67afaded181247848950cff093b9eb114e6b7378e5e  ./package.json
+6a875b0dc8193004607eee624611440618bf8016cf34e2d96a9b1faaea08a70e  ./package.json
 243f600a8a331096f84fd0d1bc212bb5cf82ebb5aa480349e720efbf4e87af3d  ./scripts/preflight-check.ts
 7caf48c72542d071da26ae93af0e91e65eca4d69f3433df4cc88378f04c9da30  ./templates/ITERATION_RECORD.md
-b7368f0b52493c0ba11bcb99ebffdeca6b781510531e746fcbe3cff0dc721781  ./templates/PROVENANCE_ENTRY.yaml
-e05c0db99752b4e7268ccff9b2f765b6b9f44e45c75a9a1adb824b068a4365df  ./templates/SESSION_BOUNDARY.yaml
+20288c22d76f72c131aa4cacf015f6d8438a58b26e56826369efafe08779cef8  ./templates/PROVENANCE_ENTRY.yaml
+95e865cf835fdab789671e1f62f091b7009758426be2c8790d45f7109432f491  ./templates/SESSION_BOUNDARY.yaml
 9ac3a91a4edfd96f66e6621f8fcfaaf4e43023e5f3126ad7200345e6c1066b00  ./tests/preflight-check.test.ts

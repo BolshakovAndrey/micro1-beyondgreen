@@ -1,5 +1,5 @@
 schema_version: "1.1"
-projection_of: "docs/PROJECT_SPEC.md@1.0.0"
+projection_of: "docs/PROJECT_SPEC.md@1.1.0"
 requirement_ids:
   - "AR-002"
   - "AR-006"
@@ -29,6 +29,13 @@ record_type_schemas:
       - "arm_visible_manifest_sha256"
       - "verifier_oracle_manifest_path"
       - "verifier_oracle_manifest_sha256"
+      - "behavior_class"
+      - "challenging_case"
+      - "preserving_candidate_path"
+      - "preserving_candidate_sha256"
+      - "false_green_candidate_path"
+      - "false_green_candidate_sha256"
+      - "visible_gate_all_green"
       - "public_anchor_ids"
       - "author"
       - "clean_room_attestation"
@@ -65,9 +72,10 @@ records:
     origin: "Independently authored candidate specifications from official challenge contracts and supervisor-provided clean product context."
     copied_source_expression: false
     private_material_used_as_source: false
-    automated_scan: "passed_implementation_preflight"
+    automated_scan: "structural_preflight_blocked_real_private_denylist_not_present"
     human_review: "pending"
     redistribution: "project_authored_candidate"
+    superseded_by: "PRV-003"
   - record_id: "PRV-002"
     record_type: "artifact_candidate"
     artifact_paths:
@@ -89,6 +97,29 @@ records:
     automated_scan: "passed_control_preflight"
     human_review: "pending"
     redistribution: "judge_facing_metadata_only"
+  - record_id: "PRV-003"
+    record_type: "artifact_candidate"
+    artifact_paths:
+      - "artifacts/trajectories/session-boundaries/SES-20260829-001.yaml"
+      - "docs/PROJECT_SPEC.md"
+      - "docs/PROJECT_SPEC_RU.md"
+      - "docs/EVALUATION.md"
+      - "docs/DIAGRAMS_RU.md"
+    requirement_ids:
+      - "AR-001"
+      - "AR-002"
+      - "AR-005"
+    created_during_event: true
+    author:
+      kind: "human_with_agent"
+      agent_id: "COD-CODEX-001"
+      model: "GPT-5"
+    origin: "Approved clean specification-only session and independently reconciled BeyondGreen v1.1 candidate."
+    copied_source_expression: false
+    private_material_used_as_source: false
+    automated_scan: "structural_preflight_blocked_real_private_denylist_not_present"
+    human_review: "normative_content_approved_contamination_review_pending"
+    redistribution: "project_authored_normative_spec_implementation_not_authorized"
 public_anchors:
   - record_id: "SRC-001"
     record_type: "public_anchor"
@@ -164,6 +195,6 @@ public_anchors:
     fact_or_behavior_used: "Public signals capability and license feasibility only."
 library_selection:
   state: "open_decision"
-  rule: "Record exact package, version, owner, license/terms, and used behavior after approval and before Phase 0.5."
+  rule: "Select and record exact package, version, owner, license/terms, and used behavior during Phase 0.5, then freeze them before fixture prose or implementation."
 fixture_records: []
 future_fixture_rule: "Each future fixture uses record_type fixture_provenance and requires both manifest hashes, anchors, clean-room attestation, automated scan, and human review before implementation."
