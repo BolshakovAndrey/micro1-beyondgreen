@@ -126,6 +126,74 @@ still preserve at least one evidence-backed negative or removed experiment.
   new implementation `SESSION_BOUNDARY`, and pass the eligible trace-first gate before
   any product work.
 
+## ITR-004 — Trace-first infrastructure candidate
+
+- **Observed problem:** after the branch was renamed without rewriting history, the
+  active preflight status still named `impl/stateshift-guardian`, while the real
+  implementation branch was `impl/beyondgreen`. The trace-first gate also lacked a
+  reviewed representative candidate tied to the approved implementation boundary.
+- **Hypothesis:** one minimal docs-only correction, verified by the real scanner-only
+  controls and preserved as an immutable raw trace, can demonstrate the capture and
+  review path without starting Phase 0.5 or product work.
+- **Exact change:** corrected only current branch/gate facts in
+  `docs/PREFLIGHT_CHECKLIST.md`; preserved the historical handoff and recorded the
+  subsequent rename without history rewrite; ran the approved test, scanner, and
+  trace probes; then prepared instruction, readable pending-trace, and review
+  candidates for `TRC-BG-TRACEFIRST-001`. After repository-owner approval, moved the
+  EN/RU traces to reviewed paths without changing their technical chronology, updated
+  their review status, indexed the trace, and regenerated the checksum manifest; no
+  checksum update occurred before approval.
+- **Exact commands:** `npm test`; `micro1-safe-preflight probe`;
+  `micro1-safe-preflight control`; `micro1-safe-preflight implementation`;
+  `micro1-safe-trace probe`; `git diff --check`; exact branch/HEAD, changed-file, and
+  untracked-file scope checks.
+- **Command evidence:** tests passed 10/10; scanner probe passed; control preflight
+  returned `READY_FOR_CLEAN_BRANCH`; implementation preflight reached repository
+  analysis and returned `BLOCKED` only on two intentional Phase 0.5 placeholders plus
+  the docs-only dirty-worktree warning; trace probe passed; final diff scope was
+  exactly `docs/PREFLIGHT_CHECKLIST.md` with no untracked files during the traced
+  turn.
+- **Raw trace evidence:** immutable external capture, 49,645 bytes, SHA-256
+  `ccaf8498a6ff978d94b35a576cb90ee35bf8bcf75487c281144cb31c52647f00`;
+  automated scan `passed_requires_submission_redaction`; one denylist match confined
+  to machine path metadata before virtual path redaction and zero afterward; 13
+  absolute-user-path occurrences require submission redaction; no email or
+  secret-assignment matches.
+- **Submission-candidate scan:** after redaction, the real-denylist control preflight
+  returned `READY_FOR_CLEAN_BRANCH` with zero contamination findings. A separate
+  local metadata check found zero machine/thread/tool identifier findings; four
+  official binary artifacts retained human-review notices only.
+- **Agent/model:** Codex desktop / GPT-5; approved boundary `SES-20260829-002`.
+- **Trajectory:** `TRC-BG-TRACEFIRST-001` passed automated and repository-owner
+  review and is present in `actual_traces` as the eligible representative trace for
+  `COD-CODEX-002`.
+- **Retries:** zero agent action retries. Coordinator capture had one transport retry:
+  the first PTY transfer stopped before EOF and produced no partial raw; atomic
+  capture succeeded from an exact temporary external export, which was then deleted.
+- **Run IDs:** none; no product, solution-agent, candidate, model, or benchmark run
+  occurred.
+- **Human checkpoint:** the owner was shown the exact prompt
+  `Подтверждаете: «Одобряю русскую и английскую версии TRC-BG-TRACEFIRST-001 как точный и безопасный отчёт»?`
+  and responded `Подтверждаю одобрение (Recommended)`. This is recorded as explicit
+  confirmation of the quoted statement, not as a claim that the owner typed the full
+  statement verbatim. Both Russian companion paths were available before approval.
+- **Human feedback revision:** the repository owner did not approve promotion on the
+  first review attempt because the packet had no accessible Russian-language review
+  materials. This is human feedback, not an agent retry or capture retry. Added a
+  full Russian semantic counterpart, a short plain-language Russian review card, and
+  a permanent policy requiring Russian companions before every owner checkpoint. A
+  second review then passed.
+- **Decision:** `kept`. The reviewed infrastructure artifact receives eligible
+  representative-trace credit; this does not claim product or Phase 0.5 results.
+- **Post-promotion checks:** YAML, Markdown, EN/RU fact alignment, privacy metadata
+  scan, and `git diff --check` passed; `npm test` passed 10/10; real-denylist control
+  preflight returned `READY_FOR_CLEAN_BRANCH`; implementation preflight remained
+  `BLOCKED` only on the two Phase 0.5 placeholders plus the expected dirty-worktree
+  and four binary-review notices, with zero contamination findings. The regenerated
+  control-plane manifest verified all 47 intended files with exact coverage.
+- **Next action:** separately discuss and freeze the Phase 0.5 decisions. Product
+  implementation, commit, and push remain unauthorized.
+
 Every later iteration must record observed failure, hypothesis, exact change,
 command/version, evidence/run IDs, agent/model, trajectory IDs, errors/retries,
 genuine human checkpoint, decision (`kept`, `revised`, or `removed`), and next action.

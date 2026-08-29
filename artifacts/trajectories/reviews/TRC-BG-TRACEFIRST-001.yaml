@@ -1,0 +1,95 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-TRACEFIRST-001"
+status: "passed"
+category: "coding_agent"
+agent_id: "COD-CODEX-002"
+tool_and_model: "Codex desktop / GPT-5"
+purpose: "Minimal trace-first branch-status correction and boundary/preflight verification."
+session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260829-002.yaml"
+instructions_path: "artifacts/trajectories/instructions/TRC-BG-TRACEFIRST-001.md"
+candidate_trace_path: "artifacts/trajectories/reviewed/TRC-BG-TRACEFIRST-001.md"
+candidate_trace_ru_path: "artifacts/trajectories/reviewed/TRC-BG-TRACEFIRST-001_RU.md"
+human_review_companion_ru_path: "artifacts/trajectories/reviews/TRC-BG-TRACEFIRST-001_RU.md"
+related_iteration_ids:
+  - "ITR-004"
+related_run_ids: []
+raw_capture:
+  bytes: 49645
+  sha256: "ccaf8498a6ff978d94b35a576cb90ee35bf8bcf75487c281144cb31c52647f00"
+  immutable_capture: "succeeded"
+  outside_repository: true
+  raw_path_disclosed: false
+  raw_file_read_by_packaging_task: false
+  transport_retries: 1
+  retry_summary: "The first PTY transfer stopped before EOF because of terminal input limits; no partial raw was written. An exact temporary export outside the worktree was captured atomically on retry and then deleted."
+raw_automated_scan:
+  status: "passed_requires_submission_redaction"
+  denylist_matches_before_virtual_path_redaction: 1
+  denylist_matches_after_virtual_path_redaction: 0
+  denylist_match_confined_to_machine_path_metadata: true
+  email_matches: 0
+  secret_assignment_matches: 0
+  coordinator_inspected_denylist_term: false
+  coordinator_inspected_external_raw_path: false
+candidate_repository_scan:
+  command: "micro1-safe-preflight control"
+  status: "passed"
+  verdict: "READY_FOR_CLEAN_BRANCH"
+  contamination_findings: 0
+  machine_thread_tool_metadata_findings: 0
+  metadata_check: "local_repository_candidate_check_passed"
+  binary_review_notices: 4
+  binary_review_notices_only: true
+redactions:
+  - category: "absolute_user_path"
+    occurrences: 13
+    disposition: "Replace with stable repository-relative paths or <REDACTED_MACHINE_PATH>."
+  - category: "denylist_match_in_machine_path_metadata"
+    occurrences_before_virtual_path_redaction: 1
+    occurrences_after_virtual_path_redaction: 0
+    disposition: "Removed by machine-path metadata redaction without changing technical meaning."
+  - category: "email"
+    occurrences: 0
+    disposition: "No redaction required."
+  - category: "secret_assignment"
+    occurrences: 0
+    disposition: "No redaction required."
+submission_candidate_exclusions:
+  - category: "thread_message_and_tool_call_ids"
+    count: "not_reported"
+    disposition: "Excluded from the readable candidate; not required for technical meaning."
+  - category: "username_cwd_and_external_path_metadata"
+    count: "not_reported_beyond_13_absolute_user_path_occurrences"
+    disposition: "Excluded or normalized to stable repository-relative paths."
+  - category: "environment_values"
+    count: 0
+    disposition: "No values included."
+review:
+  reviewer: "Codex coordinator"
+  reviewed_at_utc: "2026-08-29T11:53:03Z"
+  technical_meaning_preserved_candidate: true
+  candidate_review_status: "passed_repository_owner_review"
+human_review:
+  status: "passed"
+  reviewer_role: "repository owner"
+  reviewed_at_utc: "2026-08-29T12:16:39Z"
+  approval_prompt_exact: "Подтверждаете: «Одобряю русскую и английскую версии TRC-BG-TRACEFIRST-001 как точный и безопасный отчёт»?"
+  owner_response_exact: "Подтверждаю одобрение (Recommended)"
+  approval_interpretation: "The response explicitly confirms the approval statement quoted in the prompt; it does not claim the owner typed the full quoted statement verbatim."
+  owner_approval_evidence: "Explicit confirmation recorded in approval_prompt_exact and owner_response_exact after both required Russian companions were available."
+  required_russian_companion_paths:
+    - "artifacts/trajectories/reviewed/TRC-BG-TRACEFIRST-001_RU.md"
+    - "artifacts/trajectories/reviews/TRC-BG-TRACEFIRST-001_RU.md"
+  russian_companions_available: true
+  russian_companions_available_at_approval: true
+  approval_evidence_must_reference_russian_companion: true
+  automated_scan: "passed"
+  automated_scan_scope: "submission_candidate_after_redaction"
+  raw_scan_status: "passed_requires_submission_redaction"
+  technical_meaning_preserved: true
+promotion:
+  final_pass_allowed: true
+  actual_trace_indexed: true
+  authorized_scope: "Promote this trace-first report and proceed only to separate discussion and freeze of Phase 0.5 decisions."
+  prohibited_scope: "Product code, commit, and push remain unauthorized."
+  rule: "Repository-owner review passed; this trace may be indexed in actual_traces within the authorized scope only."

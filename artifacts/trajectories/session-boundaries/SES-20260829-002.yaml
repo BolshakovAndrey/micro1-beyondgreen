@@ -51,9 +51,9 @@ controls:
   raw_trace_location: "external_local_only"
 attestation:
   submission_eligible_at_start: false
-  submission_eligible_after_boundary: false
-  repository_artifacts_status: "candidate_pending_human_review"
-  authoring_transcript_status: "pending_review"
+  submission_eligible_after_boundary: true
+  repository_artifacts_status: "reviewed_trace_first_approved"
+  authoring_transcript_status: "eligible"
   authoring_transcript_exclusion_category: ""
 human_approval:
   status: "approved"
@@ -72,15 +72,13 @@ git_state:
       commit_history_rewritten: false
       evidence: "Factual provenance supplied by the repository owner in the clean task packet; current branch and commit independently verified."
 boundary_review:
-  status: "approved_for_trace_first_transition_only"
+  status: "trace_first_passed_phase_0_5_pending"
   shared_memory: "Not read because it is outside the clean repository root and forbidden by this task."
   tool_scope: "Repository shell and file tools only; browser, connected apps, private MCP resources, external workspaces, and shared memory were not used."
   environment_probe: "Variable presence and repository-path relationship only; no values or private contents were printed."
   environment_result: "The variables remain absent from the general task shell. The owner-authorized scanner-only launcher confirmed boolean presence and outside-repository resolution, then injected values only into the scanner subprocess. No values or external paths were exposed, persisted, or guessed."
   blockers:
     - "Two expected Phase 0.5 placeholder tokens block implementation readiness."
-    - "The uncommitted boundary file produces the expected dirty-worktree warning."
-    - "Eligible trace-first capture remains pending."
 tool_call_audit:
   browser_calls: 0
   connected_app_calls: 0
@@ -107,7 +105,7 @@ validation:
   binary_human_review_notices: 4
   dirty_worktree_warning: "expected_uncommitted_boundary_file"
   product_implementation_authorized: false
-  product_implementation_blocker: "Eligible trace-first capture and resolution and freeze of the Phase 0.5 decisions are required before product implementation."
+  product_implementation_blocker: "Resolution and freeze of the Phase 0.5 decisions are required before product implementation."
 boundary_follow_up:
   checked_at_utc: "2026-08-29T11:15:49Z"
   scope: "Boolean-only environment probe and real package-script preflight attempts; no product work."
@@ -164,3 +162,35 @@ authorized_scanner_launcher_follow_up:
   implementation_readiness: false
   submission_eligible_after_boundary: false
   human_approval_status: "approved_for_trace_first_transition_only"
+trace_first_gate:
+  checked_at_utc: "2026-08-29T12:16:39Z"
+  status: "passed"
+  trace_id: "TRC-BG-TRACEFIRST-001"
+  submission_eligible_after_approved_boundary: true
+  authoring_transcript_status: "eligible"
+  actual_trace_indexed: true
+  technical_meaning_preserved: true
+  approval_prompt_exact: "Подтверждаете: «Одобряю русскую и английскую версии TRC-BG-TRACEFIRST-001 как точный и безопасный отчёт»?"
+  owner_response_exact: "Подтверждаю одобрение (Recommended)"
+  approval_interpretation: "The response explicitly confirms the approval statement quoted in the prompt; it does not claim the owner typed the full quoted statement verbatim."
+  russian_materials_available_at_approval:
+    - "artifacts/trajectories/reviewed/TRC-BG-TRACEFIRST-001_RU.md"
+    - "artifacts/trajectories/reviews/TRC-BG-TRACEFIRST-001_RU.md"
+  authorized_scope: "Trace-first promotion and transition only to separately gated Phase 0.5 discussion and freeze."
+  product_implementation_authorized: false
+  phase_0_5_started: false
+  commit_authorized: false
+  push_authorized: false
+  validation:
+    yaml: "passed"
+    markdown: "passed"
+    en_ru_fact_alignment: "passed"
+    private_machine_thread_tool_metadata_findings: 0
+    unit_tests: "passed_10_of_10"
+    control_preflight: "READY_FOR_CLEAN_BRANCH_exit_0"
+    implementation_preflight: "BLOCKED_exit_1_on_two_phase_0_5_placeholders"
+    implementation_contamination_findings: 0
+    dirty_worktree_warning: true
+    binary_human_review_notices: 4
+    checksum_digest_verification: "passed"
+    checksum_exact_coverage: "passed_47_files"

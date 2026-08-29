@@ -2,11 +2,12 @@
 
 **Current scanner state:** `BLOCKED_FOR_IMPLEMENTATION`.
 **Product work state:** normative `docs/PROJECT_SPEC.md@1.1.0` is human-approved, but
-its transfer to named branch `impl/stateshift-guardian` removes only the prior
-detached-HEAD/handoff blocker. Implementation remains blocked pending Phase 0.5,
-real contamination preflight, a new approved implementation `SESSION_BOUNDARY`, and
-a successful eligible trace-first gate. Scanner output is not a substitute for these
-gates.
+the current branch is `impl/beyondgreen` at checkpoint
+`4af117762fa15b02d81b75e23d9b22113caf48ea`. The approved implementation boundary
+and real scanner-only contamination preflight remove those two earlier blockers.
+The eligible trace-first gate has now passed. Implementation remains blocked only on
+Phase 0.5 decision resolution/freeze; neither trace approval nor scanner output is a
+claim of implementation readiness.
 
 ## Phase 1 — Control plane
 
@@ -48,14 +49,18 @@ READY_FOR_CLEAN_BRANCH
 - [x] Transfer the approved v1.1 surface to named non-default branch
       `impl/stateshift-guardian`; post-handoff reconciliation started at checkpoint
       `dbf9d55123bef9fc38ec5e9b99dbc56f37aa9290`.
+- [x] Subsequently rename `impl/stateshift-guardian` to `impl/beyondgreen` without
+      rewriting history; current checkpoint is
+      `4af117762fa15b02d81b75e23d9b22113caf48ea`.
 - [x] Start a new authoring task without an inherited private transcript.
 - [x] Obtain explicit human approval of specification-only boundary
       `SES-20260829-001` with approver and approval evidence.
 - [x] Create a factual approved session-boundary record before normative editing.
 - [x] Restrict authorized product paths to the clean repository root; compensating
       tool-call audit records no unauthorized outside-root access.
-- [ ] Provide the real private denylist only through `MICRO1_PRIVATE_DENYLIST` in the
-      future implementation task; it was not present in this specification task.
+- [x] Provide the real private denylist only to the scanner subprocess through the
+      owner-authorized control interface; its value and external path remain
+      undisclosed to the general task shell and repository.
 - [x] Confirm the tool audit shows no external private workspace read, browser call,
       connected-app call, or private-MCP call.
 - [ ] Complete automated and human review of the current specification transcript;
@@ -116,37 +121,48 @@ remaining semantic gates above still apply.
 
 ## Current clean-task result
 
-- Session controls: specification-only boundary approved at
-  `artifacts/trajectories/session-boundaries/SES-20260829-001.yaml`; transcript review
-  remains pending.
-- Real `MICRO1_PRIVATE_DENYLIST` and `MICRO1_PRIVATE_TRACE_DIR` paths were absent and
-  were not guessed or inspected. The structural preflight used an external stdin
-  canary and is not contamination clearance.
-- Unit tests: `10 passed` on Node 22.22.3.
-- Structural control preflight: `READY_FOR_CLEAN_BRANCH` with an external stdin
-  canary; it was not rerun with the real denylist and is not contamination clearance.
-- Post-handoff branch check: named branch `impl/stateshift-guardian` at reconciliation
-  checkpoint `dbf9d55123bef9fc38ec5e9b99dbc56f37aa9290`; the detached-HEAD blocker is
-  removed.
-- Post-handoff validation: unit tests passed 10/10; JSON and YAML parsing,
-  `git diff --check`, exact checksum coverage, and all 41 listed SHA-256 digests
-  passed.
-- Structural control preflight: `READY_FOR_CLEAN_BRANCH` with a non-private external
-  stdin canary. The task-excluded local-only supervisor/premortem documents are now
-  explicit scanner-ignore paths and are absent from the checksum surface.
-- Structural implementation scanner: `BLOCKED` on the two intentional Phase 0.5
-  placeholder tokens, with a dirty-worktree warning and four expected official
-  binary-review notices; it reported no branch error. A structural run is not
-  contamination clearance.
-- Reconciliation process caveat: the initial self-scan preceded the exact local-only
-  scanner ignores, and one transient shortened test-output file was mistakenly
-  written outside the repository root and immediately removed. No excluded content
-  was printed or retained, but this task transcript is not submission eligible and
-  still requires human review.
+- Current branch: `impl/beyondgreen` at clean checkpoint
+  `4af117762fa15b02d81b75e23d9b22113caf48ea`. It was renamed after the historical
+  `impl/stateshift-guardian` handoff without rewriting commits.
+- Implementation boundary `SES-20260829-002` is explicitly approved for transition
+  to the separately gated trace-first checkpoint. That checkpoint has now passed;
+  only separate Phase 0.5 discussion and freeze may follow, while product
+  implementation remains unauthorized.
+- The owner-controlled scanner-only probe confirmed the denylist and raw-trace
+  directory are available outside the repository without exposing either value or
+  external path. The real contamination preflight passed with no contamination
+  findings.
+- Trace-first validation at checkpoint `4af1177` passed `npm test` with 10/10 tests,
+  scanner-only `probe`, and control preflight with `READY_FOR_CLEAN_BRANCH`. The
+  implementation scanner reached repository analysis and returned `BLOCKED` only on
+  the two intentional Phase 0.5 placeholders plus the current docs-only dirty-tree
+  warning; four official binary artifacts retain their human-review notices. These
+  expected blockers do not invalidate contamination clearance.
+- The owner-controlled trace `probe` confirmed the external raw-trace directory is
+  present, outside the repository, and readable/writable. The owner-provided launcher
+  SHA-256 is `0abf0e3aca018b2deea1f0877440bb8d0ae32eab2414cc385a1b7cd69b21c1bc`;
+  this task did not independently verify it or inspect the launcher or external path.
+- Coordinator raw export and immutable capture for `TRC-BG-TRACEFIRST-001` succeeded;
+  the automated raw scan passed with submission redaction required. A readable
+  redaction candidate and pending review record now preserve the technical sequence.
+  The separate real-denylist repository-candidate scan passed after redaction with
+  zero contamination findings and zero machine/thread/tool metadata findings in the
+  local check; four official binary-review notices remain. Repository-owner human
+  review initially received no owner approval because the packet lacked accessible
+  Russian materials. After a full Russian counterpart and plain-language review card
+  became available, the owner explicitly confirmed the quoted approval statement.
+  Human review passed, technical meaning was confirmed, and
+  `TRC-BG-TRACEFIRST-001` is now indexed as the eligible representative trace.
+- Phase 0.5 package, model, replay, budget, fixture-assignment, and Chromium decisions
+  remain unresolved and are now the next and only pre-product decision gate. Product
+  implementation is not ready or authorized.
+- Post-promotion verification: tests passed 10/10; control preflight returned
+  `READY_FOR_CLEAN_BRANCH`; implementation preflight remained `BLOCKED` on the two
+  Phase 0.5 placeholders plus the expected dirty-worktree and four binary-review
+  notices, with no contamination findings. The regenerated checksum manifest covers
+  and verifies exactly 47 intended files.
 - Global product specification: BeyondGreen v1.1 approved at
   `2026-08-29T10:46:39Z`; this approval does not authorize implementation.
-- Current specification transcript: `pending_review`; it is not yet indexed as an
-  eligible representative trace.
 - Concrete fixture behavior/provenance, held-out membership files, product code,
   solution-agent prompts, and benchmark runs: not created.
 

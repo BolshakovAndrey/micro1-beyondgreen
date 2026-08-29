@@ -114,3 +114,31 @@ they occur:
 - explicit decision to retain, revise, or remove an experiment.
 
 Synthetic approval text must never be presented as a real human checkpoint.
+
+## 8. Russian plain-language companion
+
+Before every repository-owner human-review checkpoint, the review packet must include
+a Russian plain-language companion. It must explain, in accessible language:
+
+- the evidence the owner is being asked to review;
+- every omission, exclusion, and privacy redaction;
+- errors, retries, and human feedback;
+- known risks and unresolved uncertainty;
+- all remaining blockers; and
+- the exact actions that approval will and will not authorize.
+
+An English judge-facing or submission artifact does not replace the Russian
+companion required for owner approval. Owner approval evidence must identify the
+exact Russian companion path or paths that were available when approval was given.
+Unavoidable technical identifiers may remain, but each must be explained in Russian
+at first use; unexplained English-language jargon is forbidden in the owner review
+card.
+
+## 9. Current BeyondGreen trace-first status
+
+`TRC-BG-TRACEFIRST-001` passed automated and repository-owner human review after both
+required Russian companions were available. It is the eligible representative trace
+for `COD-CODEX-002`. This approval authorizes only trace indexing and transition to
+the separately gated Phase 0.5 discussion and freeze; Phase 0.5 remains the next and
+only pre-product decision gate, and product implementation, commit, and push remain
+unauthorized.

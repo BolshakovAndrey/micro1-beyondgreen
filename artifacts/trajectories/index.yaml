@@ -4,7 +4,7 @@ requirement_ids:
   - "AR-002"
   - "AR-005"
   - "NFR-004"
-status: "schema_valid_no_eligible_representative_traces"
+status: "schema_valid_with_eligible_representative_trace"
 session_boundaries:
   - session_id: "SES-20260828-001"
     path: "artifacts/trajectories/session-boundaries/SES-20260828-001.yaml"
@@ -13,6 +13,12 @@ session_boundaries:
     path: "artifacts/trajectories/session-boundaries/SES-20260829-001.yaml"
     authoring_transcript_eligible: false
     reason: "Specification transcript remains pending automated and human trace review."
+  - session_id: "SES-20260829-002"
+    path: "artifacts/trajectories/session-boundaries/SES-20260829-002.yaml"
+    approval_status: "approved"
+    approval_scope: "Transition to the separately gated eligible trace-first checkpoint only."
+    authoring_transcript_eligible: true
+    reason: "TRC-BG-TRACEFIRST-001 passed automated and repository-owner review and is indexed as the eligible representative trace."
 capture_validation:
   status: "pipeline_canary_passed_not_a_representative_trace"
   category: "external_raw_trace_canary"
@@ -21,7 +27,32 @@ capture_validation:
   raw_sha256: "522aeeb01e2bc611a755b3ef047b56c3566c9b94629f4431e05390d48454e884"
   raw_path_disclosed: false
   representative_trace_credit: false
-actual_traces: []
+actual_traces:
+  - trace_id: "TRC-BG-TRACEFIRST-001"
+    agent_id: "COD-CODEX-002"
+    category: "coding_agent"
+    tool_and_model: "Codex desktop / GPT-5"
+    purpose: "Minimal trace-first branch-status correction and boundary/preflight verification."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260829-002.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-TRACEFIRST-001.md"
+    trace_path: "artifacts/trajectories/reviewed/TRC-BG-TRACEFIRST-001.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-TRACEFIRST-001_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-TRACEFIRST-001.yaml"
+    human_review_companion_ru_path: "artifacts/trajectories/reviews/TRC-BG-TRACEFIRST-001_RU.md"
+    related_iteration_ids:
+      - "ITR-004"
+    related_run_ids: []
+    raw_sha256: "ccaf8498a6ff978d94b35a576cb90ee35bf8bcf75487c281144cb31c52647f00"
+    automated_scan: "passed"
+    automated_scan_scope: "submission_candidate_after_redaction"
+    raw_scan_status: "passed_requires_submission_redaction"
+    candidate_contamination_findings: 0
+    candidate_machine_thread_tool_metadata_findings: 0
+    candidate_binary_review_notices: 4
+    human_review: "passed"
+    technical_meaning_preserved: true
+    eligible_representative_trace: true
+    approval_scope: "Trace-first promotion and transition only to separately gated Phase 0.5 discussion and freeze; no product code, commit, or push."
 excluded_transcripts:
   - exclusion_id: "EXC-001"
     category: "prohibited_internal_identifier_in_prompt"
@@ -36,6 +67,12 @@ declared_agents:
       purpose: "Candidate specification authoring and correction."
       eligible_representative_trace: false
       reason: "Current authoring transcript excluded by EXC-001."
+    - agent_id: "COD-CODEX-002"
+      tool_and_model: "Codex desktop / GPT-5"
+      purpose: "Minimal trace-first branch-status correction and boundary/preflight verification."
+      eligible_trace_id: "TRC-BG-TRACEFIRST-001"
+      eligible_representative_trace: true
+      reason: "Covered by the approved and indexed trace-first representative trace."
   solution_agents:
     - agent_id: "SOL-BEYONDGREEN-001"
       tool_and_model: "open_decision_in_PROJECT_SPEC_section_20"
