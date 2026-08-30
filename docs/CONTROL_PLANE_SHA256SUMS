@@ -89,6 +89,7 @@ baea3dade77d380dfcb0ef28aefc5de98421c0946231dbbf1a1b219a988a5dbf  ./artifacts/tr
 275104d71a8759d05b22a76c67a3cf700953229a094ad9b2b4d2387f418927d2  ./artifacts/trajectories/reviewed/TRC-BG-PHASE05-001_RU.md
 c090a8fa646598b5942175dbbae15f8110110d3347eba2ef812a22dc7287a0cf  ./artifacts/trajectories/reviewed/TRC-BG-TRACEFIRST-001.md
 8ad0b4526ed7a0291d4adbc3f0f0cfd3c3cdb5086c06560a2ad11d6c03988ce9  ./artifacts/trajectories/reviewed/TRC-BG-TRACEFIRST-001_RU.md
+cd2a1940f8c12f4b9f436208cbdc855edf4353cc4aa7d647b89760955f2a1f70  ./artifacts/trajectories/reviews/BG-CHROMIUM-TS2532-INTEGRATION-SESSION-BOUNDARY-CHECKPOINT_RU.md
 401cc0f8f572f83f6a3ca8a014878271bb33eb708f782aa6dc336e54b7e8357c  ./artifacts/trajectories/reviews/BG-D01-BEHAVIOR-FREEZE_RU.md
 f760b360a10da29bb130c1f996ce9b0af6cf312fa81722fca9b07b6e2501ebef  ./artifacts/trajectories/reviews/BG-D01-CLEAN-RECOVERY-CHECKPOINT_RU.md
 1d4c892a076de9ecbe27fca6464d235ef0e49e359a16773215c0c062722d0da8  ./artifacts/trajectories/reviews/BG-D01-IMPLEMENTATION-CHECKPOINT_RU.md
@@ -184,6 +185,7 @@ bfe7a069be9a9c6e27e127d432ac3b97024967cb45fb0750a6a94163efd17601  ./artifacts/tr
 5abe649c26430e7dd33360fc1aac1481b90bd2c2e72f056076d02a845be9ab57  ./artifacts/trajectories/session-boundaries/SES-20260830-010.yaml
 a81acc1bb4cff4b85008d91f6bb812135f02eecb59d95bfe00593c27b1b5c294  ./artifacts/trajectories/session-boundaries/SES-20260830-011.yaml
 a0876dcc9dc3d82e1845c45cd71d8cd51b29befddbc56d75debb826cff278748  ./artifacts/trajectories/session-boundaries/SES-20260830-012.yaml
+0f29507c0a7c1c52f95d360b883a6a8c38bea3cfbd95bfb7e50bbdc07fbfb69b  ./artifacts/trajectories/session-boundaries/SES-20260830-014.yaml
 f46b2ed8c85e8558b5c8812491c09d89530099b0890454415579ea4c5d69e8a5  ./candidates/BG-D01/candidate-a/MuseumBoard.ts
 9e2a9151531aa961cf0ace3e20520fdcfa45ff0bff0f13ae214f7e5fbdad7d2b  ./candidates/BG-D01/candidate-b/MuseumBoard.ts
 3360e495c3d5895e784be3b62a041de83666d8bd97239f044bb6032273e3e8a3  ./candidates/BG-D02/candidate-a/ParcelDispatchBoard.ts
@@ -449,7 +451,7 @@ bbbe49dd18216f9bccb6c93b39a88ff5d4f8956617f4ca4ea9307738db52d108  ./scripts/task
 c72fee3e20a5615ab6929f1d6b3cc7a3f285200ed33dd091e7e2e7182d0e649d  ./scripts/tasks/runner.ts
 6d57ca1be9a07b27e01f03a8d23d6eeda51c8d39fad4aa63ea487f028b32dcb4  ./scripts/tasks/types.ts
 e17a7a6d91f7a61d8c4fbd928623ad8f012ced6cb9572332ddaaf433d0a1b39d  ./spikes/phase-0.5/chromium-board.html
-37e280c33a3986f11b0d0c6c7299e8eeb8cf49432c41d0b03e2dff6f7192d766  ./spikes/phase-0.5/chromium-runner.test.ts
+de0ea02cfe777fa21e5720b8ce7832b17d81cf6de36508c3884707a0e5306cb5  ./spikes/phase-0.5/chromium-runner.test.ts
 fc8f9298e9e2402b4540da3793842e72a906a33c4d7964a15ccd524266627aa9  ./spikes/phase-0.5/chromium-runner.ts
 bf772a54249c52d80b255ce5b8c201a5443a5ad0885b902ad41d64f9ba2a7cac  ./spikes/phase-0.5/cli-diagnostics.test.ts
 7af629137fffa324a809762ad8a7ef15f2fa60f6b19d46bff665b1553380bdf8  ./spikes/phase-0.5/cli-diagnostics.ts

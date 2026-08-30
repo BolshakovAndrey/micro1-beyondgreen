@@ -31,7 +31,9 @@ test("expected oracle covers all 300 ordered values and stale-snapshot actions",
   assert.equal(snapshots[4].values.every((value) => value === 8), true);
   assert.equal(snapshots[6].values.filter((value) => value === 5).length, 100);
   assert.equal(snapshots[6].values.filter((value) => value === 8).length, 200);
-  assert.equal(snapshots.at(-1).values.every((value) => value === 0), true);
+  const finalSnapshot = snapshots.at(-1);
+  assert.ok(finalSnapshot);
+  assert.equal(finalSnapshot.values.every((value) => value === 0), true);
 });
 
 test("variance summary is deterministic", () => {

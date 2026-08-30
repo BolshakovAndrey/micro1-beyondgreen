@@ -1,0 +1,235 @@
+schema_version: "1.1"
+session_id: "SES-20260830-014"
+started_at_utc: "2026-08-30T18:53:50Z"
+agent:
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Prepare a bounded clean-room integration boundary for one previously verified TS2532 correction in the Phase 0.5 Chromium runner test"
+
+repository:
+  root: "."
+  root_resolution: "The Git top level matched the task-authorized saved clean repository root; the machine-specific absolute path is intentionally not persisted in this service record."
+  branch_state: "named_branch"
+  branch: "codex/beyondgreen-d01-scale003-correct"
+  exact_head: "e08f2f91440a484df9f9c9ae772461bd3d9d49d1"
+  initial_head: "e08f2f91440a484df9f9c9ae772461bd3d9d49d1"
+  working_tree_at_start: "clean"
+  target_blob_path: "spikes/phase-0.5/chromium-runner.test.ts"
+  target_blob_at_head: "0a4cc431bac82ea10d2245be9f3525e0a2920442"
+  remote_state_contacted_or_verified: false
+  commit_authorized: true
+  push_authorized: false
+
+context:
+  repository_root: "."
+  source_task_id: "01a053fa-f863-75e1-a8b6-6416aa10e02f"
+  source_clean_worktree_read_before_approval: false
+  source_worktree_path_persisted: false
+  allowed_paths_before_approval:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-012.yaml"
+    - "artifacts/trajectories/reviews/BG-HELDOUT-COORDINATOR-TRACE-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-014.yaml"
+    - "artifacts/trajectories/reviews/BG-CHROMIUM-TS2532-INTEGRATION-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+  public_sources: []
+  inherited_private_transcript: false
+  source_control_plane_thread_submission_eligible: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+  values_paths_or_contents_disclosed: false
+
+controls:
+  agents_instructions_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  session_boundary_template_read: true
+  required_contracts_read_in_full: true
+  root_matches_authorized_scope: true
+  exact_branch_checked: true
+  exact_head_checked: true
+  clean_worktree_checked: true
+  target_blob_checked: true
+  source_clean_worktree_read: "filtered_single_file_diff_only_after_approval"
+  source_diff_read: true
+  patch_check_executed: true
+  patch_applied: true
+  compile_or_tests_executed: true
+  derived_checksums_modified: true
+  sibling_repositories_inspected: false
+  browser_or_private_mcp_state_inspected: false
+  global_memory_inspected: false
+  raw_trace_location: "external_local_only_not_accessed"
+
+structural_preflight:
+  boundary_gate_head: "passed"
+  boundary_gate_clean_worktree: "passed"
+  boundary_gate_target_blob: "passed"
+  product_or_shared_files_modified: false
+  code_candidate_oracle_or_test_files_modified: false
+  source_worktree_or_patch_inspected: false
+  compile_or_tests_executed: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  live_model_calls: 0
+  claude_calls: 0
+  chromium_calls: 0
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  global_memory_reads: 0
+  subagents_spawned: false
+  boundary_id_availability: "passed"
+  owner_card_path_availability: "passed"
+
+authorization:
+  boundary_preparation_requested_by_owner: true
+  boundary_preparation_only: true
+  integration_authorized_before_exact_human_approval: false
+  official_or_scored_run_authorized: false
+  chromium_authorized: false
+  live_model_authorized: false
+  browser_or_mcp_authorized: false
+  commit_authorized: true
+  push_authorized: false
+  allowed_before_human_approval:
+    - "Read AGENTS.md, every mandatory contract, the boundary template, and the minimum repository-local service example in full."
+    - "Inspect only the repository-local Git branch, exact HEAD, clean status, exact target blob, and service-file path availability."
+    - "Create SES-20260830-014 and its complete natural-Russian owner checkpoint card."
+    - "Structurally validate only those two new service files without running product tests or compile."
+  prohibited_before_human_approval:
+    - "Read or inspect the source clean worktree, its files, its diff, or SES-20260830-013."
+    - "Run git apply --check, apply any patch, or copy any source-worktree artifact."
+    - "Run tests, compile, Chromium, a live model, browser/MCP, scanner, preflight, evaluation, benchmark, replay, packaging, or any product command."
+    - "Modify product code, fixtures, candidates, oracles, tests, configuration, projections, indexes, hashes, checksums, traces, or any file other than the two boundary-gate artifacts."
+    - "Inspect sibling repositories, other external/private workspaces, browser/private state, connected apps, private MCP state, or global memory."
+    - "Perform an official/scored run, unblinding, commit, push, publication, packaging, or submission."
+
+future_bounded_integration_scope_after_exact_owner_approval:
+  source_task_id: "01a053fa-f863-75e1-a8b6-6416aa10e02f"
+  source_read_allowlist:
+    - "A filtered Git diff containing only spikes/phase-0.5/chromium-runner.test.ts."
+  source_read_denylist:
+    - "artifacts/trajectories/session-boundaries/SES-20260830-013.yaml"
+    - "node_modules/"
+    - "Every other source-worktree file, diff, untracked file, and background change."
+  target_write_allowlist:
+    - "spikes/phase-0.5/chromium-runner.test.ts"
+    - "Only directly necessary derived checksum records whose existing scope already covers the changed target file or this integration boundary."
+  required_sequence:
+    - "Resolve the source task's clean worktree without reading its contents beyond the single filtered diff."
+    - "Materialize or stream a patch containing only spikes/phase-0.5/chromium-runner.test.ts."
+    - "Run git apply --check against the main working copy before applying the patch."
+    - "Apply only that checked single-file patch."
+    - "Confirm the resulting file SHA-256 is de0ea02cfe777fa21e5720b8ce7832b17d81cf6de36508c3884707a0e5306cb5."
+    - "Run only the targeted chromium-runner test and require 4/4 passing."
+    - "Run npm run compile."
+    - "Run git diff --check."
+    - "Reconcile only directly necessary derived checksum records, then revalidate their exact scope."
+    - "Stop before commit and return complete evidence and remaining risks to the repository owner."
+  patch_identity:
+    target_path: "spikes/phase-0.5/chromium-runner.test.ts"
+    base_blob: "0a4cc431bac82ea10d2245be9f3525e0a2920442"
+    expected_result_sha256: "de0ea02cfe777fa21e5720b8ce7832b17d81cf6de36508c3884707a0e5306cb5"
+    semantic_purpose: "Transfer only the already verified TS2532 compile correction."
+  required_verification:
+    targeted_test_expected: "passed_4_of_4"
+    compile_command: "npm run compile"
+    whitespace_command: "git diff --check"
+  prohibited_after_boundary_approval:
+    - "Read or transfer SES-20260830-013, node_modules, unrelated diffs, untracked files, or background changes from the source worktree."
+    - "Modify any product, fixture, candidate, oracle, test, configuration, projection, trace, index, or checksum outside the exact target and strictly necessary derived checksum surface."
+    - "Run any non-targeted test suite, official/scored evaluation, unblinding, Chromium, live model, browser/MCP, connected app, private-memory, or private-workspace operation."
+    - "Commit or push."
+  mismatch_or_failure_action: "Stop immediately for owner review on HEAD/blob drift, dirty unexpected state, patch-scope expansion, git apply --check failure, result-hash mismatch, targeted-test failure, compile failure, checksum-scope ambiguity, or git diff --check failure; do not broaden or repair beyond the approved patch."
+
+language_contract:
+  owner_facing_reports: "complete_natural_russian"
+  judge_facing_and_machine_readable_artifacts: "english_allowed"
+  technical_identifier_policy: "Keep exact identifiers, commands, paths, library names, and official product names in English; explain unavoidable English terminology in Russian on first use."
+
+integration_result:
+  status: "passed_stopped_before_commit"
+  source_worktree: "resolved from the explicitly authorized source task; machine-specific path intentionally omitted"
+  source_head: "b05d0e17a9ae7ff50f3413ca78e8987a3656cf56"
+  source_base_blob: "0a4cc431bac82ea10d2245be9f3525e0a2920442"
+  source_scope: "filtered diff for spikes/phase-0.5/chromium-runner.test.ts only"
+  ses_20260830_013_read_or_transferred: false
+  node_modules_read_or_transferred: false
+  background_changes_read_or_transferred: false
+  git_apply_check: "passed"
+  applied_paths:
+    - "spikes/phase-0.5/chromium-runner.test.ts"
+  result_sha256: "de0ea02cfe777fa21e5720b8ce7832b17d81cf6de36508c3884707a0e5306cb5"
+  targeted_test:
+    command: "node --test spikes/phase-0.5/chromium-runner.test.ts"
+    status: "passed_4_of_4"
+  compile:
+    command: "npm run compile"
+    status: "passed"
+  diff_check:
+    command: "git diff --check"
+    status: "passed"
+  derived_checksum_reconciliation:
+    path: "docs/CONTROL_PLANE_SHA256SUMS"
+    reason: "Its existing declared scope already covers the changed Chromium runner test and current bounded checkpoints."
+    verification: "passed_504_of_504"
+  owner_authorized_preflight_and_checkpoint:
+    approved_at_utc: "2026-08-30T18:58:28Z"
+    approval_evidence: "Разрешаю для SES-20260830-014 выполнить обе preflight-проверки, staged-scope ровно из четырёх подтверждённых файлов и git diff --cached --check; при зелёном результате создать ~/.codex/.git-allow-once и checkpoint commit fix(Evaluation):[BeyondGreen] Narrow final Chromium snapshot без push. При любом сбое остановиться."
+    control_preflight: "passed_exit_0"
+    implementation_preflight: "passed_exit_0"
+    staged_scope_required_paths:
+      - "spikes/phase-0.5/chromium-runner.test.ts"
+      - "docs/CONTROL_PLANE_SHA256SUMS"
+      - "artifacts/trajectories/session-boundaries/SES-20260830-014.yaml"
+      - "artifacts/trajectories/reviews/BG-CHROMIUM-TS2532-INTEGRATION-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+    staged_diff_check_required: true
+    checkpoint_commit_message: "fix(Evaluation):[BeyondGreen] Narrow final Chromium snapshot"
+    push_authorized: false
+  official_or_scored_run_performed: false
+  chromium_calls: 0
+  live_model_calls: 0
+  browser_or_mcp_calls: 0
+  commit_performed: false
+  push_performed: false
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "boundary_candidate_pending_human_approval"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: "control_plane_delegation_not_yet_reviewed"
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-30T18:55:42Z"
+  approval_evidence: "Одобряю SESSION_BOUNDARY SES-20260830-014 и разрешаю только однофайловый перенос исправления TS2532 для spikes/phase-0.5/chromium-runner.test.ts из задачи 01a053fa-f863-75e1-a8b6-6416aa10e02f по русской owner-карточке; SES-20260830-013, node_modules и фоновые изменения не читать и не переносить; остановиться перед commit."
