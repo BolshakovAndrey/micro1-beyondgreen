@@ -50,8 +50,8 @@ evaluation:
   max_official_candidate_run_seconds: 180
   verifier_repair_rounds: 0
   status_quo_construction_control: "All 20 candidates must compile and pass visible tests; status quo must therefore score exactly 10/20 or the run is invalid."
-  challenging_case_ids: []
-  challenging_case_status: "must_be_assigned_and_frozen_before_fixture_code"
+  challenging_case_ids: ["BG-H02"]
+  challenging_case_status: "predeclared_prose_freeze_owner_approved"
 data:
   source: "Ten independently authored synthetic behavior specifications, each with one preserving and one seeded false-green candidate."
   license_or_permission: "Project-authored prose plus recorded public anchors; exact signals package/version/license freezes before fixtures."

@@ -1,0 +1,17 @@
+schema_version: "1.0"
+projection_of: "docs/PROJECT_SPEC.md@1.1.0"
+status: "prose_and_public_provenance_freeze_owner_approved"
+requirements: ["EV-001", "EV-013", "AR-006"]
+counts: {development: 4, held_out: 6, total: 10}
+fixtures:
+  - {fixture_id: "BG-D01", membership: "development", behavior_class: "stale_snapshots", challenging_case: false}
+  - {fixture_id: "BG-D02", membership: "development", behavior_class: "queued_batched_updates", challenging_case: false}
+  - {fixture_id: "BG-D03", membership: "development", behavior_class: "derived_state", challenging_case: false}
+  - {fixture_id: "BG-D04", membership: "development", behavior_class: "subscription_cleanup", challenging_case: false}
+  - {fixture_id: "BG-H01", membership: "held_out", behavior_class: "prop_reset", challenging_case: false}
+  - {fixture_id: "BG-H02", membership: "held_out", behavior_class: "async_ordering", challenging_case: true}
+  - {fixture_id: "BG-H03", membership: "held_out", behavior_class: "identity_stability", challenging_case: false}
+  - {fixture_id: "BG-H04", membership: "held_out", behavior_class: "conditional_lifecycle", challenging_case: false}
+  - {fixture_id: "BG-H05", membership: "held_out", behavior_class: "external_store", challenging_case: false}
+  - {fixture_id: "BG-H06", membership: "held_out", behavior_class: "rollback", challenging_case: false}
+attestation: "The ten fixture IDs and ten behavior classes form a bijection; this record creates no implementation, candidate, oracle, or test."

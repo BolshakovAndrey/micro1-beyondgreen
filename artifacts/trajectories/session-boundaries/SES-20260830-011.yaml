@@ -1,0 +1,240 @@
+schema_version: "1.1"
+session_id: "SES-20260830-011"
+started_at_utc: "2026-08-30T17:13:33Z"
+agent:
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Prepare a submission-eligible boundary for owner-gated implementation of the six already approved BeyondGreen held-out fixture freezes"
+
+repository:
+  root: "."
+  root_resolution: "The Git top level matched the task-authorized saved main BeyondGreen working copy; the machine-specific absolute path is intentionally not persisted in this service record."
+  branch_state: "named_branch"
+  branch: "codex/beyondgreen-d01-scale003-correct"
+  exact_base_commit: "f2afbdb2cde3f4677c351093baccfcb5a202c7d5"
+  initial_head: "f2afbdb2cde3f4677c351093baccfcb5a202c7d5"
+  working_tree_at_start: "dirty_with_uncommitted_owner_approved_held_out_prose_and_public_provenance_freeze_bundle"
+  freeze_status: "OWNER_APPROVED_PROSE_AND_PUBLIC_PROVENANCE_FREEZE"
+  freeze_status_evidence: "artifacts/trajectories/reviews/BG-HELDOUT-PROSE-FREEZE-CHECKPOINT_RU.md"
+  remote_state_contacted_or_verified: false
+  commit_authorized_before_human_approval: false
+  push_authorized: false
+
+context:
+  repository_root: "."
+  allowed_paths_before_approval:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-009.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-010.yaml"
+    - "artifacts/trajectories/reviews/BG-D02-D04-INTEGRATION-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+    - "artifacts/trajectories/reviews/BG-HELDOUT-PROSE-FREEZE-CHECKPOINT_RU.md"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-011.yaml"
+    - "artifacts/trajectories/reviews/BG-HELDOUT-FIXTURES-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+  values_paths_or_contents_disclosed: false
+
+controls:
+  agents_instructions_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  session_boundary_template_read: true
+  required_contracts_read_in_full: true
+  root_matches_authorized_scope: true
+  exact_head_checked: true
+  exact_branch_checked: true
+  working_tree_status_checked: true
+  owner_approved_freeze_status_checked: true
+  held_out_fixture_content_inspected: false
+  hidden_result_or_oracle_content_inspected: false
+  sibling_repositories_inspected: false
+  global_memory_inspected: false
+  private_denylist_available_to_scanner_only: false
+  private_paths_resolve_outside_repository: false
+  raw_trace_location: "external_local_only_not_accessed_before_approval"
+
+structural_preflight:
+  product_or_shared_files_modified: false
+  fixture_implementation_created: false
+  candidate_artifacts_created: false
+  oracle_code_or_data_created: false
+  test_code_created: false
+  checkpoint_commit_created: false
+  worktrees_created: false
+  implementation_workers_spawned: false
+  subagents_spawned: false
+  compile_or_tests_executed: false
+  fixture_self_check_executed: false
+  isolation_check_executed: false
+  scanner_or_preflight_executed: false
+  trace_capture_executed: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  live_model_calls: 0
+  claude_calls: 0
+  chromium_calls: 0
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  global_memory_reads: 0
+  boundary_id_availability: "passed"
+  owner_card_path_availability: "passed"
+
+authorization:
+  boundary_preparation_requested_by_owner: true
+  boundary_preparation_only: true
+  implementation_authorized_before_separate_human_approval: false
+  checkpoint_commits_authorized_before_separate_human_approval: false
+  official_or_scored_run_authorized: false
+  unblinding_authorized: false
+  push_authorized: false
+  allowed_before_human_approval:
+    - "Read AGENTS.md, every mandatory contract, the session-boundary template, and the minimum repository-local service examples in full."
+    - "Inspect only the repository-local Git root, exact HEAD, branch, working-tree status, and recorded owner-approved freeze status."
+    - "Create SES-20260830-011 and its complete natural-Russian owner checkpoint card."
+    - "Structurally validate only those two new service files."
+  prohibited_before_human_approval:
+    - "Create or modify fixture implementation, candidates, oracle code or data, tests, manifests, checksums, registries, task scripts, integration code, product projections, or other product/shared artifacts."
+    - "Create a checkpoint commit, worktree, implementation trajectory, or subagent."
+    - "Run compile, tests, fixture self-check, isolation checks, capture, scanner, preflight, replay, evaluation, benchmark, packaging, or any product command."
+    - "Inspect hidden results or oracle contents, sibling repositories, external/private workspaces, browser/private state, connected apps, private MCP state, or global memory."
+    - "Invoke Claude, Chromium, a browser, or a live product model; perform an official/scored run, unblinding, push, publication, packaging, or submission."
+
+future_fixture_implementation_scope_after_exact_owner_approval:
+  gate_shape: "single_owner_gate"
+  fixture_ids: ["BG-H01", "BG-H02", "BG-H03", "BG-H04", "BG-H05", "BG-H06"]
+  prerequisite_freeze_status: "OWNER_APPROVED_PROSE_AND_PUBLIC_PROVENANCE_FREEZE"
+  freeze_checkpoint:
+    action: "Create exactly one checkpoint commit of the current owner-approved freeze bundle without push."
+    message: "docs(Evaluation):[BeyondGreen] Freeze held-out behavior specifications"
+  parallel_fixture_work:
+    base: "the exact freeze checkpoint commit created by this gate"
+    worktree_count: 3
+    executor: "three parallel native Codex subagents"
+    isolation: "one isolated fixture worktree per pair from the exact freeze checkpoint commit"
+    shared_paths_may_be_modified_by_workers: false
+    assignments:
+      - pair: "H01_H02"
+        fixture_ids: ["BG-H01", "BG-H02"]
+        behavior_classes: ["prop_reset", "async_ordering"]
+        checkpoint_message: "feat(Evaluation):[BeyondGreen] Add prop reset and async ordering fixtures"
+      - pair: "H03_H04"
+        fixture_ids: ["BG-H03", "BG-H04"]
+        behavior_classes: ["identity_stability", "conditional_lifecycle"]
+        checkpoint_message: "feat(Evaluation):[BeyondGreen] Add identity and lifecycle fixtures"
+      - pair: "H05_H06"
+        fixture_ids: ["BG-H05", "BG-H06"]
+        behavior_classes: ["external_store", "rollback"]
+        checkpoint_message: "feat(Evaluation):[BeyondGreen] Add external store and rollback fixtures"
+  worker_ownership_contract:
+    fixture_specific_paths_only: true
+    required_outputs:
+      - "Arm-visible contracts, harness, render surface, and visible tests implementing the approved behavior freeze."
+      - "Exactly two neutrally named candidates: one preserving and one seeded false green; the ground-truth mapping remains verifier-only."
+      - "Verifier-only ground truth, canonical driver, evaluator self-check, and denied-access probes."
+      - "Immutable manifests and hashes, provenance, exact commands/results, and a complete natural-Russian subagent report."
+      - "Concise English JSDoc for public or important TypeScript APIs and short English why-comments for key boundaries and invariants."
+    forbidden_shared_paths:
+      - "shared fixture registry"
+      - "shared task registry"
+      - "root package scripts"
+      - "shared checksum index"
+      - "cross-fixture integration tests"
+    shared_change_request_policy: "Report any required shared change to the coordinator without editing it."
+    allowed_validation:
+      - "Repository-local compile limited to the pair's implementation surface."
+      - "Fixture-specific visible tests, evaluator self-check, denied-access probes, isolation checks, manifest/hash checks, and deterministic path/JSDoc corrections."
+    forbidden_validation:
+      - "Any common official or scored run."
+      - "Any unblinding."
+    internal_raw_events_claimed_as_exported_traces: false
+    checkpoint_policy: "After local green evidence, create at most one fixture-only checkpoint commit per pair, without push, using only the exact assigned message."
+  correction_policy:
+    intermediate_owner_approval_required_for_deterministic_fixture_specific_compile_test_hash_path_jsdoc_corrections: false
+    immediate_stop_conditions:
+      - "contamination"
+      - "semantic drift from an approved freeze"
+      - "oracle leakage or loss of physical isolation"
+      - "a requested change to shared methodology"
+      - "uncertain provenance or license"
+      - "an external or private path or context"
+  coordinator_integration_after_pair_commits:
+    execution: "Use a separate automatically captured coordinator integration trajectory to combine only the three authorized pair commits and make only necessary shared-path changes."
+    required_checks:
+      - "compile and ordinary/integration tests"
+      - "all fixture manifests and immutable hashes"
+      - "physical arm/oracle isolation and denied-access evidence"
+      - "K=0 verifier-feedback boundary"
+      - "checksum coverage and values"
+      - "owner-approved safe preflights"
+    trace_coverage_policy: "Existing eligible D01 coding trajectories plus the automatically captured coordinator integration trajectory provide representative coding-agent trace coverage; native subagent internal raw events are not represented as exported traces."
+    required_stop: "Stop for repository-owner acceptance after integration evidence; do not create an integration commit."
+  commit_allowlist:
+    - "docs(Evaluation):[BeyondGreen] Freeze held-out behavior specifications"
+    - "feat(Evaluation):[BeyondGreen] Add prop reset and async ordering fixtures"
+    - "feat(Evaluation):[BeyondGreen] Add identity and lifecycle fixtures"
+    - "feat(Evaluation):[BeyondGreen] Add external store and rollback fixtures"
+  integration_commit_requires_separate_owner_approval: true
+  push_authorized: false
+  always_prohibited:
+    - "official or scored runs"
+    - "unblinding"
+    - "live product model"
+    - "Claude"
+    - "Chromium"
+    - "browser or private MCP access"
+    - "private data"
+    - "push"
+    - "any commit outside the four exact checkpoint messages"
+
+language_contract:
+  owner_facing_reports: "complete_natural_russian"
+  judge_facing_and_machine_readable_artifacts: "english_allowed"
+  code_jsdoc_and_comments: "english"
+  technical_identifier_policy: "Keep exact identifiers, commands, paths, library names, and official product names in English; explain unavoidable English terminology in Russian on first use."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "boundary_candidate_pending_human_review"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: ""
+  implementation_evidence_status: "not_created"
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-30T17:16:22Z"
+  approval_evidence: "The repository owner returned the exact required phrase in the source-task delegation."
+  exact_required_phrase: >-
+    Одобряю SESSION_BOUNDARY SES-20260830-011 и единый гейт реализации H01–H06: сначала создать без push ровно один checkpoint commit текущего owner-approved freeze bundle с сообщением docs(Evaluation):[BeyondGreen] Freeze held-out behavior specifications, затем от этого точного commit создать три изолированных worktree и запустить три параллельных нативных подагента Codex для пар BG-H01/BG-H02, BG-H03/BG-H04 и BG-H05/BG-H06; каждому подагенту разрешаю менять только пути своей пары и строго реализовать утверждённую заморозку поведения, включая видимые обеим сравниваемым сторонам контракты, harness, render, visible tests, ровно два нейтрально названных кандидата — сохраняющий поведение и намеренно ложноположительный, причём их соответствие истине доступно только независимому оценщику, — а также скрытые от сравниваемых сторон ground truth, canonical driver, self-check, denied-access probes, неизменяемые manifests/hashes, происхождение, точные команды и результаты и полный русский отчёт; публичные и важные TypeScript API документировать кратким английским JSDoc, ключевые границы и инварианты — короткими английскими why-comments; shared registry, tasks, package scripts, checksum index и integration tests работникам не менять, а только сообщать координатору о необходимом общем изменении; работникам разрешены compile и fixture-specific tests/self-check/isolation, но запрещены общий official/scored run и unblinding; после локальной зелени разрешаю по одному fixture-only checkpoint commit без push с точными сообщениями feat(Evaluation):[BeyondGreen] Add prop reset and async ordering fixtures, feat(Evaluation):[BeyondGreen] Add identity and lifecycle fixtures и feat(Evaluation):[BeyondGreen] Add external store and rollback fixtures; внутренние raw events подагентов не заявлять как экспортированные traces, сохранить точные команды, результаты и русские отчёты, после чего отдельной автоматически захваченной coordinator integration trajectory объединить только три разрешённых commit, изменить только необходимые shared paths, проверить compile, tests, manifests, физическую изоляцию, K=0, checksums и обе preflight-проверки и остановиться для owner acceptance, считая существующие допустимые D01 coding traces вместе с coordinator integration trajectory достаточным representative trace coverage; детерминированные fixture-specific исправления compile/test/hash/path/JSDoc внутри утверждённого объёма не требуют промежуточного одобрения, но contamination, semantic drift, oracle leakage, неясное происхождение или лицензия и изменение shared methodology требуют немедленной остановки; official/scored run, unblinding, live product model, Claude, Chromium, browser/private MCP, private data и push запрещены, commit разрешены только для четырёх перечисленных checkpoint, а integration commit требует отдельного последующего одобрения владельца.

@@ -1,0 +1,137 @@
+schema_version: "1.1"
+projection_of: "docs/PROJECT_SPEC.md@1.1.0"
+evaluation_version: "eval-v1.1.0"
+boundary: "SES-20260830-010"
+exact_base_commit: "f2afbdb2cde3f4677c351093baccfcb5a202c7d5"
+status: "owner_approved_prose_and_public_provenance_freeze"
+requirements: ["EV-001", "EV-013", "AR-006"]
+
+handoff:
+  source: "preserved_named_git_stash"
+  name: "bg-heldout-freeze-handoff"
+  restored_to_authorized_main_root: true
+  stash_preserved: true
+  captured_continuation: "TRC-BG-HELDOUT-FREEZE-001-CONT-003"
+  captured_continuation_result: "stopped_on_missing_direct_npm_checksum_script"
+  root_deterministic_completion: true
+  second_nested_cli_started: false
+
+categorical_recreation:
+  continuation: "TRC-BG-HELDOUT-FREEZE-001-CONT-004"
+  owner_authorized: true
+  positions: ["coordinator_instruction:45", "boundary_owner_card_ru:68", "boundary_owner_card_ru:86", "session_boundary:171"]
+  replacement_scope: "four_complete_neutral_lines_only"
+  suppressed_term_read_or_disclosed: false
+  prior_material_automatically_cleared_as_safe: false
+  trace_review_status: "pending_not_promoted_to_actual_traces"
+  capture_kind: "automatic_direct_jsonl_to_micro1_safe_trace"
+  capture_bytes: 495196
+  capture_sha256: "e8a4cb15a18f9bf3ae3b0e240f91f4ab37ada72ff0d37731eaf96b40d119d215"
+  capture_path_disclosed: false
+
+membership:
+  development: ["BG-D01", "BG-D02", "BG-D03", "BG-D04"]
+  held_out: ["BG-H01", "BG-H02", "BG-H03", "BG-H04", "BG-H05", "BG-H06"]
+  counts: {development: 4, held_out: 6, total: 10}
+  behavior_class_bijection_path: "evaluation/fixture-assignments.yaml"
+  challenging_case_path: "evaluation/challenging-cases.yaml"
+  sole_predeclared_challenging_case: "BG-H02"
+
+authoring:
+  pair_owners:
+    - {pair: "BG-H01/BG-H02", executor: "native Codex subagent", isolated_worktree: true}
+    - {pair: "BG-H03/BG-H04", executor: "native Codex subagent", isolated_worktree: true}
+    - {pair: "BG-H05/BG-H06", executor: "native Codex subagent", isolated_worktree: true}
+  subagent_internal_raw_events_claimed_as_exported_traces: false
+  independent_synthetic_clean_room_required: true
+  private_structure_used: false
+  h03_h04_structural_retry: "Ruby/Psych safe_load_file unavailable; safe_load(File.read(...)) succeeded without product-content changes."
+
+trace:
+  trace_id: "TRC-BG-HELDOUT-FREEZE-001-CONT-003"
+  capture_kind: "automatic_direct_jsonl_to_micro1_safe_trace"
+  bytes: 491714
+  sha256: "688599d7cd3dc39117e0a834e66632801dc5ce7b218fb6db5a5144356dcc61ea"
+  path_disclosed: false
+  cli_process_count: 1
+  websocket_sampling_retries: 1
+  task_result: "stopped_fail_closed"
+  scan_and_human_review: "pending"
+  submission_eligible_claimed: false
+
+files:
+  - {path: "evaluation/behavior-specs/BG-H01_BEHAVIOR.md", fixture_id: "BG-H01", role: "behavior_en", sha256: "94a0206f3ed9573a02bccab93ec0d90603d9af9e01b0820daa9f7cfb55bd6d4e"}
+  - {path: "evaluation/behavior-specs/BG-H01_BEHAVIOR_RU.md", fixture_id: "BG-H01", role: "behavior_ru", sha256: "0269dadda654f01e86a3ad6ca7ca539f736213e3963bcb05f12f16507d6bb5e6"}
+  - {path: "evaluation/behavior-specs/BG-H01_FREEZE.yaml", fixture_id: "BG-H01", role: "freeze_record", sha256: "a3c3d89074e31f9b5f1413f4d4d32c239ab7ae2d74cd9b1d079e28203b05704c"}
+  - {path: "evaluation/manifests/BG-H01/PROVENANCE.md", fixture_id: "BG-H01", role: "provenance", sha256: "68c5cf6ea0f39b011251fdd4d8fc6aece2f8e7f2e2326391c05a0f822a65c944"}
+  - {path: "evaluation/manifests/BG-H01/OWNER_CHECKPOINT_RU.md", fixture_id: "BG-H01", role: "owner_companion_ru", sha256: "c9380dc50c773d51ec8f29657778292d46463b717fbbfdca831f4636b02b708c"}
+  - {path: "evaluation/behavior-specs/BG-H02_BEHAVIOR.md", fixture_id: "BG-H02", role: "behavior_en", sha256: "db1bc9ce59e5fbee327578a52275c5f5bea3e5e6ecd1ef4adf5c9ff7dbf03881"}
+  - {path: "evaluation/behavior-specs/BG-H02_BEHAVIOR_RU.md", fixture_id: "BG-H02", role: "behavior_ru", sha256: "fc753b2d499fca97ae1737342b8f11b0579e19f06c375df470f8f79422249f87"}
+  - {path: "evaluation/behavior-specs/BG-H02_FREEZE.yaml", fixture_id: "BG-H02", role: "freeze_record", sha256: "002a8f542f46a0d31d52f9f1f19c1da88f1945ba15311ee7ef83b38cfd6d71c1"}
+  - {path: "evaluation/manifests/BG-H02/PROVENANCE.md", fixture_id: "BG-H02", role: "provenance", sha256: "36c351614f725bb58fd11504ccb57627cf1124a64e6eb1a2605d41aa7ef91a2c"}
+  - {path: "evaluation/manifests/BG-H02/OWNER_CHECKPOINT_RU.md", fixture_id: "BG-H02", role: "owner_companion_ru", sha256: "8d7822c66601460d0b4f5919d433698b5e4a7912b4043b950c8dd841e3621d57"}
+  - {path: "evaluation/behavior-specs/BG-H03_BEHAVIOR.md", fixture_id: "BG-H03", role: "behavior_en", sha256: "50e2859389a3ca191d5aadab02fe29a12adca04ed37a730c2accf7bbbfbc6787"}
+  - {path: "evaluation/behavior-specs/BG-H03_BEHAVIOR_RU.md", fixture_id: "BG-H03", role: "behavior_ru", sha256: "cb9201b53ada09acc607c4f0bd5d87348890658f258eb2cb620962300d40bcfc"}
+  - {path: "evaluation/behavior-specs/BG-H03_FREEZE.yaml", fixture_id: "BG-H03", role: "freeze_record", sha256: "f8cc1eaf321a60ec2cba8bb2aa86e32657be5356bcc5608550bedd57cd22df45"}
+  - {path: "evaluation/manifests/BG-H03/PROVENANCE.md", fixture_id: "BG-H03", role: "provenance", sha256: "8df3851cb4b8d74b373d52c7eec1e4b0ca6a1a3c2b5dd30c785a6b4bb9302389"}
+  - {path: "evaluation/manifests/BG-H03/OWNER_CHECKPOINT_RU.md", fixture_id: "BG-H03", role: "owner_companion_ru", sha256: "4b044d05c2c3625938078c44fb04f62ef01a9fa9755ee221531e5671f2658e07"}
+  - {path: "evaluation/behavior-specs/BG-H04_BEHAVIOR.md", fixture_id: "BG-H04", role: "behavior_en", sha256: "3ed2881cfef6f51feffc66d2699e0df1a04f5883aeaf1c3e151a889340db5977"}
+  - {path: "evaluation/behavior-specs/BG-H04_BEHAVIOR_RU.md", fixture_id: "BG-H04", role: "behavior_ru", sha256: "f0c559ba46c6340c6f0b9156c92774ca1b9c260c043bbe6e71abdbf8b9f1a7bf"}
+  - {path: "evaluation/behavior-specs/BG-H04_FREEZE.yaml", fixture_id: "BG-H04", role: "freeze_record", sha256: "8f150edbc3ba47ebb7e57f618b1cdc005b4731444691a711480303b379255af3"}
+  - {path: "evaluation/manifests/BG-H04/PROVENANCE.md", fixture_id: "BG-H04", role: "provenance", sha256: "d4519de9144a28bb879171c12bdc70adeeb1701f649518a8c51213eb33706d84"}
+  - {path: "evaluation/manifests/BG-H04/OWNER_CHECKPOINT_RU.md", fixture_id: "BG-H04", role: "owner_companion_ru", sha256: "39c8bb7c5d3b341b7fc3f0f8a46c662421a69747e0c2bfefba64ce152dd2b7ae"}
+  - {path: "evaluation/behavior-specs/BG-H05_BEHAVIOR.md", fixture_id: "BG-H05", role: "behavior_en", sha256: "5095bdf0a24ac19bffe72e0c785f091a18e1ee63b3486126e25411925b2f172c"}
+  - {path: "evaluation/behavior-specs/BG-H05_BEHAVIOR_RU.md", fixture_id: "BG-H05", role: "behavior_ru", sha256: "9187e7532fc6f44fbcd2088420b85b41feca86296e70b1c0a8b4a297d5bd903c"}
+  - {path: "evaluation/behavior-specs/BG-H05_FREEZE.yaml", fixture_id: "BG-H05", role: "freeze_record", sha256: "72e9f47eaff12ac3cbb5cfe256fcda30e56559939ec5507477b40d788838bd87"}
+  - {path: "evaluation/manifests/BG-H05/PROVENANCE.md", fixture_id: "BG-H05", role: "provenance", sha256: "0333998db0b28992dd4a6a9a6a901d27c48f63886613c7367bfb16da921d8795"}
+  - {path: "evaluation/manifests/BG-H05/OWNER_CHECKPOINT_RU.md", fixture_id: "BG-H05", role: "owner_companion_ru", sha256: "63e9d2dcf44bee84b700e3f99776a995985f2bd16476fe097e2f8c335d388d98"}
+  - {path: "evaluation/behavior-specs/BG-H06_BEHAVIOR.md", fixture_id: "BG-H06", role: "behavior_en", sha256: "6eb2496241b95c68af04e10046271f5b86c9b6b8e3db05d7057048e1460a11ce"}
+  - {path: "evaluation/behavior-specs/BG-H06_BEHAVIOR_RU.md", fixture_id: "BG-H06", role: "behavior_ru", sha256: "aba4506a0e263ee30231faac332daafd7b77d997911f86208ae65dd573125b56"}
+  - {path: "evaluation/behavior-specs/BG-H06_FREEZE.yaml", fixture_id: "BG-H06", role: "freeze_record", sha256: "9192f8a2a611962bcd8a2b7fd780e8fdca64878582880f3cb1b333f0a9c9f3e6"}
+  - {path: "evaluation/manifests/BG-H06/PROVENANCE.md", fixture_id: "BG-H06", role: "provenance", sha256: "b20ae9741085b17e75af725c57e20ab73a2ba3b33308a85b06e41441d78be66f"}
+  - {path: "evaluation/manifests/BG-H06/OWNER_CHECKPOINT_RU.md", fixture_id: "BG-H06", role: "owner_companion_ru", sha256: "f341f50a48dcc88ff84f0319fa75c57cf5769d89aa809630fd60d7ef710b94e3"}
+  - {path: "evaluation/fixture-assignments.yaml", fixture_id: "shared", role: "ten_class_bijection", sha256: "7cca13845b997b525c420dc2f6b9294d32d94ab1afbbbcedea8d65cc8c2c423a"}
+  - {path: "evaluation/challenging-cases.yaml", fixture_id: "shared", role: "predeclared_challenging_case", sha256: "ee241160d5a2aa87378a6341ac81a6a07d5431327eb011cc514dd577a7a489be"}
+  - {path: "evaluation/HELD_OUT_PROSE_FREEZE_SUMMARY.md", fixture_id: "shared", role: "freeze_summary_en", sha256: "56cc6492e79c3169c8bf8111f4b029dad392b5322e945aa9e918e4aaa2bba913"}
+  - {path: "artifacts/trajectories/reviews/BG-HELDOUT-PROSE-FREEZE-CHECKPOINT_RU.md", fixture_id: "shared", role: "owner_freeze_checkpoint_ru", sha256: "a5db9f786789f6c68b416342935986709c7eb497cfff70d8b5911b0eaa2afbc9"}
+
+validation:
+  file_count: 34
+  fixture_packet_count: 30
+  shared_input_count: 4
+  development_held_out_split: "passed_4_of_6"
+  behavior_class_bijection: "passed_10_of_10"
+  sole_challenging_case: "passed_BG-H02"
+  english_russian_semantic_parity: "passed_6_of_6"
+  provenance_and_license: "passed_6_of_6"
+  sha256_values: "passed_34_of_34"
+  exact_manifest_coverage: "passed_34_paths"
+  checksum_write_command: "npm run task -- checksums:write"
+  checksum_check_command: "npm run task -- checksums:check"
+  git_diff_check: "passed"
+  control_preflight: "READY_FOR_CLEAN_BRANCH"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION"
+  owner_freeze_approval: "approved"
+
+owner_approval:
+  status: "approved"
+  approved_at_utc: "2026-08-30T17:09:30Z"
+  approver: "repository_owner"
+  exact_phrase: "Одобряю только заморозку текстов H01–H06 и их публичного происхождения; реализация, кандидаты, скрытые эталоны, тесты, официальные или оцениваемые запуски, живые модели продукта, Claude, Chromium, commit и push не разрешены."
+  scope: "H01_H06_prose_and_public_provenance_only"
+  actual_traces_promotion_authorized: false
+  implementation_authorized: false
+  candidates_authorized: false
+  oracle_authorized: false
+  tests_authorized: false
+  official_or_scored_runs_authorized: false
+  live_product_model_authorized: false
+  claude_authorized: false
+  chromium_authorized: false
+  commit_authorized: false
+  push_authorized: false
+
+prohibited_artifacts_created: false
+implementation_authorized: false
+commit_authorized: false
+push_authorized: false

@@ -1,0 +1,10 @@
+schema_version: "1.0"
+projection_of: "docs/PROJECT_SPEC.md@1.1.0#13-evaluation-requirements"
+status: "predeclared_prose_freeze_owner_approved"
+cases:
+  - fixture_id: "BG-H02"
+    behavior_class: "async_ordering"
+    predeclared_before_fixture_code: true
+    rationale: "Correctness follows logical selection epochs across overlapping deferred work, reverse completion, and reset invalidation without timers, network behavior, nondeterministic sleeps, or evaluator feedback."
+sole_predeclared_challenging_case: true
+final_result_disclosure_required: true

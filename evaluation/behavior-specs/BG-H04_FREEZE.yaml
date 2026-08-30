@@ -1,0 +1,39 @@
+schema_version: "1.0"
+record_id: "BG-H04-BEHAVIOR-FREEZE-001"
+fixture_id: "BG-H04"
+membership: "held_out"
+behavior_class: "conditional_lifecycle"
+neutral_domain: "synthetic_neighborhood_astronomy_checklist_drawer"
+status: "prose_and_public_provenance_frozen_owner_approved"
+session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-010.yaml"
+coordinator_trace: "TRC-BG-HELDOUT-FREEZE-001-CONT-004"
+normative_projection: "docs/PROJECT_SPEC.md@1.1.0"
+english_behavior_path: "evaluation/behavior-specs/BG-H04_BEHAVIOR.md"
+russian_owner_companion_path: "evaluation/behavior-specs/BG-H04_BEHAVIOR_RU.md"
+provenance_path: "evaluation/manifests/BG-H04/PROVENANCE.md"
+owner_assignment_path: "evaluation/manifests/BG-H04/OWNER_CHECKPOINT_RU.md"
+digest_capture: "validated_in_held_out_prose_freeze_manifest"
+public_anchors:
+  - {id: "SRC-REACT-IDENTITY", url: "https://react.dev/learn/preserving-and-resetting-state", accessed: "2026-08-30", terms: "cited_by_url_for_consultation_only_no_redistribution", use: "general_component_identity_and_state_reset_concept"}
+  - {id: "SRC-REACT-EFFECTS", url: "https://react.dev/learn/synchronizing-with-effects", accessed: "2026-08-30", terms: "cited_by_url_for_consultation_only_no_redistribution", use: "general_setup_cleanup_lifecycle_concept"}
+  - {id: "SRC-PREACT-SIGNALS-LICENSE", url: "https://github.com/preactjs/signals/blob/main/LICENSE", accessed: "2026-08-30", license: "MIT"}
+candidate_contracts:
+  preserving: "conditional_mount_unmount_with_fresh_draft_and_one_cleanup_per_generation"
+  false_green: "hidden_but_mounted_generation_retains_draft_and_registration_while_inactive"
+  code_created: false
+  both_must_compile_and_pass_all_visible_tests: true
+oracle_boundary:
+  code_or_data_created: false
+  future_path: "evaluation/verifier-only/BG-H04/"
+  arm_mount_allowed: false
+  pre_verdict_feedback_rounds: 0
+  physical_denied_access_test_required: true
+authorization:
+  prose_and_provenance_only: true
+  fixture_or_candidate_code: false
+  tests_or_executable_manifests: false
+  oracle_code_or_data: false
+  benchmark_or_scored_artifacts: false
+  model_or_chromium_calls: false
+  commit_or_push: false
+owner_approval: {status: "approved", approved_at_utc: "2026-08-30T17:09:30Z", scope: "prose_and_public_provenance_only", implementation_authorized: false}

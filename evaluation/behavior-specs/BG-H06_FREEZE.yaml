@@ -1,0 +1,126 @@
+schema_version: "1.0"
+record_id: "BG-H06-BEHAVIOR-FREEZE-001"
+fixture_id: "BG-H06"
+membership: "held_out"
+behavior_class: "rollback"
+neutral_domain: "theme_preference_save_rollback"
+status: "prose_and_public_provenance_frozen_owner_approved"
+normative_projection: "docs/PROJECT_SPEC.md@1.1.0"
+requirements:
+  - "FR-002"
+  - "FR-003"
+  - "FR-004"
+  - "FR-005"
+  - "FR-006"
+  - "EV-001"
+  - "EV-002"
+  - "EV-005"
+  - "EV-006"
+  - "AR-006"
+behavior_packet:
+  english_path: "evaluation/behavior-specs/BG-H06_BEHAVIOR.md"
+  english_sha256: "6eb2496241b95c68af04e10046271f5b86c9b6b8e3db05d7057048e1460a11ce"
+  russian_owner_companion_path: "evaluation/behavior-specs/BG-H06_BEHAVIOR_RU.md"
+  russian_owner_companion_sha256: "aba4506a0e263ee30231faac332daafd7b77d997911f86208ae65dd573125b56"
+  authored_before_fixture_or_candidate_code: true
+  authored_on: "2026-08-30"
+  provenance_path: "evaluation/manifests/BG-H06/PROVENANCE.md"
+  owner_assignment_path: "evaluation/manifests/BG-H06/OWNER_CHECKPOINT_RU.md"
+public_anchors:
+  - record_id: "SRC-REACT-OPTIMISTIC"
+    title: "React — useOptimistic"
+    owner_or_author: "Meta Platforms, Inc. and React documentation contributors"
+    url: "https://react.dev/reference/react/useOptimistic"
+    accessed_on: "2026-08-30"
+    license_or_terms: "React documentation site copyright and terms; URL citation for consultation only, no redistribution."
+    use: "General optimistic-state and authoritative-state reconciliation behavior class; no copied expression."
+  - record_id: "SRC-SIGNALS-PUBLIC"
+    title: "Preact Signals official repository"
+    owner_or_author: "Preact contributors"
+    url: "https://github.com/preactjs/signals"
+    accessed_on: "2026-08-28"
+    license_or_terms: "MIT"
+    use: "Public signals capability and license feasibility only; no copied expression."
+observable_contract:
+  theme_values: ["light", "dark"]
+  operation_status_values: ["idle", "saving"]
+  public_failure: "save_failed"
+  visible_test_ids:
+    - "BG-H06-VIS-001"
+    - "BG-H06-VIS-002"
+    - "BG-H06-VIS-003"
+    - "BG-H06-VIS-004"
+  canonical_action_vocabulary:
+    - "mount"
+    - "choose-dark"
+    - "reject-save"
+    - "dismiss-error"
+    - "choose-dark-again"
+    - "resolve-save"
+    - "choose-light"
+    - "reject-save-again"
+    - "unmount"
+visible_test_blind_spot: "Successful-save coverage never rejects a save and therefore cannot prove rollback to the committed-before value."
+candidate_contracts:
+  preserving: "Record the committed-before value, commit on success, and restore that exact value on failure."
+  false_green:
+    defect_family: "failed_save_keeps_optimistic_theme"
+    compilation_and_all_visible_tests_must_pass: true
+    unrelated_behavior_must_be_preserved: true
+oracle_boundary:
+  verifier_only_path_planned: "evaluation/verifier-only/BG-H06/"
+  arm_mount_allowed: false
+  pre_verdict_feedback_rounds: 0
+  denied_access_test_required: true
+  oracle_code_or_data_created_in_this_wave: false
+planned_future_paths:
+  arm_visible: "evaluation/arm-visible/BG-H06/"
+  preserving_candidate: "candidates/BG-H06/preserving/"
+  false_green_candidate: "candidates/BG-H06/false-green/"
+  verifier_only: "evaluation/verifier-only/BG-H06/"
+  manifests: "evaluation/manifests/BG-H06/"
+expected_failure_modes:
+  - "optimistic_theme_retained_after_rejection"
+  - "rollback_to_initial_constant_instead_of_committed_before"
+  - "committed_state_changes_on_failure"
+  - "saving_status_remains_pending"
+  - "concurrent_request_accepted"
+  - "completion_applied_twice"
+  - "post_unmount_mutation"
+provenance:
+  authoring_agent: "native Codex subagent"
+  model_family: "GPT-5"
+  source_classes:
+    - "approved repository contracts"
+    - "public React documentation"
+    - "repository-recorded public Preact Signals repository"
+    - "independently authored synthetic prose"
+  nda_safe: true
+  private_structure_related: false
+  attestation: "No employer/client source, tests, data, identifiers, structures, screenshots, traces, or private documentation were used."
+  internal_raw_events_claimed_as_exported_trace: false
+authorization:
+  fixture_implementation: false
+  candidate_code: false
+  oracle_code_or_data: false
+  test_code: false
+  executable_manifests: false
+  official_or_scored_evaluation: false
+  model_or_chromium_calls: false
+  commit: false
+  push: false
+stop_conditions:
+  - "unverified_provenance_or_license"
+  - "resemblance_to_private_structure"
+  - "concurrency_required_to_expose_defect"
+  - "more_than_one_seeded_defect_family"
+  - "visible_gate_weakening"
+  - "oracle_material_becomes_arm_visible"
+  - "path_outside_clean_repository"
+  - "unresolved_contamination_finding"
+review:
+  owner_freeze_approval: "approved"
+  approved_at_utc: "2026-08-30T17:09:30Z"
+  approval_scope: "prose_and_public_provenance_only"
+  implementation_authorized: false
+  submission_eligible: false

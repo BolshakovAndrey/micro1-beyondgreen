@@ -1,0 +1,248 @@
+schema_version: "1.1"
+session_id: "SES-20260830-010"
+started_at_utc: "2026-08-30T15:54:02Z"
+agent:
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Prepare a submission-eligible boundary for an owner-gated prose-only behavior and provenance freeze of the six preassigned BeyondGreen held-out fixtures"
+
+repository:
+  root: "."
+  root_resolution: "The Git top level matched the task-authorized isolated clean worktree; the machine-specific absolute path is intentionally not persisted in this service record."
+  branch_state: "detached_head"
+  exact_base_commit: "f2afbdb2cde3f4677c351093baccfcb5a202c7d5"
+  initial_head: "f2afbdb2cde3f4677c351093baccfcb5a202c7d5"
+  working_tree_at_start: "clean"
+  remote_state_contacted_or_verified: false
+  main_checkout_read: false
+  commit_authorized: false
+  push_authorized: false
+
+context:
+  repository_root: "."
+  allowed_paths_before_approval:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-009.yaml"
+    - "artifacts/trajectories/reviews/BG-D02-D04-INTEGRATION-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-010.yaml"
+    - "artifacts/trajectories/reviews/BG-HELDOUT-FREEZE-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+  values_paths_or_contents_disclosed: false
+
+controls:
+  agents_instructions_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  session_boundary_template_read: true
+  required_contracts_read_in_full: true
+  root_matches_authorized_scope: true
+  exact_base_checked: true
+  clean_worktree_checked: true
+  exact_assignment_identifiers_verified_from_mandatory_contracts_only: true
+  existing_held_out_content_inspected: false
+  hidden_result_or_oracle_content_inspected: false
+  main_checkout_inspected: false
+  sibling_repositories_inspected: false
+  global_memory_inspected: false
+  private_denylist_available_to_scanner_only: false
+  private_paths_resolve_outside_repository: false
+  raw_trace_location: "external_local_only_not_accessed_before_approval"
+
+structural_preflight:
+  product_or_shared_files_read_beyond_mandatory_contracts_and_minimum_service_examples: false
+  product_or_shared_files_modified: false
+  held_out_prose_created: false
+  fixture_implementation_created: false
+  candidate_artifacts_created: false
+  oracle_code_or_data_created: false
+  test_code_created: false
+  benchmark_or_scored_artifacts_created: false
+  compile_or_tests_executed: false
+  product_commands_executed: false
+  scanner_or_preflight_executed: false
+  nested_codex_cli_executed: false
+  trace_capture_executed: false
+  implementation_workers_spawned: false
+  subagents_spawned: false
+  official_or_scored_run_performed: false
+  live_model_calls: 0
+  claude_calls: 0
+  chromium_calls: 0
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  global_memory_reads: 0
+  boundary_id_availability: "passed"
+  owner_card_path_availability: "passed"
+
+authorization:
+  boundary_preparation_requested_by_owner: true
+  boundary_preparation_only: true
+  held_out_freeze_authorized_before_separate_human_approval: false
+  candidate_or_oracle_work_authorized: false
+  official_or_scored_run_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  allowed_before_human_approval:
+    - "Read AGENTS.md, every mandatory contract, the session-boundary template, and the minimum repository-local service-file examples in full."
+    - "Inspect only the repository-local Git root, exact HEAD, clean status, and exact preassigned held-out identifiers recorded in the mandatory contracts."
+    - "Create SES-20260830-010 and its complete natural-Russian owner checkpoint card."
+    - "Structurally validate only those two new service files."
+  prohibited_before_human_approval:
+    - "Create held-out behavior prose, provenance packets, public-source packets, fixture manifests, or any other product file."
+    - "Create fixture implementation, preserving or false-green candidates, oracle code or data, tests, benchmark artifacts, scored artifacts, model outputs, or Chromium artifacts."
+    - "Spawn implementation workers or fixture-authoring subagents."
+    - "Run compile, tests, capture, scanner, preflight, model, browser, Chromium, fixture verification, replay, evaluation, benchmark, packaging, or any product command."
+    - "Inspect hidden results, hidden oracle contents, the main checkout, sibling repositories, external or private state, browser or MCP state, or global memory."
+    - "Invoke Claude, perform an official or scored run, commit, push, publish, package, or submit."
+
+future_freeze_scope_after_exact_owner_approval:
+  planned_coordinator_trace_id: "TRC-BG-HELDOUT-FREEZE-001"
+  wave_kind: "behavior_and_provenance_packets_only"
+  fixture_count: 6
+  development_held_out_split_target: "4/6"
+  assignments:
+    - fixture_id: "BG-H01"
+      behavior_class: "prop_reset"
+      challenging_case: false
+      worker_pair: "H01_H02"
+    - fixture_id: "BG-H02"
+      behavior_class: "async_ordering"
+      challenging_case: true
+      challenging_case_status: "predeclared"
+      worker_pair: "H01_H02"
+    - fixture_id: "BG-H03"
+      behavior_class: "identity_stability"
+      challenging_case: false
+      worker_pair: "H03_H04"
+    - fixture_id: "BG-H04"
+      behavior_class: "conditional_lifecycle"
+      challenging_case: false
+      worker_pair: "H03_H04"
+    - fixture_id: "BG-H05"
+      behavior_class: "external_store"
+      challenging_case: false
+      worker_pair: "H05_H06"
+    - fixture_id: "BG-H06"
+      behavior_class: "rollback"
+      challenging_case: false
+      worker_pair: "H05_H06"
+  parallel_authoring_plan:
+    executor: "three parallel native Codex subagents"
+    isolation: "one isolated clean worktree per subagent"
+    ownership:
+      - "H01/H02"
+      - "H03/H04"
+      - "H05/H06"
+    internal_raw_events_claimed_as_exported_traces: false
+    no_cross_pair_authorship: true
+  packet_requirements_per_pair:
+    - "Independently synthetic expression with no private-system dependency."
+    - "Defined user and neutral domain."
+    - "Frozen observable invariants."
+    - "Visible-test blind spot."
+    - "Behavior-preserving candidate contract without candidate implementation."
+    - "Seeded false-green candidate contract without candidate implementation."
+    - "Oracle and capability boundaries without oracle code or data."
+    - "Public provenance, access date, and license or terms."
+    - "Planned files, tests, and manifests without creating them in this wave."
+    - "Expected failure modes and explicit stop conditions."
+  coordinator_integration:
+    trace_id: "TRC-BG-HELDOUT-FREEZE-001"
+    purpose: "Integrate and validate only the six prose and provenance freeze packets."
+    capture_kind: "automatically_captured_direct_JSONL"
+    capture_scope: "coordinator_trajectory_only"
+    required_launcher: "already validated stdin instruction-file launcher"
+    prompt_transport: "instruction_file_via_stdin_no_inline_shell_prompt_construction"
+    required_cli_option: "--ignore-user-config"
+    nested_cli_cardinality: 1
+    simultaneous_nested_cli_allowed: false
+    destination: "micro1-safe-trace from the undisclosed authorized root"
+    repository_raw_intermediate_file: false
+    manual_copy_or_edited_fallback: false
+    failure_action: "Stop and request owner direction; do not retry, substitute transport, or start another nested CLI."
+  required_freeze_validations:
+    - "Exact 4/6 development/held-out split."
+    - "Bijection between all ten frozen behavior classes and BG-D01 through BG-H06."
+    - "BG-H02 retains the predeclared challenging-case label and rationale."
+    - "Complete English and natural-Russian owner materials with semantic parity."
+    - "Behavior prose and packet hashes."
+    - "Public provenance, access dates, and license or terms."
+    - "Manifest and checksum coverage for the prose-only freeze surface."
+    - "Both owner-approved safe preflights."
+  mandatory_stop_after_wave: "Stop for a separate repository-owner freeze approval before any candidate, oracle, fixture, or test code."
+  prohibited_in_wave:
+    - "Fixture implementation."
+    - "Preserving or seeded false-green candidate code or files."
+    - "Oracle code, oracle data, hidden expected results, or evaluator implementation."
+    - "Test code or executable test fixtures."
+    - "Benchmark or scored artifacts, unblinding, official or scored runs."
+    - "Live product-model calls or additional model calls beyond the single captured coordinator execution authorized by this boundary."
+    - "Chromium or browser artifacts."
+    - "Claude, browser/private state, connected apps, private MCP, global memory, sibling repositories, main checkout, or external/private workspaces."
+    - "Commit, push, publication, packaging, or submission."
+
+language_contract:
+  owner_facing_reports: "complete_natural_russian"
+  judge_facing_and_machine_readable_artifacts: "english_allowed"
+  future_code_jsdoc_and_comments_if_separately_approved: "english"
+  technical_identifier_policy: "Keep exact identifiers, commands, paths, library names, and official product names in English; explain unavoidable English terminology in Russian on first use."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "boundary_candidate_pending_human_review"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: ""
+  held_out_freeze_artifacts_status: "not_created"
+  implementation_evidence_status: "not_created"
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-30T15:59:22Z"
+  approval_evidence: "The repository owner returned the exact required phrase in the source-task delegation."
+  exact_required_phrase: "Одобряю SESSION_BOUNDARY SES-20260830-010 и разрешаю только одну ограниченную волну заморозки TRC-BG-HELDOUT-FREEZE-001: тремя параллельными нативными подагентами Codex в отдельных изолированных worktree подготовить только независимо синтетические и безопасные по NDA пакеты поведения и происхождения для пар BG-H01/BG-H02, BG-H03/BG-H04 и BG-H05/BG-H06 по уже закреплённым классам, не заявляя внутренние необработанные события подагентов как экспортированные трассы; затем одним автоматически захваченным координатором через проверенный stdin-launcher с файлом инструкции, --ignore-user-config, ровно одним вложенным CLI и прямой передачей JSONL в micro1-safe-trace из нераскрываемого разрешённого корня интегрировать и проверить только эти шесть пакетов, включая разделение 4/6, взаимно-однозначное соответствие классов, метку сложного случая BG-H02, русско-английские материалы, хеши, происхождение, лицензии, контрольные суммы и обе безопасные предварительные проверки, после чего остановиться для отдельного одобрения заморозки; не создавать реализацию фикстур, кандидаты, код или данные скрытого эталона, тестовый код, оцениваемые артефакты, вызовы живой модели продукта или Chromium-артефакты, не выполнять официальный либо оцениваемый запуск, Claude, commit или push."
+
+held_out_freeze_owner_approval:
+  status: "approved"
+  approved_at_utc: "2026-08-30T17:09:30Z"
+  approver: "repository_owner"
+  exact_phrase: "Одобряю только заморозку текстов H01–H06 и их публичного происхождения; реализация, кандидаты, скрытые эталоны, тесты, официальные или оцениваемые запуски, живые модели продукта, Claude, Chromium, commit и push не разрешены."
+  scope: "H01_H06_prose_and_public_provenance_only"
+  actual_traces_promotion_authorized: false
+  implementation_authorized: false
+  candidates_or_oracles_or_tests_authorized: false
+  official_or_scored_runs_authorized: false
+  commit_or_push_authorized: false
