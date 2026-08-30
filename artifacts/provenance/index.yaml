@@ -4,7 +4,7 @@ requirement_ids:
   - "AR-002"
   - "AR-006"
   - "EV-002"
-status: "d01_fixture_candidate_foundation_pending_owner_review"
+status: "d01_scale_004_owner_approved_scale_ready_true_documentation_bundle_three_captures_owner_approved_indexed"
 record_type_schemas:
   artifact_candidate:
     required_fields:
@@ -40,6 +40,24 @@ record_type_schemas:
       - "author"
       - "clean_room_attestation"
       - "automated_scan"
+      - "human_review"
+      - "redistribution"
+  implementation_provenance:
+    required_fields:
+      - "record_id"
+      - "record_type"
+      - "fixture_id"
+      - "session_boundary"
+      - "source_manifest_path"
+      - "source_manifest_sha256"
+      - "evidence_json_path"
+      - "evidence_html_path"
+      - "offline_replay_path"
+      - "frozen_foundation"
+      - "workflow_guards"
+      - "author"
+      - "clean_room_attestation"
+      - "validation"
       - "human_review"
       - "redistribution"
   public_anchor:
@@ -294,5 +312,15 @@ fixture_records:
   - record_id: "PRV-BG-D01-IMPLEMENTATION-001"
     path: "artifacts/provenance/BG-D01-IMPLEMENTATION.yaml"
     fixture_id: "BG-D01"
-    status: "automated_validation_passed_owner_review_pending"
+    status: "frozen_fixture_provenance_owner_approved"
+implementation_records:
+  - record_id: "PRV-BG-D01-RECOVERY-001"
+    path: "artifacts/provenance/BG-D01-VERTICAL-SLICE.yaml"
+    fixture_id: "BG-D01"
+    status: "scale_readiness_corrections_validated_trace_owner_approved_eligible_checkpoint_pass_with_concerns"
+documentation_records:
+  - record_id: "PRV-BG-D01-DOCUMENTATION-001"
+    path: "artifacts/provenance/BG-D01-DOCUMENTATION.yaml"
+    fixture_id: "BG-D01"
+    status: "owner_approved_three_documentation_captures_indexed_mandatory_submission_path_redaction"
 future_fixture_rule: "Each future fixture uses record_type fixture_provenance and requires both manifest hashes, anchors, clean-room attestation, automated scan, and human review before implementation."

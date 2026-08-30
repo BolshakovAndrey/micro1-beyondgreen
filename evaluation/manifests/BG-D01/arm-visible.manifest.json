@@ -12,7 +12,7 @@
     },
     {
       "path": "evaluation/arm-visible/BG-D01/contract.ts",
-      "sha256": "c2b7e7963e2b50d0d735b424a8509d4ffb13c70ea2e36d2ae0e04439ced35903"
+      "sha256": "bb9fb7356e9d5c3039611cc430c89abb396d10d2fd09738abb6a238a23dc30d7"
     },
     {
       "path": "evaluation/arm-visible/BG-D01/denied-probe.mjs",
@@ -31,9 +31,13 @@
       "sha256": "90daa65e14a4ba886eb70ebecc3183308b487f3b0f3cb00618c19fec5605c37d"
     },
     {
+      "path": "evaluation/arm-visible/BG-D01/visible-assertions.ts",
+      "sha256": "9f6638acfd0e6e7c812ab7c7e614a53fbff99de8b2a8beeb797843f57cbe1ecd"
+    },
+    {
       "path": "evaluation/arm-visible/BG-D01/visible.test.ts",
-      "sha256": "4ec4ae37d00181484bb26c70209d208c230fdb738b3735122320efb92f7d1c5e"
+      "sha256": "477d402deb90113718c9b241449f28db2cf643c5c6a715a6d76a9760cd6da556"
     }
   ],
-  "package_sha256": "c37e238f693a87cdae4c04aff5ffc3cd56c851bfa2f351c01c6c9325d5ab9882"
+  "package_sha256": "ade0223f33d045972798e9bdcb1c2931c032a76e630ff701c1afdfc891e77d6a"
 }

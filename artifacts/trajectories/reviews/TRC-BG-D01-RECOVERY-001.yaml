@@ -1,0 +1,71 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-D01-RECOVERY-001"
+status: "blocked_exact_immutable_source_comparison_unresolved"
+category: "coding_agent"
+agent_id: "COD-CODEX-006"
+session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260829-007.yaml"
+instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-RECOVERY-001.md"
+submission_layer_reviewed_trace_path: "artifacts/trajectories/reviewed/TRC-BG-D01-RECOVERY-001.md"
+post_capture_provenance_path: "artifacts/trajectories/reviews/TRC-BG-D01-RECOVERY-001-POST-CAPTURE.yaml"
+human_review_companion_ru_path: "artifacts/trajectories/reviews/BG-D01-CLEAN-RECOVERY-CHECKPOINT_RU.md"
+related_iteration_ids:
+  - "ITR-020"
+  - "ITR-021"
+  - "ITR-022"
+  - "ITR-024"
+  - "ITR-025"
+related_run_ids:
+  - "RUN-BG-D01-VERTICAL-001"
+raw_capture:
+  status: "externally_anchored_exact_content_not_compared"
+  capture_kind: "codex_desktop_native_markdown"
+  raw_internal_export_available: false
+  bytes: 66250
+  sha256: "bcf36c6cc64f7695adbdac8a49a888bee8c33b6658a5a469306ae2422db7c612"
+  raw_path_disclosed: false
+  raw_content_stored_in_repository: false
+  hidden_reasoning_or_internal_events_claimed: false
+comparison:
+  mode: "privacy_safe_semantic_comparison_of_later_native_export"
+  later_export_bytes: 79779
+  exact_immutable_capture_match: false
+  exact_transport_hash_verified: false
+  source_coverage: "high_for_instructions_actions_and_results_partial_for_tool_details_errors_and_approvals"
+  reviewed_layer_reconciled: true
+  technical_meaning_preserved_relative_to_exact_capture: false
+  unsupported_claims_removed_from_source_derived_trace: true
+categorical_redaction:
+  category: "machine_specific_worktree_metadata"
+  owner_approved: true
+  values_retained: false
+  external_workspace_content_read: false
+  implementation_dependency_on_removed_metadata: false
+automated_scan:
+  status: "passed_reviewed_layer_only"
+  contamination_findings: 0
+  control_result: "READY_FOR_CLEAN_BRANCH"
+  implementation_result: "READY_FOR_IMPLEMENTATION"
+manual_review:
+  status: "failed_exact_source_equivalence_gate"
+  reviewed_layer_privacy_findings: 0
+  technical_meaning_preserved: false
+human_checkpoint:
+  categorical_redaction_decision_preserved: true
+  historical_final_eligibility_decision_preserved_in_post_capture_provenance: true
+  historical_final_eligibility_status: "superseded_by_precommit_reassessment_and_failed_exact_source_equivalence_gate"
+eligibility:
+  verdict: "BLOCKED"
+  eligible_representative_trace: false
+  blockers:
+    - "The later export used for semantic comparison is 79,779 bytes and is not the externally anchored 66,250-byte immutable capture."
+    - "Technical-meaning preservation relative to the exact immutable capture is therefore unproven."
+  cleared_gates:
+    - "The reviewed layer has been reconciled to claims supported by the later available export."
+    - "Post-capture decisions and capture metadata are separated from source-derived trajectory claims."
+    - "Reviewed-layer privacy scan and owner-controlled contamination preflights passed."
+  next_human_decision: "Choose exact immutable-capture comparison or replacement with a newly captured and exactly reviewable representative trace."
+promotion:
+  allowed: false
+  indexed_in_actual_traces: false
+  commit_performed: false
+  push_performed: false

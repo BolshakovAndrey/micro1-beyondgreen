@@ -2,8 +2,42 @@
 
 **Normative status:** single source of truth
 **Version:** `1.1.0`
-**State:** normative v1.1 approved; Phase 0.5 frozen under explicit nested-CLI waiver;
-the bounded D01 foundation checkpoint is implemented and pending owner review
+**State:** normative v1.1 approved; Phase 0.5 frozen under explicit nested-CLI waiver.
+The unscored D01 vertical slice has an owner-approved eligible historical
+verification trace, `TRC-BG-D01-VERIFY-002`. Under approved boundary
+`SES-20260830-001`, the enumerated scale-readiness corrections are implemented and
+repo-locally validated. That historical trace does not cover the new implementation.
+`TRC-BG-D01-SCALE-001` has passed exact native byte identity, strict UTF-8,
+categorical path redaction, complete native-layer review, and the private-denylist
+scan. The repeated Claude Opus checkpoint returned
+`D01_CHECKPOINT=PASS_WITH_CONCERNS` and `SCALE_READY=no`; Codex independently
+confirmed remaining architecture and evidence concerns. The repository owner approved
+the reviewed trajectory as eligible implementation evidence and it is indexed in
+`actual_traces`; its eligibility is independent from the future scale-readiness
+checkpoint. The owner subsequently approved `SES-20260830-002`, and
+`TRC-BG-D01-SCALE-002` passed capture, review, safe scanning, and owner promotion.
+After a Codex acceptance matrix confirmed four remaining blockers, the owner approved
+the bounded correction boundary `SES-20260830-003` and one eligible implementation
+trajectory, `TRC-BG-D01-SCALE-003`. The real orchestrator, worker processes, replay,
+and report now traverse one injected generic descriptor execution path while D01
+remains a data-only composition root; the D01 observation schema is explicitly
+injected, and a TEST-ONLY descriptor proves the injected contracts through the real
+pipeline. Runner evidence now verifies launch-to-worker identity, canonical sandbox
+and path-policy digests, exact role/profile/proof bijection, per-arm event state, and
+evaluator binding to immutable arm decisions. Offline replay independently checks
+`reasonCorrectReject` and `oracleAcceptedCandidate`. Recursive package validation
+accepts valid nested structures and rejects changed bytes in a registered source.
+The later owner-approved `SES-20260830-004` trajectory family closed those five
+bounded blockers without changing the five visible assertions, candidate bytes,
+behavior freeze, oracles, evaluation methodology, targets, dependencies, or runtime
+policy. Ordinary tests passed `56/56`; complete `d01:verify`, offline replay, and
+Phase 0.5 verification passed. Eight automatic implementation JSONL captures passed
+safe raw scanning, and the repeated Codex matrix passed A1, A2, A3, S1, S2, S3, S4,
+P1, P2, and D1. The repository owner approved the reviewed main trace and seven
+continuations, indexed all eight captures in `actual_traces`, and explicitly set
+`SCALE_READY=true`. Deterministic machine-path redaction remains mandatory. No
+official/scored run, live-model call, Chromium call, BG-D02 work, commit, or push
+occurred.
 **Human approval:** 2026-08-29T10:46:39Z
 **Clean session:** `SES-20260829-001`
 
@@ -574,9 +608,13 @@ approval remains the gate after each review where specified.
 Approval of this specification and the Phase 0.5 freeze did not itself authorize
 product development. The bounded D01 foundation began under explicit
 repository-owner authorization in `SES-20260829-004`, after the Phase 0.5 trajectory
-review and D01 behavior/provenance freeze. This authorization covers only the
-fixture/candidate foundation and physical oracle boundary; the full vertical slice
-and every later phase remain separately gated.
+review and D01 behavior/provenance freeze. The owner subsequently approved
+`SES-20260829-005` for the complete unscored D01 vertical slice, but that authoring
+session is now excluded by `EXC-003`. The owner authorized independent clean recovery
+in `SES-20260829-007`; no SES-006 change is inherited. That authorization covers only
+this one development workflow through reports and offline replay;
+official/scored runs, repair, other fixtures, model/Chromium work, commit, push, and
+every later phase remain separately gated.
 
 ## 19. Critical path and milestones
 

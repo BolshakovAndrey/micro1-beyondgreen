@@ -1,0 +1,128 @@
+schema_version: "1.1"
+session_id: "SES-20260829-008"
+started_at_utc: "2026-08-29T20:49:46Z"
+agent:
+  id: "COD-CODEX-007"
+  tool: "Codex Desktop"
+  model: "GPT-5.6 Sol"
+  purpose: "Bounded independent verification of the current unscored BG-D01 implementation, reproduction path, evidence integrity, and oracle isolation; no official or scored run."
+trace:
+  planned_trace_id: "TRC-BG-D01-VERIFY-001"
+  capture_in_this_session: false
+  capture_note: "The repository owner will capture the trace after task completion through a separate authorized interface; micro1-safe-trace capture is not authorized here."
+  blocked_predecessor:
+    trace_id: "TRC-BG-D01-RECOVERY-001"
+    status: "BLOCKED"
+    use_as_source: false
+    use_as_evidence: false
+repository:
+  root: "current_clean_repository_root"
+  branch: "impl/beyondgreen"
+  head: "f0418bc6051002d8d42ccf84822d2e1f2e25b02e"
+  working_tree:
+    state: "dirty"
+    tracked_modifications_present: true
+    untracked_files_present: true
+    observation_command: "git status --short --untracked-files=all"
+  git_commands_used_at_boundary:
+    - "git branch --show-current"
+    - "git rev-parse HEAD"
+    - "git status --short --untracked-files=all"
+  commit_authorized: false
+  push_authorized: false
+context:
+  repository_root: "current_clean_repository_root"
+  allowed_paths:
+    - "AGENTS.md"
+    - "package.json"
+    - "package-lock.json"
+    - "tsconfig.json"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "docs/D01_REPRODUCTION.md"
+    - "config/topic.yaml"
+    - "config/phase-0.5.candidate.yaml"
+    - "src/d01/"
+    - "scripts/"
+    - "tests/"
+    - "evaluation/arm-visible/BG-D01/"
+    - "evaluation/verifier-only/BG-D01/"
+    - "evaluation/manifests/BG-D01/"
+    - "artifacts/evaluation/"
+    - "artifacts/provenance/"
+    - "artifacts/trajectories/session-boundaries/SES-20260829-008.yaml"
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "use_unauthorized"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+  external_access:
+    authorized: false
+    inspected: false
+    network: false
+    browser: false
+    connected_apps: false
+    mcp_or_private_state: false
+    shared_memory: false
+    sibling_or_other_repositories: false
+controls:
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  private_denylist_available_to_scanner_only: false
+  private_paths_resolve_outside_repository: false
+  raw_trace_location: "external_local_only_not_accessed"
+authorization:
+  checkpoint_only: true
+  subsequent_scope_authorized: true
+  allowed_after_separate_human_approval:
+    - "Read-only review of current D01 code and evidence against docs/PROJECT_SPEC.md@1.1.0."
+    - "npm run compile"
+    - "npm test"
+    - "npm run task -- d01:verify"
+    - "npm run task -- d01:replay"
+    - "npm run task -- phase0.5:verify"
+    - "npm run task -- checksums:check"
+    - "git diff --check"
+  modification_policy: "Do not modify product or evaluation artifacts. If a deterministic failure is found, stop and report it rather than repair it."
+  prohibited:
+    - "Any official or scored run."
+    - "Any product or evaluation modification unless separately authorized after a reported deterministic failure."
+    - "Claude, Codex CLI, live-model, Chromium, or network diagnostics."
+    - "Browser, connected apps, MCP/private state, shared memory, external paths, sibling repositories, or other workspaces."
+    - "Commit or push."
+    - "micro1-safe-trace capture."
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: true
+  repository_artifacts_status: "candidate_pending_bounded_independent_verification"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: ""
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-29T21:16:25Z"
+  approval_evidence: "Owner supplied the exact required approval phrase in this Codex task."
+  exact_required_phrase: "Одобряю SESSION_BOUNDARY SES-20260829-008 и разрешаю выполнить только указанный verification scope без исправлений, official/scored run, commit/push и внешнего доступа."

@@ -4,7 +4,7 @@ requirement_ids:
   - "AR-002"
   - "AR-005"
   - "NFR-004"
-status: "d01_implementation_checkpoint_trace_pending_owner_review"
+status: "d01_scale_004_owner_approved_eight_captures_indexed_scale_ready_true"
 session_boundaries:
   - session_id: "SES-20260828-001"
     path: "artifacts/trajectories/session-boundaries/SES-20260828-001.yaml"
@@ -34,6 +34,50 @@ session_boundaries:
     selected_response_exact: "Commit и код (Recommended)"
     approval_scope: "Implement and validate only the D01 fixture/candidate foundation, then stop for owner review without commit or push."
     authoring_transcript_eligible: "pending_automated_and_human_trace_review"
+  - session_id: "SES-20260829-005"
+    path: "artifacts/trajectories/session-boundaries/SES-20260829-005.yaml"
+    approval_status: "approved"
+    selected_response_exact: "Одобряю SES-005 (Recommended)"
+    approval_scope: "Implement and validate only the complete unscored BG-D01 verify-existing vertical slice, then stop for owner review without commit or push."
+    authoring_transcript_eligible: false
+    exclusion_id: "EXC-003"
+    reason: "Excluded after an outside-repository write during replay comparison; no external name or path is recorded."
+  - session_id: "SES-20260829-007"
+    path: "artifacts/trajectories/session-boundaries/SES-20260829-007.yaml"
+    approval_status: "approved"
+    approval_scope: "Independently clean-recover and validate the repo-local D01 draft; stop for owner review without commit or push."
+    authoring_transcript_eligible: false
+    eligibility_disposition: "categorical redaction approved; native Markdown capture anchored; later export compared and reviewed layer reconciled; exact immutable-source equivalence remains unproven"
+  - session_id: "SES-20260829-008"
+    path: "artifacts/trajectories/session-boundaries/SES-20260829-008.yaml"
+    approval_status: "approved"
+    approval_scope: "Run only the bounded independent D01 verification scope; stop on deterministic failure; no official/scored run, external access, commit, or push."
+    authoring_transcript_eligible: true
+    eligibility_disposition: "TRC-BG-D01-VERIFY-002 passed exact identity, strict UTF-8, independent semantic review, private-denylist scan, and repository-owner review; it is indexed as the eligible representative trace for COD-CODEX-007."
+  - session_id: "SES-20260830-001"
+    path: "artifacts/trajectories/session-boundaries/SES-20260830-001.yaml"
+    approval_status: "approved"
+    approval_scope: "Implement only the enumerated D01 scale-readiness corrections with an eligible implementation trace; no official/scored run, live model, Chromium, BG-D02, commit, or push."
+    authoring_transcript_eligible: true
+    eligibility_disposition: "TRC-BG-D01-SCALE-001 passed exact identity, strict UTF-8, mechanical redaction, complete EN/RU review, safe scans, and owner approval; it is indexed in actual_traces independently from the future scaling gate."
+  - session_id: "SES-20260830-002"
+    path: "artifacts/trajectories/session-boundaries/SES-20260830-002.yaml"
+    approval_status: "approved"
+    approval_scope: "Implement only the remaining descriptor-driven engine, runner-produced capability evidence, directory completeness, negative tests, and projection reconciliation; no official/scored run, live model, Chromium, BG-D02, evaluation-methodology change, commit, or push."
+    authoring_transcript_eligible: true
+    eligibility_disposition: "TRC-BG-D01-SCALE-002 passed exact capture, strict UTF-8, two categorical path redactions, complete 571-line Codex review, EN/RU reconciliation, safe scans, and explicit repository-owner approval; it is indexed in actual_traces independently from the separate scaling gate."
+  - session_id: "SES-20260830-003"
+    path: "artifacts/trajectories/session-boundaries/SES-20260830-003.yaml"
+    approval_status: "approved"
+    approval_scope: "Correct only the four confirmed D01 SCALE-003 acceptance blockers; SCALE_READY remains false; no official/scored run, BG-D02, commit, or push."
+    authoring_transcript_eligible: true
+    eligibility_disposition: "TRC-BG-D01-SCALE-003 passed exact native-capture identity, strict UTF-8, safe raw scanning, complete EN/RU technical review, and explicit repository-owner promotion; it is indexed in actual_traces independently from the separate scaling gate."
+  - session_id: "SES-20260830-004"
+    path: "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+    approval_status: "approved_and_completed"
+    approval_scope: "Correct only A1, A2, S1, S2, and S3 while preserving A3, S4, P1, P2, and D1; automatic JSONL capture; no official/scored run, BG-D02, commit, or push."
+    authoring_transcript_eligible: true
+    eligibility_disposition: "The main SCALE-004 capture and seven owner-authorized continuations passed raw scanning, complete EN/RU review, all ten Codex acceptance criteria, and explicit owner promotion; all eight are indexed exactly once and SCALE_READY=true."
 capture_validation:
   status: "pipeline_canary_passed_not_a_representative_trace"
   category: "external_raw_trace_canary"
@@ -118,7 +162,411 @@ actual_traces:
     indexed_in_actual_traces: true
     eligible_representative_trace: true
     approval_scope: "Promote this Phase 0.5 trace only; no product/scored work, model/browser run, commit, or push."
-pending_trace_capture_and_review:
+  - trace_id: "TRC-BG-D01-VERIFY-002"
+    agent_id: "COD-CODEX-007"
+    category: "coding_agent"
+    tool_and_model: "Codex Desktop / GPT-5.6 Sol"
+    purpose: "Bounded independent verification of the unscored BG-D01 implementation, reproduction path, evidence integrity, and oracle isolation."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260829-008.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-VERIFY-002.md"
+    trace_path: "artifacts/trajectories/reviewed/TRC-BG-D01-VERIFY-002.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-D01-VERIFY-002_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-VERIFY-002.yaml"
+    human_review_companion_ru_path: "artifacts/trajectories/reviews/TRC-BG-D01-VERIFY-002_RU.md"
+    post_capture_provenance_path: "artifacts/trajectories/reviews/TRC-BG-D01-VERIFY-002-POST-CAPTURE.yaml"
+    related_iteration_ids:
+      - "ITR-024"
+      - "ITR-025"
+      - "ITR-026"
+      - "ITR-027"
+    related_run_ids:
+      - "RUN-BG-D01-VERTICAL-001"
+    capture_kind: "codex_desktop_copy_as_markdown"
+    raw_internal_export_available: false
+    raw_bytes: 24318
+    raw_sha256: "6cb44af2ae43b03035fa41044dc2f2bdf9ee54d009ccc699205c2da420e32305"
+    raw_path_disclosed: false
+    hidden_reasoning_or_internal_events_claimed: false
+    exact_identity: true
+    strict_utf8_roundtrip: true
+    independent_semantic_review: "passed"
+    independent_review_technical_meaning_preserved: true
+    automated_scan: "passed"
+    automated_scan_scope: "reviewed_layer_after_documented_omissions"
+    control_preflight: "READY_FOR_CLEAN_BRANCH"
+    implementation_preflight: "READY_FOR_IMPLEMENTATION_with_dirty_worktree_warning"
+    reviewed_layer_contamination_findings: 0
+    binary_human_review_notices: 4
+    human_review: "passed"
+    human_reviewed_at_utc: "2026-08-30T06:26:46Z"
+    approval_question_exact: "Подтверждаете, что русская и английская версии TRC-BG-D01-VERIFY-002 точно и безопасно сохраняют технический смысл исходной проверки с указанными ограничениями, и разрешаете включить эту трассу в actual_traces?"
+    selected_response_exact: "Подтверждаю одобрение TRC-BG-D01-VERIFY-002 и разрешаю включить её в actual_traces."
+    technical_meaning_preserved: true
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    evidence_role: "Eligible bounded verification of the pre-remediation D01 state; not implementation evidence for SES-20260830-001 scale-readiness corrections."
+    covers_scale_readiness_remediation: false
+    approval_scope: "Promote TRC-BG-D01-VERIFY-002 only; no official/scored run, product repair, additional fixture, commit, push, or publication."
+  - trace_id: "TRC-BG-D01-SCALE-001"
+    agent_id: "COD-CODEX-008"
+    category: "coding_agent"
+    tool_and_model: "Codex Desktop / GPT-5 family; exact runtime identity not machine-exported in task evidence"
+    purpose: "Implement and verify the approved D01 scale-readiness corrections before a repeated independent checkpoint."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260830-001.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-SCALE-001.md"
+    decision_evidence_map_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-001-DECISION-EVIDENCE.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-001.yaml"
+    human_review_companion_ru_path: "artifacts/trajectories/reviews/BG-D01-SCALE-READINESS-CHECKPOINT_RU.md"
+    independent_checkpoint_path: "artifacts/trajectories/reviews/BG-D01-SCALE-CLAUDE-CHECKPOINT.md"
+    independent_checkpoint_ru_path: "artifacts/trajectories/reviews/BG-D01-SCALE-CLAUDE-CHECKPOINT_RU.md"
+    related_iteration_ids:
+      - "ITR-028"
+      - "ITR-029"
+    related_run_ids:
+      - "RUN-BG-D01-VERTICAL-001"
+    capture_kind: "codex_desktop_copy_as_markdown"
+    capture_status: "externally_anchored_exact_source_reviewed"
+    raw_bytes: 56127
+    raw_sha256: "605d014dd5e631d7be4b9d746eee222ebc9bd5acaa679a0e2e9e71e36bcddfb0"
+    trace_path: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-001-NATIVE.md"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-001.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-001_RU.md"
+    post_capture_provenance_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-001-POST-CAPTURE.yaml"
+    automated_scan: "passed_requires_two_documented_categorical_path_redactions"
+    human_review: "passed"
+    human_reviewed_at_utc: "2026-08-30T08:42:06Z"
+    selected_response_exact: "Одобряю reviewed trace TRC-BG-D01-SCALE-001 и разрешаю включить её в actual_traces как eligible implementation evidence; понимаю, что это не меняет D01_CHECKPOINT=PASS_WITH_CONCERNS и SCALE_READY=no. При продвижении исправить проекции так, чтобы будущий D01_CHECKPOINT=PASS и SCALE_READY=yes блокировал только масштабирование, но не eligibility этой уже проверенной coding-agent trajectory. Без official/scored run, live model продукта, Chromium, BG-D02, commit/push."
+    independent_semantic_review: "passed_by_codex_exact_native_layer"
+    repeated_independent_checkpoint: "PASS_WITH_CONCERNS"
+    scale_ready: false
+    technical_meaning_preserved: true
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    repeated_checkpoint: "D01_CHECKPOINT_PASS_WITH_CONCERNS_SCALE_READY_no"
+    evidence_role: "Eligible implementation trajectory for SES-20260830-001; it honestly preserves the PASS_WITH_CONCERNS/SCALE_READY=no checkpoint."
+    trajectory_eligibility_independent_from_scaling_gate: true
+    scaling_gate: "A future D01_CHECKPOINT=PASS and SCALE_READY=yes blocks only scaling, not this trajectory's eligibility."
+    approval_scope: "Promote this trajectory only; no scaling, official/scored run, live product model, Chromium, BG-D02, commit, or push."
+  - trace_id: "TRC-BG-D01-SCALE-002"
+    agent_id: "COD-CODEX-009"
+    category: "coding_agent"
+    tool_and_model: "Codex Desktop / configured model; exact runtime identity not machine-exported in task evidence"
+    purpose: "Implement and verify the remaining descriptor-engine, runner-produced capability-evidence, and directory-completeness corrections."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260830-002.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-SCALE-002.md"
+    decision_evidence_map_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-002-DECISION-EVIDENCE.md"
+    trace_path: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-002-NATIVE.md"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-002.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-002_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-002.yaml"
+    post_capture_provenance_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-002-POST-CAPTURE.yaml"
+    capture_kind: "codex_desktop_copy_as_markdown"
+    capture_status: "externally_anchored_exact_source_reviewed"
+    raw_bytes: 43616
+    raw_sha256: "8d60978fcfce04f7c6fe3fa777d5b438a62347328c482da85f60993e48c3247a"
+    raw_path_disclosed: false
+    exact_identity: true
+    strict_utf8_roundtrip: true
+    categorical_path_redactions: 2
+    complete_native_line_review: "passed_571_lines"
+    automated_scan: "passed_after_two_documented_categorical_path_redactions"
+    reviewed_layer_contamination_findings: 0
+    technical_meaning_preserved: true
+    human_review: "passed"
+    human_reviewed_at_utc: "2026-08-30T09:20:29Z"
+    selected_response_exact: 'Одобряю reviewed trace TRC-BG-D01-SCALE-002 и разрешаю включить её в actual\_traces как eligible implementation evidence; понимаю, что SCALE\_READY=false и готовность к масштабированию будет отдельно определена Codex acceptance-матрицей и явным одобрением владельца. Без official/scored run, live model продукта, Chromium, BG-D02, изменения evaluation methodology, candidates или freeze, commit/push.'
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    scale_ready: false
+    trajectory_eligibility_independent_from_scaling_gate: true
+    evidence_role: "Eligible implementation trajectory for the remaining SES-20260830-002 D01 scale-readiness corrections; it does not establish scaling readiness."
+    approval_scope: "Promote this reviewed trajectory only; scaling, official/scored run, live product model, Chromium, BG-D02, methodology/candidate/freeze changes, commit, and push remain separately gated or prohibited."
+  - trace_id: "TRC-BG-D01-SCALE-003"
+    agent_id: "COD-CODEX-010"
+    category: "coding_agent"
+    tool_and_model: "Codex Desktop / GPT-5 family; exact runtime identity not machine-exported in task evidence"
+    purpose: "Correct and verify the four confirmed D01 SCALE-003 acceptance blockers."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260830-003.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-SCALE-003.md"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-003.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-003_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-003.yaml"
+    post_capture_provenance_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-003-POST-CAPTURE.yaml"
+    capture_kind: "codex_desktop_copy_as_markdown"
+    capture_status: "externally_anchored_exact_source_reviewed"
+    raw_bytes: 49485
+    raw_sha256: "0fe4e5b8be4ffff71b849bda538e4ecc6d2d44b94a9dcfdf423b1209855d4400"
+    raw_path_disclosed: false
+    exact_identity: true
+    strict_utf8_roundtrip: true
+    automated_scan: "passed_with_two_documented_machine_path_omissions"
+    reviewed_layer_contamination_findings: 0
+    technical_meaning_preserved: true
+    human_review: "passed"
+    human_reviewed_at_utc: "2026-08-30T10:41:34Z"
+    approval_question_exact: "Одобряете проверенную TRC-BG-D01-SCALE-003 для включения в actual_traces при сохранении SCALE_READY=false и запрете commit/push?"
+    selected_response_exact: "Одобряю (Recommended)"
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    scale_ready: false
+    trajectory_eligibility_independent_from_scaling_gate: true
+    approval_scope: "Promote this reviewed trajectory only; scaling and all separately prohibited actions remain gated."
+  - trace_id: "TRC-BG-D01-SCALE-004"
+    agent_id: "COD-CODEX-011"
+    category: "coding_agent"
+    tool_and_model: "Codex CLI / gpt-5.6-sol"
+    purpose: "Implement the five bounded SCALE-004 runtime and capability corrections."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-SCALE-004.md"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-004.yaml"
+    post_capture_provenance_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-004-POST-CAPTURE.yaml"
+    capture_kind: "codex_cli_jsonl_stdout"
+    raw_bytes: 539661
+    raw_sha256: "9b02a76829ba9e6f0b41b8ef40f9b80e3360ac32be7e53148ba5b1268f259754"
+    raw_path_disclosed: false
+    automated_scan: "passed_requires_deterministic_machine_path_redaction"
+    human_review: "passed"
+    owner_bundle_approval: "passed_2026-08-30"
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    scale_ready: true
+  - trace_id: "TRC-BG-D01-SCALE-004-CONT-001"
+    agent_id: "COD-CODEX-011"
+    category: "coding_agent_continuation"
+    tool_and_model: "Codex CLI / gpt-5.6-sol"
+    purpose: "Correct seven bounded generic runtime TypeScript errors."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-SCALE-004-CONT-001.md"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-004.yaml"
+    capture_kind: "codex_cli_jsonl_stdout"
+    raw_bytes: 138021
+    raw_sha256: "095fb692559f7dd10e370a8603927da7c9cefecbc3840cf32fc492611426d43d"
+    raw_path_disclosed: false
+    automated_scan: "passed_requires_deterministic_machine_path_redaction"
+    human_review: "passed"
+    owner_bundle_approval: "passed_2026-08-30"
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    scale_ready: true
+  - trace_id: "TRC-BG-D01-SCALE-004-CONT-002"
+    agent_id: "COD-CODEX-011"
+    category: "coding_agent_continuation"
+    tool_and_model: "Codex CLI / gpt-5.6-sol"
+    purpose: "Add the bounded TEST-ONLY arm-visible package binding fields."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-SCALE-004-CONT-002.md"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-004.yaml"
+    capture_kind: "codex_cli_jsonl_stdout"
+    raw_bytes: 314921
+    raw_sha256: "655f8e8d2311d934653cb642a72ff2e2bfb587c0e3a6072b441bf7c72b13e9e3"
+    raw_path_disclosed: false
+    automated_scan: "passed_requires_deterministic_machine_path_redaction"
+    human_review: "passed"
+    owner_bundle_approval: "passed_2026-08-30"
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    scale_ready: true
+  - trace_id: "TRC-BG-D01-SCALE-004-CONT-003"
+    agent_id: "COD-CODEX-011"
+    category: "coding_agent_continuation"
+    tool_and_model: "Codex CLI / gpt-5.6-sol"
+    purpose: "Add the bounded TEST-ONLY verifier package binding fields."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-SCALE-004-CONT-003.md"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-004.yaml"
+    capture_kind: "codex_cli_jsonl_stdout"
+    raw_bytes: 274882
+    raw_sha256: "b4d93ecb5586386cf59a17a0b96461effbac9705eb4f04fee7d94691bdbd6877"
+    raw_path_disclosed: false
+    automated_scan: "passed_requires_deterministic_machine_path_redaction"
+    human_review: "passed"
+    owner_bundle_approval: "passed_2026-08-30"
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    scale_ready: true
+  - trace_id: "TRC-BG-D01-SCALE-004-CONT-004"
+    agent_id: "COD-CODEX-011"
+    category: "coding_agent_continuation"
+    tool_and_model: "Codex CLI / gpt-5.6-sol"
+    purpose: "Run the owner-authorized ordinary-test gate and preserve its environment failure."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-SCALE-004-CONT-004.md"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-004.yaml"
+    capture_kind: "codex_cli_jsonl_stdout"
+    raw_bytes: 69378
+    raw_sha256: "45b03072137b4df6b57ee1e8417e39e788a6851048063d9e064c928c25fcd909"
+    raw_path_disclosed: false
+    automated_scan: "passed_requires_deterministic_machine_path_redaction"
+    human_review: "passed"
+    owner_bundle_approval: "passed_2026-08-30"
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    scale_ready: true
+  - trace_id: "TRC-BG-D01-SCALE-004-CONT-005"
+    agent_id: "COD-CODEX-011"
+    category: "coding_agent_continuation"
+    tool_and_model: "Codex CLI / gpt-5.6-sol"
+    purpose: "Separate arm and observer imports from evaluator-only verifier composition."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-SCALE-004-CONT-005.md"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-004.yaml"
+    capture_kind: "codex_cli_jsonl_stdout"
+    raw_bytes: 387071
+    raw_sha256: "8ad49e296a39af642c1f287363ab33af7428357dcb7ea655f070adc8e42507c0"
+    raw_path_disclosed: false
+    automated_scan: "passed_requires_deterministic_machine_path_redaction"
+    human_review: "passed"
+    owner_bundle_approval: "passed_2026-08-30"
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    scale_ready: true
+  - trace_id: "TRC-BG-D01-SCALE-004-CONT-006"
+    agent_id: "COD-CODEX-011"
+    category: "coding_agent_continuation"
+    tool_and_model: "Codex CLI / gpt-5.6-sol"
+    purpose: "Correct the single evaluator-composition parameter type and preserve targeted verification evidence."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-SCALE-004-CONT-006.md"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-004.yaml"
+    capture_kind: "codex_cli_jsonl_stdout"
+    raw_bytes: 308379
+    raw_sha256: "311188234ff9054970adaa440652ad73ccd292e82c0783c5e2d06c463eaaa868"
+    raw_path_disclosed: false
+    automated_scan: "passed_requires_deterministic_machine_path_redaction"
+    human_review: "passed"
+    owner_bundle_approval: "passed_2026-08-30"
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    scale_ready: true
+  - trace_id: "TRC-BG-D01-SCALE-004-CONT-007"
+    agent_id: "COD-CODEX-011"
+    category: "coding_agent_continuation"
+    tool_and_model: "Codex CLI / gpt-5.6-sol"
+    purpose: "Deterministically write and check the 37-file vertical manifest."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-004.yaml"
+    capture_kind: "codex_cli_jsonl_stdout"
+    raw_bytes: 2307
+    raw_sha256: "ab6b7ec97bf7add3d73da272d1906bbcac6f6842582575b1492f4826992691e6"
+    raw_path_disclosed: false
+    automated_scan: "passed_requires_deterministic_machine_path_redaction"
+    human_review: "passed"
+    owner_bundle_approval: "passed_2026-08-30"
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    scale_ready: true
+  - trace_id: "TRC-BG-D01-DOCS-001"
+    agent_id: "COD-CODEX-012"
+    category: "coding_agent_documentation"
+    tool_and_model: "Codex CLI / gpt-5.6-sol"
+    purpose: "Add bounded architecture and public-contract TypeScript documentation without changing behavior."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260830-005.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-DOCS-001.md"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-D01-DOCS-001.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-D01-DOCS-001_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-DOCS-001.yaml"
+    post_capture_provenance_path: "artifacts/trajectories/reviews/TRC-BG-D01-DOCS-001-POST-CAPTURE.yaml"
+    capture_kind: "codex_cli_jsonl_stdout"
+    raw_bytes: 391943
+    raw_sha256: "bcdc2cafcf4a9b6b9a25e47a491016b2fe94aa7eec57679ebd5f9aa99a410a29"
+    raw_path_disclosed: false
+    automated_scan: "passed_requires_deterministic_machine_path_redaction"
+    human_review: "passed"
+    owner_bundle_approval: "passed_2026-08-30T13:31:04Z"
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    scale_ready: true
+  - trace_id: "TRC-BG-D01-DOCS-001-CONT-001"
+    agent_id: "COD-CODEX-012"
+    category: "coding_agent_documentation_continuation"
+    tool_and_model: "Codex CLI / gpt-5.6-sol"
+    purpose: "Correct four bounded documentation-audit findings."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260830-005.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-DOCS-001-CONT-001.md"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-D01-DOCS-001.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-D01-DOCS-001_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-DOCS-001.yaml"
+    capture_kind: "codex_cli_jsonl_stdout"
+    raw_bytes: 358576
+    raw_sha256: "f49e526919a20c02d0b663cc610021a6cf726014dfd5cf83dee785b43ccccc09"
+    raw_path_disclosed: false
+    automated_scan: "passed_requires_deterministic_machine_path_redaction"
+    human_review: "passed"
+    owner_bundle_approval: "passed_2026-08-30T13:31:04Z"
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    scale_ready: true
+  - trace_id: "TRC-BG-D01-DOCS-001-CONT-002"
+    agent_id: "COD-CODEX-012"
+    category: "coding_agent_documentation_continuation"
+    tool_and_model: "Codex CLI / gpt-5.6-sol"
+    purpose: "Strengthen the single residual JSDoc finding before correcting the structured-comment audit false positive."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260830-005.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-DOCS-001-CONT-002.md"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-D01-DOCS-001.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-D01-DOCS-001_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-DOCS-001.yaml"
+    capture_kind: "codex_cli_jsonl_stdout"
+    raw_bytes: 269192
+    raw_sha256: "4c667f5c84363cdb90ea5e395c163a22e189fb85ca25af75b78ee2d2cf63487e"
+    raw_path_disclosed: false
+    automated_scan: "passed_requires_deterministic_machine_path_redaction"
+    human_review: "passed"
+    owner_bundle_approval: "passed_2026-08-30T13:31:04Z"
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    scale_ready: true
+pending_trace_review:
+  - trace_id: "TRC-BG-D01-RECOVERY-001"
+    agent_id: "COD-CODEX-006"
+    category: "coding_agent"
+    tool_and_model: "Codex desktop configured model; exact model identity not machine-exported in task evidence"
+    model_identity_limitation: "No machine-exported exact model identity is present in the task evidence."
+    purpose: "Independently audit, rewrite, and validate the repo-local BG-D01 vertical slice under the SES-007 clean-recovery boundary."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260829-007.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-RECOVERY-001.md"
+    trace_path: "artifacts/trajectories/reviewed/TRC-BG-D01-RECOVERY-001.md"
+    human_review_companion_ru_path: "artifacts/trajectories/reviews/BG-D01-CLEAN-RECOVERY-CHECKPOINT_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-D01-RECOVERY-001.yaml"
+    post_capture_provenance_path: "artifacts/trajectories/reviews/TRC-BG-D01-RECOVERY-001-POST-CAPTURE.yaml"
+    related_iteration_ids:
+      - "ITR-020"
+      - "ITR-021"
+      - "ITR-022"
+    related_run_ids:
+      - "RUN-BG-D01-VERTICAL-001"
+    capture_kind: "codex_desktop_native_markdown"
+    raw_internal_export_available: false
+    raw_bytes: 66250
+    raw_sha256: "bcf36c6cc64f7695adbdac8a49a888bee8c33b6658a5a469306ae2422db7c612"
+    raw_path_disclosed: false
+    hidden_reasoning_or_internal_events_claimed: false
+    automated_scan: "passed_reviewed_layer_only"
+    reviewed_layer_contamination_findings: 0
+    human_review: "blocked_after_later_export_comparison_exact_immutable_source_unverified"
+    technical_meaning_preserved: false
+    indexed_in_actual_traces: false
+    eligible_representative_trace: false
+    reviewed_layer_reconciled_to_available_export: true
+    exact_immutable_source_comparison_complete: false
+    comparison_input_bytes: 79779
+    blocker: "The available later native export was semantically compared and the reviewed layer was reconciled, but it does not match the externally anchored 66,250-byte immutable capture; exact source equivalence remains unproven."
   - trace_id: "TRC-BG-D01-IMPL-001"
     agent_id: "COD-CODEX-004"
     category: "coding_agent"
@@ -137,6 +585,24 @@ pending_trace_capture_and_review:
     capture_status: "pending_external_immutable_capture"
     automated_scan: "pending"
     human_review: "pending"
+    technical_meaning_preserved: false
+    eligible_representative_trace: false
+  - trace_id: "TRC-BG-D01-VERTICAL-001"
+    agent_id: "COD-CODEX-005"
+    category: "coding_agent"
+    tool_and_model: "Codex desktop configured model; exact model identity not machine-exported in task evidence"
+    model_identity_limitation: "No machine-exported exact model identity is present in the task evidence."
+    purpose: "Complete unscored BG-D01 verify-existing vertical slice with immutable decisions, K=0 isolation, reports, and offline replay."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260829-005.yaml"
+    instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-VERTICAL-001.md"
+    human_review_companion_ru_path: "artifacts/trajectories/reviews/BG-D01-VERTICAL-SLICE-CHECKPOINT_RU.md"
+    related_iteration_ids:
+      - "ITR-019"
+    related_run_ids:
+      - "RUN-BG-D01-VERTICAL-SES005-INELIGIBLE"
+    capture_status: "excluded_with_session_by_EXC-003"
+    automated_scan: "not_applicable_excluded"
+    human_review: "failed_excluded"
     technical_meaning_preserved: false
     eligible_representative_trace: false
 excluded_transcripts:
@@ -159,6 +625,21 @@ excluded_transcripts:
     raw_review_status: "failed_known_prohibited_identifier; no submission-layer trace created"
     repository_occurrence_scan: "passed_no_occurrence_in_frozen_behavior_or_provenance_packet"
     disposition: "exclude_raw_transcript; preserve approved clean artifacts; start implementation in a new neutral task packet"
+  - exclusion_id: "EXC-003"
+    session_id: "SES-20260829-005"
+    category: "outside_repository_write_to_system_tmp_during_replay_comparison"
+    scope: "d01_vertical_slice_authoring_transcript"
+    external_name_or_path_recorded: false
+    cleanup_attempted: false
+    disposition: "exclude_transcript; independently audit the repo-local draft against the frozen baseline in SES-20260829-007"
+  - exclusion_id: "EXC-004"
+    session_id: "SES-20260829-006"
+    category: "public_package_cache_read_before_explicit_owner_authorization"
+    scope: "superseded_clean_recovery_transcript"
+    external_name_or_path_recorded: false
+    cleanup_attempted: false
+    changes_inherited_by_ses_007: false
+    disposition: "exclude_transcript; start SES-20260829-007 without importing SES-006 changes"
 declared_agents:
   coding_agents:
     - agent_id: "COD-CODEX-001"
@@ -188,12 +669,33 @@ declared_agents:
       pending_trace_id: "TRC-BG-D01-IMPL-001"
       eligible_representative_trace: false
       reason: "Implementation validation passed; external immutable trace capture, automated trace review, and repository-owner review remain pending."
-  solution_agents:
-    - agent_id: "SOL-BEYONDGREEN-001"
-      tool_and_model: "optional codex-exec-jsonl-v1 / gpt-5.6-sol runtime unverified under owner waiver; offline-replay-jsonl-v1 verified"
-      purpose: "Future single orchestrator; not implemented or run."
+    - agent_id: "COD-CODEX-005"
+      tool_and_model: "Codex desktop configured model; exact model identity not machine-exported in task evidence"
+      model_identity_limitation: "No machine-exported exact model identity is present in the task evidence."
+      purpose: "Complete unscored BG-D01 verify-existing vertical-slice implementation and verification."
+      pending_trace_id: "TRC-BG-D01-VERTICAL-001"
       eligible_representative_trace: false
-      reason: "No product implementation or execution exists."
+      reason: "The session and its authoring trace are excluded by EXC-003; its repo-local draft is not accepted as evidence."
+    - agent_id: "COD-CODEX-006"
+      tool_and_model: "Codex desktop configured model; exact model identity not machine-exported in task evidence"
+      model_identity_limitation: "No machine-exported exact model identity is present in the task evidence."
+      purpose: "Submission-eligible independent BG-D01 clean recovery from the frozen baseline and repo-local draft."
+      pending_trace_id: "TRC-BG-D01-RECOVERY-001"
+      eligible_representative_trace: false
+      reason: "The exact immutable source was not reviewable; this trace remains blocked and is superseded for representative-trace purposes by pending replacement TRC-BG-D01-VERIFY-002."
+    - agent_id: "COD-CODEX-007"
+      tool_and_model: "Codex Desktop / GPT-5.6 Sol"
+      purpose: "Bounded independent verification of the current unscored BG-D01 vertical slice."
+      eligible_trace_id: "TRC-BG-D01-VERIFY-002"
+      eligible_representative_trace: true
+      reason: "Exact capture identity, strict UTF-8, independent semantic review, reviewed-layer private-denylist scan, and repository-owner review passed."
+  solution_agents: []
+  non_agent_components:
+    - component_id: "CMP-BEYONDGREEN-D01-001"
+      component_kind: "deterministic_repository_orchestrator"
+      purpose: "Unscored D01 development demonstration with immutable decisions and post-decision independent evaluation."
+      agent_trace_required: false
+      reason: "The D01 runtime invokes no model or autonomous solution agent. Its current behavior and evidence are independently verified by eligible trace TRC-BG-D01-VERIFY-002; the earlier implementation-source trace remains separately blocked and is not claimed eligible."
   review_agents:
     - agent_id: "REV-CLAUDE-001"
       tool_and_model: "Claude Opus 5"
@@ -222,4 +724,6 @@ tool_call_audit:
   claude_review_completed_invocations: 1
   d01_implementation_model_invocations: 0
   d01_implementation_chromium_calls: 0
+  d01_vertical_slice_model_invocations: 0
+  d01_vertical_slice_chromium_calls: 0
 release_rule: "A future agent is covered only by an eligible chronological trace with instructions, raw digest, automated scan, human review, related iteration IDs, and related run IDs."

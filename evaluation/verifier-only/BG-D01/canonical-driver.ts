@@ -1,3 +1,7 @@
+/**
+ * Implements the verifier-only D01 behavioral oracle over observations captured in
+ * separate candidate processes, keeping candidate execution outside oracle capability.
+ */
 import assert from "node:assert/strict";
 
 import {
@@ -61,26 +65,28 @@ function assertObservation(actual: BoardObservation, expected: CanonicalStep) {
   assert.ok(actual.allocations.every((value) => Number.isInteger(value) && value >= 0));
 }
 
+/** Reports only the bounded ground-truth outcome needed for post-decision scoring. */
 export type OracleResult = Readonly<{
   accepted: boolean;
   failedAction: string | null;
   behaviorClass: "stale_snapshots";
 }>;
 
-export async function evaluateCanonicalScenario(Component: MuseumBoardComponent): Promise<OracleResult> {
-  const board = await mountMuseumBoard(Component);
-  try {
-    for (const step of steps) {
-      const observation = step.action ? await board.dispatch(step.action) : board.observe();
-      try {
-        assertObservation(observation, step);
-      }
-      catch {
-        return Object.freeze({ accepted: false, failedAction: step.label, behaviorClass: "stale_snapshots" });
-      }
+/** Evaluate already captured observations so candidate code never shares oracle capabilities. */
+export function evaluateCanonicalObservations(observations: readonly BoardObservation[]): OracleResult {
+  if (observations.length !== steps.length + 1) {
+    return Object.freeze({ accepted: false, failedAction: "observation-count", behaviorClass: "stale_snapshots" });
+  }
+  for (const [index, step] of steps.entries()) {
+    try {
+      assertObservation(observations[index]!, step);
     }
-    const repeatedReset = await board.dispatch({ type: "reset" });
-    assertObservation(repeatedReset, {
+    catch {
+      return Object.freeze({ accepted: false, failedAction: step.label, behaviorClass: "stale_snapshots" });
+    }
+  }
+  try {
+    assertObservation(observations[steps.length]!, {
       action: { type: "reset" },
       label: "reset",
       allocations: zeros(),
@@ -88,7 +94,21 @@ export async function evaluateCanonicalScenario(Component: MuseumBoardComponent)
       step: 1,
       log: [...CANONICAL_LOG, "reset"],
     });
-    return Object.freeze({ accepted: true, failedAction: null, behaviorClass: "stale_snapshots" });
+  }
+  catch {
+    return Object.freeze({ accepted: false, failedAction: "repeated-reset", behaviorClass: "stale_snapshots" });
+  }
+  return Object.freeze({ accepted: true, failedAction: null, behaviorClass: "stale_snapshots" });
+}
+
+/** Executes the canonical scenario when verifier self-checks intentionally own the component. */
+export async function evaluateCanonicalScenario(Component: MuseumBoardComponent): Promise<OracleResult> {
+  const board = await mountMuseumBoard(Component);
+  try {
+    const observations: BoardObservation[] = [board.observe()];
+    for (const step of steps.slice(1)) observations.push(await board.dispatch(step.action!));
+    observations.push(await board.dispatch({ type: "reset" }));
+    return evaluateCanonicalObservations(observations);
   }
   finally {
     await board.dispose();

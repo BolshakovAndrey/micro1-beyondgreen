@@ -1,3 +1,4 @@
+/** Verifies deterministic bounded task discovery and rejection of unsafe task requests. */
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
@@ -26,12 +27,14 @@ test("list exposes every registered task with a short description", () => {
 
 test("known task resolution preserves its reviewed argument arrays", () => {
   const task = resolveTask("d01:verify", []);
-  assert.equal(task.steps.length, 6);
+  assert.equal(task.steps.length, 9);
   assert.deepEqual(task.steps[1].arguments, [
     "--test",
     "evaluation/arm-visible/BG-D01/visible.test.ts",
   ]);
   assert.throws(() => resolveTask("d01:verify", ["--unexpected"]), /does not accept arguments/);
+  assert.ok(resolveTask("d01:demo", []).description.includes("unscored"));
+  assert.ok(resolveTask("d01:replay", []).description.includes("offline"));
 });
 
 test("test:all discovery is deterministic, bounded, and excludes verifier-only tests", () => {

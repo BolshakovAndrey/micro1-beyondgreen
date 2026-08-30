@@ -1,0 +1,108 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-D01-VERIFY-002"
+status: "passed"
+category: "coding_agent"
+agent_id: "COD-CODEX-007"
+tool_and_model: "Codex Desktop / GPT-5.6 Sol"
+purpose: "Bounded independent verification of the current unscored BG-D01 implementation, reproduction path, evidence integrity, and oracle isolation."
+evidence_role: "Eligible bounded verification of the pre-remediation D01 state; it does not cover implementation decisions or changes made in SES-20260830-001."
+covers_scale_readiness_remediation: false
+session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260829-008.yaml"
+instructions_path: "artifacts/trajectories/instructions/TRC-BG-D01-VERIFY-002.md"
+reviewed_trace_path: "artifacts/trajectories/reviewed/TRC-BG-D01-VERIFY-002.md"
+reviewed_trace_ru_path: "artifacts/trajectories/reviewed/TRC-BG-D01-VERIFY-002_RU.md"
+human_review_companion_ru_path: "artifacts/trajectories/reviews/TRC-BG-D01-VERIFY-002_RU.md"
+post_capture_provenance_path: "artifacts/trajectories/reviews/TRC-BG-D01-VERIFY-002-POST-CAPTURE.yaml"
+related_iteration_ids:
+  - "ITR-024"
+  - "ITR-025"
+  - "ITR-026"
+  - "ITR-027"
+related_run_ids:
+  - "RUN-BG-D01-VERTICAL-001"
+source_boundary_identity:
+  originally_planned_trace_id: "TRC-BG-D01-VERIFY-001"
+  canonical_replacement_trace_id: "TRC-BG-D01-VERIFY-002"
+  boundary_rewritten: false
+raw_capture:
+  status: "externally_anchored_exact_content_compared"
+  capture_kind: "codex_desktop_copy_as_markdown"
+  raw_internal_export_available: false
+  bytes: 24318
+  sha256: "6cb44af2ae43b03035fa41044dc2f2bdf9ee54d009ccc699205c2da420e32305"
+  outside_repository: true
+  raw_path_disclosed: false
+  raw_content_stored_in_repository: false
+  hidden_reasoning_or_internal_events_claimed: false
+comparison:
+  exact_identity: true
+  strict_utf8_roundtrip: true
+  source_coverage: "complete native user-visible task history; some full command stdout unavailable"
+  reviewed_layer_reconciled: true
+  independent_review_technical_meaning_preserved: true
+  unsupported_claims_labelled_agent_reported: true
+privacy_redactions_and_omissions:
+  - category: "absolute_user_paths"
+    disposition: "Omitted; repository-relative paths retained where technically necessary."
+  - category: "attachment_and_temporary_transport_paths"
+    disposition: "Omitted as non-technical machine metadata."
+  - category: "private_environment_values_and_denylist_contents"
+    disposition: "Not present and not claimed; variable names may be described without values."
+  - category: "hidden_reasoning_internal_application_events_and_complete_stdout"
+    disposition: "Unavailable in the native export and explicitly not claimed."
+independent_review:
+  status: "passed_exact_source_semantic_review"
+  exact_identity: true
+  privacy_findings: 0
+  technical_meaning_preserved: true
+  reviewer_role: "bounded Codex review task"
+automated_scan:
+  command: "micro1-safe-preflight control"
+  status: "passed"
+  scanned_at_utc: "2026-08-29T22:16:01Z"
+  control_verdict: "READY_FOR_CLEAN_BRANCH"
+  implementation_verdict: "READY_FOR_IMPLEMENTATION"
+  contamination_findings: 0
+  machine_path_findings: 0
+  private_term_findings: 0
+  binary_human_review_notices: 4
+  dirty_worktree_warning: true
+human_review:
+  status: "passed"
+  reviewer_role: "repository owner"
+  reviewed_at_utc: "2026-08-30T06:26:46Z"
+  approval_question_exact: "Подтверждаете, что русская и английская версии TRC-BG-D01-VERIFY-002 точно и безопасно сохраняют технический смысл исходной проверки с указанными ограничениями, и разрешаете включить эту трассу в actual_traces?"
+  selected_response_exact_markdown: 'Подтверждаю одобрение TRC-BG-D01-VERIFY-002 и разрешаю включить её в actual\_traces.'
+  selected_response_normalized: "Подтверждаю одобрение TRC-BG-D01-VERIFY-002 и разрешаю включить её в actual_traces."
+  approval_interpretation: "The Markdown escape before the underscore is presentation-only; the owner explicitly approved promotion to the actual_traces index."
+  technical_meaning_preserved: true
+  russian_companions_available:
+    - "artifacts/trajectories/reviewed/TRC-BG-D01-VERIFY-002_RU.md"
+    - "artifacts/trajectories/reviews/TRC-BG-D01-VERIFY-002_RU.md"
+promotion:
+  final_pass_allowed: true
+  actual_trace_indexed: true
+  rule: "Exact source review, reviewed-layer private-denylist scan, repository-local validation, and repository-owner approval passed."
+  approval_would_authorize: "Promotion of TRC-BG-D01-VERIFY-002 only."
+  approval_would_not_authorize: "Official or scored runs, product repair, additional fixtures, commit, push, or publication."
+post_promotion_validation:
+  validated_at_utc: "2026-08-30T06:30:12Z"
+  compile: "passed"
+  repository_tests: "passed_49_of_49"
+  d01_visible_tests: "passed_5_of_5"
+  d01_step_contract: "passed_1_of_1"
+  d01_oracle_self_checks: "passed_3_of_3"
+  d01_physical_boundary_tests: "passed_3_of_3"
+  d01_vertical_contracts: "passed_16_of_16"
+  d01_e2e_and_manifests: "passed"
+  d01_offline_replay: "passed_json_html_artifacts_matched"
+  phase_0_5_safe_verification: "passed_without_model_or_browser_execution"
+  control_preflight: "READY_FOR_CLEAN_BRANCH"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION_with_dirty_worktree_warning"
+  contamination_findings: 0
+  binary_human_review_notices: 4
+  official_or_scored_runs: 0
+  commit_performed: false
+  push_performed: false
+  checksum_manifest: "passed_162_files"
+  git_diff_check: "passed"

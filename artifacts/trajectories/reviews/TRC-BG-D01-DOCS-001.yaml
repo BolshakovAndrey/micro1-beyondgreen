@@ -1,0 +1,56 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-D01-DOCS-001"
+category: "coding_agent_documentation_bundle"
+session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-005.yaml"
+status: "owner_approved_eligible_bundle_three_entries_indexed_in_actual_traces"
+capture:
+  kind: "codex_cli_jsonl_stdout_bundle"
+  implementation_capture_count: 3
+  continuation_count: 2
+  stderr_is_implementation_evidence: false
+  failed_launcher_is_implementation_evidence: false
+  raw_path_disclosed: false
+reviewed_layers:
+  english: "artifacts/trajectories/reviewed/TRC-BG-D01-DOCS-001.md"
+  russian: "artifacts/trajectories/reviewed/TRC-BG-D01-DOCS-001_RU.md"
+post_capture_provenance: "artifacts/trajectories/reviews/TRC-BG-D01-DOCS-001-POST-CAPTURE.yaml"
+documentation_provenance: "artifacts/provenance/BG-D01-DOCUMENTATION.yaml"
+owner_card_russian: "artifacts/trajectories/reviews/BG-D01-TYPESCRIPT-DOCUMENTATION-OWNER-PACKET_RU.md"
+automated_review:
+  raw_scan: "passed_all_three_requires_deterministic_absolute_path_redaction"
+  private_terms_after_path_redaction: 0
+  email_matches: 0
+  secret_assignment_matches: 0
+manual_agent_review:
+  instruction_scope_reconciled: true
+  chronology_complete: true
+  launcher_failure_and_retries_preserved: true
+  false_positive_ast_finding_preserved: true
+  post_capture_hash_reconciliation_separately_classified: true
+  stderr_and_failed_launcher_separated: true
+  privacy_safe: true
+  technical_meaning_preserved_after_path_redaction: true
+repo_local_validation:
+  documentation_audit: "passed_42_files_179_exports_zero_missing_zero_too_short_nine_priority_modules_documented"
+  compile: "passed"
+  ordinary_tests: "passed_after_two_expected_hash_reconciliation_stops"
+  d01_verify: "passed"
+  d01_replay: "passed_twice_identical_digests_report_artifacts_matched"
+  d01_manifests: "passed_four_manifests"
+  vertical_manifest: "passed_37_files_47edb457f93a1d84bf9ebb84ec22eb17b11b94463eadab37c1cf92c169344440"
+  d01_hash: "da73beb0b3b5aba72013a90388cbf457614479f9b8f02125b99f598b7487f69f"
+  control_checksums: "passed_241_files_after_owner_promotion"
+  control_preflight: "READY_FOR_CLEAN_BRANCH"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION_with_expected_dirty_tree_warning"
+repository_owner_review:
+  status: "passed"
+  approver: "repository_owner"
+  reviewed_at_utc: "2026-08-30T13:31:04Z"
+  selected_response_exact: "Одобряю reviewed documentation bundle TRC-BG-D01-DOCS-001 и две continuation captures TRC-BG-D01-DOCS-001-CONT-001 и TRC-BG-D01-DOCS-001-CONT-002 как eligible documentation-only evidence и разрешаю включить ровно эти три записи в actual_traces; детерминированную редактуру машинных путей перед submission сохранить обязательной, post-capture hash reconciliation считать отдельно проверенным coordinator evidence, official/scored run, BG-D02+, Claude, Chromium, commit и push не выполнять."
+  approval_scope: "Promote exactly three reviewed documentation captures; mandatory deterministic path redaction remains; post-capture hash reconciliation remains separately classified coordinator evidence."
+eligibility:
+  eligible_representative_trace_candidate: true
+  eligible_representative_trace: true
+  indexed_in_actual_traces: true
+  indexed_capture_count: 3
+  scale_ready_changed: false

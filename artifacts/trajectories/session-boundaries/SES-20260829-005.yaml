@@ -1,0 +1,229 @@
+schema_version: "1.1"
+session_id: "SES-20260829-005"
+started_at_utc: "2026-08-29T16:10:36Z"
+agent:
+  tool: "Codex desktop"
+  model: "Codex desktop configured model; exact model identity not machine-exported in task evidence"
+  model_identity_limitation: "No machine-exported exact model identity is present in this task evidence; no exact model name is claimed."
+  purpose: "Implement and validate the repository-owner-approved complete unscored BG-D01 verify-existing vertical slice, then stop for owner review."
+context:
+  repository_root: "."
+  allowed_paths:
+    - "AGENTS.md"
+    - "package.json"
+    - "package-lock.json"
+    - "tsconfig.json"
+    - "config/"
+    - "docs/"
+    - "evaluation/"
+    - "candidates/"
+    - "scripts/"
+    - "tests/"
+    - "artifacts/"
+    - "templates/"
+  current_turn_write_paths:
+    - "artifacts/trajectories/session-boundaries/SES-20260829-005.yaml"
+    - "README.md"
+    - "tsconfig.json"
+    - "src/d01/"
+    - "scripts/d01-*.ts"
+    - "scripts/tasks/d01.ts"
+    - "tests/d01-vertical-slice.test.ts"
+    - "evaluation/manifests/BG-D01/vertical-slice.manifest.json"
+    - "artifacts/evaluation/BG-D01-VERTICAL-SLICE.json"
+    - "artifacts/evaluation/BG-D01-VERTICAL-SLICE.html"
+    - "artifacts/provenance/"
+    - "artifacts/trajectories/"
+    - "config/topic.yaml"
+    - "docs/"
+  public_sources:
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/PROJECT_SPEC_RU.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "evaluation/behavior-specs/BG-D01_BEHAVIOR.md"
+    - "evaluation/behavior-specs/BG-D01_BEHAVIOR_RU.md"
+    - "evaluation/behavior-specs/BG-D01_FREEZE.yaml"
+    - "artifacts/provenance/BG-D01-BEHAVIOR.yaml"
+    - "artifacts/provenance/BG-D01-IMPLEMENTATION.yaml"
+    - "artifacts/evaluation/BG-D01-FOUNDATION-CHECKPOINT.json"
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  private_environment_variables_present: []
+controls:
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  project_spec_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  required_contracts_read_in_full: true
+  private_denylist_available_to_scanner_only: true
+  private_paths_resolve_outside_repository: "not_resolved_by_general_task_shell"
+  raw_trace_location: "external_local_only"
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: true
+  repository_artifacts_status: "vertical_slice_implemented_and_validated_pending_owner_review"
+  authoring_transcript_status: "pending_automated_and_human_trace_review"
+  authoring_transcript_exclusion_category: ""
+git_state:
+  expected_branch: "impl/beyondgreen"
+  expected_commit: "f0418bc6051002d8d42ccf84822d2e1f2e25b02e"
+  expected_worktree: "clean"
+  verified_branch: "impl/beyondgreen"
+  verified_commit: "f0418bc6051002d8d42ccf84822d2e1f2e25b02e"
+  verified_initial_worktree: "clean"
+  push_performed: false
+  remote_state_contacted_or_verified: false
+prior_checkpoint:
+  name: "BG-D01 fixture and candidate foundation"
+  commit: "f0418bc6051002d8d42ccf84822d2e1f2e25b02e"
+  commit_subject: "feat(Evaluation):[BeyondGreen] Implement D01 verification foundation"
+  committed_with_explicit_owner_permission: true
+  authorization_question_exact: "Разрешаете закоммитить текущий проверенный D01 foundation и инфраструктуру запуска перед следующим этапом?"
+  authorization_selected_response_exact: "Разрешаю commit (Recommended)"
+  authorization_evidence: "Exact owner selection in coordinator control-plane transcript, not SES-20260829-004."
+  commit_gate_history:
+    first_combined_git_add_touch_allow_token_and_git_commit_command: "rejected by the PreToolUse hook before execution because of command ordering"
+    bypass_attempted: false
+    authorized_one_time_allow_token_created_by_separate_touch: true
+    exact_commit_succeeded_after_separate_touch: true
+  push_performed: false
+human_approval:
+  status: "approved"
+  approver: "repository owner"
+  owner_instruction_exact: "И можем двигаться далее!"
+  coordinator_interpretation: "This instruction authorizes only transition to a proposal for the next boundary. Product code requires separate explicit repository-owner approval of SES-20260829-005."
+  approval_request_exact: "Разрешаете реализовать только описанный в SES-20260829-005 полный вертикальный сценарий BG-D01 с сохранением K=0 и физической изоляции скрытой эталонной проверки, без официальных или оцениваемых запусков, вызовов модели, Chromium, исправления кандидата, других примеров, commit и push?"
+  selected_response_exact: "Одобряю SES-005 (Recommended)"
+  approved_at_utc: "2026-08-29T16:14:24Z"
+proposed_scope:
+  status: "authorized_completed_pending_repository_owner_review"
+  fixture_id: "BG-D01"
+  workflow: "one_complete_verify-existing_vertical_slice"
+  components:
+    - "Immutable candidate ingestion with repository-bound path validation and before/after SHA-256 guards."
+    - "Status-quo baseline using compilation and the frozen visible legacy gate only."
+    - "Typed migration risk inventory derived only from arm-visible source and contracts."
+    - "Frozen visible legacy gate without changed tests or semantics."
+    - "Oracle-free typed ProbePlan linked to discovered risks."
+    - "Arm-owned internal checks using only the ProbePlan and arm-visible contracts."
+    - "Immutable fail-closed accept, reject, or abstain decision assembled before evaluation."
+    - "Physically isolated independent evaluator invoked only after decision immutability."
+    - "Schema-valid JSON evidence and a static HTML report generated from validated JSON."
+    - "Deterministic offline replay with no network, subprocess, or workspace write."
+    - "Reproducible command-line interface and a BG-D01 end-to-end demonstration path."
+  invariant_requirements:
+    k_zero: true
+    pre_decision_evaluator_feedback_rounds: 0
+    candidate_mutable: false
+    physical_oracle_isolation_required: true
+    candidate_hash_before_after_required: true
+    visible_legacy_semantics_mutable: false
+hidden_data_boundary:
+  arm_visible_root: "evaluation/arm-visible/BG-D01/"
+  verifier_only_root: "evaluation/verifier-only/BG-D01/"
+  hidden_from_status_quo_before_decision:
+    - "verifier-only source and expected observations"
+    - "ground truth"
+    - "oracle result, category, diff, and action-level diagnostic"
+  hidden_from_beyondgreen_before_decision:
+    - "verifier-only source and expected observations"
+    - "ground truth"
+    - "oracle result, category, diff, and action-level diagnostic"
+  evaluator_access_timing: "after immutable arm decision only"
+  enforcement: "filesystem and process capabilities plus denied-access tests; prompt wording is insufficient"
+scope_guards:
+  session_boundary_creation_authorized: true
+  vertical_slice_product_code_authorized: true
+  report_output_authorized: true
+  offline_replay_execution_or_generation_authorized: true
+  scored_or_official_runs_authorized: false
+  model_or_codex_exec_calls_authorized: false
+  chromium_browser_or_gui_authorized: false
+  repair_demo_authorized: false
+  other_fixtures_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  next_gate: "Complete the approved BG-D01 vertical slice and stop for repository-owner review before any commit, push, official or scored run, model or Codex exec call, Chromium, browser, GUI, repair demo, or other fixture."
+cost_policy:
+  billing: "fixed_subscription"
+  monetary_cost: "not_applicable_or_not_measured"
+  per_run_usd_calculation_or_estimate: false
+  per_run_usd_cap: "not_projected"
+  model_invocation_count_required_for_this_boundary: 0
+  actual_model_invocation_count: 0
+boundary_review:
+  shared_memory: "Not read because it is outside the clean repository root and forbidden by this task."
+  tool_scope: "Repository shell and file tools plus the approved scanner-only interface; no browser, connected app, private MCP, model subprocess, codex exec, Chromium, or GUI call."
+  environment_probe: "Boolean presence only; no environment value, external path, credential, denylist content, or raw trace content was printed."
+  general_shell_result: "MICRO1_PRIVATE_DENYLIST and MICRO1_PRIVATE_TRACE_DIR were absent from the general task shell."
+  scanner_only_probe:
+    denylist_present: true
+    denylist_outside_repository: true
+    denylist_regular_file: true
+    trace_directory_present: true
+    trace_directory_outside_repository: true
+    trace_directory_readable_and_writable: true
+  safe_control_preflight: "READY_FOR_CLEAN_BRANCH_with_four_existing_binary_human_review_notices"
+  safe_implementation_preflight: "READY_FOR_IMPLEMENTATION_with_four_existing_binary_human_review_notices"
+  contamination_findings: 0
+  final_control_preflight: "READY_FOR_CLEAN_BRANCH_with_four_existing_binary_human_review_notices"
+  final_implementation_preflight: "READY_FOR_IMPLEMENTATION_with_expected_dirty_worktree_warning_and_four_existing_binary_human_review_notices"
+tool_call_audit:
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  outside_root_reads: 0
+  outside_root_writes: 0
+  model_subprocess_calls: 0
+  codex_exec_calls: 0
+  chromium_calls: 0
+  commit_performed: false
+  push_performed: false
+validation:
+  status: "complete_unscored_d01_vertical_slice_pending_repository_owner_review"
+  completed_at_utc: "2026-08-29T16:30:40Z"
+  product_code_created: true
+  report_output_created: true
+  replay_created_or_run: true
+  scored_or_official_run_performed: false
+  model_invocation_count: 0
+  chromium_calls: 0
+  repository_tests: "passed_39_of_39"
+  d01_verification: "passed_compile_visible_5_of_5_step_1_of_1_oracle_3_of_3_boundary_2_of_2_vertical_7_of_7_e2e_and_manifests"
+  replay_repetitions: 2
+  replay_digests_identical: true
+  candidate_hashes_unchanged: true
+  foundation_combined_manifest_digest: "5273199f8d591068ae827874d80352947eb511844fdf6ccabbcbce9edacccdcf"
+  control_checksums: "passed_145_files_with_zero_digest_or_coverage_mismatch"
+implementation_checkpoint:
+  run_id: "RUN-BG-D01-VERTICAL-001"
+  classification: "unscored_development_demonstration"
+  candidate_id: "candidate-b"
+  status_quo_verdict: "accept"
+  beyondgreen_verdict: "reject"
+  both_decisions_finalized_before_evaluator: true
+  pre_decision_evaluator_feedback_rounds: 0
+  physical_oracle_isolation: true
+  json_evidence_path: "artifacts/evaluation/BG-D01-VERTICAL-SLICE.json"
+  html_evidence_path: "artifacts/evaluation/BG-D01-VERTICAL-SLICE.html"
+  owner_review_card_path: "artifacts/trajectories/reviews/BG-D01-VERTICAL-SLICE-CHECKPOINT_RU.md"
+  next_gate: "Repository-owner review; no commit, push, official/scored run, repair, other fixture, model/Codex exec, Chromium, browser, or GUI is authorized."

@@ -1,0 +1,278 @@
+schema_version: "1.1"
+session_id: "SES-20260830-001"
+started_at_utc: "2026-08-30T07:02:10Z"
+agent:
+  id: "COD-CODEX-008"
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "D01 scale-readiness corrections"
+
+repository:
+  root: "."
+  root_resolution: "git rev-parse --show-toplevel matched the task-authorized clean repository root; the machine-specific absolute path is intentionally not persisted."
+  branch: "impl/beyondgreen"
+  initial_head: "f0418bc6051002d8d42ccf84822d2e1f2e25b02e"
+  working_tree:
+    state: "dirty"
+    classification: "inherited_previously_verified_D01_state"
+    tracked_modifications_present: true
+    untracked_files_present: true
+    pre_boundary_status_sha256: "aa798b805cf874a227d0685b68e1287f8bac8facecba2edc9080beaa0a19a182"
+    observation_command: "git status --short --untracked-files=all"
+    ownership_note: "All pre-existing tracked and untracked changes are inherited state and must not be attributed to SES-20260830-001."
+  remote_state_contacted_or_verified: false
+  commit_authorized: false
+  push_authorized: false
+
+checkpoint_input:
+  claude_model: "claude-opus-5"
+  checkpoint_scope: "second required independent review of the complete BG-D01 vertical slice"
+  verdict: "PASS_WITH_CONCERNS"
+  d01_checkpoint: "PASS_WITH_CONCERNS"
+  scale_ready: false
+  findings_independently_confirmed_by_codex: true
+  raw_response_submission_eligible: false
+  raw_response_persisted_in_repository: false
+  raw_response_temporary_file_deleted: true
+  raw_response_sha256_only: "702756c510774785f644a5adca503df335c703aad978cf1850ca2ee567015238"
+  inherited_validation_claims:
+    source: "repository-owner task packet and the independently reviewed D01 checkpoint"
+    rerun_in_this_pending_boundary_gate: false
+    compile: "passed"
+    repository_tests: "passed_49_of_49"
+    d01_visible: "passed_5_of_5"
+    oracle: "passed_3_of_3"
+    boundary: "passed_3_of_3"
+    vertical: "passed_16_of_16"
+    e2e_replay_phase_0_5: "passed"
+    checksums: "passed_162_of_162"
+    git_diff_check: "passed"
+
+context:
+  repository_root: "."
+  allowed_paths:
+    - "AGENTS.md"
+    - "package.json"
+    - "package-lock.json"
+    - "tsconfig.json"
+    - "config/"
+    - "docs/"
+    - "evaluation/arm-visible/BG-D01/"
+    - "evaluation/verifier-only/BG-D01/"
+    - "evaluation/manifests/BG-D01/"
+    - "scripts/"
+    - "src/d01/"
+    - "tests/"
+    - "artifacts/evaluation/"
+    - "artifacts/provenance/"
+    - "artifacts/trajectories/"
+    - "templates/SESSION_BOUNDARY.yaml"
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  permitted_external_interfaces:
+    - "scanner_read_via_MICRO1_PRIVATE_DENYLIST_safe_wrapper_only"
+    - "raw_trace_write_via_MICRO1_PRIVATE_TRACE_DIR_safe_wrapper_only"
+  prohibited_external_access: "all_other_external_access"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+
+controls:
+  agents_instructions_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  required_contracts_read_in_full: true
+  root_matches_authorized_scope: true
+  branch_matches_authorized_scope: true
+  private_denylist_available_to_scanner_only: true
+  private_paths_resolve_outside_repository: true
+  raw_trace_location: "external_local_only_safe_wrapper_verified"
+  general_shell_private_environment_values_available: false
+  values_paths_or_contents_disclosed: false
+
+preflight:
+  executed_at_boundary: true
+  safe_wrapper_commands:
+    - "micro1-safe-preflight probe"
+    - "micro1-safe-preflight control"
+    - "micro1-safe-preflight implementation"
+    - "micro1-safe-trace probe"
+  scanner_probe: "passed_denylist_and_trace_directory_present_outside_repository_with_expected_types"
+  raw_trace_probe: "passed_external_directory_readable_and_writable"
+  control_result: "READY_FOR_CLEAN_BRANCH"
+  implementation_result: "READY_FOR_IMPLEMENTATION"
+  contamination_findings: 0
+  expected_warnings:
+    - "dirty_worktree_checkpoint_required"
+    - "four_official_binary_evidence_artifacts_require_human_review_before_submission"
+  official_or_scored_run_performed: false
+  live_model_calls: 0
+  chromium_calls: 0
+
+boundary_validation:
+  initial_yaml_parser_attempt: "failed_MODULE_NOT_FOUND_for_uninstalled_repo_local_yaml_module"
+  retry_policy: "No package installation, network access, or external parser was used."
+  fallback_checks:
+    - "required boundary fields and pending approval state checked with repository-local Node.js text validation"
+    - "no absolute user paths"
+    - "git diff --check"
+    - "root, branch, and HEAD unchanged"
+
+authorization:
+  boundary_preparation_only: true
+  implementation_authorized_by_this_record: false
+  official_or_scored_run_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  allowed_before_human_approval:
+    - "Read repository contracts and inspect branch, HEAD, and dirty-tree metadata."
+    - "Run only the safe scanner and raw-trace probes recorded in this boundary."
+    - "Create this SESSION_BOUNDARY and prepare the owner approval packet."
+  prohibited_before_human_approval:
+    - "Modify product code, tests, fixtures, candidates, manifests, evaluation artifacts, or benchmark records."
+    - "Run any official or scored evaluation."
+    - "Invoke a live model or Chromium."
+    - "Create BG-D02 or any other fixture."
+    - "Implement any Claude remediation finding."
+    - "Commit or push."
+
+remediation_scope_after_separate_human_approval:
+  purpose: "Correct only BG-D01 scale-readiness concerns before repeating the D01 checkpoint."
+  allowed:
+    - "Parameterize D01 through FixtureDescriptor and remove hard-coded fixture, candidate, path, and schema values."
+    - "Derive ProbePlan only from arm-visible invariant contracts and risk inventory, without seeded-defect knowledge."
+    - "Prevent the decision-owning parent from reading verifier-only packages before all arm decisions are finalized."
+    - "Strengthen replay with verifyFinalizedDecision and evaluator-to-decision binding."
+    - "Implement EV-009 measured timestamps and duration, development/held-out membership, and falseAlarm."
+    - "Derive execution-order and oracle-boundary claims from measured events and add negative tests."
+    - "Capture observations twice after decision finalization and fail closed on nondeterminism."
+    - "Add the reciprocal evaluator-denied-candidate test."
+    - "Add code-owned arm-visible manifest binding."
+    - "Use one source of truth for the five visible assertions."
+    - "Emit a bounded divergence counterexample in JSON and HTML."
+    - "Correct TRC-BG-D01-VERIFY-002, D01_REPRODUCTION, compile-scope, and PREFLIGHT projection statuses."
+    - "Produce an eligible implementation trace with a decision-to-trace-evidence map."
+  excluded:
+    - "BG-D02 or any other fixture, candidate, oracle, or held-out implementation."
+    - "Official/scored execution or benchmark-record changes."
+    - "Unscored D01 repair demonstration."
+    - "Commit or push."
+    - "Live model, Chromium, browser, connected app, private MCP, shared memory, sibling repository, or external workspace access."
+
+separate_owner_decisions:
+  live_adapter:
+    current_state: "D01 remains legally unscored and offline."
+    decision_required_before: "any scored path that claims live reasoning"
+    autonomous_resolution_forbidden: true
+  cross_platform_isolation:
+    trigger: "Full Linux or judge portability requires a new dependency, container/runtime policy, or Phase 0.5 freeze change."
+    required_action: "Present options and stop for separate repository-owner approval."
+    reduced_assurance_k0_claim_forbidden: true
+
+trace_first_plan:
+  planned_trace_id: "TRC-BG-D01-SCALE-001"
+  category: "coding_agent"
+  capture_kind: "codex_desktop_native_markdown_if_no_raw_internal_export"
+  goal: "Capture the remediation implementation itself, including decisions and edits, not only the final verification."
+  capture_start: "Immediately after explicit approval of this boundary and before the first remediation inspection or edit."
+  raw_layer: "Capture through the approved MICRO1_PRIVATE_TRACE_DIR interface only; preserve immutable bytes and SHA-256 outside the repository."
+  implementation_sequence:
+    - "Record the approved scope, inherited baseline, Claude concern categories, and the no-scored-run/no-commit constraints."
+    - "Build a requirement-and-risk matrix mapping each concern to FR, NFR, EV, AR, expected code surface, and falsifiable test."
+    - "Inspect the minimum D01 source surface and record every implementation decision before editing."
+    - "Implement corrections in bounded groups while preserving a runnable baseline; for each group capture hypothesis, exact change, command, output, failures, retries, and keep/revise decision."
+    - "Add positive and negative tests alongside the owning correction, including measured-event, isolation, replay-binding, nondeterminism, reciprocal-denial, manifest-binding, assertion-source, and counterexample contracts."
+    - "Update projection, reproduction, provenance, changelog, and trace-map artifacts only after their supporting code evidence exists."
+    - "Run bounded non-scored verification and reconcile candidate/manifests/report/checksum identities without invoking live model or Chromium."
+    - "Prepare a second Claude checkpoint packet from the minimum clean repository context; the raw Claude response remains excluded until separately reviewed."
+    - "Create reviewed EN/RU trace layers, automated scan results, omissions/redactions by category, decision-to-evidence map, and owner review packet."
+  required_evidence_per_decision:
+    - "decision_id"
+    - "Claude concern and independently verified repository evidence"
+    - "mapped requirement or rubric token"
+    - "hypothesis"
+    - "files and symbols changed"
+    - "exact evaluation command and output summary"
+    - "failure, retry, or negative result"
+    - "decision: keep, revise, remove, or defer"
+    - "trace location and evidence digest"
+  review_gates:
+    - "Automated reviewed-layer scan with the real private denylist."
+    - "Manual prompt, tool-response, omission, privacy, and technical-meaning review."
+    - "Independent repeat D01 checkpoint with D01_CHECKPOINT=PASS and SCALE_READY=yes required before scaling."
+    - "Repository-owner approval of the Russian companion and exact scope before trace promotion or any next phase."
+  fail_closed_conditions:
+    - "Any external path or private-context exposure."
+    - "Any oracle detail influencing an arm decision."
+    - "Any unapproved dependency/runtime/freeze change needed for cross-platform isolation."
+    - "Any nondeterministic observation, missing binding, unsupported claim, or incomplete trace evidence."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: true
+  eligibility_condition: "Explicit repository-owner approval of this exact boundary must precede implementation and trace capture."
+  repository_artifacts_status: "inherited_D01_state_scale_readiness_remediation_authorized"
+  authoring_transcript_status: "owner_approved_eligible_indexed_in_actual_traces"
+  authoring_transcript_exclusion_category: ""
+
+implementation_checkpoint:
+  status: "approved_scope_implemented_repo_local_validation_passed"
+  root_branch_head_reverified: true
+  product_candidate_bytes_changed: false
+  official_or_scored_run_performed: false
+  live_model_calls: 0
+  chromium_calls: 0
+  bg_d02_created: false
+  commit_performed: false
+  push_performed: false
+  compile: "passed"
+  ordinary_tests: "passed_53_of_53"
+  d01_verify: "passed_visible_5_of_5_step_1_of_1_oracle_3_of_3_boundary_4_of_4_vertical_19_of_19_e2e_and_manifests"
+  d01_replay: "passed_report_artifacts_matched"
+  phase_0_5: "passed_without_live_model_or_chromium"
+  checksums: "passed_177_of_177_after_checkpoint_projection_reconciliation"
+  git_diff_check: "passed"
+  safe_control_preflight: "READY_FOR_CLEAN_BRANCH"
+  safe_implementation_preflight: "READY_FOR_IMPLEMENTATION_with_expected_dirty_worktree_warning"
+  contamination_findings: 0
+  next_gate: "repository-owner trace promotion decision, invariant-methodology decision, and a new approved implementation boundary before further remediation"
+  d01_checkpoint: "PASS_WITH_CONCERNS"
+  scale_ready: false
+  trace_exact_review: "passed_raw_56127_bytes_native_reviewed_729_lines"
+  repeated_checkpoint_review: "artifacts/trajectories/reviews/BG-D01-SCALE-CLAUDE-CHECKPOINT.md"
+  trajectory_eligibility_independent_from_scaling_gate: true
+  scaling_gate: "A future D01_CHECKPOINT=PASS and SCALE_READY=yes is required only before scaling and does not affect TRC-BG-D01-SCALE-001 eligibility."
+
+trace_promotion:
+  status: "owner_approved_indexed_in_actual_traces"
+  approved_at_utc: "2026-08-30T08:42:06Z"
+  trace_id: "TRC-BG-D01-SCALE-001"
+  eligible_representative_trace: true
+  scale_ready_at_promotion: false
+  d01_checkpoint_at_promotion: "PASS_WITH_CONCERNS"
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-30T07:37:37Z"
+  approval_evidence: "Repository owner supplied the required approval phrase in this Codex Desktop task; Markdown escapes before underscores do not change the approved identifiers."
+  exact_required_phrase: "Одобряю SESSION_BOUNDARY SES-20260830-001 и разрешаю начать только D01 scale-readiness corrections с eligible implementation trace по указанному remediation scope; без official/scored run, live model, Chromium, BG-D02, commit/push и любого внешнего доступа, кроме safe scanner-read через MICRO1_PRIVATE_DENYLIST и raw-trace write через MICRO1_PRIVATE_TRACE_DIR."
+  owner_message_as_received: "Одобряю SESSION\\_BOUNDARY SES-20260830-001 и разрешаю начать только D01 scale-readiness corrections с eligible implementation trace по указанному remediation scope; без official/scored run, live model, Chromium, BG-D02, commit/push и любого внешнего доступа, кроме safe scanner-read через MICRO1\\_PRIVATE\\_DENYLIST и raw-trace write через MICRO1\\_PRIVATE\\_TRACE\\_DIR."

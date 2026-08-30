@@ -3,8 +3,30 @@
 **Projection of:** `docs/PROJECT_SPEC.md@1.1.0`
 **Normative:** no; the global product-semantics specification wins on conflict
 **Evaluation version:** `eval-v1.1.0`
-**State:** Phase 0.5 inputs frozen under explicit nested-CLI waiver; the unscored
-BG-D01 fixture/candidate foundation is pending owner review; no official/scored run exists
+**State:** Phase 0.5 inputs are frozen under the explicit nested-CLI waiver.
+`TRC-BG-D01-VERIFY-002` remains an eligible historical verification of the prior
+unscored D01 state, but it does not cover the scale-readiness implementation in
+`SES-20260830-001`. Those corrections are repo-locally validated, and exact native
+capture/review of `TRC-BG-D01-SCALE-001` passed. The repeated Claude Opus checkpoint
+returned `D01_CHECKPOINT=PASS_WITH_CONCERNS` and `SCALE_READY=no`; Codex confirmed
+remaining architecture and evidence concerns. The owner promoted the reviewed
+coding-agent trajectory into `actual_traces`; its evidence eligibility is independent
+from the future scaling gate. The owner approved `SES-20260830-002`, and
+`TRC-BG-D01-SCALE-002` passed native capture, review, safe scanning, and owner
+promotion. A later Codex acceptance matrix confirmed four bounded blockers. Under
+owner-approved `SES-20260830-003`, `TRC-BG-D01-SCALE-003` now routes the real
+orchestrator and workers through one injected descriptor pipeline, explicitly
+injects the D01 observation schema, verifies falsifiable runner capability and
+per-arm event evidence, independently replays both evaluator conclusions, and
+correctly validates nested package paths plus registered-source bytes. Under
+owner-approved `SES-20260830-004`, the five remaining runtime/capability blockers
+were closed. Ordinary tests passed `56/56`; complete `d01:verify`, offline replay,
+and Phase 0.5 verification passed without changing the frozen methodology, visible
+assertions, candidates, or oracles. Eight implementation JSONL captures passed raw
+scanning, and the repeated Codex matrix passed all A1/A2/A3/S1/S2/S3/S4/P1/P2/D1
+criteria. The owner approved and indexed all eight reviewed captures and explicitly
+set `SCALE_READY=true`; deterministic machine-path redaction remains mandatory, and no
+official/scored run exists.
 
 This projection specializes `FR-001`–`FR-012`, `NFR-001`–`NFR-009`,
 `EV-001`–`EV-013`, and `AR-003`–`AR-007`. It claims no result.
@@ -163,7 +185,9 @@ npm run task -- evaluation:run --evaluation-version eval-v1.1.0
 npm run task -- replay --evaluation-version eval-v1.1.0
 ```
 
-The current unscored D01 foundation is reproduced with `npm run task -- d01:verify`.
+The current complete unscored D01 vertical slice is reproduced with
+`npm run task -- d01:verify`; its preserved demonstration and offline replay use
+`npm run task -- d01:demo` and `npm run task -- d01:replay`.
 The typed registry under `scripts/tasks/` lists only implemented tasks and rejects
 unknown names or arguments before process execution.
 Ordinary `npm test` uses bounded deterministic discovery under `tests/` and

@@ -43,6 +43,28 @@ must not be submitted.
 - Never reference a raw local path in judge-facing documentation.
 - Never commit or package the raw file before review.
 
+### Native user-visible export fallback
+
+When a coding-agent UI provides no raw/internal export, the most complete native
+user-visible export may be used as the immutable source capture only when all of the
+following are true:
+
+- the unavailable raw-export capability and the exact native export kind are
+  recorded;
+- the repository owner selects the native export through the agent UI before any
+  editing or redaction;
+- the exact exported bytes are captured through the approved external trace
+  interface and receive a SHA-256 digest;
+- the review record labels the capture kind and states that hidden reasoning and
+  internal application events are not claimed as captured; and
+- the reviewed submission trace still passes the ordinary automated scan, manual
+  review, redaction, and technical-meaning-preservation gates.
+
+For Codex Desktop, `Copy as Markdown` plus task metadata is the approved fallback
+when the task menu exposes no raw export. A hand-authored review candidate is not a
+native source capture. The required `raw_sha256` index field may contain the native
+source-capture digest only when `capture_kind` records this fallback explicitly.
+
 ### Submission layer
 
 - Place only reviewed traces under `artifacts/trajectories/`.
@@ -138,7 +160,27 @@ card.
 
 `TRC-BG-TRACEFIRST-001` passed automated and repository-owner human review after both
 required Russian companions were available. It is the eligible representative trace
-for `COD-CODEX-002`. This approval authorizes only trace indexing and transition to
-the separately gated Phase 0.5 discussion and freeze; Phase 0.5 remains the next and
-only pre-product decision gate, and product implementation, commit, and push remain
-unauthorized.
+for `COD-CODEX-002`; `TRC-BG-PHASE05-001` is its separately approved Phase 0.5
+trajectory. The original SES-007 recovery trace remains blocked because its exact
+immutable source could not be reviewed. Replacement `TRC-BG-D01-VERIFY-002` passed
+exact byte and UTF-8 identity, independent semantic review, reviewed-layer
+private-denylist scan, and repository-owner review and is indexed as the eligible
+representative trace for `COD-CODEX-007`. Hidden reasoning and internal Codex
+Desktop events are not claimed for the native `Copy as Markdown` capture. These
+approvals authorize trace indexing only; official/scored execution, product repair,
+additional fixtures, commit, push, and publication remain separately gated.
+
+The current eligible implementation candidate is `TRC-BG-D01-SCALE-003`, authorized
+by owner-approved boundary `SES-20260830-003`. Its bounded corrections passed
+repository-local compile, all 55 ordinary tests, and targeted `d01:verify`. The
+recorded stop-and-retry chain comprises the missing local Node type dependency,
+five bounded TypeScript errors, one incomplete test-output capture, and four D01
+observation failures traced to a mismatched observer launch arm; every corrective
+step and retry was separately authorized. The native `Copy as Markdown` capture is
+externally anchored at 49,485 bytes and passed exact receipt identity, strict UTF-8,
+safe raw scanning, and complete EN/RU technical review. Two absolute machine paths
+are categorically omitted from the submission layer; no private term, email, or
+secret assignment was found. Repository-owner trace promotion passed. The repeated
+Codex acceptance matrix confirmed five bounded runtime/capability blockers; a fresh
+SCALE-004 trace, repeated matrix, and explicit owner approval control scaling.
+`SCALE_READY=false`.

@@ -14,14 +14,16 @@
     "types": ["node"]
   },
   "include": [
-    "candidates/BG-D01/**/*.ts",
-    "evaluation/arm-visible/BG-D01/**/*.ts",
-    "evaluation/verifier-only/BG-D01/**/*.ts",
-    "scripts/d01-*.ts",
+    "candidates/**/*.ts",
+    "evaluation/arm-visible/**/*.ts",
+    "evaluation/verifier-only/**/*.ts",
+    "src/**/*.ts",
+    "scripts/d*-*.ts",
     "scripts/reconcile-control-checksums.ts",
     "scripts/task.ts",
     "scripts/tasks/**/*.ts",
-    "tests/d01-*.ts",
+    "tests/d*.test.ts",
+    "tests/fixtures/test-only-*.ts",
     "tests/task-runner.test.ts"
   ]
 }

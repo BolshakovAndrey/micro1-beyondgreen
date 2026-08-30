@@ -1,8 +1,10 @@
 #!/usr/bin/env node
+/** Checks code-owned D01 package manifests and immutable candidate source digests. */
 
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { D01_FIXTURE } from "../src/d01/fixture.ts";
 
 type PackageDefinition = Readonly<{
   id: string;
@@ -13,41 +15,23 @@ type PackageDefinition = Readonly<{
 
 const definitions: readonly PackageDefinition[] = [
   {
-    id: "BG-D01-arm-visible",
+    id: D01_FIXTURE.armVisible.packageId,
     kind: "arm_visible",
-    output: "evaluation/manifests/BG-D01/arm-visible.manifest.json",
-    files: [
-      "evaluation/arm-visible/BG-D01/LegacyMuseumBoard.ts",
-      "evaluation/arm-visible/BG-D01/contract.ts",
-      "evaluation/arm-visible/BG-D01/denied-probe.mjs",
-      "evaluation/arm-visible/BG-D01/harness.ts",
-      "evaluation/arm-visible/BG-D01/render.ts",
-      "evaluation/arm-visible/BG-D01/step-contract.test.ts",
-      "evaluation/arm-visible/BG-D01/visible.test.ts",
-    ],
+    output: D01_FIXTURE.armVisible.manifestPath,
+    files: D01_FIXTURE.armVisible.sourcePaths,
   },
   {
-    id: "BG-D01-verifier-only",
+    id: D01_FIXTURE.verifierOnly.packageId,
     kind: "verifier_only",
-    output: "evaluation/manifests/BG-D01/verifier-only.manifest.json",
-    files: [
-      "evaluation/verifier-only/BG-D01/canonical-driver.ts",
-      "evaluation/verifier-only/BG-D01/ground-truth.json",
-      "evaluation/verifier-only/BG-D01/self-check.test.ts",
-    ],
+    output: D01_FIXTURE.verifierOnly.manifestPath,
+    files: D01_FIXTURE.verifierOnly.sourcePaths,
   },
-  {
-    id: "BG-D01-candidate-a",
+  ...D01_FIXTURE.candidateIds.map((candidateId): PackageDefinition => ({
+    id: D01_FIXTURE.candidates[candidateId].packageId,
     kind: "candidate",
-    output: "evaluation/manifests/BG-D01/candidate-a.manifest.json",
-    files: ["candidates/BG-D01/candidate-a/MuseumBoard.ts"],
-  },
-  {
-    id: "BG-D01-candidate-b",
-    kind: "candidate",
-    output: "evaluation/manifests/BG-D01/candidate-b.manifest.json",
-    files: ["candidates/BG-D01/candidate-b/MuseumBoard.ts"],
-  },
+    output: D01_FIXTURE.candidates[candidateId].manifestPath,
+    files: [D01_FIXTURE.candidates[candidateId].sourcePath],
+  })),
 ];
 
 function sha256(value: string | Buffer): string {
@@ -62,7 +46,7 @@ function buildManifest(definition: PackageDefinition) {
   const packageSha256 = sha256(sourceFiles.map((file) => `${file.path}\0${file.sha256}\n`).join(""));
   return {
     schema_version: "1.0",
-    fixture_id: "BG-D01",
+    fixture_id: D01_FIXTURE.fixtureId,
     package_id: definition.id,
     package_kind: definition.kind,
     immutable: true,

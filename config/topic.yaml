@@ -8,7 +8,7 @@ requirement_ids:
   - "AR-001..AR-009"
 project:
   name: "BeyondGreen"
-  normative_spec_status: "approved_phase_0_5_frozen_d01_foundation_pending_owner_review"
+  normative_spec_status: "approved_phase_0_5_frozen_scale_004_owner_approved_eight_captures_indexed_scale_ready_true_commit_push_unauthorized"
   normative_spec_approved_at_utc: "2026-08-29T10:46:39Z"
   one_sentence_summary: "An evidence-backed verify-existing workflow for deciding whether immutable React state-to-signals candidates are safe to merge despite incomplete legacy tests."
   rename_scope: "Marketing rename only; proven v1 scope remains React state to signals."
@@ -139,8 +139,12 @@ phase_0_5:
     claim_scope: "synthetic_spike_render_count_only"
 phase_0_5_source: "docs/PROJECT_SPEC.md#20-open-decisions-and-locked-decisions"
 d01_implementation_checkpoint:
-  session_boundary: "artifacts/trajectories/session-boundaries/SES-20260829-004.yaml"
-  status: "fixture_candidate_foundation_pending_owner_review"
+  session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+  next_remediation_boundary: ""
+  next_remediation_boundary_status: "not_required_all_criteria_passed_owner_approved"
+  status: "scale_004_owner_approved_eight_captures_indexed_all_acceptance_criteria_passed"
+  d01_checkpoint: "PASS"
+  scale_ready: true
   official_or_scored_run: false
   model_invocation_count: 0
   chromium_calls: 0
@@ -148,7 +152,32 @@ d01_implementation_checkpoint:
   arm_visible_step_contract: "passed_positive_integer_fail_closed_without_changing_five_visible_tests"
   evaluator_self_check: "passed_reference_accept_preserving_accept_false_green_reject"
   verifier_capability_boundary: "passed_for_both_arms_and_both_candidates"
-  manifest_reconciliation_sha256: "5273199f8d591068ae827874d80352947eb511844fdf6ccabbcbce9edacccdcf"
+  manifest_reconciliation_sha256: "69894e4ab39484a89d300391317fc4a79d895c8790f8c1f7edb0f1a8ba6fdb92"
+  pre_review_manifest_reconciliation_sha256: "5273199f8d591068ae827874d80352947eb511844fdf6ccabbcbce9edacccdcf"
+  verifier_isolation_refactor: "candidate_execution_moved_out_of_oracle_process_without_behavioral_oracle_change"
+  scale_readiness_remediation_trace: "TRC-BG-D01-SCALE-001_owner_approved_eligible_indexed_in_actual_traces"
+  remaining_remediation_trace: "TRC-BG-D01-SCALE-002_owner_approved_eligible_indexed_in_actual_traces_scale_ready_false"
+  current_correction_trace: "TRC-BG-D01-SCALE-004_owner_approved_bundle_eight_entries_indexed_in_actual_traces"
+  descriptor_engine: "real_orchestrator_workers_replay_and_report_use_one_injected_descriptor_execution_path_D01_data_only_composition_root_test_only_integration_descriptor_no_BG-D02"
+  observation_schema: "D01_BoardObservation_explicitly_injected_outside_generic_schema_layer"
+  runner_capability_evidence: "launch_worker_identity_canonical_sandbox_and_path_policy_exact_role_profile_proof_bijection_per_arm_state_machine_and_evaluator_immutable_decision_digest_verified"
+  offline_replay_evaluator_checks: "independently_verifies_reasonCorrectReject_and_oracleAcceptedCandidate"
+  capability_negative_tests: "missing_tampered_contradictory_duplicate_identity_launch_binding_policy_digest_state_machine_and_evaluator_decision_digest_fail_closed"
+  arm_visible_package_binding: "recursive_nested_paths_supported_and_registered_source_byte_mutation_rejected"
+  vertical_manifest: "verified_37_files_package_sha256_0b59c19a8c229d7584731e711ba4e4ee0606d0008b870d36550fa06676f1d17e"
+  ordinary_tests: "passed_56_of_56"
+  owner_cancelled_intermediate_claude_review: true
+  repository_local_compile: "passed_after_owner_authorized_dependency_install_and_two_bounded_compile_corrections"
+  targeted_d01_verification: "passed_visible_5_of_5_step_1_of_1_oracle_3_of_3_boundary_5_of_5_vertical_19_of_19_e2e_manifests"
+  readiness_next_gate: "passed_owner_trace_bundle_promotion_and_SCALE_READY_true_official_scored_run_still_separately_prohibited"
+  benchmark_reduction_in_scope: false
+  scale_trace_eligibility_independent_from_future_scaling_gate: true
+  invariant_methodology_decision: "preserve_owner_approved_BG-D01_public_invariant_contract_and_disclose_construction_validity_limitation"
+  prior_verification_trace_role: "TRC-BG-D01-VERIFY-002_is_eligible_historical_verification_but_does_not_cover_SES-20260830-001_implementation"
+  measured_event_claims: true
+  double_post_decision_observation: true
+  nondeterminism_policy: "fail_closed"
+  evaluator_candidate_access: "physically_denied_and_reciprocally_tested"
   canonical_verification_command: "npm run task -- d01:verify"
   task_registry_command: "npm run task -- list"
   stable_test_command: "npm test"
@@ -160,3 +189,14 @@ d01_implementation_checkpoint:
   safe_phase_0_5_verification_command: "npm run task -- phase0.5:verify"
   historical_live_tasks_registered: false
   task_orchestration_semantics: "refactored_only_no_candidate_or_evaluation_change"
+  vertical_slice:
+    run_id: "RUN-BG-D01-VERTICAL-001"
+    classification: "unscored_development_demo"
+    status_quo_verdict: "accept"
+    beyondgreen_verdict: "reject"
+    pre_decision_evaluator_feedback_rounds: 0
+    candidate_hash_before_after_unchanged: true
+    json_evidence: "artifacts/evaluation/BG-D01-VERTICAL-SLICE.json"
+    static_html_evidence: "artifacts/evaluation/BG-D01-VERTICAL-SLICE.html"
+    deterministic_replay_command: "npm run task -- d01:replay"
+    model_invocation_count: 0

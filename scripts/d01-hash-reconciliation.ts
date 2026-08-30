@@ -1,13 +1,14 @@
 #!/usr/bin/env node
+/** Reconciles frozen D01 manifest hashes without executing candidates or evaluation. */
 
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
+import { D01_FIXTURE } from "../src/d01/fixture.ts";
 
 const manifestPaths = [
-  "evaluation/manifests/BG-D01/arm-visible.manifest.json",
-  "evaluation/manifests/BG-D01/verifier-only.manifest.json",
-  "evaluation/manifests/BG-D01/candidate-a.manifest.json",
-  "evaluation/manifests/BG-D01/candidate-b.manifest.json",
+  D01_FIXTURE.armVisible.manifestPath,
+  D01_FIXTURE.verifierOnly.manifestPath,
+  ...D01_FIXTURE.candidateIds.map((candidateId) => D01_FIXTURE.candidates[candidateId].manifestPath),
 ];
 
 const digest = createHash("sha256");

@@ -1,0 +1,80 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-D01-SCALE-002"
+category: "coding_agent"
+session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-002.yaml"
+purpose: "Implementation and verification of the remaining BG-D01 scale-readiness corrections."
+status: "owner_approved_eligible_implementation_trace_scale_ready_false"
+capture:
+  kind: "codex_desktop_copy_as_markdown"
+  status: "externally_anchored_exact_source_reviewed"
+  raw_path_disclosed: false
+  raw_sha256: "8d60978fcfce04f7c6fe3fa777d5b438a62347328c482da85f60993e48c3247a"
+  raw_bytes: 43616
+reviewed_layers:
+  native_redacted: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-002-NATIVE.md"
+  native_redacted_bytes: 43540
+  native_redacted_lines: 571
+  native_redacted_sha256: "ba3b29f14abe3ea0524b711d15b390b5fabb63a28583334163e4da80e3d24444"
+  english: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-002.md"
+  russian: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-002_RU.md"
+post_capture_provenance: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-002-POST-CAPTURE.yaml"
+decision_evidence_map: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-002-DECISION-EVIDENCE.md"
+automated_review:
+  raw_private_denylist_scan: "passed_requires_two_documented_categorical_path_redactions"
+  raw_private_term_matches: 1
+  raw_private_term_matches_after_path_redaction: 0
+  raw_email_matches: 0
+  raw_secret_assignment_matches: 0
+  raw_absolute_user_path_matches: 2
+  reviewed_layer_scan: "passed_READY_FOR_CLEAN_BRANCH"
+  contamination_findings: 0
+manual_agent_review:
+  chronology_complete: true
+  retries_preserved: true
+  omissions_documented: true
+  privacy_safe: true
+  technical_meaning_preserved: true
+  exact_source_identity: true
+  strict_utf8_roundtrip: true
+  complete_native_line_review: "completed_571_lines"
+independent_checkpoint:
+  status: "cancelled_by_owner"
+  invoked: false
+repo_local_validation:
+  compile: "passed"
+  ordinary_tests: "passed_55_of_55"
+  d01_visible: "passed_5_of_5"
+  d01_step_contract: "passed_1_of_1"
+  d01_oracle: "passed_3_of_3"
+  d01_physical_boundary: "passed_4_of_4"
+  d01_vertical_contracts: "passed_19_of_19"
+  d01_unscored_e2e: "passed"
+  d01_vertical_manifest: "passed_30_files"
+  d01_offline_replay: "passed_report_artifacts_matched"
+  phase_0_5: "passed_without_live_model_or_browser_execution"
+  pre_capture_checksums: "passed_187_of_187"
+  post_capture_checksums: "passed_192_of_192"
+  git_diff_check: "passed"
+  control_preflight: "READY_FOR_CLEAN_BRANCH"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION_with_expected_dirty_worktree_warning"
+  contamination_findings: 0
+repository_owner_review:
+  status: "passed"
+  reviewed_at_utc: "2026-08-30T09:20:29Z"
+  approver: "repository_owner"
+  selected_response_exact: 'Одобряю reviewed trace TRC-BG-D01-SCALE-002 и разрешаю включить её в actual\_traces как eligible implementation evidence; понимаю, что SCALE\_READY=false и готовность к масштабированию будет отдельно определена Codex acceptance-матрицей и явным одобрением владельца. Без official/scored run, live model продукта, Chromium, BG-D02, изменения evaluation methodology, candidates или freeze, commit/push.'
+  approval_evidence: "The owner explicitly approved the reviewed trace for actual_traces; Markdown escapes before underscores do not change the approved identifiers."
+  approval_scope: "Promote this reviewed trajectory only; scaling and all separately prohibited actions remain gated."
+eligibility:
+  eligible_representative_trace: true
+  indexed_in_actual_traces: true
+  trace_eligibility_gate: "passed_exact_identity_strict_utf8_safe_scan_complete_codex_review_en_ru_reconciliation_and_owner_approval"
+  scaling_gate_is_independent: true
+  scale_ready: false
+post_promotion_validation:
+  checksums: "passed_192_of_192"
+  git_diff_check: "passed"
+  control_preflight: "READY_FOR_CLEAN_BRANCH"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION_with_expected_dirty_worktree_warning"
+  contamination_findings: 0
+  binary_human_review_notices: 4

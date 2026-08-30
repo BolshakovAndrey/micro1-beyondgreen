@@ -1,0 +1,61 @@
+schema_version: "1.0"
+record_id: "PRV-BG-D01-DOCUMENTATION-001"
+record_type: "documentation_provenance"
+fixture_id: "BG-D01"
+session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-005.yaml"
+requirement_ids:
+  - "AR-004"
+  - "AR-005"
+  - "AR-006"
+  - "NFR-005"
+  - "NFR-006"
+scope:
+  classification: "documentation_only_with_expected_hash_projection_reconciliation"
+  typescript_file_count: 42
+  priority_module_count: 9
+  exported_declaration_count: 179
+  missing_jsdoc_after_review: 0
+  too_short_jsdoc_after_review: 0
+  runtime_behavior_change_intended: false
+  public_api_shape_change_intended: false
+authoring:
+  tool: "Codex CLI"
+  model: "gpt-5.6-sol"
+  main_trace: "TRC-BG-D01-DOCS-001"
+  continuations:
+    - "TRC-BG-D01-DOCS-001-CONT-001"
+    - "TRC-BG-D01-DOCS-001-CONT-002"
+  instructions:
+    - "artifacts/trajectories/instructions/TRC-BG-D01-DOCS-001.md"
+    - "artifacts/trajectories/instructions/TRC-BG-D01-DOCS-001-CONT-001.md"
+    - "artifacts/trajectories/instructions/TRC-BG-D01-DOCS-001-CONT-002.md"
+review:
+  english: "artifacts/trajectories/reviewed/TRC-BG-D01-DOCS-001.md"
+  russian: "artifacts/trajectories/reviewed/TRC-BG-D01-DOCS-001_RU.md"
+  review_record: "artifacts/trajectories/reviews/TRC-BG-D01-DOCS-001.yaml"
+  post_capture: "artifacts/trajectories/reviews/TRC-BG-D01-DOCS-001-POST-CAPTURE.yaml"
+  automated_scan: "passed_all_three_requires_deterministic_machine_path_redaction"
+  technical_meaning_preserved_after_redaction: true
+verification:
+  documentation_audit: "passed"
+  compile: "passed"
+  ordinary_tests: "passed_after_expected_deterministic_hash_reconciliation"
+  d01_verify: "passed"
+  replay: "passed_twice_identical"
+  manifests: "passed"
+  d01_hash: "da73beb0b3b5aba72013a90388cbf457614479f9b8f02125b99f598b7487f69f"
+  vertical_manifest_sha256: "47edb457f93a1d84bf9ebb84ec22eb17b11b94463eadab37c1cf92c169344440"
+clean_room_attestation:
+  outside_repository_content_read_or_used: false
+  private_material_used_as_source: false
+  browser_or_connected_app_state_used: false
+  private_mcp_or_global_memory_used: false
+  official_or_scored_run: false
+  live_product_model_calls: 0
+  chromium_calls: 0
+  bg_d02_or_later_work: false
+  commit_or_push: false
+human_review: "passed_repository_owner_approval_2026-08-30T13:31:04Z_exactly_three_traces"
+redistribution: "owner_approved_documentation_evidence_with_mandatory_submission_path_redaction"
+indexed_in_actual_traces: true
+indexed_capture_count: 3

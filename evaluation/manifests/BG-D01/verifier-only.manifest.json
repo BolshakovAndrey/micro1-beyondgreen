@@ -8,7 +8,11 @@
   "source_files": [
     {
       "path": "evaluation/verifier-only/BG-D01/canonical-driver.ts",
-      "sha256": "da05f0c9ee95edd91992c8c2d1514cda94117b50a17f176ee76f47941ae2b5f1"
+      "sha256": "f837a1d88404aee3b16769436f574387c22bf73ee082851de138cad512e8b40f"
+    },
+    {
+      "path": "evaluation/verifier-only/BG-D01/evaluator-denied-probe.mjs",
+      "sha256": "3234245721eb33910ef610783468e4e29567db28584bad854a1cea3c5a6f1878"
     },
     {
       "path": "evaluation/verifier-only/BG-D01/ground-truth.json",
@@ -19,5 +23,5 @@
       "sha256": "6b9a2f3022c81904353d555c2db1366850480031247f13cbadc70d593b0ba328"
     }
   ],
-  "package_sha256": "eec7f61f5cd0c54bbfb0bb8baab0ea46fc1a10688b811745f34c0d4b8655b9a3"
+  "package_sha256": "b00e9ceeadb691f1b4c38c0e13219f554f7a0ee75f5e52fb5e8a3cda3a117175"
 }

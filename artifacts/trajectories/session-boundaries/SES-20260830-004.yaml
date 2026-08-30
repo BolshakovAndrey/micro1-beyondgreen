@@ -1,0 +1,305 @@
+schema_version: "1.1"
+session_id: "SES-20260830-004"
+started_at_utc: "2026-08-30T11:10:16Z"
+agent:
+  id: "COD-CODEX-011"
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Prepare the bounded BG-D01 SCALE-004 correction boundary and, only after separate owner approval, run one eligible implementation trajectory"
+
+repository:
+  root: "."
+  root_resolution: "The Git top level matched the task-authorized clean repository root; the machine-specific absolute path is intentionally not persisted."
+  branch_state: "named_local_branch"
+  branch: "codex/beyondgreen-d01-scale003-correct"
+  initial_head: "f0418bc6051002d8d42ccf84822d2e1f2e25b02e"
+  working_tree:
+    state: "dirty"
+    classification: "inherited_current_working_tree_after_owner_approved_promotion_TRC-BG-D01-SCALE-003_and_acceptance_review"
+    tracked_changes_present: true
+    tracked_change_count: 26
+    untracked_files_present: true
+    untracked_file_count: 80
+    pre_boundary_status_sha256: "859119d6725ae20ffc14c925521c64ed81af4397d4577a6768cdf0fa9171fc02"
+    observation_command: "git status --short --untracked-files=all"
+    ownership_note: "Every pre-existing tracked or untracked change is inherited state and must not be attributed to SES-20260830-004."
+  remote_state_contacted_or_verified: false
+  commit_authorized: false
+  push_authorized: false
+
+checkpoint_input:
+  source_trace: "TRC-BG-D01-SCALE-003"
+  source_trace_record: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-003.yaml"
+  source_trace_status: "owner_approved_eligible_indexed_in_actual_traces"
+  source_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-003.yaml"
+  acceptance_matrix: "artifacts/trajectories/reviews/BG-D01-SCALE-003-CODEX-ACCEPTANCE.md"
+  acceptance_matrix_russian: "artifacts/trajectories/reviews/BG-D01-SCALE-003-CODEX-ACCEPTANCE_RU.md"
+  gate: "D01_SCALE_004"
+  d01_checkpoint: "PASS_WITH_CONFIRMED_BLOCKERS"
+  confirmed_blockers: ["A1", "A2", "S1", "S2", "S3"]
+  preserved_passes: ["A3", "S4", "P1", "P2", "D1"]
+  scale_ready: false
+  official_or_scored_run_exists_for_this_gate: false
+
+context:
+  repository_root: "."
+  allowed_paths_before_approval:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-003.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+    - "artifacts/trajectories/reviews/BG-D01-SCALE-003-CODEX-ACCEPTANCE.md"
+    - "artifacts/trajectories/reviews/BG-D01-SCALE-003-CODEX-ACCEPTANCE_RU.md"
+    - "artifacts/trajectories/reviews/BG-D01-SCALE-003-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+    - "artifacts/trajectories/reviews/BG-D01-SCALE-004-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+    - "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-003.yaml"
+  allowed_paths_after_approval:
+    - "AGENTS.md"
+    - "package.json"
+    - "package-lock.json"
+    - "tsconfig.json"
+    - "README.md"
+    - "config/cleanroom.json"
+    - "config/topic.yaml"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/PROJECT_SPEC_RU.md"
+    - "docs/EVALUATION.md"
+    - "docs/IMPROVEMENT_CHANGELOG.md"
+    - "src/"
+    - "scripts/"
+    - "tests/"
+    - "evaluation/arm-visible/BG-D01/"
+    - "evaluation/verifier-only/BG-D01/"
+    - "evaluation/manifests/BG-D01/"
+    - "artifacts/evaluation/BG-D01-*"
+    - "artifacts/provenance/"
+    - "artifacts/trajectories/"
+    - "templates/SESSION_BOUNDARY.yaml"
+  read_only_frozen_paths_after_approval:
+    - "evaluation/behavior-specs/BG-D01_BEHAVIOR.md"
+    - "candidates/BG-D01/"
+    - "evaluation/arm-visible/BG-D01/visible-assertions.ts"
+    - "historical trajectory, review, decision, and run records"
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  permitted_external_interfaces_after_approval_only:
+    - "repository_policy_validation_of_Codex_JSONL_to_micro1_safe_trace_transport"
+    - "scanner_read_via_MICRO1_PRIVATE_DENYLIST_safe_wrapper_only"
+    - "unchanged_Codex_CLI_JSONL_stdout_stream_to_micro1_safe_trace_via_MICRO1_PRIVATE_TRACE_DIR"
+  prohibited_external_access: "all_other_external_access"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+
+controls:
+  agents_instructions_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  scale_003_acceptance_matrix_english_read: true
+  scale_003_acceptance_matrix_russian_read: true
+  scale_003_owner_approved_trace_record_read: true
+  required_contracts_read_in_full: true
+  root_matches_authorized_scope: true
+  source_trace_owner_approval_checked: true
+  scale_ready_false_checked_in_current_projections: true
+  private_denylist_available_to_scanner_only: false
+  private_paths_resolve_outside_repository: false
+  raw_trace_location: "external_local_only_not_accessed_before_approval"
+  values_paths_or_contents_disclosed: false
+
+structural_preflight:
+  product_implementation_surface_read: false
+  product_commands_executed: false
+  scanner_or_trace_wrapper_executed: false
+  nested_codex_cli_executed: false
+  trace_capture_executed: false
+  official_or_scored_run_performed: false
+  fixtures_candidates_oracles_or_benchmark_executed: false
+  live_model_calls: 0
+  chromium_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  global_memory_reads: 0
+  boundary_id_availability: "passed"
+  owner_card_path_availability: "passed"
+  observed_current_projection_scale_ready: false
+
+authorization:
+  boundary_preparation_requested_by_owner: true
+  boundary_preparation_only: true
+  implementation_authorized_before_human_approval: false
+  implementation_authorized_by_this_pending_record: false
+  official_or_scored_run_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  allowed_before_human_approval:
+    - "Read repository instructions, mandatory contracts, the SCALE-003 acceptance matrix, and the owner-approved trace record in full."
+    - "Inspect local Git branch, HEAD, and working-tree metadata without persisting a machine-specific absolute path."
+    - "Read the repository-local session-boundary template and directly preceding service records only to preserve the service-artifact format."
+    - "Create SES-20260830-004 and its complete Russian owner-review card."
+    - "Perform structural validation of only those two new service files."
+  prohibited_before_human_approval:
+    - "Read product implementation source, product tests, manifests, candidates, fixtures, or oracle implementation."
+    - "Modify product code, tests, manifests, active product projections, fixtures, candidates, oracles, reports, benchmark records, or historical records."
+    - "Run compile, tests, D01 verification, replay, demo, Phase 0.5, fixtures, candidates, oracles, benchmark, official, or scored commands."
+    - "Invoke safe external wrappers, nested Codex CLI, trace capture, Claude, any live product model, Chromium, browser automation, connected apps, private MCP, global memory, sibling repositories, or external workspaces."
+    - "Read the private denylist or raw trace location through the approved external interfaces."
+    - "Commit or push."
+
+bounded_correction_scope_after_explicit_human_approval:
+  purpose: "Correct exactly the five confirmed blockers in the SCALE-003 Codex acceptance matrix without expanding D01 or evaluation scope."
+  allowed:
+    - id: "A1"
+      requirements: ["FR-004", "FR-005", "FR-008", "FR-009", "FR-010", "RUB-ASE", "RUB-REP"]
+      change: "Make the real orchestrator and worker runtime accept injected FixtureEngineBindings; retain D01 as a thin data-only composition wrapper."
+    - id: "A2"
+      requirements: ["FR-004", "FR-005", "FR-009", "FR-010", "RUB-ASE", "RUB-REP"]
+      change: "Run one TEST-ONLY descriptor through the real engine-parameterized orchestrator, worker, evaluator, replay, and report pipeline with bounded injected process transport; remove the manual fake-callback dispatcher proof."
+    - id: "S1"
+      requirements: ["FR-006", "FR-007", "NFR-002", "NFR-005", "EV-006", "EV-009", "RUB-ASE", "QG-ORIG"]
+      change: "For every execution slot, derive exact expected canonical sandbox and allowed-path policies from the frozen engine contract and compare them during live validation and replay; reject extra, missing, changed, or slot-substituted policy."
+    - id: "S2"
+      requirements: ["FR-006", "FR-007", "NFR-002", "NFR-005", "EV-006", "EV-009", "RUB-ASE", "QG-ORIG"]
+      change: "Bind every observation and evaluator output positionally to exactly one expected proof, role, profile, and execution slot; add cross-role substitution negative tests."
+    - id: "S3"
+      requirements: ["FR-001", "FR-007", "NFR-002", "NFR-007", "EV-003", "EV-009", "RUB-ASE", "QG-TRACE"]
+      change: "Require each per-arm event decisionSha256 to equal the digest of the actual immutable decision for that arm during live validation and replay; add a negative test using an internally consistent but arbitrary digest."
+    - id: "DIRECTLY_AFFECTED_RECONCILIATION"
+      requirements: ["AR-001", "AR-002", "AR-004", "NFR-007", "RUB-REP", "QG-TRACE"]
+      change: "Reconcile only directly affected tests, manifests, provenance, Improvement Changelog, trace materials, and active status projections after code evidence exists."
+  must_preserve:
+    - "A3: BoardObservation remains outside the generic factory and explicitly injected."
+    - "S4: replay independently recalculates reasonCorrectReject and oracleAcceptedCandidate, with inversion failures preserved."
+    - "P1: recursive package enumeration remains globally sorted and supports the a/source.ts plus a.ts ordering case."
+    - "P2: registered nested source byte mutation continues to fail closed with a source-digest mismatch."
+    - "D1: active projections continue to report owner-approved eligible SCALE-003 evidence and SCALE_READY=false until a later explicit gate."
+  excluded:
+    - "Any fixture, candidate, oracle, visible assertion, ground truth, frozen evaluation methodology, target, or denominator change."
+    - "BG-D02 or any other fixture, candidate, oracle, or held-out implementation."
+    - "Benchmark reduction, official/scored execution, benchmark generation, unblinding, or unscored repair demonstration."
+    - "Live product model, Claude, Chromium, browser, connected app, private MCP, global memory, sibling repository, or external workspace access."
+    - "Dependency, lockfile, runtime-policy, container, Phase 0.5, Linux portability, or weakened K=0 change."
+    - "Rewriting historical session boundaries, traces, reviews, decisions, run evidence, or changelog entries."
+    - "Commit, push, publication, scaling, or automatic SCALE_READY change."
+
+automatic_trace_transport_plan_after_explicit_human_approval:
+  planned_trace_id: "TRC-BG-D01-SCALE-004"
+  implementation_executor: "local_Codex_CLI"
+  source_format: "machine_readable_JSONL_stdout"
+  destination: "micro1-safe-trace_external_raw_layer"
+  byte_transport: "Codex CLI stdout is piped unchanged and directly to micro1-safe-trace stdin."
+  repository_raw_intermediate_file: false
+  ui_raw_payload_output: false
+  shell_capture_or_tee: false
+  stderr_policy: "stderr must use the repository-approved privacy-safe handling and must never be merged into the raw JSONL stdout stream or disclosed in the UI"
+  pre_run_gate:
+    status: "passed_after_two_owner_authorized_diagnostic_corrections"
+    requirement: "Before launching Codex CLI, validate the complete transport against current repository clean-room and trace policies using only the approved safe interface."
+    required_checks:
+      - "The prompt/context packet is bounded to the approved repository-local paths and the five blockers."
+      - "The CLI emits machine-readable JSONL on stdout and does not require an in-repository raw file."
+      - "micro1-safe-trace accepts stdin and preserves the unchanged stdout bytes in the external raw layer selected through MICRO1_PRIVATE_TRACE_DIR."
+      - "No raw payload is echoed, teed, logged, command-substituted, retained in a shell variable, or rendered in the Codex Desktop UI."
+      - "The transport preserves exit status, byte count, and SHA-256 evidence without disclosing the external path or raw content."
+      - "Failure in either process closes the trajectory and cannot silently fall back to a manual or edited capture."
+    failure_action: "Stop and request an explicit repository-owner decision. Do not fall back to Codex Desktop Copy as Markdown or any other manual copy/export path."
+  validation_evidence:
+    wrapper_probe: "passed_present_outside_repository_directory_readable_and_writable"
+    cli_help: "passed_jsonl_stdout_ephemeral_ignore_user_config_workspace_write_and_stdin_prompt_supported"
+    attempts:
+      - id: "TRC-BG-D01-SCALE-004-TRANSPORT-CANARY"
+        result: "validator_failed_after_capture"
+        cause: "The local validator assumed an undocumented captured=true field."
+        owner_authorized_retry: true
+      - id: "TRC-BG-D01-SCALE-004-TRANSPORT-CANARY-RETRY-001"
+        result: "validator_failed_after_exact_byte_and_digest_match"
+        cause: "The local validator incorrectly rejected the safe pathDisclosed field name before checking that its value was false."
+        owner_authorized_retry: true
+      - id: "TRC-BG-D01-SCALE-004-TRANSPORT-CANARY-FINAL"
+        result: "passed"
+        bytes: 46
+        sha256: "b8ef39724785a1170ef7d564c3b99aed34ad21ca3aaf61f6507446eb39af96bc"
+        path_disclosed: false
+        raw_payload_disclosed: false
+    validated_transport: "Codex CLI machine-readable JSONL stdout may be piped unchanged directly to micro1-safe-trace capture; stderr must be captured separately through the same safe external interface."
+
+approved_implementation_protocol_after_exact_owner_approval:
+  trajectory_classification: "eligible_implementation_candidate_pending_transport_validation_capture_and_review"
+  sequence:
+    - "Validate the automatic Codex CLI JSONL to micro1-safe-trace transport against repository policy before any nested CLI launch."
+    - "If transport validation cannot establish every required invariant, stop and request owner direction without manual fallback."
+    - "Launch exactly one bounded SCALE-004 implementation trajectory through the validated transport."
+    - "Inspect only the minimum repository-local implementation surface necessary for A1, A2, S1, S2, and S3."
+    - "Preserve A3, S4, P1, P2, D1 and the inherited runnable baseline."
+    - "Record hypothesis, change, exact command, evidence, failure or retry, and keep/revise decision for each meaningful iteration."
+    - "Run compile, ordinary tests, and targeted non-scored D01 verification only after the bounded implementation."
+    - "Stop on any deterministic failure and request a separate owner decision before retrying or changing course."
+    - "Review and promote the captured SCALE-004 trajectory only through the ordinary automated scan, complete EN/RU technical review, and separate owner approval."
+    - "Repeat the Codex acceptance matrix; keep SCALE_READY=false until a separate explicit owner decision."
+  scale_gate: "Passed by explicit repository-owner decision after the reviewed eight-capture bundle and all-pass Codex acceptance matrix; SCALE_READY=true."
+
+preparation_observations:
+  retries:
+    - "One combined read of the two largest mandatory contracts was truncated by the tool output limit; both files were then reread completely in bounded non-overlapping line ranges."
+  privacy_notes:
+    - "The initial repository-metadata command displayed the machine-specific repository path transiently in the task UI but did not persist it in the repository. Any later reviewed submission layer must categorically omit that path while preserving the Git evidence."
+  product_or_trace_execution_before_approval: false
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: true
+  eligibility_condition: "Passed transport validation, bounded SCALE-004 execution plus seven owner-authorized continuations, eight immutable external captures, automated review, complete EN/RU technical review, all-pass Codex acceptance, and explicit owner promotion."
+  repository_artifacts_status: "owner_approved_eligible_bundle_indexed_in_actual_traces"
+  authoring_transcript_status: "owner_approved_reviewed_bundle"
+  authoring_transcript_exclusion_category: "machine_specific_absolute_path_requires_categorical_omission_from_reviewed_submission_layer"
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-30T11:24:00Z"
+  approval_evidence: "The owner supplied the exact requested approval phrase with Markdown escaping of underscores, then separately authorized two bounded diagnostic canary corrections and the single implementation launch only after transport PASS."
+  owner_review_card: "artifacts/trajectories/reviews/BG-D01-SCALE-004-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+  requested_response_exact: "Одобряю SESSION_BOUNDARY SES-20260830-004 и разрешаю одну eligible implementation-траекторию TRC-BG-D01-SCALE-004 строго для пяти блокеров A1, A2, S1, S2 и S3 с автоматическим trace transport через repository-policy-validated Codex CLI JSONL → micro1-safe-trace; A3, S4, P1, P2 и D1 сохранить, SCALE_READY не менять, commit и push не выполнять."
+  transport_retry_approval_evidence:
+    - "Owner authorized one diagnostic repeat that could expose only safe response field names, byte count, and SHA-256."
+    - "Owner authorized one final schema-aware canary accepting pathDisclosed only when false and authorized the single bounded implementation trajectory only after PASS."
+
+repository_owner_promotion:
+  status: "approved"
+  approved_at: "2026-08-30"
+  implementation_capture_count: 8
+  actual_traces_entries_added: 8
+  scale_ready: true
+  deterministic_submission_path_redaction_required: true
+  selected_response_exact: "Одобряю reviewed trace bundle TRC-BG-D01-SCALE-004 и семь continuation captures как eligible implementation evidence, разрешаю продвинуть этот комплект в actual_traces и установить SCALE_READY=true на основании зелёной Codex acceptance-матрицы A1/A2/A3/S1/S2/S3/S4/P1/P2/D1; детерминированную редактуру машинных путей перед submission сохранить обязательной, official/scored run, commit и push не выполнять."

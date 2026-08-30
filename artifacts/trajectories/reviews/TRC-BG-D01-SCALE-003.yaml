@@ -1,0 +1,69 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-D01-SCALE-003"
+category: "coding_agent"
+session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-003.yaml"
+purpose: "Bounded correction and verification of the final confirmed BG-D01 scale-readiness blockers."
+status: "owner_approved_eligible_implementation_trace_scale_ready_false"
+capture:
+  kind: "codex_desktop_copy_as_markdown"
+  status: "externally_anchored_exact_source_reviewed"
+  raw_path_disclosed: false
+  raw_sha256: "0fe4e5b8be4ffff71b849bda538e4ecc6d2d44b94a9dcfdf423b1209855d4400"
+  raw_bytes: 49485
+reviewed_layers:
+  english: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-003.md"
+  russian: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-003_RU.md"
+  native_verbatim_repo_layer: "not_claimed"
+post_capture_provenance: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-003-POST-CAPTURE.yaml"
+decision_evidence_map: "docs/IMPROVEMENT_CHANGELOG.md#itr-034--correct-confirmed-d01-scale-003-acceptance-blockers"
+automated_review:
+  raw_private_denylist_scan: "passed_requires_two_machine_path_omissions"
+  raw_private_term_matches: 0
+  raw_private_term_matches_after_path_redaction: 0
+  raw_email_matches: 0
+  raw_secret_assignment_matches: 0
+  raw_absolute_user_path_matches: 2
+  reviewed_layer_scan: "passed_READY_FOR_CLEAN_BRANCH"
+  contamination_findings: 0
+manual_agent_review:
+  chronology_complete: true
+  retries_preserved: true
+  omissions_documented: true
+  privacy_safe: true
+  technical_meaning_preserved: true
+  exact_source_identity: true
+  strict_utf8_roundtrip: true
+  semantic_review: "completed_against_original_Codex_task_transcript"
+  verbatim_native_repo_layer_claimed: false
+repo_local_validation:
+  compile: "passed"
+  ordinary_tests: "passed_55_of_55"
+  d01_visible: "passed_5_of_5"
+  d01_step_contract: "passed_1_of_1"
+  d01_oracle: "passed_3_of_3"
+  d01_physical_boundary: "passed_4_of_4"
+  d01_vertical_contracts: "passed_19_of_19"
+  d01_unscored_e2e: "passed"
+  d01_vertical_manifest: "passed_30_files"
+  pre_capture_checksums: "passed_196_of_196"
+  post_capture_checksums: "passed_200_of_200"
+  git_diff_check: "passed"
+  control_preflight: "READY_FOR_CLEAN_BRANCH"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION_with_expected_dirty_worktree_warning"
+  contamination_findings: 0
+repository_owner_review:
+  status: "passed"
+  reviewed_at_utc: "2026-08-30T10:41:34Z"
+  approver: "repository_owner"
+  russian_companion: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-003_RU.md"
+  requested_response_exact: "Одобряю reviewed trace TRC-BG-D01-SCALE-003 и разрешаю включить её в actual_traces как eligible implementation evidence; понимаю, что SCALE_READY=false и следующий гейт — отдельная Codex acceptance-матрица и моё явное решение. Commit и push не выполнять."
+  approval_question_exact: "Одобряете проверенную TRC-BG-D01-SCALE-003 для включения в actual_traces при сохранении SCALE_READY=false и запрете commit/push?"
+  selected_response_exact: "Одобряю (Recommended)"
+  approval_evidence: "The owner selected the recommended approval in the explicit repository-owner gate after the complete Russian companion was available."
+  approval_scope: "Promote this reviewed trajectory only; scaling and all separately prohibited actions remain gated."
+eligibility:
+  eligible_representative_trace: true
+  indexed_in_actual_traces: true
+  trace_eligibility_gate: "passed_exact_identity_strict_utf8_safe_scan_complete_codex_review_en_ru_reconciliation_and_owner_approval"
+  scaling_gate_is_independent: true
+  scale_ready: false

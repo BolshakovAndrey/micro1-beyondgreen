@@ -1,0 +1,32 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-D01-SCALE-004"
+record_type: "post_capture_provenance_bundle"
+source_task_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+transport: "codex_cli_jsonl_stdout_direct_to_micro1_safe_trace"
+raw_paths_disclosed: false
+implementation_captures:
+  - { id: "TRC-BG-D01-SCALE-004", bytes: 539661, sha256: "9b02a76829ba9e6f0b41b8ef40f9b80e3360ac32be7e53148ba5b1268f259754", absolute_path_matches: 116 }
+  - { id: "TRC-BG-D01-SCALE-004-CONT-001", bytes: 138021, sha256: "095fb692559f7dd10e370a8603927da7c9cefecbc3840cf32fc492611426d43d", absolute_path_matches: 5 }
+  - { id: "TRC-BG-D01-SCALE-004-CONT-002", bytes: 314921, sha256: "655f8e8d2311d934653cb642a72ff2e2bfb587c0e3a6072b441bf7c72b13e9e3", absolute_path_matches: 6 }
+  - { id: "TRC-BG-D01-SCALE-004-CONT-003", bytes: 274882, sha256: "b4d93ecb5586386cf59a17a0b96461effbac9705eb4f04fee7d94691bdbd6877", absolute_path_matches: 6 }
+  - { id: "TRC-BG-D01-SCALE-004-CONT-004", bytes: 69378, sha256: "45b03072137b4df6b57ee1e8417e39e788a6851048063d9e064c928c25fcd909", absolute_path_matches: 45 }
+  - { id: "TRC-BG-D01-SCALE-004-CONT-005", bytes: 387071, sha256: "8ad49e296a39af642c1f287363ab33af7428357dcb7ea655f070adc8e42507c0", absolute_path_matches: 15 }
+  - { id: "TRC-BG-D01-SCALE-004-CONT-006", bytes: 308379, sha256: "311188234ff9054970adaa440652ad73ccd292e82c0783c5e2d06c463eaaa868", absolute_path_matches: 17 }
+  - { id: "TRC-BG-D01-SCALE-004-CONT-007", bytes: 2307, sha256: "ab6b7ec97bf7add3d73da272d1906bbcac6f6842582575b1492f4826992691e6", absolute_path_matches: 1 }
+raw_scan:
+  command: "micro1-safe-trace-review scan-raw <eligible-implementation-trace-id>"
+  status: "passed_requires_submission_path_redaction_all_eight"
+  private_terms_after_path_redaction: 0
+  email_matches: 0
+  secret_assignment_matches: 0
+excluded_capture_classes:
+  - "stderr captures: diagnostic only, never implementation JSONL"
+  - "transport canaries: transport validation only"
+  - "launcher/auth/flag failures before model start: unsuccessful attempts, not implementation evidence"
+reviewed_layers:
+  english: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004.md"
+  russian: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004_RU.md"
+repository_owner_promotion_review: "passed_2026-08-30_all_eight_indexed_in_actual_traces"
+indexed_in_actual_traces: true
+indexed_capture_count: 8
+scale_ready: true

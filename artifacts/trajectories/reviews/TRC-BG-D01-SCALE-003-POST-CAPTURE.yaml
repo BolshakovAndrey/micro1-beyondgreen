@@ -1,0 +1,41 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-D01-SCALE-003"
+record_type: "post_capture_provenance"
+source_task_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-003.yaml"
+owner_capture_authorization_received: true
+capture:
+  transport: "owner_selected_native_clipboard_piped_directly_to_safe_wrapper"
+  result: "passed"
+  raw_artifact_created: true
+raw_capture:
+  kind: "codex_desktop_copy_as_markdown"
+  bytes: 49485
+  sha256: "0fe4e5b8be4ffff71b849bda538e4ecc6d2d44b94a9dcfdf423b1209855d4400"
+  outside_repository: true
+  path_disclosed: false
+  content_displayed_by_capture_command: false
+raw_scan:
+  command: "micro1-safe-trace-review scan-raw TRC-BG-D01-SCALE-003"
+  status: "passed_requires_submission_redaction"
+  private_term_matches: 0
+  private_term_matches_after_path_redaction: 0
+  private_terms_confined_to_machine_paths: false
+  email_matches: 0
+  secret_assignment_matches: 0
+  absolute_user_path_matches: 2
+reviewed_layers:
+  english: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-003.md"
+  russian: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-003_RU.md"
+  categorical_omissions:
+    - "two absolute machine-path occurrences"
+  exact_clipboard_to_receipt_identity: true
+  strict_utf8_roundtrip: true
+  semantic_review_source: "original Codex task transcript read through the Codex app"
+  technical_chronology_preserved: true
+  verbatim_native_repo_layer_claimed: false
+  hidden_reasoning_claimed: false
+  complete_stdout_claimed: false
+scale_ready: false
+repository_owner_promotion_review: "passed_2026-08-30T10:41:34Z_indexed_in_actual_traces"
+trajectory_eligibility_independent_from_scaling_gate: true
+post_capture_validation: "checksums_200_of_200_git_diff_check_passed_safe_preflights_passed_zero_contamination_findings"

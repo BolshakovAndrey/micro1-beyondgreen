@@ -1,0 +1,44 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-D01-SCALE-004"
+category: "coding_agent_bundle"
+session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+status: "owner_approved_eligible_bundle_indexed_in_actual_traces_scale_ready_true"
+capture:
+  kind: "codex_cli_jsonl_stdout_bundle"
+  continuation_count: 7
+  implementation_capture_count: 8
+  stderr_is_evidence: false
+  failed_launcher_attempts_are_evidence: false
+  raw_path_disclosed: false
+reviewed_layers:
+  english: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004.md"
+  russian: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004_RU.md"
+post_capture_provenance: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-004-POST-CAPTURE.yaml"
+automated_review:
+  raw_scan: "passed_requires_deterministic_absolute_path_redaction"
+  private_terms_after_path_redaction: 0
+  email_matches: 0
+  secret_assignment_matches: 0
+manual_agent_review:
+  chronology_complete: true
+  authorized_retries_preserved: true
+  stderr_and_failed_attempts_separated: true
+  privacy_safe: true
+  technical_meaning_preserved: true
+repo_local_validation:
+  ordinary_tests: "passed_56_of_56"
+  d01_verify: "passed_visible_5_step_1_oracle_3_boundary_5_vertical_19_e2e_manifests"
+  d01_replay: "passed_report_artifacts_matched"
+  phase_0_5_verify: "passed_4_of_4"
+repository_owner_review:
+  status: "passed"
+  reviewed_at: "2026-08-30"
+  approver: "repository_owner"
+  selected_response_exact: "Одобряю reviewed trace bundle TRC-BG-D01-SCALE-004 и семь continuation captures как eligible implementation evidence, разрешаю продвинуть этот комплект в actual_traces и установить SCALE_READY=true на основании зелёной Codex acceptance-матрицы A1/A2/A3/S1/S2/S3/S4/P1/P2/D1; детерминированную редактуру машинных путей перед submission сохранить обязательной, official/scored run, commit и push не выполнять."
+  approval_scope: "Promote all eight reviewed implementation JSONL captures and set SCALE_READY=true; deterministic path redaction remains mandatory; official/scored run, commit, and push remain prohibited."
+eligibility:
+  eligible_representative_trace_candidate: true
+  eligible_representative_trace: true
+  indexed_in_actual_traces: true
+  indexed_capture_count: 8
+  scale_ready: true

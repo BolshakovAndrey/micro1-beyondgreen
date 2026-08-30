@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-D01",
+  "package_id": "BG-D01-vertical-slice",
+  "package_kind": "unscored_verify_existing_vertical_slice",
+  "immutable": true,
+  "official_or_scored": false,
+  "hash_algorithm": "SHA-256",
+  "source_files": [
+    {
+      "path": "src/d01/arm-checks.ts",
+      "sha256": "2e98f81b66b6c0e03f6cf73349c7068c30124207092f44aca8379e5da2a6ab29"
+    },
+    {
+      "path": "src/d01/candidate.ts",
+      "sha256": "20ef3de002df0e7630d4a4a63be8cf56d22514c4f3faca773fc4bc603e271114"
+    },
+    {
+      "path": "src/d01/capability-schemas.ts",
+      "sha256": "2e7b1cc279d1c323f0679222c194853d1918ad91221f425d00877e83c4c6d4ee"
+    },
+    {
+      "path": "src/d01/capability.ts",
+      "sha256": "6ace74de354784d125e98ca13bd9e66fb6f4ae7b3005fb9d23d7c55d1a16c0d4"
+    },
+    {
+      "path": "src/d01/canonical-json.ts",
+      "sha256": "00d2917323d4f0044ce9c2d3ce97bdd39052c130a2eaa8e7124d7410bbe26dee"
+    },
+    {
+      "path": "src/d01/decision.ts",
+      "sha256": "ceef81d8d4dc787c555046378347d6e419fc19989c7b4b57771dd576e51c1277"
+    },
+    {
+      "path": "src/d01/engine.ts",
+      "sha256": "0af3115e1748483c6451445448778868cc49cf4e1fa663145fdee6a462094d81"
+    },
+    {
+      "path": "src/d01/execution.ts",
+      "sha256": "ea01eb64fcae642b1a1b5ea6f5eea45b094da4e9f117637e4caf3227c06016e3"
+    },
+    {
+      "path": "src/d01/fixture.ts",
+      "sha256": "271cb479e8cee487d5be52affaca4fd7f5916acaba738e925ed8432c1dc8f3a9"
+    },
+    {
+      "path": "src/d01/orchestrator.ts",
+      "sha256": "f1d5945b9fc61eb3ccf6e5400bea85a75a2f99a1e7edb805b598eafe18b64539"
+    },
+    {
+      "path": "src/d01/reasoning.ts",
+      "sha256": "98718a383faf51505accc510b36c6e617f82495abda777719c328a66de942c4a"
+    },
+    {
+      "path": "src/d01/replay.ts",
+      "sha256": "3e22d616ac96a1e0773264910cd44d13ecf5606f97a11c05fe003549e2bcace3"
+    },
+    {
+      "path": "src/d01/replay-core.ts",
+      "sha256": "8fa18fe1778e839121d00b740b600cd563409bebaf660fbafa846e45f94e6ae1"
+    },
+    {
+      "path": "src/d01/report.ts",
+      "sha256": "5df7a0414d8c675c8f2babe3cf1a6bdb5b57bbd5ab88764fec1a610f06e37cb3"
+    },
+    {
+      "path": "src/d01/risk.ts",
+      "sha256": "48d13cb69c6435e71c00ef9d5fc3aece124d8a3c9d05e5f4185d12dae2608928"
+    },
+    {
+      "path": "src/d01/runtime.ts",
+      "sha256": "d0e5ee3f59b5ae490ca1c7baa6e78cd051ddab1003576be82cb15c8b2f6e05c7"
+    },
+    {
+      "path": "src/d01/schema-factory.ts",
+      "sha256": "a45bc5d63746c4511c10a68738757cd0b8dc399c8482363d946f0fa217bc5006"
+    },
+    {
+      "path": "src/d01/schemas.ts",
+      "sha256": "eb9f0cc890bf3e5ff1b6e9c4a0b73552ef62aff9a3045e9fb1db91be48312016"
+    },
+    {
+      "path": "src/d01/worker-bindings.ts",
+      "sha256": "b5c01b61cb0560ddd1964ba9d8bed27a50e405a382a77ac0b5845ff40bc085e4"
+    },
+    {
+      "path": "src/d01/worker-runtime.ts",
+      "sha256": "6cfdeb6c74252f36e54f1caeae19a56b2789571a8f1e855c7d7b982efedf7f43"
+    },
+    {
+      "path": "scripts/d01-arm-worker.ts",
+      "sha256": "1de53b5ce15bad496b88cc7e147144accaff46dfe1dbaca91673640d79626aa2"
+    },
+    {
+      "path": "scripts/d01-candidate-observer-worker.ts",
+      "sha256": "52c9ab0008ae01beb89f5d782d62ea3fcdbbb26e2fc703fb239214303d3b3544"
+    },
+    {
+      "path": "scripts/d01-demo.ts",
+      "sha256": "01e1cd09956af97013957650b2d5f427e0f3a6298d66bf18eeb8f829adfe665a"
+    },
+    {
+      "path": "scripts/d01-evaluator-worker.ts",
+      "sha256": "ef9cf7930d45222751c8d72ccdd78fe97b845aa9bea602ca660a7ae9f45c2440"
+    },
+    {
+      "path": "scripts/d01-hash-reconciliation.ts",
+      "sha256": "6d57917dff04b79eaa3177f642fffa2b6e33a8c0fa1a3c078106271a50fb9ed0"
+    },
+    {
+      "path": "scripts/d01-manifests.ts",
+      "sha256": "586b72aa03c4b842e6a229823862f9161bf5e371c55d7b306659aa63ff79cd4a"
+    },
+    {
+      "path": "scripts/d01-replay.ts",
+      "sha256": "7e5579e60309660288a3dcde139e8f0f6243d6e34775650931914bbf5550cb3e"
+    },
+    {
+      "path": "scripts/d01-vertical-manifest.ts",
+      "sha256": "96ea1a902e22c9ac5ddfa5393c153a0e921384b17da49df1b7277946df1a8199"
+    },
+    {
+      "path": "scripts/tasks/d01.ts",
+      "sha256": "39d2ea2a9fb00ea4135c0a761d6222e4d8703b8fd7cf7ed9aa9fdf5f16de1870"
+    },
+    {
+      "path": "tests/d01-boundary.test.ts",
+      "sha256": "1bb2f17c68493b82dd1d95048bcae7079403d302c80ba79d887c0806ba7102a1"
+    },
+    {
+      "path": "tests/d01-descriptor-injection.test.ts",
+      "sha256": "43d55fb097b7be687383ffbec8a1e91c3550bf2be69dc33940b269082fe3959d"
+    },
+    {
+      "path": "tests/d01-package-binding.test.ts",
+      "sha256": "8e437ae243b2d8c3b24a8ce08efde4f28c0f09cf5341a7665951c66f66f1a9a0"
+    },
+    {
+      "path": "tests/d01-vertical-slice.test.ts",
+      "sha256": "7e89c8a1e08bda4486c56662bcd6fbddbcf752b92f722f7be299bb6d9d36b421"
+    },
+    {
+      "path": "tests/fixtures/test-only-arm-worker.ts",
+      "sha256": "c41062a25f0219d376c4cb79ee8ebdd1f4a56bd15b2ebdbc1903899441bcd6d0"
+    },
+    {
+      "path": "tests/fixtures/test-only-engine.ts",
+      "sha256": "d7593f95a33814d1c1e7fbacab76edd8a0cc7a9ec778aa167afeb0545f7a2730"
+    },
+    {
+      "path": "tests/fixtures/test-only-evaluator-worker.ts",
+      "sha256": "cca5424bb90b56b6d4c4808903a8b3e4ae5d064f9805187ea80d4e05a1086af4"
+    },
+    {
+      "path": "tests/fixtures/test-only-observer-worker.ts",
+      "sha256": "4f66aff2f599b614aad061add10ec18c03d276244eb1096623b2c75e3d9c349e"
+    }
+  ],
+  "package_sha256": "47edb457f93a1d84bf9ebb84ec22eb17b11b94463eadab37c1cf92c169344440",
+  "frozen_foundation": {
+    "candidate_a_sha256": "f46b2ed8c85e8558b5c8812491c09d89530099b0890454415579ea4c5d69e8a5",
+    "candidate_b_sha256": "9e2a9151531aa961cf0ace3e20520fdcfa45ff0bff0f13ae214f7e5fbdad7d2b",
+    "pre_review_combined_d01_manifest_digest": "5273199f8d591068ae827874d80352947eb511844fdf6ccabbcbce9edacccdcf",
+    "current_combined_d01_manifest_digest": "da73beb0b3b5aba72013a90388cbf457614479f9b8f02125b99f598b7487f69f"
+  },
+  "semantic_guards": {
+    "candidate_sources_changed": false,
+    "frozen_visible_test_count": 5,
+    "verifier_behavior_changed": false,
+    "verifier_package_changed": true,
+    "verifier_isolation_implementation_changed": true,
+    "pre_decision_evaluator_feedback_rounds": 0
+  }
+}

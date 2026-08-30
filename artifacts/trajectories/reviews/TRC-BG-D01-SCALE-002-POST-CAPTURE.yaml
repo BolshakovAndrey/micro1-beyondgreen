@@ -1,0 +1,46 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-D01-SCALE-002"
+record_type: "post_capture_provenance"
+source_task_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-002.yaml"
+owner_capture_authorization_received: true
+capture:
+  transport: "owner_confirmed_native_clipboard_piped_directly_to_safe_wrapper"
+  result: "passed"
+  raw_artifact_created: true
+raw_capture:
+  kind: "codex_desktop_copy_as_markdown"
+  bytes: 43616
+  sha256: "8d60978fcfce04f7c6fe3fa777d5b438a62347328c482da85f60993e48c3247a"
+  outside_repository: true
+  path_disclosed: false
+  content_displayed_by_capture_command: false
+raw_scan:
+  command: "micro1-safe-trace-review scan-raw TRC-BG-D01-SCALE-002"
+  status: "passed_requires_submission_redaction"
+  private_term_matches: 1
+  private_term_matches_after_path_redaction: 0
+  private_terms_confined_to_machine_paths: true
+  email_matches: 0
+  secret_assignment_matches: 0
+  absolute_user_path_matches: 2
+reviewed_layers:
+  native_redacted: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-002-NATIVE.md"
+  native_redacted_bytes: 43540
+  native_redacted_lines: 571
+  native_redacted_sha256: "ba3b29f14abe3ea0524b711d15b390b5fabb63a28583334163e4da80e3d24444"
+  english: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-002.md"
+  russian: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-002_RU.md"
+  categorical_redactions:
+    - "two repository-root occurrences replaced with <repository-root>"
+  exact_clipboard_to_receipt_identity: true
+  strict_utf8_roundtrip: true
+  complete_native_line_review: "completed_571_lines"
+  technical_chronology_preserved: true
+  hidden_reasoning_claimed: false
+  complete_stdout_claimed: false
+independent_checkpoint: "cancelled_by_owner_not_invoked"
+scale_ready: false
+repository_owner_promotion_review: "passed_2026-08-30T09:20:29Z_indexed_in_actual_traces"
+trajectory_eligibility_independent_from_scaling_gate: true
+post_capture_validation: "checksums_192_of_192_git_diff_check_passed_safe_preflights_passed_zero_contamination_findings"
+post_promotion_validation: "checksums_192_of_192_git_diff_check_passed_safe_preflights_passed_zero_contamination_findings_scale_ready_false"

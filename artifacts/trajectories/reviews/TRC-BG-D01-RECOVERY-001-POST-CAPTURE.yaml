@@ -1,0 +1,57 @@
+schema_version: "1.0"
+record_id: "PCR-TRC-BG-D01-RECOVERY-001"
+record_type: "post_capture_trace_provenance"
+trace_id: "TRC-BG-D01-RECOVERY-001"
+submission_trajectory: false
+purpose: "Separate events occurring after the immutable native capture from claims derived from the captured trajectory."
+immutable_capture_anchor:
+  evidence_class: "owner_provided_external_capture_receipt"
+  capture_kind: "codex_desktop_native_markdown"
+  raw_internal_export_available: false
+  bytes: 66250
+  sha256: "bcf36c6cc64f7695adbdac8a49a888bee8c33b6658a5a469306ae2422db7c612"
+  raw_path_disclosed: false
+  raw_content_stored_in_repository: false
+  hidden_reasoning_or_internal_events_claimed: false
+  exact_capture_content_compared_in_repository: false
+post_capture_events:
+  - event: "owner_final_eligibility_approval"
+    occurred_at_utc: "2026-08-29T18:36:52Z"
+    historical_status: "approved_then_superseded_by_precommit_reassessment"
+    decision_scope: "Trace eligibility and promotion only; commit and push remained prohibited."
+  - event: "precommit_review_reassessment"
+    status: "eligibility_reopened"
+    reason: "The reviewed layer had not been compared with the immutable native source capture."
+  - event: "privacy_safe_semantic_comparison"
+    comparison_task_classification: "review_only_submission_ineligible"
+    input_kind: "later_codex_desktop_markdown_attachment"
+    input_bytes: 79779
+    expected_immutable_bytes: 66250
+    exact_transport_hash_verified: false
+    exact_immutable_capture_match: false
+    semantic_coverage:
+      instructions: "high"
+      actions: "high"
+      tool_responses: "partial"
+      errors: "partial"
+      retries: "mostly_preserved"
+      approvals: "partial"
+      test_results: "high"
+    unsupported_reviewed_claim_categories:
+      - "post_capture_eligibility_and_actual_traces_promotion"
+      - "native_capture_and_wrong_id_capture_metadata"
+      - "exact_compile_error_causes"
+      - "exact_package_install_count"
+      - "exact_generator_wait_duration"
+      - "exact_typed_reason_code"
+    privacy_result: "No reviewed-layer secret, email, private-key material, or absolute user-home path finding; categorical path redaction remains justified."
+    technical_meaning_preserved: false
+    verdict: "BLOCKED"
+current_decision:
+  reviewed_layer_reconciled_to_available_export: true
+  exact_immutable_source_comparison_complete: false
+  eligible_representative_trace: false
+  indexed_in_actual_traces: false
+  required_next_gate: "Provide the exact 66,250-byte immutable capture through an approved comparison interface, or create a new eligible representative trace from a source that can be reviewed exactly."
+  commit_authorized: false
+  push_authorized: false

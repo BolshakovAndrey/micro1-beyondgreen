@@ -1,0 +1,71 @@
+schema_version: "1.0"
+record_id: "PCR-TRC-BG-D01-VERIFY-002"
+record_type: "post_capture_trace_provenance"
+trace_id: "TRC-BG-D01-VERIFY-002"
+submission_trajectory: false
+purpose: "Separate source-task actions from capture, transport retry, exact review, and later eligibility decisions."
+source_boundary:
+  path: "artifacts/trajectories/session-boundaries/SES-20260829-008.yaml"
+  originally_planned_trace_id: "TRC-BG-D01-VERIFY-001"
+  boundary_rewritten: false
+trace_identity_resolution:
+  canonical_replacement_trace_id: "TRC-BG-D01-VERIFY-002"
+  predecessor_attempt_id: "TRC-BG-D01-VERIFY-001"
+  predecessor_attempt_status: "unused_encoding_unresolved"
+  predecessor_attempt_deleted: false
+  predecessor_attempt_used_as_source_or_evidence: false
+immutable_capture_anchor:
+  evidence_class: "owner_provided_external_capture_receipt"
+  capture_kind: "codex_desktop_copy_as_markdown"
+  raw_internal_export_available: false
+  bytes: 24318
+  sha256: "6cb44af2ae43b03035fa41044dc2f2bdf9ee54d009ccc699205c2da420e32305"
+  outside_repository: true
+  raw_path_disclosed: false
+  raw_content_stored_in_repository: false
+  hidden_reasoning_or_internal_events_claimed: false
+post_capture_events:
+  - event: "first_capture_attempt"
+    trace_id: "TRC-BG-D01-VERIFY-001"
+    exact_bytes_and_digest_confirmed: true
+    strict_text_encoding_resolved: false
+    semantic_review_performed: false
+    disposition: "retained externally as an unused failed attempt"
+  - event: "replacement_capture_authorized"
+    trace_id: "TRC-BG-D01-VERIFY-002"
+    authorization_scope: "Create one exact UTF-8 native Markdown capture, review it once, preserve attempt 001 as unused, and remove temporary transport copies after review."
+  - event: "replacement_capture_validated"
+    exact_identity: true
+    utf8_roundtrip: true
+    bytes: 24318
+    sha256: "6cb44af2ae43b03035fa41044dc2f2bdf9ee54d009ccc699205c2da420e32305"
+  - event: "independent_exact_semantic_review"
+    task_classification: "review_only_submission_ineligible"
+    exact_identity: true
+    technical_meaning_preserved: true
+    privacy_findings: 0
+    coverage: "complete native user-visible task history; partial full-stdout coverage"
+    unsupported_claim_policy: "Detailed results not visible in the export are labelled agent-reported."
+  - event: "temporary_transport_cleanup"
+    authorized: true
+    status: "completed"
+    repository_files_removed: false
+  - event: "repository_owner_final_eligibility_approval"
+    occurred_at_utc: "2026-08-30T06:26:46Z"
+    selected_response_exact_markdown: 'Подтверждаю одобрение TRC-BG-D01-VERIFY-002 и разрешаю включить её в actual\_traces.'
+    selected_response_normalized: "Подтверждаю одобрение TRC-BG-D01-VERIFY-002 и разрешаю включить её в actual_traces."
+    decision_scope: "Promote TRC-BG-D01-VERIFY-002 only; official/scored runs, product repair, additional fixtures, commit, and push remain prohibited."
+current_decision:
+  exact_immutable_source_comparison_complete: true
+  independent_review_technical_meaning_preserved: true
+  reviewed_layer_created: true
+  automated_private_denylist_scan: "passed_zero_contamination_findings"
+  control_preflight: "READY_FOR_CLEAN_BRANCH"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION_with_dirty_worktree_warning"
+  repository_owner_human_review: "passed"
+  repository_owner_technical_meaning_preserved: true
+  eligible_representative_trace: true
+  indexed_in_actual_traces: true
+  required_next_gate: "none_for_trace_promotion"
+  commit_authorized: false
+  push_authorized: false

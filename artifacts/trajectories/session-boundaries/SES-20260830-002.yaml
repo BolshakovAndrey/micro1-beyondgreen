@@ -1,0 +1,255 @@
+schema_version: "1.1"
+session_id: "SES-20260830-002"
+started_at_utc: "2026-08-30T08:44:12Z"
+agent:
+  id: "COD-CODEX-009"
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Remaining D01 scale-readiness architecture and evidence corrections"
+
+repository:
+  root: "."
+  root_resolution: "git rev-parse --show-toplevel matched the task-authorized clean repository root; the machine-specific absolute path is intentionally not persisted."
+  branch: "impl/beyondgreen"
+  initial_head: "f0418bc6051002d8d42ccf84822d2e1f2e25b02e"
+  working_tree:
+    state: "dirty"
+    classification: "inherited_verified_D01_state_plus_owner_approved_TRC-BG-D01-SCALE-001_promotion"
+    tracked_modifications_present: true
+    untracked_files_present: true
+    pre_boundary_status_sha256: "1a4af9eb6938aff0d68d6cfc46fa47deffd096ce1800f078615c6fbe50753d0f"
+    observation_command: "git status --short --untracked-files=all"
+    ownership_note: "All pre-existing product changes and eligible trace artifacts are inherited state; they must not be attributed to SES-20260830-002."
+  remote_state_contacted_or_verified: false
+  commit_authorized: false
+  push_authorized: false
+
+checkpoint_input:
+  source_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-001.yaml"
+  eligible_implementation_trace: "TRC-BG-D01-SCALE-001"
+  trace_index_status: "owner_approved_eligible_indexed_in_actual_traces"
+  trace_eligibility_independent_from_scaling_gate: true
+  d01_checkpoint: "PASS_WITH_CONCERNS"
+  scale_ready: false
+  repeated_checkpoint_review_en: "artifacts/trajectories/reviews/BG-D01-SCALE-CLAUDE-CHECKPOINT.md"
+  repeated_checkpoint_review_ru: "artifacts/trajectories/reviews/BG-D01-SCALE-CLAUDE-CHECKPOINT_RU.md"
+  invariant_methodology_decision: "preserve_owner_approved_BG-D01_public_invariant_contract_and_disclose_construction_validity_limitation"
+  behavior_freeze_reopened: false
+  evaluation_methodology_reopened: false
+  inherited_validation:
+    compile: "passed"
+    ordinary_tests: "passed_53_of_53"
+    d01_verify: "passed_visible_5_of_5_step_1_of_1_oracle_3_of_3_boundary_4_of_4_vertical_19_of_19_e2e_and_manifests"
+    d01_replay: "passed_report_artifacts_matched"
+    phase_0_5: "passed_without_live_model_or_chromium"
+    checksums: "passed_177_of_177_before_trace_promotion_projection_changes"
+    git_diff_check: "passed"
+
+context:
+  repository_root: "."
+  allowed_paths:
+    - "AGENTS.md"
+    - "package.json"
+    - "package-lock.json"
+    - "tsconfig.json"
+    - "config/"
+    - "docs/"
+    - "src/"
+    - "scripts/d01-*.ts"
+    - "scripts/tasks/d01.ts"
+    - "scripts/tasks/registry.ts"
+    - "tests/"
+    - "evaluation/arm-visible/BG-D01/"
+    - "evaluation/verifier-only/BG-D01/"
+    - "evaluation/manifests/BG-D01/"
+    - "artifacts/evaluation/BG-D01-*"
+    - "artifacts/provenance/"
+    - "artifacts/trajectories/"
+    - "templates/SESSION_BOUNDARY.yaml"
+  read_only_frozen_paths:
+    - "evaluation/behavior-specs/BG-D01_BEHAVIOR.md"
+    - "candidates/BG-D01/"
+    - "docs/PROJECT_SPEC.md#approved-public-invariant-contract"
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  permitted_external_interfaces:
+    - "scanner_read_via_MICRO1_PRIVATE_DENYLIST_safe_wrapper_only"
+    - "raw_trace_write_via_MICRO1_PRIVATE_TRACE_DIR_safe_wrapper_only"
+  prohibited_external_access: "all_other_external_access"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+
+controls:
+  agents_instructions_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  required_contracts_read_in_full: true
+  root_matches_authorized_scope: true
+  branch_matches_authorized_scope: true
+  private_denylist_available_to_scanner_only: true
+  private_paths_resolve_outside_repository: true
+  raw_trace_location: "external_local_only_safe_wrapper_verified"
+  general_shell_private_environment_values_available: false
+  values_paths_or_contents_disclosed: false
+
+preflight:
+  executed_at_boundary: true
+  executed_at_utc: "2026-08-30T08:44:12Z"
+  safe_wrapper_commands:
+    - "micro1-safe-preflight probe"
+    - "micro1-safe-trace probe"
+    - "micro1-safe-preflight control"
+    - "micro1-safe-preflight implementation"
+  scanner_probe: "passed_denylist_and_trace_directory_present_outside_repository_with_expected_types"
+  raw_trace_probe: "passed_external_directory_readable_and_writable"
+  control_result: "READY_FOR_CLEAN_BRANCH"
+  implementation_result: "READY_FOR_IMPLEMENTATION"
+  contamination_findings: 0
+  expected_warnings:
+    - "dirty_worktree_checkpoint_required"
+    - "four_official_binary_evidence_artifacts_require_human_review_before_submission"
+  official_or_scored_run_performed: false
+  live_product_model_calls: 0
+  chromium_calls: 0
+
+authorization:
+  boundary_preparation_requested_by_owner: true
+  boundary_preparation_only: true
+  implementation_authorized_by_this_record: false
+  official_or_scored_run_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  allowed_before_human_approval:
+    - "Promote the already reviewed TRC-BG-D01-SCALE-001 according to the owner's exact approval."
+    - "Read repository contracts and inspect branch, HEAD, and dirty-tree metadata."
+    - "Run only the safe scanner/raw-trace probes and non-product projection checks recorded in this boundary."
+    - "Create this SESSION_BOUNDARY and prepare the owner approval packet."
+  prohibited_before_human_approval:
+    - "Modify product code, tests, fixtures, candidates, manifests, evaluation artifacts, or benchmark records."
+    - "Run product compile, tests, D01 verification/replay, Phase 0.5, official/scored evaluation, or benchmark generation."
+    - "Invoke a live product model or Chromium."
+    - "Create BG-D02 or any other fixture."
+    - "Implement any remaining checkpoint remediation."
+    - "Commit or push."
+
+remediation_scope_after_separate_human_approval:
+  purpose: "Close only the remaining D01 architecture and evidence blockers before another independent scale-readiness checkpoint."
+  allowed:
+    - "Refactor to one descriptor-driven fixture engine in which D01 is data rather than a copied schema, orchestrator, arm-check, reasoning, or evaluator implementation."
+    - "Replace D01 singleton literals and fixed cardinalities with descriptor/schema-factory injection across orchestration, schemas, arm checks, reasoning, replay, and report binding."
+    - "Prove generic behavior with test-only in-memory descriptor variants and injected contracts; do not create BG-D02, another fixture, candidate, or oracle."
+    - "Generate capability evidence from the launched runner/sandbox and bounded local denial probes rather than parent-declared constants."
+    - "Bind runner-produced capability evidence into schemas, finalized decisions, evaluator inputs, replay, and report digests."
+    - "Add negative tests for missing events, missing capability evidence, tampered capability evidence, inconsistent process identity, and evaluator invocation before complete proof."
+    - "Make arm-visible package binding directory-complete: enumerate the authorized root, reject unlisted files, symlinks, path escapes, duplicates, and manifest/source mismatches."
+    - "Add directory-completeness and manifest-tamper negative tests without changing the five visible assertions or candidate bytes."
+    - "Correct decision-evidence, provenance, compile-scope, reproduction, preflight, topic, and EN/RU owner-facing projections from measured implementation evidence."
+    - "Disclose that the approved public D01 invariant directly identifies the seeded defect family as a construction-validity limitation; do not change the invariant or methodology."
+    - "Capture an eligible implementation trajectory with decision-to-trace-evidence mapping before the first implementation inspection or edit."
+  excluded:
+    - "BG-D02 or any other fixture, candidate, oracle, behavior specification, or held-out implementation."
+    - "Any change to the approved BG-D01 public invariant contract, behavior freeze, seeded-defect family, visible assertions, candidate bytes, ground truth, or evaluation methodology."
+    - "Linux/judge portability implementation, new dependency, container, runtime-policy change, or Phase 0.5 freeze amendment."
+    - "Reduced-assurance K=0 mode or any physical-isolation claim not backed by runner-produced evidence."
+    - "Official/scored execution, benchmark-record changes, or unscored D01 repair demonstration."
+    - "Live product model, Chromium, browser, connected app, private MCP, shared memory, sibling repository, or external workspace access."
+    - "Commit or push."
+
+separate_owner_decisions:
+  live_adapter:
+    current_state: "D01 remains legally unscored and offline."
+    decision_required_before: "any scored path that claims live reasoning"
+    autonomous_resolution_forbidden: true
+  cross_platform_isolation:
+    current_state: "Preserve fail-closed macOS sandbox-exec path; make no Linux K=0 claim."
+    trigger: "Full Linux or judge portability requires a new dependency, container/runtime policy, or Phase 0.5 freeze change."
+    required_action: "Present options and stop for separate repository-owner approval."
+    reduced_assurance_k0_claim_forbidden: true
+
+trace_first_plan:
+  planned_trace_id: "TRC-BG-D01-SCALE-002"
+  category: "coding_agent"
+  capture_kind: "codex_desktop_native_markdown_if_no_raw_internal_export"
+  goal: "Capture the remaining architecture/evidence remediation itself, including implementation decisions, edits, failures, and retries—not only the final verification."
+  capture_start: "Immediately after explicit approval of SES-20260830-002 and before the first implementation inspection or edit."
+  raw_layer: "Capture through the approved MICRO1_PRIVATE_TRACE_DIR interface only; preserve immutable bytes and SHA-256 outside the repository."
+  implementation_sequence:
+    - "Record the approved scope, inherited eligible trace, PASS_WITH_CONCERNS findings, frozen invariant decision, and prohibited cross-platform/live/scored surfaces."
+    - "Build a requirement/risk matrix for generic-engine ownership, runner-produced capability evidence, directory completeness, negative tests, and projection reconciliation."
+    - "Inspect the minimum D01 modules and record the current singleton/fixed-cardinality/capability-constant dependencies before editing."
+    - "Extract descriptor-driven schema, orchestration, checks, reasoning, evaluator, replay, and report interfaces while keeping D01 behavior and candidate bytes immutable."
+    - "Implement runner-produced capability attestations and directory-complete package enumeration with fail-closed schema/digest binding."
+    - "Add each positive and negative test beside its owning correction; record failures, retries, and keep/revise decisions."
+    - "Update provenance, reproduction, compile scope, preflight, topic, changelog, and decision-evidence projections only after supporting code evidence exists."
+    - "Run bounded non-scored verification and reconcile D01 manifests/reports/checksums without live product model, Chromium, or external access."
+    - "Prepare a minimum-context repeated read-only checkpoint only after trace review and separate owner authorization."
+    - "Create native/EN/RU reviewed layers, automated scan results, decision-to-evidence map, and owner packet; trace eligibility and scaling verdict remain separate fields."
+  required_evidence_per_decision:
+    - "decision_id and mapped FR/NFR/EV/AR or rubric token"
+    - "confirmed checkpoint concern and repository evidence"
+    - "hypothesis and rejected alternatives"
+    - "files/symbols changed"
+    - "exact bounded evaluation command and output summary"
+    - "negative test or fail-closed counterexample"
+    - "failure, retry, or negative result"
+    - "decision: keep, revise, remove, or defer"
+    - "trace location and evidence digest"
+  review_gates:
+    - "Exact native capture identity, strict UTF-8, safe redaction, and complete semantic review."
+    - "Automated reviewed-layer scan with the real private denylist."
+    - "Repository-owner promotion decision for TRC-BG-D01-SCALE-002 independent from scaling status."
+    - "The owner cancelled the additional intermediate Claude checkpoint during implementation. After capture, a separate coordination task will apply a Codex acceptance matrix and require explicit owner approval before scaling."
+  fail_closed_conditions:
+    - "Any external path or private-context exposure."
+    - "Any oracle detail influencing an arm decision."
+    - "Any change to the frozen public invariant, behavior contract, candidate, oracle, or evaluation methodology."
+    - "Any unapproved dependency/runtime/freeze change needed for cross-platform isolation."
+    - "Any parent-declared physical capability accepted as proof, incomplete directory enumeration, nondeterministic observation, missing binding, unsupported claim, or incomplete trace evidence."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  eligibility_after_explicit_owner_approval_and_review: true
+  eligibility_condition: "Explicit repository-owner approval of this exact boundary must precede implementation and trace capture; later trace eligibility remains independently reviewed from scale readiness."
+  repository_artifacts_status: "remediation_implemented_verified_reviewed_and_owner_approved_eligible"
+  authoring_transcript_status: "owner_approved_eligible_indexed_in_actual_traces"
+  authoring_transcript_exclusion_category: ""
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-30T08:51:01Z"
+  approval_evidence: "Exact required phrase supplied by the repository owner in the current Codex task before the first product-code inspection."
+  exact_required_phrase: "Одобряю SESSION_BOUNDARY SES-20260830-002 и разрешаю начать только оставшиеся D01 scale-readiness corrections по указанному descriptor-driven/capability-evidence/directory-completeness scope с eligible implementation trace TRC-BG-D01-SCALE-002. Публичный invariant contract BG-D01, behavior freeze и evaluation methodology не изменять; Linux/judge portability, новые dependency/container/runtime/Phase 0.5 изменения не выполнять без отдельного одобрения. Без official/scored run, live model продукта, Chromium, BG-D02, commit/push и любого внешнего доступа, кроме safe scanner-read через MICRO1_PRIVATE_DENYLIST и raw-trace write через MICRO1_PRIVATE_TRACE_DIR."
+  subsequent_owner_direction:
+    recorded_at_utc: "2026-08-30T09:06:30Z"
+    decision: "Cancel the additional intermediate Claude review. Stop after full repo-local verification for owner-controlled TRC-BG-D01-SCALE-002 capture. Scaling readiness will be decided later by a separate Codex acceptance matrix and explicit owner approval."
+    benchmark_scope: "A future 5-fixture/10-case reduction is outside this session; evaluation methodology, candidates, and freezes remain unchanged."
+    commit_push: "forbidden"
+  trace_promotion:
+    status: "approved"
+    approved_at_utc: "2026-08-30T09:20:29Z"
+    trace_id: "TRC-BG-D01-SCALE-002"
+    indexed_in_actual_traces: true
+    scale_ready: false
+    scaling_gate_independent: true
+    approval_evidence: "The owner explicitly approved the reviewed trace as eligible implementation evidence while preserving the separate Codex acceptance matrix and scaling approval gate."

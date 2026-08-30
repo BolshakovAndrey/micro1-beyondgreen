@@ -1,0 +1,141 @@
+schema_version: "1.0"
+record_id: "PRV-BG-D01-RECOVERY-001"
+record_type: "implementation_provenance"
+fixture_id: "BG-D01"
+membership: "development"
+run_classification: "unscored_d01_vertical_slice_demo"
+session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-001.yaml"
+requirement_ids:
+  - "FR-001..FR-010"
+  - "NFR-001..NFR-008"
+  - "EV-005"
+  - "EV-006"
+  - "EV-009"
+  - "AR-003..AR-007"
+source_manifest_path: "evaluation/manifests/BG-D01/vertical-slice.manifest.json"
+source_manifest_sha256: "1ea47306568f4eccc20494e4fd91fcab5717cdb46a72f58212e5418fdbfb92cd"
+source_package_sha256: "0b59c19a8c229d7584731e711ba4e4ee0606d0008b870d36550fa06676f1d17e"
+evidence_json_path: "artifacts/evaluation/BG-D01-VERTICAL-SLICE.json"
+evidence_json_file_sha256: "878c627c1801e8f61cadd23daa9140e9a5f32595b18ec58df5ea79649c9b0ff0"
+evidence_canonical_json_sha256: "42a16c16980a5810abd88ca7c100cc77500629dc31c5cb857c80e37a1fdee4d2"
+evidence_html_path: "artifacts/evaluation/BG-D01-VERTICAL-SLICE.html"
+evidence_html_sha256: "47d864ee9f25dafd458a104eedd2295ac5d6b5a14f6c93b9f2dc0b7964c5302b"
+offline_replay_path: "artifacts/evaluation/BG-D01-OFFLINE-REPLAY.jsonl"
+offline_replay_sha256: "4ba082113fae1e1f97139c26a3c42e807a1530c66777bc980f5a5346c889b9e0"
+frozen_foundation:
+  candidate_a_sha256: "f46b2ed8c85e8558b5c8812491c09d89530099b0890454415579ea4c5d69e8a5"
+  candidate_b_sha256: "9e2a9151531aa961cf0ace3e20520fdcfa45ff0bff0f13ae214f7e5fbdad7d2b"
+  pre_review_combined_manifest_digest: "5273199f8d591068ae827874d80352947eb511844fdf6ccabbcbce9edacccdcf"
+  current_combined_manifest_digest: "69894e4ab39484a89d300391317fc4a79d895c8790f8c1f7edb0f1a8ba6fdb92"
+  candidate_sources_changed: false
+  visible_test_contract_changed: false
+  visible_test_definition_deduplicated: true
+  verifier_behavior_changed: false
+  verifier_isolation_implementation_changed: true
+  verifier_manifest_sha256: "d030715d0fd5aacdae52b2ed80497288df9185a1cb4f1e7c47179b79faab1e42"
+  verifier_package_sha256: "d05c564eb2946c5c0c37eaefc302adfa2a2592377ef1c9901c34e77f616b3026"
+workflow_guards:
+  both_arm_decisions_finalized_before_evaluator: true
+  pre_decision_evaluator_feedback_rounds: 0
+  physical_oracle_process_isolation: true
+  candidate_executed_inside_oracle_process: false
+  network_egress_denied_by_os_sandbox: true
+  host_path_inherited_by_children: false
+  candidate_hash_before_after_unchanged: true
+  arm_visible_package_bound_to_code_owned_digest: true
+  verifier_package_read_after_both_decisions: true
+  reciprocal_evaluator_candidate_access_denied: true
+  post_decision_observation_capture_count_per_arm: 2
+  observation_nondeterminism_fails_closed: true
+  replay_verifies_finalized_decisions: true
+  replay_binds_evaluator_to_decision_and_observations: true
+  execution_claims_derived_from_measured_events: true
+  report_html_from_validated_json_only: true
+  offline_replay_network_calls: 0
+  offline_replay_subprocess_calls: 0
+  offline_replay_workspace_writes: 0
+author:
+  kind: "coding_agent"
+  agent_id: "COD-CODEX-006"
+  tool: "Codex desktop"
+  model: "Codex desktop configured model; exact model identity not machine-exported in task evidence"
+  model_identity_limitation: "No machine-exported exact model identity is present in the task evidence; no exact model name is claimed."
+  origin: "Independent SES-007 audit and rewrite of the repo-local draft against baseline f0418bc6051002d8d42ccf84822d2e1f2e25b02e and frozen synthetic BG-D01 contracts; no SES-006 changes were imported."
+clean_room_attestation:
+  copied_source_expression: false
+  private_material_used_as_source: false
+  employer_or_client_artifact_accessed: false
+  private_structure_imitation: false
+  outside_repository_reads:
+    - "npm_ci_public_registry_or_cache_only_under_exact_owner_authorization"
+    - "owner_authorized_private_denylist_scanner_read_through_safe_interface_without_path_or_content_disclosure"
+    - "one_accidental_external_worktree_metadata_enumeration; no external workspace file content was read or used"
+  outside_repository_writes:
+    - "owner_authorized_native_markdown_capture_under_correct_trace_id"
+    - "earlier_wrong_trace_id_capture_retained_externally_but_never_used"
+  other_outside_repository_read_or_write: "none_beyond_the_enumerated_categories"
+  external_workspace_content_read_or_used: false
+  browser_or_connected_app_state_used: false
+  model_or_codex_exec_calls: 0
+  chromium_calls: 0
+cost_policy:
+  billing: "fixed_subscription"
+  monetary_cost: "not_applicable_or_not_measured"
+  per_run_usd_calculated_or_estimated: false
+  per_run_usd_cap_projected: false
+validation: "SCALE-004 passed ordinary 56/56, complete D01 verification, deterministic 37-file manifest reconciliation, report regeneration, offline replay, Phase 0.5 verification, eight JSONL raw scans, and an all-pass Codex acceptance matrix"
+human_review: "TRC-BG-D01-SCALE-004 EN/RU review complete; owner approved all eight captures, indexed them in actual_traces, and set SCALE_READY=true"
+redistribution: "unscored_d01_evidence; SCALE-004 reviewed bundle owner-approved and indexed with mandatory submission path redaction"
+trace_review:
+  replacement_trace_id: "TRC-BG-D01-VERIFY-002"
+  review_record: "artifacts/trajectories/reviews/TRC-BG-D01-VERIFY-002.yaml"
+  post_capture_provenance: "artifacts/trajectories/reviews/TRC-BG-D01-VERIFY-002-POST-CAPTURE.yaml"
+  previous_blocked_trace_id: "TRC-BG-D01-RECOVERY-001"
+  previous_blocked_review_record: "artifacts/trajectories/reviews/TRC-BG-D01-RECOVERY-001.yaml"
+  categorical_redaction_owner_approved: true
+  independent_review_technical_meaning_preserved: true
+  repository_owner_technical_meaning_preserved: true
+  machine_specific_worktree_metadata_retained: false
+  capture_kind: "codex_desktop_copy_as_markdown"
+  raw_internal_export_available: false
+  raw_capture_bytes: 24318
+  raw_capture_sha256: "6cb44af2ae43b03035fa41044dc2f2bdf9ee54d009ccc699205c2da420e32305"
+  automated_private_denylist_scan: "passed_zero_contamination_findings; SES-20260830-002 final pre-capture safe scans passed"
+  control_preflight: "READY_FOR_CLEAN_BRANCH"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION_with_dirty_worktree_warning"
+  reviewed_layer_reconciled_to_exact_export: true
+  exact_immutable_source_comparison_complete: true
+  eligibility: "passed_owner_approved_indexed_in_actual_traces"
+scale_readiness_remediation:
+  session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-001.yaml"
+  trace_id: "TRC-BG-D01-SCALE-001"
+  decision_evidence_map: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-001-DECISION-EVIDENCE.md"
+  implementation_status: "implemented_repo_local_validation_pending_final_gate"
+  trace_status: "owner_approved_eligible_indexed_in_actual_traces"
+  trajectory_eligibility_independent_from_scaling_gate: true
+  repeated_independent_checkpoint: "completed_with_concerns"
+  d01_checkpoint: "PASS_WITH_CONCERNS"
+  scale_ready: false
+  remediation_author:
+    agent_id: "COD-CODEX-008"
+    session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-001.yaml"
+    tool: "Codex Desktop"
+    exact_model_identity: "not_machine_exported"
+remaining_scale_readiness_remediation:
+  session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-002.yaml"
+  trace_id: "TRC-BG-D01-SCALE-002"
+  decision_evidence_map: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-002-DECISION-EVIDENCE.md"
+  implementation_status: "implemented_and_repo_locally_verified"
+  trace_status: "owner_approved_eligible_indexed_in_actual_traces_scale_ready_false"
+  descriptor_engine: "one injected engine registry and plan; D01 only real descriptor; test-only in-memory variant"
+  runner_capability_evidence: "bound_to_process_probes_finalized_decisions_events_replay_and_report"
+  directory_complete_binding: true
+  ordinary_tests: "passed_55_of_55"
+  d01_verify: "passed"
+  replay: "passed_report_artifacts_matched"
+  owner_cancelled_intermediate_claude_review: true
+  raw_capture_sha256: "8d60978fcfce04f7c6fe3fa777d5b438a62347328c482da85f60993e48c3247a"
+  reviewed_native_sha256: "ba3b29f14abe3ea0524b711d15b390b5fabb63a28583334163e4da80e3d24444"
+  repository_owner_eligibility_review: "passed_2026-08-30T09:20:29Z"
+  scale_ready: false
+  readiness_next_gate: "separate Codex acceptance matrix and explicit owner approval after capture"

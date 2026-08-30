@@ -1,0 +1,96 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-D01-SCALE-001"
+category: "coding_agent"
+session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-001.yaml"
+purpose: "Implementation and verification of the enumerated BG-D01 scale-readiness corrections."
+requirement_ids:
+  - "FR-001..FR-010"
+  - "NFR-001..NFR-008"
+  - "EV-005"
+  - "EV-006"
+  - "EV-009"
+  - "AR-003..AR-007"
+status: "owner_approved_eligible_implementation_trace_checkpoint_concerns_preserved"
+implementation_status: "implemented_repo_local_validation_passed"
+capture:
+  kind: "codex_desktop_native_markdown"
+  status: "externally_anchored"
+  raw_path_disclosed: false
+  raw_sha256: "605d014dd5e631d7be4b9d746eee222ebc9bd5acaa679a0e2e9e71e36bcddfb0"
+  raw_bytes: 56127
+  empty_payload_retry_created_artifact: false
+reviewed_layers:
+  native_redacted: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-001-NATIVE.md"
+  native_redacted_bytes: 56131
+  native_redacted_sha256: "251fbc93e7d884269c6b773a4f2e0094a8f2bdc0a8b96bd344f725c24c73c2ac"
+  english: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-001.md"
+  russian: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-001_RU.md"
+post_capture_provenance: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-001-POST-CAPTURE.yaml"
+decision_evidence_map: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-001-DECISION-EVIDENCE.md"
+automated_review:
+  raw_private_denylist_scan: "passed_requires_submission_redaction"
+  raw_private_term_matches: 0
+  raw_email_matches: 0
+  raw_secret_assignment_matches: 0
+  raw_absolute_user_path_matches: 2
+  reviewed_layer_scan: "passed_READY_FOR_CLEAN_BRANCH"
+  contamination_findings: 0
+manual_review:
+  chronology_complete: true
+  retries_preserved: true
+  omissions_documented: true
+  privacy_safe: true
+  technical_meaning_preserved: true
+  review_basis: "Owner-selected clipboard bytes matched the external receipt exactly, passed strict UTF-8, received exactly two categorical path redactions, and the complete 729-line native reviewed layer was manually inspected."
+  exact_source_identity: true
+  strict_utf8_roundtrip: true
+independent_checkpoint:
+  status: "completed_with_concerns"
+  reviewer: "Claude CLI official opus alias; exact resolved full model identifier not emitted by the text wrapper"
+  raw_response_sha256: "535c7d0a6988aa521d9429492717d0fb9e7b4a7e8472af085f0e6b20e9a59b5a"
+  raw_response_bytes: 25138
+  raw_response_repository_status: "deleted_after_reconciliation_hash_and_size_preserved"
+  reviewed_checkpoint_english: "artifacts/trajectories/reviews/BG-D01-SCALE-CLAUDE-CHECKPOINT.md"
+  reviewed_checkpoint_russian: "artifacts/trajectories/reviews/BG-D01-SCALE-CLAUDE-CHECKPOINT_RU.md"
+  d01_checkpoint: "PASS_WITH_CONCERNS"
+  scale_ready: false
+repo_local_validation:
+  compile: "passed"
+  ordinary_tests: "passed_53_of_53"
+  d01_visible: "passed_5_of_5"
+  d01_step_contract: "passed_1_of_1"
+  d01_oracle: "passed_3_of_3"
+  d01_physical_boundary: "passed_4_of_4_including_reciprocal_evaluator_denial"
+  d01_vertical_contracts: "passed_19_of_19"
+  d01_unscored_e2e: "passed"
+  d01_foundation_manifests: "passed"
+  d01_vertical_manifest: "passed_24_files"
+  d01_offline_replay: "passed_report_artifacts_matched"
+  phase_0_5: "passed_without_live_model_or_browser_execution"
+  checksums: "passed_177_of_177_after_checkpoint_projection_reconciliation"
+  git_diff_check: "passed"
+  control_preflight: "READY_FOR_CLEAN_BRANCH"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION_with_expected_dirty_worktree_warning"
+  contamination_findings: 0
+  binary_human_review_notices: 4
+repository_owner_review:
+  status: "passed"
+  reviewed_at_utc: "2026-08-30T08:42:06Z"
+  approver: "repository_owner"
+  approval_evidence: "The owner explicitly approved TRC-BG-D01-SCALE-001 for inclusion in actual_traces and required trajectory eligibility to remain independent from the future scale-readiness checkpoint. Markdown escapes before underscores do not change the approved identifiers."
+  selected_response_exact: "Одобряю reviewed trace TRC-BG-D01-SCALE-001 и разрешаю включить её в actual_traces как eligible implementation evidence; понимаю, что это не меняет D01_CHECKPOINT=PASS_WITH_CONCERNS и SCALE_READY=no. При продвижении исправить проекции так, чтобы будущий D01_CHECKPOINT=PASS и SCALE_READY=yes блокировал только масштабирование, но не eligibility этой уже проверенной coding-agent trajectory. Без official/scored run, live model продукта, Chromium, BG-D02, commit/push."
+  approval_scope: "Promote this reviewed coding-agent trajectory only; preserve PASS_WITH_CONCERNS/SCALE_READY=no and keep scaling, official/scored execution, live product model, Chromium, BG-D02, commit, and push separately gated."
+eligibility:
+  eligible_representative_trace: true
+  indexed_in_actual_traces: true
+  trace_eligibility_gate: "passed_exact_identity_strict_utf8_safe_scan_manual_review_and_owner_approval"
+  scaling_gate_is_independent: true
+  scaling_gate: "A future D01_CHECKPOINT=PASS and SCALE_READY=yes is required only before scaling; it does not revoke or block this trajectory's eligibility."
+post_promotion_validation:
+  checksums: "passed_178_of_178"
+  git_diff_check: "passed"
+  control_preflight: "READY_FOR_CLEAN_BRANCH"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION_with_expected_dirty_worktree_warning"
+  contamination_findings: 0
+  binary_human_review_notices: 4
+  root_branch_head_unchanged: true

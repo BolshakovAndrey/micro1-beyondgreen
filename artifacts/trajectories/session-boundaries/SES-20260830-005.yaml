@@ -1,0 +1,275 @@
+schema_version: "1.1"
+session_id: "SES-20260830-005"
+started_at_utc: "2026-08-30T12:58:06Z"
+agent:
+  id: "COD-CODEX-012"
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Prepare a submission-eligible documentation-only boundary for TypeScript documentation compliance and, only after separate owner approval, run one bounded documentation trajectory"
+
+repository:
+  root: "."
+  root_resolution: "The Git top level matched the task-authorized clean repository root; the machine-specific absolute path is intentionally not persisted."
+  branch_state: "named_local_branch"
+  branch: "codex/beyondgreen-d01-scale003-correct"
+  initial_head: "f0418bc6051002d8d42ccf84822d2e1f2e25b02e"
+  working_tree:
+    state: "dirty"
+    classification: "inherited_owner_approved_SCALE_004_working_tree_with_SCALE_READY_true"
+    changed_typescript_file_count: 42
+    pre_boundary_status_sha256: "77b7d82ea0f8d9467a7252eda0b6fd1cadc216ec541ca426d7a52d5c7a5067ec"
+    observation_command: "git status --short --untracked-files=all"
+    ownership_note: "All pre-existing tracked and untracked changes are inherited state and must not be attributed to SES-20260830-005."
+  remote_state_contacted_or_verified: false
+  commit_authorized: false
+  push_authorized: false
+
+checkpoint_input:
+  source_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+  source_trace_review: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-004.yaml"
+  source_post_capture_provenance: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-004-POST-CAPTURE.yaml"
+  source_acceptance_matrix: "artifacts/trajectories/reviews/BG-D01-SCALE-004-CODEX-ACCEPTANCE.md"
+  source_acceptance_matrix_russian: "artifacts/trajectories/reviews/BG-D01-SCALE-004-CODEX-ACCEPTANCE_RU.md"
+  source_owner_packet_russian: "artifacts/trajectories/reviews/BG-D01-SCALE-004-OWNER-PACKET_RU.md"
+  source_provenance:
+    - "artifacts/provenance/BG-D01-IMPLEMENTATION.yaml"
+    - "artifacts/provenance/BG-D01-VERTICAL-SLICE.yaml"
+    - "artifacts/trajectories/index.yaml"
+  scale_ready: true
+  official_or_scored_run_exists_for_this_gate: false
+
+context:
+  repository_root: "."
+  allowed_paths_before_approval:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "package.json"
+    - "README.md"
+    - "docs/D01_REPRODUCTION.md"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-005.yaml"
+    - "artifacts/trajectories/reviews/BG-D01-SCALE-004-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+    - "artifacts/trajectories/reviews/BG-D01-SCALE-004-OWNER-PACKET_RU.md"
+    - "artifacts/trajectories/reviews/BG-D01-SCALE-004-CODEX-ACCEPTANCE.md"
+    - "artifacts/trajectories/reviews/BG-D01-SCALE-004-CODEX-ACCEPTANCE_RU.md"
+    - "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-004.yaml"
+    - "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-004-POST-CAPTURE.yaml"
+    - "artifacts/provenance/BG-D01-IMPLEMENTATION.yaml"
+    - "artifacts/provenance/BG-D01-VERTICAL-SLICE.yaml"
+    - "artifacts/trajectories/index.yaml"
+    - "artifacts/trajectories/reviews/BG-D01-TYPESCRIPT-DOCUMENTATION-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  permitted_external_interfaces_after_approval_only:
+    - "repository_policy_validation_of_Codex_JSONL_to_micro1_safe_trace_transport"
+    - "scanner_read_via_MICRO1_PRIVATE_DENYLIST_safe_wrapper_only"
+    - "unchanged_Codex_CLI_JSONL_stdout_stream_to_micro1_safe_trace_via_MICRO1_PRIVATE_TRACE_DIR"
+  prohibited_external_access: "all_other_external_access"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+
+controls:
+  agents_instructions_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  scale_004_owner_approved_review_read: true
+  scale_004_acceptance_english_read: true
+  scale_004_acceptance_russian_read: true
+  scale_004_provenance_projections_read: true
+  required_contracts_read_in_full: true
+  root_matches_authorized_scope: true
+  scale_ready_true_checked_in_current_projections: true
+  private_denylist_available_to_scanner_only: false
+  private_paths_resolve_outside_repository: false
+  raw_trace_location: "external_local_only_not_accessed_before_approval"
+  values_paths_or_contents_disclosed: false
+
+structural_preflight:
+  product_typescript_content_read: false
+  product_typescript_modified: false
+  product_commands_executed: false
+  compile_or_tests_executed: false
+  scanner_or_trace_wrapper_executed: false
+  nested_codex_cli_executed: false
+  trace_capture_executed: false
+  manifest_or_checksum_modified: false
+  active_projection_modified: false
+  official_or_scored_run_performed: false
+  live_model_calls: 0
+  chromium_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  global_memory_reads: 0
+  boundary_id_availability: "passed"
+  owner_card_path_availability: "passed"
+  observed_current_projection_scale_ready: true
+
+authorization:
+  boundary_preparation_requested_by_owner: true
+  boundary_preparation_only: true
+  documentation_changes_authorized_before_human_approval: false
+  documentation_changes_authorized_by_this_pending_record: false
+  official_or_scored_run_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  allowed_before_human_approval:
+    - "Read repository instructions, all mandatory contracts, and the current owner-approved SCALE-004 review, acceptance, and provenance projections in full."
+    - "Inspect repository-local Git branch, HEAD, working-tree metadata, changed TypeScript path list, and service-file path availability without persisting a machine-specific absolute path."
+    - "Create SES-20260830-005 and its complete Russian owner-review card."
+    - "Perform structural validation of only those two new service files."
+  prohibited_before_human_approval:
+    - "Read or modify TypeScript implementation content."
+    - "Modify manifests, evidence, checksums, active projections, historical records, candidates, fixtures, or oracles."
+    - "Run documentation audit, compile, tests, D01 verification, replay, manifest reconciliation, checksum generation, preflight, trace capture, or product execution."
+    - "Invoke nested Codex CLI, micro1-safe-trace, Claude, live product model, Chromium, browser automation, connected apps, private MCP, global memory, sibling repositories, or external workspaces."
+    - "Commit or push."
+
+bounded_documentation_scope_after_explicit_human_approval:
+  planned_trace_id: "TRC-BG-D01-DOCS-001"
+  purpose: "Bring the 42 changed TypeScript files into compliance with the AGENTS.md code-documentation contract without changing runtime behavior or public API shape."
+  coordinator_audit_input:
+    export_declarations: 176
+    missing_jsdoc: 115
+    formally_short_comments: 32
+    status: "owner_supplied_audit_to_be_rechecked_after_approval"
+  priority_paths:
+    - "src/d01/orchestrator.ts"
+    - "src/d01/engine.ts"
+    - "src/d01/capability.ts"
+    - "src/d01/capability-schemas.ts"
+    - "src/d01/schemas.ts"
+    - "src/d01/runtime.ts"
+    - "src/d01/worker-runtime.ts"
+    - "evaluation/arm-visible/BG-D01/contract.ts"
+    - "evaluation/verifier-only/BG-D01/canonical-driver.ts"
+  allowed_typescript_paths:
+    - "evaluation/arm-visible/BG-D01/contract.ts"
+    - "evaluation/arm-visible/BG-D01/visible-assertions.ts"
+    - "evaluation/arm-visible/BG-D01/visible.test.ts"
+    - "evaluation/verifier-only/BG-D01/canonical-driver.ts"
+    - "scripts/d01-arm-worker.ts"
+    - "scripts/d01-candidate-observer-worker.ts"
+    - "scripts/d01-demo.ts"
+    - "scripts/d01-evaluator-worker.ts"
+    - "scripts/d01-hash-reconciliation.ts"
+    - "scripts/d01-manifests.ts"
+    - "scripts/d01-replay.ts"
+    - "scripts/d01-vertical-manifest.ts"
+    - "scripts/tasks/d01.ts"
+    - "src/d01/arm-checks.ts"
+    - "src/d01/candidate.ts"
+    - "src/d01/canonical-json.ts"
+    - "src/d01/capability-schemas.ts"
+    - "src/d01/capability.ts"
+    - "src/d01/decision.ts"
+    - "src/d01/engine.ts"
+    - "src/d01/execution.ts"
+    - "src/d01/fixture.ts"
+    - "src/d01/orchestrator.ts"
+    - "src/d01/reasoning.ts"
+    - "src/d01/replay-core.ts"
+    - "src/d01/replay.ts"
+    - "src/d01/report.ts"
+    - "src/d01/risk.ts"
+    - "src/d01/runtime.ts"
+    - "src/d01/schema-factory.ts"
+    - "src/d01/schemas.ts"
+    - "src/d01/worker-bindings.ts"
+    - "src/d01/worker-runtime.ts"
+    - "tests/d01-boundary.test.ts"
+    - "tests/d01-descriptor-injection.test.ts"
+    - "tests/d01-package-binding.test.ts"
+    - "tests/d01-vertical-slice.test.ts"
+    - "tests/fixtures/test-only-arm-worker.ts"
+    - "tests/fixtures/test-only-engine.ts"
+    - "tests/fixtures/test-only-evaluator-worker.ts"
+    - "tests/fixtures/test-only-observer-worker.ts"
+    - "tests/task-runner.test.ts"
+  allowed_changes:
+    - "Add concise English module-level JSDoc to important architectural modules."
+    - "Add substantive English JSDoc to public or exported types, functions, classes, and critical contracts."
+    - "Use @param, @returns, and @throws only where they materially clarify a contract."
+    - "Add short English inline comments for K=0, oracle isolation, decision immutability, process policy, replay integrity, and fail-closed decisions."
+    - "Use grouped semantic comments for related Zod schemas instead of mechanically commenting every alias."
+  must_preserve:
+    - "Runtime behavior and API shape."
+    - "Tests, fixtures, candidate bytes, oracle behavior, visible assertions, methodology, dependencies, targets, and run policy."
+    - "Owner-approved SCALE-004 evidence, all ten acceptance passes, and SCALE_READY=true."
+    - "K=0, physical oracle isolation, immutable decisions, process-policy binding, replay integrity, and fail-closed behavior."
+  excluded:
+    - "Obvious syntax narration, line-by-line comments, and mechanical comments on every alias."
+    - "Any non-documentation code or behavior change."
+    - "BG-D02 or later fixtures, official/scored execution, benchmark changes, repair, unblinding, live model, Claude, Chromium, browser, connected apps, private MCP, or global memory."
+    - "Dependency, lockfile, target, policy, methodology, candidate, fixture, oracle, or visible-assertion changes."
+    - "Commit, push, publication, or submission packaging."
+
+automatic_trace_transport_plan_after_explicit_human_approval:
+  trace_id: "TRC-BG-D01-DOCS-001"
+  implementation_executor: "local_Codex_CLI"
+  source_format: "machine_readable_JSONL_stdout"
+  destination: "micro1-safe-trace_external_raw_layer"
+  byte_transport: "Codex CLI stdout is piped unchanged directly to micro1-safe-trace stdin."
+  repository_raw_intermediate_file: false
+  manual_copy_as_markdown: false
+  ui_raw_payload_output: false
+  shell_capture_or_tee: false
+  stderr_policy: "Keep stderr separate through the approved privacy-safe path; never merge it into JSONL stdout or disclose raw content in the UI."
+  failure_action: "Stop and request owner direction; do not fall back to manual or edited capture."
+
+verification_plan_after_documentation_changes:
+  stop_policy: "Stop at the first real failure; do not retry, reconcile, or widen scope without separate owner approval."
+  sequence:
+    - "Run a repository-local documentation audit over exactly the 42 allowed TypeScript files and inspect priority public APIs and module contracts."
+    - "Run npm run compile."
+    - "Run targeted documentation and D01 structure checks without official/scored execution."
+    - "Run npm test."
+    - "Run npm run task -- d01:verify."
+    - "Run npm run task -- d01:replay twice and require identical JSON/HTML digests."
+    - "Run npm run task -- d01:manifests:check, npm run task -- d01:vertical:manifest:check, and npm run task -- d01:hash."
+    - "Only if documentation changed bytes covered by an immutable manifest, request or use the already authorized deterministic reconciliation path; never rewrite candidate or oracle semantics."
+    - "Verify repository checksum coverage and regenerate checksum projections only if their expected documentation hashes changed."
+    - "Run both owner-controlled safe preflights: micro1-safe-preflight control and micro1-safe-preflight implementation."
+    - "Run git diff --check and confirm the diff contains documentation-only TypeScript changes plus separately authorized reconciliation records."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  eligibility_condition: "Requires exact repository-owner approval of this boundary, automatic capture, successful review, and later trace promotion."
+  repository_artifacts_status: "boundary_candidate_pending_human_review"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: ""
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-30T13:02:35Z"
+  approval_evidence: "The repository owner supplied the exact requested approval phrase in the task immediately following boundary preparation."
+  owner_review_card: "artifacts/trajectories/reviews/BG-D01-TYPESCRIPT-DOCUMENTATION-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+  requested_response_exact: "Одобряю SESSION_BOUNDARY SES-20260830-005 и разрешаю одну documentation-only траекторию TRC-BG-D01-DOCS-001 строго в указанном TS scope без изменения поведения; automatic JSONL → micro1-safe-trace capture обязателен, при первом сбое остановиться; official/scored run, BG-D02+, Claude, Chromium, commit и push запрещены."

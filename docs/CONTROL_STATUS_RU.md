@@ -1,5 +1,11 @@
 # BeyondGreen — управляющий статус и чек-лист
 
+> **Архивный снимок:** содержание ниже фиксирует управляющее состояние на
+> 2026-08-29 12:55 CEST и не является текущим dashboard. Актуальный D01 checkpoint —
+> `artifacts/trajectories/reviews/BG-D01-SCALE-READINESS-CHECKPOINT_RU.md`; машинные
+> статусы находятся в `config/topic.yaml`, `config/cleanroom.json` и
+> `docs/PREFLIGHT_CHECKLIST.md`.
+
 **Назначение:** локальный dashboard для Андрея и управляющей беседы
 **Не входит в submission ZIP:** да
 **Обновлено:** 2026-08-29 12:55 CEST

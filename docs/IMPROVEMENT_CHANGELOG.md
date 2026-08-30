@@ -2,7 +2,7 @@
 
 **Projection of:** `docs/PROJECT_SPEC.md@1.1.0`
 **Requirements:** `AR-003`, `AR-004`, `AR-009`, `EV-008`–`EV-010`
-**State:** specification only; no product, fixture, candidate, or benchmark run exists
+**State:** approved contracts plus one unscored BG-D01 vertical slice; no official/scored benchmark run exists
 
 ## ITR-000 — Superseded generation-first candidate
 
@@ -939,3 +939,792 @@ failure, and final hot take remain unclaimed until evidence exists.
   `.idea/`. No file in that directory was intentionally opened or changed. The
   existing scanner and submission exclusion lists were aligned with `.gitignore`,
   after which the same test command was rerun.
+
+## ITR-019 — Complete unscored BG-D01 verify-existing vertical slice
+
+- **Observed problem:** the frozen D01 foundation proved the candidate pair and
+  oracle boundary, but did not yet perform the complete user workflow from immutable
+  ingestion through a usable report and deterministic offline replay.
+- **Hypothesis:** an arm-visible risk/probe pipeline in a permission-restricted
+  process, followed by immutable decision hashing and a separately enabled
+  post-decision evaluator, can expose the frozen false green without oracle feedback
+  or candidate mutation.
+- **Exact change:** under approved `SES-20260829-005`, added Zod schemas, bounded
+  path/manifest ingestion, before/after SHA-256 checks, TypeScript Compiler API risk
+  inventory, the exact five-test legacy gate, an oracle-free `ProbePlan`, arm-owned
+  accumulation check, fail-closed verdict policy, immutable decision envelopes, and
+  independent evaluator processes opened only after both arm decisions exist. Added
+  validated JSON, static HTML generated only from validated JSON, pure in-memory
+  replay, CLI/task entries, E2E tests, reproduction documentation, provenance,
+  trajectory planning, and a separate vertical-slice source manifest.
+- **Evaluation commands/version:** `npm run compile`; `npm test`; `npm run task --
+  d01:verify`; `npm run task -- d01:demo`; two consecutive `npm run task --
+  d01:replay`; `npm run task -- d01:manifests:check`; `npm run task --
+  d01:vertical:manifest:check`; `npm run task -- d01:hash`; real scanner-only probe,
+  control and implementation preflights; JSON/YAML validation; checksum
+  reconciliation; `git diff --check`; evaluation version `eval-v1.1.0`.
+- **Evidence:** historical excluded run `RUN-BG-D01-VERTICAL-SES005-INELIGIBLE` used
+  immutable `candidate-b`. Status quo
+  accepts after compilation and all five visible tests. BeyondGreen rejects after
+  its arm-owned public accumulation probe observes the lost update. Both decision
+  digests exist before either evaluator starts; evaluator feedback rounds before
+  decision are zero. Post-decision evaluation marks status quo incorrect and
+  BeyondGreen correct. Candidate SHA-256 is unchanged before/after. JSON and HTML
+  evidence are `artifacts/evaluation/BG-D01-VERTICAL-SLICE.json` and `.html`.
+- **Replay evidence:** the excluded SES-005 report claimed that two unchanged offline
+  replays produced canonical JSON digest
+  `ec923672c8b12b02d65e0831cb1d81d6bc4769057ec0a78c5691823a2f210894`
+  and HTML digest
+  `2e1bc802070b242fba163a46779607b53a8c99ed168b40298f9c85799a255d9c`.
+  Those historical bytes are not retained as eligible artifacts and the digest claims
+  were not independently established. `RUN-BG-D01-VERTICAL-001` is reserved solely
+  for the independently recovered SES-007 evidence.
+  The replay core has no filesystem, network, subprocess, clock, random, or write
+  capability; the CLI wrapper only reads the submitted record and prints digests.
+- **Failure-state correction:** implementation self-review found that an operational
+  visible-test crash would initially have shared the deterministic-failure path.
+  Before evidence freeze, the legacy-gate record gained an explicit operational
+  failure bit: crashes and nondeterminism now produce `abstain`, while only proven
+  deterministic compile/test failures produce `reject`. The same review strengthened
+  arm boundary checks to require Node's exact `ERR_ACCESS_DENIED` capability error.
+  Candidates, visible tests, and verifier semantics did not change.
+- **Tooling retry:** the first complete `d01:verify` exceeded one terminal output
+  interval after every preceding group passed; the wrapper did not retain the
+  session handle in that call. The identical non-scored verification command was
+  rerun only to capture the final marker and passed. This was not a model retry,
+  official attempt, candidate change, or evaluator-feedback round.
+- **Cost and guards:** fixed subscription; per-run USD is not applicable or not
+  measured and was not calculated, estimated, or capped. Model/Codex exec calls `0`,
+  Chromium/browser/GUI calls `0`, automatic model retries `0`. Exact configured
+  model identity is not claimed because task evidence does not machine-export it.
+- **Decision:** `kept_pending_owner_review`. This establishes only one unscored
+  development vertical slice. No repair, other fixture, official/scored run, commit,
+  or push is authorized or performed.
+
+## ITR-020 — Independently clean-recover the BG-D01 vertical slice
+
+- **Observed problem:** SES-005 and SES-006 became submission-ineligible under
+  `EXC-003` and `EXC-004`. Their reports could not establish either the origin or
+  correctness of the repo-local D01 draft. Independent audit also found a shared
+  two-arm deadline, candidate-identifier-based AST matching, free-text evaluator
+  reason matching, incomplete evaluator binding, and a replay wrapper that did not
+  actually reproduce the submitted JSON/HTML reports.
+- **Hypothesis:** auditing only the repo-local diff against baseline
+  `f0418bc6051002d8d42ccf84822d2e1f2e25b02e` and the frozen repository contracts,
+  then rewriting every unproven boundary, can recover an eligible implementation
+  without importing SES-006 changes or trusting SES-005/006 evidence.
+- **Exact change:** created approved boundary `SES-20260829-007`; recorded exclusions
+  without external names, paths, or cleanup; bound candidate paths, IDs, strict
+  manifests, package digests, and frozen SHA-256 values; gave each arm an independent
+  180-second deadline; preserved distinct compile, visible-test, and operational
+  outcomes; finalized crash/timeout/invalid JSON/evidence as one no-retry abstention;
+  made evaluator corruption a run-integrity failure; resolved signal/snapshot/write
+  relationships through TypeScript symbols; added typed decision reason codes;
+  strengthened JCS/SHA-chain/footer/cardinality/request-response replay validation;
+  and added pure in-memory JSON/HTML reproduction and comparison.
+- **Evaluation commands/version:** owner-authorized `npm ci`; `npm run compile`;
+  `npm test`; `npm run task -- d01:verify`; `npm run task -- phase0.5:verify`; two
+  unchanged `npm run task -- d01:replay`; JSON and HTML structural checks;
+  `git diff --check`; evaluation version `eval-v1.1.0`.
+- **Evidence:** `npm ci` installed 54 locked packages and reported zero
+  vulnerabilities; license audit passed 54/54. Compilation passed. Ordinary tests
+  passed 47/47. D01 verification passed 5/5 visible tests, 1/1 step contract, 3/3
+  evaluator self-checks, 2/2 permission-boundary tests, 15/15 vertical contracts,
+  E2E generation, four foundation manifests, and the 18-file vertical manifest.
+  Safe Phase 0.5 groups passed 11/11, 6/6, 3/3, 4/4, 3/3, and 4/4 without live
+  execution. Candidate hashes remained unchanged and K remained zero.
+  Initial recovery checksum reconciliation passed for 152 repo-local files; after
+  adding the trace-review record and human-checkpoint projections, final
+  reconciliation passed for 153 files.
+- **Replay evidence:** both offline runs reported replay SHA-256
+  `7b68fc5ec091b1cf2dc0307f24de320aa60971ef6d33c32415d45c1c80807300`,
+  canonical evidence SHA-256
+  `fc923f1d09bcb6cd62197918c21bba3de4efc5c4ca749902f62148ab8f0c7c3a`,
+  HTML SHA-256
+  `014980e8db660c4fe69c27c03e0e8d6c816f84f8e37ab93f821c4839b4d09ff9`,
+  and `reportArtifactsMatched=true`.
+- **Negative/blocked evidence:** repo-local `npm run preflight:control` stopped before
+  scanning because the mandatory external private denylist was unavailable;
+  `preflight:implementation` in the chained command did not start. SES-007 forbids
+  reading that external input, so no bypass, synthetic denylist, or second attempt
+  occurred. The owner-controlled private-denylist preflights remain pending. The
+  first combined manifest/demo command also returned no final demo marker within the
+  tool-output interval; a separate unchanged repo-local generator run passed. This
+  was not a model retry, official attempt, or evaluator-feedback round.
+- **Trace-boundary incident:** the initial Git state query unnecessarily enumerated
+  machine-specific metadata for other worktrees. No external workspace content was
+  read or used and no external name/path was copied into repository artifacts, but
+  the action exceeded the minimum current-worktree query and conflicts with the
+  literal SES-007 boundary. The reviewed-layer candidate omits this metadata by
+  category. SES-007 and its trajectory are not claimed eligible pending an explicit
+  owner decision; exclusion and a fresh recovery task may be required.
+- **Human checkpoint:** at `2026-08-29T17:41:28Z` the repository owner approved
+  categorical removal of machine-specific worktree metadata, confirmed that no
+  external-worktree content was read and that technical meaning is preserved, and
+  authorized only scanner read through `MICRO1_PRIVATE_DENYLIST` plus raw-trace write
+  through `MICRO1_PRIVATE_TRACE_DIR`. All other external access, commit, and push
+  remain prohibited. SES-007 proceeds only through trace review and eligibility
+  validation under that narrow authorization.
+- **Authorized-root review continuation:** the coordinator recorded that the handoff
+  to the authorized repository root was performed under explicit owner permission
+  and that the old draft remains in a named stash that was neither inspected nor
+  deleted. `micro1-safe-preflight probe` and `micro1-safe-trace probe` passed without
+  disclosing values or paths. Real-denylist control returned
+  `READY_FOR_CLEAN_BRANCH`; implementation returned `READY_FOR_IMPLEMENTATION` with
+  only the expected dirty-worktree warning and four official binary human-review
+  notices. No contamination finding occurred.
+- **Raw-capture negative evidence:**
+  `micro1-safe-trace capture TRC-BG-D01-RECOVERY-001` stopped before external write
+  with `empty trace payload`. The coordinator did not supply a raw transcript on
+  standard input. A reviewed-layer candidate was not substituted for raw evidence;
+  raw SHA-256 remains unavailable. A renewed owner instruction triggered one later
+  review-only capture attempt from the same authorized root; it returned the same
+  `empty trace payload` before external write. This was not a product, model, or
+  evaluator retry.
+- **Cost and access:** fixed subscription; per-run USD not calculated or estimated;
+  product model/Codex subprocess calls `0`; browser, Chromium, Claude, connected-app,
+  and private-MCP calls `0`; only `npm ci` used the explicitly authorized public npm
+  registry/cache boundary.
+- **Decision:** `kept_as_repo_local_recovery_preflights_passed_pending_raw_capture_and_final_owner_review`.
+  The recovered implementation and reviewed-layer candidate cleared the authorized
+  contamination scan and both preflights. The coding trajectory remains ineligible
+  solely because immutable raw capture/digest is absent. Commit, push,
+  official/scored execution, repair, and other fixtures remain unapproved.
+
+## ITR-021 — Capture the native Codex Desktop trajectory source
+
+- **Observed problem:** Codex Desktop exposed no raw/internal task export, so the
+  original raw-capture requirement could not be satisfied by a documented UI action.
+- **Hypothesis:** the unchanged native `Copy as Markdown` output can provide an
+  immutable source anchor without pretending to include hidden reasoning or internal
+  application events.
+- **Change:** added a narrow native-export fallback to `docs/TRACE_POLICY.md`; the
+  owner copied SES-007 as native Markdown and streamed the exact clipboard bytes to
+  the safe external capture interface. Review, provenance, session, checklist, and
+  projection records now distinguish `codex_desktop_native_markdown` from a raw
+  internal export.
+- **Evidence:** the correct capture `TRC-BG-D01-RECOVERY-001` contains 66,250 bytes
+  with SHA-256
+  `bcf36c6cc64f7695adbdac8a49a888bee8c33b6658a5a469306ae2422db7c612`;
+  `outsideRepository=true` and `pathDisclosed=false`. An initial capture under the
+  incorrect ID `TRC-BG-001-RECOVERY-001` produced the same byte count and digest,
+  remains external, was not deleted, and is not used as evidence.
+- **Limitations:** hidden reasoning/internal Codex events are not available and are
+  not claimed. The reviewed submission candidate, not the external source capture,
+  is the judge-facing artifact.
+- **Decision:** `native_source_capture_complete_pending_final_owner_eligibility`.
+  Commit, push, official/scored execution, repair, and other fixtures remain
+  unapproved.
+
+## ITR-022 — Approve SES-007 and promote the reviewed D01 trace
+
+- **Observed state:** native Markdown source capture, real-denylist scan, control and
+  implementation preflights, categorical redaction, and technical-meaning review had
+  passed; only the repository-owner eligibility decision remained.
+- **Human decision:** at `2026-08-29T18:36:52Z` the repository owner approved final
+  SES-007 eligibility and promotion of `TRC-BG-D01-RECOVERY-001`, explicitly accepting
+  that hidden reasoning and internal Codex Desktop events are unavailable and not
+  claimed. The wrong-ID external capture remains unused and undeleted.
+- **Change:** moved the judge-facing trace from `review-candidates/` to `reviewed/`,
+  indexed it in `actual_traces`, and synchronized session, review, provenance,
+  checklist, topic, clean-room, English, and Russian status projections.
+- **Evidence:** source capture SHA-256
+  `bcf36c6cc64f7695adbdac8a49a888bee8c33b6658a5a469306ae2422db7c612`;
+  reviewed-layer contamination findings `0`; control `READY_FOR_CLEAN_BRANCH`;
+  implementation `READY_FOR_IMPLEMENTATION`; ordinary tests `47/47`.
+- **Decision:** `owner_approved_eligible_representative_trace`. Commit, push,
+  official/scored execution, repair, other fixtures, model/browser execution, and
+  publication remain unapproved.
+
+## ITR-023 — Reconcile directories, projections, and task registry
+
+- **Observed problem:** promotion left an empty `review-candidates/` directory, two
+  control-only historical documents looked current, and active projections still
+  described D01 as pending owner review.
+- **Change:** removed the empty directory; marked `CONTROL_STATUS_RU.md` and
+  `PREMORTEM_RU.md` as historical snapshots; synchronized active clean-room, topic,
+  provenance, evaluation, specification, preflight, trace, and owner-review statuses;
+  marked the earlier foundation provenance as superseded by the independent recovery;
+  documented reviewer-safe versus maintainer-only task roles in README.
+- **Task audit:** all 12 registered tasks are retained. Safe tasks verify tests,
+  manifests, checksums, D01 evidence/replay, or Phase 0.5 harnesses; three `:write`
+  tasks are required maintainer reconciliation commands. No live model, network,
+  diagnostic, or Chromium launcher is registered.
+- **Reference audit:** the first ad-hoc command produced false missing references
+  because `rg` prefixed each match with its source filename. No repository change was
+  made from that output. The corrected `--no-filename` audit passed every indexed
+  repository path and confirmed that the promoted reviewed trace exists and the
+  candidate directory is absent. A later count-check grep placed Markdown backticks
+  inside a double-quoted zsh argument, causing a harmless attempted `:write` command;
+  it changed no files and the corrected single-quoted grep found no stale count.
+- **Branch reconciliation:** both `impl/beyondgreen` and the temporary handoff branch
+  pointed to `f0418bc6051002d8d42ccf84822d2e1f2e25b02e` with no unique commits. The
+  working set returned to `impl/beyondgreen`; the redundant temporary local branch
+  was safely deleted and the named stash remained untouched.
+- **Decision:** `housekeeping_and_branch_reconciliation_passed_pending_commit_decision`.
+  Historical SES-004/005 statuses, exclusions, wrong-ID external capture, and named
+  stash remain preserved because they are audit evidence, not clutter. Commit/push
+  remain unauthorized.
+
+## ITR-024 — Resolve the independent pre-commit review blockers
+
+- **Observed problem:** four scoped Codex reviewers independently found that the
+  repo-local D01 diff was not ready to commit. The parent trusted a child-authored
+  decision, replay records were not bound to all decision fields, candidate code ran
+  inside the oracle-owning process, verifier manifests were compared only with their
+  current bytes, compile/not-run semantics were ambiguous, one boundary test was
+  outside the vertical manifest, provenance/run IDs drifted, and native trace source
+  completeness had not been compared with the reviewed layer.
+- **Hypothesis:** move every trust decision to the parent, separate post-decision
+  candidate observation from oracle evaluation, validate frozen packages from
+  code-owned digests, deny child network and host metadata, add negative tests, and
+  reopen trace eligibility instead of preserving an unsupported claim.
+- **Exact change:** arm workers now return raw evidence and the parent recomputes
+  `decide`; replay input/output, risk inventory, ProbePlan, reasoning evidence, and
+  exact required probe IDs are mutually bound. Compile failure has deterministic
+  precedence and `not_run` requires operational evidence. A new post-decision
+  candidate-observer process has no verifier capability; the evaluator imports no
+  candidate code and receives only validated observations plus a finalized decision.
+  Child processes inherit no host `PATH` and run under a macOS OS sandbox that denies
+  network egress. The verifier manifest, each source digest, and package digest are
+  checked against frozen code-owned values. The 20-file vertical manifest now
+  includes the observer and `tests/d01-boundary.test.ts`.
+- **Evidence/provenance correction:** the recovery implementation record no longer
+  supersedes the conforming fixture-provenance record; `implementation_provenance`
+  has an explicit schema. The excluded SES-005 run has the distinct ID
+  `RUN-BG-D01-VERTICAL-SES005-INELIGIBLE`. The deterministic D01 orchestrator is
+  classified as a non-agent component. External scanner reads, trace writes, and the
+  metadata-enumeration incident are enumerated rather than denied. Because the native
+  66,250-byte capture was never read through an approved comparison interface,
+  `TRC-BG-D01-RECOVERY-001` is removed from `actual_traces` and marked blocked pending
+  source-to-reviewed comparison; the earlier owner approval remains preserved as
+  historical evidence.
+- **Evaluation:** `npm test` passed `49/49`; `d01:verify` passed visible `5/5`, step
+  contract `1/1`, verifier self-check `3/3`, physical/network boundary `3/3`, vertical
+  contracts `16/16`, E2E generation, foundation manifests, and the 20-file vertical
+  manifest. Offline replay reproduced canonical JSON
+  `630541a504430b8b0299c8fb83665a2d333128768a302581044117e417f22b39`
+  and HTML `b564ed1be7dcb78cf46533c0eb489a8536309accc054135f9e348ab92155c518`.
+  Current manifest reconciliation is
+  `253448365d1feb471a9c3747e77516921b26a826665918a15049801b12caca18`;
+  candidate bytes, visible contracts, ground truth, and oracle outcomes did not
+  change. Control checksums reconciled `154/154`; `git diff --check` passed.
+  Owner-authorized safe preflights still returned `READY_FOR_CLEAN_BRANCH` and
+  `READY_FOR_IMPLEMENTATION`, with only the expected dirty-worktree warning and four
+  binary human-review notices; the separate trace-policy gate remains blocked.
+- **Tooling retry:** the first stale-status `rg` command placed the literal Markdown
+  token `` `actual_traces` `` inside a double-quoted zsh argument, causing one
+  harmless attempted command substitution and `command not found`. It changed no
+  file. The corrected single-quoted audit returned no stale active-status match.
+- **Decision:** `code_and_evidence_review_blockers_resolved_trace_eligibility_blocked`.
+  The next gate is a privacy-safe native-source-to-reviewed-layer comparison.
+  Commit/push remain unauthorized.
+
+## ITR-025 — Reconcile the reviewed trajectory and separate post-capture provenance
+
+- **Observed problem:** the privacy-safe comparison received a later Codex Desktop
+  Markdown export containing 79,779 bytes rather than the externally anchored
+  66,250-byte immutable capture. The comparison found high coverage of instructions,
+  actions, retries, and test results, but only partial coverage of detailed tool
+  responses, errors, and approvals. The reviewed trace also mixed source-derived
+  trajectory claims with capture metadata and owner decisions that occurred after
+  capture.
+- **Hypothesis:** removing unsupported exact details from the reviewed trajectory and
+  recording post-capture events in a separate provenance record will make the audit
+  story truthful without pretending that the exact immutable source was reviewed.
+- **Change:** rewrote `TRC-BG-D01-RECOVERY-001.md` as a source-derived pending
+  trajectory; removed exact compiler diagnoses, package count, wait duration, typed
+  reason code, capture metadata, and promotion claims that the available export did
+  not independently establish. Added
+  `TRC-BG-D01-RECOVERY-001-POST-CAPTURE.yaml` for the capture anchor, historical
+  owner decision, pre-commit reopening, and comparison result. Synchronized the
+  review card, trajectory index, session record, provenance, EN/RU specification
+  headers, topic projection, and preflight status.
+- **Evaluation:** semantic comparison reported high instruction/action/test coverage,
+  partial tool/error/approval coverage, and no reviewed-layer privacy finding. The
+  input-size mismatch remains: available export `79,779` bytes versus immutable
+  anchor `66,250` bytes. Therefore exact transport identity and technical-meaning
+  preservation relative to the immutable capture are not established.
+- **Decision:** `reviewed_layer_reconciled_post_capture_provenance_separated_exact_source_gate_blocked`.
+  The trace remains outside `actual_traces`. The next gate is either an approved
+  comparison of the exact 66,250-byte capture or a newly captured representative
+  trace whose exact source can be reviewed. Commit and push remain unauthorized.
+
+## ITR-026 — Replace the blocked recovery trace with an exactly reviewable D01 verification trace
+
+- **Observed problem:** the original `TRC-BG-D01-RECOVERY-001` source anchor could
+  not be compared exactly with its reviewed layer. A bounded new verification task
+  was required to establish a representative coding-agent trajectory from a source
+  that could be captured and reviewed byte for byte.
+- **Hypothesis:** independently verify the unchanged unscored D01 state under a new
+  approved boundary, preserve every deterministic stop and owner-authorized retry,
+  then capture the native user-visible task history as strict UTF-8. This should
+  establish trace integrity without treating hidden reasoning or internal Codex
+  events as available evidence.
+- **Source-task evidence:** `SES-20260829-008` was approved before verification. The
+  first run stopped after `npm test` reported 48/49 because the new boundary
+  contained two absolute-user-path findings. The owner authorized only those two
+  categorical replacements and a full restart. The retry passed compile, 49/49
+  ordinary tests, D01 verification, D01 replay, and safe Phase 0.5 checks, then
+  stopped on `CONTROL_CHECKSUMS_MISMATCH`. A second bounded owner decision permitted
+  diagnosis and manifest reconciliation only if the new boundary was the sole
+  mismatch. The agent reported exactly that condition, then reported 156 verified
+  checksums and a passing `git diff --check`.
+- **Capture retries:** capture attempt `TRC-BG-D01-VERIFY-001` matched its external
+  receipt byte for byte but had unresolved text encoding, so it was retained
+  externally as unused and never semantically reviewed. The owner authorized one
+  strict UTF-8 replacement capture. `TRC-BG-D01-VERIFY-002` contains 24,318 bytes
+  with SHA-256
+  `6cb44af2ae43b03035fa41044dc2f2bdf9ee54d009ccc699205c2da420e32305`.
+- **Exact review:** an independent review confirmed exact byte identity, strict UTF-8
+  round-trip, complete native user-visible chronology, zero privacy findings in the
+  reviewed source, and preserved technical meaning. Hidden reasoning, internal
+  application events, and complete stdout are unavailable and not claimed. Exact
+  detailed results absent from the visible export are labelled agent-reported.
+- **Change:** created EN/RU reviewed trajectories, a reconstructed instruction
+  packet, a review record, a complete Russian owner card, and separate post-capture
+  provenance. The historical `SES-008` planned ID remains unchanged; the explicit
+  post-capture record resolves `001` as unused and `002` as the canonical replacement.
+- **Automated review:** repository tests passed 49/49; compile, D01 verification,
+  D01 replay, and safe Phase 0.5 verification passed. The owner-controlled scanner
+  returned `READY_FOR_CLEAN_BRANCH` and `READY_FOR_IMPLEMENTATION`, with zero
+  contamination findings, four expected binary-review notices, and the expected
+  dirty-worktree warning.
+- **Decision:** `exact_review_and_automated_scan_complete_pending_owner_approval`.
+  Promotion to `actual_traces`, official/scored execution, commit, and push remain
+  prohibited until the repository-owner gate passes.
+
+## ITR-027 — Approve and promote the exact D01 verification trace
+
+- **Observed state:** `TRC-BG-D01-VERIFY-002` had passed exact byte identity, strict
+  UTF-8, independent semantic review, repository-local verification, and the real
+  private-denylist scanner with zero contamination findings. Complete English and
+  Russian reviewed trajectories and a plain-language Russian owner card were
+  available.
+- **Human checkpoint:** at `2026-08-30T06:26:46Z` the repository owner explicitly
+  approved `TRC-BG-D01-VERIFY-002` and authorized its inclusion in `actual_traces`.
+  The Markdown escape before the underscore in the owner response is presentation
+  syntax only; the approved index is `actual_traces`.
+- **Change:** marked repository-owner review passed, set
+  `technical_meaning_preserved=true`, promoted the trace from pending review into
+  `actual_traces`, and synchronized its review record, post-capture provenance,
+  D01 implementation provenance, trajectory/provenance indexes, specification
+  projections, evaluation projection, topic status, and preflight checklist.
+- **Approval scope:** trace promotion only. Official/scored runs, product repair,
+  additional fixtures, commit, push, publication, and submission remain separately
+  gated and were not performed.
+- **Post-promotion evidence:** compile passed; ordinary tests passed 49/49; D01
+  passed visible 5/5, step contract 1/1, oracle self-checks 3/3, physical boundary
+  3/3, vertical contracts 16/16, E2E, manifests, and exact offline replay. Safe
+  Phase 0.5 verification passed without model or browser execution. Real-denylist
+  control returned `READY_FOR_CLEAN_BRANCH`; implementation returned
+  `READY_FOR_IMPLEMENTATION` with the expected dirty-worktree warning. Both reported
+  zero contamination findings and the four existing binary-review notices.
+- **Decision:** `owner_approved_eligible_representative_trace_post_promotion_validation_passed`.
+  Final checksum and diff-integrity results are recorded in the trace review record.
+
+## ITR-028 — Implement the D01 scale-readiness corrections
+
+- **Observed problem:** the second required independent review returned
+  `D01_CHECKPOINT=PASS_WITH_CONCERNS` and `SCALE_READY=no`. Codex independently
+  confirmed hard-coded D01 ownership, seeded-defect coupling risk, early parent
+  access to verifier-only bytes, incomplete replay/evaluator binding, asserted
+  rather than measured claims, single observations, one-way isolation evidence,
+  duplicate visible assertions, unbounded divergence output, and stale status and
+  compile projections.
+- **Hypothesis:** descriptor-owned fixture contracts, arm-visible derivation,
+  event-derived claims, two independent observations, reciprocal physical denial,
+  stronger replay binding, and explicit measured EV-009 evidence should remove the
+  scale-readiness concerns without changing either candidate, the five visible
+  behavioral contracts, the verifier ground truth, or the unscored/offline status.
+- **Exact change:** implemented the twelve decisions recorded in
+  `TRC-BG-D01-SCALE-001-DECISION-EVIDENCE.md`. The vertical source manifest now
+  covers 24 files. Candidate hashes remain unchanged; verifier behavior remains
+  unchanged while its isolation probe package changed. The combined D01 manifest
+  digest is `69894e4ab39484a89d300391317fc4a79d895c8790f8c1f7edb0f1a8ba6fdb92`.
+- **Evaluation:** targeted D01 tests passed 29/29; `npm test` passed 53/53; compile,
+  four foundation-manifest checks, the 24-file vertical manifest, evidence
+  generation, and two identical offline replays passed. The generated canonical
+  JSON SHA-256 is `47035ed40c9ab16473d3a5866bc2071138712d01992a20a617a48bf0e19cd674`,
+  HTML SHA-256 is `9f552bb43399463afaf8257a265dad9c235343be5d836b1215f0b14b8d0f88ed`,
+  and replay SHA-256 is
+  `4ba082113fae1e1f97139c26a3c42e807a1530c66777bc980f5a5346c889b9e0`.
+  Full `d01:verify` passed visible 5/5, step 1/1, oracle 3/3, reciprocal physical
+  boundary 4/4, vertical contracts 19/19, unscored E2E, foundation manifests, and
+  the 24-file vertical manifest. Phase 0.5 passed licenses 54/54 and suites 11/11,
+  6/6, 3/3, 4/4, 3/3, and 4/4 without live model or browser execution. The initial
+  checksum check correctly found the stale projection; after the authorized
+  `checksums:write`, the repeat passed 171/171. `git diff --check` passed. Safe
+  preflights returned `READY_FOR_CLEAN_BRANCH` and `READY_FOR_IMPLEMENTATION` with
+  zero contamination findings, the expected dirty-tree warning, and four existing
+  binary-review notices.
+- **Retries:** the combined delete/add patch was split after a no-write rejection;
+  two stale schema literals were corrected after compile; a false-positive no-I/O
+  regex was narrowed after a 25/26 run; overly broad historical script/test compile
+  globs were replaced with scalable D-fixture product globs; an unavailable local
+  YAML parser was not installed and the boundary used repository-local structural
+  checks.
+- **Decision:** `implemented_repo_local_validation_passed`. Exact native trace
+  capture and review, the repeated independent D01 checkpoint, and repository-owner
+  approval remain mandatory. Until then `SCALE_READY=false`. No official/scored run,
+  live model, Chromium, BG-D02, commit, or push occurred.
+
+## ITR-029 — Capture the implementation trace and repeat the D01 checkpoint
+
+- **Authorization:** the owner explicitly authorized native `Copy as Markdown`
+  capture through `MICRO1_PRIVATE_TRACE_DIR`, safe scanning through
+  `MICRO1_PRIVATE_DENYLIST`, complete EN/RU reconciliation, and then one read-only
+  Claude Opus checkpoint. Official/scored execution, product live model, Chromium,
+  BG-D02, commit, push, and all other external access remained prohibited.
+- **Capture and retry:** the first interactive transport failed safely with
+  `ERROR: empty trace payload` and created no artifact. The owner-confirmed native
+  clipboard was then sent directly to the safe wrapper. It matched the external
+  receipt exactly: 56,127 bytes, SHA-256
+  `605d014dd5e631d7be4b9d746eee222ebc9bd5acaa679a0e2e9e71e36bcddfb0`, strict
+  UTF-8. The raw scanner found zero private terms, emails, or secret assignments and
+  two absolute-user-path occurrences requiring categorical redaction.
+- **Exact review:** two mechanically bounded path redactions produced the 56,131-byte
+  native reviewed layer with SHA-256
+  `251fbc93e7d884269c6b773a4f2e0094a8f2bdc0a8b96bd344f725c24c73c2ac`.
+  All 729 lines were manually reviewed; full EN/RU semantic layers and post-capture
+  provenance were reconciled.
+- **Independent checkpoint:** the project Claude wrapper used the official `opus`
+  alias at maximum effort with read-only `Read`/`Glob`/`Grep`, safe mode, no Chrome,
+  and no session persistence. It did not emit a full resolved model identifier. The
+  25,138-byte raw response has SHA-256
+  `535c7d0a6988aa521d9429492717d0fb9e7b4a7e8472af085f0e6b20e9a59b5a` and is not
+  a submission artifact. Exact verdict:
+  `D01_CHECKPOINT=PASS_WITH_CONCERNS`; `SCALE_READY=no`.
+- **Codex reconciliation:** confirmed parent-declared rather than independently
+  measured physical capability evidence, a materially D01-specific engine despite
+  descriptor-shaped inputs, list-bound rather than directory-complete arm-visible
+  manifest enforcement, and overstated missing/capability negative-test coverage.
+  The trace exact-review and stale-ledger findings were closed after the review. The
+  public-invariant concern is recorded as an evaluation-construction limitation, not
+  a hidden-oracle leak under the approved D01 freeze; changing that freeze requires
+  an owner decision. macOS-only isolation remains a separately gated owner decision.
+- **Decision:** `exact_trace_review_passed_checkpoint_concerns_confirmed`.
+  Repository-owner trace promotion and a new implementation boundary are pending.
+  Trace promotion would not imply scale readiness. No official/scored run, product
+  live-model call, Chromium call, BG-D02 creation, commit, or push occurred. After
+  reconciliation, control checksums passed 177/177, `git diff --check` passed, and
+  safe control/implementation preflights returned `READY_FOR_CLEAN_BRANCH` and
+  `READY_FOR_IMPLEMENTATION` with zero contamination findings, the expected dirty
+  working-tree warning, and four binary human-review notices.
+
+## ITR-030 — Promote the reviewed D01 scale trajectory and prepare the next boundary
+
+- **Owner decisions:** the repository owner approved `TRC-BG-D01-SCALE-001` as
+  eligible implementation evidence and required its eligibility to remain independent
+  from the future scale-readiness gate. The owner preserved the approved public D01
+  invariant contract and authorized explicit disclosure of its construction-validity
+  limitation; the behavior freeze and evaluation methodology remain closed.
+- **Trace promotion:** indexed the exact reviewed coding-agent trajectory in
+  `actual_traces`, marked owner review and technical-meaning preservation passed, and
+  retained the exact `D01_CHECKPOINT=PASS_WITH_CONCERNS` / `SCALE_READY=no` outcome.
+  A future `D01_CHECKPOINT=PASS` and `SCALE_READY=yes` blocks only scaling; it does
+  not revoke or condition this trajectory's eligibility.
+- **Next boundary:** prepared pending boundary `SES-20260830-002` and planned trace
+  `TRC-BG-D01-SCALE-002` for only the remaining generic-engine, runner-produced
+  capability-evidence, directory-completeness, negative-test, and projection work.
+  BG-D02 is not used to prove genericity; test-only descriptor injection is required.
+  Linux/judge portability, dependencies, containers, runtime/Phase 0.5 changes, and
+  any reduced-assurance K=0 claim remain excluded pending a separate owner decision.
+- **Decision:** `trace_owner_approved_eligible_next_boundary_prepared_pending_approval`.
+  The new boundary does not authorize implementation. No product code, tests,
+  fixtures, candidates, manifests, evaluation artifacts, or benchmark records were
+  changed during this gate. No official/scored run, live product model, Chromium,
+  BG-D02, commit, or push occurred. Post-promotion control checksums passed 178/178,
+  `git diff --check` passed, and safe preflights returned `READY_FOR_CLEAN_BRANCH`
+  and `READY_FOR_IMPLEMENTATION` with zero contamination findings, the expected
+  dirty-tree warning, and four binary human-review notices.
+
+## ITR-031 — Close remaining D01 engine, capability-evidence, and package-binding blockers
+
+- **Boundary and hypothesis:** the owner approved `SES-20260830-002` for only the
+  remaining concerns confirmed by the second D01 checkpoint. The hypothesis was that
+  one injected engine contract, runner/worker evidence, and complete package
+  enumeration could close those concerns without changing D01 behavior, candidates,
+  oracle, five visible assertions, or evaluation methodology.
+- **Descriptor engine change:** descriptor data now owns arm IDs, risk categories,
+  observation sizes, replay records, schemas, workers, and artifacts. One frozen
+  engine registry/plan injects schemas, arm checks, reasoning, evaluator, replay, and
+  report contracts. D01 is the only real descriptor. A test-only in-memory descriptor
+  uses different candidate IDs and cardinalities without creating BG-D02, a candidate,
+  oracle, behavior spec, or manifest.
+- **Capability-evidence change:** the actual runner emits the applied sandbox and
+  permission evidence, while each arm/observer/evaluator emits hashed process identity
+  and reciprocal allowed/denied read probes. Proof digests bind finalized decisions,
+  observations, evaluator inputs/results, execution events, replay, JSON, and HTML.
+  Missing events/evidence, tamper, contradictions, duplicate process identity,
+  premature evaluation, and nondeterminism fail closed.
+- **Directory-completeness change:** package validation now recursively enumerates the
+  authorized root and rejects unlisted files, symlinks, path escapes, duplicate
+  declarations, source mismatch, and manifest tamper before decision execution.
+- **Construction-validity disclosure:** the approved public D01 invariant directly
+  identifies the seeded defect family. This remains an explicit limitation of the
+  experiment construction, not a hidden-defect-discovery claim. The owner kept the
+  invariant, behavior freeze, and methodology unchanged.
+- **Commands and evidence:** `npm run compile` passed; focused descriptor/package
+  tests passed `2/2`; `npm test` passed `55/55`; `npm run task -- d01:verify` passed
+  visible `5/5`, step `1/1`, oracle `3/3`, boundary `4/4`, vertical `19/19`, unscored
+  E2E, four immutable manifests, and the 30-file vertical manifest SHA-256
+  `6be3ea9671143f2df228102a348df5e0f41d3570535f510d7eec4af331282739`;
+  `npm run task -- d01:demo` wrote JSON
+  `db3d64776e38bfbfba6be2c174a68b7c96bd3a4a543fc64f892a74a3551aa074`
+  and HTML `dd34b63a3b63a6faac7596e911c5008ec7a8df349059e255a7e7fc2770adbc87`;
+  `npm run task -- d01:replay` reproduced both exactly.
+- **Failures and retries:** the first capability patch was rejected before writing due
+  to stale context and was split by owner symbol. Descriptor schema extraction first
+  widened frozen candidate literal types, causing compile errors; the D01 exported
+  union remained exact while generic injected schemas stayed descriptor-driven. One
+  targeted suite then passed `18/19`; its old synthetic helper lacked mandatory
+  process evidence, was corrected without changing product behavior, and passed
+  `19/19`. The first canonical verification stopped only on the expected stale
+  vertical manifest; the authorized 30-file reconciliation made the repeat pass.
+- **Decision:** `keep_repo_local_verified_pending_owner_capture`. The owner cancelled
+  an additional intermediate Claude review. `TRC-BG-D01-SCALE-002` now awaits
+  owner-controlled native capture and review. A separate coordination task will apply
+  a Codex acceptance matrix and require explicit owner approval before scaling, so
+  `SCALE_READY=false`. A future five-fixture/ten-case benchmark reduction is outside
+  this iteration. No official/scored run, live model, Chromium, BG-D02, commit, or
+  push occurred.
+
+## ITR-032 — Capture and reconcile TRC-BG-D01-SCALE-002
+
+- **Authorization:** the repository owner confirmed native `Copy as Markdown` and
+  authorized safe capture and subsequent review through the external trace boundary.
+- **Exact source:** the safe wrapper anchored 43,616 bytes with SHA-256
+  `8d60978fcfce04f7c6fe3fa777d5b438a62347328c482da85f60993e48c3247a` without
+  disclosing the external path or content.
+- **Automated scan:** `passed_requires_submission_redaction`; one private-term match
+  was confined to two absolute machine-path occurrences, with zero matches after
+  virtual path redaction, zero email matches, and zero secret-assignment matches.
+- **Reconciliation:** clipboard bytes matched the receipt exactly and passed strict
+  UTF-8. Exactly two repository-root occurrences were replaced mechanically. The
+  resulting 43,540-byte, 571-line native reviewed layer has SHA-256
+  `ba3b29f14abe3ea0524b711d15b390b5fabb63a28583334163e4da80e3d24444`.
+- **Review evidence:** the complete native layer was inspected; EN/RU reviewed layers
+  preserve owner approvals, chronology, changes, failures, retries, commands,
+  evidence, decisions, and the stop before scaling. Safe control scan passed with
+  zero contamination findings.
+- **Validation retry:** an ad hoc Node YAML parse stopped before file parsing because
+  the optional `yaml` package was absent. No dependency or runtime policy changed;
+  the same six YAML files passed a system read-only safe parse, and
+  `git diff --check` passed.
+- **Decision:** `technically_reviewed_pending_repository_owner_eligibility_approval`.
+  The trajectory is not yet indexed in `actual_traces`; `SCALE_READY=false`. Claude,
+  official/scored runs, live model, Chromium, BG-D02, methodology/candidate/oracle
+  changes, commit, and push remain absent or prohibited.
+- **Final validation:** control checksums passed `192/192`; safe control and
+  implementation preflights passed with zero contamination findings, the expected
+  dirty-tree warning, and four binary human-review notices.
+
+## ITR-033 — Promote the reviewed TRC-BG-D01-SCALE-002 trajectory
+
+- **Human decision:** at `2026-08-30T09:20:29Z` the repository owner explicitly
+  approved the reviewed trace as eligible implementation evidence and authorized its
+  inclusion in `actual_traces`.
+- **Scope:** trajectory promotion only. The owner explicitly preserved
+  `SCALE_READY=false` and assigned any future scaling decision to a separate Codex
+  acceptance matrix plus another explicit owner approval.
+- **Change:** the trace index, review/provenance records, session boundary, product
+  projections, and EN/RU reviewed layers now record owner approval and actual-trace
+  inclusion while keeping the scaling gate independent.
+- **Decision:** `owner_approved_eligible_indexed_in_actual_traces_scale_ready_false`.
+  No official/scored run, live model, Chromium, BG-D02, evaluation-methodology,
+  candidate, oracle, or freeze change, commit, or push occurred.
+
+## ITR-034 — Correct confirmed D01 SCALE-003 acceptance blockers
+
+- **Authorization and hypothesis:** under owner-approved `SES-20260830-003`, exactly
+  one eligible implementation trajectory, `TRC-BG-D01-SCALE-003`, could correct the
+  four confirmed Codex acceptance-matrix blockers without changing D01 behavior,
+  visible assertions, candidate bytes, oracles, the frozen evaluation methodology,
+  targets, or denominators.
+- **Generic execution path:** the real orchestrator, arm/observer/evaluator workers,
+  replay, and report now traverse one injected `FixtureEngineBindings` descriptor
+  dispatcher. D01 remains the only real, data-only composition root. Its
+  `BoardObservation` schema is explicitly injected outside the generic schema layer.
+  A TEST-ONLY descriptor traverses the real dispatcher and proves invocation of its
+  schemas, checks, reasoning, evaluator selection, replay, and report bindings.
+- **Falsifiable capability evidence:** launch and worker identity are digest-bound;
+  sandbox and allowed-path policies are canonically recomputed; role, profile,
+  execution slot, and proof form an exact bijection; each arm follows an exact event
+  state machine; evaluator events bind to the immutable decision digest of their arm.
+  Offline replay independently recalculates `reasonCorrectReject` and
+  `oracleAcceptedCandidate`.
+- **Recursive package binding:** normalized recursive comparisons accept valid nested
+  package structures. A direct negative test mutates the bytes of an already
+  registered nested source and proves fail-closed rejection.
+- **Commands and evidence:** owner-authorized `npm ci` installed 54 packages from the
+  unchanged lockfile and reported 0 vulnerabilities. The final `npm run compile`
+  passed. The final `npm test` passed `55/55` with `TASK_PASSED test:all`.
+  `npm run task -- d01:verify` passed visible `5/5`, positive step `1/1`, oracle
+  `3/3`, physical boundary `4/4`, vertical `19/19`, unscored E2E, four immutable
+  manifests, and the 30-file vertical manifest SHA-256
+  `d6e199439b41b0edd5c842bcdcf7f8c386863b37cf0e00f737abfef62c3eae5b`. The E2E
+  JSON digest was `e68895a8ae55374173ab4dc7462bdffcf820abaa082f01efb0cb2c32cb9a7e70`;
+  the static HTML digest was
+  `458e09c1589c013a5753c17e2a215b76b9a2b8aabb6e220bef39acd1a4e014ff`.
+- **Failures and retries:** the initial compile stopped on missing `@types/node`
+  (`TS2688`). The owner authorized `npm ci` from the unchanged lockfile and exactly
+  one compile retry. That retry stopped on five bounded errors: three
+  `executionSlot` type errors and two cyclic `D01_ENGINE` inference errors. The owner
+  authorized only those fixes and one retry, which passed. The first test output
+  capture was incomplete; an unchanged authoritative rerun reported `51/55`, with
+  four `Candidate observation evidence is invalid` failures. Safe diagnosis found a
+  launch/worker profile mismatch: the observer used the first descriptor arm rather
+  than the immutable decision arm. The owner authorized only that correction plus
+  one compile and one test; both passed. The vertical manifest was mechanically
+  regenerated after the final source correction before targeted verification.
+- **Decision:** `keep_repo_local_verified_pending_native_capture_scan_owner_review`.
+  A separate coordination Codex acceptance matrix and explicit owner approval remain
+  required before scaling, so `SCALE_READY=false`. No official/scored run, live
+  model, Claude, Chromium, BG-D02 work, behavior/candidate/oracle/methodology change,
+  commit, or push occurred.
+- **Post-verification stop:** the approved safe preflight and trace probes failed
+  closed before scanning because their launcher did not recognize the current clean
+  repository root as authorized. No private value, path, or content was disclosed.
+  No bypass or external-configuration inspection was attempted; owner direction is
+  required before any retry.
+
+## ITR-035 — Capture and technically review TRC-BG-D01-SCALE-003
+
+- **Authorization and source:** the repository owner selected native Codex Desktop
+  `Copy as Markdown` and piped it directly to the approved external capture wrapper.
+  The immutable receipt records 49,485 bytes and SHA-256
+  `0fe4e5b8be4ffff71b849bda538e4ecc6d2d44b94a9dcfdf423b1209855d4400` without
+  disclosing the external path or content.
+- **Identity and encoding:** the first comparison correctly rejected a changed
+  171-byte clipboard. After the owner recopied the original task export without a
+  second raw capture, the bytes exactly matched the receipt and passed strict UTF-8
+  round-trip validation.
+- **Automated scan:** `micro1-safe-trace-review scan-raw` confirmed the same byte
+  count and digest. It found two absolute machine paths, zero private terms before or
+  after path omission, zero email matches, and zero secret-assignment matches.
+- **Semantic review:** the verified payload exceeded the coordinator output window,
+  so no repository-local raw/native transcription was created. The original Codex
+  task transcript was reviewed through the app, and complete EN/RU chronological
+  projections preserve authorization, implementation, failures, separately approved
+  retries, commands, evidence, decisions, and the stop before scaling. Hidden
+  reasoning, internal application events, and complete shell stdout are not claimed.
+- **Decision:** `technically_reviewed_pending_repository_owner_eligibility_approval`.
+  The trace remains in `pending_trace_review`, not `actual_traces`.
+  `SCALE_READY=false`; the later Codex acceptance matrix and explicit owner decision
+  remain separate gates. No official/scored run, live model, Claude, Chromium,
+  BG-D02, frozen-input or methodology change, commit, or push occurred.
+- **Post-capture validation:** control checksums passed `200/200`; `git diff --check`
+  passed; safe control and implementation preflights returned
+  `READY_FOR_CLEAN_BRANCH` and `READY_FOR_IMPLEMENTATION` with zero contamination
+  findings, the expected dirty-tree warning, and four binary human-review notices.
+
+## ITR-036 — Promote the reviewed TRC-BG-D01-SCALE-003 trajectory
+
+- **Human decision:** at `2026-08-30T10:41:34Z`, after the complete Russian review
+  was available, the repository owner selected the explicit recommended approval to
+  include `TRC-BG-D01-SCALE-003` in `actual_traces` as eligible implementation
+  evidence.
+- **Scope:** trajectory promotion only. The owner preserved `SCALE_READY=false` and
+  required a separate Codex acceptance matrix plus another explicit owner decision
+  before scaling. Commit and push remain prohibited.
+- **Decision:** `owner_approved_eligible_indexed_in_actual_traces_scale_ready_false`.
+  No official/scored run, live model, Claude, Chromium, BG-D02, frozen-input or
+  methodology change, commit, or push occurred.
+
+## ITR-037 — Repeat the Codex D01 scale-readiness acceptance matrix
+
+- **Input:** owner-approved eligible `TRC-BG-D01-SCALE-003`, indexed in
+  `actual_traces`; eligibility is independent from this scaling decision.
+- **Parallel review:** independent engine, capability-security, and package/projection
+  reviewers re-read the current tree. Codex then independently checked the actionable
+  findings against the referenced implementation.
+- **Passed criteria:** `A3`, `S4`, `P1`, `P2`, and `D1`. Compile passed; ordinary
+  tests passed `55/55`; canonical `d01:verify` passed visible `5/5`, step `1/1`,
+  oracle `3/3`, boundary `4/4`, vertical `19/19`, E2E, and immutable manifests.
+- **Confirmed blockers:** `A1` real runtime still imports D01 instead of accepting an
+  injected engine; `A2` TEST-ONLY proof manually dispatches fake callbacks rather
+  than the real pipeline; `S1` replay does not compare exact expected role/slot
+  allowlists; `S2` outputs are not positionally bound to expected proof slots; `S3`
+  internally consistent event digests are not checked against actual immutable arm
+  decisions.
+- **Decision:** `PASS_WITH_CONFIRMED_BLOCKERS`, `SCALE_READY=false`. One fresh
+  bounded SCALE-004 session is required. No official/scored run, live model, Claude,
+  Chromium, BG-D02, benchmark reduction, frozen-input or methodology change, commit,
+  or push occurred.
+
+## ITR-038 — Correct the bounded SCALE-004 runtime and capability blockers
+
+- **Authorization and hypothesis:** owner-approved `SES-20260830-004` authorizes
+  exactly A1, A2, S1, S2, and S3. The hypothesis is that injecting all fixture-owned
+  runtime operations into the real orchestrator and worker protocol, while deriving
+  one exact policy per execution slot and binding outputs/events to immutable
+  positional evidence, closes the five blockers without changing D01 semantics.
+- **Exact change:** the real orchestrator now exposes engine-parameterized arm,
+  observer, evaluator, and vertical-slice functions. Shared worker runtime functions
+  accept `FixtureEngineBindings`; executable D01 scripts are thin composition
+  wrappers. D01 candidate/oracle operations are injected through a dedicated runtime
+  binding. The former manual TEST-ONLY callback dispatcher is replaced by a
+  TEST-ONLY descriptor that runs the real sandboxed process transport, worker,
+  evaluator, replay, and report lifecycle. Exact canonical sandbox/read policies are
+  derived for all eight slots and checked at request construction, runner launch,
+  proof binding, and replay. Observation/evaluator outputs are checked against their
+  exact proof, role, profile, and slot. Event validation now receives both actual
+  immutable arm decisions and rejects an internally consistent arbitrary digest.
+- **Negative evidence added:** extra, missing, changed, and slot-substituted path
+  policies; cross-role output substitution; and arbitrary consistent event-decision
+  digests all fail closed. Existing S4 inversion, P1 ordering, and P2 registered-byte
+  mutation tests remain in place; `BoardObservation` remains explicitly injected.
+- **Evaluation commands/version:** exactly once after implementation, in order:
+  `npm run compile`; `npm test`; `npm run task -- d01:verify`; evaluation version
+  `eval-v1.1.0`.
+- **Evidence:** the first and only `npm run compile` attempt failed before tests with
+  seven bounded TypeScript errors in `src/d01/orchestrator.ts`: five execution-slot
+  type mismatches after generic runtime injection and two incomplete generic package-
+  binding type conversions. `npm test` and `npm run task -- d01:verify` did not run.
+- **Errors/retries:** safe failure class
+  `TYPESCRIPT_GENERIC_RUNTIME_BINDING_TYPE_MISMATCH`. No retry, correction,
+  dependency installation, model, browser, external workspace, or additional
+  agent/model process followed. Russian stop checkpoint:
+  `artifacts/trajectories/reviews/BG-D01-SCALE-004-STOP-CHECKPOINT_RU.md`.
+- **Decision:** `stopped_on_first_deterministic_compile_failure_pending_owner_decision`.
+  `SCALE_READY=false`; SCALE-003 remains owner-approved eligible evidence. Commit and
+  push remain prohibited and were not performed.
+
+## ITR-039 — Verify and review the complete SCALE-004 correction bundle
+
+- **Continuation evidence:** seven separately owner-authorized continuations preserved
+  every deterministic compile, descriptor, isolation, and environment stop. Direct
+  Desktop checks distinguished nested sandbox limitations from product defects.
+- **Final verification:** ordinary tests passed `56/56`; `d01:verify` passed visible
+  `5/5`, step `1/1`, oracle `3/3`, boundary `5/5`, vertical `19/19`, E2E, and both
+  manifest gates. The 37-file vertical package digest is
+  `0b59c19a8c229d7584731e711ba4e4ee0606d0008b870d36550fa06676f1d17e`.
+  Regenerated unscored JSON/HTML evidence passed offline replay, and Phase 0.5 passed
+  `4/4`.
+- **Capture review:** the main automatic JSONL capture plus `CONT-001` through
+  `CONT-007` passed `micro1-safe-trace-review scan-raw`. Stderr and pre-model launcher
+  failures are classified separately. Submission requires deterministic machine-path
+  redaction; after it, private-term matches are zero, with zero email or secret
+  assignments.
+- **Acceptance:** independent Codex review passed A1, A2, A3, S1, S2, S3, S4, P1,
+  P2, and D1. Frozen candidates, fixtures, oracle behavior, five visible assertions,
+  evaluation methodology, targets, dependencies, and runtime policy were unchanged.
+- **Decision:** `all_acceptance_criteria_passed_pending_owner_trace_promotion_and_scale_decision`.
+  The reviewed SCALE-004 bundle remains outside `actual_traces`, and
+  `SCALE_READY=false`. No official/scored run, BG-D02 work, Claude, Chromium, commit,
+  or push occurred.
+
+## ITR-040 — Promote the reviewed SCALE-004 bundle and pass the scale gate
+
+- **Human decision:** the repository owner approved `TRC-BG-D01-SCALE-004` and
+  `CONT-001` through `CONT-007` as eligible implementation evidence, authorized eight
+  distinct `actual_traces` entries, and explicitly set `SCALE_READY=true` based on the
+  all-pass A1/A2/A3/S1/S2/S3/S4/P1/P2/D1 Codex matrix.
+- **Promotion:** each immutable implementation JSONL capture is indexed exactly once
+  with its own byte count and SHA-256. Stderr, transport canaries, and pre-model
+  launcher failures remain excluded from implementation evidence.
+- **Residual control:** deterministic machine-path redaction remains mandatory before
+  submission. This approval does not authorize an official/scored run, BG-D02 work,
+  dependency or methodology changes, commit, or push.
+- **Decision:** `owner_approved_eight_capture_bundle_indexed_scale_ready_true`.

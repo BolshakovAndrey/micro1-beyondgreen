@@ -2,13 +2,48 @@
 
 **Current scanner state:** `READY_FOR_IMPLEMENTATION` (automated structure only).
 **Product work state:** normative `docs/PROJECT_SPEC.md@1.1.0`, the Phase 0.5 freeze,
-and the BG-D01 behavior/provenance freeze are human-approved. The bounded neutral
-D01 implementation checkpoint began from `impl/beyondgreen` at
-`3a549d415a9b1b2a0d2f73a66890d533936f271f` under exact authorization recorded in
-`SES-20260829-004`. Its fixture/candidate foundation and physical verifier boundary
-pass automated validation and now await repository-owner review. Full orchestrator,
-official/scored runs, repair, other fixtures, model/Chromium, GUI, commit, and push
-remain unauthorized in this checkpoint. Scanner output is evidence, not approval.
+and the BG-D01 behavior/provenance freeze are human-approved. Historical recovery
+and exclusion records remain preserved below. `TRC-BG-D01-VERIFY-002` passed its
+capture, review, scanner, and owner gates and remains an eligible representative
+verification of the pre-remediation D01 state.
+
+The owner approved `SES-20260830-001` only for the enumerated D01 scale-readiness
+corrections. The implementation parameterizes D01 through a descriptor, derives
+the ProbePlan from arm-visible contracts and risk evidence, defers verifier-package
+access until both decisions are final, binds replay and evaluator evidence, records
+EV-009 timing/membership/false alarms, derives claims from measured events, performs
+two post-decision observations with fail-closed nondeterminism, proves reciprocal
+access denial, binds the arm-visible package in code, shares one visible-assertion
+source, and bounds JSON/HTML counterexamples. Repo-local validation passed, but the
+independent checkpoint found that physical capability claims were still
+parent-declared and the engine remained materially D01-specialized.
+
+The old verification trace does not cover these edits. Exact native capture and
+review of `TRC-BG-D01-SCALE-001` and the private-denylist scan passed. The repeated
+Claude Opus checkpoint returned `D01_CHECKPOINT=PASS_WITH_CONCERNS` and
+`SCALE_READY=no`, and Codex independently confirmed the remaining concerns.
+Repository-owner trace promotion passed, and the eligible trajectory is indexed in
+`actual_traces`; its eligibility is independent from the future scale-readiness gate.
+The owner approved `SES-20260830-002`; `TRC-BG-D01-SCALE-002` passed native capture,
+review, safe scanning, and owner promotion. A later Codex acceptance matrix confirmed
+four bounded blockers. The owner then approved `SES-20260830-003` and exactly one
+eligible correction trajectory, `TRC-BG-D01-SCALE-003`. The real orchestrator and
+workers now traverse one injected descriptor execution path, with the D01 observation
+schema explicitly injected and a TEST-ONLY descriptor exercising the real pipeline.
+Runner evidence verifies launch-to-worker identity, canonical sandbox and path-policy
+digests, exact role/profile/proof bijection, per-arm event state, and immutable
+decision binding. Replay independently checks both evaluator conclusions. Recursive
+package validation handles valid nested structures and rejects changed bytes in an
+already registered source. The owner-approved SCALE-004 trajectory family then
+closed the five remaining blockers. Ordinary tests passed `56/56`; complete
+`d01:verify`, offline replay, and Phase 0.5 verification passed. Eight automatic
+implementation JSONL captures passed safe raw scanning, complete EN/RU review is
+available, and the repeated Codex matrix passed A1, A2, A3, S1, S2, S3, S4, P1,
+P2, and D1. The owner approved the main trace and seven continuations, indexed all
+eight captures in `actual_traces`, and explicitly set `SCALE_READY=true` while keeping
+deterministic submission path redaction mandatory. Official/scored runs, live
+model, Chromium, BG-D02, commit, and push remain unauthorized. Scanner output is
+evidence, not approval.
 
 ## Phase 1 — Control plane
 
@@ -354,6 +389,36 @@ remaining semantic gates above still apply.
   `tests/` and `evaluation/arm-visible/`, fails closed on empty or out-of-bound
   discovery, and excludes verifier-only self-checks. Registry definitions are split
   into common, D01, and safe Phase 0.5 groups; historical live run tasks are absent.
+- Clean recovery `SES-20260829-007` independently audited the repo-local D01 draft
+  against `f0418bc`. It rewrote the shared arm deadline into independent 180-second
+  deadlines, replaced candidate-name heuristics with TypeScript-symbol analysis,
+  typed evaluator reason matching, bound evaluator output to decision/manifest
+  digests, and made offline replay reproduce and compare JSON/HTML in memory.
+- SES-007 recovery validation originally passed compile and ordinary tests 47/47;
+  the later pre-commit hardening passed ordinary tests 49/49 and the complete D01 verify,
+  two identical offline replays, and safe Phase 0.5 verification without live
+  execution. The repo-local control preflight stopped before scanning because the
+  required external private denylist was unavailable and forbidden by this session;
+  implementation preflight did not run in that chained attempt. No bypass or
+  synthetic denylist was used. Both owner-controlled private-denylist preflights
+  were later completed through the owner-authorized interface: control returned
+  `READY_FOR_CLEAN_BRANCH`, implementation returned `READY_FOR_IMPLEMENTATION`, and
+  no contamination finding occurred. Four official binary-review notices and the
+  dirty-worktree warning remain expected. The native Codex Desktop Markdown source
+  capture completed with 66,250 bytes and SHA-256
+  `bcf36c6cc64f7695adbdac8a49a888bee8c33b6658a5a469306ae2422db7c612`.
+  Hidden reasoning/internal application events are not claimed as captured. Final
+  eligibility was initially approved, then reopened by pre-commit review. A later
+  79,779-byte native export was semantically compared and the reviewed layer was
+  reconciled, but it is not the anchored 66,250-byte immutable capture. Post-capture
+  decisions now live in a separate provenance record. Exact-source equivalence is
+  still unproven, and the original recovery trace is not indexed in `actual_traces`.
+  Replacement verification session `SES-20260829-008` then completed the bounded
+  D01 verification with two fail-closed stops and owner-authorized retries. Its
+  exact UTF-8 native capture `TRC-BG-D01-VERIFY-002` passed semantic review,
+  private-denylist scanning, and repository-owner review and is now indexed in
+  `actual_traces`. This replacement proves the independent verification trajectory;
+  it does not retroactively make the blocked SES-007 source capture exact.
 
 ## Stop conditions
 

@@ -1,5 +1,11 @@
 # StateShift Guardian — cross-AI premortem
 
+> **Архивный premortem:** это снимок рисков до утверждения BeyondGreen v1.1 и до
+> реализации D01. Числа, имена и gate-статусы ниже не являются текущим состоянием;
+> документ сохраняется как доказательство того, какие риски были обнаружены заранее.
+> Актуальный checkpoint находится в
+> `artifacts/trajectories/reviews/BG-D01-SCALE-READINESS-CHECKPOINT_RU.md`.
+
 **Статус:** локальный управляющий анализ, не submission artifact
 **Дата:** 2026-08-29
 **Метод:** независимый Codex → независимый Claude Opus 5 → сверка Codex

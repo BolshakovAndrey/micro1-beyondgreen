@@ -10,11 +10,11 @@ behavior_class: "stale_snapshots"
 challenging_case: false
 session_boundary: "artifacts/trajectories/session-boundaries/SES-20260829-004.yaml"
 arm_visible_manifest_path: "evaluation/manifests/BG-D01/arm-visible.manifest.json"
-arm_visible_manifest_sha256: "5ed7622098d3799ddb34964c08fa7e00c7471efad19eeefc96107e799fa7b57e"
-arm_visible_package_sha256: "c37e238f693a87cdae4c04aff5ffc3cd56c851bfa2f351c01c6c9325d5ab9882"
+arm_visible_manifest_sha256: "c613529d33107b6205e77b535f0b9f96d942e3ce8593b17f9e701f62e19f5474"
+arm_visible_package_sha256: "1a499f9da9ea88a58eefb86691a115cc84054b78729f64484a5310b17d3e574b"
 verifier_oracle_manifest_path: "evaluation/manifests/BG-D01/verifier-only.manifest.json"
-verifier_oracle_manifest_sha256: "3cfa40316e6bda2490b552697ffdef92dd2c22f02d050dc57d39f560421bb012"
-verifier_oracle_package_sha256: "eec7f61f5cd0c54bbfb0bb8baab0ea46fc1a10688b811745f34c0d4b8655b9a3"
+verifier_oracle_manifest_sha256: "d030715d0fd5aacdae52b2ed80497288df9185a1cb4f1e7c47179b79faab1e42"
+verifier_oracle_package_sha256: "d05c564eb2946c5c0c37eaefc302adfa2a2592377ef1c9901c34e77f616b3026"
 preserving_candidate_path: "candidates/BG-D01/candidate-a/MuseumBoard.ts"
 preserving_candidate_sha256: "f46b2ed8c85e8558b5c8812491c09d89530099b0890454415579ea4c5d69e8a5"
 preserving_candidate_manifest_path: "evaluation/manifests/BG-D01/candidate-a.manifest.json"
@@ -23,7 +23,9 @@ false_green_candidate_path: "candidates/BG-D01/candidate-b/MuseumBoard.ts"
 false_green_candidate_sha256: "9e2a9151531aa961cf0ace3e20520fdcfa45ff0bff0f13ae214f7e5fbdad7d2b"
 false_green_candidate_manifest_path: "evaluation/manifests/BG-D01/candidate-b.manifest.json"
 false_green_candidate_manifest_sha256: "131da1cb266d4f04d05620dbeee10566e9c28afdb861250ca66f93392c81472f"
-candidate_pair_manifest_reconciliation_sha256: "5273199f8d591068ae827874d80352947eb511844fdf6ccabbcbce9edacccdcf"
+manifest_reconciliation_sha256: "69894e4ab39484a89d300391317fc4a79d895c8790f8c1f7edb0f1a8ba6fdb92"
+pre_review_manifest_reconciliation_sha256: "5273199f8d591068ae827874d80352947eb511844fdf6ccabbcbce9edacccdcf"
+verifier_isolation_refactor: "Candidate execution moved to a post-decision observer process without verifier access; oracle behavior and outcomes remain unchanged."
 canonical_verification_command: "npm run task -- d01:verify"
 task_registry_path: "scripts/tasks/registry.ts"
 task_orchestration_refactor: "No candidate, arm-visible behavior, verifier oracle, manifest scope, or evaluation semantics changed."
@@ -64,7 +66,103 @@ clean_room_attestation:
   outside_repository_read: false
   browser_or_connected_app_state_used: false
   model_subprocess_calls: 0
-automated_scan: "passed_real_scanner_only_control_and_implementation_preflights_zero_contamination_findings"
+automated_scan: "SES-20260830-002 safe control and implementation preflights passed with zero contamination findings; expected dirty-tree and four binary human-review notices remain"
 evidence_path: "artifacts/evaluation/BG-D01-FOUNDATION-CHECKPOINT.json"
-human_review: "pending_repository_owner_checkpoint"
-redistribution: "pending_owner_privacy_and_provenance_review"
+human_review: "frozen fixture provenance approved; SCALE-004 eight-capture bundle owner-approved and indexed; all ten Codex acceptance criteria passed; SCALE_READY=true"
+redistribution: "owner_approved_unscored_D01_implementation_evidence_with_mandatory_submission_path_redaction"
+scale_readiness_remediation:
+  author:
+    kind: "coding_agent"
+    agent_id: "COD-CODEX-008"
+    session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-001.yaml"
+    tool: "Codex Desktop"
+    exact_model_identity: "not_machine_exported"
+  trace_id: "TRC-BG-D01-SCALE-001"
+  exact_trace_review: "passed"
+  repository_owner_promotion: "passed_indexed_in_actual_traces"
+  trajectory_eligibility_independent_from_scaling_gate: true
+  repeated_checkpoint: "PASS_WITH_CONCERNS"
+  scale_ready: false
+  review_path: "artifacts/trajectories/reviews/BG-D01-SCALE-CLAUDE-CHECKPOINT.md"
+remaining_scale_readiness_remediation:
+  author:
+    kind: "coding_agent"
+    agent_id: "COD-CODEX-009"
+    session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-002.yaml"
+    tool: "Codex Desktop"
+    exact_model_identity: "not_machine_exported"
+  trace_id: "TRC-BG-D01-SCALE-002"
+  trace_status: "owner_approved_eligible_indexed_in_actual_traces_scale_ready_false"
+  decision_evidence_map: "artifacts/trajectories/reviews/TRC-BG-D01-SCALE-002-DECISION-EVIDENCE.md"
+  descriptor_engine: "one injected registry and execution plan; D01 is the only real descriptor; genericity is tested with an in-memory test-only descriptor"
+  capability_evidence: "runner launch attestation plus process-local reciprocal access probes bound to finalized decisions, events, replay, and report"
+  directory_binding: "complete deterministic root enumeration rejects unlisted files, symlinks, escapes, duplicates, source mismatch, and manifest tamper"
+  candidate_sources_changed: false
+  verifier_behavior_changed: false
+  visible_assertions_changed: false
+  evaluation_methodology_changed: false
+  official_or_scored_run: false
+  live_model_calls: 0
+  chromium_calls: 0
+  ordinary_tests: "passed_55_of_55"
+  d01_verify: "passed_visible_5_of_5_step_1_of_1_oracle_3_of_3_boundary_4_of_4_vertical_19_of_19_e2e_manifests_and_30_file_vertical_manifest"
+  vertical_manifest_sha256: "6be3ea9671143f2df228102a348df5e0f41d3570535f510d7eec4af331282739"
+  replay: "passed_report_artifacts_matched"
+  intermediate_claude_review: "cancelled_by_owner"
+  raw_capture_sha256: "8d60978fcfce04f7c6fe3fa777d5b438a62347328c482da85f60993e48c3247a"
+  reviewed_native_sha256: "ba3b29f14abe3ea0524b711d15b390b5fabb63a28583334163e4da80e3d24444"
+  repository_owner_eligibility_review: "passed_2026-08-30T09:20:29Z"
+  readiness_gate: "separate Codex acceptance matrix and explicit owner approval after capture"
+  scale_ready: false
+final_scale_readiness_corrections:
+  author:
+    kind: "coding_agent"
+    agent_id: "COD-CODEX-010"
+    session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-003.yaml"
+    tool: "Codex Desktop"
+    exact_model_identity: "not_machine_exported"
+  trace_id: "TRC-BG-D01-SCALE-003"
+  trace_status: "owner_approved_eligible_indexed_in_actual_traces_scale_ready_false"
+  decision_evidence_map: "docs/IMPROVEMENT_CHANGELOG.md#itr-034--correct-confirmed-d01-scale-003-acceptance-blockers"
+  generic_execution_path: "real orchestrator, workers, replay, and report traverse one injected descriptor dispatcher; D01 is a data-only composition root"
+  capability_evidence: "launch/worker identity, canonical policies, exact role-profile-proof bijection, per-arm event state, and evaluator decision binding are verified"
+  recursive_package_binding: "valid nested structures pass and changed bytes in a registered nested source fail closed"
+  candidate_sources_changed: false
+  verifier_behavior_changed: false
+  visible_assertions_changed: false
+  evaluation_methodology_changed: false
+  official_or_scored_run: false
+  live_model_calls: 0
+  chromium_calls: 0
+  ordinary_tests: "passed_55_of_55"
+  d01_verify: "passed_visible_5_of_5_step_1_of_1_oracle_3_of_3_boundary_4_of_4_vertical_19_of_19_e2e_and_manifests"
+  vertical_manifest_sha256: "d6e199439b41b0edd5c842bcdcf7f8c386863b37cf0e00f737abfef62c3eae5b"
+  raw_capture_sha256: "0fe4e5b8be4ffff71b849bda538e4ecc6d2d44b94a9dcfdf423b1209855d4400"
+  exact_identity_and_strict_utf8: "passed"
+  raw_scan: "passed_with_two_machine_path_omissions_and_zero_contamination_findings"
+  repository_owner_eligibility_review: "passed_2026-08-30T10:41:34Z"
+  acceptance_matrix: "PASS_WITH_CONFIRMED_BLOCKERS_A1_A2_S1_S2_S3"
+  acceptance_matrix_path: "artifacts/trajectories/reviews/BG-D01-SCALE-003-CODEX-ACCEPTANCE.md"
+  readiness_gate: "fresh bounded SCALE-004 trace, repeated Codex acceptance matrix, and explicit owner approval"
+  scale_ready: false
+scale_004_bounded_corrections:
+  session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+  trace_id: "TRC-BG-D01-SCALE-004"
+  trace_status: "owner_approved_eligible_bundle_eight_entries_indexed_in_actual_traces"
+  reviewed_english: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004.md"
+  reviewed_russian: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004_RU.md"
+  acceptance_matrix: "PASS_A1_A2_A3_S1_S2_S3_S4_P1_P2_D1_owner_approved"
+  ordinary_tests: "passed_56_of_56"
+  d01_verify: "passed_visible_5_step_1_oracle_3_boundary_5_vertical_19_e2e_manifests"
+  d01_replay: "passed_report_artifacts_matched"
+  phase_0_5_verify: "passed_4_of_4"
+  vertical_manifest: "verified_37_files"
+  candidate_sources_changed: false
+  verifier_behavior_changed: false
+  visible_assertions_changed: false
+  evaluation_methodology_changed: false
+  official_or_scored_run: false
+  repository_owner_promotion: "passed_2026-08-30"
+  indexed_in_actual_traces: true
+  indexed_capture_count: 8
+  scale_ready: true

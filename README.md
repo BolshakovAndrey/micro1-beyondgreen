@@ -35,10 +35,12 @@ entry points stable while making every supported task discoverable and reviewabl
 From a clean checkout with the supported Node version:
 
 ```bash
-npm ci --ignore-scripts
+npm ci
 npm run task -- list
 npm test
 npm run task -- d01:verify
+npm run task -- d01:demo
+npm run task -- d01:replay
 ```
 
 Expected success markers include:
@@ -46,6 +48,8 @@ Expected success markers include:
 ```text
 TASK_PASSED test:all
 TASK_PASSED d01:verify
+TASK_PASSED d01:demo
+TASK_PASSED d01:replay
 ```
 
 `npm test` deterministically discovers ordinary tests only under the approved public
@@ -57,6 +61,36 @@ task module there rather than expanding `package.json`.
 The ordinary catalog intentionally excludes live model, network-diagnostic, and
 Chromium-launch commands. Historical runs remain documented as evidence, but cannot
 be started accidentally through `npm run task`.
+
+Tasks ending in `:write` are maintainer-only reconciliation commands for immutable
+manifests or checksum projections. Reviewers normally use `test:all`, `d01:verify`,
+`d01:demo`, `d01:replay`, the corresponding `:check` tasks, and
+`phase0.5:verify`. The catalog contains no obsolete live launcher: every registered
+task either verifies a submitted contract, reproduces evidence, or regenerates a
+reviewed projection after an authorized source change.
+
+The D01 vertical slice is an explicitly unscored development demonstration. The
+owner-approved correction boundary `SES-20260830-003` is now implemented under the
+planned eligible trajectory `TRC-BG-D01-SCALE-003`. The real orchestrator and worker
+processes use one injected descriptor execution path, capability evidence is bound
+to canonical launch, policy, role, event-state, and immutable-decision claims,
+offline replay independently checks both evaluator conclusions, and recursive
+package validation covers nested registered sources. Compile, all 55 ordinary tests,
+and targeted `d01:verify` passed. Its 49,485-byte native capture has exact receipt
+identity, strict UTF-8, a safe raw scan, complete EN/RU technical review, and owner
+promotion into `actual_traces`. The repeated Codex acceptance matrix passed package,
+projection, schema-injection, and evaluator-replay criteria but confirmed five
+bounded runtime/capability blockers; `SCALE_READY=false` pending SCALE-004.
+It ingests and hash-checks the frozen `candidate-b`, finalizes both arm decisions
+before opening the independent evaluator capability, and writes validated JSON plus
+static HTML. `d01:replay` rebuilds both representations deterministically in memory;
+it performs no network call, subprocess launch, or workspace write. See
+[`docs/D01_REPRODUCTION.md`](docs/D01_REPRODUCTION.md) for the exact evidence paths,
+expected verdicts, isolation boundary, and limitations.
+
+The D01 isolation runner currently requires macOS `/usr/bin/sandbox-exec` to deny
+network egress in addition to Node filesystem permissions. It fails closed on other
+platforms; no permissive cross-platform fallback is registered.
 
 An independent Claude Opus reviewer is available through the project skill
 `.agents/skills/claude`. Invoke it by explicitly saying `клод`, `claude`, or

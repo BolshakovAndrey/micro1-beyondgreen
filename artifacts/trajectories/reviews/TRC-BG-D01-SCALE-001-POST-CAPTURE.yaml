@@ -1,0 +1,51 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-D01-SCALE-001"
+record_type: "post_capture_provenance"
+source_task_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-001.yaml"
+owner_capture_authorization_received: true
+capture_attempts:
+  - ordinal: 1
+    transport: "interactive_stdin"
+    result: "failed_empty_trace_payload"
+    raw_artifact_created: false
+  - ordinal: 2
+    transport: "owner_confirmed_native_clipboard_piped_directly_to_safe_wrapper"
+    result: "passed"
+    raw_artifact_created: true
+raw_capture:
+  kind: "codex_desktop_copy_as_markdown"
+  bytes: 56127
+  sha256: "605d014dd5e631d7be4b9d746eee222ebc9bd5acaa679a0e2e9e71e36bcddfb0"
+  outside_repository: true
+  path_disclosed: false
+  content_displayed_by_capture_command: false
+raw_scan:
+  command: "micro1-safe-trace-review scan-raw TRC-BG-D01-SCALE-001"
+  status: "passed_requires_submission_redaction"
+  private_term_matches: 0
+  private_term_matches_after_path_redaction: 0
+  private_terms_confined_to_machine_paths: false
+  email_matches: 0
+  secret_assignment_matches: 0
+  absolute_user_path_matches: 2
+reviewed_layers:
+  native_redacted: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-001-NATIVE.md"
+  native_redacted_bytes: 56131
+  native_redacted_sha256: "251fbc93e7d884269c6b773a4f2e0094a8f2bdc0a8b96bd344f725c24c73c2ac"
+  english: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-001.md"
+  russian: "artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-001_RU.md"
+  categorical_redactions:
+    - "two absolute user-path occurrences replaced by repository-relative descriptions"
+  technical_chronology_preserved: true
+  exact_clipboard_to_receipt_identity: true
+  strict_utf8_roundtrip: true
+  manual_native_line_review: "completed_729_lines"
+  hidden_reasoning_claimed: false
+  complete_stdout_claimed: false
+independent_checkpoint: "PASS_WITH_CONCERNS_SCALE_READY_no"
+independent_checkpoint_review_english: "artifacts/trajectories/reviews/BG-D01-SCALE-CLAUDE-CHECKPOINT.md"
+independent_checkpoint_review_russian: "artifacts/trajectories/reviews/BG-D01-SCALE-CLAUDE-CHECKPOINT_RU.md"
+raw_checkpoint_response_repository_status: "deleted_after_reconciliation_hash_and_size_preserved"
+repository_owner_promotion_review: "passed_2026-08-30T08:42:06Z_indexed_in_actual_traces"
+trajectory_eligibility_independent_from_scaling_gate: true
+post_promotion_validation: "checksums_178_of_178_git_diff_check_passed_safe_preflights_passed_zero_contamination_findings"

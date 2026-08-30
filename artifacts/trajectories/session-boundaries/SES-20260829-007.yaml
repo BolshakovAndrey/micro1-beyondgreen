@@ -1,0 +1,242 @@
+schema_version: "1.1"
+session_id: "SES-20260829-007"
+started_at_utc: "2026-08-29T17:05:13Z"
+agent:
+  tool: "Codex desktop"
+  model: "Codex configured model; exact model identity not machine-exported in task evidence"
+  model_identity_limitation: "No machine-exported exact model identity is present in this task evidence."
+  purpose: "Independently audit and clean-recover the repo-local BG-D01 vertical-slice draft relative to the frozen baseline, validate it offline, and stop for repository-owner review."
+context:
+  repository_root: "."
+  allowed_paths:
+    - "AGENTS.md"
+    - "package.json"
+    - "package-lock.json"
+    - "tsconfig.json"
+    - "config/"
+    - "docs/"
+    - "evaluation/"
+    - "candidates/"
+    - "scripts/"
+    - "src/"
+    - "tests/"
+    - "artifacts/"
+    - "templates/"
+    - "tmp/"
+  public_sources:
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/PROJECT_SPEC_RU.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "evaluation/behavior-specs/BG-D01_BEHAVIOR.md"
+    - "evaluation/behavior-specs/BG-D01_BEHAVIOR_RU.md"
+    - "evaluation/behavior-specs/BG-D01_FREEZE.yaml"
+    - "artifacts/provenance/BG-D01-BEHAVIOR.yaml"
+    - "artifacts/provenance/BG-D01-IMPLEMENTATION.yaml"
+  inherited_private_transcript: false
+  inherited_ses_006_changes: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed_but_forbidden"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed_but_forbidden"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "repository_only_except_owner_authorized_npm_ci_and_later_review_only_safe_scanner_and_raw_trace_interfaces"
+  private_environment_variables_present: []
+owner_authorization:
+  exact_quote: "Разрешаю для clean recovery использовать npm ci с зависимостями из package-lock.json, включая публичный npm registry/cache. Любое другое чтение вне clean root запрещено. SES-006 исключить и начать SES-007 в новой задаче. Commit/push запрещены"
+  interpretation: "Only npm ci driven by package-lock.json may use the public npm registry/cache and the system Node/npm runtime. No other outside-root content read or write is authorized. Commit and push are forbidden."
+controls:
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  required_contracts_read_in_full: true
+  private_denylist_available_to_scanner_only: true
+  private_paths_resolve_outside_repository: "not_resolved_or_inspected"
+  raw_trace_location: "not_disclosed_or_accessed_by_general_shell"
+git_state:
+  baseline_commit: "f0418bc6051002d8d42ccf84822d2e1f2e25b02e"
+  verified_head: "f0418bc6051002d8d42ccf84822d2e1f2e25b02e"
+  current_checkout: "authorized_repository_root_branch_worktree"
+  initial_worktree: "dirty_repo_local_draft_with_tracked_and_untracked_files"
+  remote_state_contacted_or_verified: false
+  commit_performed: false
+  push_performed: false
+recovery_scope:
+  source_of_candidate_changes: "current_repo_local_diff_against_f0418bc6051002d8d42ccf84822d2e1f2e25b02e"
+  ses_005_reports_trusted: false
+  ses_006_reports_trusted: false
+  ses_006_files_or_changes_imported: false
+  audit_method: "Independently prove every retained fragment from repository contracts and tests; rewrite fragments whose origin or correctness cannot be established."
+  excluded_sessions:
+    - exclusion_id: "EXC-003"
+      session_id: "SES-20260829-005"
+      category: "outside_repository_write_to_system_tmp_during_replay_comparison"
+      external_name_or_path_recorded: false
+      cleanup_attempted: false
+      disposition: "exclude_session_transcript_and_recover_repo_local_draft_independently"
+    - exclusion_id: "EXC-004"
+      session_id: "SES-20260829-006"
+      category: "public_package_cache_read_before_explicit_owner_authorization"
+      external_name_or_path_recorded: false
+      cleanup_attempted: false
+      ses_006_changes_inherited: false
+      disposition: "exclude_session_transcript_and_start_new_clean_recovery_session"
+scope_guards:
+  npm_ci_authorized: true
+  npm_ci_source: "package-lock.json_and_public_npm_registry_or_cache_only"
+  system_node_npm_runtime_authorized: true
+  other_outside_root_reads_or_writes_authorized: "false_except_later_review_only_safe_scanner_read_and_raw_trace_write_interfaces"
+  browser_or_gui_authorized: false
+  mcp_or_connected_apps_authorized: false
+  claude_authorized: false
+  chromium_authorized: false
+  live_model_authorized: false
+  official_or_scored_run_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  next_gate: "Repository-owner review of the independently recovered D01 vertical slice."
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: true
+  repository_artifacts_status: "repo_local_clean_recovery_validated_private_denylist_preflights_passed_native_markdown_captured_owner_approved"
+  authoring_transcript_status: "owner_approved_eligible_reviewed_trace"
+  authoring_transcript_exclusion_category: "possible_outside_root_worktree_metadata_enumeration"
+tool_call_audit:
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  external_workspace_content_reads: 0
+  external_workspace_metadata_enumerations: 1
+  npm_public_registry_or_cache_reads: 1
+  outside_root_writes: 0
+  npm_ci_calls: 1
+  safe_scanner_interface_calls: "probe_plus_initial_and_final_control_and_implementation_preflights"
+  safe_raw_trace_interface_calls: 6
+  raw_trace_external_writes: 2
+  model_subprocess_calls: 0
+  chromium_calls: 0
+  commit_performed: false
+  push_performed: false
+boundary_incident:
+  category: "git_worktree_metadata_enumeration_beyond_current_clean_worktree"
+  external_names_or_paths_recorded_in_repository: false
+  external_workspace_content_read: false
+  metadata_used_for_implementation: false
+  submission_layer_candidate_omission_category: "machine_specific_external_worktree_path_metadata"
+  disposition: "owner_approved_categorical_redaction; continue_eligibility_review_without_external_workspace_content_access"
+  human_decision_at_utc: "2026-08-29T17:41:28Z"
+  technical_meaning_preserved: true
+  owner_decision_exact: "Одобряю категориальную редактуру SES-007: удалить machine-specific worktree metadata; содержимое внешних worktree не читалось, технический смысл траектории сохраняется. Разрешаю только scanner-read через MICRO1_PRIVATE_DENYLIST и raw-trace write через MICRO1_PRIVATE_TRACE_DIR без раскрытия значений, путей или содержимого. Любой другой внешний доступ запрещён. Продолжить review SES-007 без commit/push."
+review_authorization:
+  status: "approved"
+  approved_at_utc: "2026-08-29T17:41:28Z"
+  approver: "repository owner"
+  exact_checkpoint: "Одобряю категориальную редактуру SES-007: удалить machine-specific worktree metadata; содержимое внешних worktree не читалось, технический смысл траектории сохраняется. Разрешаю только scanner-read через MICRO1_PRIVATE_DENYLIST и raw-trace write через MICRO1_PRIVATE_TRACE_DIR без раскрытия значений, путей или содержимого. Любой другой внешний доступ запрещён. Продолжить review SES-007 без commit/push."
+  permitted_external_interfaces:
+    - "scanner_read_via_MICRO1_PRIVATE_DENYLIST"
+    - "raw_trace_write_via_MICRO1_PRIVATE_TRACE_DIR"
+  prohibited_external_access: "all_other_external_access"
+  commit_authorized: false
+  push_authorized: false
+authorized_root_handoff:
+  recorded_at_utc: "2026-08-29T17:50:46Z"
+  coordinator_statement_exact: "Handoff выполнен по явному разрешению владельца в основной authorized repository root. Старый root draft сохранён отдельным именованным git stash и не удалён."
+  stash_inspected_or_deleted: false
+  product_semantics_change_authorized: false
+  review_only: true
+validation:
+  completed_at_utc: "2026-08-29T17:36:00Z"
+  compile: "passed"
+  repository_tests: "passed_47_of_47"
+  d01_verify: "passed_visible_5_of_5_step_1_of_1_oracle_3_of_3_boundary_2_of_2_vertical_15_of_15_e2e_and_manifests"
+  phase_0_5_safe_verify: "passed_license_54_of_54_and_groups_11_6_3_4_3_4"
+  replay_repetitions: 2
+  replay_digests_identical: true
+  replay_report_artifacts_matched: true
+  candidate_hashes_unchanged: true
+  model_invocation_count: 0
+  browser_chromium_claude_connected_app_calls: 0
+  json_documents_validated: 6
+  html_structure_and_escaping: "passed"
+  git_diff_check: "passed"
+  control_checksums: "passed_153_files"
+  control_preflight: "passed_READY_FOR_CLEAN_BRANCH_via_micro1_safe_preflight"
+  implementation_preflight: "passed_READY_FOR_IMPLEMENTATION_via_micro1_safe_preflight_with_expected_dirty_worktree_and_four_binary_review_warnings"
+  private_denylist_preflight: "passed_no_contamination_findings_via_owner_authorized_scanner_interface"
+  generator_retry: "one_unchanged_repo_local_retry_after_combined_command_returned_no_final_demo_marker"
+  manual_submission_candidate_review: "passed_zero_absolute_path_private_key_secret_assignment_or_email_matches"
+  safe_scanner_launcher_attempt:
+    status: "passed_in_authorized_repository_root"
+    control_result: "READY_FOR_CLEAN_BRANCH"
+    implementation_result: "READY_FOR_IMPLEMENTATION"
+    contamination_findings: 0
+    bypass_attempted: false
+  safe_raw_trace_launcher_attempt:
+    status: "native_user_visible_export_capture_succeeded"
+    capture_kind: "codex_desktop_native_markdown"
+    raw_internal_export_available: false
+    bytes: 66250
+    raw_sha256: "bcf36c6cc64f7695adbdac8a49a888bee8c33b6658a5a469306ae2422db7c612"
+    external_write_performed: true
+    hidden_reasoning_or_internal_events_claimed: false
+    attempts_with_empty_payload: 2
+    wrong_trace_id_capture_retained_and_not_used: "TRC-BG-001-RECOVERY-001"
+    correct_trace_id: "TRC-BG-D01-RECOVERY-001"
+    duplicate_payload_digest_matched: true
+    latest_capture_recorded_at_utc: "2026-08-29T18:30:38Z"
+    bypass_attempted: false
+final_eligibility_approval:
+  status: "approved"
+  approved_at_utc: "2026-08-29T18:36:52Z"
+  approver: "repository owner"
+  trace_id: "TRC-BG-D01-RECOVERY-001"
+  capture_kind: "codex_desktop_native_markdown"
+  hidden_reasoning_or_internal_events_claimed: false
+  wrong_external_capture_used: false
+  wrong_external_capture_deleted: false
+  commit_authorized: false
+  push_authorized: false
+  owner_decision_exact: "Одобряю финальную eligibility SES-007 и продвижение reviewed trace `TRC-BG-D01-RECOVERY-001` в `actual_traces`, принимая ограничение `codex_desktop_native_markdown`: hidden reasoning и внутренние события Codex Desktop не экспортируются и не заявляются. Ошибочный внешний capture не использовать и не удалять. Commit/push запрещены."
+precommit_review_reassessment:
+  status: "eligibility_reopened"
+  reason: "The native Markdown source capture was not read through an approved interface, so its completeness and technical meaning were not compared with the reviewed layer."
+  trace_id: "TRC-BG-D01-RECOVERY-001"
+  indexed_in_actual_traces: false
+  commit_authorized: false
+  push_authorized: false
+  required_next_gate: "privacy_safe_native_source_to_reviewed_layer_comparison"
+post_capture_source_comparison:
+  status: "completed_but_exact_immutable_source_not_verified"
+  record_path: "artifacts/trajectories/reviews/TRC-BG-D01-RECOVERY-001-POST-CAPTURE.yaml"
+  compared_input_kind: "later_codex_desktop_markdown_attachment"
+  compared_input_bytes: 79779
+  immutable_capture_bytes: 66250
+  exact_immutable_capture_match: false
+  reviewed_layer_reconciled_to_available_export: true
+  technical_meaning_preserved_relative_to_exact_capture: false
+  eligibility: "BLOCKED"
+  indexed_in_actual_traces: false
+  commit_authorized: false
+  push_authorized: false
+  required_next_gate: "exact immutable-capture comparison or a newly captured and exactly reviewable representative trace"
+human_approval:
+  status: "approved"
+  approver: "repository owner"
+  approved_at_utc: "2026-08-29T17:05:13Z"
+  approval_evidence: "Exact owner authorization quoted in owner_authorization.exact_quote."

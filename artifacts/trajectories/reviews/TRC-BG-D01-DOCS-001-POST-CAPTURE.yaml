@@ -1,0 +1,46 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-D01-DOCS-001"
+record_type: "post_capture_provenance_bundle"
+source_task_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-005.yaml"
+transport: "codex_cli_jsonl_stdout_direct_to_micro1_safe_trace"
+raw_paths_disclosed: false
+implementation_captures:
+  - id: "TRC-BG-D01-DOCS-001"
+    bytes: 391943
+    sha256: "bcdc2cafcf4a9b6b9a25e47a491016b2fe94aa7eec57679ebd5f9aa99a410a29"
+    absolute_path_matches: 119
+    private_terms_after_path_redaction: 0
+  - id: "TRC-BG-D01-DOCS-001-CONT-001"
+    bytes: 358576
+    sha256: "f49e526919a20c02d0b663cc610021a6cf726014dfd5cf83dee785b43ccccc09"
+    absolute_path_matches: 9
+    private_terms_after_path_redaction: 0
+  - id: "TRC-BG-D01-DOCS-001-CONT-002"
+    bytes: 269192
+    sha256: "4c667f5c84363cdb90ea5e395c163a22e189fb85ca25af75b78ee2d2cf63487e"
+    absolute_path_matches: 1
+    private_terms_after_path_redaction: 0
+raw_scan:
+  command: "micro1-safe-trace-review scan-raw <trace-id>"
+  status: "passed_requires_submission_path_redaction_all_three"
+  private_term_matches_per_capture: 1
+  private_terms_confined_to_machine_paths: true
+  private_terms_after_path_redaction: 0
+  email_matches: 0
+  secret_assignment_matches: 0
+excluded_capture_classes:
+  - "Initial incompatible launcher stdout: empty, no JSONL, no implementation evidence."
+  - "Initial launcher stderr: 206 bytes, SHA-256 a4579eae6ed0babd16921d1d981b791d153330ecd6040053025a71a3cbab52ab, diagnostic only."
+  - "Corrected and continuation stderr captures: diagnostic transport output, not implementation JSONL."
+reviewed_layers:
+  english: "artifacts/trajectories/reviewed/TRC-BG-D01-DOCS-001.md"
+  russian: "artifacts/trajectories/reviewed/TRC-BG-D01-DOCS-001_RU.md"
+post_capture_coordinator_evidence:
+  captured_in_three_jsonl_traces: false
+  classification: "repository_local_verification_and_expected_hash_reconciliation"
+  behavior_or_api_change_intended: false
+  candidate_or_oracle_semantics_changed: false
+  verification: "documentation audit, compile, tests, d01 verify, two replays, manifests, checksums, both preflights, and diff checks passed"
+repository_owner_promotion_review: "passed_2026-08-30T13:31:04Z_exactly_three_entries"
+indexed_in_actual_traces: true
+indexed_capture_count: 3

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "current_phase": "d01_fixture_candidate_foundation_pending_owner_review",
+  "current_phase": "d01_scale_004_owner_approved_eight_captures_indexed_scale_ready_true",
   "submission_root": ".",
   "runtime": {
     "name": "node",
@@ -13,7 +13,7 @@
   },
   "current_thread": {
     "submission_eligible": false,
-    "reason": "The original control-plane conversation remains permanently submission-ineligible. The neutral SES-20260829-004 task has explicit owner authorization for the bounded D01 implementation checkpoint; its repository artifacts and trajectory remain pending automated and owner review."
+    "reason": "The current coordination thread remains submission-ineligible, but the repository owner approved all eight reviewed TRC-BG-D01-SCALE-004 captures as eligible evidence, indexed them in actual_traces, and explicitly set SCALE_READY=true."
   },
   "allowed_source_classes": [
     "official_challenge_material",
