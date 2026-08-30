@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"synthetic-thread"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"synthetic-final","type":"agent_message","text":"{\"schemaVersion\":\"test-reasoning-output@1.0.0\",\"decision\":\"accept\"}"}}
+{"type":"turn.completed","usage":{"input_tokens":17,"cached_input_tokens":0,"output_tokens":9}}

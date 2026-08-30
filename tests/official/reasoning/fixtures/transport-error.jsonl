@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"synthetic-thread"}
+{"type":"turn.started"}
+{"type":"error","message":"synthetic transport failure"}
+{"type":"turn.failed","error":{"message":"synthetic only"}}

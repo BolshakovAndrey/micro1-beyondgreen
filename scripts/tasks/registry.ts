@@ -2,6 +2,7 @@ import { commonTasks } from "./common.ts";
 import { d01Tasks } from "./d01.ts";
 import { developmentTasks } from "./development.ts";
 import { heldOutTasks } from "./held-out.ts";
+import { officialTasks } from "./official.ts";
 import { phase05Tasks } from "./phase0.5.ts";
 import { preUnblindingTasks } from "./pre-unblinding.ts";
 import type { TaskDefinition } from "./types.ts";
@@ -25,6 +26,7 @@ export const taskRegistry = buildTaskRegistry([
   d01Tasks,
   developmentTasks,
   heldOutTasks,
+  officialTasks,
   phase05Tasks,
   preUnblindingTasks,
 ]);

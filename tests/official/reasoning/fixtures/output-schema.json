@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "decision": {
+      "enum": ["accept", "reject", "abstain"]
+    },
+    "schemaVersion": {
+      "const": "test-reasoning-output@1.0.0"
+    }
+  },
+  "required": ["schemaVersion", "decision"],
+  "type": "object"
+}

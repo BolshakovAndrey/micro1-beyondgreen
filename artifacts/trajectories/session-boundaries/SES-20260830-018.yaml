@@ -1,0 +1,587 @@
+schema_version: "1.1"
+session_id: "SES-20260830-018"
+started_at_utc: "2026-08-30T20:54:42Z"
+agent:
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Prepare a submission-eligible deadline-first implementation boundary for the shared BeyondGreen official execution layer"
+
+repository:
+  root: "."
+  root_resolution: "The Git top level matched the task-authorized clean repository root; machine-specific absolute paths are intentionally not persisted."
+  implementation_branch_to_create_after_approval: "codex/beyondgreen-official-runner"
+  requested_base_commit: "fcfa5a88dce7683c629318266835995d0bfa05ee"
+  exact_head_at_boundary_preparation: "fcfa5a88dce7683c629318266835995d0bfa05ee"
+  implementation_branch_exists_at_boundary_preparation: false
+  implementation_branch_creation_authorized_before_approval: false
+  current_worktree_branch_state: "detached_head_at_exact_requested_base"
+  other_worktree_content_inspected_or_modified: false
+  branch_attachment_gate: "After exact owner approval and before product code, create and attach this clean worktree to its own new named branch codex/beyondgreen-official-runner strictly from fcfa5a88dce7683c629318266835995d0bfa05ee, without force, without reading or modifying another worktree, and without switching or moving any existing branch. Otherwise stop for owner direction."
+  working_tree_before_boundary_files: "clean"
+  remote_state_contacted_or_verified: false
+  commit_authorized: false
+  push_authorized: false
+
+branch_creation_result:
+  status: "passed"
+  branch: "codex/beyondgreen-official-runner"
+  base_commit: "fcfa5a88dce7683c629318266835995d0bfa05ee"
+  force_used: false
+  existing_branch_switched_or_moved: false
+  other_worktree_read_or_modified: false
+  head_after_creation: "fcfa5a88dce7683c629318266835995d0bfa05ee"
+
+context:
+  repository_root: "."
+  source_control_plane_thread_id: "01a038e6-9b21-76f3-8b97-4829bbd8d16a"
+  allowed_paths_before_approval:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-015.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-017.yaml"
+    - "artifacts/trajectories/reviews/BG-PRE-UNBLINDING-HANDOFF-TRACE-REVIEW-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-018.yaml"
+    - "artifacts/trajectories/reviews/BG-OFFICIAL-DEADLINE-FIRST-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+  public_sources: []
+  inherited_private_transcript: false
+  source_control_plane_thread_submission_eligible: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "use_unauthorized_before_exact_owner_approval"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+  values_paths_or_contents_disclosed: false
+
+controls:
+  agents_instructions_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  session_boundary_template_read: true
+  required_contracts_read_in_full: true
+  exact_head_checked: true
+  implementation_branch_absence_checked: true
+  clean_worktree_checked: true
+  sibling_worktree_content_inspected: false
+  browser_or_private_mcp_state_inspected: false
+  global_memory_inspected: false
+  private_denylist_available_to_scanner_only: false
+  private_paths_resolve_outside_repository: false
+  raw_trace_location: "external_local_only_not_accessed"
+  product_or_shared_files_modified: false
+  code_candidate_oracle_or_test_files_modified: false
+  compile_or_tests_executed: false
+  candidate_execution_performed: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  live_model_calls: 0
+  claude_calls: 0
+  chromium_calls: 0
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  global_memory_reads: 0
+  subagents_spawned: false
+
+pre_boundary_disclosure:
+  status: "control_plane_only_excluded_from_submission"
+  event: "A repository-local read-only Git worktree inventory printed machine-local paths for other worktrees while checking whether the requested branch was already attached."
+  external_files_opened_or_read: false
+  external_worktrees_modified: false
+  path_values_persisted_in_repository: false
+  private_state_inspected: false
+  consequence: "The boundary-preparation transcript remains submission-ineligible; only a fresh post-approval implementation trajectory may be considered for later review and promotion."
+
+boundary_artifact_validation:
+  initial_attempt:
+    status: "failed_before_yaml_parse"
+    command_class: "repository-local Ruby/Psych structural validation"
+    safe_error_class: "NoMethodError"
+    cause: "The installed Psych version does not expose safe_load_file."
+    files_parsed: false
+    product_or_external_state_changed: false
+  retry:
+    status: "passed"
+    command_class: "compatible Psych safe_load over repository-local file bytes plus exact two-file content and diff checks"
+    yaml_syntax_and_required_fields: "passed"
+    exact_approval_phrase_parity: "passed"
+    git_diff_check: "passed"
+    changed_file_scope: "exactly_the_two_SES_018_boundary_gate_artifacts"
+    product_tests_compile_preflight_or_scanner_authorized: false
+
+authorization:
+  boundary_preparation_requested_by_owner: true
+  boundary_preparation_only_before_exact_human_approval: true
+  implementation_authorized_before_exact_human_approval: false
+  official_or_scored_run_authorized: false
+  unblinding_authorized: false
+  live_model_authorized: false
+  chromium_authorized: false
+  browser_or_mcp_authorized: false
+  claude_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  allowed_before_human_approval:
+    - "Read AGENTS.md, every mandatory contract, the boundary template, and minimum repository-local boundary examples in full."
+    - "Inspect only repository-local Git identity, exact HEAD, clean status, requested branch pointer, and boundary-file path availability."
+    - "Create SES-20260830-018 and its complete natural-Russian owner checkpoint card."
+    - "Structurally validate only those two boundary-gate files without product commands."
+  prohibited_before_human_approval:
+    - "Create or modify product code, tests, fixtures, candidates, oracles, manifests, visible assertions, frozen behavior, evaluation methodology, targets, policy, reports, replay records, or run records."
+    - "Execute candidates, arms, observers, evaluators, replay, official/scored commands, unblinding, packaging, or submission."
+    - "Run compile, tests, preflight, scanner, live product model, Claude, Chromium, browser, MCP, connected apps, private memory, or external workspaces."
+    - "Create codex/beyondgreen-official-runner before exact owner approval, force-attach any branch, switch or move an existing branch, or mutate another worktree."
+    - "Commit or push."
+
+deadline_first_implementation_scope_after_exact_owner_approval:
+  objective: "Build the minimum shared official execution surface needed before the submission deadline while preserving every frozen benchmark and evaluation contract."
+  prerequisite_gates:
+    - "After exact owner approval, this clean worktree creates and attaches its own new branch codex/beyondgreen-official-runner strictly from fcfa5a88dce7683c629318266835995d0bfa05ee without force, without reading or modifying another worktree, and without switching or moving any existing branch."
+    - "Only the fresh post-approval trajectory is treated as an implementation-trace candidate."
+    - "Any contamination, provenance ambiguity, hidden-oracle leakage, branch mismatch, or frozen-surface drift stops the task."
+  allowed_product_surface:
+    - "src/official/**"
+    - "tests/official/**"
+    - "scripts/tasks/** only for the minimum registry wiring required by the new official layer"
+    - "package.json only for the minimum stable task entrypoint wiring required by the new official layer"
+    - "bounded implementation evidence, trace candidates, review cards, and directly derived status/checksum records required by the contracts"
+  architecture:
+    root: "src/official/"
+    physical_capability_separation:
+      arm_adapter: "A dedicated arm adapter module/process contract that can read only arm-visible inputs and cannot read evaluator or hidden-oracle state."
+      observer_adapter: "A dedicated observer adapter module/process contract that records post-decision observations without acquiring evaluator capability."
+      evaluator_adapter: "A dedicated evaluator adapter module/process contract that opens verifier-only inputs only after immutable arm decisions and never returns pre-decision feedback."
+      enforcement: "Separation must be physical and testable through runtime/process/filesystem capabilities, not naming or TypeScript types alone."
+    shared_components:
+      - "generic official runner"
+      - "immutable per-candidate record aggregation"
+      - "cross-arm aggregate recomputation"
+      - "schema-valid JSON and static HTML report generation"
+      - "deterministic offline replay"
+    genericity_rule: "Do not copy D01-specific behavior, observation schemas, fixture IDs, candidate heuristics, board semantics, paths, or oracle conclusions into src/official/. Fixture-specific behavior stays behind injected descriptors/adapters."
+    d01_freeze_rule: "Do not modify, generalize, import, or otherwise reuse src/d01-specific contracts, harnesses, visible assertions, observation schemas, or semantics. The proven src/d01 layer remains frozen."
+    shared_interfaces_before_fixture_streams:
+      owner: "coordinator"
+      order: "stabilize_and_test_before_starting_any_parallel_fixture_stream"
+      required_factories_and_interfaces:
+        - "Explicit official fixture descriptor factory."
+        - "Physical role/capability factories for arm, observer, and evaluator adapters."
+        - "Shared runner, aggregation, report, and replay contracts that accept only the explicit descriptor and role-scoped capabilities."
+      forbidden_imports:
+        - "src/d01-specific contracts"
+        - "src/d01 harnesses"
+        - "D01 visible assertions or observation schemas"
+    explicit_fixture_descriptor:
+      required_fields:
+        - "candidate module path and candidate export name"
+        - "construction mode: mount function or class constructor"
+        - "mount-function binding or class-constructor binding"
+        - "arm-visible contracts"
+        - "arm-visible invariants"
+        - "arm-visible actions"
+        - "arm-visible observations"
+        - "visible assertions"
+        - "observer entrypoint"
+        - "evaluator entrypoint"
+      inference_policy: "Names, exports, construction mode, bindings, entrypoints, actions, observations, contracts, invariants, and assertions must be explicit and must never be inferred from fixture IDs, filenames, candidate names, source symbols, or D01 conventions."
+  parallel_fixture_streams:
+    - id: "official-development-D02-D04"
+      fixtures: ["BG-D02", "BG-D04"]
+      responsibility: "Create fixture-only explicit adapters for the already-frozen BG-D02 and BG-D04 packages without changing shared paths, src/d01, candidate bytes, or fixture semantics."
+    - id: "official-held-out-H01-H03"
+      fixtures: ["BG-H01", "BG-H02", "BG-H03"]
+      responsibility: "Bind the already-frozen held-out fixtures to the shared official interfaces without exposing verifier-only state to either arm or to another stream."
+    - id: "official-held-out-H04-H06"
+      fixtures: ["BG-H04", "BG-H05", "BG-H06"]
+      responsibility: "Bind the already-frozen held-out fixtures to the shared official interfaces without exposing verifier-only state to either arm or to another stream."
+  coordinator_owned_fixture_adapter:
+    fixture: "BG-D03"
+    responsibility: "Create the explicit BG-D03 adapter after the shared interfaces stabilize, accounting for class TrayPlanner and the absence of the ordinary mount harness."
+    construction_contract: "Use an explicit class-constructor binding; do not infer TrayPlanner or emulate a mount function."
+  coordination_rule: "The three streams may start only after coordinator-owned shared interfaces/factories are stable and tested. They work on disjoint fixture-only binding/test surfaces and must not modify shared paths or src/d01. Shared src/official runner, aggregation, report, replay, registry, schemas, and the special BG-D03 adapter remain coordinator-owned."
+  current_physical_boundary_control_evidence:
+    - "tests/development-fixture-isolation.test.ts"
+    - "tests/BG-D04-isolation.test.ts"
+  official_boundary_test_requirement: "Before any official execution, add separate synthetic/test-only role and capability boundary tests for arm, observer, and evaluator. These tests must not execute real development or held-out candidates."
+  frozen_adapter_contract:
+    id: "codex-exec-jsonl-v1"
+    status: "unchanged_optional_live_adapter_contract"
+    mutation_allowed: false
+    invocation_policy: "one call per candidate, zero retries, read-only sandbox, 180-second total deadline; unavailability produces abstain"
+    execution_in_this_boundary: "prohibited_without_a_separate_exact_owner_gate_for_the_live_model_and_official_attempt"
+  frozen_surfaces_unchanged:
+    - "All 20 candidate bytes and candidate manifests."
+    - "All ten arm-visible packages and visible assertions."
+    - "All verifier-only packages, hidden-oracle semantics, ground truth, and evaluator expectations."
+    - "Evaluation v1.1 formulas, denominators, targets, reason-correctness semantics, K=0, and the two-arm policy."
+    - "Development/held-out membership, behavior-class bijection, BG-H02 challenging-case designation, one-attempt policy, and three-minute ceiling."
+    - "The frozen codex-exec-jsonl-v1 adapter, provider/model choice, retry policy, billing/accounting policy, and offline replay format."
+  bounded_validation_allowed:
+    - "Repository-local compile and ordinary tests."
+    - "New official-layer unit, integration, isolation, fail-closed, aggregation, report, and offline-replay tests that do not execute an official/scored arm."
+    - "Existing non-official fixture verification and pre-unblinding freeze controls only when needed to prove no frozen bytes or semantics changed."
+    - "git diff --check and repository-local checksum reconciliation directly caused by the authorized files."
+    - "Safe control and implementation preflight through the owner-controlled scanner interface without disclosing denylist values or paths."
+  mandatory_stop_before_irreversible_actions: "Stop with a complete natural-Russian owner packet before candidate execution, any official/scored run, unblinding, live model invocation, trace promotion, commit, or push."
+
+explicitly_prohibited_after_boundary_approval:
+  - "Candidate execution or consuming either arm's one official attempt."
+  - "Official/scored baseline:verify, beyondgreen:verify, evaluation:run, or any command that creates a scored run record."
+  - "Unblinding BG-H01 through BG-H06 or exposing held-out evaluator outcomes to an optimization path."
+  - "Live codex-exec-jsonl-v1 invocation, model substitution, retry, Claude, Chromium, browser, MCP, connected apps, or private/global memory."
+  - "Any candidate, manifest, visible assertion, frozen behavior, oracle, ground-truth, membership, challenging-case, scoring, target, denominator, evaluation-version, two-arm-policy, runtime-policy, dependency, or adapter-contract change."
+  - "D01-specific semantic migration into src/official/."
+  - "Final archive, publication, upload, submission, trace promotion, commit, or push."
+
+language_contract:
+  owner_facing_reports: "complete_natural_russian"
+  judge_facing_and_machine_readable_artifacts: "english_allowed"
+  technical_identifier_policy: "Keep exact identifiers, commands, paths, library names, and official product names in English; explain unavoidable English terminology in Russian on first use."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "boundary_candidate_pending_human_approval"
+  authoring_transcript_status: "excluded"
+  authoring_transcript_exclusion_category: "pre_boundary_control_plane_with_machine_local_worktree_path_output"
+  future_post_approval_implementation_trace_status: "eligible_candidate_pending_capture_scan_review_and_owner_promotion"
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "not_machine_exported_in_task_evidence"
+  approval_recorded_at_utc: "2026-08-30T20:54:42Z"
+  approval_evidence: "Хорошо! Вперед с учетом изменений!"
+  approval_scope_interpretation: "The owner explicitly bound this approval to the eight organizational clarifications recorded in the current delegation: frozen src/d01, coordinator-first stable shared interfaces, fully explicit descriptors, coordinator-owned shared core and BG-D03 adapter, three later fixture-only streams, existing D03/D04 isolation controls, synthetic/test-only official boundary tests, and all prior prohibitions."
+  exact_required_phrase: "Хорошо! Вперед с учетом изменений!"
+
+shared_interface_implementation_result:
+  status: "passed_shared_interfaces_stable_stopped_before_fixture_streams"
+  fixture_streams_started: false
+  d03_adapter_started: false
+  real_candidate_imports_or_execution: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  src_d01_modified: false
+  dependency_setup:
+    command: "npm ci --ignore-scripts"
+    status: "passed_54_packages_zero_vulnerabilities"
+  compile:
+    command: "npm run compile"
+    status: "passed"
+  synthetic_test_only_boundary_suite:
+    command: "node --test tests/official/shared-interfaces.test.ts tests/official/role-capability-boundary.test.ts tests/official/aggregation-report-replay.test.ts"
+    total: 6
+    passed: 4
+    failed: 2
+    failure_summary: "The positive allowed-read assertions for arm/observer and evaluator returned false, so the intended capability grants are not yet proven. The tests stopped before their later denial assertions could establish the complete role matrix."
+    diagnostic_or_retry_after_failure: false
+  stop_policy_applied_after_initial_failure: true
+  initial_stop_owner_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-DEADLINE-FIRST-SHARED-INTERFACES-STOP-OWNER-PACKET_RU.md"
+  owner_authorized_diagnostic_correction:
+    authorization: "One bounded diagnostic and correction cycle for the two failed positive test-only allowed-read scenarios only."
+    diagnostic:
+      single_allow_fs_read_exit_status: 0
+      repeated_allow_fs_read_flags_exit_status: 0
+      comma_list_allow_fs_read_exit_status: 1
+      sensitive_paths_or_stderr_disclosed: false
+      confirmed_cause: "Node permission arguments accept the required paths as repeated --allow-fs-read flags; the comma-joined list used by the test harness was rejected."
+    correction:
+      file: "tests/official/role-capability-boundary.test.ts"
+      change: "Replace one comma-joined permission argument with one repeated --allow-fs-read flag per explicit allowed path."
+      product_or_capability_contract_changed: false
+    exactly_one_compile_retry:
+      command: "npm run compile"
+      status: "passed"
+    exactly_one_three_file_test_retry:
+      command: "node --test tests/official/shared-interfaces.test.ts tests/official/role-capability-boundary.test.ts tests/official/aggregation-report-replay.test.ts"
+      total: 6
+      passed: 6
+      failed: 0
+    fixture_streams_started: false
+    real_candidate_execution: false
+  final_owner_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-DEADLINE-FIRST-SHARED-INTERFACES-OWNER-PACKET_RU.md"
+
+fixture_adapter_wave_result:
+  status: "passed_static_pre_unblinding_adapters_stopped_before_candidate_execution"
+  shared_api_acceptance: "passed_explicit_candidate_creation_arm_visible_observer_evaluator_and_role_capability_contracts_no_D01_references"
+  worker_contract: "beyondgreen-official-fixture-worker@1.0.0"
+  subagents:
+    count: 3
+    streams:
+      - fixtures: ["BG-D02", "BG-D04"]
+        ownership: "fixture_adapter_and_test_files_only"
+        shared_or_frozen_paths_modified: false
+      - fixtures: ["BG-H01", "BG-H02", "BG-H03"]
+        ownership: "fixture_adapter_and_test_files_only"
+        shared_or_frozen_paths_modified: false
+      - fixtures: ["BG-H04", "BG-H05", "BG-H06"]
+        ownership: "fixture_adapter_and_test_files_only"
+        shared_or_frozen_paths_modified: false
+  coordinator_owned:
+    fixture: "BG-D03"
+    construction: "explicit_class_constructor_TrayPlanner_without_mount_harness"
+    shared_correction: "arm capability factory omits constructor binding path only when it exactly equals the candidate module path; stableUnique remains fail-closed for all remaining duplicates"
+  operational_retries:
+    - category: "missing_unfrozen_test_loader"
+      event: "H04-H06 worker used node --import tsx; tsx is absent from frozen dependencies."
+      disposition: "No dependency or adapter change; coordinator reran the same test file with repository-standard node --test and passed 2/2."
+      product_failure: false
+    - category: "shell_quoting"
+      event: "One compound read-only D02-D04 scope-review command failed to parse with unmatched quote."
+      disposition: "No command body ran and no file changed; review was repeated as separate simple sed and rg commands and passed."
+      product_failure: false
+  code_failure_and_correction:
+    failure: "BG-D03 class constructor duplicated the candidate module path in the arm allowed-read list, and stableUnique failed closed."
+    owner_authorized_scope: "Only omit the constructor binding path when it equals the candidate module path."
+    descriptor_schema_or_fixture_semantics_changed: false
+    d03_test_retry: "passed_2_of_2"
+  ownership_review:
+    status: "passed"
+    candidate_imports: 0
+    d01_references: 0
+    scenario_evaluator_entrypoints: 0
+    frozen_product_paths_modified: false
+    package_or_task_registry_modified: false
+  validation:
+    compile:
+      command: "npm run compile"
+      status: "passed"
+      attempt_count_after_authorized_D03_fix: 1
+    fixture_adapter_synthetic_suite:
+      command: "node --test tests/official/worker-contract.test.ts tests/official/fixtures/bg-d02-d04-adapters.test.ts tests/official/fixtures/bg-d03-adapter.test.ts tests/official/fixtures/bg-h01-h03-adapters.test.ts tests/official/fixtures/bg-h04-h06-adapters.test.ts"
+      status: "passed_9_of_9"
+    shared_synthetic_role_boundary_suite:
+      command: "node --test tests/official/shared-interfaces.test.ts tests/official/role-capability-boundary.test.ts tests/official/aggregation-report-replay.test.ts"
+      status: "passed_6_of_6"
+  candidate_execution_performed: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  live_model_calls: 0
+  claude_calls: 0
+  chromium_calls: 0
+  browser_or_mcp_calls: 0
+  trace_promotion_performed: false
+  commit_performed: false
+  push_performed: false
+  owner_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-FIXTURE-ADAPTER-WAVE-OWNER-PACKET_RU.md"
+
+d03_transcript_bridge_and_synthetic_rehearsal_result:
+  status: "passed_bounded_pre_official_synthetic_only"
+  owner_authorization: "Eliminate only the D03 evaluator-signature risk through an evaluator-only transcript replay bridge, then rehearse the shared official runner with test-only fixtures."
+  d03_observer:
+    transcript_schema: "beyondgreen-bg-d03-observation-transcript@1.0.0"
+    properties:
+      - "neutral_post_decision_observations_only"
+      - "requires_both_immutable_arm_decisions"
+      - "strict_three_frame_initial_add_set_packet_count_sequence"
+      - "deeply_frozen_after_schema_validation"
+    candidate_imports: 0
+  d03_evaluator_only_bridge:
+    path: "src/official/evaluator-only/bg-d03.ts"
+    candidate_imports_or_reads: 0
+    verifier_contract: "Creates a verifier-owned transcript-backed OraclePlannerConstructor and applies the unchanged assertDerivedStateOracle."
+    oracle_files_modified: false
+    result_classification: "Only node:assert AssertionError is classified as a reason-correct derived_state rejection; malformed schemas and replay-binding mismatches fail closed."
+  role_capability_boundary:
+    arm_can_read_bridge: false
+    observer_can_read_bridge: false
+    evaluator_can_read_candidate: false
+    evaluator_can_read_observer_adapter: false
+    evaluator_can_read_explicit_bridge_and_verifier_root: true
+    enforcement: "Explicit allow/deny paths plus Node permission subprocess evidence."
+  d03_targeted_validation:
+    command: "node --test tests/official/fixtures/bg-d03-adapter.test.ts tests/official/fixtures/bg-d03-evaluator-bridge.test.ts"
+    status: "passed_5_of_5"
+    cases:
+      - "preserving_transcript_accepted"
+      - "violating_transcript_reason_correctly_rejected_as_derived_state"
+      - "malformed_or_incomplete_transcript_failed_closed"
+      - "replay_operation_mismatch_failed_closed_without_defect_misclassification"
+      - "candidate_read_physically_denied"
+  synthetic_end_to_end_rehearsal:
+    path: "src/official/rehearsal.ts"
+    scope: "test_only_injected_hooks_without_module_importer_candidate_executor_network_adapter_or_run_record_writer"
+    proven_sequence:
+      - "two_arm_decisions"
+      - "both_decisions_immutable_before_observer_capture"
+      - "post_decision_observer_capture_bound_to_decision_digest"
+      - "evaluator_records_bound_to_fixture_candidate_and_arm"
+      - "aggregation_and_static_JSON_HTML_report"
+      - "offline_replay_with_exact_digest_match"
+    explicit_negative_flags:
+      synthetic_only: true
+      real_candidate_execution: false
+      official_or_scored_run: false
+      unblinding_performed: false
+  final_self_review:
+    finding: "A broad evaluator catch could have mislabeled transcript replay-binding errors as candidate derived-state defects."
+    correction: "Restrict reason-correct rejection classification to AssertionError emitted by the unchanged oracle and rethrow all other errors fail-closed."
+    frozen_surface_or_oracle_semantics_changed: false
+  final_validation:
+    compile:
+      command: "npm run compile"
+      status: "passed"
+    relevant_official_synthetic_suite:
+      command: "node --test tests/official/aggregation-report-replay.test.ts tests/official/role-capability-boundary.test.ts tests/official/shared-interfaces.test.ts tests/official/synthetic-e2e-rehearsal.test.ts tests/official/worker-contract.test.ts tests/official/fixtures/bg-d02-d04-adapters.test.ts tests/official/fixtures/bg-d03-adapter.test.ts tests/official/fixtures/bg-d03-evaluator-bridge.test.ts tests/official/fixtures/bg-h01-h03-adapters.test.ts tests/official/fixtures/bg-h04-h06-adapters.test.ts"
+      status: "passed_19_of_19"
+      failed: 0
+  frozen_surface_review:
+    src_d01_modified: false
+    candidates_modified_or_executed: false
+    manifests_or_visible_assertions_modified: false
+    verifier_files_or_oracle_semantics_modified: false
+    descriptor_api_modified: false
+    evaluation_methodology_modified: false
+    package_dependencies_or_task_registry_modified: false
+  prohibited_actions:
+    official_or_scored_run_performed: false
+    unblinding_performed: false
+    live_model_calls: 0
+    claude_calls: 0
+    chromium_calls: 0
+    browser_or_mcp_calls: 0
+    trace_promotion_performed: false
+    commit_performed: false
+    push_performed: false
+  owner_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-D03-TRANSCRIPT-BRIDGE-SYNTHETIC-REHEARSAL-OWNER-PACKET_RU.md"
+
+final_pre_official_implementation_result:
+  status: "READY_FOR_OFFICIAL_RUN"
+  meaning: "All owner-authorized pre-official static, synthetic, process-isolation, transport, report, and replay gates passed. This is infrastructure readiness only and is not authorization or evidence of an official/scored run."
+  api_freeze:
+    existing_src_official_files_hashed_before_workers: 24
+    all_existing_hashes_unchanged_after_workers: true
+    src_d01_imported_or_modified: false
+  parallel_subagents:
+    count: 3
+    process_stream:
+      owned_paths: ["src/official/process/**", "tests/official/process/**"]
+      result: "passed_5_of_5"
+      real_fixture_candidate_or_verifier_imports: 0
+    manifest_registry_stream:
+      owned_paths: ["src/official/inventory/**", "tests/official/inventory/**"]
+      result: "passed_3_of_3"
+      inventory: "10_fixtures_20_candidates_4_6_split_10_behavior_classes"
+      candidate_imports_or_execution: 0
+      verifier_content_parsed: false
+    reasoning_transport_stream:
+      owned_paths: ["src/official/reasoning/**", "tests/official/reasoning/**"]
+      result: "passed_5_of_5"
+      adapter: "codex-exec-jsonl-v1"
+      invocation_limit: 1
+      retry_limit: 0
+      total_timeout_ms: 180000
+      live_invocation_performed: false
+      per_run_usd_calculated_or_estimated: false
+  coordinator_integration:
+    paths:
+      - "src/official/integration/**"
+      - "scripts/d00-official-preflight.ts"
+      - "scripts/tasks/official.ts"
+      - "scripts/tasks/registry.ts"
+      - "tests/official/integration/**"
+    execution_plan:
+      schema: "beyondgreen-official-execution-plan@1.0.0"
+      slots: 20
+      arms_per_slot: 2
+      total_arm_plans: 40
+      attempt_ordinal: 1
+      deeply_immutable: true
+      candidate_execution_allowed: false
+    static_preflight:
+      task: "npm run task -- official:preflight"
+      status: "passed"
+      inventory_sha256: "b2fb8077ddd9f9b132326b99a681e842fd44578a024a44624b96ed18c0248f09"
+    synthetic_multiprocess:
+      processes: 6
+      sequence: "two_arms_then_two_observers_then_two_evaluators"
+      physical_test_only_read_denial: true
+      reports: "JSON_and_static_HTML"
+      deterministic_offline_replay_digest_match: true
+      candidate_execution_performed: false
+  corrections_and_retries:
+    - event: "Process worker initial local test run passed 2/4 because Node strip-only rejected a TypeScript parameter property."
+      correction: "Use an ordinary readonly field and assignment in the new process transport."
+      contract_or_frozen_semantics_changed: false
+      final_result: "passed_5_of_5"
+    - event: "One coordinator read-only ownership command did not parse because of shell quoting."
+      correction: "Repeat as separate simple shasum, git status, rg, and git diff commands."
+      product_state_changed: false
+      classification: "no_change_transport_retry"
+    - event: "First integrated compile failed TS2322 because invocationCount widened from literal 1 to number."
+      owner_authorized_correction: "Explicitly type the parser success value as CodexExecParseSuccess<Output>."
+      JSONL_timeout_error_command_or_invocation_semantics_changed: false
+      final_compile: "passed"
+    - event: "First integrated official tests passed 33/34 because the parsed execution-plan root was not frozen."
+      owner_authorized_correction: "Recursively freeze the validated plan without changing values."
+      first_retry_result: "33_of_34_nested_slots_not_frozen"
+    - event: "The first recursive freeze skipped children when Zod had already frozen the parent slots array."
+      owner_authorized_correction: "Always traverse children with a local WeakSet and freeze only the current unfrozen object."
+      final_result: "passed_top_level_nested_and_mutation_fail_closed"
+  final_validation:
+    compile:
+      command: "npm run compile"
+      status: "passed"
+      attempts_after_final_owner_authorized_fix: 1
+    official_tests_main:
+      status: "passed_34_of_34"
+      multiprocess_file_excluded_for_single_separate_execution: true
+    static_preflight:
+      command: "npm run task -- official:preflight"
+      status: "passed"
+    synthetic_multiprocess_rehearsal:
+      command: "node --test tests/official/integration/multiprocess-rehearsal.test.ts"
+      status: "passed_1_of_1"
+    complete_tests_official_union: "passed_35_of_35"
+  not_proven:
+    - "No real candidate was imported or executed through the new official process orchestration."
+    - "The optional live codex-exec-jsonl-v1 runtime, local authentication, network transport, and model output remain unverified in this layer."
+    - "No real D/H observer/evaluator run, held-out outcome, score, target attainment, resource record, or three-minute official deadline was measured."
+    - "The single official attempt, unblinding procedure, final run-record persistence, and complete 40-arm report were not consumed or produced."
+  prohibited_actions:
+    real_candidate_execution_performed: false
+    official_or_scored_run_performed: false
+    unblinding_performed: false
+    live_model_calls: 0
+    claude_calls: 0
+    chromium_calls: 0
+    browser_or_mcp_calls: 0
+    trace_promotion_performed: false
+    commit_performed: false
+    push_performed: false
+  owner_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-PRE-OFFICIAL-READINESS-OWNER-PACKET_RU.md"
+
+checkpoint_commit_authorization:
+  status: "approved"
+  approval_evidence: "The repository owner explicitly approved READY_FOR_OFFICIAL_RUN and authorized exactly one checkpoint commit without push."
+  commit_message: "feat(Evaluation):[BeyondGreen] Build official evaluation runner"
+  hook_token_authorized_if_required: "~/.codex/.git-allow-once"
+  exact_commit_count_authorized: 1
+  push_authorized: false
+  official_or_scored_run_authorized: false
+  unblinding_authorized: false
+  prerequisite: "Commit only after exact staged-scope review and all owner-enumerated final validations pass."
