@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-D02",
+  "package_id": "BG-D02-candidate-b",
+  "package_kind": "candidate",
+  "immutable": true,
+  "hash_algorithm": "SHA-256",
+  "source_files": [
+    {
+      "path": "candidates/BG-D02/candidate-b/ParcelDispatchBoard.ts",
+      "sha256": "729c00eb33a10fac0006cdd99f299a563caec6109ad6610c84e4be2e29c0dc58"
+    }
+  ],
+  "package_sha256": "89c9f1d3da4fdcb36aa841fb168c275b29585ca31fcd527ab44d7195d9f91f8a"
+}

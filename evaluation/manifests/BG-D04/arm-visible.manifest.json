@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-D04",
+  "package": "arm-visible",
+  "behavior_sha256": "ce2238eebe6dffc2afd25035a778e537c6981ba2b781f4547449a73a4ccad08d",
+  "files": {
+    "evaluation/arm-visible/BG-D04/contract.ts": "cf1b5ad0a4b92701a6febd434426af8c208c84f4d0c0fa117fa7e1853d58bcb4",
+    "evaluation/arm-visible/BG-D04/harness.ts": "3e3f11675a42d41f6d8bc40720b8ca0359db0a7144881c1ca1e59c8bfbde5115",
+    "evaluation/arm-visible/BG-D04/visible-assertions.ts": "09fab8897dae2f86d7f01918e7445427dab757c6326b72c74387f416fe1b8105",
+    "evaluation/arm-visible/BG-D04/visible.test.ts": "751cf9d1320449fdbee26e69dacde1bd07bd17c28edca7e1940ba862e602ae09"
+  }
+}

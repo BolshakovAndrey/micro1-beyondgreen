@@ -1,0 +1,47 @@
+schema_version: "1.0"
+record_id: "BG-D02-BEHAVIOR-FREEZE-001"
+fixture_id: "BG-D02"
+membership: "development"
+behavior_class: "queued_batched_updates"
+neutral_domain: "synthetic_community_library_parcel_dispatch_board"
+status: "authored_pending_human_review"
+normative_projection: "docs/PROJECT_SPEC.md@1.1.0"
+english_behavior_path: "evaluation/behavior-specs/BG-D02_BEHAVIOR.md"
+english_behavior_sha256: "806c0ef2e6968ab5503b34275abaa545c3733816a62cb4b5820cb4dc3c579490"
+russian_behavior_path: "evaluation/behavior-specs/BG-D02_BEHAVIOR_RU.md"
+russian_behavior_sha256: "faf76bc563e2948262e9fe9fbc5d835fce02facfeed1ce5abe010d5ddb3aed49"
+public_anchor_ids:
+  - "SRC-REACT-QUEUE"
+observable_contract:
+  lane_count: 6
+  first_lane_id: "PCL-01"
+  last_lane_id: "PCL-06"
+  visible_test_ids:
+    - "BG-D02-VIS-001"
+    - "BG-D02-VIS-002"
+    - "BG-D02-VIS-003"
+    - "BG-D02-VIS-004"
+    - "BG-D02-VIS-005"
+  canonical_actions:
+    - "mount"
+    - "select-all"
+    - "queue-1x2"
+    - "flush"
+    - "unit-3"
+    - "queue-3x2"
+    - "select-even"
+    - "flush"
+    - "reset"
+false_green_construction:
+  defect_family: "lost_second_entry_from_one_queued_two_entry_event"
+  compilation_and_all_visible_tests_must_pass: true
+  unrelated_behavior_must_be_preserved: true
+oracle_boundary:
+  arm_mount_allowed: false
+  pre_verdict_feedback_rounds: 0
+  denied_access_test_required: true
+authorization:
+  official_or_scored_evaluation: false
+  model_or_chromium_calls: false
+  commit: false
+  push: false

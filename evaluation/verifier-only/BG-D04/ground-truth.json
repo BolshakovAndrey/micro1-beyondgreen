@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-D04",
+  "behavior_class": "subscription_cleanup",
+  "candidates": {
+    "preserving": "preserving",
+    "false-green": "false_green"
+  },
+  "allowed_false_green_defect_family": "obsolete_subscription_not_cleaned_up"
+}

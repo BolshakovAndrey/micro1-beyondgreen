@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-D03",
+  "behavior_class": "derived_state",
+  "candidate_a": "preserving",
+  "candidate_b": "false_green",
+  "oracle_outcome": {
+    "candidate_a": "accept",
+    "candidate_b": "reject"
+  },
+  "failure_invariant": "Derived totals and rendered summary must update atomically with a successful packet-count change."
+}

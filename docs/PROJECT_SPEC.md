@@ -38,6 +38,13 @@ continuations, indexed all eight captures in `actual_traces`, and explicitly set
 `SCALE_READY=true`. Deterministic machine-path redaction remains mandatory. No
 official/scored run, live-model call, Chromium call, BG-D02 work, commit, or push
 occurred.
+Under owner-approved `SES-20260830-009`, the independently authored BG-D02,
+BG-D03, and BG-D04 development fixtures were integrated without changing this
+normative product contract. Their frozen candidates, visible assertions, and
+verifier-only packages pass fixture-specific verification and the shared D01-D04
+descriptor, manifest, isolation, and replay regression. This is unscored development
+evidence; the integration trajectory and its continuations remain pending trace
+capture/review and owner promotion. No official/scored run occurred.
 **Human approval:** 2026-08-29T10:46:39Z
 **Clean session:** `SES-20260829-001`
 
@@ -515,6 +522,7 @@ npm test
 npm run compile
 npm run task -- list
 npm run task -- d01:verify
+npm run task -- development:verify
 npm run preflight:implementation
 npm run task -- baseline:verify --evaluation-version eval-v1.1.0
 npm run task -- beyondgreen:verify --evaluation-version eval-v1.1.0

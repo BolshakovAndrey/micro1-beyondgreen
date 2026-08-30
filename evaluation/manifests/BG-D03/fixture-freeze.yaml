@@ -1,0 +1,58 @@
+schema_version: "1.0"
+fixture_id: "BG-D03"
+membership: "development"
+behavior_class: "derived_state"
+neutral_domain: "community_garden_seedling_tray_planner"
+requirements:
+  - "FR-002"
+  - "FR-004"
+  - "FR-005"
+  - "EV-001"
+  - "EV-002"
+  - "AR-006"
+behavior_spec:
+  path: "evaluation/behavior-specs/BG-D03.md"
+  sha256: "2d7ecccd5afb2c8d7f9e300f3dbb13546d8d5ec1f03df58f9c037eb3348ecc1d"
+  authored_before_implementation: true
+  frozen_at_utc: "2026-08-30T13:43:37Z"
+public_anchors:
+  - url: "https://react.dev/learn/you-might-not-need-an-effect#updating-state-based-on-props-or-state"
+    project: "React"
+    accessed_on: "2026-08-30"
+    use: "General derived-state design rule; no copied implementation expression."
+  - url: "https://preactjs.com/guide/v10/signals/#deriving-state-via-computed-signals"
+    project: "Preact"
+    accessed_on: "2026-08-30"
+    use: "Public computed-signal capability; no copied implementation expression."
+signals_dependency:
+  package: "@preact/signals-react"
+  version: "3.12.0"
+  license: "MIT"
+provenance:
+  authoring_agent: "Codex"
+  model_family: "GPT-5"
+  authored_on: "2026-08-30"
+  source_classes:
+    - "official hackathon and repository contracts"
+    - "public React documentation"
+    - "public Preact Signals documentation"
+    - "independently authored synthetic prose"
+  attestation: "No employer or client source, tests, data, identifiers, structures, screenshots, traces, or private documentation were used for this fixture expression."
+candidate_freeze:
+  status: "frozen"
+  preserving_path: "candidates/BG-D03/candidate-a/TrayPlanner.ts"
+  preserving_sha256: "2eb4aeb87afbe842276264e83b3ffe1fd602222e97dec2634991ecde62a3e4d2"
+  false_green_path: "candidates/BG-D03/candidate-b/TrayPlanner.ts"
+  false_green_sha256: "33c753df0721d58f03d0d7edaddcd1483311b7d69608dcc7b9e8924b55af56f9"
+oracle_freeze:
+  status: "frozen"
+  canonical_driver_path: "evaluation/verifier-only/BG-D03/canonical-driver.ts"
+  canonical_driver_sha256: "121aced6e73d72f41a5827bfce315ce6419d92857d67925d096e434eb485f2e8"
+  assertions_path: "evaluation/verifier-only/BG-D03/oracle-assertions.ts"
+  assertions_sha256: "a3bef7f4e87a9fff24b5e1428938b661faedd982a887b66b96efdb142887f5a6"
+  ground_truth_path: "evaluation/verifier-only/BG-D03/ground-truth.json"
+  ground_truth_sha256: "4daccc16269118e6df0e064a135b1d98ba7e1ea0139119a3712d70c4b6e2f6bd"
+review:
+  automated: "pending"
+  human: "pending"
+  submission_eligible: false

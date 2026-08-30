@@ -41,6 +41,10 @@ npm test
 npm run task -- d01:verify
 npm run task -- d01:demo
 npm run task -- d01:replay
+npm run task -- d02:verify
+npm run task -- d03:verify
+npm run task -- d04:verify
+npm run task -- development:verify
 ```
 
 Expected success markers include:
@@ -50,6 +54,10 @@ TASK_PASSED test:all
 TASK_PASSED d01:verify
 TASK_PASSED d01:demo
 TASK_PASSED d01:replay
+TASK_PASSED d02:verify
+TASK_PASSED d03:verify
+TASK_PASSED d04:verify
+TASK_PASSED development:verify
 ```
 
 `npm test` deterministically discovers ordinary tests only under the approved public
@@ -68,6 +76,13 @@ manifests or checksum projections. Reviewers normally use `test:all`, `d01:verif
 `phase0.5:verify`. The catalog contains no obsolete live launcher: every registered
 task either verifies a submitted contract, reproduces evidence, or regenerates a
 reviewed projection after an authorized source change.
+
+BG-D02 through BG-D04 are integrated as unscored development fixtures. Their
+fixture-specific tasks verify visible behavior, evaluator conclusions, immutable
+manifests, and physical oracle isolation; `development:verify` checks the exact
+D01-D04 fixture/task bijection, preserves the TypeScript `ParcelDispatchBoard`
+family, proves the discarded MJS prototype is absent, and replays D01
+deterministically. These commands do not perform an official/scored run.
 
 The D01 vertical slice is an explicitly unscored development demonstration. The
 owner-approved correction boundary `SES-20260830-003` is now implemented under the

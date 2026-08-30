@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-D04",
+  "candidates": {
+    "preserving": {
+      "path": "candidates/BG-D04/preserving/BulletinPanel.ts",
+      "sha256": "7bc7dca8cea0c30ff5b6368d91b17557db68004a9d4d289191690c8638053aa3",
+      "ground_truth": "preserving"
+    },
+    "false-green": {
+      "path": "candidates/BG-D04/false-green/BulletinPanel.ts",
+      "sha256": "d0b526116b275a275f3d84e260fe8b471f1f3516f723c4b7df973b6b0fa1220f",
+      "ground_truth": "false_green"
+    }
+  }
+}

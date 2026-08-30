@@ -1,0 +1,39 @@
+schema_version: "1.0"
+record_id: "BG-D04-BEHAVIOR-FREEZE-001"
+fixture_id: "BG-D04"
+membership: "development"
+behavior_class: "subscription_cleanup"
+neutral_domain: "synthetic_harbor_bulletin_subscription_panel"
+status: "implementation_authorized_fixture_freeze"
+normative_projection: "docs/PROJECT_SPEC.md@1.1.0"
+english_behavior_path: "evaluation/behavior-specs/BG-D04_BEHAVIOR.md"
+english_behavior_sha256: "ce2238eebe6dffc2afd25035a778e537c6981ba2b781f4547449a73a4ccad08d"
+public_anchor_ids:
+  - "SRC-REACT-USEEFFECT-CLEANUP"
+  - "SRC-REACT-SYNCHRONIZING-EFFECTS"
+observable_contract:
+  channels: ["harbor", "orchard"]
+  visible_test_ids:
+    - "BG-D04-VIS-001"
+    - "BG-D04-VIS-002"
+    - "BG-D04-VIS-003"
+    - "BG-D04-VIS-004"
+  canonical_actions:
+    - "mount"
+    - "publish-harbor-2"
+    - "switch-orchard"
+    - "publish-harbor-5"
+    - "publish-orchard-3"
+    - "reset"
+    - "unmount"
+false_green_construction:
+  candidate_count: 1
+  allowed_defect_family: "obsolete_subscription_not_cleaned_up"
+  compilation_and_all_visible_tests_must_pass: true
+  unrelated_behavior_must_be_preserved: true
+oracle_boundary:
+  verifier_path: "evaluation/verifier-only/BG-D04/"
+  arm_mount_allowed: false
+  pre_verdict_feedback_rounds: 0
+  filesystem_permission_probe_required: true
+freeze_digest: "ce2238eebe6dffc2afd25035a778e537c6981ba2b781f4547449a73a4ccad08d"

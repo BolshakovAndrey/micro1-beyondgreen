@@ -45,6 +45,14 @@ deterministic submission path redaction mandatory. Official/scored runs, live
 model, Chromium, BG-D02, commit, and push remain unauthorized. Scanner output is
 evidence, not approval.
 
+Under owner-approved `SES-20260830-009`, BG-D02 through BG-D04 are integrated into
+the typed development verification path. Ordinary tests and the D01-D04 fixture,
+manifest, isolation, descriptor/task bijection, discarded-prototype, replay, and
+Phase 0.5 regressions pass without an official/scored run. Three machine-local path
+spans in the BG-D02 Russian subagent report were replaced with the neutral marker;
+the target-only scanner now reports zero absolute-user-path findings. The current
+integration trajectory remains pending capture/review and owner promotion.
+
 ## Phase 1 — Control plane
 
 - [x] Official challenge and judging contracts are preserved.

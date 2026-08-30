@@ -8,6 +8,7 @@ import {
   checkRequiredPaths,
   isIgnored,
   loadConfig,
+  scanFile,
   scanTree,
   validatePrivatePath,
 } from "../scripts/preflight-check.ts";
@@ -34,6 +35,79 @@ test("detects macOS/Linux machine-specific user paths", () => {
   const findings = scanTree(root, minimalConfig());
 
   assert.deepEqual(findings.map((item) => item.category), [ "absolute-user-path" ]);
+  assert.deepEqual(
+    findings.map(({ start, end, patternId }) => ({ start, end, patternId })),
+    [ { start: 0, end: privatePath.length, patternId: "absolute-user-path-macos-users-v1" } ],
+  );
+  assert.deepEqual(findings[0].spans, [
+    { start: 0, end: privatePath.length, patternId: "absolute-user-path-macos-users-v1" },
+  ]);
+  assert.doesNotMatch(JSON.stringify(findings), new RegExp(privatePath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+});
+
+test("single-file scanning returns safe machine-readable boundaries only for its target", () => {
+  const root = temporaryRoot();
+  const privatePath = "/" + "Users" + "/example/project/file.ts";
+  writeFileSync(path.join(root, "target.md"), `prefix ${privatePath} suffix`);
+  writeFileSync(path.join(root, "other.md"), privatePath);
+
+  const findings = scanFile(root, "target.md", minimalConfig());
+  const serialized = JSON.stringify(findings);
+
+  assert.equal(findings.length, 1);
+  assert.deepEqual(
+    findings[0],
+    {
+      severity: "error",
+      category: "absolute-user-path",
+      path: "target.md",
+      line: 1,
+      start: 7,
+      end: 7 + privatePath.length,
+      patternId: "absolute-user-path-macos-users-v1",
+      spans: [
+        {
+          start: 7,
+          end: 7 + privatePath.length,
+          patternId: "absolute-user-path-macos-users-v1",
+        },
+      ],
+      message: "Machine-specific user path detected; content suppressed.",
+    },
+  );
+  assert.doesNotMatch(serialized, new RegExp(privatePath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.doesNotMatch(serialized, /other\.md/u);
+});
+
+test("enumerates every non-overlapping path span in deterministic order without raw values", () => {
+  const root = temporaryRoot();
+  const firstPath = "/" + "mnt/c/" + "Users" + "/example/first.ts";
+  const secondPath = "/" + "home" + "/example/second.ts";
+  const line = `later ${secondPath} earlier ${firstPath}`;
+  writeFileSync(path.join(root, "trace.md"), line);
+
+  const [ finding ] = scanTree(root, minimalConfig());
+  const serialized = JSON.stringify(finding);
+
+  assert.deepEqual(finding.spans, [
+    {
+      start: line.indexOf(secondPath),
+      end: line.indexOf(secondPath) + secondPath.length,
+      patternId: "absolute-user-path-linux-home-v1",
+    },
+    {
+      start: line.indexOf(firstPath),
+      end: line.indexOf(firstPath) + firstPath.length,
+      patternId: "absolute-user-path-wsl-users-v1",
+    },
+  ]);
+  assert.deepEqual(
+    { start: finding.start, end: finding.end, patternId: finding.patternId },
+    finding.spans[0],
+  );
+  assert.equal(new Set(finding.spans.map((span) => JSON.stringify(span))).size, finding.spans.length);
+  assert.doesNotMatch(serialized, new RegExp(firstPath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.doesNotMatch(serialized, new RegExp(secondPath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 });
 
 test("detects Windows machine-specific user paths with either separator", () => {

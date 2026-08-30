@@ -1,0 +1,125 @@
+schema_version: "1.1"
+session_id: "SES-20260830-006"
+started_at_utc: "2026-08-30T13:36:19Z"
+agent:
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Prepare a submission-eligible BG-D02 fixture-authoring boundary; no fixture artifact or implementation exists before owner approval"
+repository:
+  root: "."
+  root_resolution: "The Git top level matched the task-authorized clean repository root; the machine-specific absolute path is intentionally not persisted."
+  branch_state: "detached_head_isolated_worktree"
+  branch: ""
+  base_commit: "18510e26fd38e890c0370481ccce114f90cf4ca6"
+  initial_head: "18510e26fd38e890c0370481ccce114f90cf4ca6"
+  working_tree:
+    state: "clean"
+    observation_command: "git status --short --untracked-files=all"
+    output: "empty"
+  remote_state_contacted_or_verified: false
+  commit_authorized: false
+  push_authorized: false
+context:
+  repository_root: "."
+  allowed_paths_before_approval:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-006.yaml"
+    - "artifacts/trajectories/reviews/BG-D02-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+  allowed_fixture_paths_after_approval:
+    - "evaluation/behavior-specs/BG-D02*"
+    - "evaluation/arm-visible/BG-D02/**"
+    - "evaluation/verifier-only/BG-D02/**"
+    - "evaluation/manifests/BG-D02/**"
+    - "candidates/BG-D02/**"
+    - "tests/*BG-D02*"
+    - "scripts/*BG-D02*"
+  forbidden_shared_paths:
+    - "package.json"
+    - "package-lock.json"
+    - "tsconfig.json"
+    - "src/d01/**"
+    - "shared registries"
+    - "config/topic.yaml"
+    - "docs/PROJECT_SPEC*"
+    - "docs/EVALUATION.md"
+    - "docs/IMPROVEMENT_CHANGELOG.md"
+    - "provenance/trajectory indexes"
+    - "control checksums"
+    - "BG-D01 and every other fixture path"
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+controls:
+  agents_instructions_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  required_contracts_read_in_full: true
+  root_matches_authorized_scope: true
+  clean_worktree_at_boundary: true
+  private_denylist_available_to_scanner_only: false
+  private_paths_resolve_outside_repository: false
+  raw_trace_location: "external_local_only_not_accessed_before_approval"
+  values_paths_or_contents_disclosed: false
+  automatic_trace_transport_plan: "Before any approved implementation, validate the repository policy for unchanged Codex JSONL stdout piped directly to micro1-safe-trace. micro1-safe-trace alone may use MICRO1_PRIVATE_TRACE_DIR for the external raw layer. Never persist, print, tee, command-substitute, or place the raw JSONL in a repository file. Retain only approved safe metadata after scanning and review. Any failed validation stops work."
+verification_plan:
+  before_fixture_authoring: "Verify approved scope, public-anchor provenance, the JSONL-to-micro1-safe-trace transport policy, and the absence of forbidden-path changes."
+  after_fixture_authoring: "Run only fixture-specific deterministic checks named with BG-D02; verify visible gates, candidate immutability hashes, evaluator self-check, and denied oracle access. Do not run an official/scored evaluation, live model, Chromium, browser/MCP, or Claude."
+  shared_integration_changes: "Report required shared registry, engine, package, manifest-index, checksum, or projection changes to the owner; do not edit them."
+attestation:
+  submission_eligible_at_start: true
+  submission_eligible_after_boundary: "pending_human_approval"
+  repository_artifacts_status: "boundary_only_pending_human_review"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: ""
+human_approval:
+  status: "pending"
+  approver: ""
+  approved_at_utc: ""
+  approval_evidence: ""
+authorization:
+  boundary_preparation_requested_by_owner: true
+  boundary_preparation_only: true
+  allowed_before_human_approval:
+    - "Read the listed repository-local mandatory contracts and boundary template."
+    - "Inspect repository-local Git metadata and existing session identifiers."
+    - "Create this boundary record and its complete Russian owner checkpoint card."
+    - "Structurally validate only those two new service files."
+  prohibited_before_human_approval:
+    - "Create fixture prose, React or signals code, candidates, oracle packages, tests, manifests, benchmark/evaluation outputs, or traces."
+    - "Modify shared or forbidden paths."
+    - "Run product commands, fixture checks, preflight scanner, live model, official/scored run, Chromium, browser automation, MCP, connected apps, Claude, or private-state access."
+    - "Commit, push, publish, or contact remote Git state."
+transport_attempt_history:
+  - trace_id: "TRC-BG-D02-001"
+    status: "unused_failed_unindexed"
+    disposition: "No safe receipt or raw-capture identity was returned; no fixture artifact was created. This record is not a trajectory index entry and is not submission evidence."
+    retries_authorized_after_disposition: 1

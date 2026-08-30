@@ -1,0 +1,213 @@
+schema_version: "1.1"
+session_id: "SES-20260830-009"
+started_at_utc: "2026-08-30T14:13:08Z"
+agent:
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Prepare a submission-eligible boundary for owner-gated BG-D02 through BG-D04 fixture-only integration and review"
+
+repository:
+  root: "."
+  root_resolution: "The Git top level matched the task-authorized isolated clean worktree; the machine-specific absolute path is intentionally not persisted in this service record."
+  branch_state: "detached_head"
+  exact_base_commit: "18510e26fd38e890c0370481ccce114f90cf4ca6"
+  initial_head: "18510e26fd38e890c0370481ccce114f90cf4ca6"
+  working_tree_at_start: "clean"
+  remote_state_contacted_or_verified: false
+  commit_authorized: false
+  push_authorized: false
+
+authorized_source_commits:
+  common_base: "18510e26fd38e890c0370481ccce114f90cf4ca6"
+  source_objects_exist_locally: true
+  sources:
+    - fixture_id: "BG-D02"
+      behavior_class: "queued_batched_updates"
+      commit: "c52bacc0b1d9497990b58bd73d5afdbca95035d5"
+      owner_authorization: "fixture_only_checkpoint_commit"
+      representative_capture: "owner_reports_valid_representative_Codex_capture"
+    - fixture_id: "BG-D03"
+      behavior_class: "derived_state"
+      commit: "fd96a3ffefaaac9de4cabe098632ecc4876a67be"
+      owner_authorization: "fixture_only_checkpoint_commit"
+      representative_capture: "owner_reports_valid_representative_Codex_capture"
+    - fixture_id: "BG-D04"
+      behavior_class: "subscription_cleanup"
+      commit: "140041f82971f73eca17e2735050ecb0ec8de77d"
+      owner_authorization: "fixture_only_checkpoint_commit"
+      representative_capture: "completed_by_native_Codex_subagent_internal_raw_events_not_claimed"
+  evidence_scope_note: "Capture and authorship statements above are owner-supplied checkpoint facts recorded at this boundary; this boundary performs no implementation-evidence validation."
+  failed_attempts_excluded_and_unused:
+    - "D02-001"
+    - "D04-001"
+    - "D04-002"
+
+context:
+  repository_root: "."
+  allowed_paths_before_approval:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-004.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-005.yaml"
+    - "artifacts/trajectories/reviews/BG-D01-SCALE-004-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-009.yaml"
+    - "artifacts/trajectories/reviews/BG-D02-D04-INTEGRATION-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+  values_paths_or_contents_disclosed: false
+
+controls:
+  agents_instructions_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  required_contracts_read_in_full: true
+  root_matches_authorized_scope: true
+  exact_base_checked: true
+  clean_worktree_checked: true
+  source_commit_objects_exist_locally: true
+  source_commit_contents_inspected: false
+  private_denylist_available_to_scanner_only: false
+  private_paths_resolve_outside_repository: false
+  raw_trace_location: "external_local_only_not_accessed_before_approval"
+
+structural_preflight:
+  product_or_shared_files_read_beyond_mandatory_contracts: false
+  product_or_shared_files_modified: false
+  source_commits_cherry_picked: false
+  integration_conflicts_resolved: false
+  compile_or_tests_executed: false
+  product_commands_executed: false
+  scanner_or_preflight_executed: false
+  nested_codex_cli_executed: false
+  trace_capture_executed: false
+  implementation_evidence_created: false
+  official_or_scored_run_performed: false
+  live_model_calls: 0
+  claude_calls: 0
+  chromium_calls: 0
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  global_memory_reads: 0
+  boundary_id_availability: "passed"
+  owner_card_path_availability: "passed"
+
+authorization:
+  boundary_preparation_requested_by_owner: true
+  boundary_preparation_only: true
+  integration_authorized_before_separate_human_approval: false
+  official_or_scored_run_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  allowed_before_human_approval:
+    - "Read AGENTS.md, every mandatory contract, the session-boundary template, and minimum repository-local service-file examples in full."
+    - "Inspect only repository-local Git root, exact HEAD, clean status, and existence/type of the exact base and three authorized source commit objects."
+    - "Create SES-20260830-009 and its complete natural-Russian owner checkpoint card."
+    - "Structurally validate only those two new service files."
+  prohibited_before_human_approval:
+    - "Cherry-pick any source commit or inspect its implementation content."
+    - "Modify product, fixture, candidate, oracle, test, shared architecture, registry, documentation projection, changelog, provenance, trajectory index, checksum, manifest, or reproduction files."
+    - "Run compile, tests, fixture verification, replay, regression, evaluator self-check, manifest reconciliation, checksum generation, preflight, trace capture, or any product command."
+    - "Create implementation evidence."
+    - "Invoke nested Codex CLI, Claude, live product model, Chromium, browser automation, browser private state, connected apps, private MCP, global memory, sibling repositories, or external workspaces."
+    - "Run an official or scored workflow, commit, push, publish, package, or submit."
+
+future_integration_scope_after_exact_owner_approval:
+  planned_trace_id: "TRC-BG-D02-D04-INTEGRATION-001"
+  allowed_operations_exact:
+    - "Cherry-pick only c52bacc0b1d9497990b58bd73d5afdbca95035d5, fd96a3ffefaaac9de4cabe098632ecc4876a67be, and 140041f82971f73eca17e2735050ecb0ec8de77d."
+    - "Resolve only conflicts caused by integrating those three authorized fixture commits."
+    - "Retain the BG-D02 TypeScript ParcelDispatchBoard implementation family."
+    - "Connect BG-D02, BG-D03, and BG-D04 to the typed common fixture, descriptor, and task registry and to the existing D01 verification architecture."
+    - "Do not change frozen behavior specifications, verifier-only oracles, immutable candidates, visible assertions, evaluation methodology, targets, denominators, dependencies, or runtime policy."
+    - "Update only the shared task runner, README reproduction instructions, current projections, Improvement Changelog, provenance index, trajectory index, checksums, and directly affected manifests required to describe and reproduce the integrated D01-D04 state."
+    - "Add cross-fixture integration tests for D01 through D04."
+  discarded_experiment:
+    id: "BG-D02-MJS-QUEUEBATCHCOUNTER"
+    implementation_family: "MJS QueueBatchCounter prototype"
+    disposition: "discarded_experiment_not_retained"
+    retained_replacement: "TypeScript ParcelDispatchBoard family"
+  excluded_operations:
+    - "Any semantic edit to frozen fixture behavior, oracles, candidates, visible assertions, scoring, targets, denominators, dependencies, runtime policy, or K=0 isolation."
+    - "Any held-out fixture work, unblinding, repair, official or scored run, live model, Claude, Chromium, browser, connected app, private MCP, commit, push, publication, packaging, or submission."
+
+automatic_trace_capture_plan_after_exact_owner_approval:
+  trace_id: "TRC-BG-D02-D04-INTEGRATION-001"
+  execution_shape: "single_process_integration_trajectory"
+  implementation_executor: "local_Codex_CLI"
+  required_cli_option: "--ignore-user-config"
+  source_format: "machine_readable_JSONL_stdout"
+  destination: "micro1-safe-trace_external_raw_layer"
+  byte_transport: "Pipe Codex CLI JSONL stdout unchanged and directly to micro1-safe-trace stdin."
+  simultaneous_nested_cli_allowed: false
+  repository_raw_intermediate_file: false
+  manual_copy_or_edited_fallback: false
+  stderr_policy: "Keep stderr separate through the approved privacy-safe path and never merge it into JSONL stdout or expose raw content."
+  precondition: "Validate the repository-policy transport before starting the one nested CLI process; validation alone must not start the nested CLI."
+  failure_action: "Stop and request owner direction; do not run a simultaneous or replacement nested CLI and do not fall back to manual capture."
+
+future_verification_plan_after_integration:
+  stop_policy: "Stop at the first real unexpected failure. Deterministic expected manifest or checksum reconciliation caused solely by the authorized integration may be handled inside TRC-BG-D02-D04-INTEGRATION-001."
+  required_checks:
+    - "Compile the complete D01 through D04 integrated TypeScript surface."
+    - "Run every D01 through D04 visible gate."
+    - "Run evaluator self-checks for D01 through D04."
+    - "Verify physical oracle and capability boundaries for both arms and every D01 through D04 candidate."
+    - "Verify immutable candidate bytes, hashes, and before/after identities."
+    - "Verify fixture, arm-visible, verifier-only, candidate, and vertical manifests and their hashes."
+    - "Verify exact descriptor, fixture, task, role, profile, proof, and runner bijections."
+    - "Verify the exact development fixture count is four and the integrated fixture set is exactly BG-D01, BG-D02, BG-D03, and BG-D04."
+    - "Run deterministic replay and cross-fixture regression checks."
+    - "Verify complete English/Russian documentation parity for owner-facing materials, including retries, risks, evidence, and approval scope."
+    - "Verify checksum coverage and values."
+    - "Run both control and implementation preflights through the owner-approved safe interface."
+    - "Confirm no frozen behavior, oracle, candidate, visible assertion, evaluation, target, denominator, dependency, or runtime-policy byte changed except deterministic expected manifest/checksum reconciliation."
+
+language_contract:
+  owner_facing_reports: "complete_natural_russian"
+  code_jsdoc_and_comments: "english"
+  technical_identifier_policy: "Keep exact identifiers, commands, paths, library names, and official product names in English; explain unavoidable English terminology in Russian on first use."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "boundary_candidate_pending_human_review"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: ""
+  implementation_evidence_status: "not_created"
+
+human_approval:
+  status: "pending"
+  approver: ""
+  approved_at_utc: ""
+  approval_evidence: ""
+  exact_required_phrase: "Одобряю SESSION_BOUNDARY SES-20260830-009 и разрешаю одну допустимую интеграционную траекторию TRC-BG-D02-D04-INTEGRATION-001: выполнить только cherry-pick трёх commit фикстур c52bacc0b1d9497990b58bd73d5afdbca95035d5, fd96a3ffefaaac9de4cabe098632ecc4876a67be и 140041f82971f73eca17e2735050ecb0ec8de77d, разрешать только интеграционные конфликты, сохранить TypeScript-семейство ParcelDispatchBoard для BG-D02 и выполнить автоматический однопроцессный захват Codex JSONL → micro1-safe-trace с --ignore-user-config без одновременных вложенных CLI; замороженное поведение, скрытые эталоны, варианты решения, видимые утверждения, методику оценивания, цели, зависимости и политику выполнения не менять, официальный или оцениваемый запуск, Claude, Chromium, живую модель продукта, браузер, приватный MCP, commit и push не выполнять."

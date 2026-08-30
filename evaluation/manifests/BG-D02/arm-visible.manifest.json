@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-D02",
+  "package_id": "BG-D02-arm-visible",
+  "package_kind": "arm_visible",
+  "immutable": true,
+  "hash_algorithm": "SHA-256",
+  "source_files": [
+    {
+      "path": "evaluation/arm-visible/BG-D02/contract.ts",
+      "sha256": "3785d5a80d50536817bf64fca1014c49b5ee252c63ceb0cfa82c11a3f1aab732"
+    },
+    {
+      "path": "evaluation/arm-visible/BG-D02/render.ts",
+      "sha256": "01590e080aa9fde17d6b22148f68976c896ff7a4cd34754b805fd55b97a59815"
+    },
+    {
+      "path": "evaluation/arm-visible/BG-D02/harness.ts",
+      "sha256": "d38c31ce012e4ad51067519595cef9d1600ed2a5889c71d269b6c73a4ad50308"
+    },
+    {
+      "path": "evaluation/arm-visible/BG-D02/visible-assertions.ts",
+      "sha256": "34e43ebef51140bab88a3edcda2cbb92c83b3c88937c91f70a7d9e78e9ec72ed"
+    },
+    {
+      "path": "evaluation/arm-visible/BG-D02/BG-D02-visible.test.ts",
+      "sha256": "174ad70fbe10533f830ac4c2c1fbc4d1577428f21b5de2105005e43a0ea0a783"
+    },
+    {
+      "path": "evaluation/arm-visible/BG-D02/BG-D02-unit-contract.test.ts",
+      "sha256": "0cc1ac701d79ae99d0be36d9a127569c604f044468e2fc4ceb1cf0f3d3fc1d06"
+    },
+    {
+      "path": "evaluation/arm-visible/BG-D02/BG-D02-denied-probe.mjs",
+      "sha256": "5dd84390464ab2dd54d03ba131fefdd899de842a40a4a321311acd8f47d12252"
+    }
+  ],
+  "package_sha256": "1f53677eeea80601c94048c76acf9b405866be0a5f3e181231023c2f61f9ed02"
+}

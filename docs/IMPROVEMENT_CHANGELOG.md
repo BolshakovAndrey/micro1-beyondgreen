@@ -1728,3 +1728,34 @@ failure, and final hot take remain unclaimed until evidence exists.
   submission. This approval does not authorize an official/scored run, BG-D02 work,
   dependency or methodology changes, commit, or push.
 - **Decision:** `owner_approved_eight_capture_bundle_indexed_scale_ready_true`.
+
+## ITR-041 — Integrate and verify the BG-D02-D04 development fixtures
+
+- **Authorization and hypothesis:** owner-approved `SES-20260830-009` and
+  `TRC-BG-D02-D04-INTEGRATION-001` with `CONT-001` through `CONT-009`. The
+  hypothesis is that three independently frozen development fixtures can use the
+  shared typed verification architecture without changing frozen semantics or the
+  evaluation contract.
+- **Change:** retained the TypeScript BG-D02 `ParcelDispatchBoard` family and the
+  discarded MJS prototype record; connected BG-D02-D04 to typed tasks, manifests,
+  physical isolation, and cross-fixture regression. The scanner now exposes safe
+  non-overlapping spans. Exactly three approved spans in the BG-D02 Russian report
+  were replaced in memory by `<redacted-local-path>`; all other bytes were proven
+  unchanged and the target-only absolute-path scan returned zero findings.
+- **Evaluation commands/version:** `npm test`; `npm run task -- d01:verify`;
+  `npm run task -- d01:replay`; `npm run task -- d02:verify`;
+  `npm run task -- d03:verify`; `npm run task -- d04:verify`;
+  `npm run task -- development:verify`; `npm run task -- phase0.5:verify`;
+  documentation/parity checks; checksum check/write/check; `git diff --check`;
+  safe control and implementation preflights; evaluation version `eval-v1.1.0`.
+- **Evidence:** ordinary tests passed `78/78`; every D01-D04 fixture task passed;
+  integrated manifests, isolation, exact four-fixture/task bijection, discarded
+  prototype assertion, deterministic replay, and Phase 0.5 passed. The normalization
+  precheck and postcheck each proved the owner-specified cardinality and structural
+  byte invariant without emitting original values or target lines.
+- **Preserved surfaces:** behavior prose, candidates, verifier-only oracles, visible
+  assertions, evaluation methodology, targets, denominators, dependencies, lockfile,
+  execution policy, `K=0`, and all official/scored state remain unchanged.
+- **Decision:** `keep_verified_unscored_integration_pending_trace_capture_review_and_owner_promotion`.
+  No official/scored run, live product model, Claude, Chromium, browser/private MCP,
+  commit, or push occurred.

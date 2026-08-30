@@ -25,6 +25,10 @@ behavior specifications and recorded public sources.
 | Current topic-selection conversation | Private control-plane ideation | Before clean boundary | Excluded |
 | Previous raw external-review output | Private control-plane review | Before clean boundary | Excluded |
 | Project-local read-only reviewer skill | Codex-assisted tooling prepared before implementation | During event | Disclose if used; include only reviewed redistributable files |
+| BG-D02 queued/batched-updates development fixture | Independently authored synthetic package under `SES-20260830-006`; frozen behavior/provenance and repository-local source manifests | During event | Integrated and deterministically verified; trajectory review pending |
+| BG-D03 derived-state development fixture | Independently authored synthetic package under `SES-20260830-007`; frozen package manifest | During event | Integrated and deterministically verified; trajectory review pending |
+| BG-D04 subscription-cleanup development fixture | Independently authored synthetic package under `SES-20260830-008`; frozen behavior and source manifests | During event | Integrated and deterministically verified; trajectory review pending |
+| D02-D04 integration and path normalization | Owner-authorized Codex continuation family under `SES-20260830-009` | During event | Repo-local verification complete; capture/review/owner promotion pending |
 
 ## 3. Source admission rule
 

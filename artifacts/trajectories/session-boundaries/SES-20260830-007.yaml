@@ -1,0 +1,183 @@
+schema_version: "1.1"
+session_id: "SES-20260830-007"
+started_at_utc: "2026-08-30T13:36:14Z"
+agent:
+  id: "COD-CODEX-013"
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Prepare a submission-eligible BG-D03 derived-state fixture boundary and, only after separate owner approval, author one bounded synthetic fixture trajectory"
+
+repository:
+  root: "."
+  root_resolution: "The Git top level matched the task-authorized clean repository root; the machine-specific absolute path is intentionally not persisted."
+  branch_state: "detached_head_isolated_worktree"
+  branch: ""
+  required_base_commit: "18510e26fd38e890c0370481ccce114f90cf4ca6"
+  initial_head: "18510e26fd38e890c0370481ccce114f90cf4ca6"
+  working_tree:
+    state: "clean"
+    observation_command: "git status --short --untracked-files=all"
+    ownership_note: "No pre-existing tracked or untracked changes were observed; this boundary and its Russian owner card are the only files created by this gate."
+  remote_state_contacted_or_verified: false
+  commit_authorized: false
+  push_authorized: false
+
+context:
+  repository_root: "."
+  allowed_paths_before_approval:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-007.yaml"
+    - "artifacts/trajectories/reviews/BG-D03-SESSION-BOUNDARY-SES-20260830-007-CHECKPOINT_RU.md"
+  allowed_fixture_paths_after_approval:
+    - "evaluation/behavior-specs/BG-D03*"
+    - "evaluation/arm-visible/BG-D03/**"
+    - "evaluation/verifier-only/BG-D03/**"
+    - "evaluation/manifests/BG-D03/**"
+    - "candidates/BG-D03/**"
+    - "fixture-specific tests and scripts whose names contain BG-D03"
+  forbidden_shared_paths_after_approval:
+    - "package.json"
+    - "package-lock.json"
+    - "tsconfig.json"
+    - "src/d01 generic engine"
+    - "shared registries"
+    - "config/topic.yaml"
+    - "docs/PROJECT_SPEC*"
+    - "docs/EVALUATION.md"
+    - "docs/IMPROVEMENT_CHANGELOG.md"
+    - "provenance and trajectory indexes"
+    - "control checksums"
+    - "all BG-D01 and other-fixture files"
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "inspected"
+    use_policy: "task_authorized"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+
+controls:
+  agents_instructions_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  required_contracts_read_in_full: true
+  root_matches_authorized_scope: true
+  required_base_commit_matches_head: true
+  detached_worktree_confirmed: true
+  clean_working_tree_confirmed: true
+  private_denylist_available_to_scanner_only: false
+  private_paths_resolve_outside_repository: false
+  raw_trace_location: "external_local_only_not_accessed_before_approval"
+  values_paths_or_contents_disclosed: false
+  global_memory_read_note: "Only the mandatory legacy SESSION_STATE redirect and shared rules were read; no project source, private workspace, browser, MCP, or connected-app state was inspected."
+
+structural_preflight:
+  product_source_read: false
+  fixture_prose_created: false
+  react_or_signals_code_created: false
+  candidates_created: false
+  oracle_created: false
+  tests_created: false
+  manifests_created: false
+  benchmark_or_evaluation_output_created: false
+  trace_capture_executed: false
+  product_commands_executed: false
+  compile_or_tests_executed: false
+  scanner_or_trace_wrapper_executed: false
+  nested_codex_cli_executed: false
+  official_or_scored_run_performed: false
+  live_model_calls: 0
+  chromium_calls: 0
+  browser_or_mcp_calls: 0
+  boundary_id_availability: "passed"
+  owner_card_path_availability: "passed"
+
+authorization:
+  boundary_preparation_requested_by_owner: true
+  boundary_preparation_only: true
+  fixture_authoring_authorized_before_human_approval: false
+  official_or_scored_run_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  allowed_before_human_approval:
+    - "Read AGENTS.md, mandatory contracts, the session-boundary template, and repository-local Git metadata."
+    - "Create only this SESSION_BOUNDARY record and its complete Russian owner checkpoint card."
+    - "Perform structural validation of only these two service files."
+  prohibited_before_human_approval:
+    - "Create fixture prose, React/signals code, candidates, oracle, tests, manifests, benchmark/evaluation outputs, or traces."
+    - "Read product implementation, fixture content, candidates, oracle content, or shared integration source."
+    - "Run compile, tests, preflight, scanner, trace transport, evaluation, replay, or product commands."
+    - "Invoke Codex CLI, Claude, Chromium, browser automation, connected apps, MCP, live model, official/scored run, or private state."
+    - "Commit or push."
+
+planned_fixture_after_explicit_human_approval:
+  fixture_id: "BG-D03"
+  behavior_class: "derived_state"
+  task_kind: "independently authored synthetic React-to-signals migration fixture"
+  required_outcome: "Expose stale, duplicated, or incorrectly recomputed derived state with one preserving and one seeded false-green immutable candidate."
+  forbidden_scope: "No shared integration edits; required shared integration changes must be reported to the owner instead of edited."
+  documentation_contract: "Public/exported TypeScript APIs and important modules require concise English JSDoc; key invariants require English why-comments."
+
+automatic_trace_transport_plan_after_explicit_human_approval:
+  planned_trace_id: "TRC-BG-D03-001"
+  implementation_executor: "local_Codex_CLI"
+  source_format: "machine_readable_JSONL_stdout"
+  destination: "micro1-safe-trace_external_raw_layer"
+  byte_transport: "Codex CLI stdout is piped unchanged directly to micro1-safe-trace stdin."
+  repository_raw_intermediate_file: false
+  manual_copy_as_markdown: false
+  ui_raw_payload_output: false
+  shell_capture_or_tee: false
+  stderr_policy: "Keep stderr separate through the approved privacy-safe path; never merge it into JSONL stdout or disclose raw content in the UI."
+  failure_action: "Stop and request owner direction; do not fall back to manual or edited capture."
+
+verification_plan_after_fixture_authoring:
+  stop_policy: "Stop at the first real failure; do not retry, widen scope, edit shared integration, or run an official/scored workflow without separate owner approval."
+  sequence:
+    - "Validate that every changed path is in the BG-D03 allowlist and that no forbidden shared path changed."
+    - "Verify frozen fixture prose, provenance, public anchor, candidate immutability, and arm-visible versus verifier-only separation."
+    - "Run only approved fixture-specific tests and scripts whose names contain BG-D03."
+    - "Run the approved safe scanner and trace review only after automatic JSONL transport completes."
+    - "Review diffs for English JSDoc and invariant comments, absence of shared integration edits, prohibited content, and hidden-oracle leakage."
+    - "Report any required shared integration change without modifying it."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  eligibility_condition: "Requires exact repository-owner approval of this boundary, automatic capture, successful review, and later trace promotion."
+  repository_artifacts_status: "boundary_candidate_pending_human_review"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: ""
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-30T13:36:14Z"
+  approval_evidence: "The repository owner supplied the exact requested approval phrase in the delegated Codex task."
+  owner_review_card: "artifacts/trajectories/reviews/BG-D03-SESSION-BOUNDARY-SES-20260830-007-CHECKPOINT_RU.md"
+  requested_response_exact: "Одобряю SESSION_BOUNDARY SES-20260830-007 и разрешаю одну eligible fixture-authoring траекторию TRC-BG-D03-001 строго в указанном BG-D03 scope для derived_state; automatic JSONL → micro1-safe-trace capture обязателен, при первом сбое остановиться; shared integration changes только доложить, official/scored run, Claude, Chromium, live model, browser/MCP/private state, commit и push запрещены."

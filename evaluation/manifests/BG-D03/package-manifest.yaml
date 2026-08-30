@@ -1,0 +1,29 @@
+schema_version: "1.0"
+fixture_id: "BG-D03"
+packages:
+  arm_visible:
+    - path: "evaluation/arm-visible/BG-D03/contract.ts"
+      sha256: "f2c1a1770cec62efd54fd7649a66a5df65ec76f1959bc07043175bee431beee4"
+    - path: "evaluation/arm-visible/BG-D03/visible.test.ts"
+      sha256: "e61f90c656c485cd85b8ce087630f71b8f666addd3b14f209eb836abce010eb9"
+  verifier_only:
+    - path: "evaluation/verifier-only/BG-D03/canonical-driver.ts"
+      sha256: "121aced6e73d72f41a5827bfce315ce6419d92857d67925d096e434eb485f2e8"
+    - path: "evaluation/verifier-only/BG-D03/oracle-assertions.ts"
+      sha256: "a3bef7f4e87a9fff24b5e1428938b661faedd982a887b66b96efdb142887f5a6"
+    - path: "evaluation/verifier-only/BG-D03/self-check.test.ts"
+      sha256: "f9b7cfcd917ae8ccf54666e2c5d8d82972e84f51b52afd7d4f3f910fe14e0e3e"
+    - path: "evaluation/verifier-only/BG-D03/ground-truth.json"
+      sha256: "4daccc16269118e6df0e064a135b1d98ba7e1ea0139119a3712d70c4b6e2f6bd"
+  candidates:
+    - path: "candidates/BG-D03/candidate-a/TrayPlanner.ts"
+      sha256: "2eb4aeb87afbe842276264e83b3ffe1fd602222e97dec2634991ecde62a3e4d2"
+    - path: "candidates/BG-D03/candidate-b/TrayPlanner.ts"
+      sha256: "33c753df0721d58f03d0d7edaddcd1483311b7d69608dcc7b9e8924b55af56f9"
+  fixture_test:
+    path: "tests/BG-D03-derived-state.test.ts"
+    sha256: "ebdfb65e754fc5bcab64e63aa4c8753d39d63e1ee966a5d288688357e9e775c2"
+integrity:
+  algorithm: "sha256"
+  candidate_bytes_immutable_after_freeze: true
+  hidden_oracle_not_mounted_in_arm_visible_package: true

@@ -1,5 +1,6 @@
 import { commonTasks } from "./common.ts";
 import { d01Tasks } from "./d01.ts";
+import { developmentTasks } from "./development.ts";
 import { phase05Tasks } from "./phase0.5.ts";
 import type { TaskDefinition } from "./types.ts";
 
@@ -17,7 +18,7 @@ export function buildTaskRegistry(
 }
 
 /** The ordinary registry contains only safe tests, audits, and bounded verification. */
-export const taskRegistry = buildTaskRegistry([commonTasks, d01Tasks, phase05Tasks]);
+export const taskRegistry = buildTaskRegistry([commonTasks, d01Tasks, developmentTasks, phase05Tasks]);
 
 const tasksByName = new Map(taskRegistry.map((task) => [task.name, task]));
 

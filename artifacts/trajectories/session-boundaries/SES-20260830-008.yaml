@@ -1,0 +1,208 @@
+schema_version: "1.1"
+session_id: "SES-20260830-008"
+started_at_utc: "2026-08-30T13:36:04Z"
+agent:
+  id: "COD-CODEX-013"
+  tool: "Codex Desktop"
+  model: "GPT-5"
+  purpose: "Prepare the clean boundary for independently authored synthetic BG-D04 subscription-cleanup fixture work; do not author fixture content before owner approval."
+
+repository:
+  root: "."
+  root_resolution: "The Git top level matched the task-authorized clean repository root; the machine-specific absolute path is intentionally not persisted."
+  branch_state: "detached_head"
+  branch: ""
+  base_commit: "18510e26fd38e890c0370481ccce114f90cf4ca6"
+  initial_head: "18510e26fd38e890c0370481ccce114f90cf4ca6"
+  working_tree:
+    state: "clean"
+    comparison_to_base: "git diff --quiet 18510e26fd38e890c0370481ccce114f90cf4ca6 passed before either boundary file was created"
+    ownership_note: "No inherited source change is attributed to this session. Only this boundary and its Russian owner card may be created before approval."
+  remote_state_contacted_or_verified: false
+  commit_authorized: false
+  push_authorized: false
+
+context:
+  repository_root: "."
+  allowed_paths_before_approval:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-008.yaml"
+    - "artifacts/trajectories/reviews/BG-D04-SESSION-BOUNDARY-008-CHECKPOINT_RU.md"
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "inspected"
+    use_policy: "task_authorized"
+  global_memory_exception:
+    reason: "AGENTS.md startup instruction required read-only session-state and shared-rules files. They were not used as a product, fixture, candidate, oracle, or provenance source."
+    product_scope_effect: "This preparation transcript is pending review and is not itself an eligible fixture-authoring trajectory."
+  permitted_external_interfaces_after_approval_only:
+    - "repository-policy validation of Codex JSONL to micro1-safe-trace transport"
+    - "scanner read through MICRO1_PRIVATE_DENYLIST safe wrapper only"
+    - "unchanged Codex CLI JSONL stdout stream to micro1-safe-trace through MICRO1_PRIVATE_TRACE_DIR"
+  prohibited_external_access: "all other external access"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+
+controls:
+  agents_instructions_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  required_contracts_read_in_full: true
+  root_matches_authorized_scope: true
+  unique_session_id_checked: true
+  private_denylist_available_to_scanner_only: false
+  private_paths_resolve_outside_repository: false
+  raw_trace_location: "external_local_only_not_accessed_before_approval"
+  values_paths_or_contents_disclosed: false
+
+structural_preflight:
+  fixture_prose_created: false
+  fixture_code_read_or_modified: false
+  candidate_created_or_read: false
+  oracle_created_or_read: false
+  test_created_or_run: false
+  manifest_created_or_modified: false
+  benchmark_or_evaluation_output_created: false
+  trace_capture_executed: false
+  compile_or_tests_executed: false
+  scanner_or_trace_wrapper_executed: false
+  nested_codex_cli_executed: false
+  official_or_scored_run_performed: false
+  live_model_calls: 0
+  claude_calls: 0
+  chromium_calls: 0
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  boundary_id_availability: "passed"
+  owner_card_path_availability: "passed"
+
+authorization:
+  boundary_preparation_requested_by_owner: true
+  boundary_preparation_only: true
+  fixture_authoring_authorized_before_human_approval: false
+  official_or_scored_run_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  allowed_before_human_approval:
+    - "Read the task-scoped instructions and mandatory repository contracts in full."
+    - "Inspect Git root, HEAD, base-commit equality, clean working-tree state, session-ID availability, and the two new service-file paths."
+    - "Create this SESSION_BOUNDARY and its complete natural Russian owner checkpoint card."
+    - "Perform structural validation of only these two new service files."
+  prohibited_before_human_approval:
+    - "Create or edit BG-D04 behavior prose, public anchors, provenance, React/signals code, candidates, oracle, tests, manifests, benchmark/evaluation outputs, or traces."
+    - "Read fixture-specific implementation, candidates, oracle, or test content."
+    - "Modify package.json, package-lock.json, tsconfig.json, src/d01 generic engine, shared registries, config/topic.yaml, docs/PROJECT_SPEC.md, docs/EVALUATION.md, docs/IMPROVEMENT_CHANGELOG.md, provenance/trajectory indexes, control checksums, or any BG-D01/other-fixture file."
+    - "Run compile, tests, preflight, evaluation, replay, fixture verification, scanner, trace wrapper, nested Codex CLI, Claude, live model, Chromium, browser, MCP, or connected-app actions."
+    - "Commit, push, publish, or run an official/scored workflow."
+
+bounded_fixture_scope_after_explicit_human_approval:
+  fixture_id: "BG-D04"
+  behavior_class: "subscription_cleanup"
+  development_membership: "development_fixture"
+  required_outputs:
+    - "Independently authored synthetic behavior-first prose with public anchors, neutral domain, provenance, license/terms record, and frozen SHA-256 digest."
+    - "One immutable behavior-preserving candidate and one immutable seeded false-green candidate; both must compile and pass the identical visible gate."
+    - "Separate arm-visible task package and verifier-only oracle package with physical oracle isolation and K=0 preserved."
+  allowed_fixture_specific_paths:
+    - "evaluation/behavior-specs/BG-D04*"
+    - "evaluation/arm-visible/BG-D04/**"
+    - "evaluation/verifier-only/BG-D04/**"
+    - "evaluation/manifests/BG-D04/**"
+    - "candidates/BG-D04/**"
+    - "fixture-specific tests/scripts whose names contain BG-D04"
+  forbidden_shared_paths:
+    - "package.json"
+    - "package-lock.json"
+    - "tsconfig.json"
+    - "src/d01/**"
+    - "shared registries"
+    - "config/topic.yaml"
+    - "docs/PROJECT_SPEC*"
+    - "docs/EVALUATION.md"
+    - "docs/IMPROVEMENT_CHANGELOG.md"
+    - "provenance indexes"
+    - "trajectory indexes"
+    - "control checksums"
+    - "any BG-D01 or other-fixture file"
+  integration_rule: "Any required shared registration, package, engine, registry, projection, index, or checksum change is reported to the owner and is not edited by this session."
+  code_documentation_rule: "Public/exported TypeScript APIs and important modules receive concise English JSDoc; key invariants receive short English why-comments."
+  exclusions:
+    - "Official/scored runs, benchmark results, unblinding, live-model calls, Claude, Chromium, browser/MCP/private state, commit, and push."
+    - "Candidate repair or mutation after freeze."
+
+automatic_trace_transport_plan_after_explicit_human_approval:
+  planned_trace_id: "TRC-BG-D04-002"
+  implementation_executor: "local_Codex_CLI"
+  source_format: "machine_readable_JSONL_stdout"
+  destination: "micro1-safe-trace_external_raw_layer"
+  byte_transport: "Codex CLI stdout is piped unchanged directly to micro1-safe-trace stdin."
+  repository_raw_intermediate_file: false
+  manual_copy_as_markdown: false
+  ui_raw_payload_output: false
+  shell_capture_or_tee: false
+  stderr_policy: "Keep stderr separate through the approved privacy-safe path; never merge it into JSONL stdout or disclose raw content in the UI."
+  validation_before_nested_cli: "Prove the repository policy, task scope, stdin/stdout byte path, external-only raw destination, no-tee/no-repository-file controls, and fail-closed exit handling before the first nested CLI invocation."
+  failure_action: "Stop and request owner direction; do not fall back to manual, edited, or Copy-as-Markdown capture."
+
+transport_attempt_history:
+  - trace_id: "TRC-BG-D04-001"
+    status: "unused_failed_attempt"
+    disposition: "No confirmed micro1-safe-trace receipt was produced; no fixture authoring, source change, raw trace, or indexed trajectory resulted."
+    raw_content_retained_in_repository: false
+  - trace_id: "TRC-BG-D04-002"
+    status: "owner_authorized_pending_capture"
+    authorization: "Owner authorized one sequential automatic capture after D02 nested CLI completion."
+
+verification_plan_after_fixture_authoring:
+  stop_policy: "Stop at the first real failure; do not retry, widen scope, edit forbidden shared paths, or change the frozen behavior/candidate/oracle without separate owner approval."
+  sequence:
+    - "Confirm every created or modified path is in the approved BG-D04-only allowlist and report any required shared integration change without editing it."
+    - "Validate behavior-first prose, public-anchor/provenance fields, neutral-domain declaration, and frozen digest before candidate implementation."
+    - "Verify both immutable candidate hashes and that each candidate compiles and passes the identical arm-visible legacy gate."
+    - "Run only fixture-specific BG-D04 tests/scripts and allowed structural checks; preserve physical verifier-only denial and K=0."
+    - "Run no official/scored benchmark, live model, Chromium, Claude, browser, MCP, or connected-app workflow."
+    - "Record hypothesis, change, exact command, evidence, decision, failures, and retries only in subsequently approved fixture-specific records; do not edit shared indexes or changelog."
+    - "Perform required trace review and provide a complete Russian owner packet before requesting any later integration or promotion decision."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  eligibility_condition: "Requires exact repository-owner approval of this boundary before BG-D04 authoring, automatic capture, successful review, and later trace promotion."
+  repository_artifacts_status: "boundary_candidate_pending_human_review"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: ""
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-30T13:36:04Z"
+  approval_evidence: "The repository owner supplied the exact requested approval phrase in the delegated Codex task."
+  owner_review_card: "artifacts/trajectories/reviews/BG-D04-SESSION-BOUNDARY-008-CHECKPOINT_RU.md"
+  requested_response_exact: "Одобряю SESSION_BOUNDARY SES-20260830-008 и разрешаю одну траекторию TRC-BG-D04-001 только для синтетической фикстуры BG-D04 subscription_cleanup в указанном fixture-specific scope с обязательным automatic JSONL → micro1-safe-trace; shared paths не изменять, при первом сбое остановиться; official/scored run, Claude, Chromium, live model, browser/MCP/private state, commit и push запрещены."

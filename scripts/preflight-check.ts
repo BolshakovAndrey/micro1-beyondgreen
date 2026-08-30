@@ -18,11 +18,21 @@ export const CONFIG_PATH = "config/cleanroom.json";
 const REDACTED_PATH = "<redacted-path>";
 
 export type Severity = "error" | "warning";
+export type FindingSpan = {
+  start: number;
+  end: number;
+  patternId: string;
+};
+
 export type Finding = {
   severity: Severity;
   category: string;
   path: string;
   line: number | null;
+  start: number | null;
+  end: number | null;
+  patternId: string | null;
+  spans: FindingSpan[];
   message: string;
 };
 
@@ -109,8 +119,20 @@ function finding(
   findingPath: string,
   line: number | null,
   message: string,
+  spans: FindingSpan[] = [],
 ): Finding {
-  return { severity, category, path: findingPath, line, message };
+  const first = spans[0] ?? null;
+  return {
+    severity,
+    category,
+    path: findingPath,
+    line,
+    start: first?.start ?? null,
+    end: first?.end ?? null,
+    patternId: first?.patternId ?? null,
+    spans,
+    message,
+  };
 }
 
 function redactPath() {
@@ -168,17 +190,54 @@ function looksBinary(buffer, extension, configuredBinaryExtensions) {
 
 function absolutePathPatterns() {
   const slash = "/";
-  const backslash = "\\";
+  const pathTail = `[^\\s\`"'()<>\\[\\]{}]+`;
   return [
-    new RegExp(`${slash}${"Users"}${slash}`),
-    new RegExp(`${slash}${"home"}${slash}[^/\\s]+${slash}`),
-    new RegExp(`[A-Za-z]:[\\\\/]${"Users"}[\\\\/]`, "i"),
-    new RegExp(`${slash}mnt${slash}[a-z]${slash}${"Users"}${slash}`, "i"),
-    new RegExp(`${slash}${"Volumes"}${slash}[^/\\s]+${slash}`),
-    new RegExp(`%${"USERPROFILE"}%`, "i"),
-    new RegExp(`(?:^|\\s)~[\\\\/]`),
-    new RegExp(`${slash}${"private"}${slash}${"var"}${slash}${"folders"}${slash}`),
+    { id: "absolute-user-path-macos-users-v1", regex: new RegExp(`${slash}${"Users"}${slash}${pathTail}`) },
+    { id: "absolute-user-path-linux-home-v1", regex: new RegExp(`${slash}${"home"}${slash}${pathTail}`) },
+    { id: "absolute-user-path-windows-users-v1", regex: new RegExp(`[A-Za-z]:[\\\\/]${"Users"}[\\\\/]${pathTail}`, "i") },
+    { id: "absolute-user-path-wsl-users-v1", regex: new RegExp(`${slash}mnt${slash}[a-z]${slash}${"Users"}${slash}${pathTail}`, "i") },
+    { id: "absolute-user-path-macos-volumes-v1", regex: new RegExp(`${slash}${"Volumes"}${slash}${pathTail}`) },
+    { id: "absolute-user-path-userprofile-v1", regex: new RegExp(`%${"USERPROFILE"}%[\\\\/]?${pathTail}`, "i") },
+    { id: "absolute-user-path-tilde-v1", regex: new RegExp(`(?:^|(?<=\\s))~[\\\\/]${pathTail}`) },
+    { id: "absolute-user-path-macos-private-var-v1", regex: new RegExp(`${slash}${"private"}${slash}${"var"}${slash}${"folders"}${slash}${pathTail}`) },
   ];
+}
+
+function absolutePathMatches(line, patterns): FindingSpan[] {
+  const candidates = patterns.flatMap(({ id, regex }, patternOrder) => {
+    const globalRegex = new RegExp(regex.source, regex.flags.includes("g") ? regex.flags : `${regex.flags}g`);
+    return [ ...line.matchAll(globalRegex) ].map((match) => ({
+      start: match.index,
+      end: match.index + match[0].length,
+      patternId: id,
+      patternOrder,
+    }));
+  });
+  candidates.sort((left, right) =>
+    left.start - right.start ||
+    left.end - right.end ||
+    left.patternOrder - right.patternOrder ||
+    left.patternId.localeCompare(right.patternId)
+  );
+
+  const spans: FindingSpan[] = [];
+  const seen = new Set<string>();
+  for (const candidate of candidates) {
+    const key = `${candidate.start}:${candidate.end}:${candidate.patternId}`;
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    if (spans.some((span) => candidate.start < span.end && span.start < candidate.end)) {
+      continue;
+    }
+    spans.push({
+      start: candidate.start,
+      end: candidate.end,
+      patternId: candidate.patternId,
+    });
+  }
+  return spans;
 }
 
 function secretPatterns() {
@@ -193,13 +252,13 @@ function privateKeyMarker() {
   return "PRIVATE" + " KEY-----";
 }
 
-export function scanTree(root, config, denylistTerms = []) {
+export function scanTree(root, config, denylistTerms = [], scopedEntries = null) {
   const findings = [];
   const binaryExtensions = new Set(config.binary_extensions_requiring_human_review ?? []);
   const pathPatterns = absolutePathPatterns();
   const credentials = secretPatterns();
 
-  for (const entry of walkRepository(root, config.scan_ignored_paths ?? [])) {
+  for (const entry of scopedEntries ?? walkRepository(root, config.scan_ignored_paths ?? [])) {
     if (entry.kind === "external-symlink" || entry.kind === "broken-symlink") {
       findings.push(
         finding(
@@ -268,7 +327,8 @@ export function scanTree(root, config, denylistTerms = []) {
 
     for (const [ index, line ] of text.split(/\r?\n/).entries()) {
       const lineNumber = index + 1;
-      if (pathPatterns.some((pattern) => pattern.test(line))) {
+      const pathMatches = absolutePathMatches(line, pathPatterns);
+      if (pathMatches.length > 0) {
         findings.push(
           finding(
             "error",
@@ -276,6 +336,7 @@ export function scanTree(root, config, denylistTerms = []) {
             reportPath,
             lineNumber,
             "Machine-specific user path detected; content suppressed.",
+            pathMatches,
           ),
         );
       }
@@ -309,6 +370,21 @@ export function scanTree(root, config, denylistTerms = []) {
   }
 
   return findings;
+}
+
+/** Scan exactly one repository-local file without exposing matched content. */
+export function scanFile(root, relativePath, config, denylistTerms = []) {
+  const normalized = normalizeRelative(relativePath);
+  if (!normalized || path.isAbsolute(normalized) || normalized.split("/").includes("..")) {
+    throw new Error("Scan target must be a repository-relative file path.");
+  }
+  const target = path.resolve(root, normalized);
+  if (!isWithinRoot(root, target) || !lstatSync(target).isFile()) {
+    throw new Error("Scan target must resolve to a repository-local file.");
+  }
+  return scanTree(root, config, denylistTerms, [
+    { kind: "file", absolute: target, relative: normalized },
+  ]);
 }
 
 export function checkRequiredPaths(root, paths, category, options = {}) {

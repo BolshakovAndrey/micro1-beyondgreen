@@ -27,6 +27,12 @@ scanning, and the repeated Codex matrix passed all A1/A2/A3/S1/S2/S3/S4/P1/P2/D1
 criteria. The owner approved and indexed all eight reviewed captures and explicitly
 set `SCALE_READY=true`; deterministic machine-path redaction remains mandatory, and no
 official/scored run exists.
+The owner-approved `SES-20260830-009` integration adds the frozen BG-D02-D04
+development packages to the existing typed verification architecture. Fixture-local
+verification and the shared D01-D04 manifest, isolation, descriptor/task bijection,
+discarded-prototype, and deterministic D01 replay checks pass. These are unscored
+development controls and do not change evaluation v1.1, any candidate/oracle bytes,
+visible assertions, targets, denominators, attempt policy, or `K=0`.
 
 This projection specializes `FR-001`–`FR-012`, `NFR-001`–`NFR-009`,
 `EV-001`–`EV-013`, and `AR-003`–`AR-007`. It claims no result.
@@ -52,8 +58,8 @@ Frozen assignment: `BG-D01` stale snapshots, `BG-D02` queued/batched updates,
 `BG-D03` derived state, `BG-D04` subscription cleanup, `BG-H01` prop reset,
 `BG-H02` async ordering (predeclared challenging case), `BG-H03` identity stability,
 `BG-H04` conditional lifecycle, `BG-H05` external store, and `BG-H06` rollback.
-This freezes membership/classes only; fixture prose, candidates, and oracles do not
-yet exist.
+Membership/classes remain frozen. BG-D01 through BG-D04 development prose,
+candidates, and oracle packages now exist; held-out fixture implementations do not.
 
 ## Two scored arms (`FR-011`, `EV-003`, `EV-004`)
 

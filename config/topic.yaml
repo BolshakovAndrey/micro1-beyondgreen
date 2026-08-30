@@ -8,7 +8,7 @@ requirement_ids:
   - "AR-001..AR-009"
 project:
   name: "BeyondGreen"
-  normative_spec_status: "approved_phase_0_5_frozen_scale_004_owner_approved_eight_captures_indexed_scale_ready_true_commit_push_unauthorized"
+  normative_spec_status: "approved_phase_0_5_frozen_scale_ready_true_d01_d04_development_integrated_unscored_trace_review_pending_commit_push_unauthorized"
   normative_spec_approved_at_utc: "2026-08-29T10:46:39Z"
   one_sentence_summary: "An evidence-backed verify-existing workflow for deciding whether immutable React state-to-signals candidates are safe to merge despite incomplete legacy tests."
   rename_scope: "Marketing rename only; proven v1 scope remains React state to signals."
@@ -200,3 +200,13 @@ d01_implementation_checkpoint:
     static_html_evidence: "artifacts/evaluation/BG-D01-VERTICAL-SLICE.html"
     deterministic_replay_command: "npm run task -- d01:replay"
     model_invocation_count: 0
+development_integration_checkpoint:
+  session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-009.yaml"
+  status: "d01_d04_integrated_unscored_verified_trace_review_pending"
+  development_fixture_count: 4
+  fixture_ids: ["BG-D01", "BG-D02", "BG-D03", "BG-D04"]
+  official_or_scored_run: false
+  frozen_semantics_changed: false
+  candidate_or_oracle_bytes_changed_by_integration: false
+  canonical_verification_command: "npm run task -- development:verify"
+  path_normalization: "three_scanner_spans_replaced_with_neutral_marker_zero_target_findings"
