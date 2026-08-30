@@ -1,0 +1,5 @@
+{
+  "schema_version": "1.0", "fixture_id": "BG-H06", "package_kind": "candidate", "candidate_id": "candidate-a",
+  "immutable": true, "hash_algorithm": "SHA-256", "behavior_sha256": "6eb2496241b95c68af04e10046271f5b86c9b6b8e3db05d7057048e1460a11ce",
+  "files": { "candidates/BG-H06/candidate-a/ThemePanel.ts": "42821d07822b12e98c5dac0cd09cb4b07efa635d2266b76446e77674dc82321d" }
+}

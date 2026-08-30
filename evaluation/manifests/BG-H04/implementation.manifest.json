@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-H04",
+  "membership": "held_out",
+  "behavior_class": "conditional_lifecycle",
+  "evaluation_version": "eval-v1.1.0",
+  "status": "fixture_implementation_frozen",
+  "provenance_binding": {
+    "behavior_path": "evaluation/behavior-specs/BG-H04_BEHAVIOR.md",
+    "behavior_sha256": "3ed2881cfef6f51feffc66d2699e0df1a04f5883aeaf1c3e151a889340db5977",
+    "freeze_path": "evaluation/behavior-specs/BG-H04_FREEZE.yaml",
+    "freeze_sha256": "8f150edbc3ba47ebb7e57f618b1cdc005b4731444691a711480303b379255af3",
+    "provenance_path": "evaluation/manifests/BG-H04/PROVENANCE.md",
+    "provenance_sha256": "d4519de9144a28bb879171c12bdc70adeeb1701f649518a8c51213eb33706d84"
+  },
+  "arm_visible": {
+    "evaluation/arm-visible/BG-H04/contract.ts": "0e0fe4a5b418458b83e6ec7ef4af31b5f445e6d45f1fae64d491b5a3d3f5f87b",
+    "evaluation/arm-visible/BG-H04/denied-probe.mjs": "2b320a64c7178dd61be2a3054576252246d33240caacfb33ce5837de40ee7db2",
+    "evaluation/arm-visible/BG-H04/harness.ts": "b41b50e2905e28cdc2255d9f40cc610712c014b6f6c09c27e30feb764b23eefc",
+    "evaluation/arm-visible/BG-H04/render.ts": "8ff66c638b2958572592b6885779a197c4c350b0b64f668eafd09f23aae0b232",
+    "evaluation/arm-visible/BG-H04/visible-assertions.ts": "57fe19d9f9998b83e3440e797acdafa5adf20009343151cb60df1a5a2cbf4385",
+    "evaluation/arm-visible/BG-H04/visible.test.ts": "d9de7548b4c7cc93c36e851828e84a734a080d71caac14470d627c763a1c0941"
+  },
+  "candidates": {
+    "candidate-a": { "path": "candidates/BG-H04/candidate-a/AstronomyChecklist.ts", "sha256": "074d91886748cc3434cd6a1d66b7cfa66ab7d91e1c340a0317728d1c2aaa72fc" },
+    "candidate-b": { "path": "candidates/BG-H04/candidate-b/AstronomyChecklist.ts", "sha256": "a2cef5b772bff47db9dce9d8473d8fdc367fb5036593df83f0b23ec96bfb321c" }
+  },
+  "verifier_only": {
+    "evaluation/verifier-only/BG-H04/canonical-driver.ts": "a26019074ff523b805bb11dd9d037a102a9a63e6ba2a0929f63de687f46b9877",
+    "evaluation/verifier-only/BG-H04/evaluator-denied-probe.mjs": "ec3716a7b6bf495ba33ac3ea60e256c4797aa9e7c968d0e4ae3d6dbddfe1412a",
+    "evaluation/verifier-only/BG-H04/ground-truth.json": "0a20c5d90c21ef0a82e6383dcf7923d20e78952113bc7c25f283186a62cacb80",
+    "evaluation/verifier-only/BG-H04/self-check.test.ts": "85e7bb3f92b26dd7fc5c8b2051a0996fca6c76a6a62c375f9dfb72f551809daa"
+  },
+  "ground_truth_mapping_exposure": "verifier_only",
+  "pre_verdict_evaluator_feedback_rounds": 0,
+  "subagent_report": {
+    "path": "evaluation/manifests/BG-H04/SUBAGENT_REPORT_RU.md",
+    "sha256": "296a7c345836071269d42d64db219048dc38e7aba2a819ef32f5b48664994082"
+  }
+}

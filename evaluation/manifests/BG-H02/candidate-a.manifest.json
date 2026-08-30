@@ -1,0 +1,5 @@
+{
+  "schema_version": "1.0", "fixture_id": "BG-H02", "package_id": "BG-H02-candidate-a", "package_kind": "candidate", "immutable": true, "hash_algorithm": "SHA-256",
+  "source_files": [{ "path": "candidates/BG-H02/candidate-a/StargazingGuidePreview.ts", "sha256": "37582ddb3d10c6ef3810165caf3435244395fabd5d3bacd8c14fd6e510518ee0" }],
+  "package_sha256": "e9018d9a95144c898f124bdc03664586a967291a3ed57d7552d40e36fa937ced"
+}

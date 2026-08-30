@@ -1759,3 +1759,25 @@ failure, and final hot take remain unclaimed until evidence exists.
 - **Decision:** `keep_verified_unscored_integration_pending_trace_capture_review_and_owner_promotion`.
   No official/scored run, live product model, Claude, Chromium, browser/private MCP,
   commit, or push occurred.
+
+## ITR-042 — Integrate and recover verification of BG-H01-H06
+
+- **Authorization and hypothesis:** owner-approved `SES-20260830-011` and the
+  automatically captured integration trajectory through `CONT-004`. The hypothesis
+  is that the six independently frozen held-out packages can join the shared typed
+  registry without changing evaluation semantics or exposing verifier mapping.
+- **Change:** preserved all 103 fixture-local files byte-for-byte; added the exact
+  ten-fixture descriptor/task registry, heterogeneous manifest reconciliation,
+  reciprocal isolation and `K=0` integration checks, and held-out mapping leak scan.
+- **Retries:** corrected one missing TypeScript delimiter in `CONT-003`; in
+  `CONT-004` narrowed an over-broad descriptor assertion to the six held-out
+  declarations and excluded only explicit isolation tests/probes from the working
+  source leak scan. The first full test rerun passed 102/111; nine existing D01
+  subprocess/loopback checks were blocked by the nested sandbox and were not changed.
+- **Evidence:** `npm run compile`, `npm run task -- held-out:verify`,
+  `npm run task -- development:verify`, and `npm run task -- d01:replay` passed.
+  H01-H06 visible gates, evaluator self-checks, reciprocal denial, all immutable
+  manifest bindings, ten-class/4-6/challenging-case/cardinality checks, `K=0`, and
+  leak scan passed. No official/scored run or unblinding occurred.
+- **Decision:** keep the verified non-official integration uncommitted and request
+  separate owner acceptance; do not claim the sandbox-limited full suite as green.

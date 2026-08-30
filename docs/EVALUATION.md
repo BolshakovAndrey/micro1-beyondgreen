@@ -59,7 +59,11 @@ Frozen assignment: `BG-D01` stale snapshots, `BG-D02` queued/batched updates,
 `BG-H02` async ordering (predeclared challenging case), `BG-H03` identity stability,
 `BG-H04` conditional lifecycle, `BG-H05` external store, and `BG-H06` rollback.
 Membership/classes remain frozen. BG-D01 through BG-D04 development prose,
-candidates, and oracle packages now exist; held-out fixture implementations do not.
+candidates, and oracle packages now exist. The six held-out implementations also
+exist as frozen non-official verification packages; integration checks pass without
+an official/scored run or unblinding. The owner accepted the integrated state and
+authorized one checkpoint commit without push; trace promotion remains pending a
+separate gate.
 
 ## Two scored arms (`FR-011`, `EV-003`, `EV-004`)
 

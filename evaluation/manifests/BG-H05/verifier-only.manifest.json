@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-H05",
+  "package_kind": "verifier_only",
+  "immutable": true,
+  "hash_algorithm": "SHA-256",
+  "behavior_sha256": "5095bdf0a24ac19bffe72e0c785f091a18e1ee63b3486126e25411925b2f172c",
+  "provenance_sha256": "0333998db0b28992dd4a6a9a6a901d27c48f63886613c7367bfb16da921d8795",
+  "files": {
+    "evaluation/verifier-only/BG-H05/canonical-driver.ts": "7508706420b8e878da19feb57a8843daedf26290cdfb95166b5ff92f9b89e26f",
+    "evaluation/verifier-only/BG-H05/ground-truth.json": "6f088c5efd83ccf197a89d37e41ab1b46d455a5436cb3857eff47a84477763bb",
+    "evaluation/verifier-only/BG-H05/evaluator-denied-probe.mjs": "f860496db199baedd6366229447bad7b9f118926ac453ddb98aea955c3061a4c",
+    "evaluation/verifier-only/BG-H05/self-check.test.ts": "7be97c66082efcc52eb55d4a88b8def790581d31da152fe457275ada8fa89ed9"
+  }
+}

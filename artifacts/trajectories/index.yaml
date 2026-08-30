@@ -4,7 +4,7 @@ requirement_ids:
   - "AR-002"
   - "AR-005"
   - "NFR-004"
-status: "d01_d04_development_integrated_unscored_cont_009_verified_trace_review_pending"
+status: "h01_h06_held_out_integration_owner_accepted_checkpoint_commit_authorized_trace_promotion_pending"
 session_boundaries:
   - session_id: "SES-20260828-001"
     path: "artifacts/trajectories/session-boundaries/SES-20260828-001.yaml"

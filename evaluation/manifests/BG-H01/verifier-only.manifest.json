@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0", "fixture_id": "BG-H01", "package_id": "BG-H01-verifier-only", "package_kind": "verifier_only", "immutable": true, "hash_algorithm": "SHA-256",
+  "source_files": [
+    { "path": "evaluation/verifier-only/BG-H01/canonical-driver.ts", "sha256": "ab46d4d4b1526fb689897c45f8e7b41ab8c70b2fb74504ea2fcbaf98d5049c4b" },
+    { "path": "evaluation/verifier-only/BG-H01/ground-truth.json", "sha256": "9f36898a30cfcf2b15015287d9be683ac1bbd5fc7cf7a233f61523e1520e1133" },
+    { "path": "evaluation/verifier-only/BG-H01/self-check.test.ts", "sha256": "40fae191d79898dbf446e19da920c768d0b8cdd6bbd20043f0ca4340f43ae213" },
+    { "path": "evaluation/verifier-only/BG-H01/evaluator-denied-probe.mjs", "sha256": "cf56d1e678ef05aa0ca05bddf8755c4ee07073c94b43d00e388de63b2493eb3f" }
+  ],
+  "package_sha256": "803963a21038ad42714857e696e6f506d50f9e2bad4078890e359bc8ae799536"
+}

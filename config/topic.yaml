@@ -210,3 +210,21 @@ development_integration_checkpoint:
   candidate_or_oracle_bytes_changed_by_integration: false
   canonical_verification_command: "npm run task -- development:verify"
   path_normalization: "three_scanner_spans_replaced_with_neutral_marker_zero_target_findings"
+held_out_integration_checkpoint:
+  session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-011.yaml"
+  status: "h01_h06_integrated_non_official_verified_owner_accepted_checkpoint_commit_authorized"
+  held_out_fixture_count: 6
+  fixture_ids: ["BG-H01", "BG-H02", "BG-H03", "BG-H04", "BG-H05", "BG-H06"]
+  challenging_case_ids: ["BG-H02"]
+  candidates_per_fixture: 2
+  verifier_feedback_rounds: 0
+  canonical_verification_command: "npm run task -- held-out:verify"
+  official_or_scored_run: false
+  unblinding_performed: false
+  frozen_semantics_changed: false
+  whitespace_normalization: "owner_authorized_three_markdown_hard_breaks_to_br_and_thirty_h05_h06_terminal_blank_lines_removed"
+  fixture_semantics_changed_by_whitespace_normalization: false
+  whitespace_normalization_verified_at_utc: "2026-08-30T18:04:28Z"
+  owner_accepted_at_utc: "2026-08-30T17:56:31Z"
+  integration_checkpoint_commit_message: "feat(Evaluation):[BeyondGreen] Integrate held-out fixtures"
+  actual_traces_promotion_authorized: false

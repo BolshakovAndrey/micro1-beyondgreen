@@ -4,7 +4,9 @@ requirement_ids:
   - "AR-002"
   - "AR-006"
   - "EV-002"
-status: "d01_scale_004_owner_approved_scale_ready_true_documentation_bundle_three_captures_owner_approved_indexed"
+status: "h01_h06_frozen_packages_integrated_non_official_owner_accepted_whitespace_normalized_verified_checkpoint_commit_authorized"
+integration_whitespace_normalization: "owner_authorized_three_markdown_hard_breaks_to_br_and_thirty_h05_h06_terminal_blank_lines_removed_manifests_reconciled_semantics_unchanged"
+integration_whitespace_normalization_verified_at_utc: "2026-08-30T18:04:28Z"
 record_type_schemas:
   artifact_candidate:
     required_fields:

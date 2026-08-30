@@ -22,7 +22,7 @@ const files = execFileSync(
   .sort();
 
 const header = [
-  "# Scope: owner-approved contracts plus the current bounded D01 implementation checkpoint.",
+  "# Scope: owner-approved contracts plus current bounded development and held-out integration checkpoints.",
   "# Excludes this self-referential manifest and two local-only documents excluded",
   "# by the clean task boundary. Private denylist and raw traces are external and",
   "# intentionally absent. Pending implementation trace review is recorded by category.",

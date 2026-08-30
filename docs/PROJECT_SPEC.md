@@ -45,6 +45,14 @@ verifier-only packages pass fixture-specific verification and the shared D01-D04
 descriptor, manifest, isolation, and replay regression. This is unscored development
 evidence; the integration trajectory and its continuations remain pending trace
 capture/review and owner promotion. No official/scored run occurred.
+Under owner-approved `SES-20260830-011`, the six frozen held-out packages BG-H01
+through BG-H06 are integrated byte-for-byte from their three authorized fixture
+commits. Non-official visible gates, evaluator self-checks, immutable manifests,
+reciprocal filesystem denial, ten-class bijection, 4/6 membership, sole challenging
+case, neutral candidate cardinality, oracle-leak, and `K=0` checks pass. No
+official/scored execution or unblinding occurred. The repository owner accepted the
+integrated state and authorized exactly one checkpoint commit without push; trace
+promotion remains separately gated.
 **Human approval:** 2026-08-29T10:46:39Z
 **Clean session:** `SES-20260829-001`
 

@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-H05",
+  "behavior_class": "external_store",
+  "candidates": { "candidate-a": "preserving", "candidate-b": "false_green" },
+  "allowed_false_green_defect_family": "consumer_mirrors_only_own_writes"
+}

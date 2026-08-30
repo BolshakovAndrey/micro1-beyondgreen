@@ -1,0 +1,5 @@
+{
+  "schema_version": "1.0", "fixture_id": "BG-H01", "package_id": "BG-H01-candidate-b", "package_kind": "candidate", "immutable": true, "hash_algorithm": "SHA-256",
+  "source_files": [{ "path": "candidates/BG-H01/candidate-b/DisplayCardEditor.ts", "sha256": "34dfa3c924f89a8fa75966297a5baede31dd1f1d1c1e299ba4d407a91ca16648" }],
+  "package_sha256": "c272c01a5ef780e84d1d3a5e066fe93aa678b6b8f176df461bcdf1836e47afd9"
+}

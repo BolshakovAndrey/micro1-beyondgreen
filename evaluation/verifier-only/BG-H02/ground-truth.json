@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-H02",
+  "behavior_class": "async_ordering",
+  "challenging_case": true,
+  "candidates": {
+    "candidate-a": "preserving",
+    "candidate-b": "false_green"
+  },
+  "allowed_false_green_defect_family": "successful_completion_writes_without_current_epoch_guard"
+}

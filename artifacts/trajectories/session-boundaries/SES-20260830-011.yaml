@@ -226,10 +226,10 @@ language_contract:
 attestation:
   submission_eligible_at_start: false
   submission_eligible_after_boundary: false
-  repository_artifacts_status: "boundary_candidate_pending_human_review"
+  repository_artifacts_status: "h01_h06_integration_owner_accepted_checkpoint_commit_authorized"
   authoring_transcript_status: "pending_review"
   authoring_transcript_exclusion_category: ""
-  implementation_evidence_status: "not_created"
+  implementation_evidence_status: "owner_accepted_not_promoted_to_actual_traces"
 
 human_approval:
   status: "approved"
@@ -238,3 +238,21 @@ human_approval:
   approval_evidence: "The repository owner returned the exact required phrase in the source-task delegation."
   exact_required_phrase: >-
     Одобряю SESSION_BOUNDARY SES-20260830-011 и единый гейт реализации H01–H06: сначала создать без push ровно один checkpoint commit текущего owner-approved freeze bundle с сообщением docs(Evaluation):[BeyondGreen] Freeze held-out behavior specifications, затем от этого точного commit создать три изолированных worktree и запустить три параллельных нативных подагента Codex для пар BG-H01/BG-H02, BG-H03/BG-H04 и BG-H05/BG-H06; каждому подагенту разрешаю менять только пути своей пары и строго реализовать утверждённую заморозку поведения, включая видимые обеим сравниваемым сторонам контракты, harness, render, visible tests, ровно два нейтрально названных кандидата — сохраняющий поведение и намеренно ложноположительный, причём их соответствие истине доступно только независимому оценщику, — а также скрытые от сравниваемых сторон ground truth, canonical driver, self-check, denied-access probes, неизменяемые manifests/hashes, происхождение, точные команды и результаты и полный русский отчёт; публичные и важные TypeScript API документировать кратким английским JSDoc, ключевые границы и инварианты — короткими английскими why-comments; shared registry, tasks, package scripts, checksum index и integration tests работникам не менять, а только сообщать координатору о необходимом общем изменении; работникам разрешены compile и fixture-specific tests/self-check/isolation, но запрещены общий official/scored run и unblinding; после локальной зелени разрешаю по одному fixture-only checkpoint commit без push с точными сообщениями feat(Evaluation):[BeyondGreen] Add prop reset and async ordering fixtures, feat(Evaluation):[BeyondGreen] Add identity and lifecycle fixtures и feat(Evaluation):[BeyondGreen] Add external store and rollback fixtures; внутренние raw events подагентов не заявлять как экспортированные traces, сохранить точные команды, результаты и русские отчёты, после чего отдельной автоматически захваченной coordinator integration trajectory объединить только три разрешённых commit, изменить только необходимые shared paths, проверить compile, tests, manifests, физическую изоляцию, K=0, checksums и обе preflight-проверки и остановиться для owner acceptance, считая существующие допустимые D01 coding traces вместе с coordinator integration trajectory достаточным representative trace coverage; детерминированные fixture-specific исправления compile/test/hash/path/JSDoc внутри утверждённого объёма не требуют промежуточного одобрения, но contamination, semantic drift, oracle leakage, неясное происхождение или лицензия и изменение shared methodology требуют немедленной остановки; official/scored run, unblinding, live product model, Claude, Chromium, browser/private MCP, private data и push запрещены, commit разрешены только для четырёх перечисленных checkpoint, а integration commit требует отдельного последующего одобрения владельца.
+
+integration_owner_acceptance:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-30T17:56:31Z"
+  accepted_scope: "Current integrated H01-H06 state and owner-controlled post-capture verification results."
+  checkpoint_commit_authorized: true
+  checkpoint_commit_message: "feat(Evaluation):[BeyondGreen] Integrate held-out fixtures"
+  push_authorized: false
+  actual_traces_promotion_authorized: false
+  official_or_scored_run_authorized: false
+  unblinding_authorized: false
+  publication_authorized: false
+  approval_evidence: "The repository owner explicitly accepted the integrated state and activated the one-time Git gate for the exact checkpoint commit in the source-task delegation."
+  whitespace_normalization_authorized: true
+  whitespace_normalization_scope: "Exactly three Markdown hard breaks replaced with br elements and exactly thirty terminal blank lines removed from H05/H06 files; derived manifests, hashes, checksums, provenance, and the owner card may be reconciled without semantic changes."
+  whitespace_normalization_verification: "passed_compile_111_of_111_tests_held_out_manifests_isolation_k0_leak_scan_development_verify_d01_replay_both_safe_preflights"
+  whitespace_normalization_verified_at_utc: "2026-08-30T18:04:28Z"

@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-H03",
+  "membership": "held_out",
+  "behavior_class": "identity_stability",
+  "evaluation_version": "eval-v1.1.0",
+  "status": "fixture_implementation_frozen",
+  "provenance_binding": {
+    "behavior_path": "evaluation/behavior-specs/BG-H03_BEHAVIOR.md",
+    "behavior_sha256": "50e2859389a3ca191d5aadab02fe29a12adca04ed37a730c2accf7bbbfbc6787",
+    "freeze_path": "evaluation/behavior-specs/BG-H03_FREEZE.yaml",
+    "freeze_sha256": "f8cc1eaf321a60ec2cba8bb2aa86e32657be5356bcc5608550bedd57cd22df45",
+    "provenance_path": "evaluation/manifests/BG-H03/PROVENANCE.md",
+    "provenance_sha256": "8df3851cb4b8d74b373d52c7eec1e4b0ca6a1a3c2b5dd30c785a6b4bb9302389"
+  },
+  "arm_visible": {
+    "evaluation/arm-visible/BG-H03/contract.ts": "c66f678be0831e78f3ca2eb66583aeb8a31715fb02050477e0e93cd60af9c44f",
+    "evaluation/arm-visible/BG-H03/denied-probe.mjs": "b36e108618237f50e325cfdfcb0852059a16c0d896d844e7f0e424e195600333",
+    "evaluation/arm-visible/BG-H03/harness.ts": "a8081f89e87cc891d561b539bf320758c04c1946a198d339f4b60931a1af3a80",
+    "evaluation/arm-visible/BG-H03/render.ts": "b59deb3d7920d38e5af9e45bcd6916867e578db0e93e09877c97954d522715ed",
+    "evaluation/arm-visible/BG-H03/visible-assertions.ts": "21d3c31f0ebcc51cb511bd481fb1403c79c34532be6159f8f4255503de252526",
+    "evaluation/arm-visible/BG-H03/visible.test.ts": "2e2c80ef95b65b5d94080c30c31bc145d3b1404ad50886dac12c6d2312b37986"
+  },
+  "candidates": {
+    "candidate-a": { "path": "candidates/BG-H03/candidate-a/SeedLibrarySelectionDesk.ts", "sha256": "7b743d0595913818c4cec0f7866d3b3ce00a590a69571fddd6729771c6523de8" },
+    "candidate-b": { "path": "candidates/BG-H03/candidate-b/SeedLibrarySelectionDesk.ts", "sha256": "71ee5215aa5ae6259fdb00ad0ddca8a0c5e30ea7d90edb7d9c4f43eac169654f" }
+  },
+  "verifier_only": {
+    "evaluation/verifier-only/BG-H03/canonical-driver.ts": "60982dbcf7dd58e00fa85cc842099e67899a28dd3c1af20efa4ae8feeb887784",
+    "evaluation/verifier-only/BG-H03/evaluator-denied-probe.mjs": "73dfa5d6131adbf83926bdb7b8143ca92f72e067b806b244f2798dc757d2bfe3",
+    "evaluation/verifier-only/BG-H03/ground-truth.json": "4e325267a8ca96866f0ca32a6e20f826d95bb830f6377c7a32e2f76ec0177830",
+    "evaluation/verifier-only/BG-H03/self-check.test.ts": "99fa79af68b2244abc3f0876366082405b180160366ad3729a7b1a51e529180c"
+  },
+  "ground_truth_mapping_exposure": "verifier_only",
+  "pre_verdict_evaluator_feedback_rounds": 0,
+  "subagent_report": {
+    "path": "evaluation/manifests/BG-H03/SUBAGENT_REPORT_RU.md",
+    "sha256": "3ae195aecc0e3be3047b7ac0617e9207137a27cb698112f54a42128b999505f3"
+  }
+}

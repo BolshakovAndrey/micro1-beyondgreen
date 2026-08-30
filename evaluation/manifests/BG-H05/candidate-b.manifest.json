@@ -1,0 +1,5 @@
+{
+  "schema_version": "1.0", "fixture_id": "BG-H05", "package_kind": "candidate", "candidate_id": "candidate-b",
+  "immutable": true, "hash_algorithm": "SHA-256", "behavior_sha256": "5095bdf0a24ac19bffe72e0c785f091a18e1ee63b3486126e25411925b2f172c",
+  "files": { "candidates/BG-H05/candidate-b/UnitReadout.ts": "9071f73330d96bdcbcac9f77225ea4f0edf63aa39028d7dfc09db7bc4dd1e4ce" }
+}

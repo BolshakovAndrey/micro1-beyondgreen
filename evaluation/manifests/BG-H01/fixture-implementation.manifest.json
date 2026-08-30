@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-H01",
+  "membership": "held_out",
+  "behavior_class": "prop_reset",
+  "package_id": "BG-H01-fixture-implementation",
+  "package_kind": "fixture_implementation",
+  "immutable": true,
+  "hash_algorithm": "SHA-256",
+  "provenance_binding": "BG-H01-BEHAVIOR-FREEZE-001",
+  "source_files": [
+    { "path": "evaluation/behavior-specs/BG-H01_BEHAVIOR.md", "sha256": "94a0206f3ed9573a02bccab93ec0d90603d9af9e01b0820daa9f7cfb55bd6d4e" },
+    { "path": "evaluation/behavior-specs/BG-H01_BEHAVIOR_RU.md", "sha256": "0269dadda654f01e86a3ad6ca7ca539f736213e3963bcb05f12f16507d6bb5e6" },
+    { "path": "evaluation/behavior-specs/BG-H01_FREEZE.yaml", "sha256": "a3c3d89074e31f9b5f1413f4d4d32c239ab7ae2d74cd9b1d079e28203b05704c" },
+    { "path": "evaluation/manifests/BG-H01/PROVENANCE.md", "sha256": "68c5cf6ea0f39b011251fdd4d8fc6aece2f8e7f2e2326391c05a0f822a65c944" },
+    { "path": "evaluation/manifests/BG-H01/OWNER_CHECKPOINT_RU.md", "sha256": "c9380dc50c773d51ec8f29657778292d46463b717fbbfdca831f4636b02b708c" },
+    { "path": "evaluation/manifests/BG-H01/arm-visible.manifest.json", "sha256": "e3993f14b233066d0bb45ae8c0b294d820f01a303fe1e319c0e4c938d3504efe" },
+    { "path": "evaluation/manifests/BG-H01/verifier-only.manifest.json", "sha256": "87428a7b25111cf733f2c26a3dec26179a8e9a08053009783e32ae93122bc15b" },
+    { "path": "evaluation/manifests/BG-H01/candidate-a.manifest.json", "sha256": "7724bf06a19aa78ff9cca15b518c76fc3e50818642799c7bf463ab75f604ceb9" },
+    { "path": "evaluation/manifests/BG-H01/candidate-b.manifest.json", "sha256": "3378aff2f53e4f91e684f83f9caf5d773983244f803b83025a44655240d45d45" },
+    { "path": "evaluation/manifests/BG-H01/SUBAGENT_REPORT_RU.md", "sha256": "82dd0358b2d8f70f4c1caa29e3bc0940b99b9670c477e5ab320b4f0cfc1b5fa7" }
+  ],
+  "package_sha256": "e23d5af20abf4666a401c487bddb9d910d65a54cb18d6102fc94b54fee371679"
+}

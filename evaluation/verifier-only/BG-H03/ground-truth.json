@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "BG-H03",
+  "behavior_class": "identity_stability",
+  "candidates": {
+    "candidate-a": "preserving",
+    "candidate-b": "false_green"
+  },
+  "allowed_false_green_defect_family": "value_equivalent_handle_recreated_on_unrelated_or_idempotent_update"
+}
