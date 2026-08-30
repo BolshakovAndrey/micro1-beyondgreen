@@ -1,0 +1,221 @@
+schema_version: "1.1"
+session_id: "SES-20260830-016"
+started_at_utc: "2026-08-30T19:30:42Z"
+agent:
+  tool: "Codex CLI with automatic JSONL stdout capture and separate stderr receipt"
+  model: "Codex runtime default; exact identity must be taken from captured session metadata"
+  purpose: "Independently review and verify the completed SES-20260830-015 bounded pre-unblinding implementation without changing its product or control-plane projections"
+
+repository:
+  root: "."
+  root_resolution: "The task is restricted to the current isolated clean hackathon worktree; the machine-specific absolute path is not persisted."
+  branch_state: "detached_head_at_named_branch_tip"
+  named_branch_tip: "codex/beyondgreen-d01-scale003-correct"
+  exact_head: "cb51e7de1e9908088dbef4dbeb29946d1edbc16b"
+  reviewed_worktree_scope: "exactly_13_preexisting_changed_files_from_SES_20260830_015_plus_this_boundary_and_unpromoted_trace_review_artifacts"
+  remote_state_contacted_or_verified: false
+  commit_authorized: false
+  push_authorized: false
+
+context:
+  repository_root: "."
+  source_control_plane_thread_id: "01a038e6-9b21-76f3-8b97-4829bbd8d16a"
+  source_control_plane_thread_submission_eligible: false
+  inherited_private_transcript: false
+  allowed_paths:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "docs/CONTROL_STATUS_RU.md"
+    - "docs/CONTROL_PLANE_SHA256SUMS"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "package.json"
+    - "scripts/task.ts"
+    - "scripts/tasks/"
+    - "scripts/d00-freeze-cardinality.ts"
+    - "scripts/d00-pre-unblinding-entrypoint.ts"
+    - "scripts/d00-zip-rehearsal.ts"
+    - "tests/d00-pre-unblinding-entrypoints.test.ts"
+    - "candidates/"
+    - "evaluation/arm-visible/"
+    - "evaluation/verifier-only/"
+    - "evaluation/manifests/"
+    - "artifacts/trajectories/index.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-015.yaml"
+    - "artifacts/trajectories/reviews/BG-PRE-UNBLINDING-READINESS-CHECKPOINT_RU.md"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-016.yaml"
+    - "artifacts/trajectories/instructions/TRC-BG-PRE-UNBLINDING-VERIFY-001.md"
+    - "artifacts/trajectories/reviewed/TRC-BG-PRE-UNBLINDING-VERIFY-001.md"
+    - "artifacts/trajectories/reviewed/TRC-BG-PRE-UNBLINDING-VERIFY-001_RU.md"
+    - "artifacts/trajectories/reviews/TRC-BG-PRE-UNBLINDING-VERIFY-001.yaml"
+    - "artifacts/trajectories/reviews/TRC-BG-PRE-UNBLINDING-VERIFY-001-OWNER-PACKET_RU.md"
+  public_sources: []
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "repository_local_review_only_with_owner_authorized_external_raw_capture_and_scanner_interfaces"
+  private_environment_variable_names_reserved:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+  private_environment_values_paths_or_contents_may_be_disclosed: false
+
+controls:
+  agents_instructions_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  session_boundary_template_read: true
+  required_contracts_read_in_full: true
+  exact_head_checked: true
+  reviewed_scope_count_checked: true
+  raw_trace_location: "external_local_only"
+  raw_capture_transport: "codex_cli_jsonl_stdout_with_separate_stderr_receipt"
+  raw_capture_copy_into_repository: false
+  product_or_control_projection_changes_authorized: false
+  checksum_write_authorized: false
+  trace_promotion_authorized: false
+  official_or_scored_run_authorized: false
+  unblinding_authorized: false
+  live_product_model_authorized: false
+  chromium_browser_mcp_or_claude_authorized: false
+  commit_authorized: false
+  push_authorized: false
+
+review_scope:
+  trace_id: "TRC-BG-PRE-UNBLINDING-VERIFY-001"
+  implementation_scope: "none"
+  subject: "The completed SES-20260830-015 13-file bounded pre-unblinding implementation scope"
+  required_checks:
+    - "Read all mandatory repository-local contracts in full."
+    - "Confirm exact HEAD and exact preexisting 13-file scope, separating this boundary and later unpromoted trace artifacts."
+    - "Run git diff --check, including equivalent checks for untracked files."
+    - "Run checksums:check and classify the already known projection mismatch without writing checksums."
+    - "Repeat only bounded pre-unblinding compile, ordinary tests, freeze/cardinality verification, safe contract-only entrypoint checks, offline replay, and temporary ZIP rehearsal."
+    - "Confirm no candidate, oracle semantics, visible assertion, frozen behavior, scoring, methodology, or existing frozen hash changed."
+    - "Confirm no official/scored run, unblinding, run record, final archive, live product model, Chromium, browser/MCP, Claude, commit, or push occurs."
+    - "Preserve commands, tool responses, errors, retries, and limitations chronologically in automatic JSONL."
+    - "Perform automated privacy, secret, machine-path, and owner-controlled contamination scanning without disclosing external paths or denylist contents."
+    - "Create complete English and natural-Russian reviewed projections and a complete natural-Russian owner packet."
+  repository_write_allowlist:
+    - "artifacts/trajectories/session-boundaries/SES-20260830-016.yaml"
+    - "artifacts/trajectories/instructions/TRC-BG-PRE-UNBLINDING-VERIFY-001.md"
+    - "artifacts/trajectories/reviewed/TRC-BG-PRE-UNBLINDING-VERIFY-001.md"
+    - "artifacts/trajectories/reviewed/TRC-BG-PRE-UNBLINDING-VERIFY-001_RU.md"
+    - "artifacts/trajectories/reviews/TRC-BG-PRE-UNBLINDING-VERIFY-001.yaml"
+    - "artifacts/trajectories/reviews/TRC-BG-PRE-UNBLINDING-VERIFY-001-OWNER-PACKET_RU.md"
+  prohibited_repository_writes:
+    - "Product code, candidates, fixtures, oracles, tests, configuration, status projections, task registry, checksum manifest, trajectory index, provenance indexes, actual_traces, or benchmark/run artifacts."
+  mandatory_stop_conditions:
+    - "Any new scanner, contamination, provenance, license, frozen-surface, archive-membership, isolation, cardinality, compile, test, replay, or verification finding."
+    - "Any command would perform official/scored execution, unblinding, a live product-model call, final packaging, publication, commit, or push."
+    - "Any requested repair or repository write exceeds the explicit trace-artifact allowlist."
+
+evidence_classification:
+  SES_20260830_015: "coordinator_checkpoint_evidence_not_a_native_eligible_authoring_trace"
+  existing_eligible_codex_traces: "representative_tool_coverage_only_not_exact_SES_015_decision_coverage"
+  this_trace_before_owner_promotion: "unpromoted_review_verification_candidate"
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-30T19:29:00Z"
+  approval_evidence: >-
+    Одобряю для SES-20260830-015 следующий обратимый шаг: создать clean boundary SES-20260830-016 и выполнить автоматически захватываемую Codex CLI JSONL read-only review/verification текущего 13-файлового scope на HEAD cb51e7de1e9908088dbef4dbeb29946d1edbc16b, с отдельными stdout/stderr receipts, автоматическим privacy/contamination scan и полными английской и русской review-карточками; разрешаю повторить только bounded pre-unblinding проверки, git diff --check и checksums:check, а в repository создавать только boundary и неповышенные trace/review artifacts; изменение product code, status projections и docs/CONTROL_PLANE_SHA256SUMS, trace promotion, commit, push, official/scored run, unblinding, live model, Chromium, browser/MCP и Claude не разрешаю; при любом новом finding или изменении frozen surface остановиться.
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "review_verification_capture_stopped_on_reviewer_command_error_pending_owner_decision"
+  authoring_transcript_status: "automatic_capture_reviewed_ineligible_incomplete"
+  actual_traces_status: "unchanged"
+
+capture_result:
+  completed_at_utc: "2026-08-30T19:35:12Z"
+  trace_id: "TRC-BG-PRE-UNBLINDING-VERIFY-001"
+  codex_cli_version: "0.148.0"
+  thread_id: "01a05428-8dbb-75e3-a401-7c4ee4cbdac8"
+  transport: "automatic_jsonl_stdout_with_separate_stderr_receipt"
+  raw_location: "external_local_temporary_0700_path_not_persisted"
+  stdout_sha256: "47b729559c6b9c235837c2b91c1b353195c3f36a44c4eb08b7b7d6658bf0e8af"
+  stderr_sha256: "0bebff5702882899876e56453963db5a79d7cadea562e932b967fd471a5f58ef"
+  strict_utf8: "passed_both_receipts"
+  strict_jsonl: "passed_73_events"
+  generic_privacy_secret_path_scan: "passed_zero_email_secret_private_key_or_absolute_user_path_matches"
+  owner_private_denylist_scan: "not_run_environment_interface_unavailable"
+  result: "stopped_incomplete_not_eligible_not_promotable"
+  stop_finding: "The verifier-local untracked whitespace wrapper assigned zsh reserved variable status and exited 1."
+  repository_defect_established: false
+  completed_checks:
+    exact_head: "passed"
+    exact_scope: "passed_13_SES_015_paths_plus_2_SES_016_capture_artifacts"
+    mandatory_contract_read: "passed"
+    static_diff_review: "passed_no_source_finding"
+    tracked_git_diff_check: "passed"
+  checks_not_reached:
+    - "complete untracked whitespace check"
+    - "checksums:check"
+    - "compile"
+    - "ordinary tests"
+    - "freeze:self-test"
+    - "four contract-only entrypoints"
+    - "submission:rehearse"
+  promotion_authorized: false
+  commit_or_push_performed: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+
+corrected_transport_continuation:
+  trace_id: "TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001"
+  authorized_by_owner: true
+  completed_at_utc: "2026-08-30T19:43:32Z"
+  reviewer_model: "gpt-5.6-sol"
+  reviewer_worktree: "current_isolated_worktree"
+  reviewer_sandbox: "read_only"
+  capture_sink: "micro1-safe-trace"
+  capture_sink_invocation_root: "authorized_common_git_repository_root_path_not_disclosed"
+  main_checkout_content_read_or_modified: false
+  transport_exit: 0
+  raw_jsonl:
+    bytes: 336275
+    sha256: "d83df910358be79f7b8d44bbb612b60e21a75d36b5b4cab4675a36fe23c9883d"
+    outside_repository: true
+    path_disclosed_by_wrapper: false
+    content_read_in_this_task: false
+  stderr_receipt:
+    bytes: 2278
+    sha256: "723270da86babde3c11976152114ffb38c93effe0c17b884789a06d54c573a7a"
+    strict_utf8: "passed"
+    generic_email_secret_private_key_absolute_path_scan: "passed_zero_matches"
+  micro1_safe_preflight:
+    run_in_this_attempt: false
+    status: "explicitly_deferred_to_separate_main_checkout_handoff"
+  substantive_verification_result:
+    status: "captured_not_yet_reviewed"
+    reason: "Raw JSONL was transferred directly to the safe sink and was not read or projected in this task."
+  repository_writes:
+    product_code_status_or_checksums: false
+    continuation_instruction: true
+    unpromoted_continuation_receipt_and_owner_packet: true
+  promotion_authorized: false
+  commit_or_push_performed: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false

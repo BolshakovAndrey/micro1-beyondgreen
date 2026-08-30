@@ -203,7 +203,7 @@ integration_result:
     verification: "passed_504_of_504"
   owner_authorized_preflight_and_checkpoint:
     approved_at_utc: "2026-08-30T18:58:28Z"
-    approval_evidence: "Разрешаю для SES-20260830-014 выполнить обе preflight-проверки, staged-scope ровно из четырёх подтверждённых файлов и git diff --cached --check; при зелёном результате создать ~/.codex/.git-allow-once и checkpoint commit fix(Evaluation):[BeyondGreen] Narrow final Chromium snapshot без push. При любом сбое остановиться."
+    approval_evidence: "Разрешаю для SES-20260830-014 выполнить обе preflight-проверки, staged-scope ровно из четырёх подтверждённых файлов и git diff --cached --check; при зелёном результате создать <one-time-git-hook-token> и checkpoint commit fix(Evaluation):[BeyondGreen] Narrow final Chromium snapshot без push. При любом сбое остановиться."
     control_preflight: "passed_exit_0"
     implementation_preflight: "passed_exit_0"
     staged_scope_required_paths:

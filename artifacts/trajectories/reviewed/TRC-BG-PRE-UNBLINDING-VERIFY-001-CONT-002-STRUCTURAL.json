@@ -1,0 +1,270 @@
+{
+  "schemaVersion": "micro1-safe-trace-review-projection@1.0.0",
+  "traceId": "TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-002",
+  "sourceEncoding": "utf-8",
+  "chronology": {
+    "basis": "immutable_jsonl_source_order",
+    "complete": true
+  },
+  "eventCount": 18,
+  "sourceBytes": 290598,
+  "sourceSha256": "6f153ceab21a839daabdb41e6eca5c1a9eaa5395215a416c4bf847fa14e4c8c5",
+  "contentIncluded": false,
+  "toolArgumentsIncluded": false,
+  "externalPathsIncluded": false,
+  "environmentValuesIncluded": false,
+  "events": [
+    {
+      "sequence": 1,
+      "temporalOrder": 1,
+      "eventType": "thread.started",
+      "itemType": "none",
+      "role": "system",
+      "hasToolCall": false,
+      "hasToolResult": false,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "none",
+        "exitCode": null
+      }
+    },
+    {
+      "sequence": 2,
+      "temporalOrder": 2,
+      "eventType": "turn.started",
+      "itemType": "none",
+      "role": "system",
+      "hasToolCall": false,
+      "hasToolResult": false,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "none",
+        "exitCode": null
+      }
+    },
+    {
+      "sequence": 3,
+      "temporalOrder": 3,
+      "eventType": "item.completed",
+      "itemType": "agent_message",
+      "role": "assistant",
+      "hasToolCall": false,
+      "hasToolResult": false,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "none",
+        "exitCode": null
+      }
+    },
+    {
+      "sequence": 4,
+      "temporalOrder": 4,
+      "eventType": "item.started",
+      "itemType": "command_execution",
+      "role": "tool",
+      "hasToolCall": true,
+      "hasToolResult": false,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "in_progress",
+        "exitCode": null
+      }
+    },
+    {
+      "sequence": 5,
+      "temporalOrder": 5,
+      "eventType": "item.completed",
+      "itemType": "command_execution",
+      "role": "tool",
+      "hasToolCall": false,
+      "hasToolResult": true,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "completed",
+        "exitCode": 0
+      }
+    },
+    {
+      "sequence": 6,
+      "temporalOrder": 6,
+      "eventType": "item.completed",
+      "itemType": "agent_message",
+      "role": "assistant",
+      "hasToolCall": false,
+      "hasToolResult": false,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "none",
+        "exitCode": null
+      }
+    },
+    {
+      "sequence": 7,
+      "temporalOrder": 7,
+      "eventType": "item.started",
+      "itemType": "command_execution",
+      "role": "tool",
+      "hasToolCall": true,
+      "hasToolResult": false,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "in_progress",
+        "exitCode": null
+      }
+    },
+    {
+      "sequence": 8,
+      "temporalOrder": 8,
+      "eventType": "item.completed",
+      "itemType": "command_execution",
+      "role": "tool",
+      "hasToolCall": false,
+      "hasToolResult": true,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "completed",
+        "exitCode": 0
+      }
+    },
+    {
+      "sequence": 9,
+      "temporalOrder": 9,
+      "eventType": "item.started",
+      "itemType": "command_execution",
+      "role": "tool",
+      "hasToolCall": true,
+      "hasToolResult": false,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "in_progress",
+        "exitCode": null
+      }
+    },
+    {
+      "sequence": 10,
+      "temporalOrder": 10,
+      "eventType": "item.completed",
+      "itemType": "command_execution",
+      "role": "tool",
+      "hasToolCall": false,
+      "hasToolResult": true,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "completed",
+        "exitCode": 0
+      }
+    },
+    {
+      "sequence": 11,
+      "temporalOrder": 11,
+      "eventType": "item.started",
+      "itemType": "command_execution",
+      "role": "tool",
+      "hasToolCall": true,
+      "hasToolResult": false,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "in_progress",
+        "exitCode": null
+      }
+    },
+    {
+      "sequence": 12,
+      "temporalOrder": 12,
+      "eventType": "item.completed",
+      "itemType": "command_execution",
+      "role": "tool",
+      "hasToolCall": false,
+      "hasToolResult": true,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "completed",
+        "exitCode": 0
+      }
+    },
+    {
+      "sequence": 13,
+      "temporalOrder": 13,
+      "eventType": "item.started",
+      "itemType": "command_execution",
+      "role": "tool",
+      "hasToolCall": true,
+      "hasToolResult": false,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "in_progress",
+        "exitCode": null
+      }
+    },
+    {
+      "sequence": 14,
+      "temporalOrder": 14,
+      "eventType": "item.completed",
+      "itemType": "command_execution",
+      "role": "tool",
+      "hasToolCall": false,
+      "hasToolResult": true,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "completed",
+        "exitCode": 0
+      }
+    },
+    {
+      "sequence": 15,
+      "temporalOrder": 15,
+      "eventType": "item.started",
+      "itemType": "command_execution",
+      "role": "tool",
+      "hasToolCall": true,
+      "hasToolResult": false,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "in_progress",
+        "exitCode": null
+      }
+    },
+    {
+      "sequence": 16,
+      "temporalOrder": 16,
+      "eventType": "item.completed",
+      "itemType": "command_execution",
+      "role": "tool",
+      "hasToolCall": false,
+      "hasToolResult": true,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "failed",
+        "exitCode": 1
+      }
+    },
+    {
+      "sequence": 17,
+      "temporalOrder": 17,
+      "eventType": "item.completed",
+      "itemType": "agent_message",
+      "role": "assistant",
+      "hasToolCall": false,
+      "hasToolResult": false,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "none",
+        "exitCode": null
+      }
+    },
+    {
+      "sequence": 18,
+      "temporalOrder": 18,
+      "eventType": "turn.completed",
+      "itemType": "none",
+      "role": "system",
+      "hasToolCall": false,
+      "hasToolResult": false,
+      "completion": {
+        "eventStatus": "none",
+        "itemStatus": "none",
+        "exitCode": null
+      }
+    }
+  ]
+}

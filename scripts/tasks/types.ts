@@ -10,6 +10,7 @@ export type TaskDefinition = Readonly<{
   name: string;
   description: string;
   steps: readonly TaskStep[];
+  acceptedArguments?: readonly string[];
 }>;
 
 /** Minimal process result used to keep task execution independently testable. */

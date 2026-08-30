@@ -1,0 +1,74 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001"
+session_boundary: "SES-20260830-016"
+record_kind: "unpromoted_post_capture_transport_receipt"
+status: "captured_pending_separate_safe_preflight_and_review_handoff"
+retry_of: "TRC-BG-PRE-UNBLINDING-VERIFY-001"
+initial_failed_capture_preserved_unchanged_during_retry: true
+launcher:
+  tool: "Codex CLI"
+  model: "gpt-5.6-sol"
+  sandbox: "read-only"
+  ephemeral: true
+  user_config_ignored: true
+  worktree: "current_isolated_worktree"
+  repository_files_written_by_reviewer: false
+transport:
+  stdout: "direct_pipe_to_micro1_safe_trace_capture"
+  sink_invocation_root: "authorized_common_git_repository_root_path_not_disclosed"
+  main_checkout_content_read_or_modified: false
+  pipeline_exit: 0
+  raw_jsonl_bytes: 336275
+  raw_jsonl_sha256: "d83df910358be79f7b8d44bbb612b60e21a75d36b5b4cab4675a36fe23c9883d"
+  raw_outside_repository: true
+  raw_path_disclosed_by_wrapper: false
+  raw_content_read_in_this_task: false
+stderr_receipt:
+  storage: "external_local_temporary_path_not_persisted"
+  bytes: 2278
+  sha256: "723270da86babde3c11976152114ffb38c93effe0c17b884789a06d54c573a7a"
+  strict_utf8: "passed"
+  generic_scan:
+    email_matches: 0
+    secret_assignment_matches: 0
+    private_key_matches: 0
+    absolute_user_path_matches: 0
+safe_preflight:
+  executed: true
+  handoff_boundary: "SES-20260830-017"
+  control: "passed_READY_FOR_CLEAN_BRANCH"
+  implementation: "passed_READY_FOR_IMPLEMENTATION_with_expected_dirty_worktree_warning"
+  contamination_findings: 0
+  binary_human_review_warnings: 4
+review:
+  receipt_identity: "passed_336275_bytes_sha256_d83df910358be79f7b8d44bbb612b60e21a75d36b5b4cab4675a36fe23c9883d"
+  automated_raw_scan: "passed_requires_submission_redaction"
+  private_term_matches: 0
+  private_term_matches_after_path_redaction: 0
+  email_matches: 0
+  secret_assignment_matches: 0
+  absolute_user_path_matches: 0
+  raw_path_disclosed: false
+  raw_jsonl_syntax_verified: "blocked_safe_semantic_interface_unavailable"
+  chronology_reviewed: "blocked_safe_semantic_interface_unavailable"
+  command_results_projected: "not_created_fail_closed"
+  contamination_privacy_scan: "passed_automated_raw_scan_only_semantic_review_incomplete"
+  english_reviewed_projection: "not_created_fail_closed"
+  russian_reviewed_projection: "not_created_fail_closed"
+  technical_meaning_preserved_attestation: false
+  initial_failed_capture_classification: "retry_record_only_not_evidence"
+eligibility:
+  eligible_representative_trace: false
+  human_review_passed: false
+  indexed_in_actual_traces: false
+  promotion_authorized: false
+execution_boundary:
+  product_status_or_checksum_files_changed_by_this_retry: false
+  trace_index_changed: false
+  commit_or_push: false
+  official_or_scored_run: false
+  unblinding: false
+required_next_gate:
+  action: "Provide an owner-controlled exact-ID semantic extraction interface that preserves chronology without exposing external paths or copying raw source into the repository."
+  raw_capture_must_remain_immutable: true
+  no_promotion_without_later_owner_approval: true

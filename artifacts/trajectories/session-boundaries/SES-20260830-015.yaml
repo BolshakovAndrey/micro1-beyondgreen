@@ -1,0 +1,292 @@
+schema_version: "1.1"
+session_id: "SES-20260830-015"
+started_at_utc: "2026-08-30T19:10:22Z"
+agent:
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Establish the BeyondGreen pre-unblinding readiness boundary and request approval for one bounded implementation phase"
+
+repository:
+  root: "."
+  root_resolution: "The task ran only inside the isolated clean hackathon worktree; the machine-specific absolute path is intentionally not persisted."
+  branch_state: "detached_head_at_named_branch_tip"
+  named_branch_tip: "codex/beyondgreen-d01-scale003-correct"
+  exact_head: "cb51e7de1e9908088dbef4dbeb29946d1edbc16b"
+  required_head: "cb51e7de1e9908088dbef4dbeb29946d1edbc16b"
+  working_tree_at_start: "clean"
+  remote_state_contacted_or_verified: false
+  commit_authorized: false
+  push_authorized: false
+
+context:
+  repository_root: "."
+  source_control_plane_thread_id: "01a038e6-9b21-76f3-8b97-4829bbd8d16a"
+  source_control_plane_thread_submission_eligible: false
+  inherited_private_transcript: false
+  allowed_paths_before_approval:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "docs/CONTROL_STATUS_RU.md"
+    - "docs/SUBMISSION_ARTIFACTS_SPEC.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "package.json"
+    - "scripts/tasks/"
+    - "candidates/"
+    - "evaluation/arm-visible/"
+    - "evaluation/verifier-only/"
+    - "evaluation/manifests/"
+    - "artifacts/trajectories/index.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-014.yaml"
+    - "artifacts/trajectories/reviews/BG-CHROMIUM-TS2532-INTEGRATION-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-015.yaml"
+    - "artifacts/trajectories/reviews/BG-PRE-UNBLINDING-READINESS-CHECKPOINT_RU.md"
+  public_sources: []
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "repository_local_readiness_only"
+  private_environment_variable_names_reserved:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+  private_environment_values_paths_or_contents_inspected: false
+
+controls:
+  agents_instructions_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  session_boundary_template_read: true
+  required_contracts_read_in_full: true
+  exact_head_checked: true
+  exact_head_matches_required: true
+  clean_worktree_checked: true
+  all_fixture_packages_presence_checked: true
+  task_registry_read_only_checked: true
+  package_rehearsal_status_read_only_checked: true
+  product_code_created_or_modified: false
+  runner_created_or_modified: false
+  archive_created: false
+  run_records_created: false
+  benchmark_results_created: false
+  compile_or_tests_executed: false
+  preflight_or_capture_executed: false
+  sibling_repositories_inspected: false
+  browser_or_private_mcp_state_inspected: false
+  global_memory_inspected: false
+  raw_trace_location: "external_local_only_not_accessed"
+
+readiness_evidence:
+  repository_gate:
+    exact_head: "passed"
+    clean_worktree: "passed"
+    isolation: "current task worktree only; no sibling worktree inspected"
+  package_presence:
+    fixture_ids:
+      - "BG-D01"
+      - "BG-D02"
+      - "BG-D03"
+      - "BG-D04"
+      - "BG-H01"
+      - "BG-H02"
+      - "BG-H03"
+      - "BG-H04"
+      - "BG-H05"
+      - "BG-H06"
+    arm_visible_directories: "present_10_of_10"
+    verifier_only_directories: "present_10_of_10"
+    candidate_directories: "present_20_of_20"
+    ground_truth_files: "present_10_of_10"
+    manifest_directories: "present_10_of_10"
+    verification_level: "presence_only_no_compile_tests_preflight_or_hash_recomputation"
+  confirmed_gaps:
+    task_registry_missing:
+      - "baseline:verify"
+      - "beyondgreen:verify"
+      - "evaluation:run"
+      - "replay"
+    early_manifest_backed_zip_clean_extraction_rehearsal: "not_completed"
+    official_or_scored_run_performed: false
+    unblinding_performed: false
+    live_model_calls_this_task: 0
+    chromium_calls_this_task: 0
+  status_projection_drift:
+    held_out_trace_promotion:
+      measured_repository_state: "TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001 is indexed in actual_traces by commit e08f2f91440a484df9f9c9ae772461bd3d9d49d1"
+      stale_projections:
+        - "docs/PROJECT_SPEC.md still says held-out trace promotion remains separately gated"
+        - "docs/EVALUATION.md still says held-out trace promotion remains pending"
+        - "config/topic.yaml still records actual_traces_promotion_authorized=false and other pending status text"
+    ts2532_checkpoint:
+      measured_repository_state: "The bounded Chromium TS2532 correction and its service artifacts are committed at cb51e7de1e9908088dbef4dbeb29946d1edbc16b"
+      stale_projections:
+        - "Current product/evaluation/topic/control-status projections do not consistently project this completed checkpoint"
+    control_status:
+      measured_repository_state: "docs/CONTROL_STATUS_RU.md retains historical unchecked phases and legacy StateShift Guardian/SSG naming that no longer describes the current integrated repository state"
+    correction_policy: "Synchronize status only after measured bounded readiness results; do not alter normative semantics, evaluation formulas, targets, candidate/oracle bytes, or frozen hashes."
+
+authorization:
+  boundary_preparation_requested_by_owner: true
+  boundary_preparation_only_before_human_approval: true
+  bounded_implementation_authorized_before_exact_human_approval: false
+  allowed_before_human_approval:
+    - "Read repository-local mandatory contracts and the minimum repository-local evidence needed for the boundary/readiness gate."
+    - "Inspect exact HEAD, clean status, package presence, task-registry definitions, archive-rehearsal status, and status-projection consistency without executing project code."
+    - "Create SES-20260830-015 and its complete natural-Russian owner checkpoint card."
+  prohibited_before_human_approval:
+    - "Create or modify product code, task runners, archive tooling, candidates, oracles, visible assertions, frozen behavior, scoring, methodology, hashes, run records, or benchmark evidence."
+    - "Run compile, tests, preflight, scanner, capture, replay, packaging, benchmark, evaluation, official/scored execution, or unblinding."
+    - "Invoke a live model, Chromium, browser automation, connected apps, MCP, Claude, subagents, external workspaces, private state, or global memory."
+    - "Commit, push, publish, package, or submit."
+
+future_bounded_pre_unblinding_scope_after_exact_owner_approval:
+  objective: "Close only the measured readiness and reproducibility gaps required before the single irreversible unblinding."
+  workstreams:
+    freeze_self_test:
+      - "Compile and run visible gates for all 20 frozen candidates and require 20/20 green."
+      - "Run independent evaluator ground truth and require exactly 10 preserving accepts and 10 reason-correct false-green rejects."
+      - "Reconcile candidate and package manifest hashes without changing them."
+      - "Prove physical reciprocal oracle denial, fixture/candidate cardinality, ten-class bijection, 4/6 membership, and sole challenging-case declaration."
+    safe_task_registry_and_replay:
+      - "Implement reviewed task-registry entrypoints baseline:verify, beyondgreen:verify, evaluation:run, and replay with exact eval-v1.1.0 argument validation."
+      - "Keep readiness/self-test and offline replay paths distinct from official/scored execution."
+      - "Implement deterministic offline replay contracts without network credentials, model calls, candidate mutation, evaluator feedback, or a scored attempt."
+      - "Require an explicit irreversible owner gate before any entrypoint may perform official/scored work or unblind held-out results."
+    early_zip_rehearsal:
+      - "Build a manifest-backed rehearsal ZIP only in a temporary directory."
+      - "Extract into a new clean temporary directory and execute only the exact judge commands authorized by this bounded phase."
+      - "Verify archive membership, licenses, required arm-visible and verifier-only packages, manifest reconciliation, offline operation, and physical oracle denial."
+      - "Do not create the final submission archive, video, publication, or repository run record."
+    status_projection_sync:
+      - "After measured results, update only factual status sections in docs/PROJECT_SPEC.md, docs/EVALUATION.md, config/topic.yaml, docs/CONTROL_STATUS_RU.md, and directly necessary checksum projections."
+      - "Record failures and limitations honestly; never convert readiness evidence into an official/scored result."
+  frozen_surfaces:
+    candidates: "no_change"
+    oracle_semantics_and_bytes: "no_change"
+    visible_assertions: "no_change"
+    frozen_behavior: "no_change"
+    scoring_and_targets: "no_change"
+    evaluation_methodology: "no_change"
+    existing_candidate_manifest_and_oracle_hashes: "no_change"
+  mandatory_stop_conditions:
+    - "Any candidate, oracle, visible assertion, frozen behavior, scoring, target, methodology, or existing hash would change."
+    - "Any 20/20 visible gate, 10/10 accept, 10/10 reason-correct reject, manifest, physical denial, or cardinality control fails or is ambiguous."
+    - "A task entrypoint cannot technically separate readiness/replay from official execution and single unblinding."
+    - "Archive membership, clean extraction, exact judge command, license, provenance, trace, or manifest reconciliation fails."
+    - "A path leaves the clean repository or approved temporary extraction root, or any private/external state is requested."
+    - "A requested correction would exceed factual status synchronization or create a new benchmark version/result."
+  still_prohibited_after_boundary_approval:
+    - "Official/scored baseline, BeyondGreen, or evaluation execution."
+    - "The single held-out unblinding or any exposure of held-out results to a tuning path."
+    - "Live product model calls, Chromium, browser automation, connected apps, MCP, Claude, or private/global memory."
+    - "Candidate repair, regeneration, mutation, fixture reauthoring, oracle change, visible-assertion change, scoring/methodology change, or hash update caused by changed frozen bytes."
+    - "Final video, final submission archive, publication, upload, or submission."
+    - "Commit or push."
+
+irreversible_owner_gate_required_later:
+  actions:
+    - "Run baseline:verify officially across the frozen candidate set."
+    - "Run beyondgreen:verify officially across the frozen candidate set."
+    - "Run evaluation:run as the single scored execution."
+    - "Unblind BG-H01 through BG-H06 exactly once and expose their scored results."
+    - "Invoke the optional live model or consume the one-attempt model budget."
+  gate_requirement: "A separate owner approval must identify exact clean HEAD, frozen manifest/evaluator hashes, task commands, attempt cardinality, no-tuning consequence, failure handling, and the exact irreversible scope."
+
+language_contract:
+  owner_facing_reports: "complete_natural_russian"
+  judge_facing_and_machine_readable_artifacts: "english_allowed"
+  technical_identifier_policy: "Keep exact identifiers, commands, paths, library names, and official product names in English; explain unavoidable English terminology in Russian on first use."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "bounded_pre_unblinding_implementation_passed_pending_trace_capture_review"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: "control_plane_delegation_not_yet_reviewed"
+
+implementation_result:
+  completed_at_utc: "2026-08-30T19:22:19Z"
+  status: "passed_stopped_before_irreversible_owner_gate"
+  source_head: "cb51e7de1e9908088dbef4dbeb29946d1edbc16b"
+  dependency_retry:
+    first_freeze_attempt: "stopped_before_compile_missing_node_modules_typescript"
+    recovery: "npm ci --ignore-scripts added 54 packages with zero vulnerabilities"
+    repeated_same_freeze_self_test: "passed"
+  freeze_self_test:
+    compilation_visible_gates: "passed_20_of_20"
+    evaluator_ground_truth: "passed_10_accept_10_reason_correct_reject"
+    held_out_manifest_bindings: 107
+    reciprocal_oracle_denial: "passed_all_10_fixtures"
+    exact_cardinality: "10_fixtures_20_candidates_4_development_6_held_out"
+    behavior_class_bijection: "passed_10_of_10"
+    sole_challenging_case: "BG-H02"
+    held_out_leak_scan: "passed_43_files"
+  safe_entrypoints:
+    names: ["baseline:verify", "beyondgreen:verify", "evaluation:run", "replay"]
+    accepted_arguments: ["--evaluation-version", "eval-v1.1.0"]
+    execution_class: "contract_only_pre_unblinding"
+    official_or_scored_run: false
+    unblinding_performed: false
+    arm_executed: false
+    run_record_created: false
+    replay: "existing_unscored_D01_report_artifacts_matched"
+  first_zip_rehearsal:
+    status: "failed_closed_and_temporary_directory_deleted"
+    ordinary_tests: "passed_114_failed_1"
+    finding: "absolute_user_path_in_SES_20260830_014"
+    owner_review_requested: true
+  zip_exclusion_approval:
+    approved_by: "repository_owner"
+    approval_evidence: "Разрешаю для SES-20260830-015 исключить только artifacts/trajectories/session-boundaries/SES-20260830-014.yaml и artifacts/trajectories/reviews/BG-CHROMIUM-TS2532-INTEGRATION-SESSION-BOUNDARY-CHECKPOINT_RU.md из временного rehearsal ZIP как неиндексируемые control-plane service records; записать их исходные SHA-256 и причины исключения во временный manifest, не менять их repository bytes и docs/CONTROL_PLANE_SHA256SUMS, повторить clean-extraction rehearsal и при PASS продолжить только синхронизацию статусных проекций; при новом scanner finding остановиться."
+    repository_bytes_changed: false
+    control_plane_checksums_changed: false
+  repeated_zip_rehearsal:
+    status: "passed"
+    manifest_backed_file_count: 513
+    owner_approved_control_plane_exclusions: 2
+    clean_extraction: true
+    npm_ci_ignore_scripts: "passed_54_packages_zero_vulnerabilities"
+    compile: "passed"
+    ordinary_tests: "passed_115_of_115"
+    freeze_self_test: "passed"
+    safe_entrypoints: "passed_all_4_contract_only"
+    offline_replay: "passed_existing_unscored_D01"
+    license_audit: "passed_54_of_54"
+    temporary_archive_deleted: true
+    final_submission_archive_created: false
+  frozen_surfaces_changed: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  run_records_created: false
+  benchmark_results_created: false
+  live_model_calls: 0
+  chromium_calls: 0
+  browser_or_mcp_calls: 0
+  claude_calls: 0
+  commit_performed: false
+  push_performed: false
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-30T19:13:43Z"
+  approval_evidence: "Одобряю SESSION_BOUNDARY SES-20260830-015 и разрешаю только bounded pre-unblinding implementation: общий freeze self-test всех 20 кандидатов, безопасные task-registry entrypoints и offline replay contracts, раннюю manifest-backed ZIP rehearsal во временном каталоге и синхронизацию только статусных проекций по измеренным результатам; official/scored run, unblinding, live model, Chromium, browser/MCP, Claude, commit и push не разрешаю; при любом изменении candidates, oracle semantics, visible assertions, frozen behavior, scoring, methodology или hashes остановиться."

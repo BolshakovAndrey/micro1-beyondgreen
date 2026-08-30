@@ -3,6 +3,7 @@ import { d01Tasks } from "./d01.ts";
 import { developmentTasks } from "./development.ts";
 import { heldOutTasks } from "./held-out.ts";
 import { phase05Tasks } from "./phase0.5.ts";
+import { preUnblindingTasks } from "./pre-unblinding.ts";
 import type { TaskDefinition } from "./types.ts";
 
 /** Aggregate task groups, reject duplicate names, and return a stable sorted registry. */
@@ -19,7 +20,14 @@ export function buildTaskRegistry(
 }
 
 /** The ordinary registry contains only safe tests, audits, and bounded verification. */
-export const taskRegistry = buildTaskRegistry([commonTasks, d01Tasks, developmentTasks, heldOutTasks, phase05Tasks]);
+export const taskRegistry = buildTaskRegistry([
+  commonTasks,
+  d01Tasks,
+  developmentTasks,
+  heldOutTasks,
+  phase05Tasks,
+  preUnblindingTasks,
+]);
 
 const tasksByName = new Map(taskRegistry.map((task) => [task.name, task]));
 
@@ -27,7 +35,14 @@ const tasksByName = new Map(taskRegistry.map((task) => [task.name, task]));
 export function resolveTask(name: string, arguments_: readonly string[]): TaskDefinition {
   const task = tasksByName.get(name);
   if (!task) throw new Error(`Unknown task: ${name}. Run \"npm run task -- list\" to see available tasks.`);
-  if (arguments_.length > 0) {
+  const expectedArguments = task.acceptedArguments ?? [];
+  if (arguments_.length !== expectedArguments.length ||
+      arguments_.some((argument, index) => argument !== expectedArguments[index])) {
+    if (expectedArguments.length > 0) {
+      throw new Error(
+        `Task ${name} accepts only: ${expectedArguments.join(" ")}. Received: ${arguments_.join(" ") || "none"}`,
+      );
+    }
     throw new Error(`Task ${name} does not accept arguments: ${arguments_.join(" ")}`);
   }
   return task;

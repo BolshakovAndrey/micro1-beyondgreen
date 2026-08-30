@@ -51,8 +51,25 @@ commits. Non-official visible gates, evaluator self-checks, immutable manifests,
 reciprocal filesystem denial, ten-class bijection, 4/6 membership, sole challenging
 case, neutral candidate cardinality, oracle-leak, and `K=0` checks pass. No
 official/scored execution or unblinding occurred. The repository owner accepted the
-integrated state and authorized exactly one checkpoint commit without push; trace
-promotion remains separately gated.
+integrated state and authorized exactly one checkpoint commit without push.
+`TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001` was subsequently reviewed and promoted to
+`actual_traces` in commit `e08f2f91440a484df9f9c9ae772461bd3d9d49d1`.
+The bounded TypeScript `TS2532` correction was integrated in commit
+`cb51e7de1e9908088dbef4dbeb29946d1edbc16b` without a Chromium run.
+Under owner-approved `SES-20260830-015`, the pre-unblinding freeze self-test then
+passed compilation/visible gates for all 20 candidates, evaluator controls for ten
+accepts and ten reason-correct rejects, immutable manifest reconciliation, reciprocal
+oracle denial, exact cardinality/membership/class controls, and the held-out leak
+scan. The exact normative task names now exist only as fail-closed pre-unblinding
+contract validators; they cannot execute an arm, score, unblind, call a model, or
+create a run record. A temporary manifest-backed ZIP clean-extraction rehearsal
+passed 115/115 ordinary tests, the complete freeze self-test, all four contract-only
+entrypoints, existing unscored D01 offline replay, and the 54/54 license audit. Two
+non-indexed control-plane service records were excluded under explicit owner approval
+because one preserved a machine-local control path; their source SHA-256 values and
+reasons were bound in the temporary manifest. The archive and extraction directory
+were deleted. No official/scored run, unblinding, final archive, live-model call,
+Chromium call, commit, or push occurred.
 **Human approval:** 2026-08-29T10:46:39Z
 **Clean session:** `SES-20260829-001`
 

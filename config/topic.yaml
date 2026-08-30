@@ -8,7 +8,7 @@ requirement_ids:
   - "AR-001..AR-009"
 project:
   name: "BeyondGreen"
-  normative_spec_status: "approved_phase_0_5_frozen_scale_ready_true_d01_d04_development_integrated_unscored_trace_review_pending_commit_push_unauthorized"
+  normative_spec_status: "approved_phase_0_5_frozen_scale_ready_true_all_10_fixtures_integrated_held_out_trace_promoted_pre_unblinding_readiness_passed_official_scored_unblinding_commit_push_unauthorized"
   normative_spec_approved_at_utc: "2026-08-29T10:46:39Z"
   one_sentence_summary: "An evidence-backed verify-existing workflow for deciding whether immutable React state-to-signals candidates are safe to merge despite incomplete legacy tests."
   rename_scope: "Marketing rename only; proven v1 scope remains React state to signals."
@@ -202,7 +202,7 @@ d01_implementation_checkpoint:
     model_invocation_count: 0
 development_integration_checkpoint:
   session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-009.yaml"
-  status: "d01_d04_integrated_unscored_verified_trace_review_pending"
+  status: "d01_d04_integrated_unscored_verified"
   development_fixture_count: 4
   fixture_ids: ["BG-D01", "BG-D02", "BG-D03", "BG-D04"]
   official_or_scored_run: false
@@ -212,7 +212,7 @@ development_integration_checkpoint:
   path_normalization: "three_scanner_spans_replaced_with_neutral_marker_zero_target_findings"
 held_out_integration_checkpoint:
   session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-011.yaml"
-  status: "h01_h06_integrated_non_official_verified_owner_accepted_checkpoint_commit_authorized"
+  status: "h01_h06_integrated_non_official_verified_owner_accepted_trace_promoted"
   held_out_fixture_count: 6
   fixture_ids: ["BG-H01", "BG-H02", "BG-H03", "BG-H04", "BG-H05", "BG-H06"]
   challenging_case_ids: ["BG-H02"]
@@ -227,4 +227,47 @@ held_out_integration_checkpoint:
   whitespace_normalization_verified_at_utc: "2026-08-30T18:04:28Z"
   owner_accepted_at_utc: "2026-08-30T17:56:31Z"
   integration_checkpoint_commit_message: "feat(Evaluation):[BeyondGreen] Integrate held-out fixtures"
-  actual_traces_promotion_authorized: false
+  actual_traces_promotion_authorized: true
+  actual_traces_promotion_commit: "e08f2f91440a484df9f9c9ae772461bd3d9d49d1"
+pre_unblinding_readiness_checkpoint:
+  session_boundary: "artifacts/trajectories/session-boundaries/SES-20260830-015.yaml"
+  status: "passed_bounded_non_official_readiness_and_clean_extraction_rehearsal"
+  source_head: "cb51e7de1e9908088dbef4dbeb29946d1edbc16b"
+  frozen_candidate_visible_gates: "passed_20_of_20"
+  evaluator_ground_truth: "passed_10_accept_10_reason_correct_reject"
+  frozen_manifests: "passed_10_fixture_packages_107_held_out_bindings"
+  reciprocal_oracle_denial: "passed_all_10_fixtures"
+  cardinality_membership_classes: "passed_10_fixtures_20_candidates_4_6_split_10_class_bijection_BG_H02_sole_challenging_case"
+  held_out_oracle_leak_scan: "passed_43_files"
+  normative_task_entrypoints:
+    names: ["baseline:verify", "beyondgreen:verify", "evaluation:run", "replay"]
+    mode: "contract_only_pre_unblinding"
+    evaluation_version: "eval-v1.1.0"
+    official_or_scored_run: false
+    unblinding_performed: false
+    arm_executed: false
+    run_record_created: false
+  offline_replay: "passed_existing_unscored_D01_report_artifacts_matched"
+  clean_extraction_rehearsal:
+    status: "passed"
+    temporary_manifest_file_count: 513
+    ordinary_tests: "passed_115_of_115"
+    license_audit: "passed_54_of_54"
+    final_submission_archive_created: false
+    temporary_archive_deleted: true
+    owner_approved_control_plane_exclusions: 2
+  initial_retry:
+    category: "missing_local_node_modules"
+    resolution: "npm_ci_ignore_scripts_then_same_freeze_self_test_passed"
+  first_zip_rehearsal_failure:
+    category: "absolute_user_path_in_non_indexed_SES_20260830_014_control_record"
+    resolution: "owner_approved_exact_two_file_temporary_archive_exclusion_with_source_hashes_and_reasons"
+  ts2532_checkpoint_commit: "cb51e7de1e9908088dbef4dbeb29946d1edbc16b"
+  official_or_scored_run: false
+  unblinding_performed: false
+  live_model_calls: 0
+  chromium_calls: 0
+  browser_or_mcp_calls: 0
+  claude_calls: 0
+  commit_authorized: false
+  push_authorized: false

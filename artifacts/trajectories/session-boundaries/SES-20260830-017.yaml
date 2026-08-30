@@ -1,0 +1,595 @@
+schema_version: "1.1"
+session_id: "SES-20260830-017"
+started_at_utc: "2026-08-30T19:46:30Z"
+agent:
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Prepare a submission-eligible bounded handoff and deterministic pre-unblinding trace-review boundary for BeyondGreen"
+
+repository:
+  root: "."
+  root_resolution: "The Git top level matched the task-authorized saved clean repository root; the machine-specific absolute path is intentionally not persisted in this service record."
+  branch_state: "named_branch"
+  branch: "codex/beyondgreen-d01-scale003-correct"
+  exact_head: "cb51e7de1e9908088dbef4dbeb29946d1edbc16b"
+  initial_head: "cb51e7de1e9908088dbef4dbeb29946d1edbc16b"
+  working_tree_at_start: "clean"
+  remote_state_contacted_or_verified: false
+  commit_authorized: false
+  push_authorized: false
+
+context:
+  repository_root: "."
+  source_task_id: "01a05412-6f74-7363-9ee8-ad69df39ad7f"
+  source_control_plane_thread_id: "01a038e6-9b21-76f3-8b97-4829bbd8d16a"
+  source_isolated_worktree_read_before_approval: false
+  source_isolated_worktree_path_persisted: false
+  raw_trace_read_before_approval: false
+  allowed_paths_before_approval:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-012.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-014.yaml"
+    - "artifacts/trajectories/reviews/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001-OWNER-PACKET_RU.md"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-017.yaml"
+    - "artifacts/trajectories/reviews/BG-PRE-UNBLINDING-HANDOFF-TRACE-REVIEW-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+  public_sources: []
+  inherited_private_transcript: false
+  source_control_plane_thread_submission_eligible: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+  values_paths_or_contents_disclosed: false
+
+controls:
+  agents_instructions_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  session_boundary_template_read: true
+  required_contracts_read_in_full: true
+  root_matches_authorized_scope: true
+  exact_branch_checked: true
+  exact_head_checked: true
+  clean_worktree_checked: true
+  source_isolated_worktree_read: false
+  raw_trace_read: false
+  stash_created: false
+  stash_applied: false
+  scanner_or_capture_executed: false
+  preflight_executed: false
+  compile_or_tests_executed: false
+  reviewed_candidates_or_indexes_modified: false
+  hashes_or_checksums_modified: false
+  sibling_repositories_inspected: false
+  browser_or_private_mcp_state_inspected: false
+  global_memory_inspected: false
+  private_denylist_available_to_scanner_only: false
+  private_paths_resolve_outside_repository: false
+  raw_trace_location: "external_local_only_not_accessed_before_approval"
+
+structural_preflight:
+  boundary_gate_branch: "passed"
+  boundary_gate_head: "passed"
+  boundary_gate_clean_worktree: "passed"
+  product_or_shared_files_modified: false
+  code_candidate_oracle_or_test_files_modified: false
+  reviewed_trace_candidates_modified: false
+  trajectory_or_provenance_indexes_modified: false
+  actual_traces_modified: false
+  hashes_or_checksums_modified: false
+  compile_or_tests_executed: false
+  scanner_or_preflight_executed: false
+  trace_capture_executed: false
+  raw_trace_read_executed: false
+  source_isolated_worktree_read_executed: false
+  stash_created_or_applied: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  live_model_calls: 0
+  claude_calls: 0
+  chromium_calls: 0
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  global_memory_reads: 0
+  subagents_spawned: false
+  boundary_id_availability: "passed"
+  owner_card_path_availability: "passed"
+
+boundary_artifact_validation:
+  initial_attempt:
+    status: "failed_before_yaml_parse"
+    command_class: "repository-local Node structural validation"
+    safe_error_class: "ERR_MODULE_NOT_FOUND"
+    missing_package: "yaml"
+    files_parsed: false
+    product_or_external_state_changed: false
+  retry:
+    status: "passed"
+    command_class: "standard local YAML syntax parse plus exact two-file content and diff checks"
+    dependency_install_authorized_or_performed: false
+    yaml_syntax_and_required_fields: "passed"
+    exact_approval_phrase_parity: "passed"
+    git_diff_check: "passed"
+    changed_file_scope: "exactly_the_two_SES_017_boundary_gate_artifacts"
+  product_tests_compile_preflight_or_scanner_executed: false
+
+authorization:
+  boundary_preparation_requested_by_owner: true
+  boundary_preparation_only: true
+  handoff_or_trace_review_authorized_before_exact_human_approval: false
+  trace_promotion_authorized: false
+  official_or_scored_run_authorized: false
+  unblinding_authorized: false
+  live_model_authorized: false
+  chromium_authorized: false
+  browser_or_mcp_authorized: false
+  claude_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  allowed_before_human_approval:
+    - "Read AGENTS.md, every mandatory contract, the boundary template, and the minimum repository-local service examples in full."
+    - "Inspect only the repository-local Git branch, exact HEAD, clean status, and service-file path availability."
+    - "Create SES-20260830-017 and its complete natural-Russian owner checkpoint card."
+    - "Structurally validate only those two new service files without running product tests, preflight, scanner, or compile."
+  prohibited_before_human_approval:
+    - "Read or inspect the source isolated worktree, its files, diff, untracked files, or source boundary artifacts."
+    - "Read raw trace content or use MICRO1_PRIVATE_TRACE_DIR."
+    - "Create, inspect, apply, pop, drop, or otherwise mutate the future named stash."
+    - "Run scanner, capture, preflight, compile, tests, replay, evaluation, benchmark, packaging, or any product command."
+    - "Modify product code, fixtures, candidates, oracles, visible assertions, frozen behavior, scoring, methodology, configuration, projections, traces, reviews other than this owner card, indexes, hashes, or checksums."
+    - "Inspect sibling repositories, other external/private workspaces, browser/private state, connected apps, private MCP state, or global memory."
+    - "Invoke Claude, Chromium, a browser, or a live product model; perform an official/scored run, unblinding, trace promotion, commit, push, publication, packaging, or submission."
+
+future_bounded_handoff_and_review_scope_after_exact_owner_approval:
+  source_task_id: "01a05412-6f74-7363-9ee8-ad69df39ad7f"
+  handoff:
+    source_scope_rule: "Preserve the entire exact Git worktree scope belonging to the source task in one temporary named stash, including untracked files."
+    stash_name_rule: "Use a deterministic name containing SES-20260830-017 and source task 01a05412-6f74-7363-9ee8-ad69df39ad7f."
+    stash_retention_rule: "Do not pop or drop the stash; retain it after application as a recoverable source record."
+    target_preconditions:
+      branch: "codex/beyondgreen-d01-scale003-correct"
+      exact_head: "cb51e7de1e9908088dbef4dbeb29946d1edbc16b"
+      working_tree: "clean_except_for_the_two_owner_approved_SES_017_boundary_gate_artifacts"
+    expected_transferred_scope:
+      ses_015_files: 13
+      additional_allowed_trace_artifacts:
+        - "SES-20260830-016 trace artifacts"
+        - "CONT-001 trace artifacts"
+    forbidden_transferred_scope:
+      - "Candidate bytes or candidate manifests."
+      - "Verifier-only or hidden-oracle bytes or manifests."
+      - "Visible assertions or visible-test semantics."
+      - "Frozen behavior specifications or provenance semantics."
+      - "Scoring formulas, targets, denominators, ground truth, membership, unblinding state, or evaluation methodology."
+      - "Any unrelated source-task or background change."
+    required_checks:
+      - "Record the named stash identity and exact path/status inventory without disclosing external machine paths."
+      - "Apply the stash only to the authorized main working copy at the exact HEAD after verifying the target preconditions."
+      - "Verify that the applied scope contains exactly the 13 SES-015 files plus only the authorized SES-016/CONT-001 trace artifacts."
+      - "Verify that no forbidden candidate, oracle, visible-assertion, frozen-behavior, scoring, or methodology change was transferred."
+      - "Keep the stash after successful application and stop immediately on conflict, scope drift, identity mismatch, or ambiguous provenance."
+  safe_preflight:
+    authorized_root: "."
+    commands:
+      - "micro1-safe-preflight control"
+      - "micro1-safe-preflight implementation"
+    denylist_disclosure: false
+    failure_action: "Stop immediately; do not bypass, synthesize a denylist, or continue review."
+  trace_review:
+    trace_id: "TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001"
+    receipt:
+      expected_bytes: 336275
+      expected_sha256: "d83df910358be79f7b8d44bbb612b60e21a75d36b5b4cab4675a36fe23c9883d"
+    access_bridge: "Owner-controlled safe exact-ID bridge using only MICRO1_PRIVATE_TRACE_DIR; external value, path, and raw content must not be disclosed or copied into the repository."
+    nested_reviewer_allowed: false
+    required_checks:
+      - "Verify exact ID, receipt byte count, SHA-256 identity, regular-file status, no symlink escape, strict UTF-8, and deterministic JSONL syntax."
+      - "Review every JSONL event chronologically and reconcile prompts, actions, tool responses, errors, retries, owner checkpoints, and final state."
+      - "Perform deterministic privacy review for absolute machine paths, private denylist matches after path normalization, secrets, personal data, runtime metadata, and unrelated context."
+      - "Confirm omissions and redactions preserve the clean-room technical meaning; stop if safe sanitization would alter it."
+    initial_failed_record_policy: "Preserve the initial unsuccessful record as an honest retry record only; do not classify it as standalone implementation or verification evidence."
+    repository_write_allowlist:
+      - "English reviewed projection for TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001 under artifacts/trajectories/reviewed/."
+      - "Complete natural-Russian reviewed projection for the same trace under artifacts/trajectories/reviewed/."
+      - "English and complete natural-Russian trace review records under artifacts/trajectories/reviews/."
+      - "Review/provenance/index candidates that remain pending owner promotion."
+      - "Only directly derived hashes and checksum-manifest updates covering the bounded handoff and reviewed trace surface."
+    raw_source_policy:
+      copy_into_repository: false
+      modify_source: false
+      disclose_external_path_or_contents_outside_review: false
+  promotion_gate:
+    actual_traces_before_separate_owner_approval: "prohibited"
+    required_stop: "Stop with a complete natural-Russian owner packet before any trace promotion or commit."
+  prohibited_after_boundary_approval:
+    - "Any candidate, hidden-oracle, visible-assertion, frozen-behavior, ground-truth, membership, scoring, target, denominator, or evaluation-methodology change."
+    - "Official/scored execution, unblinding, live product-model calls, Chromium, browser/private MCP, connected apps, private memory, sibling repositories, or unrelated external access."
+    - "Claude or any nested reviewer."
+    - "Copying raw trace sources or private denylist values/paths/contents into the repository or output."
+    - "Promoting any reviewed candidate into actual_traces before a separate exact owner approval."
+    - "Commit or push."
+  contamination_identity_or_scope_failure_action: "Stop immediately for owner review; do not repair, broaden scope, substitute evidence, promote traces, commit, or push."
+
+language_contract:
+  owner_facing_reports: "complete_natural_russian"
+  judge_facing_and_machine_readable_artifacts: "english_allowed"
+  technical_identifier_policy: "Keep exact identifiers, commands, paths, library names, and official product names in English; explain unavoidable English terminology in Russian on first use."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "boundary_candidate_pending_human_approval"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: "control_plane_delegation_not_yet_reviewed"
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "not_machine_exported_in_task_evidence"
+  approval_recorded_at_utc: "2026-08-30T19:51:08Z"
+  approval_evidence: "Одобряю SESSION_BOUNDARY SES-20260830-017 и разрешаю только описанный в русской owner-карточке перенос полного точного scope задачи 01a05412-6f74-7363-9ee8-ad69df39ad7f через сохраняемый именованный stash в чистую основную копию на HEAD cb51e7de1e9908088dbef4dbeb29946d1edbc16b, обе safe preflight-проверки и детерминированный review TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001 по receipt 336275 bytes / SHA-256 d83df910358be79f7b8d44bbb612b60e21a75d36b5b4cab4675a36fe23c9883d без nested reviewer; остановиться с русским owner packet до trace promotion и commit."
+  exact_required_phrase: "Одобряю SESSION_BOUNDARY SES-20260830-017 и разрешаю только описанный в русской owner-карточке перенос полного точного scope задачи 01a05412-6f74-7363-9ee8-ad69df39ad7f через сохраняемый именованный stash в чистую основную копию на HEAD cb51e7de1e9908088dbef4dbeb29946d1edbc16b, обе safe preflight-проверки и детерминированный review TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001 по receipt 336275 bytes / SHA-256 d83df910358be79f7b8d44bbb612b60e21a75d36b5b4cab4675a36fe23c9883d без nested reviewer; остановиться с русским owner packet до trace promotion и commit."
+
+handoff_result:
+  completed_at_utc: "2026-08-30T19:52:22Z"
+  source_task_id: "01a05412-6f74-7363-9ee8-ad69df39ad7f"
+  source_base_head: "cb51e7de1e9908088dbef4dbeb29946d1edbc16b"
+  source_scope_identification: "matched_exact_head_and_expected_13_SES_015_plus_9_SES_016_CONT_001_paths"
+  source_path_persisted: false
+  stash:
+    name: "SES-20260830-017 source-task-01a05412-6f74-7363-9ee8-ad69df39ad7f full-scope-handoff"
+    object_id: "b3187593de04d0474da04cf57e873fe0c4d17d5a"
+    untracked_included: true
+    retained_after_apply: true
+    popped_or_dropped: false
+    source_worktree_clean_after_creation: true
+    first_inventory_command_status: "failed_usage_before_inventory_because_git_stash_show_did_not_accept_the_requested_option"
+    inventory_retry: "passed_via_stash_parent_trees"
+  target:
+    branch: "codex/beyondgreen-d01-scale003-correct"
+    head_before_and_after_apply: "cb51e7de1e9908088dbef4dbeb29946d1edbc16b"
+    stash_apply: "passed_without_conflict"
+  transferred_scope:
+    total_paths: 22
+    ses_015_paths: 13
+    ses_016_cont_001_trace_paths: 9
+    unrelated_paths: 0
+    candidate_or_oracle_paths: 0
+    visible_assertion_or_frozen_behavior_paths: 0
+    scoring_or_methodology_changes: false
+  boundary_gate_paths_preserved:
+    - "artifacts/trajectories/session-boundaries/SES-20260830-017.yaml"
+    - "artifacts/trajectories/reviews/BG-PRE-UNBLINDING-HANDOFF-TRACE-REVIEW-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+
+safe_preflight_result:
+  stopped_at_utc: "2026-08-30T19:53:13Z"
+  control:
+    command: "micro1-safe-preflight control"
+    exit_status: 1
+    status: "blocked"
+    blocking_category: "absolute_user_path"
+    affected_repository_path: "artifacts/trajectories/session-boundaries/SES-20260830-014.yaml"
+    affected_line: 206
+    sensitive_content_disclosed: false
+    binary_human_review_warnings: 4
+  implementation:
+    status: "not_run_due_to_control_stop_condition"
+  bypass_or_synthetic_denylist_used: false
+  stop_condition_applied: true
+
+owner_approved_categorical_redaction:
+  authorization_source: "repository_owner_exact_delegation"
+  authorized_scope: "one literal only in artifacts/trajectories/session-boundaries/SES-20260830-014.yaml:206"
+  category: "absolute_user_path_one_time_git_hook_token"
+  original_literal: "tilde-prefixed Codex one-time Git hook token path; exact literal retained only here by category"
+  replacement_literal: "<one-time-git-hook-token>"
+  original_sha256: "0f29507c0a7c1c52f95d360b883a6a8c38bea3cfbd95bfb7e50bbdc07fbfb69b"
+  redacted_sha256: "f9e8e3897658715d4a5712454035a5b521ebc75b87e71ba1472427f5b82c88ca"
+  exact_single_literal_diff_verified: true
+  other_SES_014_content_or_meaning_changed: false
+  derived_checksum_reconciliation_authorized: true
+  control_and_implementation_preflight_retry_authorized: true
+  trace_review_on_both_preflights_pass_authorized: true
+  new_finding_action: "stop_immediately"
+
+authorized_retry_result:
+  completed_at_utc: "2026-08-30T20:13:54Z"
+  derived_checksums_before_preflight:
+    write: "passed_523_files"
+    verification: "passed_523_files"
+    SES_20260830_014_digest_updated_to_redacted_sha256: true
+  control_preflight_retry:
+    command: "micro1-safe-preflight control"
+    status: "passed_READY_FOR_CLEAN_BRANCH"
+    contamination_findings: 0
+    binary_human_review_warnings: 4
+  implementation_preflight_retry:
+    command: "micro1-safe-preflight implementation"
+    status: "passed_READY_FOR_IMPLEMENTATION"
+    contamination_findings: 0
+    expected_dirty_worktree_warning: true
+    binary_human_review_warnings: 4
+  raw_review_bridge:
+    direct_environment_attempt:
+      status: "stopped_before_raw_access"
+      reason: "owner-controlled environment variables are intentionally unavailable to ordinary shell sessions"
+      raw_read: false
+    exact_wrapper_discovery:
+      command_name: "micro1-safe-trace-review"
+      advertised_interface: "scan-raw TRACE_ID only"
+    automated_exact_id_scan:
+      command: "micro1-safe-trace-review scan-raw TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001"
+      status: "passed_requires_submission_redaction"
+      bytes: 336275
+      raw_sha256: "d83df910358be79f7b8d44bbb612b60e21a75d36b5b4cab4675a36fe23c9883d"
+      private_term_matches: 0
+      private_term_matches_after_path_redaction: 0
+      email_matches: 0
+      secret_assignment_matches: 0
+      absolute_user_path_matches: 0
+      path_disclosed: false
+    semantic_interface:
+      status: "blocked_safe_semantic_extraction_unavailable"
+      wrapper_exposes_raw_content: false
+      strict_jsonl_record_parse_completed: false
+      complete_chronology_reviewed: false
+      raw_copied_to_repository: false
+      unsafe_bypass_attempted: false
+      source_task_metadata_considered_as_raw_substitute: false
+    stop_reason: "TRACE_POLICY requires complete chronological semantic review; scanner-only metadata cannot support reviewed projections or technical-meaning-preserved attestation."
+  initial_failed_record:
+    preserved_unchanged: true
+    classification: "retry_record_only_not_evidence"
+  reviewed_projection_result:
+    english_created: false
+    russian_created: false
+    reason: "fail_closed_no_safe_semantic_source"
+  review_provenance_or_index_candidates_created: false
+  actual_traces_modified: false
+  nested_reviewer_calls: 0
+  trace_promotion_performed: false
+  commit_performed: false
+  push_performed: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  final_owner_packet: "artifacts/trajectories/reviews/TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001-OWNER-PACKET_RU.md"
+
+trace_review_result:
+  trace_id: "TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001"
+  status: "blocked_after_identity_and_privacy_scan_before_semantic_review"
+  receipt_identity_checked: true
+  raw_trace_read: false
+  nested_reviewer_calls: 0
+  reviewed_projections_created: false
+  review_provenance_or_index_candidates_created: false
+  hashes_or_checksums_modified: false
+  actual_traces_modified: false
+  initial_failed_record_classified_as_evidence: false
+
+final_stop:
+  status: "blocked_after_preflight_pass_and_raw_identity_privacy_scan_before_semantic_review"
+  owner_packet: "artifacts/trajectories/reviews/TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001-OWNER-PACKET_RU.md"
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  live_model_calls: 0
+  chromium_calls: 0
+  browser_or_mcp_calls: 0
+  claude_calls: 0
+  trace_promotion_performed: false
+  commit_performed: false
+  push_performed: false
+
+review_projection_mode_authorization:
+  authorization_source: "repository_owner_exact_delegation"
+  objective: "Create a bounded repository-local projector behind micro1-safe-trace review-projection TRACE_ID and use it only for TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001."
+  allowed_projection_fields:
+    - "event sequence number"
+    - "allowlisted event and item type"
+    - "source-order temporal position"
+    - "structural role"
+    - "tool-call and tool-result presence"
+    - "completion statuses and integer exit code"
+  forbidden_projection_fields:
+    - "raw content"
+    - "tool arguments"
+    - "external paths"
+    - "environment values"
+    - "runtime identifiers"
+    - "token or usage metadata"
+
+review_projection_mode_result:
+  status: "blocked_protected_wrapper_dispatch_unavailable"
+  repository_files_created:
+    - "scripts/trace-review-projection.ts"
+    - "tests/trace-review-projection.test.ts"
+  implementation:
+    strict_utf8: true
+    strict_jsonl_objects: true
+    zod_output_schema: "micro1-safe-trace-review-projection@1.0.0"
+    chronology_basis: "immutable_jsonl_source_order"
+    unknown_types_normalized_without_raw_value: true
+    content_arguments_paths_environment_identifiers_usage_omitted: true
+  tests:
+    initial_run:
+      status: "failed_test_harness_only"
+      passed: 3
+      failed: 1
+      finding: "The schema assertion incorrectly required reference identity after Zod parsing."
+      projector_defect_established: false
+    correction: "Changed only the schema assertion from reference equality to structural deep equality."
+    retry:
+      status: "passed_4_of_4"
+      privacy: "passed"
+      schema: "passed"
+      chronology: "passed"
+      malformed_input_and_unsafe_id_rejection: "passed"
+    compile: "passed"
+  protected_command_attempt:
+    command: "micro1-safe-trace review-projection TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001"
+    status: "failed_usage_before_raw_access"
+    advertised_modes_after_attempt: "probe_or_capture_only"
+    raw_trace_read: false
+    projection_emitted: false
+    external_wrapper_or_configuration_inspected_or_modified: false
+  stop_condition_applied: true
+  derived_checksums_reconciled_after_mode_changes: false
+  preflight_repeated_after_mode_changes: false
+  reason: "The repository-local projector cannot receive immutable raw bytes because the existing protected wrapper does not dispatch review-projection; bypassing the wrapper would violate the approved boundary."
+  reviewed_projection_created: false
+  actual_traces_modified: false
+  trace_promotion_performed: false
+  commit_performed: false
+  push_performed: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  final_owner_packet: "artifacts/trajectories/reviews/TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001-OWNER-PACKET_RU.md"
+
+protected_wrapper_dispatch_authorization:
+  authorization_source: "repository_owner_exact_delegation"
+  allowed_change: "Add only review-projection TRACE_ID dispatch to the installed micro1-safe-trace executable, piping the exact raw trace through stdin to the verified repository-local projector."
+  external_executable_path_may_be_disclosed: false
+  any_other_external_wrapper_change_authorized: false
+
+protected_wrapper_dispatch_attempt:
+  status: "stopped_on_external_executable_path_disclosure"
+  baseline_wrapper:
+    sha256: "0abf0e3aca018b2deea1f0877440bb8d0ae32eab2414cc385a1b7cd69b21c1bc"
+    bytes: 3019
+  sanitized_structure_inspection:
+    status: "completed"
+    absolute_path_spans_redacted_before_display: 1
+    wrapper_modes: "probe_and_capture"
+  dynamic_patch:
+    status: "failed_apply_patch_verification_before_write"
+    failure_category: "generated_insertion_lines_lacked_apply_patch_addition_markers"
+    wrapper_modified: false
+  privacy_finding:
+    category: "external_executable_absolute_path_disclosed_by_apply_patch_diagnostic"
+    exact_path_persisted_in_repository: false
+    exact_path_repeated_in_owner_artifacts: false
+    affected_output_layer: "current_control_task_tool_output_only"
+    raw_trace_or_private_environment_disclosed: false
+  post_failure_wrapper_identity:
+    sha256: "0abf0e3aca018b2deea1f0877440bb8d0ae32eab2414cc385a1b7cd69b21c1bc"
+    bytes: 3019
+    unchanged_from_baseline: true
+  stop_condition_applied: true
+  dispatch_retry_performed: false
+  smoke_test_performed: false
+  target_raw_trace_read: false
+  target_projection_created: false
+  chronology_or_semantic_review_performed: false
+  derived_checksums_reconciled_after_attempt: false
+  preflight_repeated_after_attempt: false
+  trace_promotion_performed: false
+  commit_performed: false
+  push_performed: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  final_owner_packet: "artifacts/trajectories/reviews/TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001-OWNER-PACKET_RU.md"
+
+continuation_002_authorization:
+  authorization_source: "repository_owner_exact_delegation"
+  objective: "Capture one read-only continuation by splitting one unchanged Codex CLI JSONL stream simultaneously to the protected capture sink and the verified repository-local structural projector."
+  trace_id: "TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-002"
+  exact_head: "cb51e7de1e9908088dbef4dbeb29946d1edbc16b"
+  implementation_scope_paths: 13
+  external_wrapper_change_abandoned: true
+  prior_external_wrapper_attempt_classification: "retry_record_only_not_evidence"
+  new_retry_or_diagnostic_cycles_authorized: false
+
+continuation_002_result:
+  status: "reviewed_structural_candidate_pending_owner_promotion_decision"
+  capture:
+    source_stream: "one_unchanged_jsonl_stream_split_simultaneously"
+    bytes: 290598
+    sha256: "6f153ceab21a839daabdb41e6eca5c1a9eaa5395215a416c4bf847fa14e4c8c5"
+    projector_identity_match: true
+    raw_intermediate_created: false
+    raw_path_disclosed: false
+  projection:
+    event_count: 18
+    strict_utf8: "passed"
+    strict_jsonl_objects: "passed"
+    source_order_chronology: "passed"
+    tool_calls: 6
+    tool_results: 6
+    successful_exit_results: 5
+    failed_exit_results: 1
+    turn_completed_after_terminal_assistant_message: true
+    raw_content_arguments_paths_environment_or_runtime_metadata_persisted: false
+    exact_failed_command_mapping_claimed: false
+  privacy:
+    raw_scan: "passed_requires_submission_redaction"
+    private_term_matches: 0
+    private_term_matches_after_path_redaction: 0
+    email_matches: 0
+    secret_assignment_matches: 0
+    absolute_user_path_matches: 0
+  retry_records_not_evidence:
+    - "initial_failed_trace"
+    - "CONT-001_identity_only_scan"
+    - "rejected_prelaunch_shell_command"
+    - "failed_external_wrapper_patch_before_write"
+  reviewed_artifacts:
+    english: "artifacts/trajectories/reviewed/TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-002.md"
+    russian: "artifacts/trajectories/reviewed/TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-002_RU.md"
+    structural_json: "artifacts/trajectories/reviewed/TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-002-STRUCTURAL.json"
+    review_candidate: "artifacts/trajectories/reviews/TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-002.yaml"
+  promotion_or_commit_performed: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  claude_calls: 0
+  final_verification:
+    derived_checksums_write: "passed_533_files"
+    derived_checksums_verification: "passed_533_files"
+    control_preflight: "passed_READY_FOR_CLEAN_BRANCH"
+    implementation_preflight: "passed_READY_FOR_IMPLEMENTATION"
+    contamination_findings: 0
+    expected_binary_human_review_warnings: 4
+    expected_dirty_worktree_warning: true
+    new_finding: false
+  final_owner_packet: "artifacts/trajectories/reviews/BG-PRE-UNBLINDING-HANDOFF-TRACE-REVIEW-STOP-OWNER-PACKET_RU.md"
+
+deadline_first_final_integrity_check:
+  status: "stopped_on_new_validation_command_failure_without_retry"
+  intended_scope: "Read-only YAML parsing of the two final SES-017/CONT-002 cards, followed by diff, HEAD, and retained-stash assertions."
+  failure_stage: "before_any_yaml_file_was_parsed"
+  failure_class: "Ruby_Psych_API_unavailable"
+  safe_error: "NoMethodError: undefined method safe_load_file for Psych:Module"
+  repository_state_changed_by_failed_command: false
+  yaml_defect_established: false
+  diff_head_or_stash_assertions_reached: false
+  retry_performed: false
+  stop_condition_applied: true
+  checksum_note: "The 533-file checksum write and verification passed immediately before this record; adding this record occurs after that verification and was not reconciled because the owner required immediate stop on any new failure."
+  promotion_performed: false
+  commit_performed: false
+  push_performed: false

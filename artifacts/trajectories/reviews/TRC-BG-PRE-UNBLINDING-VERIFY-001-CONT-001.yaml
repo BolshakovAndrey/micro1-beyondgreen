@@ -1,0 +1,92 @@
+schema_version: "1.1"
+review_id: "REV-TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001"
+trace_id: "TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001"
+session_boundary: "SES-20260830-017"
+reviewed_at_utc: "2026-08-30T20:13:54Z"
+review_method: "owner_controlled_exact_id_raw_scan_then_fail_closed_on_unavailable_safe_semantic_extraction"
+status: "blocked_incomplete_not_promotable"
+reviewer:
+  kind: "coordinator_local_deterministic_review"
+  nested_reviewer_used: false
+scope:
+  implementation_scope: "none"
+  subject: "Read-only verification of the exact thirteen-file SES-20260830-015 pre-unblinding implementation"
+  raw_trace_allowlist_exact: true
+  raw_copied_to_repository: false
+  raw_path_disclosed: false
+identity_and_automated_scan:
+  expected_bytes: 336275
+  observed_bytes: 336275
+  expected_sha256: "d83df910358be79f7b8d44bbb612b60e21a75d36b5b4cab4675a36fe23c9883d"
+  observed_sha256: "d83df910358be79f7b8d44bbb612b60e21a75d36b5b4cab4675a36fe23c9883d"
+  identity: "passed"
+  automated_raw_scan: "passed_requires_submission_redaction"
+  private_term_matches: 0
+  private_term_matches_after_path_redaction: 0
+  email_matches: 0
+  secret_assignment_matches: 0
+  absolute_user_path_matches: 0
+  path_disclosed: false
+preflight:
+  control: "passed_READY_FOR_CLEAN_BRANCH"
+  implementation: "passed_READY_FOR_IMPLEMENTATION_with_expected_dirty_worktree_warning"
+  contamination_findings: 0
+semantic_review:
+  safe_exact_id_interface_available: false
+  available_wrapper_capability: "scan-raw metadata only"
+  strict_jsonl_parse: "not_completed"
+  complete_event_chronology: "not_reviewed"
+  commands_and_tool_responses: "not_projected"
+  technical_meaning_preserved: false
+  unsafe_bypass_attempted: false
+retry_classification:
+  initial_trace: "failed_incomplete_retry_record_only_not_evidence"
+  continuation: "immutable_capture_identity_and_privacy_scan_passed_semantic_review_incomplete"
+reviewed_projections:
+  english: "not_created_fail_closed"
+  russian: "not_created_fail_closed"
+trace_policy_disposition: "blocked_complete_chronological_review_required"
+eligibility:
+  eligible_representative_trace: false
+  human_review_passed: false
+  indexed_in_actual_traces: false
+  promotion_authorized: false
+prohibited_actions_performed:
+  product_candidate_oracle_assertion_methodology_change: false
+  official_or_scored_run: false
+  unblinding: false
+  live_product_model: false
+  chromium_browser_mcp_or_claude: false
+  commit: false
+  push: false
+required_next_gate:
+  action: "Owner-controlled exact-ID semantic extraction preserving every JSONL event in order without disclosing the external raw path or copying the raw source into the repository."
+  no_promotion_before_completed_review_and_separate_owner_approval: true
+
+repo_local_review_projection_attempt:
+  status: "blocked_protected_wrapper_dispatch_unavailable"
+  implementation_files:
+    - "scripts/trace-review-projection.ts"
+    - "tests/trace-review-projection.test.ts"
+  deterministic_tests:
+    initial: "failed_3_of_4_on_test_reference_equality_only"
+    corrected_retry: "passed_4_of_4"
+    compile: "passed"
+  command: "micro1-safe-trace review-projection TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-001"
+  command_result: "usage_failure_before_raw_access"
+  wrapper_modes_available: "probe_or_capture_only"
+  raw_read: false
+  projection_created: false
+  checksums_or_preflight_after_failure: "not_run_due_stop_condition"
+
+protected_wrapper_dispatch_attempt:
+  status: "stopped_on_path_disclosure_before_wrapper_change"
+  original_sha256: "0abf0e3aca018b2deea1f0877440bb8d0ae32eab2414cc385a1b7cd69b21c1bc"
+  final_sha256: "0abf0e3aca018b2deea1f0877440bb8d0ae32eab2414cc385a1b7cd69b21c1bc"
+  wrapper_unchanged: true
+  patch_applied: false
+  privacy_finding_category: "external_executable_absolute_path_in_apply_patch_diagnostic"
+  exact_path_in_repository: false
+  raw_read: false
+  projection_created: false
+  retry_smoke_checksums_preflight: "not_run_due_stop_condition"

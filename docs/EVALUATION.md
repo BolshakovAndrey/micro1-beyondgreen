@@ -33,6 +33,23 @@ verification and the shared D01-D04 manifest, isolation, descriptor/task bijecti
 discarded-prototype, and deterministic D01 replay checks pass. These are unscored
 development controls and do not change evaluation v1.1, any candidate/oracle bytes,
 visible assertions, targets, denominators, attempt policy, or `K=0`.
+The frozen held-out coordinator trajectory was later promoted to `actual_traces` in
+commit `e08f2f91440a484df9f9c9ae772461bd3d9d49d1`; the bounded TypeScript `TS2532`
+correction followed in commit `cb51e7de1e9908088dbef4dbeb29946d1edbc16b`.
+Under owner-approved `SES-20260830-015`, a non-scored freeze self-test passed all 20
+compilation/visible gates, ten evaluator accepts, ten reason-correct evaluator
+rejects, manifest reconciliation, reciprocal oracle denial, exact 10-fixture /
+20-candidate cardinality, 4/6 membership, ten-class bijection, sole challenging case
+`BG-H02`, `K=0`, and the held-out leak scan. The normative task names
+`baseline:verify`, `beyondgreen:verify`, `evaluation:run`, and `replay` are registered
+only as exact-version pre-unblinding contract validators. They report and enforce
+`officialOrScoredRun=false`, `unblindingPerformed=false`, `armExecuted=false`, and
+`runRecordCreated=false`; `replay` additionally reproduces the existing unscored D01
+evidence offline. A temporary manifest-backed clean-extraction rehearsal passed
+compile, 115/115 ordinary tests, the complete freeze self-test, all four contract
+entrypoints, D01 replay, and the 54/54 license audit. It created no persistent archive
+or run record. These readiness controls are not evaluation results and make no score
+claim; official/scored execution and the single unblinding remain separately gated.
 
 This projection specializes `FR-001`–`FR-012`, `NFR-001`–`NFR-009`,
 `EV-001`–`EV-013`, and `AR-003`–`AR-007`. It claims no result.
@@ -62,8 +79,8 @@ Membership/classes remain frozen. BG-D01 through BG-D04 development prose,
 candidates, and oracle packages now exist. The six held-out implementations also
 exist as frozen non-official verification packages; integration checks pass without
 an official/scored run or unblinding. The owner accepted the integrated state and
-authorized one checkpoint commit without push; trace promotion remains pending a
-separate gate.
+authorized one checkpoint commit without push; the reviewed held-out coordinator
+trajectory is now promoted in `actual_traces`.
 
 ## Two scored arms (`FR-011`, `EV-003`, `EV-004`)
 

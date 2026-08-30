@@ -1,0 +1,52 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-PRE-UNBLINDING-VERIFY-001"
+session_boundary: "SES-20260830-016"
+category: "read_only_pre_unblinding_verification"
+status: "stopped_incomplete_ineligible_not_promotable"
+capture:
+  kind: "codex_cli_jsonl_stdout_with_separate_stderr_receipt"
+  codex_cli_version: "0.148.0"
+  thread_id: "01a05428-8dbb-75e3-a401-7c4ee4cbdac8"
+  explicit_model_in_launcher: false
+  model_metadata_status: "not_exported_requires_explicit_model_on_fresh_capture"
+  raw_path_persisted_in_repository_or_reviewed_projection: false
+  temporary_path_visible_in_submission_ineligible_control_plane_tool_output: true
+  stdout_sha256: "47b729559c6b9c235837c2b91c1b353195c3f36a44c4eb08b7b7d6658bf0e8af"
+  stderr_sha256: "0bebff5702882899876e56453963db5a79d7cadea562e932b967fd471a5f58ef"
+  strict_utf8: "passed"
+  strict_jsonl: "passed_73_events"
+automated_review:
+  generic_privacy_secret_path_scan: "passed_zero_matches"
+  private_denylist_scan: "not_run_environment_interface_unavailable"
+  stderr_classification: "nonfatal_codex_state_database_fallback_warnings_only"
+technical_review:
+  exact_head: "passed"
+  exact_scope: "passed"
+  mandatory_contract_read: "passed"
+  static_source_review: "passed_no_finding"
+  tracked_git_diff_check: "passed"
+  untracked_whitespace_check: "failed_reviewer_wrapper_used_zsh_reserved_status_variable"
+  remaining_authorized_checks: "not_run_due_mandatory_stop"
+  repository_defect_established: false
+frozen_surface:
+  static_changed_path_review: "no_candidate_oracle_visible_assertion_manifest_scoring_methodology_or_unblinding_surface_changed"
+  runtime_confirmation: "incomplete"
+execution_boundary:
+  official_or_scored_run: false
+  unblinding: false
+  live_product_model: false
+  chromium_browser_mcp_or_claude: false
+  final_archive_or_run_record: false
+  commit_or_push: false
+eligibility:
+  complete_representative_trace: false
+  human_review_passed: false
+  indexed_in_actual_traces: false
+  promotion_authorized: false
+required_next_gate:
+  fresh_capture: true
+  corrections:
+    - "Use a non-reserved shell variable in the untracked whitespace wrapper."
+    - "Declare the exact Codex model in the launcher."
+    - "Make the private denylist available only to the post-capture scanner."
+  retry_without_owner_approval: false
