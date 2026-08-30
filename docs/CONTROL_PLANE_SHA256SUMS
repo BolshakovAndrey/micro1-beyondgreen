@@ -23,9 +23,9 @@ b14dc3e4e0384ea4b4c57304b33e15a219330fe83e49da2cc5301236bedc294c  ./artifacts/ph
 735c13dcdd9949c04f028e4acfd71c1ea86a6dfc59417551c15467f3cb3fd4c6  ./artifacts/provenance/BG-D01-DOCUMENTATION.yaml
 c45041d1501c10df52db9034060a86b480f1f3e845fd8e02a1c59ad29a4f1f37  ./artifacts/provenance/BG-D01-IMPLEMENTATION.yaml
 d6c86f5e25f1cf57aa59ed55f17a3edde7012ffcdf3e48fc87108f28add0992c  ./artifacts/provenance/BG-D01-VERTICAL-SLICE.yaml
-762a9e9db197d88eafd522ee2751855193f7ae2e052993c7c860900a22ba1e02  ./artifacts/provenance/index.yaml
+dff6021e486839ef80989ef31a740ddf93418991f517a88f55838ec9592c4d2b  ./artifacts/provenance/index.yaml
 dd549160809e21e1ea72797ad3ca0080d66c9751e3125a00b4a30edf0733b018  ./artifacts/trajectories/TRACE_CAPTURE_DRY_RUN.md
-afa7545052da2f7e6062c828de14e336c61914a804929bed47ef26aff4f2f6f9  ./artifacts/trajectories/index.yaml
+ba413921e471bda95b0a3304e7cd11331fd37cafcd213eae3ea27c1a2ddc7742  ./artifacts/trajectories/index.yaml
 427698ec572acc7ac70d53dc87983af97eb5f82495968ba53c3b829577edf139  ./artifacts/trajectories/instructions/TRC-BG-D01-001.md
 68d8fc0b1b872256753eec7f739742826771e19712f8ce1ee75a8eaddf1d661b  ./artifacts/trajectories/instructions/TRC-BG-D01-DOCS-001-CONT-001.md
 3472e7c5cb188b4eb88bdf33e156370273f668f1684ca63c1c8d0109260393c4  ./artifacts/trajectories/instructions/TRC-BG-D01-DOCS-001-CONT-002.md
@@ -83,6 +83,8 @@ f1d3560edbb687903ea97ffe13bfb67a20401fdf5dba2e927cfbf09f961ae486  ./artifacts/tr
 091b70f5ee2c31a6511a3bbff576bbc21ea31b5c51cda9181945cf88e4ddb19c  ./artifacts/trajectories/reviewed/TRC-BG-D01-SCALE-004_RU.md
 0f956188a5536ed0e3a003e64ba90394258da06f970ef9ee8d088af7cf790834  ./artifacts/trajectories/reviewed/TRC-BG-D01-VERIFY-002.md
 853c4ac76424f773643d5fce5920e2362efaf3fa416f7df5b075325c95fb5ebc  ./artifacts/trajectories/reviewed/TRC-BG-D01-VERIFY-002_RU.md
+6b018c66a62c5f0e35e029d5e89b5d9a8b7af6b7dac19f018644a940e3c78e76  ./artifacts/trajectories/reviewed/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001.md
+91ff1577101c9ef723c0eefcce3b8f758438ccfd984a4e112dada7607f358ee6  ./artifacts/trajectories/reviewed/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001_RU.md
 baea3dade77d380dfcb0ef28aefc5de98421c0946231dbbf1a1b219a988a5dbf  ./artifacts/trajectories/reviewed/TRC-BG-PHASE05-001.md
 275104d71a8759d05b22a76c67a3cf700953229a094ad9b2b4d2387f418927d2  ./artifacts/trajectories/reviewed/TRC-BG-PHASE05-001_RU.md
 c090a8fa646598b5942175dbbae15f8110110d3347eba2ef812a22dc7287a0cf  ./artifacts/trajectories/reviewed/TRC-BG-TRACEFIRST-001.md
@@ -115,6 +117,7 @@ f852dc494e1d7fbc1596ca8df978dff50f1e791d7ea7bc70450dc9f10eb18e78  ./artifacts/tr
 682bd451a9ade07b458bff17de79ed1c95d8898d0a99fdde7159befdd2744292  ./artifacts/trajectories/reviews/BG-D02-SESSION-BOUNDARY-CHECKPOINT_RU.md
 7e849bd87ee10d89d92a75e278dd8c9dbd9fc9620f7405c800331a3feccef90c  ./artifacts/trajectories/reviews/BG-D03-SESSION-BOUNDARY-SES-20260830-007-CHECKPOINT_RU.md
 18f20ff94f5afd0fae8b1224a940e0d776019f6cef29d9979150bd8b18f4d225  ./artifacts/trajectories/reviews/BG-D04-SESSION-BOUNDARY-008-CHECKPOINT_RU.md
+fb0bfcf7c5df6b0d8b54f0b54622dd5698fa9e36c67f7ab5aa34cc638b6792fd  ./artifacts/trajectories/reviews/BG-HELDOUT-COORDINATOR-TRACE-SESSION-BOUNDARY-CHECKPOINT_RU.md
 42e4e709b5b2bc99a0b3c8bbd7f784d89b7dfdb8e2d6d58c3ab58b1b541ecb84  ./artifacts/trajectories/reviews/BG-HELDOUT-FIXTURES-SESSION-BOUNDARY-CHECKPOINT_RU.md
 8f304b9da6a4e0c3a6f4d28de93f9e0a03a417b002a50ec5660244b511a61c32  ./artifacts/trajectories/reviews/BG-HELDOUT-FREEZE-SESSION-BOUNDARY-CHECKPOINT_RU.md
 a5db9f786789f6c68b416342935986709c7eb497cfff70d8b5911b0eaa2afbc9  ./artifacts/trajectories/reviews/BG-HELDOUT-PROSE-FREEZE-CHECKPOINT_RU.md
@@ -146,7 +149,11 @@ cbb7cbf027b485038cb71871fe172c409dd6be59cff9bab605835fa6c340787d  ./artifacts/tr
 9c763154e131a8ac9de70438fa010b0803730cc160f92cb6003daf90397ff777  ./artifacts/trajectories/reviews/TRC-BG-D02-D04-INTEGRATION-001-CONT-009-STOP_RU.md
 a21bb58d32f096eb3eb62f8f307c04bb6c2408f0653fab6e94902e24533705ff  ./artifacts/trajectories/reviews/TRC-BG-D02-D04-INTEGRATION-001-CONT-012-RESULT_RU.md
 bba61e2891ab8e0224d5ab73dbd7eafc591061b9f565d9d4b6f51ed1c6c74518  ./artifacts/trajectories/reviews/TRC-BG-D02-D04-INTEGRATION-001-STOP_RU.md
+c0405ba648f2507a12e596908a6685fb447df58bcd88c416b879408e6393d036  ./artifacts/trajectories/reviews/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001-CHECKSUMS.sha256
+aed7e2356c7fb932ad3b3942f988aaf6605c607e19cfe1aa9f76184d9715a3c2  ./artifacts/trajectories/reviews/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001-OWNER-PACKET_RU.md
+038f54db649830f1009f5405812fe9ebbb199081092a3ae8d7a2b56b211befcc  ./artifacts/trajectories/reviews/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001-POST-CAPTURE.yaml
 6833311befe89ce77e44dac51862f0fa7b70be54b078666a87c087230de03db8  ./artifacts/trajectories/reviews/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001-RESULT_RU.md
+debdb78ead8f72744f1cb8c1bdbf7227230dcddee00172a55f79593f40eeb002  ./artifacts/trajectories/reviews/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001.yaml
 404eaf3c1a9fc36d67c36c1ddcbdac3343c9886e8c71676fe7078148a2d63211  ./artifacts/trajectories/reviews/TRC-BG-HELDOUT-FREEZE-001-CONT-001-STOP_RU.md
 8910f919c3909605fa33e52457932213d3e7afe5f4a5cdc5303214f0c43ffd46  ./artifacts/trajectories/reviews/TRC-BG-HELDOUT-FREEZE-001-CONT-002-STOP_RU.md
 7b13b173701541a7222f4db0e0427b21492e8326004dcf18224eea982c17fc5e  ./artifacts/trajectories/reviews/TRC-BG-HELDOUT-FREEZE-001-CONT-003-ROOT-STOP_RU.md
@@ -176,6 +183,7 @@ bfe7a069be9a9c6e27e127d432ac3b97024967cb45fb0750a6a94163efd17601  ./artifacts/tr
 7c374dede309e42c5b49c2bebca7a930aed59911e4d807e4a544eae784d6f091  ./artifacts/trajectories/session-boundaries/SES-20260830-009.yaml
 5abe649c26430e7dd33360fc1aac1481b90bd2c2e72f056076d02a845be9ab57  ./artifacts/trajectories/session-boundaries/SES-20260830-010.yaml
 a81acc1bb4cff4b85008d91f6bb812135f02eecb59d95bfe00593c27b1b5c294  ./artifacts/trajectories/session-boundaries/SES-20260830-011.yaml
+a0876dcc9dc3d82e1845c45cd71d8cd51b29befddbc56d75debb826cff278748  ./artifacts/trajectories/session-boundaries/SES-20260830-012.yaml
 f46b2ed8c85e8558b5c8812491c09d89530099b0890454415579ea4c5d69e8a5  ./candidates/BG-D01/candidate-a/MuseumBoard.ts
 9e2a9151531aa961cf0ace3e20520fdcfa45ff0bff0f13ae214f7e5fbdad7d2b  ./candidates/BG-D01/candidate-b/MuseumBoard.ts
 3360e495c3d5895e784be3b62a041de83666d8bd97239f044bb6032273e3e8a3  ./candidates/BG-D02/candidate-a/ParcelDispatchBoard.ts

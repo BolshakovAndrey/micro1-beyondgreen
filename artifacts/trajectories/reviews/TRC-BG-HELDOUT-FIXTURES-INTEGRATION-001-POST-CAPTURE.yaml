@@ -1,0 +1,50 @@
+schema_version: "1.1"
+trace_id: "TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001"
+session_boundary: "SES-20260830-012"
+record_kind: "reviewed_post_capture_provenance_projection"
+raw_capture:
+  immutable_external_receipts_verified: true
+  raw_copied_to_repository: false
+  raw_path_disclosed: false
+  strict_utf8_and_jsonl: "passed"
+review:
+  method: "deterministic_local_review_pipeline"
+  nested_reviewer_used: false
+  privacy_scan: "passed_after_deterministic_machine_path_normalization"
+  technical_meaning_preserved: true
+post_capture_acceptance:
+  report_path: "artifacts/trajectories/reviews/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001-RESULT_RU.md"
+  verification_completed_at_utc: "2026-08-30T17:54:33Z"
+  owner_accepted_at_utc: "2026-08-30T17:56:31Z"
+  whitespace_normalization_verified_at_utc: "2026-08-30T18:04:28Z"
+  ordinary_tests: "111_of_111_passed"
+  control_preflight: "READY_FOR_CLEAN_BRANCH"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION"
+  closes_cont_004_environment_limitations: true
+integration_commit:
+  head: "b05d0e17a9ae7ff50f3413ca78e8987a3656cf56"
+  message: "feat(Evaluation):[BeyondGreen] Integrate held-out fixtures"
+  exact_identity_verified: true
+fixture_source_commits:
+  - "2b61a9954d43686f4c07f10d48bb726d5ed156f0"
+  - "bf94ab99a0162d9a940b9ba129602b0cc59b0f67"
+  - "745b118b4c4da34dde367d84eae8005c3af3c4a2"
+fixture_identity:
+  exact_files_verified: 103
+  exact_files_expected: 103
+representative_set:
+  included:
+    - "CONT-003"
+    - "CONT-004"
+    - "owner-controlled post-capture acceptance"
+  retry_only:
+    - "initial"
+    - "CONT-001"
+    - "CONT-002"
+promotion:
+  human_review: "passed"
+  human_reviewed_at_utc: "2026-08-30T18:40:30Z"
+  actual_traces_modified: true
+  minimum_representative_set_only: true
+  commit_performed: false
+  push_performed: false

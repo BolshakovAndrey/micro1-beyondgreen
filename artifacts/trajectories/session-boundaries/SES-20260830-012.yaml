@@ -1,0 +1,360 @@
+schema_version: "1.1"
+session_id: "SES-20260830-012"
+started_at_utc: "2026-08-30T18:06:18Z"
+agent:
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Prepare a submission-eligible review-only boundary for the BeyondGreen BG-H01 through BG-H06 coordinator implementation trace bundle"
+
+repository:
+  root: "."
+  root_resolution: "The Git top level matched the task-authorized saved clean repository root; the machine-specific absolute path is intentionally not persisted in this service record."
+  branch_state: "named_branch"
+  branch: "codex/beyondgreen-d01-scale003-correct"
+  exact_head: "b05d0e17a9ae7ff50f3413ca78e8987a3656cf56"
+  initial_head: "b05d0e17a9ae7ff50f3413ca78e8987a3656cf56"
+  working_tree_at_start: "clean"
+  integration_commit_message: "feat(Evaluation):[BeyondGreen] Integrate held-out fixtures"
+  remote_state_contacted_or_verified: false
+  commit_authorized: false
+  push_authorized: false
+
+context:
+  repository_root: "."
+  allowed_paths_before_approval:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-010.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-011.yaml"
+    - "artifacts/trajectories/reviews/BG-HELDOUT-FIXTURES-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-012.yaml"
+    - "artifacts/trajectories/reviews/BG-HELDOUT-COORDINATOR-TRACE-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+  public_sources: []
+  inherited_private_transcript: false
+  source_control_plane_thread_submission_eligible: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "task_authorized"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+  values_paths_or_contents_disclosed: false
+
+controls:
+  agents_instructions_read: true
+  cleanroom_policy_read: true
+  trace_policy_read: true
+  challenge_contract_read: true
+  hackathon_rules_read: true
+  preflight_checklist_read: true
+  project_spec_1_1_0_read: true
+  evaluation_projection_read: true
+  topic_projection_read: true
+  session_boundary_template_read: true
+  required_contracts_read_in_full: true
+  root_matches_authorized_scope: true
+  exact_branch_checked: true
+  exact_head_checked: true
+  clean_worktree_checked: true
+  integration_commit_message_checked: true
+  raw_traces_read: false
+  scanner_or_capture_executed: false
+  reviewed_candidates_or_indexes_modified: false
+  preflight_executed: false
+  sibling_repositories_inspected: false
+  browser_or_private_mcp_state_inspected: false
+  global_memory_inspected: false
+  private_denylist_available_to_scanner_only: false
+  private_paths_resolve_outside_repository: false
+  raw_trace_location: "external_local_only_not_accessed_before_approval"
+
+structural_preflight:
+  product_or_shared_files_modified: false
+  code_candidate_oracle_or_test_files_modified: false
+  reviewed_trace_candidates_modified: false
+  trajectory_or_provenance_indexes_modified: false
+  actual_traces_modified: false
+  compile_or_tests_executed: false
+  scanner_or_preflight_executed: false
+  trace_capture_executed: false
+  raw_trace_read_executed: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  live_model_calls: 0
+  claude_calls: 0
+  chromium_calls: 0
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  global_memory_reads: 0
+  subagents_spawned: false
+  boundary_id_availability: "passed"
+  owner_card_path_availability: "passed"
+
+authorization:
+  boundary_preparation_requested_by_owner: true
+  boundary_preparation_only: true
+  trace_review_authorized_before_separate_human_approval: false
+  actual_traces_promotion_authorized: false
+  official_or_scored_run_authorized: false
+  commit_authorized: false
+  push_authorized: false
+  allowed_before_human_approval:
+    - "Read AGENTS.md, every mandatory contract, the boundary template, and the minimum repository-local service examples in full."
+    - "Inspect only the repository-local Git branch, exact HEAD, clean status, exact integration commit message, and service-file path availability."
+    - "Create SES-20260830-012 and its complete natural-Russian owner checkpoint card."
+    - "Structurally validate only those two new service files."
+  prohibited_before_human_approval:
+    - "Read raw traces or use MICRO1_PRIVATE_TRACE_DIR."
+    - "Run scanner, capture, preflight, compile, tests, replay, evaluation, benchmark, packaging, or any product command."
+    - "Modify reviewed trace candidates, reviews other than this owner card, trajectory or provenance indexes, hashes, checksums, or actual_traces."
+    - "Modify product code, candidate, oracle, fixture, test, configuration, product projection, or shared implementation files."
+    - "Inspect sibling repositories, external/private workspaces, browser/private state, connected apps, private MCP state, or global memory."
+    - "Invoke Claude, Chromium, a browser, or a live product model; perform an official/scored run, unblinding, commit, push, publication, packaging, or submission."
+
+future_review_only_scope_after_exact_owner_approval:
+  implementation_scope: "none"
+  reviewed_subject: "Chronological coordinator implementation bundle for BG-H01 through BG-H06"
+  required_sequence:
+    - "Initial coordinator attempt"
+    - "CONT-001"
+    - "CONT-002"
+    - "CONT-003"
+    - "CONT-004"
+    - "Owner-controlled post-capture acceptance evidence"
+  retry_record_requirements:
+    - "Preserve transport failures and retries."
+    - "Preserve sandbox failures and retries."
+    - "Preserve scanner failures and retries."
+    - "Preserve whitespace-only corrections and retries."
+    - "Preserve all stated limitations and owner checkpoints."
+  external_access_exceptions:
+    scanner_read:
+      environment_variable: "MICRO1_PRIVATE_DENYLIST"
+      value_path_or_contents_may_be_disclosed: false
+      purpose: "Scanner-only private-denylist read"
+    raw_trace_read:
+      environment_variable: "MICRO1_PRIVATE_TRACE_DIR"
+      value_path_or_contents_may_be_disclosed: false
+      purpose: "Read-only access to the immutable raw coordinator captures selected for this review"
+    all_other_external_access: "prohibited"
+  review_checks:
+    - "Verify immutable capture identity receipts and trace-to-receipt mapping."
+    - "Validate JSONL syntax and record ordering."
+    - "Review prompts, tool responses, retries, and owner checkpoints chronologically."
+    - "Assess technical completeness and log every omission by category."
+    - "Check privacy, denylist results, secret and personal-data absence, and deterministic machine-path redaction needs."
+    - "Confirm clean-room technical meaning is preserved after omissions and redactions."
+    - "Verify compliance with docs/TRACE_POLICY.md."
+  evidence_classification:
+    failed_or_no_change_attempts: "honest_retry_records_not_standalone_implementation_evidence"
+    eligible_representative_set_rule: "Select the minimum eligible representative set from substantive CONT-003, CONT-004, and post-capture evidence without overstating coverage."
+  repository_write_allowlist:
+    - "Reviewed trace candidates for this coordinator bundle under artifacts/trajectories/reviewed/."
+    - "Complete English and natural-Russian projections of those reviewed candidates."
+    - "Trace review records and complete natural-Russian owner review cards under artifacts/trajectories/reviews/."
+    - "The trajectory index and directly related provenance indexes."
+    - "Derived hashes and checksum manifests covering only the reviewed bundle surface."
+  raw_source_policy:
+    copy_into_repository: false
+    modify_source: false
+    disclose_external_path_or_contents_outside_review: false
+  promotion_gate:
+    actual_traces_before_separate_owner_approval: "prohibited"
+    required_stop: "Stop with a complete natural-Russian owner approval packet."
+  prohibited_after_boundary_approval:
+    - "Any product, fixture, candidate, oracle, test, configuration, or implementation change."
+    - "Compile or test execution."
+    - "Official or scored execution, unblinding, or live product-model calls."
+    - "Claude, Chromium, browser/private MCP, connected-app, private-memory, sibling-repository, or other external access."
+    - "Copying raw trace sources into the repository."
+    - "Promoting any trace into actual_traces without a separate exact owner approval."
+    - "Commit or push."
+  contamination_or_identity_failure_action: "Stop immediately for owner review; do not repair, promote, or substitute unverifiable evidence."
+
+language_contract:
+  owner_facing_reports: "complete_natural_russian"
+  judge_facing_and_machine_readable_artifacts: "english_allowed"
+  technical_identifier_policy: "Keep exact identifiers, commands, paths, library names, and official product names in English; explain unavoidable English terminology in Russian on first use."
+
+raw_review_bridge_attempt:
+  authorized_by_owner: true
+  completed_at_utc: "2026-08-30T18:17:34Z"
+  status: "stopped_on_single_reviewer_transport_error"
+  raw_copy_created: false
+  wrapper_modified: false
+  raw_paths_values_or_contents_disclosed: false
+  allowlist_only: true
+  pre_reviewer_checks:
+    regular_file_no_symlink_outside_repository: "passed_for_all_nine_existing_receipts"
+    receipt_byte_and_sha256_identity: "passed_for_all_nine_existing_receipts"
+    original_main_jsonl_expected_absence: "passed"
+    strict_utf8: "passed_for_all_nine_existing_receipts"
+    strict_jsonl: "passed_for_all_four_jsonl_captures"
+  bridge_transport_retries_before_raw_read:
+    - "Inline bridge source was rejected by the outer JavaScript parser before shell execution, raw access, or reviewer invocation."
+    - "Temporary bridge source was initially interpreted as ESM and stopped on its first require statement before raw access or reviewer invocation."
+  reviewer:
+    requested_calls: 1
+    consumed_calls: 1
+    model: "gpt-5.6-sol"
+    sandbox: "read-only"
+    ignore_user_config: true
+    raw_transport: "stdin_only"
+    exit_code: 1
+    stderr_bytes: 2609
+    stderr_sha256: "26367646c54fec56f2db9c767873f501d2ea694bf17f18c2f444b03abbcafc6a"
+    stderr_content_read_or_disclosed: false
+  unexpected_side_effect:
+    path: "REVIEW_2026-08-30.md"
+    classification: "unauthorized_untracked_reviewer_output"
+    bytes: 25637
+    content_read: false
+    disposition: "removed_immediately_after_regular_file_and_creation_time_check"
+  stop_condition_applied: true
+  reviewer_retry_performed: false
+  reviewed_projections_created: false
+  indexes_modified: false
+  actual_traces_modified: false
+  eligibility_status: "blocked_unreviewed"
+
+final_reviewer_retry_authorization:
+  status: "approved"
+  authorization_source: "repository_owner_exact_delegation"
+  authorized_calls: 1
+  required_environment: "new_empty_temporary_directory_outside_repository"
+  required_flags:
+    - "--skip-git-repo-check"
+    - "--sandbox read-only"
+    - "--ignore-user-config"
+    - "strict output schema"
+  raw_transport: "stdin_only_no_raw_copy"
+  temporary_directory_cleanup_required: true
+  immediate_stop_conditions:
+    - "reviewer tool call"
+    - "reviewer-created file"
+    - "non-schema output"
+    - "transport failure"
+  actual_traces_authorized: false
+  commit_authorized: false
+  push_authorized: false
+
+final_reviewer_retry_result:
+  status: "stopped_on_transport_failure"
+  authorized_calls: 1
+  consumed_calls: 1
+  additional_retry_authorized: false
+  pre_reviewer_checks:
+    exact_allowlist_only: true
+    regular_file_no_symlink_outside_repository: "passed"
+    receipt_byte_and_sha256_identity: "passed"
+    original_main_jsonl_expected_absence: "passed"
+    strict_utf8: "passed"
+    strict_jsonl: "passed_for_all_four_jsonl_captures"
+  reviewer:
+    temporary_directory: "new_empty_outside_repository"
+    explicit_working_directory_flag: true
+    skip_git_repo_check: true
+    sandbox: "read-only"
+    ignore_user_config: true
+    strict_output_schema: true
+    raw_transport: "stdin_only"
+    exit_code: 1
+    stderr_bytes: 2743
+    stderr_sha256: "6c7b37182aefd442231d8827b91abdac888b8cd25cc18f05747d7807e1f08f82"
+    stderr_content_read_or_disclosed: false
+    schema_output_received: false
+  temporary_directory_removed: true
+  unexpected_reviewer_side_effect:
+    path: "REVIEW_2026-08-30.md"
+    bytes: 30566
+    regular_file: true
+    content_read: false
+    classification: "forbidden_reviewer_created_file"
+    disposition: "removed_immediately_without_reading"
+  raw_copy_created: false
+  reviewed_projections_created: false
+  indexes_modified: false
+  actual_traces_modified: false
+  commit_performed: false
+  push_performed: false
+  eligibility_status: "blocked_unreviewed"
+  stop_condition_applied: true
+
+deterministic_local_review:
+  owner_authorization_time: "not_machine_exported_in_task_evidence"
+  nested_reviewer_requirement_waived: true
+  status: "completed_owner_approved_and_promoted"
+  exact_allowlist_only: true
+  identity_receipts_verified: 9
+  original_main_jsonl_expected_absence: "passed"
+  strict_utf8: "passed"
+  strict_jsonl: "passed_for_all_four_jsonl_captures"
+  jsonl_records_total: 203
+  chronology: "passed"
+  raw_absolute_machine_path_spans: 132
+  private_term_matches_after_path_normalization: 0
+  email_matches: 0
+  secret_assignment_matches: 0
+  raw_copy_created: false
+  technical_meaning_preserved: true
+  minimum_representative_set:
+    - "CONT-003"
+    - "CONT-004"
+    - "owner-controlled post-capture acceptance"
+  retry_only_attempts:
+    - "initial"
+    - "CONT-001"
+    - "CONT-002"
+  actual_traces_modified: true
+  commit_performed: false
+  push_performed: false
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: true
+  repository_artifacts_status: "reviewed_bundle_owner_approved_and_promoted"
+  authoring_transcript_status: "eligible_minimum_representative_set_only"
+  authoring_transcript_exclusion_category: ""
+  coordinator_trace_review_status: "deterministic_local_review_passed_and_owner_approved"
+  implementation_evidence_promotion_status: "promoted_minimum_representative_set_only"
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-30T18:08:33Z"
+  approval_evidence: "The repository owner returned the exact required phrase in the source-task delegation and explicitly requested continuation of the complete approved review-only scope."
+  exact_required_phrase: "Одобряю SESSION_BOUNDARY SES-20260830-012 и разрешаю только проверку coordinator trace bundle H01–H06 в границах русской owner-карточки; до отдельного одобрения ничего не продвигать в actual_traces."
+
+trace_promotion_approval:
+  status: "approved_and_applied"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-30T18:40:30Z"
+  selected_response_exact: "Одобряю reviewed coordinator bundle TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001 в минимальном составе CONT-003, CONT-004 и owner-controlled post-capture acceptance и разрешаю отдельным следующим действием продвинуть только этот комплект в actual_traces; failed/no-change attempts сохранить только как retry records."
+  promoted_representative_set:
+    - "CONT-003"
+    - "CONT-004"
+    - "owner-controlled post-capture acceptance"
+  retry_records_only:
+    - "initial"
+    - "CONT-001"
+    - "CONT-002"
+  commit_performed: false
+  push_performed: false

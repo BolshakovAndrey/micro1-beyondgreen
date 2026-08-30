@@ -1,0 +1,75 @@
+schema_version: "1.1"
+review_id: "REV-TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001"
+trace_id: "TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001"
+session_boundary: "SES-20260830-012"
+reviewed_at_utc: "2026-08-30T18:35:27Z"
+review_method: "deterministic_local_review_pipeline"
+reviewer:
+  kind: "coordinator_local_deterministic_review"
+  nested_codex_reviewer_used: false
+  nested_reviewer_waiver: "repository_owner_authorized_after_two transport-incompatible attempts"
+scope:
+  bundle: "BG-H01-through-BG-H06 coordinator initial attempt plus CONT-001 through CONT-004 and owner-controlled post-capture acceptance"
+  raw_trace_allowlist_exact: true
+  raw_copied_to_repository: false
+  raw_path_disclosed: false
+  external_access_other_than_authorized_scanner_and_raw_reads: false
+identity_and_format:
+  existing_receipts: 9
+  expected_absent_main_jsonl: 1
+  regular_file_no_symlink_outside_repository: "passed"
+  byte_and_sha256_identity: "passed"
+  strict_utf8: "passed"
+  strict_jsonl: "passed_four_of_four"
+  jsonl_records_total: 203
+  record_counts:
+    CONT-001: 22
+    CONT-002: 36
+    CONT-003: 80
+    CONT-004: 65
+chronology:
+  complete_prompt_tool_chronology: true
+  all_jsonl_records_represented_in_english_projection: true
+  retries_and_limitations_preserved: true
+retry_classification:
+  initial: "failed_transport_retry_not_implementation_evidence"
+  CONT-001: "read_only_no_change_retry_not_implementation_evidence"
+  CONT-002: "sandbox_no_change_retry_not_implementation_evidence"
+  CONT-003: "substantive_incomplete_implementation_attempt"
+  CONT-004: "substantive_completion_attempt_with_recorded_environment_limitations"
+  owner_controlled_post_capture_acceptance: "closes_recorded_environment_limitations_without_rewriting_capture_history"
+minimum_eligible_representative_set:
+  - "TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001-CONT-003"
+  - "TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001-CONT-004"
+  - "OWNER-CONTROLLED-POST-CAPTURE-ACCEPTANCE"
+privacy:
+  raw_absolute_machine_path_spans: 132
+  private_term_matches_after_machine_path_normalization: 0
+  email_matches: 0
+  secret_assignment_matches: 0
+  reviewed_projection_findings: 0
+  deterministic_machine_path_normalization: "passed"
+omissions:
+  - "absolute machine paths and private terms confined to them"
+  - "separate stderr diagnostic text"
+  - "hidden reasoning"
+  - "runtime thread identifiers and token usage metadata"
+  - "bulk tool output replaced by sanitized outcome and digest"
+technical_meaning_preserved: true
+trace_policy_review: "passed"
+human_review: "passed"
+human_reviewed_at_utc: "2026-08-30T18:40:30Z"
+selected_response_exact: "Одобряю reviewed coordinator bundle TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001 в минимальном составе CONT-003, CONT-004 и owner-controlled post-capture acceptance и разрешаю отдельным следующим действием продвинуть только этот комплект в actual_traces; failed/no-change attempts сохранить только как retry records."
+eligible_representative_trace: true
+indexed_in_pending_trace_review: false
+indexed_in_actual_traces: true
+prohibited_actions_performed:
+  product_code_or_test_change: false
+  compile_or_test_execution: false
+  preflight_execution: false
+  official_or_scored_run: false
+  unblinding: false
+  live_product_model: false
+  commit: false
+  push: false
+required_owner_approval_phrase: "Одобряю reviewed coordinator bundle TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001 в минимальном составе CONT-003, CONT-004 и owner-controlled post-capture acceptance и разрешаю отдельным следующим действием продвинуть только этот комплект в actual_traces; failed/no-change attempts сохранить только как retry records."

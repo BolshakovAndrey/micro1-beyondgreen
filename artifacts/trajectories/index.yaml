@@ -4,7 +4,7 @@ requirement_ids:
   - "AR-002"
   - "AR-005"
   - "NFR-004"
-status: "h01_h06_held_out_integration_owner_accepted_checkpoint_commit_authorized_trace_promotion_pending"
+status: "h01_h06_coordinator_bundle_owner_approved_and_indexed_in_actual_traces"
 session_boundaries:
   - session_id: "SES-20260828-001"
     path: "artifacts/trajectories/session-boundaries/SES-20260828-001.yaml"
@@ -95,6 +95,20 @@ session_boundaries:
     approval_status: "approved_integration_continuation_cont012_stopped_pending_capture_owner_review"
     approval_scope: "Integrate and verify BG-D02-D04 without official/scored execution; CONT-012 corrected bounded EN/RU command-family parity, then stopped on the first safe-control-preflight launcher failure."
     authoring_transcript_eligible: "pending_capture_scan_review_and_owner_promotion"
+  - session_id: "SES-20260830-010"
+    path: "artifacts/trajectories/session-boundaries/SES-20260830-010.yaml"
+    approval_status: "approved_fixture_authoring"
+    authoring_transcript_eligible: "pending_integration_trace_review"
+  - session_id: "SES-20260830-011"
+    path: "artifacts/trajectories/session-boundaries/SES-20260830-011.yaml"
+    approval_status: "approved_and_completed"
+    approval_scope: "Integrate and verify only frozen BG-H01 through BG-H06 fixture packages; no official/scored run, unblinding, live product model, commit, or push."
+    authoring_transcript_eligible: true
+  - session_id: "SES-20260830-012"
+    path: "artifacts/trajectories/session-boundaries/SES-20260830-012.yaml"
+    approval_status: "approved_review_only_completed_and_trace_promoted"
+    approval_scope: "Deterministically review the exact coordinator H01-H06 trace allowlist, create sanitized projections and indexes, and stop before actual_traces promotion."
+    authoring_transcript_eligible: true
 capture_validation:
   status: "pipeline_canary_passed_not_a_representative_trace"
   category: "external_raw_trace_canary"
@@ -549,6 +563,44 @@ actual_traces:
     indexed_in_actual_traces: true
     eligible_representative_trace: true
     scale_ready: true
+  - trace_id: "TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001"
+    agent_id: "COD-CODEX-013"
+    category: "coding_agent_integration_coordinator_bundle"
+    tool_and_model: "Codex CLI / gpt-5.6-sol"
+    purpose: "Integrate and verify the frozen BG-H01 through BG-H06 fixture packages while preserving retries, limitations, and owner-controlled post-capture acceptance."
+    session_boundary_path: "artifacts/trajectories/session-boundaries/SES-20260830-012.yaml"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001.yaml"
+    post_capture_provenance_path: "artifacts/trajectories/reviews/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001-POST-CAPTURE.yaml"
+    human_review_companion_ru_path: "artifacts/trajectories/reviews/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001-OWNER-PACKET_RU.md"
+    checksums_path: "artifacts/trajectories/reviews/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001-CHECKSUMS.sha256"
+    capture_kind: "codex_cli_jsonl_stdout_with_separate_stderr_receipts"
+    raw_receipts_verified: 9
+    expected_absent_main_jsonl: 1
+    raw_path_disclosed: false
+    raw_copied_to_repository: false
+    strict_utf8: true
+    strict_jsonl: true
+    jsonl_records_total: 203
+    automated_scan: "passed_requires_deterministic_machine_path_redaction"
+    reviewed_layer_scan: "passed"
+    human_review: "passed"
+    human_reviewed_at_utc: "2026-08-30T18:40:30Z"
+    selected_response_exact: "Одобряю reviewed coordinator bundle TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001 в минимальном составе CONT-003, CONT-004 и owner-controlled post-capture acceptance и разрешаю отдельным следующим действием продвинуть только этот комплект в actual_traces; failed/no-change attempts сохранить только как retry records."
+    technical_meaning_preserved: true
+    minimum_representative_set:
+      - "CONT-003"
+      - "CONT-004"
+      - "owner-controlled post-capture acceptance"
+    retry_only_attempts:
+      - "initial"
+      - "CONT-001"
+      - "CONT-002"
+    failed_or_no_change_attempts_counted_as_implementation_evidence: false
+    indexed_in_actual_traces: true
+    eligible_representative_trace: true
+    approval_scope: "Promote only CONT-003, CONT-004, and owner-controlled post-capture acceptance; preserve initial, CONT-001, and CONT-002 as retry records only. No product/code/test changes, official/scored run, commit, or push."
 pending_trace_review:
   - trace_id: "TRC-BG-D01-RECOVERY-001"
     agent_id: "COD-CODEX-006"
@@ -706,6 +758,12 @@ declared_agents:
       eligible_trace_id: "TRC-BG-D01-VERIFY-002"
       eligible_representative_trace: true
       reason: "Exact capture identity, strict UTF-8, independent semantic review, reviewed-layer private-denylist scan, and repository-owner review passed."
+    - agent_id: "COD-CODEX-013"
+      tool_and_model: "Codex CLI / gpt-5.6-sol"
+      purpose: "BG-H01 through BG-H06 fixture integration coordinator."
+      eligible_trace_id: "TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001"
+      eligible_representative_trace: true
+      reason: "The exact raw receipts, strict JSONL chronology, privacy normalization, EN/RU reviewed projections, post-capture provenance, and repository-owner review passed; only CONT-003, CONT-004, and owner-controlled post-capture acceptance are representative evidence."
   solution_agents: []
   non_agent_components:
     - component_id: "CMP-BEYONDGREEN-D01-001"

@@ -4,7 +4,7 @@ requirement_ids:
   - "AR-002"
   - "AR-006"
   - "EV-002"
-status: "h01_h06_frozen_packages_integrated_non_official_owner_accepted_whitespace_normalized_verified_checkpoint_commit_authorized"
+status: "h01_h06_frozen_packages_integrated_coordinator_trace_owner_approved_and_promoted"
 integration_whitespace_normalization: "owner_authorized_three_markdown_hard_breaks_to_br_and_thirty_h05_h06_terminal_blank_lines_removed_manifests_reconciled_semantics_unchanged"
 integration_whitespace_normalization_verified_at_utc: "2026-08-30T18:04:28Z"
 record_type_schemas:
@@ -225,6 +225,37 @@ records:
     candidate_construction_performed: false
     oracle_implementation_performed: false
     editorial_review_reconciliation: "cost_reporting_and_action_vocabulary_findings_applied_without_product_semantics_or_evaluation_method_change_and_owner_approved"
+  - record_id: "PRV-006"
+    record_type: "artifact_candidate"
+    artifact_paths:
+      - "artifacts/trajectories/session-boundaries/SES-20260830-012.yaml"
+      - "artifacts/trajectories/reviewed/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001.md"
+      - "artifacts/trajectories/reviewed/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001_RU.md"
+      - "artifacts/trajectories/reviews/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001.yaml"
+      - "artifacts/trajectories/reviews/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001-POST-CAPTURE.yaml"
+      - "artifacts/trajectories/reviews/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001-OWNER-PACKET_RU.md"
+      - "artifacts/trajectories/reviews/TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001-CHECKSUMS.sha256"
+    requirement_ids:
+      - "AR-005"
+      - "AR-006"
+      - "NFR-006"
+      - "NFR-007"
+    created_during_event: true
+    author:
+      kind: "human_with_agent"
+      agent_id: "COD-CODEX-013"
+      model: "Codex CLI / gpt-5.6-sol"
+    origin: "Deterministic local review of exact immutable external receipts under SES-20260830-012; raw source was never copied into the repository."
+    copied_source_expression: false
+    private_material_used_as_source: false
+    raw_path_disclosed: false
+    automated_scan: "passed_after_deterministic_machine_path_normalization"
+    human_review: "passed"
+    human_reviewed_at_utc: "2026-08-30T18:40:30Z"
+    exact_confirmation: "Одобряю reviewed coordinator bundle TRC-BG-HELDOUT-FIXTURES-INTEGRATION-001 в минимальном составе CONT-003, CONT-004 и owner-controlled post-capture acceptance и разрешаю отдельным следующим действием продвинуть только этот комплект в actual_traces; failed/no-change attempts сохранить только как retry records."
+    redistribution: "owner_approved_reviewed_trace_bundle"
+    technical_meaning_preserved: true
+    indexed_in_actual_traces: true
 public_anchors:
   - record_id: "SRC-001"
     record_type: "public_anchor"
