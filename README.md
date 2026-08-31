@@ -64,7 +64,7 @@ Requires Node `22.22.3` (see `.node-version`). Runtime dependencies are React,
 ```bash
 npm ci
 npm run task -- list          # every supported task, with descriptions
-npm test                      # 209 tests
+npm test                      # the whole ordinary suite
 npm run task -- d01:demo      # one full verification, JSON + static HTML
 npm run task -- d01:replay    # deterministic replay, no network, no subprocess
 ```
@@ -121,7 +121,14 @@ removed: [`docs/IMPROVEMENT_CHANGELOG.md`](docs/IMPROVEMENT_CHANGELOG.md).
 
 ## Hot take
 
-`[[Одно предложение + ссылка на раздел — задача 3]]`
+Isolating the oracle in its own process is what makes a verdict checkable, but it
+relocates the risk instead of removing it — every official run we lost failed in the
+infrastructure around that boundary (the pre-arm launcher, then the observer bridge,
+then the evaluator transcript) and none of them failed in the agent's reasoning, which is
+why a process boundary needs the same asserted vocabulary, cardinality, and schemas you
+would demand of the code it is judging.
+
+Evidence: [`docs/IMPROVEMENT_CHANGELOG.md`, ITR-043 onward](docs/IMPROVEMENT_CHANGELOG.md#itr-043--harden-and-rehearse-post-decision-observer-execution).
 
 ## Agent trajectories
 
