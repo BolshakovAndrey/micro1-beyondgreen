@@ -131,6 +131,11 @@ export const BG_D03_OFFICIAL_ADAPTER = defineOfficialFixtureAdapter({
     }],
   },
   verifierOnlyRoot: "evaluation/verifier-only/BG-D03",
+  scenarioProviderEntrypoint: {
+    modulePath: "evaluation/verifier-only/BG-D03/scenario-provider.ts",
+    exportName: "NEUTRAL_SCENARIO_PROVIDER_EXPORT",
+    symbolKind: "runtime",
+  },
   observerEntrypoint: {
     modulePath: adapterModule,
     exportName: "captureBGD03ObservationTranscript",

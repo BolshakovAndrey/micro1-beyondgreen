@@ -34,6 +34,11 @@ export function createTestOfficialDescriptor() {
       visibleAssertions: [{ binding: { modulePath: contractModule, exportName: "TEST_VISIBLE_ASSERTIONS", symbolKind: "runtime" }, names: ["TEST-VIS-001"] }],
     },
     verifierOnlyRoot: "tests/official/fixtures/verifier-only",
+    scenarioProviderEntrypoint: {
+      modulePath: "tests/official/fixtures/verifier-only/scenario-provider.mjs",
+      exportName: "TEST_NEUTRAL_SCENARIO",
+      symbolKind: "runtime",
+    },
     observerEntrypoint: {
       modulePath: "tests/official/fixtures/arm-visible/observer.mjs",
       exportName: "observeTestCandidate",

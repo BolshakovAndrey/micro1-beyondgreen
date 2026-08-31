@@ -1,0 +1,67 @@
+schema_version: "1.1"
+session_id: "SES-20260831-027"
+started_at_utc: "2026-08-31T07:33:58Z"
+agent:
+  tool: "Codex coordinator"
+  purpose: "Execute one non-scored public production-transport canary before the official attempt"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  exact_head_at_start: "3d916e73a13553583660bc88633366f5bc8eede9"
+  remote_state_contacted_or_verified: false
+  preservation_rule: "The canary may exercise only the frozen transport; it cannot read candidates or verifier packages."
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approval_recorded_at_utc: "2026-08-31T07:33:58Z"
+  exact_approval_evidence: "Одобряю SES-027: выполнить ровно один non-scored public transport canary через production codex-exec-jsonl-v1 и gpt-5.6-sol с фиксированным синтетическим prompt и строгой output schema. Candidate IDs/bytes, verifier/oracle data, official output и unblinding запрещены. Сохранить только безопасную структурную сводку PASS/FAIL, invocation count, retry count и duration; raw output не публиковать. Повторы, substitute model, commit и push запрещены."
+
+canary_contract:
+  adapter: "codex-exec-jsonl-v1"
+  model: "gpt-5.6-sol"
+  input_class: "fixed public synthetic prompt without candidate identity or bytes"
+  output_contract: "production OfficialArmHandlerOutput strict schema"
+  invocation_limit: 1
+  retry_limit: 0
+  substitute_model_allowed: false
+  raw_prompt_or_output_published: false
+  temporary_runtime_root: "repository-local and removed after invocation"
+
+explicitly_prohibited:
+  - "Read, hash, import, or execute candidate files."
+  - "Read or invoke verifier/oracle packages."
+  - "Create official output, score, or unblind."
+  - "Run evaluation:run."
+  - "Repeat the canary or use a substitute model."
+  - "Commit or push."
+
+attestation:
+  official_output_absent_at_start: true
+  candidate_ids_or_bytes_in_prompt: false
+  verifier_or_oracle_data_in_prompt: false
+  official_or_scored_run: false
+  unblinding_performed: false
+
+measured_results:
+  status: "fail_nonzero_exit_no_retry"
+  adapter: "codex-exec-jsonl-v1"
+  model: "gpt-5.6-sol"
+  invocation_count: 1
+  retry_count: 0
+  duration_ms: 4785
+  schema_valid: false
+  failure_code: "NONZERO_EXIT"
+  raw_output_published: false
+  candidate_ids_or_bytes_used: false
+  verifier_or_oracle_data_used: false
+  official_output_created: false
+  official_or_scored_run: false
+  unblinding_performed: false
+  temporary_runtime_directories_remaining: 0
+
+completion:
+  completed_at_utc: "2026-08-31T07:34:49Z"
+  owner_packet: "artifacts/trajectories/reviews/BG-PUBLIC-TRANSPORT-CANARY-OWNER-PACKET_RU.md"
+  disposition: "Do not run the official evaluation. Diagnose the frozen CLI command without another model invocation under a separate owner gate."

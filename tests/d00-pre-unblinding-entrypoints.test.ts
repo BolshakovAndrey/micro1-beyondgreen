@@ -7,6 +7,7 @@ import { resolveTask } from "../scripts/tasks/registry.ts";
 
 const exactVersionArguments = ["--evaluation-version", "eval-v1.1.0"] as const;
 const taskNames = ["baseline:verify", "beyondgreen:verify", "evaluation:run", "replay"] as const;
+const contractOnlyModes = ["baseline", "beyondgreen", "replay"] as const;
 
 test("normative entrypoints accept only the exact frozen evaluation version", () => {
   for (const name of taskNames) {
@@ -21,7 +22,7 @@ test("normative entrypoints accept only the exact frozen evaluation version", ()
 });
 
 test("contract entrypoint reports zero arm execution, scoring, unblinding, and model calls", () => {
-  for (const mode of ["baseline", "beyondgreen", "evaluation", "replay"] as const) {
+  for (const mode of contractOnlyModes) {
     const result = spawnSync(process.execPath, [
       "scripts/d00-pre-unblinding-entrypoint.ts",
       mode,
@@ -39,11 +40,24 @@ test("contract entrypoint reports zero arm execution, scoring, unblinding, and m
   }
 });
 
-test("pre-unblinding implementation contains no official runner or write primitive", () => {
+test("contract-only entrypoints contain no official runner or write primitive", () => {
   const source = readFileSync("scripts/d00-pre-unblinding-entrypoint.ts", "utf8");
   assert.doesNotMatch(source, /child_process|writeFile|appendFile|artifacts\/runs|unblindHeldOut|runOfficial/i);
   const tasks = readFileSync("scripts/tasks/pre-unblinding.ts", "utf8");
-  assert.doesNotMatch(tasks, /live model|chromium|official runner/i);
+  assert.doesNotMatch(tasks, /chromium/i);
+});
+
+test("evaluation:run is registered to the gated production runner without executing it", () => {
+  const task = resolveTask("evaluation:run", exactVersionArguments);
+  assert.equal(task.steps.length, 1);
+  assert.deepEqual(task.steps[0]?.arguments, [
+    "scripts/d00-official-run.ts",
+    "--evaluation-version",
+    "eval-v1.1.0",
+  ]);
+  const source = readFileSync("scripts/d00-official-run.ts", "utf8");
+  assert.match(source, /MICRO1_OFFICIAL_SESSION_BOUNDARY/);
+  assert.match(source, /createOfficialProductionRoot/);
 });
 
 test("ZIP rehearsal is temporary, manifest-backed, and cannot create a final archive", () => {

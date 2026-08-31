@@ -52,7 +52,8 @@ function requestMetadata(input: unknown): { requestId: string | null; role: Offi
   const requestId = typeof record.requestId === "string" && /^[A-Za-z0-9._:-]{1,160}$/u.test(record.requestId)
     ? record.requestId
     : null;
-  const role = record.role === "arm" || record.role === "observer" || record.role === "evaluator"
+  const role = record.role === "arm" || record.role === "scenario-provider"
+    || record.role === "observer" || record.role === "evaluator"
     ? record.role
     : null;
   return { requestId, role };
@@ -64,7 +65,7 @@ function writeJsonLine(output: Writable, value: unknown): void {
 
 /** Serve one strict request and exit fail-closed without echoing unsafe diagnostics. */
 export async function serveOfficialProcessRequest<Request, Success>(options: Readonly<{
-  role: "arm" | "observer" | "evaluator";
+  role: "arm" | "scenario-provider" | "observer" | "evaluator";
   requestSchema: z.ZodType<Request>;
   successSchema: z.ZodType<Success>;
   execute(request: Request): Promise<unknown>;

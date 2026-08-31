@@ -21,7 +21,15 @@
     {
       "path": "evaluation/verifier-only/BG-D02/BG-D02-evaluator-denied-probe.mjs",
       "sha256": "56e1f5111d4cb90b205001375ec31726226ef41379ff49c339de7144f18c199c"
+    },
+    {
+      "path": "evaluation/verifier-only/BG-D02/scenario-provider.ts",
+      "sha256": "d92bc7006f68945bb22d73d9dcd27063360119e9d31f254dead66aad4e9dd743"
+    },
+    {
+      "path": "evaluation/verifier-only/BG-D02/scenario-provider.manifest.json",
+      "sha256": "d0e7da5f376cc438d4df20a16c31e92d90bbc9fede87881b686cf3e24d137628"
     }
   ],
-  "package_sha256": "952b997ddcfafddcb45b2618d18adcca6bfe209c5517ea21ceeb12fbe119bc82"
+  "package_sha256": "bf06f91291b54319645493947275a477d1613622582f9379b487b8a3ce9ddd77"
 }

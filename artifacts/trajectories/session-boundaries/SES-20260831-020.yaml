@@ -1,0 +1,224 @@
+schema_version: "1.1"
+session_id: "SES-20260831-020"
+started_at_utc: "2026-08-30T22:04:03Z"
+agent:
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Implement a bounded synthetic-only correction that makes evaluation:run execution-capable and enforces two matching post-decision captures"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  exact_head_at_start: "3d916e73a13553583660bc88633366f5bc8eede9"
+  remote_state_contacted_or_verified: false
+  pre_existing_unrelated_changes:
+    - "artifacts/evaluation/BG-D01-VERTICAL-SLICE.html"
+    - "artifacts/evaluation/BG-D01-VERTICAL-SLICE.json"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-019.yaml"
+    - "artifacts/trajectories/reviews/BG-OFFICIAL-RUN-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+  pre_existing_unrelated_D01_report_bytes_inspected: false
+  preservation_rule: "Do not revert, overwrite, stage, normalize, or otherwise alter pre-existing unrelated changes except the owner-authorized exact restore of the two accidental SES-019 D01 demo outputs and the explicitly authorized derived correction status in the SES-019 pair."
+  authorized_incident_recovery:
+    incident_id: "SES-019-ACCIDENTAL-D01-DEMO-001"
+    source_commit: "3d916e73a13553583660bc88633366f5bc8eede9"
+    restored_paths:
+      - "artifacts/evaluation/BG-D01-VERTICAL-SLICE.html"
+      - "artifacts/evaluation/BG-D01-VERTICAL-SLICE.json"
+    recovery_status: "completed"
+    other_files_reverted: false
+
+context:
+  repository_root: "."
+  source_control_plane_thread_id: "01a038e6-9b21-76f3-8b97-4829bbd8d16a"
+  allowed_read_paths:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "src/official/**"
+    - "scripts/tasks/**"
+    - "scripts/task.ts"
+    - "scripts/d00-official-preflight.ts"
+    - "tests/official/**"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-019.yaml"
+    - "artifacts/trajectories/reviews/BG-OFFICIAL-RUN-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+  allowed_write_paths:
+    - "src/official/**"
+    - "scripts/tasks/official.ts"
+    - "scripts/tasks/pre-unblinding.ts only to replace evaluation:run contract-validator wiring while preserving accepted arguments and other task semantics"
+    - "scripts/d00-official-run.ts"
+    - "tests/official/**"
+    - "artifacts/trajectories/session-boundaries/SES-20260831-020.yaml"
+    - "artifacts/trajectories/reviews/BG-OFFICIAL-PRE-RUN-CORRECTION-OWNER-PACKET_RU.md"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-019.yaml derived status only"
+    - "artifacts/trajectories/reviews/BG-OFFICIAL-RUN-SESSION-BOUNDARY-CHECKPOINT_RU.md derived status only"
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "use_unauthorized"
+
+controls:
+  agents_instructions_read_in_full: true
+  challenge_contract_read_in_full: true
+  hackathon_rules_read_in_full: true
+  cleanroom_policy_read_in_full: true
+  trace_policy_read_in_full: true
+  preflight_checklist_read_in_full: true
+  project_spec_1_1_0_read_in_full: true
+  evaluation_projection_read_in_full: true
+  topic_projection_read_in_full: true
+  exact_branch_checked: true
+  exact_head_checked: true
+  real_candidate_import_or_execution_performed: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  live_model_calls: 0
+  browser_mcp_claude_chromium_calls: 0
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "not_machine_exported_in_task_evidence"
+  approval_recorded_at_utc: "2026-08-30T22:04:03Z"
+  exact_approval_evidence: "Одобряю отдельную bounded pre-official correction session: подключить execution-capable evaluation:run и две независимые post-decision captures на arm с fail-closed проверкой расхождения, используя только synthetic tests. Реальные candidates, live model, official/scored run, unblinding, commit и push запрещены."
+  continue_without_additional_pause: true
+
+correction_scope:
+  objective: "Connect the existing frozen official infrastructure to the accepted evaluation:run command and prove the complete path only with injected synthetic inventory, modules, transports, captures, evaluator, and writer."
+  accepted_command: "npm run task -- evaluation:run --evaluation-version eval-v1.1.0"
+  accepted_arguments_must_not_change: true
+  required_execution_capabilities:
+    - "Static preflight before execution."
+    - "Create and persist an immutable 20-slot plan before any candidate execution."
+    - "Execute exactly 40 arm plans in the full synthetic rehearsal."
+    - "Keep status quo model-free."
+    - "Make exactly one codex-exec-jsonl-v1 transport call per BeyondGreen candidate and zero retries in the injectable execution contract."
+    - "Freeze both arm decisions for a slot before either observer capture begins."
+    - "Perform two independent post-decision observer captures for every slot and arm."
+    - "Create one immutable matching observation pair per slot and arm before evaluator start."
+    - "Fail closed without evaluator start on divergent, missing, or malformed captures."
+    - "Deny arms verifier-only reads and deny evaluator candidate-root reads; preserve K=0."
+    - "Delay held-out evaluator access and unblinding until immutable completion of all 40 arm decisions."
+    - "Verify candidate hashes before and after every arm."
+    - "Write aggregate, JSON/HTML report, replay, provenance, and bounded records only through a create-once atomic writer."
+    - "Refuse an existing output root or file; never overwrite or delete evidence."
+  expected_full_synthetic_cardinality:
+    slots: 20
+    arm_plans: 40
+    captures: 80
+    finalized_pairs: 40
+    status_quo_reasoning_calls: 0
+    beyondgreen_reasoning_calls: 20
+    retries: 0
+  synthetic_test_cases:
+    - "success"
+    - "observation divergence"
+    - "missing capture"
+    - "malformed capture"
+    - "model transport abstain without retry"
+    - "output collision"
+    - "immutable ordering"
+    - "evaluator not started on capture failure"
+    - "20-slot, 40-arm, 80-capture, 40-pair cardinality"
+    - "offline replay digest parity"
+  approved_output_allowlist_contract:
+    root: "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/"
+    correction_tests_must_use_temporary_repository_local_test_roots: true
+    real_official_allowlist_writes_during_correction: false
+
+frozen_surfaces_unchanged:
+  - "src/d01/**"
+  - "All real D/H candidate bytes and candidate manifests."
+  - "All arm-visible packages and visible assertions."
+  - "All verifier-only packages, oracle semantics, ground truth, evaluator expectations, and reason-correct mapping."
+  - "Evaluation v1.1 methodology, formulas, denominators, targets, K=0, two-arm policy, one-attempt policy, and three-minute ceiling."
+  - "Dependencies, package.json, package-lock.json, runtime/model selection, codex-exec-jsonl-v1 command semantics, timeout, retry policy, billing policy, and replay format."
+
+explicitly_prohibited:
+  - "Import or execute any real BG-D01..BG-D04 or BG-H01..BG-H06 candidate."
+  - "Invoke live codex, any model, network, browser, MCP, connected app, Claude, or Chromium."
+  - "Perform an official/scored run, evaluator unblinding, held-out outcome read, or official artifact creation."
+  - "Modify a frozen surface, dependency, src/d01, or unrelated user change."
+  - "Write checksums, capture or promote a trace, commit, or push."
+
+validation:
+  allowed_commands:
+    - "npm run compile"
+    - "node --test over tests/official/**/*.test.ts only"
+    - "npm run task -- official:preflight"
+    - "synthetic-only full-run test file through node --test"
+  first_product_or_contract_failure_action: "Stop and return a concise Russian blocker with the exact bounded fix."
+  transport_or_shell_no_change_error_policy: "A deterministic no-change retry is allowed without expanding scope."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "approved_correction_in_progress"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: ""
+
+measured_results:
+  status: "blocked_before_production_composition_root"
+  incident_recovery:
+    exact_D01_files_restored: 2
+    other_files_reverted: 0
+    official_or_scored_evidence_created: false
+    recurrence_during_SES_021: "The same two outputs changed again at 2026-08-30T22:45:57Z, were not used as evidence, and were restored exactly under the existing owner authorization."
+  synthetic_execution:
+    test_file: "tests/official/execution/official-execution.test.ts"
+    result: "passed_5_of_5"
+    slots: 20
+    arm_plans: 40
+    capture_records: 80
+    finalized_pairs: 40
+    evaluator_records: 40
+    status_quo_reasoning_calls: 0
+    beyondgreen_reasoning_calls: 20
+    retries: 0
+    replay_digest_parity: true
+    fail_closed_cases:
+      - "divergent_capture_before_evaluator"
+      - "missing_capture_before_evaluator"
+      - "malformed_capture_before_evaluator"
+      - "existing_output_root_before_arm_execution"
+  verification:
+    compile: "passed"
+    official_tests: "passed_40_of_40"
+    official_static_preflight: "passed_10_fixtures_20_candidates_20_slots_40_arm_plans"
+    real_candidate_execution: false
+    live_model_calls: 0
+    official_or_scored_run: false
+    unblinding: false
+  deterministic_retry:
+    first_failure: "The newly authored synthetic preflight helper did not recursively freeze elements beneath a Zod-readonly array."
+    correction: "Changed only the test-only deep-freeze helper to recurse through already frozen containers."
+    product_semantics_changed: false
+    repeated_result: "passed_5_of_5"
+  unresolved_blocker:
+    id: "BG-OFFICIAL-PRODUCTION-ROLE-HOOKS-ABSENT"
+    evidence: "The non-D01 fixture adapters are static capability plans with candidateExecutionAllowed=false; no production composition root implements the arm, observer, evaluator, and hidden-scenario handoff for D02-D04 and H01-H06."
+    safety_action: "evaluation:run remains the fail-closed pre-unblinding validator; scripts/d00-official-run.ts cannot be registered until production role hooks exist and are verified."
+    required_resolution: "SES-022 and SES-023 resolved neutral provider authoring and integration. Implement the remaining observer runtime adapters, D01 bridge, and child-process launcher before registering evaluation:run."
+    follow_up_status: "SES_023_passed_60_of_60_scenario_bindings_complete_runtime_hooks_incomplete"
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "not_machine_exported_in_task_evidence"
+  approval_evidence: "Одобряю отдельную bounded pre-official correction session: подключить execution-capable evaluation:run и две независимые post-decision captures на arm с fail-closed проверкой расхождения, используя только synthetic tests. Реальные candidates, live model, official/scored run, unblinding, commit и push запрещены."

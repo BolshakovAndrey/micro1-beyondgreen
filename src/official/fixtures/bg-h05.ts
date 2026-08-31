@@ -50,6 +50,11 @@ export const BG_H05_OFFICIAL_FIXTURE = defineOfficialFixtureAdapter({
     }],
   },
   verifierOnlyRoot: "evaluation/verifier-only/BG-H05",
+  scenarioProviderEntrypoint: {
+    modulePath: "evaluation/verifier-only/BG-H05/scenario-provider.ts",
+    exportName: "NEUTRAL_SCENARIO_PROVIDER_EXPORT",
+    symbolKind: "runtime",
+  },
   observerEntrypoint: {
     modulePath: harnessModule,
     exportName: "mountUnitStoreFixture",

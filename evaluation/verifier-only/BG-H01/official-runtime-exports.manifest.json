@@ -1,0 +1,8 @@
+{
+  "schema_version": "beyondgreen-official-runtime-exports-manifest@1.0.0",
+  "fixture_id": "BG-H01",
+  "export_path": "evaluation/verifier-only/BG-H01/official-runtime-exports.ts",
+  "export_names": ["OFFICIAL_SCENARIO_PROVIDER_HANDLER", "OFFICIAL_EVALUATOR_HANDLER"],
+  "export_sha256": "725b9bcdf553ab0663ec28090df79c6927239ceb31e3db4c24b659bd97978b9b",
+  "manifest_self_excluded": true
+}

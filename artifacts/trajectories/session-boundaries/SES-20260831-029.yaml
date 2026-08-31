@@ -1,0 +1,72 @@
+schema_version: "1.1"
+session_id: "SES-20260831-029"
+started_at_utc: "2026-08-31T07:39:25Z"
+agent:
+  tool: "Codex coordinator"
+  purpose: "Author a safe owner-terminal public transport canary command without invoking a model"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  exact_head_at_start: "3d916e73a13553583660bc88633366f5bc8eede9"
+  remote_state_contacted_or_verified: false
+  preservation_rule: "Add only the canary entrypoint, registry binding, fake-runner tests, and owner evidence."
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approval_recorded_at_utc: "2026-08-31T07:39:25Z"
+  exact_approval_evidence: "Одобряю SES-029: создать repo-local задачу transport:canary с фиксированным публичным synthetic prompt, production adapter и безопасным PASS/FAIL output без raw JSONL. Во время разработки live model не вызывать; добавить fake-runner tests и остановиться с одной точной командой для ручного запуска из обычного Terminal. Candidates, verifier/oracle, official run, unblinding, commit и push запрещены."
+
+allowed_write_paths:
+  - "scripts/d00-transport-canary.ts"
+  - "scripts/tasks/official.ts"
+  - "tests/official/runtime/transport-canary-command.test.ts"
+  - "artifacts/trajectories/session-boundaries/SES-20260831-029.yaml"
+  - "artifacts/trajectories/reviews/BG-OWNER-TERMINAL-CANARY-COMMAND_RU.md"
+  - "docs/CONTROL_PLANE_SHA256SUMS"
+
+explicitly_prohibited:
+  - "Invoke codex exec or any live model while authoring or testing."
+  - "Read, hash, import, or execute candidates or verifier/oracle packages."
+  - "Create official output, score, or unblind."
+  - "Run transport:canary in this session."
+  - "Commit or push."
+
+attestation:
+  official_output_absent_at_start: true
+  live_model_calls: 0
+  official_or_scored_run: false
+  unblinding_performed: false
+
+measured_results:
+  status: "owner_terminal_canary_passed"
+  task_name: "transport:canary"
+  production_adapter: "codex-exec-jsonl-v1"
+  production_model: "gpt-5.6-sol"
+  fake_runner_tests: "9/9 pass"
+  typescript_compile: "pass"
+  task_registry: "pass"
+  raw_output_suppression_test: "pass"
+  authoring_live_model_calls: 0
+  owner_terminal_execution:
+    owner_action_authorized_by_execution: true
+    recorded_at_utc: "2026-08-31T07:45:43Z"
+    status: "PASS"
+    invocation_count: 1
+    retry_count: 0
+    duration_ms: 9325
+    schema_valid: true
+    failure_code: null
+    raw_output_published: false
+    official_or_scored_run: false
+    unblinding_performed: false
+  official_output_created: false
+  official_or_scored_run: false
+  unblinding_performed: false
+
+completion:
+  completed_at_utc: "2026-08-31T07:40:47Z"
+  owner_packet: "artifacts/trajectories/reviews/BG-OWNER-TERMINAL-CANARY-COMMAND_RU.md"
+  exact_owner_terminal_command: "npm --prefix <clean-repository-root> run task -- transport:canary"
+  disposition: "Production transport is validated from ordinary Terminal. Do not repeat the canary; run the official command only from ordinary Terminal after final preflight, checkpoint commit, and a fresh approved official boundary."

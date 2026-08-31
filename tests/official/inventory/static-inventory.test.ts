@@ -61,7 +61,7 @@ test("manifest adapters fail closed on unsupported, escaping, and incomplete bin
   );
   assert.throws(
     () => adaptD03PackageManifest('schema_version: "1.0"\nfixture_id: "BG-D03"\nintegrity:\n  algorithm: "sha256"\n', "BG-D03", "evaluation/manifests/BG-D03/package-manifest.yaml"),
-    /exactly nine frozen files/u,
+    /exactly eleven frozen files/u,
   );
 });
 

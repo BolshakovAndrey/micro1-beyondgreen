@@ -25,7 +25,7 @@ function verifyJson(path: string): void {
 function verifyD03(): void {
   const manifest = readFileSync("evaluation/manifests/BG-D03/package-manifest.yaml", "utf8");
   const matches = [...manifest.matchAll(/^\s+-?\s*path: "([^"]+)"\n\s*sha256: "([a-f0-9]{64})"$/gm)];
-  if (matches.length !== 9) throw new Error("BG-D03 manifest must bind exactly nine source files.");
+  if (matches.length !== 11) throw new Error("BG-D03 manifest must bind exactly eleven source files.");
   for (const match of matches) if (sha256(match[1]!) !== match[2]) throw new Error(`Immutable source mismatch: ${match[1]}`);
 }
 
@@ -39,4 +39,3 @@ if (!requested || requested === "BG-D04") {
     verifyJson(`evaluation/manifests/BG-D04/${name}.manifest.json`);
 }
 process.stdout.write(`${requested ?? "D01-D04"}_MANIFESTS_VERIFIED\n`);
-

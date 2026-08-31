@@ -4,5 +4,8 @@ export * from "./aggregation.ts";
 export * from "./report.ts";
 export * from "./replay.ts";
 export * from "./adapters/types.ts";
+export * from "./adapters/scenario-provider.ts";
 export * from "./worker-contract.ts";
 export * from "./rehearsal.ts";
+export * from "./execution/index.ts";
+export * from "./runtime/index.ts";

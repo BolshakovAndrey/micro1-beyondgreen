@@ -75,6 +75,7 @@ export const OfficialFixtureDescriptorSchema = z.object({
   candidates: z.array(CandidateBindingSchema).length(2).readonly(),
   armVisible: ArmVisibleSurfaceSchema,
   verifierOnlyRoot: RepositoryRelativePathSchema,
+  scenarioProviderEntrypoint: RuntimeBindingSchema,
   observerEntrypoint: RuntimeBindingSchema,
   evaluatorEntrypoint: RuntimeBindingSchema,
 }).strict().superRefine((descriptor, context) => {

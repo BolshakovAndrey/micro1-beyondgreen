@@ -1,0 +1,86 @@
+schema_version: "1.1"
+session_id: "SES-20260831-026"
+started_at_utc: "2026-08-31T07:25:09Z"
+agent:
+  tool: "Codex coordinator"
+  purpose: "Remove the deterministic pre-official working-directory failure and rehearse fail-closed cardinality"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  exact_head_at_start: "3d916e73a13553583660bc88633366f5bc8eede9"
+  remote_state_contacted_or_verified: false
+  inherited_uncommitted_scope:
+    - "SES-019 through SES-025 official runtime and evidence"
+  preservation_rule: "Do not revert or expand inherited work; change only the bounded hardening scope."
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approval_recorded_at_utc: "2026-08-31T07:25:09Z"
+  exact_approval_evidence: "Одобряю bounded pre-official hardening session: исправить только конфликт production working directory, добавить regression test и выполнить полный synthetic 20/40/80/40 rehearsal с fault-injection. Реальные candidates, live model, official/scored run, unblinding, commit и push запрещены. Остановиться перед отдельным transport-canary gate"
+
+scope:
+  allowed_read_paths:
+    - "AGENTS.md and mandatory contracts"
+    - "scripts/d00-official-run.ts"
+    - "src/official/runtime/process-launcher.ts"
+    - "src/official/execution/coordinator.ts"
+    - "tests/official/execution/official-execution.test.ts"
+    - "tests/official/runtime/** synthetic tests"
+  allowed_write_paths:
+    - "scripts/d00-official-run.ts"
+    - "tests/official/runtime/official-command-workdir.test.ts"
+    - "tests/official/execution/official-execution.test.ts"
+    - "artifacts/trajectories/session-boundaries/SES-20260831-026.yaml"
+    - "artifacts/trajectories/reviews/BG-PRE-OFFICIAL-HARDENING-OWNER-PACKET_RU.md"
+    - "docs/CONTROL_PLANE_SHA256SUMS"
+  fault_injection: "One synthetic BeyondGreen transport abstention at slot ordinal 10; the run must still finalize 20 slots, 40 decisions, 80 captures, and 40 pairs."
+
+explicitly_prohibited:
+  - "Read or execute real candidate modules."
+  - "Invoke a live model or transport canary."
+  - "Run evaluation:run, score, unblind, or create the official output root."
+  - "Change fixtures, verifier semantics, methodology, scoring, or frozen hashes."
+  - "Commit or push."
+
+attestation:
+  official_output_absent_at_start: true
+  real_candidates_executed: 0
+  live_model_calls: 0
+  official_or_scored_runs: 0
+  unblinding_performed: false
+
+measured_results:
+  status: "ready_for_separate_transport_canary_gate"
+  production_working_directory_conflict: "fixed"
+  runtime_directory_inside_clean_root: true
+  runtime_directory_removed_after_test: true
+  typescript_compile: "pass"
+  bounded_test_suite: "12/12 pass"
+  synthetic_rehearsal:
+    slots: 20
+    decisions: 40
+    captures: 80
+    observation_pairs: 40
+    injected_failure: "BeyondGreen transport abstention at slot ordinal 10"
+    completed_after_injected_failure: true
+    official_or_scored_run: false
+  first_test_attempt:
+    status: "failed_test_assertion_only"
+    cause: "The new evaluator assertion used ordinal on a process slot that intentionally exposes only slotId."
+    product_runtime_failure: false
+    correction: "Resolve the approved ordinal-10 synthetic slot once, then bind evaluator expectation by public slotId."
+  git_diff_check: "pass"
+  control_checksums: "720/720 verified"
+  official_output_absent_after_rehearsal: true
+  leftover_runtime_directories: 0
+  real_candidates_executed: 0
+  live_model_calls: 0
+  official_or_scored_runs: 0
+  unblinding_performed: false
+
+completion:
+  completed_at_utc: "2026-08-31T07:27:04Z"
+  owner_packet: "artifacts/trajectories/reviews/BG-PRE-OFFICIAL-HARDENING-OWNER-PACKET_RU.md"
+  next_gate: "One non-scored public transport canary without candidate, oracle, official output, or unblinding."

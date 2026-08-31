@@ -1,0 +1,106 @@
+schema_version: "1.1"
+session_id: "SES-20260831-022"
+started_at_utc: "2026-08-30T22:54:01Z"
+agent:
+  tool: "Codex isolated subagent"
+  model: "inherits coordinator runtime"
+  purpose: "Author neutral verifier-owned scenario-provider exports for D02-D04 and H01-H06 without exposing held-out content to the coordinator or evaluated arms"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  exact_head_at_start: "3d916e73a13553583660bc88633366f5bc8eede9"
+  remote_state_contacted_or_verified: false
+  inherited_uncommitted_scope:
+    - "SES-019 blocked official-run boundary and incident record"
+    - "SES-020 synthetic execution coordinator"
+    - "SES-021 production-composition boundary"
+  preservation_rule: "The verifier-authoring subagent owns only the listed SES-022 paths and must preserve every other inherited byte."
+
+context:
+  repository_root: "."
+  allowed_read_paths:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "evaluation/arm-visible/BG-D02/** through BG-D04/** public contracts only"
+    - "evaluation/arm-visible/BG-H01/** through BG-H06/** public contracts only"
+    - "evaluation/verifier-only/BG-D02/** through BG-D04/**"
+    - "evaluation/verifier-only/BG-H01/** through BG-H06/**"
+    - "src/official/process/ipc.ts"
+    - "src/official/process/scenario-provider-entrypoint.ts"
+    - "src/official/adapters/scenario-provider.ts"
+    - "tests/official/process/scenario-boundary.test.ts"
+  allowed_write_paths:
+    - "evaluation/verifier-only/BG-D02/** through BG-D04/**"
+    - "evaluation/verifier-only/BG-H01/** through BG-H06/**"
+    - "tests/official/verifier-scenario-providers/**"
+    - "artifacts/trajectories/session-boundaries/SES-20260831-022.yaml status fields only"
+    - "artifacts/trajectories/reviews/BG-OFFICIAL-VERIFIER-AUTHORING-OWNER-PACKET_RU.md"
+  coordinator_visibility: "The coordinator must not read hidden scenario values, oracle content, expected outcomes, or raw verifier diffs; receive only paths changed, hashes, counts, test status, and a natural Russian safe summary."
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approval_recorded_at_utc: "2026-08-30T22:54:01Z"
+  exact_approval_evidence: "Одобряю отдельную independent verifier-authoring session SES-022 с изолированным subagent: читать только verifier-only пакеты D02–D04 и H01–H06 и соответствующие публичные контракты; создать нейтральные scenario-provider exports и boundary tests, не раскрывая hidden content в arm-коде, трассах или owner-отчёте; согласовать verifier manifests и hashes и остановиться перед integration. Реальные candidates, live model, official/scored run, unblinding, commit и push запрещены."
+
+implementation_scope:
+  objective: "Add separately hashed neutral scenario-provider exports owned by verifier packages and prove that their public envelope contains actions only, without evaluator answers."
+  invariants:
+    - "Do not change candidates, arm-visible contracts, visible assertions, evaluation v1.1, scoring, or K=0."
+    - "Scenario exports remain verifier-owned and are unavailable until all 40 arm decisions are immutable."
+    - "Exports contain neutral executable actions only and contain no oracle verdict, expected value, diagnostic, diff, reason-correct label, accepted flag, or failure classification."
+    - "Manifests and hashes cover every new or changed verifier-owned byte."
+    - "Owner and coordinator reports disclose no hidden scenario content."
+  validation:
+    - "Fixture-local scenario-provider contract tests."
+    - "Recursive forbidden-key schema tests."
+    - "Manifest and hash reconciliation."
+    - "Compile and bounded boundary tests without importing or executing real candidates."
+
+explicitly_prohibited:
+  - "Read or modify any real candidate or candidate manifest."
+  - "Write hidden content into arm-visible code, traces, owner reports, or coordinator messages."
+  - "Run live models, real candidates, official/scored evaluation, Chromium, browser, MCP, Claude, unblinding, commit, or push."
+  - "Modify shared production composition or task wiring; report any required integration change instead."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "verifier_authoring_complete_shared_integration_verified_in_SES_023"
+  authoring_transcript_status: "excluded_hidden_verifier_context"
+
+measured_results:
+  status: "shared_integration_completed_in_SES_023"
+  neutral_scenario_provider_exports: 9
+  package_local_manifests: 9
+  export_bundle_sha256: "fb89fb7e02ad5bcf3a4273901b5d7e5f90d7f58e3b997b28221e9d78b4a2f695"
+  manifest_bundle_sha256: "952b5299ca3053704d887b7bd7c5738a8f4411d656e8860cee1b2b06fc3c7667"
+  boundary_test_file_sha256: "fdc9f36c21f276c17ec9478ddf12133749463cd05ff23cab7794e497c4d12ed8"
+  fixture_local_and_boundary_tests: "passed_12_of_12"
+  typescript_compile: "passed"
+  git_diff_check_owned_scope: "passed"
+  candidate_reads_or_runs: 0
+  live_model_calls: 0
+  official_or_scored_runs: 0
+  unblinding_performed: false
+  shared_integration_required: false
+  shared_integration_scope: "bind nine explicit verifier-owned exports in official descriptors and reconcile central verifier manifests/checksums"
+  shared_integration_evidence: "SES-023 passed 60/60 official tests, compile, static preflight, and all development/held-out manifest checks."
+  initial_test_retry_record: "two test-only failures caused by an over-strong nested Object.freeze assertion; the corrected test verifies immutable public containers plus digest-bound recursive schema protection"
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approval_evidence: "Одобряю отдельную independent verifier-authoring session SES-022 с изолированным subagent: читать только verifier-only пакеты D02–D04 и H01–H06 и соответствующие публичные контракты; создать нейтральные scenario-provider exports и boundary tests, не раскрывая hidden content в arm-коде, трассах или owner-отчёте; согласовать verifier manifests и hashes и остановиться перед integration. Реальные candidates, live model, official/scored run, unblinding, commit и push запрещены."

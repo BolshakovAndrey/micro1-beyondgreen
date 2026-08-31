@@ -3,7 +3,7 @@ import {
   type OfficialFixtureDescriptor,
 } from "./contracts.ts";
 
-/** Frozen interface and ownership rules for the SES-018 fixture-adapter workers. */
+/** Frozen interface and ownership rules for fixture-adapter workers. */
 export const OFFICIAL_FIXTURE_WORKER_CONTRACT = Object.freeze({
   schemaVersion: "beyondgreen-official-fixture-worker@1.0.0",
   descriptorFactory: "defineOfficialFixtureAdapter",
@@ -15,6 +15,7 @@ export const OFFICIAL_FIXTURE_WORKER_CONTRACT = Object.freeze({
     "armVisible.actions",
     "armVisible.observations",
     "armVisible.visibleAssertions",
+    "scenarioProviderEntrypoint",
     "observerEntrypoint",
     "evaluatorEntrypoint",
   ]),

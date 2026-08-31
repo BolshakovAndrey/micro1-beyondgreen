@@ -74,12 +74,11 @@ export const preUnblindingTasks: readonly TaskDefinition[] = [
   },
   {
     name: "evaluation:run",
-    description: "Validate the frozen evaluation command contract without scoring or unblinding.",
+    description: "Execute the one owner-approved official evaluation through the production isolation root.",
     acceptedArguments: ["--evaluation-version", "eval-v1.1.0"],
     steps: [nodeStep(
-      "evaluation pre-unblinding contract",
-      "scripts/d00-pre-unblinding-entrypoint.ts",
-      "evaluation",
+      "official evaluation execution",
+      "scripts/d00-official-run.ts",
       "--evaluation-version",
       "eval-v1.1.0",
     )],

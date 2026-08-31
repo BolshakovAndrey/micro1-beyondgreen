@@ -28,6 +28,6 @@ test("pre-unblinding runner produces plans but has no candidate executor or run 
   assert.equal(plan.candidateExecutionAllowed, false);
   assert.equal(plan.unblindingPerformed, false);
   assert.equal(plan.runRecordCreated, false);
-  assert.deepEqual(Object.keys(plan.roles).sort(), ["arm", "evaluator", "observer"]);
+  assert.deepEqual(Object.keys(plan.roles).sort(), ["arm", "evaluator", "observer", "scenarioProvider"]);
   assert.equal("execute" in plan, false);
 });

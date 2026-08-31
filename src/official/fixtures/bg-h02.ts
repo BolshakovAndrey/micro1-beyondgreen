@@ -48,6 +48,7 @@ export const BG_H02_OFFICIAL_FIXTURE = defineOfficialFixtureAdapter({
     ],
   },
   verifierOnlyRoot: "evaluation/verifier-only/BG-H02",
+  scenarioProviderEntrypoint: { modulePath: "evaluation/verifier-only/BG-H02/scenario-provider.ts", exportName: "NEUTRAL_SCENARIO_PROVIDER_EXPORT", symbolKind: "runtime" },
   observerEntrypoint: { modulePath: "evaluation/arm-visible/BG-H02/harness.ts", exportName: "mountStargazingGuidePreview", symbolKind: "runtime" },
   evaluatorEntrypoint: { modulePath: "evaluation/verifier-only/BG-H02/canonical-driver.ts", exportName: "evaluateCanonicalObservations", symbolKind: "runtime" },
 });

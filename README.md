@@ -1,112 +1,150 @@
-# micro1 Frontier Engineering Challenge 2026
+# BeyondGreen
 
-The challenge is live. The current submission deadline is 2026-08-31 18:00 UTC
-(20:00 Europe/Belgrade).
+**Verify a React state-to-signals migration that your tests already call green.**
 
-Before making project decisions, read [the final challenge contract](docs/CHALLENGE.md)
-and [the preserved rules, judging rubric, and schedule](docs/HACKATHON_RULES.md). The
-qualification gate and rubric are treated as product requirements throughout
-implementation.
+A migration that compiles and passes every legacy test can still be broken. BeyondGreen
+takes an existing, immutable candidate, inventories what the migration puts at risk,
+derives behavioral probes from evidence the arm can actually see, executes them against
+a physically isolated oracle, and returns an evidence bundle with an accept / reject /
+abstain decision.
 
-The complete Russian translation of the official 10-page challenge brief is
-available in [docs/MICRO1_INSTRUCTIONS_RU.md](docs/MICRO1_INSTRUCTIONS_RU.md).
+> Green compilation and legacy tests are evidence, not proof.
 
-The topic-independent contract for continuously collecting judge-ready evidence and
-building the final submission package is defined in
-[docs/SUBMISSION_ARTIFACTS_SPEC.md](docs/SUBMISSION_ARTIFACTS_SPEC.md).
+---
 
-Before opening the implementation branch or starting a product agent, pass the
-[clean-room preflight](docs/PREFLIGHT_CHECKLIST.md). The binding NDA/provenance and
-trace contracts are [docs/CLEAN_ROOM_POLICY.md](docs/CLEAN_ROOM_POLICY.md),
-[docs/TRACE_POLICY.md](docs/TRACE_POLICY.md), and
-[docs/PROVENANCE.md](docs/PROVENANCE.md).
+## Who has this problem
 
-```bash
-npm test
-npm run preflight:control
-```
+A frontend engineer migrating mature React code from `useState`-style state to signals.
 
-## Reviewer quick start
+The code is inherited, it is slow, and the suite that came with it was written for the
+old implementation. It checks what the component renders. It does not check the things a
+signals migration actually breaks: update ordering, identity stability, subscription
+cleanup, lifecycle, rollback.
 
-The project uses one Node/TypeScript task runner instead of adding a new
-`package.json` script for every evaluation fixture or phase. This keeps the public
-entry points stable while making every supported task discoverable and reviewable.
+**The bottleneck.** The engineer has to decide whether to merge, and a green suite is the
+only signal available. There is no cheap way to tell a faithful migration apart from one
+that quietly changed an unobserved invariant. So teams either merge on hope, or keep the
+slow code — and both outcomes cost real money.
 
-From a clean checkout with the supported Node version:
+**Why solving it matters.** The failure is silent and it ships. It surfaces later as a
+lost update, a stale card, a leaked subscription — far from the commit that caused it,
+where it is orders of magnitude more expensive to find.
+
+---
+
+## Results
+
+Ten synthetic fixtures, ten behavior classes, twenty frozen candidates: ten that preserve
+behavior and ten with a single seeded defect. **All twenty compile and pass 100% of their
+visible legacy tests at freeze**, which is what makes the benchmark hard.
+
+| Metric | Status quo baseline | BeyondGreen | Target |
+|---|---|---|---|
+| Decision accuracy | `[[x]]/20` | `[[x]]/20` | ≥ 16/20 |
+| Accuracy advantage over baseline | — | `[[x]]/20` | ≥ 6/20 |
+| Defect recall | `[[x]]/10` | `[[x]]/10` | ≥ 8/10 |
+| False alarms on preserving candidates | `[[x]]/10` | `[[x]]/10` | ≤ 2/10 |
+| Completion | `[[x]]/20` | `[[x]]/20` | ≥ 18/20 |
+
+Targets were predeclared in [`docs/EVALUATION.md`](docs/EVALUATION.md) before any fixture
+was written. Where a target is missed, both the unchanged target and the honest result are
+published. `BG-H02` (async ordering) was labeled the challenging case before its code
+existed.
+
+Full comparison, per-candidate records, and the challenging-case analysis:
+[`docs/EVALUATION.md`](docs/EVALUATION.md).
+
+---
+
+## Quick start
+
+Requires Node `22.22.3` (see `.node-version`). Runtime dependencies are React,
+`@preact/signals-react`, jsdom, and Zod; tests run on `node:test`.
 
 ```bash
 npm ci
-npm run task -- list
-npm test
-npm run task -- d01:verify
-npm run task -- d01:demo
-npm run task -- d01:replay
-npm run task -- d02:verify
-npm run task -- d03:verify
-npm run task -- d04:verify
-npm run task -- development:verify
+npm run task -- list          # every supported task, with descriptions
+npm test                      # 209 tests
+npm run task -- d01:demo      # one full verification, JSON + static HTML
+npm run task -- d01:replay    # deterministic replay, no network, no subprocess
 ```
 
-Expected success markers include:
+`d01:demo` writes the evidence bundle to
+`artifacts/evaluation/BG-D01-VERTICAL-SLICE.html` — open it to see what the engineer
+actually receives.
 
-```text
-TASK_PASSED test:all
-TASK_PASSED d01:verify
-TASK_PASSED d01:demo
-TASK_PASSED d01:replay
-TASK_PASSED d02:verify
-TASK_PASSED d03:verify
-TASK_PASSED d04:verify
-TASK_PASSED development:verify
-```
+Full reproduction from a clean environment, including the baseline arm, the scored run,
+expected output, runtime and cost: [`docs/REPRODUCTION.md`](docs/REPRODUCTION.md).
 
-`npm test` deterministically discovers ordinary tests only under the approved public
-test roots. `d01:verify` additionally runs the deliberately separated verifier-only
-oracle self-check and the physical access-boundary test for BG-D01. The task catalog
-is implemented in [`scripts/tasks/`](scripts/tasks/); new fixtures add a small typed
-task module there rather than expanding `package.json`.
+**Platform limit.** The isolation runner uses macOS `/usr/bin/sandbox-exec` to deny
+network egress on top of Node's permission model. It fails closed on other platforms
+rather than silently weakening isolation. Deterministic replay works everywhere.
 
-The ordinary catalog intentionally excludes live model, network-diagnostic, and
-Chromium-launch commands. Historical runs remain documented as evidence, but cannot
-be started accidentally through `npm run task`.
+---
 
-Tasks ending in `:write` are maintainer-only reconciliation commands for immutable
-manifests or checksum projections. Reviewers normally use `test:all`, `d01:verify`,
-`d01:demo`, `d01:replay`, the corresponding `:check` tasks, and
-`phase0.5:verify`. The catalog contains no obsolete live launcher: every registered
-task either verifies a submitted contract, reproduces evidence, or regenerates a
-reviewed projection after an authorized source change.
+## How it works
 
-BG-D02 through BG-D04 are integrated as unscored development fixtures. Their
-fixture-specific tasks verify visible behavior, evaluator conclusions, immutable
-manifests, and physical oracle isolation; `development:verify` checks the exact
-D01-D04 fixture/task bijection, preserves the TypeScript `ParcelDispatchBoard`
-family, proves the discarded MJS prototype is absent, and replays D01
-deterministically. These commands do not perform an official/scored run.
+Both arms receive the same immutable candidate, the same visible inputs, the same
+environment, and exactly one attempt.
 
-The D01 vertical slice is an explicitly unscored development demonstration. The
-owner-approved correction boundary `SES-20260830-003` is now implemented under the
-planned eligible trajectory `TRC-BG-D01-SCALE-003`. The real orchestrator and worker
-processes use one injected descriptor execution path, capability evidence is bound
-to canonical launch, policy, role, event-state, and immutable-decision claims,
-offline replay independently checks both evaluator conclusions, and recursive
-package validation covers nested registered sources. Compile, all 55 ordinary tests,
-and targeted `d01:verify` passed. Its 49,485-byte native capture has exact receipt
-identity, strict UTF-8, a safe raw scan, complete EN/RU technical review, and owner
-promotion into `actual_traces`. The repeated Codex acceptance matrix passed package,
-projection, schema-injection, and evaluator-replay criteria but confirmed five
-bounded runtime/capability blockers; `SCALE_READY=false` pending SCALE-004.
-It ingests and hash-checks the frozen `candidate-b`, finalizes both arm decisions
-before opening the independent evaluator capability, and writes validated JSON plus
-static HTML. `d01:replay` rebuilds both representations deterministically in memory;
-it performs no network call, subprocess launch, or workspace write. See
-[`docs/D01_REPRODUCTION.md`](docs/D01_REPRODUCTION.md) for the exact evidence paths,
-expected verdicts, isolation boundary, and limitations.
+| | Status quo | BeyondGreen |
+|---|---|---|
+| Inputs | candidate, compilation, visible legacy tests | identical |
+| Method | accept if compilation and all visible tests pass | risk inventory → derived probes → independent execution |
+| Oracle visibility | none | none until the verdict is immutable |
 
-The D01 isolation runner currently requires macOS `/usr/bin/sandbox-exec` to deny
-network egress in addition to Node filesystem permissions. It fails closed on other
-platforms; no permissive cross-platform fallback is registered.
+Four design choices carry most of the result:
 
-An independent Claude Opus reviewer is available through the project skill
-`.agents/skills/claude`. Invoke it by explicitly saying `клод`, `claude`, or
-`$claude`; its exact context and CLI contracts are stored inside the skill.
+**The oracle is a separate process, not a flag.** The arm cannot enumerate, read, hash, or
+error-probe the verifier-only package, and the reciprocal probe proves the evaluator
+cannot read the candidates either. Both denials are asserted in tests, not assumed.
+
+**`K=0`.** Zero evaluator-derived feedback or repair rounds reach the arm before its
+verdict is final. The evaluator process starts only after both arms have committed.
+
+**The candidate is immutable.** It is hash-checked before and after every run. BeyondGreen
+never repairs during a scored run — once the artifact under judgement changes, the verdict
+can no longer be checked against a fixed ground truth.
+
+**Every claim is bound to recorded evidence.** Canonical JSON, a hash chain over the
+reasoning record, and an offline replay that independently rebuilds both the JSON and the
+HTML and rejects tampering.
+
+Architecture, requirement IDs, and the full contract: [`docs/PROJECT_SPEC.md`](docs/PROJECT_SPEC.md).
+
+---
+
+## Improvement changelog
+
+How the solution got here, which change moved which number, and the experiments that were
+removed: [`docs/IMPROVEMENT_CHANGELOG.md`](docs/IMPROVEMENT_CHANGELOG.md).
+
+## Hot take
+
+`[[Одно предложение + ссылка на раздел — задача 3]]`
+
+## Agent trajectories
+
+Representative coding-agent trajectories with instructions, tool responses, retries, and
+human checkpoints: [`artifacts/trajectories/`](artifacts/trajectories/), indexed in
+[`artifacts/trajectories/index.yaml`](artifacts/trajectories/index.yaml).
+
+---
+
+## For reviewers who want the engineering detail
+
+Task catalog, fixture-by-fixture verification, immutable manifests, clean-room and trace
+policies, and the phase history are documented separately:
+
+- [`docs/REVIEWER_GUIDE.md`](docs/REVIEWER_GUIDE.md) — task catalog and what each command proves
+- [`docs/PROJECT_SPEC.md`](docs/PROJECT_SPEC.md) — normative product contract
+- [`docs/EVALUATION.md`](docs/EVALUATION.md) — evaluation methodology and metrics
+- [`docs/D01_REPRODUCTION.md`](docs/D01_REPRODUCTION.md) — evidence paths and limitations for the D01 slice
+- [`docs/CLEAN_ROOM_POLICY.md`](docs/CLEAN_ROOM_POLICY.md), [`docs/TRACE_POLICY.md`](docs/TRACE_POLICY.md), [`docs/PROVENANCE.md`](docs/PROVENANCE.md)
+
+## Scope and honest limits
+
+- The benchmark is synthetic. Fixtures were authored independently per fixture, but they
+  are not production code, and generalization to real repositories is not demonstrated.
+- v1 covers React state to signals only.
+- `[[Строка про live adapter — заполнить после прогона]]`

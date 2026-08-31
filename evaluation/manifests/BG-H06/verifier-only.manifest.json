@@ -10,6 +10,8 @@
     "evaluation/verifier-only/BG-H06/canonical-driver.ts": "8d751cf5f28cf696ea6164adf6899f41792df89639f292ba3732c35d51875432",
     "evaluation/verifier-only/BG-H06/ground-truth.json": "19178acd418e9d1ebcc75e5463800caea377dfe21490e6ab63d33c0f593d341d",
     "evaluation/verifier-only/BG-H06/evaluator-denied-probe.mjs": "58af789d852f528820a5b0e9433d0d4fa8c7f874c691790c3c08d1c559a57b1d",
-    "evaluation/verifier-only/BG-H06/self-check.test.ts": "c6e483bf45bc29ba7049f6ac1fb15d5c510f95e9b173e5a590514f9f4905811b"
+    "evaluation/verifier-only/BG-H06/self-check.test.ts": "c6e483bf45bc29ba7049f6ac1fb15d5c510f95e9b173e5a590514f9f4905811b",
+    "evaluation/verifier-only/BG-H06/scenario-provider.ts": "f4958836853b9ef0196078bb3cbf8a13c05173eeb76d6188c753c4ab81f64afc",
+    "evaluation/verifier-only/BG-H06/scenario-provider.manifest.json": "29272d8d55ca0624ff64ed34245167623e11f55aee7f25785c47f8f10517cf79"
   }
 }

@@ -1,0 +1,275 @@
+schema_version: "1.1"
+session_id: "SES-20260830-019"
+started_at_utc: "2026-08-30T21:56:15Z"
+agent:
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Prepare the owner gate for exactly one frozen BeyondGreen official scored execution"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  exact_head: "3d916e73a13553583660bc88633366f5bc8eede9"
+  clean_tree_before_boundary_files: true
+  remote_state_contacted_or_verified: false
+
+context:
+  repository_root: "."
+  source_control_plane_thread_id: "01a038e6-9b21-76f3-8b97-4829bbd8d16a"
+  allowed_paths_before_owner_approval:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "src/official/** read-only for current interface and output-contract inspection"
+    - "scripts/d00-official-preflight.ts read-only"
+    - "scripts/tasks/official.ts read-only"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-019.yaml"
+    - "artifacts/trajectories/reviews/BG-OFFICIAL-RUN-SESSION-BOUNDARY-CHECKPOINT_RU.md"
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "use_unauthorized_before_and_during_the_official_run"
+  private_environment_variables_present:
+    - "MICRO1_PRIVATE_DENYLIST"
+    - "MICRO1_PRIVATE_TRACE_DIR"
+  private_values_paths_or_contents_disclosed: false
+
+controls:
+  agents_instructions_read_in_full: true
+  challenge_contract_read_in_full: true
+  hackathon_rules_read_in_full: true
+  cleanroom_policy_read_in_full: true
+  trace_policy_read_in_full: true
+  preflight_checklist_read_in_full: true
+  project_spec_1_1_0_read_in_full: true
+  evaluation_projection_read_in_full: true
+  topic_projection_read_in_full: true
+  session_boundary_template_read_in_full: true
+  exact_branch_checked: true
+  exact_head_checked: true
+  clean_tree_checked: true
+  browser_or_private_mcp_state_inspected: false
+  global_memory_inspected: false
+  candidate_import_or_execution_performed: true
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  evaluator_executed: true
+  live_model_calls: 0
+  claude_calls: 0
+  chromium_calls: 0
+  browser_calls: 0
+  connected_app_calls: 0
+  private_mcp_calls: 0
+  trace_capture_or_promotion_performed: false
+  checksums_written: false
+  commit_performed: false
+  push_performed: false
+
+pre_approval_boundary_only_scope:
+  status: "blocked_before_owner_approval"
+  allowed_actions:
+    - "Create only this SESSION_BOUNDARY YAML file and its complete natural-Russian owner approval card."
+    - "Structurally validate only these two files and run git diff --check."
+  prohibited_actions:
+    - "Import or execute any development or held-out candidate."
+    - "Run either scored arm, an observer, an evaluator, unblinding, or the live model."
+    - "Create official run records, reports, replay bundles, provenance records, or raw trace captures."
+    - "Modify product code, tests, candidates, manifests, visible assertions, verifier files, oracle semantics, evaluation methodology, targets, reason-correct mapping, dependencies, or task wiring."
+    - "Run browser, MCP, connected apps, Claude, Chromium, trace capture or promotion, checksums write, commit, or push."
+
+official_execution_scope_after_exact_owner_approval:
+  authorization_unit: "exactly_one_complete_official_scored_execution"
+  evaluation_version: "eval-v1.1.0"
+  run_id: "RUN-BG-OFFICIAL-EVAL-V1.1.0-001"
+  fixtures:
+    total: 10
+    development: ["BG-D01", "BG-D02", "BG-D03", "BG-D04"]
+    held_out: ["BG-H01", "BG-H02", "BG-H03", "BG-H04", "BG-H05", "BG-H06"]
+  candidates:
+    per_fixture: 2
+    total: 20
+    mutation_allowed: false
+    hash_check_required_before_and_after_each_arm: true
+  execution_plan:
+    slots: 20
+    arms_per_slot: 2
+    total_arm_plans: 40
+    arms: ["status-quo", "beyondgreen"]
+    attempt_ordinal: 1
+    deeply_immutable_before_candidate_execution: true
+    inventory_and_plan_digest_must_be_persisted_before_candidate_execution: true
+  frozen_surface:
+    - "Evaluation v1.1 formulas, denominators, targets, K=0, two-arm policy, one-attempt policy, and reason-correct mapping."
+    - "All ten fixture memberships, behavior classes, and the BG-H02 challenging-case designation."
+    - "All 20 candidate bytes, candidate identities, candidate manifests, and before-run hashes."
+    - "All arm-visible packages, visible assertions, verifier-only packages, oracle semantics, ground truth, and evaluator expectations."
+    - "All dependencies, runtime policy, provider/model selection, billing policy, and replay format."
+  arm_policies:
+    status_quo: "Use the identical immutable candidate, compilation command, visible tests, environment, wall-clock ceiling, and evidence recorder; accept only when compilation and all visible tests pass, reject only a proven deterministic compilation or visible-test defect, and abstain on operational uncertainty."
+    beyondgreen: "Use the identical immutable candidate and visible inputs; apply frozen risk inventory, additional probes, arm-visible contracts, and oracle-free checks; accept only complete passing evidence, reject a reproducible blocking defect including proven compilation or deterministic visible-test failure, and abstain on operational uncertainty."
+    correction_or_retry_after_outcome: false
+    second_candidate_or_second_attempt_allowed: false
+  frozen_live_reasoning_transport:
+    adapter: "codex-exec-jsonl-v1"
+    model: "gpt-5.6-sol"
+    authentication_mode: "locally ChatGPT-authenticated codex exec"
+    command: "codex exec --ephemeral --ignore-user-config --json --output-schema <schema> --sandbox read-only --model gpt-5.6-sol"
+    calls_per_beyondgreen_candidate: 1
+    maximum_calls_for_twenty_beyondgreen_candidates: 20
+    model_or_transport_retries: 0
+    substitute_model_allowed: false
+    total_deadline_seconds_per_candidate: 180
+    engine_deadline_seconds: 165
+    finalization_reserve_seconds: 15
+    unavailable_or_transport_failure_action: "abstain"
+    token_reporting: "Record only if reported explicitly and stably."
+    billing: "fixed_subscription"
+    monetary_cost: "not_applicable_or_not_measured; do not calculate, estimate, cap, or represent per-run USD as zero"
+  required_pre_execution_gates:
+    - "Confirm the exact branch and HEAD and require a clean tree except for this approved boundary pair."
+    - "Run owner-controlled clean-room preflights without exposing the private denylist value or path."
+    - "Run the static frozen-manifest and SHA-256 inventory preflight without importing or executing candidates or parsing verifier ground-truth content."
+    - "Confirm exactly 10 fixtures, 20 candidates, 20 unique slots, two arms per slot, 40 arm plans, attempt ordinal one, and the frozen 4/6 membership and behavior-class bijection."
+    - "Persist and recursively freeze the validated 20-slot execution plan and its inventory digest before any candidate execution."
+    - "Prove both arm capability plans deny verifier-only reads and the evaluator capability plan denies candidate-root reads."
+    - "Confirm the existing official command is execution-capable without changing code; current verification found that evaluation:run remains a contract-only pre-unblinding validator and therefore blocks owner approval before any candidate or model call."
+    - "Require two independent post-decision observer captures per slot and arm, finalize one immutable matching observation pair, and fail closed on divergence before evaluator start; current official rehearsal produces only one capture per arm and therefore does not yet prove this frozen nondeterminism boundary."
+  ordering_and_isolation:
+    - "For each slot, both status-quo and BeyondGreen decisions and rationales become immutable before any observer or evaluator for that slot starts."
+    - "Observers capture only post-decision observations and cannot acquire evaluator or verifier-only capability."
+    - "Evaluators receive immutable decisions and neutral post-decision transcripts; they cannot import, mount, or read candidate roots."
+    - "Neither arm can import, mount, or read evaluation/verifier-only/."
+    - "K=0 is absolute: no evaluator verdict, category, expected value, action diagnostic, diff, oracle detail, or ground truth reaches an arm before decision finalization."
+    - "Held-out unblinding occurs exactly once and only after all 40 arm decisions are immutable."
+    - "An evaluator version or hash mismatch invalidates the run at harness level and cannot alter an arm verdict."
+  failure_and_stop_policy:
+    deterministic_defect: "Apply only the already frozen arm verdict rule; never reinterpret the methodology after seeing an outcome."
+    operational_uncertainty: "Timeout, crash, nondeterminism, missing or ambiguous evidence, failed required probe, denied access, model unavailability, transport failure, or incomplete schema-valid evidence produces abstain where the frozen contract specifies it."
+    no_retry: "No candidate rerun, model retry, substitute model, candidate repair, result deletion, denominator change, target change, reason remapping, or v1.1 tuning after any outcome is visible."
+    immediate_stop_conditions:
+      - "Static inventory, hash, cardinality, capability, policy, schema, or execution-plan mismatch."
+      - "Any candidate byte changes between the before and after hash checks."
+      - "Any pre-decision observer/evaluator access, verifier-only arm access, evaluator candidate-root access, or oracle leakage."
+      - "Any request to modify product code or a frozen surface, or to perform a second attempt."
+      - "Any external private path, contamination finding, unsupported source, or unauthorized capability access."
+  permitted_commands_after_approval:
+    static_preflight: "npm run task -- official:preflight"
+    official_command_family: "npm run task -- evaluation:run --evaluation-version eval-v1.1.0"
+    replay_command_family: "npm run task -- replay --evaluation-version eval-v1.1.0"
+    command_gate: "The repository-local task registry must prove that the official command family performs the already implemented frozen execution. No command may be invented, patched, or substituted in the official session."
+  repo_local_output_allowlist:
+    root: "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/"
+    exact_files:
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/static-preflight.json"
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/execution-plan.json"
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/run-manifest.json"
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/aggregate.json"
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/report.json"
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/report.html"
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/offline-replay.jsonl"
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/provenance.json"
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/unblinding.json"
+    bounded_record_directories:
+      arm_records: "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/arm-records/ exactly 40 immutable JSON records, one per slot and arm"
+      observer_records: "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/observer-records/ exactly 80 immutable post-decision JSON capture records, two per slot and arm, bound into exactly 40 matching immutable observation pairs"
+      evaluator_records: "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/evaluator-records/ exactly 40 immutable post-decision JSON records, one per slot and arm"
+    owner_result_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-RUN-RESULT-OWNER-PACKET_RU.md"
+    writes_outside_allowlist: false
+    raw_trace_capture_in_this_authorization: false
+  post_run_requirements:
+    - "Preserve every success, failure, abstention, timeout, resource observation, before/after hash, and evidence digest without suppression."
+    - "Compute aggregates only from immutable evaluator-scored per-arm records using frozen v1.1 formulas."
+    - "Generate schema-valid JSON and static HTML only from validated aggregates."
+    - "Run deterministic offline replay and require exact digest parity with the stored report bundle."
+    - "Write the complete natural-Russian owner result packet, including actual metrics, missed targets, failures, limitations, and every retry prohibition."
+    - "Stop after evidence verification; commit, push, trace capture/promotion, packaging, publication, repair, and any follow-up run require separate owner approval."
+
+explicitly_not_authorized_by_future_run_approval:
+  - "Any product code, test, dependency, task-registry, candidate, manifest, visible-assertion, verifier, oracle, methodology, target, reason-mapping, or policy change."
+  - "Any candidate repair, D01 repair demo, rerun, model retry, substitute model, additional arm, or second official attempt."
+  - "Browser, MCP, connected apps, Claude, Chromium, global/private memory, or sibling/external workspace access."
+  - "Raw trace capture, trace review/promotion, checksum write, packaging, final archive, publication, upload, submission, commit, or push."
+
+language_contract:
+  owner_facing_reports: "complete_natural_russian"
+  judge_facing_and_machine_readable_artifacts: "english_allowed"
+  technical_identifier_policy: "Keep exact identifiers, commands, paths, library names, and official product names in English; explain unavoidable English terminology in Russian on first use."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "boundary_candidate_blocked_before_owner_approval"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: ""
+
+derived_correction_status:
+  status: "scenario_bindings_integrated_production_runtime_hooks_blocked"
+  reason: "The pre-run review found that evaluation:run remained a contract validator and the official path did not yet enforce two independent post-decision captures per slot and arm."
+  effect: "SES-019 remains blocked and grants no official-run authority while the separately approved synthetic-only correction is implemented and verified."
+  official_or_scored_run_authorized: false
+  unblinding_authorized: false
+  new_approval_phrase_issued_by_correction: false
+
+human_approval:
+  status: "blocked"
+  approver: ""
+  approved_at_utc: ""
+  approval_evidence: ""
+  exact_required_phrase: ""
+
+known_pre_approval_blockers:
+  - id: "BG-OFFICIAL-COMMAND-NOT-EXECUTION-CAPABLE"
+    evidence: "scripts/tasks/pre-unblinding.ts registers evaluation:run as a contract validator that enforces armExecuted=false and runRecordCreated=false; scripts/tasks/official.ts registers only official:preflight."
+    required_resolution: "Implement and test a real frozen evaluation:run command in a separate owner-approved pre-official implementation session, without executing real candidates."
+  - id: "BG-OFFICIAL-DOUBLE-CAPTURE-NOT-WIRED"
+    evidence: "Resolved synthetically in SES-20260831-020: 80 capture records bind into 40 immutable matching pairs, and divergence, missing, or malformed captures stop before evaluator start."
+    required_resolution: "Retain the proven double-capture coordinator unchanged while implementing the production role hooks."
+    resolution_status: "synthetic_contract_resolved_production_wiring_pending"
+  - id: "BG-OFFICIAL-PRODUCTION-ROLE-HOOKS-ABSENT"
+    evidence: "SES-021 through SES-023 implemented the four-role composition boundary and all nine neutral provider bindings. The observer runtime adapters, D01 bridge, and production child-process launcher are still absent."
+    required_resolution: "Implement and test the remaining production runtime hooks before registering evaluation:run."
+    resolution_status: "scenario_provider_layer_resolved_runtime_hooks_pending"
+
+boundary_incident:
+  id: "SES-019-ACCIDENTAL-D01-DEMO-001"
+  classification: "out_of_scope_unscored_development_execution"
+  detected_after_boundary_turn: true
+  command_identity: "not exported by the handed-off task UI; file contents and timestamps prove regeneration through the existing D01 demo path"
+  affected_candidate_scope: "BG-D01 development candidate only"
+  held_out_candidates_executed: false
+  live_model_invoked: false
+  official_or_scored_run_performed: false
+  held_out_unblinding_performed: false
+  evaluator_scope: "existing unscored D01 development evaluator"
+  affected_files:
+    - "artifacts/evaluation/BG-D01-VERTICAL-SLICE.json"
+    - "artifacts/evaluation/BG-D01-VERTICAL-SLICE.html"
+  owner_authorized_recovery: "Restore exactly the two affected files from checkpoint 3d916e73a13553583660bc88633366f5bc8eede9; do not revert any other file."
+  recovery_status: "completed"
+  recurrence:
+    detected_during_session: "SES-20260831-021"
+    detected_at_utc: "2026-08-30T22:45:57Z"
+    attribution: "unresolved_concurrent_process; no SES-021 command or test references the write-capable D01 demo entrypoint"
+    recovery: "The same two files were restored byte-for-byte from 3d916e73a13553583660bc88633366f5bc8eede9 under the existing owner authorization; no other file was restored."
+    post_recovery_sha256:
+      json: "878c627c1801e8f61cadd23daa9140e9a5f32595b18ec58df5ea79649c9b0ff0"
+      html: "47d864ee9f25dafd458a104eedd2295ac5d6b5a14f6c93b9f2dc0b7964c5302b"
+  preserved_as_official_evidence: false
+  eligibility_effect: "SES-019 remains blocked and is not an eligible official-run trajectory."

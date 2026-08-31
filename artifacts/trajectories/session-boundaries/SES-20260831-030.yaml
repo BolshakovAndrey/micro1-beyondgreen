@@ -1,0 +1,64 @@
+schema_version: "1.1"
+session_id: "SES-20260831-030"
+started_at_utc: "2026-08-31T07:47:30Z"
+agent:
+  tool: "Codex coordinator"
+  purpose: "Run the final production-runtime preflight and create the approved checkpoint commit"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  exact_head_at_start: "3d916e73a13553583660bc88633366f5bc8eede9"
+  remote_state_contacted_or_verified: false
+  preservation_rule: "Verify and checkpoint only the already integrated SES-019 through SES-029 runtime, evidence, tests, and reviewer-facing documentation."
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approval_recorded_at_utc: "2026-08-31T07:47:30Z"
+  exact_approval_evidence: "Одобряю финальный preflight: выполнить compile, synthetic 20/40/80/40, обе micro1-safe-preflight проверки, checksums:check и git diff --check. При PASS разрешаю checkpoint commit feat(Evaluation):[BeyondGreen] Complete production runtime без push. Canary, official/scored run и unblinding пока запрещены."
+
+allowed_actions:
+  - "Compile the TypeScript project."
+  - "Run the synthetic 20/40/80/40 rehearsal and its bounded production-runtime regression tests."
+  - "Run control and implementation safe preflight checks."
+  - "Reconcile and verify derived control-plane checksums."
+  - "Run working-tree and staged diff whitespace checks."
+  - "Create the approved checkpoint commit after every gate passes."
+
+allowed_write_paths:
+  - "artifacts/trajectories/session-boundaries/SES-20260831-030.yaml"
+  - "artifacts/trajectories/reviews/BG-PRODUCTION-RUNTIME-FINAL-PREFLIGHT-OWNER-PACKET_RU.md"
+  - "docs/CONTROL_PLANE_SHA256SUMS"
+  - "Git index and the approved checkpoint commit"
+
+explicitly_prohibited:
+  - "Repeat the public transport canary or invoke any live model."
+  - "Execute real candidates or create an official/scored result."
+  - "Unblind verifier outcomes or hidden oracle data."
+  - "Change frozen candidates, visible assertions, oracle semantics, scoring, or evaluation methodology."
+  - "Push."
+
+attestation:
+  official_output_absent_at_start: true
+  live_model_calls_in_session: 0
+  official_or_scored_run: false
+  unblinding_performed: false
+
+measured_results:
+  status: "ready_for_checkpoint_commit"
+  typescript_compile: "pass"
+  synthetic_rehearsal: "pass: 12/12 tests; complete 20/40/80/40 execution after one deterministic slot-10 transport abstention"
+  categorical_redactions:
+    - "Replaced the machine-specific clean-root prefix in exactly two SES-029 command projections with <clean-repository-root>; command semantics and measured canary result are unchanged."
+  control_preflight: "READY_FOR_CLEAN_BRANCH; four reviewed binary notices, zero errors"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION; expected dirty-worktree warning before checkpoint, four reviewed binary notices, zero errors"
+  checksums: "pass: 730/730 before final packet reconciliation"
+  working_tree_diff_check: "pass"
+  staged_diff_check: "pending final staging"
+  checkpoint_commit: "authorized after final checksum reconciliation and staged diff check"
+
+completion:
+  completed_at_utc: "2026-08-31T07:49:47Z"
+  owner_packet: "artifacts/trajectories/reviews/BG-PRODUCTION-RUNTIME-FINAL-PREFLIGHT-OWNER-PACKET_RU.md"
+  disposition: "All runtime gates passed. Reconcile the final packet checksums, verify staged scope, and create the owner-approved checkpoint without push."

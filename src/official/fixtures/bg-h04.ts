@@ -53,6 +53,11 @@ export const BG_H04_OFFICIAL_FIXTURE = defineOfficialFixtureAdapter({
     }],
   },
   verifierOnlyRoot: "evaluation/verifier-only/BG-H04",
+  scenarioProviderEntrypoint: {
+    modulePath: "evaluation/verifier-only/BG-H04/scenario-provider.ts",
+    exportName: "NEUTRAL_SCENARIO_PROVIDER_EXPORT",
+    symbolKind: "runtime",
+  },
   observerEntrypoint: {
     modulePath: harnessModule,
     exportName: "mountAstronomyDrawer",

@@ -84,6 +84,11 @@ export const BG_D02_OFFICIAL_FIXTURE_ADAPTER = defineOfficialFixtureAdapter({
     }],
   },
   verifierOnlyRoot: "evaluation/verifier-only/BG-D02",
+  scenarioProviderEntrypoint: {
+    modulePath: "evaluation/verifier-only/BG-D02/scenario-provider.ts",
+    exportName: "NEUTRAL_SCENARIO_PROVIDER_EXPORT",
+    symbolKind: "runtime",
+  },
   observerEntrypoint: {
     modulePath: harnessModule,
     exportName: "mountParcelDispatchBoard",

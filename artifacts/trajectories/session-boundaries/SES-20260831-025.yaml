@@ -1,0 +1,126 @@
+schema_version: "1.1"
+session_id: "SES-20260831-025"
+started_at_utc: "2026-08-31T05:50:33Z"
+agent:
+  tool: "Codex coordinator with one isolated verifier subagent"
+  model: "inherits coordinator runtime"
+  purpose: "Close the three production-runtime bindings without consuming the official attempt"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  exact_head_at_start: "3d916e73a13553583660bc88633366f5bc8eede9"
+  remote_state_contacted_or_verified: false
+  inherited_uncommitted_scope:
+    - "SES-019 through SES-024 official runtime and evidence"
+  preservation_rule: "Verifier-only authoring and shared runtime integration have disjoint ownership; no real candidate execution is permitted."
+
+context:
+  repository_root: "."
+  coordinator_allowed_read_paths:
+    - "All mandatory contracts named by AGENTS.md"
+    - "SES-020 through SES-025 boundaries and owner packets"
+    - "src/official/**"
+    - "evaluation/arm-visible/** public contracts"
+    - "tests/official/** synthetic and physical-isolation infrastructure"
+    - "scripts/d00-official-run.ts"
+    - "scripts/tasks/pre-unblinding.ts"
+  coordinator_allowed_write_paths:
+    - "src/official/runtime/**"
+    - "src/official/execution/production-root.ts"
+    - "src/official/execution/index.ts"
+    - "src/official/index.ts"
+    - "scripts/d00-official-run.ts"
+    - "scripts/tasks/pre-unblinding.ts"
+    - "tests/official/runtime/**"
+    - "tests/official/execution/**"
+    - "derived manifests/checksums and SES-025 owner artifacts"
+  verifier_subagent_allowed_read_paths:
+    - "AGENTS.md and mandatory contracts"
+    - "SES-022 through SES-025 boundaries and owner packets"
+    - "src/official/process/** public process contracts"
+    - "src/official/contracts.ts"
+    - "evaluation/verifier-only/BG-D01/** through BG-D04/** and BG-H01/** through BG-H06/**"
+    - "corresponding public arm-visible contracts"
+    - "tests/official/verifier-scenario-providers/**"
+  verifier_subagent_allowed_write_paths:
+    - "evaluation/verifier-only/BG-D01/** through BG-D04/** and BG-H01/** through BG-H06/** standardized wrapper exports only"
+    - "their verifier manifests and package-local hashes"
+    - "tests/official/verifier-runtime-exports/**"
+    - "a Russian safe report without hidden values"
+  hidden_content_policy: "Verifier subagent may inspect hidden packages but must return only paths, export signatures, hashes, counts, PASS/FAIL, and a natural Russian report. Coordinator must never receive hidden scenario values, oracle bodies, expected results, or raw diffs."
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approval_recorded_at_utc: "2026-08-31T05:50:33Z"
+  exact_approval_evidence: "Одобряю SES-025 deadline-first runtime closure: отдельный изолированный verifier-subagent создаёт стандартизованные evaluator exports и нейтральный scenario-provider для D01 без раскрытия hidden content; координатор реализует production Codex transport и platform isolation backend, подключает production root, выполняет только synthetic/physical-isolation tests и регистрирует, но не запускает evaluation:run. Реальные candidates, live model, official/scored run, unblinding, commit и push запрещены."
+
+explicitly_prohibited:
+  - "Coordinator reading or receiving hidden values, oracle bodies, expected outcomes, or raw verifier diffs."
+  - "Execute real candidates, invoke a live model, run evaluation:run, perform official/scored evaluation, or unblind."
+  - "Use browser, MCP, Claude, Chromium, commit, push, or network except deterministic local synthetic tests."
+  - "Change frozen candidates, visible assertions, evaluation v1.1, scoring, methodology, or K=0."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "approved_deadline_first_runtime_closure_in_progress"
+  authoring_transcript_status: "pending_review"
+
+measured_results:
+  status: "runtime_closure_verified_pending_final_preflight_and_checkpoint_approval"
+  real_candidates_executed: 0
+  live_model_calls: 0
+  official_or_scored_runs: 0
+  unblinding_performed: false
+  evaluation_run_registered: true
+  evaluation_run_invoked: false
+  shared_runtime:
+    codex_transport: "implemented; exactly one JSONL call, no retry, disposable repository"
+    platform_isolation: "implemented; macOS network denial plus Node filesystem permission boundary"
+    production_root: "implemented for all 10 fixtures and both arms"
+    d03_public_alias: "render-summary normalized to the public snapshot operation"
+  replacement_verifier_attempt:
+    worker: "ses025_verifier_exports_retry"
+    inherited_history: false
+    candidate_paths_read_or_searched: 0
+    standardized_runtime_wrappers: 10
+    d01_neutral_scenario_provider: 1
+    contamination_findings: 0
+    status: "pass"
+  verification:
+    typescript_compile: "pass"
+    synthetic_and_physical_integration_tests: "48/48 pass"
+    verifier_runtime_export_tests: "6/6 pass"
+    verifier_provider_combined_tests: "18/18 pass"
+    git_diff_check: "pass"
+  excluded_verifier_attempt:
+    worker: "ses025_verifier_exports"
+    classification: "candidate_path_read_scope_violation_no_deliverable"
+    prohibited_paths_touched_by_search:
+      - "candidates/BG-D03/candidate-a/TrayPlanner.ts"
+      - "candidates/BG-D03/candidate-b/TrayPlanner.ts"
+    output_class: "matching public symbol and comment lines only; no candidate body intentionally opened or copied"
+    candidate_execution: 0
+    model_or_network_calls: 0
+    official_or_scored_runs: 0
+    deliverables: 0
+    temporary_verifier_edits: "nine canonical-driver refactor attempts, all byte-restored with clean git status"
+    disposition: "Exclude the worker context and all non-public findings; a fresh no-history replacement requires owner approval."
+    owner_replacement_approval: "Разрешаю один fresh SES‑025 verifier replacement без наследования истории, строго без candidate paths; предыдущую попытку считать contaminated/no-deliverable."
+    replacement_authorized: true
+
+completion:
+  completed_at_utc: "2026-08-31T07:03:11Z"
+  owner_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-RUNTIME-CLOSURE-OWNER-PACKET_RU.md"
+  next_gate: "Final safe preflight and checkpoint commit require separate owner approval; official execution requires a later fresh boundary and explicit environment gate."
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approval_evidence: "Одобряю SES-025 deadline-first runtime closure: отдельный изолированный verifier-subagent создаёт стандартизованные evaluator exports и нейтральный scenario-provider для D01 без раскрытия hidden content; координатор реализует production Codex transport и platform isolation backend, подключает production root, выполняет только synthetic/physical-isolation tests и регистрирует, но не запускает evaluation:run. Реальные candidates, live model, official/scored run, unblinding, commit и push запрещены."

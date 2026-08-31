@@ -7,6 +7,7 @@ const FixtureIdSchema = z.string().regex(/^BG-(?:D0[1-4]|H0[1-6])$/u);
 const IdentifierSchema = z.string().min(1).max(160).regex(/^[A-Za-z0-9._:-]+$/u);
 const ArmSchema = z.enum(["status-quo", "beyondgreen"]);
 const VerdictSchema = z.enum(["accept", "reject", "abstain"]);
+const ScenarioForbiddenKeyPattern = /(?:oracle|ground.?truth|expected|verdict|diagnostic|diff|reason.?correct|accepted|failure)/iu;
 
 /** Immutable identity shared by every role process for one candidate slot. */
 export const OfficialProcessSlotSchema = z.object({
@@ -106,6 +107,85 @@ const FinalDecisionPairSchema = z.tuple([
   OfficialImmutableArmDecisionSchema,
 ]);
 
+function findForbiddenScenarioKey(value: unknown): string | undefined {
+  if (Array.isArray(value)) {
+    for (const child of value) {
+      const finding = findForbiddenScenarioKey(child);
+      if (finding) return finding;
+    }
+    return undefined;
+  }
+  if (value === null || typeof value !== "object") return undefined;
+  for (const [key, child] of Object.entries(value)) {
+    if (ScenarioForbiddenKeyPattern.test(key)) return key;
+    const finding = findForbiddenScenarioKey(child);
+    if (finding) return finding;
+  }
+  return undefined;
+}
+
+const NeutralScenarioStepSchema = z.object({
+  action: IdentifierSchema,
+  parameters: z.json(),
+}).strict().superRefine((step, context) => {
+  const forbidden = findForbiddenScenarioKey(step.parameters);
+  if (forbidden) {
+    context.addIssue({ code: "custom", path: ["parameters"], message: "Scenario parameters contain an evaluator-shaped key." });
+  }
+});
+
+const NeutralScenarioCoreSchema = z.object({
+  schemaVersion: z.literal("beyondgreen-official-neutral-scenario@1.0.0"),
+  slot: OfficialProcessSlotSchema,
+  scenarioId: IdentifierSchema,
+  decisionSetSha256: Sha256Schema,
+  steps: z.array(NeutralScenarioStepSchema).min(1).max(256).readonly(),
+  immutable: z.literal(true),
+}).strict();
+
+/** Post-decision actions stripped of every evaluator-owned outcome or diagnostic. */
+export const OfficialNeutralScenarioEnvelopeSchema = NeutralScenarioCoreSchema.extend({
+  scenarioSha256: Sha256Schema,
+}).strict().superRefine((scenario, context) => {
+  const { scenarioSha256: _digest, ...core } = scenario;
+  if (sha256CanonicalJson(core) !== scenario.scenarioSha256) {
+    context.addIssue({ code: "custom", path: ["scenarioSha256"], message: "Neutral scenario digest mismatch." });
+  }
+});
+export type OfficialNeutralScenarioEnvelope = z.infer<typeof OfficialNeutralScenarioEnvelopeSchema>;
+
+export const OfficialScenarioProviderProcessRequestSchema = RequestBaseSchema.extend({
+  role: z.literal("scenario-provider"),
+  operation: z.literal("release_after_all_decisions"),
+  decisions: z.array(OfficialImmutableArmDecisionSchema).length(40).readonly(),
+  payload: z.json(),
+}).strict().superRefine((request, context) => {
+  const identities = request.decisions.map(({ slot, arm }) => `${slot.slotId}:${arm}`);
+  if (new Set(identities).size !== 40 || request.decisions.some(({ immutable }) => immutable !== true)) {
+    context.addIssue({ code: "custom", path: ["decisions"], message: "Scenario release requires 40 unique immutable arm decisions." });
+  }
+  const slotDecisions = request.decisions.filter(({ slot }) => sameSlot(slot, request.slot));
+  if (slotDecisions.length !== 2 || new Set(slotDecisions.map(({ arm }) => arm)).size !== 2) {
+    context.addIssue({ code: "custom", path: ["slot"], message: "Scenario slot must have both immutable arm decisions." });
+  }
+});
+export type OfficialScenarioProviderProcessRequest = z.infer<typeof OfficialScenarioProviderProcessRequestSchema>;
+
+export const OfficialScenarioProviderHandlerOutputSchema = z.object({
+  scenarioId: IdentifierSchema,
+  steps: z.array(NeutralScenarioStepSchema).min(1).max(256).readonly(),
+}).strict();
+export type OfficialScenarioProviderHandlerOutput = z.infer<typeof OfficialScenarioProviderHandlerOutputSchema>;
+
+export const OfficialScenarioProviderProcessSuccessSchema = z.object({
+  schemaVersion: z.literal("beyondgreen-official-scenario-provider-result@1.0.0"),
+  requestId: IdentifierSchema,
+  role: z.literal("scenario-provider"),
+  status: z.literal("ok"),
+  scenario: OfficialNeutralScenarioEnvelopeSchema,
+}).strict();
+export type OfficialScenarioProviderProcessSuccess = z.infer<typeof OfficialScenarioProviderProcessSuccessSchema>;
+
 export const OfficialObserverProcessRequestSchema = RequestBaseSchema.extend({
   role: z.literal("observer"),
   operation: z.literal("capture_after_decisions"),
@@ -120,6 +200,17 @@ export const OfficialObserverProcessRequestSchema = RequestBaseSchema.extend({
   }
 });
 export type OfficialObserverProcessRequest = z.infer<typeof OfficialObserverProcessRequestSchema>;
+
+/** Production observer request that must bind one released neutral scenario. */
+export const OfficialScenarioBoundObserverProcessRequestSchema = z.intersection(
+  OfficialObserverProcessRequestSchema,
+  z.object({ scenario: OfficialNeutralScenarioEnvelopeSchema }).strict(),
+).superRefine((request, context) => {
+  if (!sameSlot(request.scenario.slot, request.slot)) {
+    context.addIssue({ code: "custom", path: ["scenario"], message: "Observer scenario is bound to a different slot." });
+  }
+});
+export type OfficialScenarioBoundObserverProcessRequest = z.infer<typeof OfficialScenarioBoundObserverProcessRequestSchema>;
 
 export const OfficialObserverHandlerOutputSchema = z.object({
   transcript: z.json(),
@@ -215,7 +306,7 @@ export type OfficialEvaluatorProcessSuccess = z.infer<typeof OfficialEvaluatorPr
 export const OfficialProcessFailureSchema = z.object({
   schemaVersion: z.literal("beyondgreen-official-process-failure@1.0.0"),
   requestId: IdentifierSchema.nullable(),
-  role: z.enum(["arm", "observer", "evaluator"]).nullable(),
+  role: z.enum(["arm", "scenario-provider", "observer", "evaluator"]).nullable(),
   status: z.literal("error"),
   disposition: z.literal("abstain"),
   retryAllowed: z.literal(false),

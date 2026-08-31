@@ -1,0 +1,175 @@
+schema_version: "1.1"
+session_id: "SES-20260831-021"
+started_at_utc: "2026-08-30T22:38:21Z"
+agent:
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Implement physically isolated production-composition contracts and a post-decision neutral scenario handoff without executing the frozen benchmark"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  exact_head_at_start: "3d916e73a13553583660bc88633366f5bc8eede9"
+  remote_state_contacted_or_verified: false
+  inherited_uncommitted_scope:
+    - "SES-019 blocked official-run boundary and incident record"
+    - "SES-020 synthetic execution coordinator, writer, tests, and owner packet"
+  preservation_rule: "Preserve all inherited bytes except bounded SES-021 edits within the approved production-composition paths; never restore, stage, commit, or push unrelated work."
+
+context:
+  repository_root: "."
+  source_control_plane_thread_id: "01a038e6-9b21-76f3-8b97-4829bbd8d16a"
+  allowed_read_paths:
+    - "AGENTS.md"
+    - "docs/CHALLENGE.md"
+    - "docs/HACKATHON_RULES.md"
+    - "docs/CLEAN_ROOM_POLICY.md"
+    - "docs/TRACE_POLICY.md"
+    - "docs/PREFLIGHT_CHECKLIST.md"
+    - "docs/PROJECT_SPEC.md"
+    - "docs/EVALUATION.md"
+    - "config/topic.yaml"
+    - "templates/SESSION_BOUNDARY.yaml"
+    - "src/official/**"
+    - "scripts/d00-official-run.ts"
+    - "scripts/d00-official-preflight.ts"
+    - "scripts/tasks/**"
+    - "scripts/task.ts"
+    - "tests/official/**"
+    - "evaluation/arm-visible/** public contracts and harnesses only"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-019.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260831-020.yaml"
+    - "artifacts/trajectories/reviews/BG-OFFICIAL-PRE-RUN-CORRECTION-OWNER-PACKET_RU.md"
+  allowed_write_paths:
+    - "src/official/execution/**"
+    - "src/official/process/**"
+    - "src/official/index.ts"
+    - "scripts/d00-official-run.ts"
+    - "scripts/tasks/pre-unblinding.ts only after production composition is fully proven"
+    - "tests/official/execution/**"
+    - "tests/official/process/** synthetic and boundary tests only"
+    - "artifacts/trajectories/session-boundaries/SES-20260831-021.yaml"
+    - "artifacts/trajectories/reviews/BG-OFFICIAL-PRODUCTION-COMPOSITION-OWNER-PACKET_RU.md"
+    - "artifacts/trajectories/session-boundaries/SES-20260830-019.yaml derived status only"
+    - "artifacts/trajectories/session-boundaries/SES-20260831-020.yaml derived status only"
+    - "artifacts/trajectories/reviews/BG-OFFICIAL-PRE-RUN-CORRECTION-OWNER-PACKET_RU.md derived status only"
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+  external_capabilities:
+    filesystem_read_surface: "capability_exposed"
+    external_private_workspace_state: "state_not_inspected"
+    browser_automation: "capability_exposed"
+    browser_private_state: "state_not_inspected"
+    connected_apps: "capability_exposed"
+    connected_app_state: "state_not_inspected"
+    private_mcp_state: "state_not_inspected"
+    global_memory_state: "state_not_inspected"
+    use_policy: "use_unauthorized"
+
+controls:
+  agents_instructions_read_in_full: true
+  challenge_contract_read_in_full: true
+  hackathon_rules_read_in_full: true
+  cleanroom_policy_read_in_full: true
+  trace_policy_read_in_full: true
+  preflight_checklist_read_in_full: true
+  project_spec_1_1_0_read_in_full: true
+  evaluation_projection_read_in_full: true
+  topic_projection_read_in_full: true
+  exact_branch_checked: true
+  exact_head_checked: true
+  real_candidate_import_or_execution_performed: false
+  verifier_oracle_content_read: false
+  official_or_scored_run_performed: false
+  unblinding_performed: false
+  live_model_calls: 0
+  browser_mcp_claude_chromium_calls: 0
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "not_machine_exported_in_task_evidence"
+  approval_recorded_at_utc: "2026-08-30T22:38:21Z"
+  exact_approval_evidence: "Одобряю отдельную bounded production-composition session SES-021: реализовать физически изолированные arm/observer/evaluator hooks и post-decision neutral scenario handoff для D02–D04 и H01–H06, используя доказанный SES-020 coordinator без изменения candidates, oracles, visible assertions, evaluation v1.1 и K=0. Разрешаю только synthetic и boundary tests. Реальные candidates, live model, official/scored run, unblinding, commit и push запрещены до отдельного гейта."
+
+implementation_scope:
+  objective: "Create a production composition boundary that can bind arm, scenario-provider, observer, and evaluator child processes without giving arms verifier access or evaluators candidate access."
+  invariants:
+    - "Reuse the SES-020 20/40/80/40 coordinator and create-once writer without changing scoring semantics."
+    - "All 40 arm decisions are immutable before the held-out scenario provider becomes available."
+    - "The scenario provider can read verifier-owned scenario material but cannot read candidates or send oracle verdicts, expected values, diagnostics, or ground truth to an arm."
+    - "Observers receive only a neutral post-decision scenario envelope and candidate binding; they cannot read verifier-only paths."
+    - "Evaluators receive only immutable decisions and neutral transcripts; they cannot read or import candidate roots."
+    - "Every role launch is bound to an explicit allow/deny capability plan, no network, one attempt, and zero retry."
+    - "The production CLI remains unregistered unless complete hooks can be constructed without unresolved fixture or oracle bindings."
+  validation:
+    - "Synthetic role-process success path."
+    - "Physical filesystem denial for arm, observer, scenario provider, and evaluator."
+    - "Scenario access before all decisions fails closed."
+    - "Oracle-shaped scenario payload fails schema validation."
+    - "Evaluator candidate access and arm verifier access fail closed."
+    - "No real candidate import, verifier parsing, model call, official run, or unblinding."
+
+explicitly_prohibited:
+  - "Read or modify evaluation/verifier-only/**, any candidate, candidate manifest, oracle, ground truth, or held-out outcome."
+  - "Modify evaluation/arm-visible/**, visible assertions, frozen behavior, evaluation v1.1, scoring, targets, dependencies, model policy, or candidate hashes."
+  - "Invoke codex exec, any live model, network, browser, MCP, connected app, Claude, or Chromium."
+  - "Run an official/scored command, unblind, create official artifacts, write checksums, capture/promote traces, commit, or push."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "approved_production_composition_in_progress"
+  authoring_transcript_status: "pending_review"
+  authoring_transcript_exclusion_category: ""
+
+measured_results:
+  status: "composition_and_scenario_bindings_ready_runtime_hooks_incomplete"
+  implementation:
+    coordinator_order: "all_40_decisions_then_scenario_release_then_80_captures_then_evaluator"
+    isolated_roles: ["arm", "scenario-provider", "observer", "evaluator"]
+    neutral_scenario_schema: "rejects evaluator-shaped keys recursively"
+    scenario_release_gate: "requires_40_unique_immutable_arm_decisions"
+    arm_verifier_access: "explicitly_denied"
+    observer_verifier_access: "explicitly_denied"
+    scenario_provider_candidate_access: "explicitly_denied"
+    evaluator_candidate_access: "explicitly_denied"
+    network_allowed: false
+    retries: 0
+  verification:
+    targeted_SES_020_and_SES_021_tests: "passed_10_of_10"
+    complete_official_test_suite: "passed_45_of_45"
+    compile: "passed"
+    official_static_preflight: "passed_10_fixtures_20_candidates_20_slots_40_arm_plans"
+    git_diff_check: "passed"
+    real_candidate_import_or_execution: false
+    verifier_oracle_content_read: false
+    live_model_calls: 0
+    official_or_scored_run: false
+    unblinding: false
+    D01_demo_artifact_integrity: "restored_to_HEAD_after_unattributed_concurrent_regeneration"
+  inherited_incident_recurrence:
+    incident_id: "SES-019-ACCIDENTAL-D01-DEMO-001"
+    detected_at_utc: "2026-08-30T22:45:57Z"
+    finding: "The same two unscored D01 demo outputs changed after validation even though no SES-021 command or official test references the write-capable d01:demo entrypoint."
+    attribution: "unresolved_concurrent_process"
+    action: "Restored exactly the two files from 3d916e73a13553583660bc88633366f5bc8eede9 under the existing owner authorization; no other file was restored."
+    used_as_evidence: false
+  corrected_test_expectation:
+    category: "expected_ordering_projection_drift"
+    detail: "Three existing fail-closed capture tests expected the post-decision gate to remain closed until after captures."
+    correction: "Updated only the gate assertion; evaluator invocation remained zero for divergence, missing, and malformed captures."
+    product_semantics_changed: false
+  unresolved_blocker:
+    id: "BG-OFFICIAL-PRODUCTION-RUNTIME-HOOKS-INCOMPLETE"
+    evidence: "SES-022 and SES-023 supplied and integrated all nine neutral providers. Production observer adapters, the D01 bridge, and the capability-enforcing child-process launcher remain absent."
+    safety_action: "Do not register scripts/d00-official-run.ts as evaluation:run until all runtime hooks pass synthetic and physical-isolation tests."
+    required_resolution: "Implement the remaining runtime adapters and launcher without executing real candidates, then repeat pre-official controls."
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "not_machine_exported_in_task_evidence"
+  approval_evidence: "Одобряю отдельную bounded production-composition session SES-021: реализовать физически изолированные arm/observer/evaluator hooks и post-decision neutral scenario handoff для D02–D04 и H01–H06, используя доказанный SES-020 coordinator без изменения candidates, oracles, visible assertions, evaluation v1.1 и K=0. Разрешаю только synthetic и boundary tests. Реальные candidates, live model, official/scored run, unblinding, commit и push запрещены до отдельного гейта."

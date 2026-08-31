@@ -3,6 +3,7 @@ import { officialCandidate } from "./contracts.ts";
 import { createArmAdapterPlan } from "./adapters/arm.ts";
 import { createEvaluatorAdapterPlan } from "./adapters/evaluator.ts";
 import { createObserverAdapterPlan } from "./adapters/observer.ts";
+import { createScenarioProviderAdapterPlan } from "./adapters/scenario-provider.ts";
 import type { RoleCapabilityPlan } from "./adapters/types.ts";
 
 /** A safe plan proves role separation but cannot execute or consume an official attempt. */
@@ -14,6 +15,7 @@ export type PreUnblindingRunPlan = Readonly<{
   constructionKind: "mount_function" | "class_constructor";
   roles: Readonly<{
     arm: RoleCapabilityPlan;
+    scenarioProvider: RoleCapabilityPlan;
     observer: RoleCapabilityPlan;
     evaluator: RoleCapabilityPlan;
   }>;
@@ -37,6 +39,11 @@ export function createPreUnblindingRunPlan(
     constructionKind: candidate.construction.kind,
     roles: Object.freeze({
       arm: createArmAdapterPlan(descriptor, candidateId),
+      scenarioProvider: createScenarioProviderAdapterPlan(
+        descriptor,
+        candidateId,
+        descriptor.scenarioProviderEntrypoint,
+      ),
       observer: createObserverAdapterPlan(descriptor, candidateId),
       evaluator: createEvaluatorAdapterPlan(descriptor, candidateId),
     }),

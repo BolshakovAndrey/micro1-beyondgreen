@@ -161,7 +161,7 @@ export function adaptD03PackageManifest(text: string, expectedFixtureId: string,
     throw new Error(`${manifestPath} is not the frozen D03 package-manifest format.`);
   }
   const matches = [...text.matchAll(/^\s+-?\s*path: "([^"]+)"\n\s*sha256: "([a-f0-9]{64})"$/gmu)];
-  if (matches.length !== 9) throw new Error(`${manifestPath} must bind exactly nine frozen files.`);
+  if (matches.length !== 11) throw new Error(`${manifestPath} must bind exactly eleven frozen files.`);
   const files = matches.map((match, index) => Object.freeze({
     path: canonicalPath(match[1], `${manifestPath}.path[${index}]`),
     sha256: digest(match[2], `${manifestPath}.sha256[${index}]`),

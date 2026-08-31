@@ -1,0 +1,133 @@
+schema_version: "1.1"
+session_id: "SES-20260831-024"
+started_at_utc: "2026-08-31T05:09:33Z"
+agent:
+  tool: "Codex coordinator with three isolated subagents"
+  model: "inherits coordinator runtime"
+  purpose: "Complete the production runtime under synthetic and physical-isolation tests without consuming the official attempt"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  exact_head_at_start: "3d916e73a13553583660bc88633366f5bc8eede9"
+  remote_state_contacted_or_verified: false
+  inherited_uncommitted_scope:
+    - "SES-019 through SES-023 official runner, composition, providers, manifests, and evidence"
+  preservation_rule: "Each worker owns only its assigned new runtime and test files; shared integration remains coordinator-owned."
+
+context:
+  repository_root: "."
+  allowed_read_paths:
+    - "All mandatory contracts named by AGENTS.md"
+    - "SES-020 through SES-023 boundaries and owner packets"
+    - "src/official/**"
+    - "src/d01/** public runtime contracts needed by the D01 bridge"
+    - "evaluation/arm-visible/** public contracts and harnesses"
+    - "tests/official/** synthetic infrastructure"
+    - "scripts/d00-official-run.ts"
+    - "scripts/tasks/pre-unblinding.ts"
+  allowed_write_paths:
+    - "src/official/runtime/**"
+    - "tests/official/runtime/**"
+    - "src/official/execution/production-root.ts coordinator only"
+    - "src/official/execution/index.ts coordinator only"
+    - "src/official/index.ts coordinator only"
+    - "scripts/d00-official-run.ts coordinator only"
+    - "scripts/tasks/pre-unblinding.ts coordinator only after all hooks pass"
+    - "derived manifests/checksums and SES-024 owner artifacts coordinator only"
+  hidden_content_policy: "Workers and coordinator may use public contracts and the safe structural SES-022 summary only. Hidden scenario values, oracle bodies, and expected outcomes must not be read or copied into shared code."
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approval_recorded_at_utc: "2026-08-31T05:09:33Z"
+  exact_approval_evidence: "Одобряю SES-024 production runtime completion и три параллельных изолированных subagents с непересекающимися путями: первый реализует dispatch-oriented observer adapters для D02/D04/H03/H04/H06; второй — специализированные adapters D03/H01/H02/H05 и D01 bridge; третий — production child-process launcher, status-quo/BeyondGreen arm handlers и evaluator wrapper. Использовать только публичные контракты, безопасную структурную сводку SES-022 и synthetic/physical-isolation tests; hidden scenario values не читать и не переносить в shared code. После объединения разрешаю зарегистрировать, но не запускать execution-capable evaluation:run, выполнить полный preflight и остановиться перед commit. Реальные candidates, live model, official/scored run, unblinding, commit и push запрещены."
+
+worker_ownership:
+  dispatch_observers:
+    write_paths:
+      - "src/official/runtime/dispatch-observer.ts"
+      - "tests/official/runtime/dispatch-observer.test.ts"
+  specialized_observers_and_D01:
+    write_paths:
+      - "src/official/runtime/specialized-observers.ts"
+      - "src/official/runtime/d01-bridge.ts"
+      - "tests/official/runtime/specialized-observers.test.ts"
+      - "tests/official/runtime/d01-bridge.test.ts"
+  process_runtime:
+    write_paths:
+      - "src/official/runtime/process-launcher.ts"
+      - "src/official/runtime/arm-handler.ts"
+      - "src/official/runtime/evaluator-handler.ts"
+      - "tests/official/runtime/process-launcher.test.ts"
+      - "tests/official/runtime/arm-evaluator-handlers.test.ts"
+
+explicitly_prohibited:
+  - "Read or disclose hidden scenario values, oracle bodies, expected outcomes, real candidate bytes, or candidate manifests."
+  - "Execute real candidates, live models, evaluation:run, official/scored evaluation, or unblinding."
+  - "Use browser, MCP, Claude, Chromium, network, commit, or push."
+  - "Workers modifying shared registry, manifests, task wiring, or another worker's files."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "approved_runtime_completion_in_progress"
+  authoring_transcript_status: "pending_review"
+
+measured_results:
+  status: "runtime_components_integrated_execution_command_intentionally_not_registered"
+  completed_at_utc: "2026-08-31T05:44:31Z"
+  dispatch_observer_adapters:
+    fixture_ids: ["BG-D02", "BG-D04", "BG-H03", "BG-H04", "BG-H06"]
+    targeted_tests: "passed_4_of_4"
+  specialized_observer_adapters:
+    fixture_ids: ["BG-D03", "BG-H01", "BG-H02", "BG-H05", "BG-D01"]
+    targeted_tests: "passed_8_of_8"
+  replacement_process_runtime:
+    targeted_tests: "passed_7_of_7"
+    typescript_compile: "passed"
+    package_lock_changed: false
+    concrete_os_backend_status: "injected_contract_only_platform_binding_missing"
+  combined_official_synthetic_tests: "passed_79_of_79"
+  runtime_targeted_tests: "passed_19_of_19"
+  official_static_preflight: "passed_10_fixtures_20_candidates_20_slots_40_arm_plans_without_execution"
+  control_preflight: "READY_FOR_CLEAN_BRANCH_with_four_binary_human_review_notices"
+  implementation_preflight: "READY_FOR_IMPLEMENTATION_with_dirty_worktree_warning_and_four_binary_human_review_notices"
+  control_checksums: "verified_676_of_676_before_final_boundary_status_reconciliation"
+  git_diff_check: "passed"
+  hidden_scenario_values_printed_or_copied: false
+  real_candidates_executed: 0
+  live_model_calls: 0
+  official_or_scored_runs: 0
+  unblinding_performed: false
+  evaluation_run_registered_as_executable: false
+  registration_stop_reason:
+    - "BG-D01 has no production scenario-provider capability binding in the shared registry."
+    - "codex-exec-jsonl-v1 has a frozen command builder and parser but no production executor transport binding."
+    - "The launcher requires a trusted platform OsIsolationBackend; only its fail-closed interface and attestation tests are currently implemented."
+  full_suite_visibility_note: "The bounded verification process loaded previously owner-approved verifier-owned scenario-provider exports but emitted only test names and PASS/FAIL; no scenario value or oracle content was displayed to the coordinator or copied into shared code."
+  excluded_worker_incident:
+    worker: "ses024_process_runtime"
+    classification: "hidden_verifier_scope_violation"
+    files_read: "three repo-local verifier-only modules in BG-D02/BG-D03; content not reproduced in coordinator artifacts"
+    files_modified: 0
+    candidates_imported_or_executed: 0
+    live_model_calls: 0
+    official_or_scored_runs: 0
+    unblinding_performed: false
+    disposition: "Worker stopped immediately; its transcript is excluded from clean implementation evidence and no code from it may be used."
+    safe_public_finding: "Node Permission Model enforces filesystem allowlists but not network denial; a production launcher must fail closed without an independent OS isolation attestation."
+    required_owner_action: "Authorize one fresh no-history replacement subagent restricted to public/runtime paths and injected evaluator contracts."
+    owner_disposition: "Approved exclusion as a contaminated no-change attempt; no implementation output may be reused."
+    replacement_authorized: true
+    replacement_history_inherited: false
+    replacement_approval_evidence: "Разрешаю для SES-024 исключить ses024_process_runtime как contaminated/no-change attempt и запустить один свежий replacement subagent без наследования его истории. Разрешённое чтение: только src/official/**, tests/official/** synthetic, публичные arm-visible contracts и SES-024; verifier-only, candidates и hidden content запрещены. Реализовать process launcher и injected arm/evaluator handlers, выполнить synthetic physical-isolation tests и остановиться перед integration. Остальные ограничения SES-024 сохраняются."
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approval_evidence: "Одобряю SES-024 production runtime completion и три параллельных изолированных subagents с непересекающимися путями: первый реализует dispatch-oriented observer adapters для D02/D04/H03/H04/H06; второй — специализированные adapters D03/H01/H02/H05 и D01 bridge; третий — production child-process launcher, status-quo/BeyondGreen arm handlers и evaluator wrapper. Использовать только публичные контракты, безопасную структурную сводку SES-022 и synthetic/physical-isolation tests; hidden scenario values не читать и не переносить в shared code. После объединения разрешаю зарегистрировать, но не запускать execution-capable evaluation:run, выполнить полный preflight и остановиться перед commit. Реальные candidates, live model, official/scored run, unblinding, commit и push запрещены."

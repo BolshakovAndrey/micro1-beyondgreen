@@ -1,0 +1,8 @@
+{
+  "schema_version": "beyondgreen-neutral-scenario-manifest@1.0.0",
+  "fixture_id": "BG-D03",
+  "export_path": "evaluation/verifier-only/BG-D03/scenario-provider.ts",
+  "export_name": "NEUTRAL_SCENARIO_PROVIDER_EXPORT",
+  "export_sha256": "8364e5e85681e4f1f6cb7c6671fa139c5a8f6daad77bbbec9e7ebb4ba61d5045",
+  "manifest_self_excluded": true
+}

@@ -15,6 +15,10 @@ packages:
       sha256: "f9b7cfcd917ae8ccf54666e2c5d8d82972e84f51b52afd7d4f3f910fe14e0e3e"
     - path: "evaluation/verifier-only/BG-D03/ground-truth.json"
       sha256: "4daccc16269118e6df0e064a135b1d98ba7e1ea0139119a3712d70c4b6e2f6bd"
+    - path: "evaluation/verifier-only/BG-D03/scenario-provider.ts"
+      sha256: "8364e5e85681e4f1f6cb7c6671fa139c5a8f6daad77bbbec9e7ebb4ba61d5045"
+    - path: "evaluation/verifier-only/BG-D03/scenario-provider.manifest.json"
+      sha256: "55e79c361d71603d85cf12564a23719ded7c016cbc70e2ebe6f8f1c2467f4ea4"
   candidates:
     - path: "candidates/BG-D03/candidate-a/TrayPlanner.ts"
       sha256: "2eb4aeb87afbe842276264e83b3ffe1fd602222e97dec2634991ecde62a3e4d2"

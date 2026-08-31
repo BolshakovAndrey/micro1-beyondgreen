@@ -1,0 +1,72 @@
+schema_version: "1.1"
+session_id: "SES-20260831-028"
+started_at_utc: "2026-08-31T07:36:06Z"
+agent:
+  tool: "Codex coordinator"
+  purpose: "Diagnose the failed public transport canary without invoking a model"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  exact_head_at_start: "3d916e73a13553583660bc88633366f5bc8eede9"
+  remote_state_contacted_or_verified: false
+  preservation_rule: "Inspect only public CLI capability metadata and the frozen command builder."
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approval_recorded_at_utc: "2026-08-31T07:36:06Z"
+  exact_approval_evidence: "Одобряю SES-028 bounded no-model transport diagnosis: проверить codex --version, codex exec --help, codex login status, поддержку каждого frozen аргумента и совместимость ephemeral repository/output schema. Не выполнять codex exec с prompt и не вызывать модель. Если найдена однозначная CLI-несовместимость, разрешаю исправить только production command builder и его tests. Candidates, verifier/oracle, official run, unblinding, commit и push запрещены. Остановиться перед новым transport canary."
+
+allowed_commands:
+  - "codex --version"
+  - "codex exec --help"
+  - "codex login status"
+  - "repo-local read-only inspection and unit tests of the production command builder"
+
+allowed_write_paths:
+  - "src/official/reasoning/contract.ts"
+  - "tests/official/reasoning/**"
+  - "artifacts/trajectories/session-boundaries/SES-20260831-028.yaml"
+  - "artifacts/trajectories/reviews/BG-TRANSPORT-DIAGNOSIS-OWNER-PACKET_RU.md"
+  - "docs/CONTROL_PLANE_SHA256SUMS"
+
+explicitly_prohibited:
+  - "Run codex exec with a prompt or invoke any model."
+  - "Read, hash, import, or execute candidates or verifier/oracle packages."
+  - "Create official output, score, or unblind."
+  - "Run evaluation:run or another transport canary."
+  - "Commit or push."
+
+attestation:
+  official_output_absent_at_start: true
+  model_invocations_at_start: 0
+  official_or_scored_run: false
+  unblinding_performed: false
+
+measured_results:
+  status: "no_deterministic_cli_incompatibility_found"
+  codex_cli_version: "0.148.0"
+  authentication_status: "logged_in_using_chatgpt"
+  frozen_flags_supported:
+    ephemeral: true
+    ignore_user_config: true
+    json: true
+    output_schema: true
+    sandbox_read_only: true
+    explicit_model: true
+    stdin_prompt: true
+  ephemeral_git_repository_valid: true
+  output_schema_valid_json: true
+  offline_transport_parse: true
+  command_builder_and_transport_tests: "7/7 pass"
+  model_invocations: 0
+  command_builder_changed: false
+  official_output_created: false
+  official_or_scored_run: false
+  unblinding_performed: false
+
+completion:
+  completed_at_utc: "2026-08-31T07:37:56Z"
+  owner_packet: "artifacts/trajectories/reviews/BG-TRANSPORT-DIAGNOSIS-OWNER-PACKET_RU.md"
+  disposition: "Do not change the frozen builder speculatively. A separately approved owner-terminal canary is required to distinguish nested Codex execution from provider/model failure."

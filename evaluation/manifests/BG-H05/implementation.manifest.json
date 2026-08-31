@@ -17,7 +17,7 @@
     "arm-visible.manifest.json": "3e89b8c27cbd0713e88f8dd4f3169f1aebbff684ad69a3c61c4b7abb7a5df1fa",
     "candidate-a.manifest.json": "cef6bf22627c18117c1264f7d049f23894a06a92c45fcb6802c1946f80d0300d",
     "candidate-b.manifest.json": "630031fa7631b0d629232795d284f1b765bc167e4230a32e951f26cdafda91a3",
-    "verifier-only.manifest.json": "4e3b4d833074715fa6d1955ff1ed5b241ce18d9b6b6821db6ad38d9541b66347",
+    "verifier-only.manifest.json": "22a9f8de00c407772c66fbb1e1cd415148d2630c87908f2cd609bfba94738c12",
     "SUBAGENT_REPORT_RU.md": "dceb3bfa9eb188acd33d22176a00dc1d6661ca7988b51eb7445e95549c3b689e"
   }
 }

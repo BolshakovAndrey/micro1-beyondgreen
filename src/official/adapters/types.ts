@@ -1,12 +1,12 @@
 import type { ExplicitExportBinding, OfficialFixtureDescriptor } from "../contracts.ts";
 
 /** The three process roles whose filesystem capabilities remain physically disjoint. */
-export type OfficialRole = "arm" | "observer" | "evaluator";
+export type OfficialRole = "arm" | "scenario-provider" | "observer" | "evaluator";
 
 /** Immutable launch plan consumed by a future process runner, never by fixture inference. */
 export type RoleCapabilityPlan = Readonly<{
   role: OfficialRole;
-  fixtureId: OfficialFixtureDescriptor["fixtureId"];
+  fixtureId: OfficialFixtureDescriptor["fixtureId"] | "BG-D01";
   candidateId: string;
   entrypoint: ExplicitExportBinding;
   allowReadPaths: readonly string[];

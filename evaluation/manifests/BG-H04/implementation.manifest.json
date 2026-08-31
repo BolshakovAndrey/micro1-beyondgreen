@@ -29,7 +29,9 @@
     "evaluation/verifier-only/BG-H04/canonical-driver.ts": "a26019074ff523b805bb11dd9d037a102a9a63e6ba2a0929f63de687f46b9877",
     "evaluation/verifier-only/BG-H04/evaluator-denied-probe.mjs": "ec3716a7b6bf495ba33ac3ea60e256c4797aa9e7c968d0e4ae3d6dbddfe1412a",
     "evaluation/verifier-only/BG-H04/ground-truth.json": "0a20c5d90c21ef0a82e6383dcf7923d20e78952113bc7c25f283186a62cacb80",
-    "evaluation/verifier-only/BG-H04/self-check.test.ts": "85e7bb3f92b26dd7fc5c8b2051a0996fca6c76a6a62c375f9dfb72f551809daa"
+    "evaluation/verifier-only/BG-H04/self-check.test.ts": "85e7bb3f92b26dd7fc5c8b2051a0996fca6c76a6a62c375f9dfb72f551809daa",
+    "evaluation/verifier-only/BG-H04/scenario-provider.ts": "e374f2f9232159072e458c534ed3e833787fcb736052abb4ae853badfb6242ef",
+    "evaluation/verifier-only/BG-H04/scenario-provider.manifest.json": "3b0f2ce9ac57fab472083d1c35dca4ed106f325c696f50e45b6e97f1809f98bd"
   },
   "ground_truth_mapping_exposure": "verifier_only",
   "pre_verdict_evaluator_feedback_rounds": 0,

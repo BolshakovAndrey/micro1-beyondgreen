@@ -1,0 +1,123 @@
+schema_version: "1.1"
+session_id: "SES-20260831-023"
+started_at_utc: "2026-08-30T23:03:01Z"
+agent:
+  tool: "Codex Desktop"
+  model: "GPT-5 family; exact runtime identity is not machine-exported in this task evidence"
+  purpose: "Integrate the nine SES-022 neutral scenario-provider bindings into the SES-021 production composition without executing the benchmark"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  exact_head_at_start: "3d916e73a13553583660bc88633366f5bc8eede9"
+  remote_state_contacted_or_verified: false
+  inherited_uncommitted_scope:
+    - "SES-019 blocked official-run boundary and incident record"
+    - "SES-020 synthetic execution coordinator"
+    - "SES-021 production-composition boundary"
+    - "SES-022 nine verifier-owned neutral scenario-provider exports and local manifests"
+  preservation_rule: "Preserve every inherited byte except the explicit shared integration, derived manifest/checksum, SES-023 test, and status projection paths."
+
+context:
+  repository_root: "."
+  allowed_read_paths:
+    - "All mandatory contracts named by AGENTS.md"
+    - "artifacts/trajectories/session-boundaries/SES-20260831-021.yaml"
+    - "artifacts/trajectories/session-boundaries/SES-20260831-022.yaml"
+    - "artifacts/trajectories/reviews/BG-OFFICIAL-VERIFIER-AUTHORING-OWNER-PACKET_RU.md"
+    - "src/official/**"
+    - "scripts/d00-official-run.ts"
+    - "scripts/d00-official-preflight.ts"
+    - "scripts/tasks/**"
+    - "tests/official/**"
+    - "evaluation/verifier-only/BG-D02/** through BG-D04/** manifests and module/export declarations only; no scenario values or oracle bodies"
+    - "evaluation/verifier-only/BG-H01/** through BG-H06/** manifests and module/export declarations only; no scenario values or oracle bodies"
+    - "central verifier manifests and docs/CONTROL_PLANE_SHA256SUMS"
+  allowed_write_paths:
+    - "src/official/**"
+    - "scripts/d00-official-run.ts"
+    - "scripts/tasks/pre-unblinding.ts only if all production hooks are proven complete"
+    - "tests/official/** synthetic and physical-boundary tests only"
+    - "central verifier manifests and derived checksums only"
+    - "artifacts/trajectories/session-boundaries/SES-20260831-023.yaml"
+    - "artifacts/trajectories/reviews/BG-OFFICIAL-SHARED-INTEGRATION-OWNER-PACKET_RU.md"
+    - "SES-019 through SES-022 status projections only"
+  hidden_content_policy: "Use only module paths, export names, counts, and digests from SES-022. Never inspect, print, copy, or report neutral action values or oracle content."
+  public_sources: []
+  inherited_private_transcript: false
+  additional_workspace_roots: []
+  mcp_resources_enabled: []
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approval_recorded_at_utc: "2026-08-30T23:03:01Z"
+  exact_approval_evidence: "Одобряю SES-023 shared production integration: подключить девять нейтральных scenario-provider exports к официальным descriptors и проверенной SES-021 composition, согласовать центральные verifier manifests и производные checksums, выполнить compile, synthetic и physical-isolation tests. Если все production hooks полностью определены, разрешаю подключить execution-capable evaluation:run, но не запускать её. Реальные candidates, live model, official/scored run, unblinding, commit и push запрещены; остановиться с финальным pre-official approval packet"
+
+implementation_scope:
+  objective: "Create a complete production binding registry and execution-capable but unexecuted evaluation:run entrypoint while preserving K=0."
+  invariants:
+    - "Bind exactly nine verifier-owned neutral scenario providers by explicit repository-relative module path and export name."
+    - "The scenario-provider role remains candidate-denied and is launched only after all 40 immutable arm decisions."
+    - "Arm and observer remain verifier-denied; evaluator remains candidate-denied."
+    - "Do not change candidates, oracles, scenario values, visible assertions, frozen behavior, evaluation v1.1, scoring, or K=0."
+    - "Do not execute evaluation:run, any real candidate, or any live model."
+  validation:
+    - "Compile."
+    - "Synthetic production-composition tests."
+    - "Physical role-isolation tests."
+    - "Static binding/manifest/checksum reconciliation."
+    - "Task registration inspection without task execution."
+
+explicitly_prohibited:
+  - "Read or disclose hidden scenario values, oracle bodies, or expected outcomes."
+  - "Import or execute real candidates."
+  - "Run evaluation:run, official/scored evaluation, live model, unblinding, Chromium, browser, MCP, or Claude."
+  - "Commit or push."
+
+attestation:
+  submission_eligible_at_start: false
+  submission_eligible_after_boundary: false
+  repository_artifacts_status: "approved_shared_integration_in_progress"
+  authoring_transcript_status: "pending_review"
+
+measured_results:
+  status: "scenario_bindings_integrated_runtime_hooks_incomplete"
+  integration:
+    neutral_scenario_provider_descriptors: 9
+    non_D01_candidate_slots_with_four_role_capabilities: 18
+    central_verifier_manifests_reconciled: 9
+    scenario_provider_export_name: "NEUTRAL_SCENARIO_PROVIDER_EXPORT"
+    hidden_scenario_values_read_or_disclosed: false
+    evaluation_run_registered: false
+  verification:
+    official_tests: "passed_60_of_60"
+    typescript_compile: "passed"
+    official_static_preflight: "passed_10_fixtures_20_candidates_20_slots_40_arm_plans"
+    official_inventory_sha256: "71a4ec989ec4910e795fdeb5db97717b9a013d9084860f1818a773bda5d9ab7e"
+    development_manifests: "passed"
+    held_out_manifests: "passed_119_bindings"
+    control_checksums: "passed_662_of_662"
+    git_diff_check: "passed"
+    real_candidate_import_or_execution: false
+    live_model_calls: 0
+    official_or_scored_runs: 0
+    unblinding_performed: false
+  deterministic_retries:
+    - "node --test tests/official treated the directory as one module; no test or product code ran"
+    - "zsh preserved the newline-separated test list as one argument; no test or product code ran"
+    - "first explicit 60-test run found only derived D03 cardinality, four-role projection, and held-out package-digest drift"
+    - "second explicit run found only the remaining H01/H02 package digests and one negative-test message projection"
+  remaining_blocker:
+    id: "BG-OFFICIAL-PRODUCTION-RUNTIME-HOOKS-INCOMPLETE"
+    evidence:
+      - "D01 has a proven dedicated development runtime but no binding bridge into the 20-slot production composition."
+      - "The nine fixtures expose heterogeneous public harness APIs and still need scenario-to-harness observer execution adapters."
+      - "No production child-process launcher binds the status-quo arm, one-call BeyondGreen reasoning arm, observer, and evaluator handlers to their role capability plans."
+    safety_action: "Keep evaluation:run bound to the non-executing pre-unblinding validator; do not risk the single official attempt."
+    required_resolution: "Implement the bounded runtime adapters and launcher under synthetic and physical-isolation tests, then repeat preflight before registering but not executing evaluation:run."
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approval_evidence: "Одобряю SES-023 shared production integration: подключить девять нейтральных scenario-provider exports к официальным descriptors и проверенной SES-021 composition, согласовать центральные verifier manifests и производные checksums, выполнить compile, synthetic и physical-isolation tests. Если все production hooks полностью определены, разрешаю подключить execution-capable evaluation:run, но не запускать её. Реальные candidates, live model, official/scored run, unblinding, commit и push запрещены; остановиться с финальным pre-official approval packet"

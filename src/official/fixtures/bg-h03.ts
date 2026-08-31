@@ -47,6 +47,7 @@ export const BG_H03_OFFICIAL_FIXTURE = defineOfficialFixtureAdapter({
     ],
   },
   verifierOnlyRoot: "evaluation/verifier-only/BG-H03",
+  scenarioProviderEntrypoint: { modulePath: "evaluation/verifier-only/BG-H03/scenario-provider.ts", exportName: "NEUTRAL_SCENARIO_PROVIDER_EXPORT", symbolKind: "runtime" },
   observerEntrypoint: { modulePath: "evaluation/arm-visible/BG-H03/harness.ts", exportName: "mountSelectionDesk", symbolKind: "runtime" },
   evaluatorEntrypoint: { modulePath: "evaluation/verifier-only/BG-H03/canonical-driver.ts", exportName: "evaluateCanonicalObservations", symbolKind: "runtime" },
 });
