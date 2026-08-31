@@ -45,8 +45,8 @@ function frozenGroundTruth(repositoryRoot: string, fixtureId: string, candidateI
 
 /** Run the owner-approved complete evaluator rehearsal without official writes. */
 export async function main(): Promise<number> {
-  if (process.env.MICRO1_EVALUATOR_REHEARSAL_SESSION_BOUNDARY !== "SES-20260831-037") {
-    throw new Error("Evaluator rehearsal requires the approved SES-20260831-037 boundary.");
+  if (process.env.MICRO1_EVALUATOR_REHEARSAL_SESSION_BOUNDARY !== "SES-20260831-038") {
+    throw new Error("Evaluator rehearsal requires the approved SES-20260831-038 boundary.");
   }
   const repositoryRoot = await realpath(process.cwd());
   const workingDirectoryRoot = await createOfficialRuntimeWorkingDirectory(repositoryRoot);

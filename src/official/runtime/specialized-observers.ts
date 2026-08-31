@@ -24,6 +24,13 @@ import {
 
 type JsonPrimitive = null | boolean | number | string;
 
+const H05_SNAPSHOT_ORDINAL_KEY = "storeSnapshotReferenceOrdinal";
+
+type H05IdentityCaptureState = {
+  readonly ordinals: WeakMap<object, number>;
+  nextOrdinal: number;
+};
+
 /** JSON-compatible value retained by the specialized observer boundary. */
 export type SpecializedObserverJson =
   | JsonPrimitive
@@ -127,6 +134,34 @@ function frame(
     operation,
     result: result === undefined ? null : immutableJson(result, `frames[${ordinal - 1}].result`),
     observation: immutableJson(observation, `frames[${ordinal - 1}].observation`),
+  });
+}
+
+/**
+ * Preserve the public H05 store-snapshot identity relation before JSON encoding.
+ * The caller owns one state for the complete capture, never one state per frame.
+ */
+function h05Frame(
+  ordinal: number,
+  operation: string,
+  result: unknown,
+  observation: unknown,
+  identity: H05IdentityCaptureState,
+): SpecializedObserverFrame {
+  if (!isPlainRecord(observation) || Object.hasOwn(observation, H05_SNAPSHOT_ORDINAL_KEY)) {
+    throw new Error("H05 observation cannot carry a pre-existing snapshot ordinal.");
+  }
+  const snapshot = observation.store;
+  if (!isPlainRecord(snapshot)) throw new Error("H05 observation must expose a plain store snapshot.");
+  let snapshotOrdinal = identity.ordinals.get(snapshot);
+  if (snapshotOrdinal === undefined) {
+    snapshotOrdinal = identity.nextOrdinal;
+    identity.nextOrdinal += 1;
+    identity.ordinals.set(snapshot, snapshotOrdinal);
+  }
+  return frame(ordinal, operation, result, {
+    ...observation,
+    [H05_SNAPSHOT_ORDINAL_KEY]: snapshotOrdinal,
   });
 }
 
@@ -546,6 +581,8 @@ export async function captureBGH05SpecializedTranscript(input: Readonly<{
   const steps = scenario.steps.map(normalizeH05Step);
   const mounted = await input.bindings.mount(input.bindings.component, input.bindings.pair ?? true);
   const frames: SpecializedObserverFrame[] = [];
+  // Identity state spans every frame, including the terminal dispose observation.
+  const identity: H05IdentityCaptureState = { ordinals: new WeakMap(), nextOrdinal: 1 };
   let disposed = false;
   let disposalAttempted = false;
   let disposalObservation: unknown;
@@ -571,7 +608,7 @@ export async function captureBGH05SpecializedTranscript(input: Readonly<{
           disposed = true;
           break;
       }
-      frames.push(frame(index + 1, step.operation, result, observation));
+      frames.push(h05Frame(index + 1, step.operation, result, observation, identity));
     }
   } finally {
     if (!disposed && !disposalAttempted) {

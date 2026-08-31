@@ -63,9 +63,13 @@ function syntheticCapture(
   slot: ReturnType<typeof toOfficialProcessSlot>,
   selectedDecision: OfficialImmutableArmDecision,
 ) {
-  const transcript = slot.fixtureId === "BG-D04" || slot.fixtureId === "BG-H04"
-    ? { fixtureId: slot.fixtureId, frames: [{ operation: "observe", observation: {} }], disposal: { observation: {} } }
-    : { fixtureId: slot.fixtureId, frames: [{ operation: "observe", observation: {} }] };
+  const transcript = slot.fixtureId === "BG-H03"
+    ? h03SyntheticTranscript()
+    : slot.fixtureId === "BG-H05"
+      ? h05SyntheticTranscript()
+      : slot.fixtureId === "BG-D04" || slot.fixtureId === "BG-H04"
+        ? { fixtureId: slot.fixtureId, frames: [{ operation: "observe", observation: {} }], disposal: { observation: {} } }
+        : { fixtureId: slot.fixtureId, frames: [{ operation: "observe", observation: {} }] };
   const core = {
     schemaVersion: "beyondgreen-official-observer-capture@1.0.0" as const,
     slot,
@@ -79,6 +83,68 @@ function syntheticCapture(
     ...core,
     captureSha256: sha256CanonicalJson(core),
   });
+}
+
+function h03SyntheticTranscript() {
+  const observation = (
+    selectedId: "herbs" | "flowers",
+    label: "Herb collection" | "Flower collection",
+    searchNote: string,
+    previewAttachmentCount: number,
+    actionLog: readonly string[],
+    selectionHandleReferenceOrdinal: number,
+  ) => ({
+    selectedId,
+    selectionHandle: { id: selectedId, label },
+    searchNote,
+    previewAttachmentCount,
+    actionLog,
+    selectionHandleReferenceOrdinal,
+  });
+  return {
+    fixtureId: "BG-H03",
+    frames: [
+      { operation: "observe", observation: observation("herbs", "Herb collection", "", 1, ["mount"], 1) },
+      { operation: "dispatch", observation: observation("herbs", "Herb collection", "spring", 1, ["mount", "note-spring"], 1) },
+      { operation: "dispatch", observation: observation("herbs", "Herb collection", "summer", 1, ["mount", "note-spring", "note-summer"], 1) },
+      { operation: "dispatch", observation: observation("flowers", "Flower collection", "summer", 2, ["mount", "note-spring", "note-summer", "select-flowers"], 2) },
+      { operation: "dispatch", observation: observation("flowers", "Flower collection", "autumn", 2, ["mount", "note-spring", "note-summer", "select-flowers", "note-autumn"], 2) },
+      { operation: "dispatch", observation: observation("flowers", "Flower collection", "autumn", 2, ["mount", "note-spring", "note-summer", "select-flowers", "note-autumn", "select-flowers"], 2) },
+      { operation: "dispatch", observation: observation("herbs", "Herb collection", "autumn", 3, ["mount", "note-spring", "note-summer", "select-flowers", "note-autumn", "select-flowers", "select-herbs"], 3) },
+      { operation: "dispatch", observation: observation("herbs", "Herb collection", "", 3, ["mount", "note-spring", "note-summer", "select-flowers", "note-autumn", "select-flowers", "select-herbs", "reset"], 3) },
+    ],
+  };
+}
+
+function h05SyntheticTranscript() {
+  const snapshot = (unit: "metric" | "imperial", revision: number) => ({ unit, revision });
+  const observation = (
+    store: Readonly<{ unit: "metric" | "imperial"; revision: number }>,
+    north: Readonly<{ unit: "metric" | "imperial"; revision: number }>,
+    south: Readonly<{ unit: "metric" | "imperial"; revision: number }>,
+    subscribers: number,
+    notifications: Readonly<{ north: number; south: number }>,
+    storeSnapshotReferenceOrdinal: number,
+  ) => ({ store, readouts: { north, south }, subscribers, notifications, storeSnapshotReferenceOrdinal });
+  const metric0 = snapshot("metric", 0);
+  const imperial1 = snapshot("imperial", 1);
+  const metric2 = snapshot("metric", 2);
+  const imperial3 = snapshot("imperial", 3);
+  const terminal = observation(imperial3, imperial3, imperial3, 0, { north: 3, south: 2 }, 4);
+  return {
+    fixtureId: "BG-H05",
+    frames: [
+      { operation: "observe", observation: observation(metric0, metric0, metric0, 2, { north: 0, south: 0 }, 1) },
+      { operation: "toolbarWrite", observation: observation(imperial1, imperial1, imperial1, 2, { north: 1, south: 1 }, 2) },
+      { operation: "externalWrite", observation: observation(metric2, metric2, metric2, 2, { north: 2, south: 2 }, 3) },
+      { operation: "unmountSouth", observation: observation(metric2, metric2, metric2, 1, { north: 2, south: 2 }, 3) },
+      { operation: "externalWrite", observation: observation(imperial3, imperial3, metric2, 1, { north: 3, south: 2 }, 4) },
+      { operation: "remountSouth", observation: observation(imperial3, imperial3, imperial3, 2, { north: 3, south: 2 }, 4) },
+      { operation: "externalWrite", observation: observation(imperial3, imperial3, imperial3, 2, { north: 3, south: 2 }, 4) },
+      { operation: "dispose", observation: terminal },
+    ],
+    disposal: { called: true, observation: terminal },
+  };
 }
 
 test("nine affected production evaluators load under exact physical deny rules", {

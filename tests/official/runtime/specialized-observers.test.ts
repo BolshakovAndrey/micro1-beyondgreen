@@ -249,19 +249,36 @@ function h05Bindings(): Readonly<{ bindings: BGH05ObserverBindings; mounts(): nu
         assert.equal(received, component);
         assert.equal(pair, true);
         mounts += 1;
-        let unit: "metric" | "imperial" = "metric";
-        let revision = 0;
-        let south = true;
-        const observe = () => Object.freeze({ store: { unit, revision }, readouts: { north: { unit, revision }, ...(south ? { south: { unit, revision } } : {}) }, subscribers: south ? 2 : 1, notifications: { north: revision, south: south ? revision : 0 } });
-        const write = async (next: "metric" | "imperial") => { if (next !== unit) { unit = next; revision += 1; } return observe(); };
+        let snapshot: Readonly<{ unit: "metric" | "imperial"; revision: number }> =
+          Object.freeze({ unit: "metric", revision: 0 });
+        let northSnapshot = snapshot;
+        let southSnapshot = snapshot;
+        let northMounted = true;
+        let southMounted = true;
+        let northNotifications = 0;
+        let southNotifications = 0;
+        const observe = () => Object.freeze({
+          store: snapshot,
+          readouts: { north: northSnapshot, south: southSnapshot },
+          subscribers: Number(northMounted) + Number(southMounted),
+          notifications: { north: northNotifications, south: southNotifications },
+        });
+        const write = async (next: "metric" | "imperial") => {
+          if (next !== snapshot.unit) {
+            snapshot = Object.freeze({ unit: next, revision: snapshot.revision + 1 });
+            if (northMounted) { northSnapshot = snapshot; northNotifications += 1; }
+            if (southMounted) { southSnapshot = snapshot; southNotifications += 1; }
+          }
+          return observe();
+        };
         return {
           observe,
           toolbarWrite: write,
           externalWrite: write,
-          async unmountSouth() { south = false; return observe(); },
-          async remountSouth() { south = true; return observe(); },
-          snapshotIdentity() { return Object.freeze({ unit, revision }); },
-          async dispose() { disposals += 1; south = false; return Object.freeze({ ...observe(), subscribers: 0 }); },
+          async unmountSouth() { southMounted = false; return observe(); },
+          async remountSouth() { southMounted = true; southSnapshot = snapshot; return observe(); },
+          snapshotIdentity() { return snapshot; },
+          async dispose() { disposals += 1; northMounted = false; southMounted = false; return observe(); },
         };
       },
     },
@@ -278,6 +295,17 @@ const H05_SCENARIO = scenario("BG-H05", [
   { action: "snapshotIdentity", parameters: {} },
 ]);
 
+const H05_CANONICAL_SCENARIO = scenario("BG-H05", [
+  { action: "observe", parameters: {} },
+  { action: "toolbar-write", parameters: { unit: "imperial" } },
+  { action: "external-write", parameters: { unit: "metric" } },
+  { action: "unmount-south", parameters: {} },
+  { action: "external-write", parameters: { unit: "imperial" } },
+  { action: "remount-south", parameters: {} },
+  { action: "external-write", parameters: { unit: "imperial" } },
+  { action: "dispose", parameters: {} },
+]);
+
 test("H05 routes writes and lifecycle operations and returns deterministic JSON", async () => {
   const firstFixture = h05Bindings();
   const first = await captureBGH05SpecializedTranscript({ bindings: firstFixture.bindings, scenario: H05_SCENARIO });
@@ -288,6 +316,25 @@ test("H05 routes writes and lifecycle operations and returns deterministic JSON"
   assert.equal(firstFixture.disposals(), 1);
   assert.deepEqual(first.frames.map(({ operation }) => operation), ["observe", "externalWrite", "unmountSouth", "remountSouth", "snapshotIdentity"]);
   assert.equal(first.disposal.called, true);
+});
+
+test("H05 preserves one capture-wide store identity token sequence across independent captures", async () => {
+  const first = await captureBGH05SpecializedTranscript({
+    bindings: h05Bindings().bindings,
+    scenario: H05_CANONICAL_SCENARIO,
+  });
+  const second = await captureBGH05SpecializedTranscript({
+    bindings: h05Bindings().bindings,
+    scenario: H05_CANONICAL_SCENARIO,
+  });
+  const ordinals = first.frames.map(({ observation }) => (
+    observation as Readonly<{ storeSnapshotReferenceOrdinal: number }>
+  ).storeSnapshotReferenceOrdinal);
+
+  assert.deepEqual(ordinals, [1, 2, 3, 3, 4, 4, 4, 4]);
+  assert.deepEqual(second, first);
+  assert.equal(JSON.stringify(second), JSON.stringify(first));
+  assert.equal(first.frames.at(-1)?.operation, "dispose");
 });
 
 test("all specialized adapters reject malformed public parameter shapes before mounting", async () => {

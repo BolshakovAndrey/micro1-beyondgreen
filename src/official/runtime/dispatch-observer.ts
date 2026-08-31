@@ -19,6 +19,13 @@ const DISPATCH_FIXTURE_IDS = new Set([
   "BG-H06",
 ]);
 
+const H03_REFERENCE_ORDINAL_KEY = "selectionHandleReferenceOrdinal";
+
+type H03IdentityCaptureState = {
+  readonly ordinals: WeakMap<object, number>;
+  nextOrdinal: number;
+};
+
 /** Public mounted-harness surface shared by dispatch-oriented fixtures. */
 export type MountedDispatchObserver = Readonly<{
   observe(): unknown;
@@ -93,6 +100,34 @@ function immutableJson(value: unknown, path: string): DispatchObserverJson {
   return deepFreezeJson(JSON.parse(JSON.stringify(value)) as DispatchObserverJson);
 }
 
+/**
+ * Preserve H03 reference equivalence before the JSON boundary removes identity.
+ * One state object lives for the complete capture, so ordinals remain comparable
+ * across every frame while revealing no candidate or oracle-owned identifier.
+ */
+function immutableObservation(
+  fixtureId: string,
+  value: unknown,
+  path: string,
+  h03Identity: H03IdentityCaptureState,
+): DispatchObserverJson {
+  if (fixtureId !== "BG-H03") return immutableJson(value, path);
+  if (!isPlainRecord(value) || Object.hasOwn(value, H03_REFERENCE_ORDINAL_KEY)) {
+    throw new Error("BG-H03 observation cannot carry a pre-existing reference ordinal.");
+  }
+  const selectionHandle = value.selectionHandle;
+  if (!isPlainRecord(selectionHandle)) {
+    throw new Error("BG-H03 observation must expose a plain selection handle.");
+  }
+  let ordinal = h03Identity.ordinals.get(selectionHandle);
+  if (ordinal === undefined) {
+    ordinal = h03Identity.nextOrdinal;
+    h03Identity.nextOrdinal += 1;
+    h03Identity.ordinals.set(selectionHandle, ordinal);
+  }
+  return immutableJson({ ...value, [H03_REFERENCE_ORDINAL_KEY]: ordinal }, path);
+}
+
 type NormalizedStep = Readonly<{
   operation: "observe" | "dispose";
 }> | Readonly<{
@@ -141,6 +176,9 @@ export async function captureDispatchObserverTranscript(input: Readonly<{
   const steps = scenario.steps.map(normalizeStep);
   const mounted = await input.bindings.mount(input.bindings.candidate);
   const frames: DispatchObserverFrame[] = [];
+  // This WeakMap must span all frames in this capture; per-frame state would erase
+  // the exact cross-step identity relation that BG-H03 makes publicly observable.
+  const h03Identity: H03IdentityCaptureState = { ordinals: new WeakMap(), nextOrdinal: 1 };
   let disposalObservation: DispatchObserverJson | null = null;
   let disposed = false;
 
@@ -154,19 +192,38 @@ export async function captureDispatchObserverTranscript(input: Readonly<{
           : await mounted.dispose();
       if (step.operation === "dispose") {
         disposed = true;
-        if (observation !== undefined) disposalObservation = immutableJson(observation, "disposal.observation");
+        if (observation !== undefined) {
+          disposalObservation = immutableObservation(
+            scenario.slot.fixtureId,
+            observation,
+            "disposal.observation",
+            h03Identity,
+          );
+        }
       }
       frames.push(Object.freeze({
         ordinal: index + 1,
         operation: step.operation,
-        observation: immutableJson(observation, `frames[${index}].observation`),
+        observation: immutableObservation(
+          scenario.slot.fixtureId,
+          observation,
+          `frames[${index}].observation`,
+          h03Identity,
+        ),
       }));
     }
   } finally {
     if (!disposed) {
       const result = await mounted.dispose();
       disposed = true;
-      if (result !== undefined) disposalObservation = immutableJson(result, "disposal.observation");
+      if (result !== undefined) {
+        disposalObservation = immutableObservation(
+          scenario.slot.fixtureId,
+          result,
+          "disposal.observation",
+          h03Identity,
+        );
+      }
     }
   }
 

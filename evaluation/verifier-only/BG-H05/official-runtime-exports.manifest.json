@@ -3,6 +3,6 @@
   "fixture_id": "BG-H05",
   "export_path": "evaluation/verifier-only/BG-H05/official-runtime-exports.ts",
   "export_names": ["OFFICIAL_SCENARIO_PROVIDER_HANDLER", "OFFICIAL_EVALUATOR_HANDLER"],
-  "export_sha256": "78d0b8af7cab44731e4ef42b3f1795b1afd1318965cbf1825a724d1aaae36bd2",
+  "export_sha256": "9b7682322beea9b32b7c2ef1fef31fef72f0f6c17595a59f88deb0cdf0d0dec9",
   "manifest_self_excluded": true
 }

@@ -143,3 +143,175 @@ test("D03 evaluator preserves and consumes every frozen scenario operation", asy
   assert.match(source, /"construct", "add", "set-packet-count", "observe", "render-summary"/u);
   assert.match(source, /summaryMatches/u);
 });
+
+test("D04 evaluator consumes the public dispose result as the subscriber-count record", () => {
+  const observation = (
+    selectedChannel: "harbor" | "orchard",
+    bulletin: string,
+    harbor: number,
+    orchard: number,
+  ) => ({ selectedChannel, bulletin, subscribers: { harbor, orchard } });
+  const request = {
+    slot: { fixtureId: "BG-D04" },
+    targetArm: "status-quo",
+    decisions: [{ arm: "status-quo", verdict: "accept", rationale: "visible checks passed" }],
+    capture: { transcript: {
+      fixtureId: "BG-D04",
+      frames: [
+        { operation: "observe", observation: observation("harbor", "none", 1, 0) },
+        { operation: "dispatch", observation: observation("harbor", "harbor:2", 1, 0) },
+        { operation: "dispatch", observation: observation("orchard", "none", 0, 1) },
+        { operation: "dispatch", observation: observation("orchard", "none", 0, 1) },
+        { operation: "dispatch", observation: observation("orchard", "orchard:3", 0, 1) },
+        { operation: "dispatch", observation: observation("harbor", "none", 1, 0) },
+      ],
+      disposal: { observation: { harbor: 0, orchard: 0 } },
+    } },
+  } as unknown as OfficialEvaluatorProcessRequest;
+
+  const output = D04.OFFICIAL_EVALUATOR_HANDLER(request);
+  assert.equal(output.groundTruth, "preserving");
+  assert.doesNotThrow(() => OfficialEvaluatorHandlerOutputSchema.parse(output));
+});
+
+test("H03 evaluator restores capture-local reference identity before canonical evaluation", () => {
+  const observation = (
+    selectedId: "herbs" | "flowers",
+    label: "Herb collection" | "Flower collection",
+    searchNote: string,
+    previewAttachmentCount: number,
+    actionLog: readonly string[],
+    selectionHandleReferenceOrdinal: number,
+  ) => ({
+    selectedId,
+    selectionHandle: { id: selectedId, label },
+    searchNote,
+    previewAttachmentCount,
+    actionLog,
+    selectionHandleReferenceOrdinal,
+  });
+  const request = {
+    slot: { fixtureId: "BG-H03" },
+    targetArm: "status-quo",
+    decisions: [{ arm: "status-quo", verdict: "accept", rationale: "visible checks passed" }],
+    capture: { transcript: {
+      fixtureId: "BG-H03",
+      frames: [
+        { operation: "observe", observation: observation("herbs", "Herb collection", "", 1, ["mount"], 1) },
+        { operation: "dispatch", observation: observation("herbs", "Herb collection", "spring", 1, ["mount", "note-spring"], 1) },
+        { operation: "dispatch", observation: observation("herbs", "Herb collection", "summer", 1, ["mount", "note-spring", "note-summer"], 1) },
+        { operation: "dispatch", observation: observation("flowers", "Flower collection", "summer", 2, ["mount", "note-spring", "note-summer", "select-flowers"], 2) },
+        { operation: "dispatch", observation: observation("flowers", "Flower collection", "autumn", 2, ["mount", "note-spring", "note-summer", "select-flowers", "note-autumn"], 2) },
+        { operation: "dispatch", observation: observation("flowers", "Flower collection", "autumn", 2, ["mount", "note-spring", "note-summer", "select-flowers", "note-autumn", "select-flowers"], 2) },
+        { operation: "dispatch", observation: observation("herbs", "Herb collection", "autumn", 3, ["mount", "note-spring", "note-summer", "select-flowers", "note-autumn", "select-flowers", "select-herbs"], 3) },
+        { operation: "dispatch", observation: observation("herbs", "Herb collection", "", 3, ["mount", "note-spring", "note-summer", "select-flowers", "note-autumn", "select-flowers", "select-herbs", "reset"], 3) },
+      ],
+      disposal: { called: true, observation: null },
+    } },
+  } as unknown as OfficialEvaluatorProcessRequest;
+
+  const output = H03.OFFICIAL_EVALUATOR_HANDLER(request);
+  assert.equal(output.groundTruth, "preserving");
+  assert.doesNotThrow(() => OfficialEvaluatorHandlerOutputSchema.parse(output));
+});
+
+test("H03 evaluator rejects a token whose structural handle snapshot changes", () => {
+  const request = {
+    slot: { fixtureId: "BG-H03" },
+    targetArm: "status-quo",
+    decisions: [{ arm: "status-quo", verdict: "accept", rationale: "visible checks passed" }],
+    capture: { transcript: {
+      fixtureId: "BG-H03",
+      frames: [
+        { operation: "observe", observation: {
+          selectedId: "herbs", selectionHandle: { id: "herbs", label: "Herb collection" },
+          searchNote: "", previewAttachmentCount: 1, actionLog: ["mount"],
+          selectionHandleReferenceOrdinal: 1,
+        } },
+        { operation: "dispatch", observation: {
+          selectedId: "flowers", selectionHandle: { id: "flowers", label: "Flower collection" },
+          searchNote: "", previewAttachmentCount: 1, actionLog: ["mount", "select-flowers"],
+          selectionHandleReferenceOrdinal: 1,
+        } },
+      ],
+    } },
+  } as unknown as OfficialEvaluatorProcessRequest;
+
+  assert.throws(
+    () => H03.OFFICIAL_EVALUATOR_HANDLER(request),
+    /reference ordinal changed its structural snapshot/u,
+  );
+});
+
+test("H05 evaluator restores store identity and consumes the terminal dispose observation", () => {
+  const snapshot = (unit: "metric" | "imperial", revision: number) => ({ unit, revision });
+  const observation = (
+    storeUnit: "metric" | "imperial",
+    storeRevision: number,
+    north: Readonly<{ unit: "metric" | "imperial"; revision: number }>,
+    south: Readonly<{ unit: "metric" | "imperial"; revision: number }>,
+    subscribers: number,
+    northNotifications: number,
+    southNotifications: number,
+    storeSnapshotReferenceOrdinal: number,
+  ) => ({
+    store: snapshot(storeUnit, storeRevision),
+    readouts: { north, south },
+    subscribers,
+    notifications: { north: northNotifications, south: southNotifications },
+    storeSnapshotReferenceOrdinal,
+  });
+  const metric0 = snapshot("metric", 0);
+  const imperial1 = snapshot("imperial", 1);
+  const metric2 = snapshot("metric", 2);
+  const imperial3 = snapshot("imperial", 3);
+  const request = {
+    slot: { fixtureId: "BG-H05" },
+    targetArm: "status-quo",
+    decisions: [{ arm: "status-quo", verdict: "accept", rationale: "visible checks passed" }],
+    capture: { transcript: {
+      fixtureId: "BG-H05",
+      frames: [
+        { operation: "observe", observation: observation("metric", 0, metric0, metric0, 2, 0, 0, 1) },
+        { operation: "toolbarWrite", observation: observation("imperial", 1, imperial1, imperial1, 2, 1, 1, 2) },
+        { operation: "externalWrite", observation: observation("metric", 2, metric2, metric2, 2, 2, 2, 3) },
+        { operation: "unmountSouth", observation: observation("metric", 2, metric2, metric2, 1, 2, 2, 3) },
+        { operation: "externalWrite", observation: observation("imperial", 3, imperial3, metric2, 1, 3, 2, 4) },
+        { operation: "remountSouth", observation: observation("imperial", 3, imperial3, imperial3, 2, 3, 2, 4) },
+        { operation: "externalWrite", observation: observation("imperial", 3, imperial3, imperial3, 2, 3, 2, 4) },
+        { operation: "dispose", observation: observation("imperial", 3, imperial3, imperial3, 0, 3, 2, 4) },
+      ],
+      disposal: { called: true, observation: observation("imperial", 3, imperial3, imperial3, 0, 3, 2, 4) },
+    } },
+  } as unknown as OfficialEvaluatorProcessRequest;
+
+  const output = H05.OFFICIAL_EVALUATOR_HANDLER(request);
+  assert.equal(output.groundTruth, "preserving");
+  assert.doesNotThrow(() => OfficialEvaluatorHandlerOutputSchema.parse(output));
+});
+
+test("H05 evaluator rejects a token whose structural store snapshot changes", () => {
+  const request = {
+    slot: { fixtureId: "BG-H05" },
+    targetArm: "status-quo",
+    decisions: [{ arm: "status-quo", verdict: "accept", rationale: "visible checks passed" }],
+    capture: { transcript: {
+      fixtureId: "BG-H05",
+      frames: [
+        { operation: "observe", observation: {
+          store: { unit: "metric", revision: 0 }, readouts: {}, subscribers: 0,
+          notifications: { north: 0, south: 0 }, storeSnapshotReferenceOrdinal: 1,
+        } },
+        { operation: "externalWrite", observation: {
+          store: { unit: "imperial", revision: 1 }, readouts: {}, subscribers: 0,
+          notifications: { north: 0, south: 0 }, storeSnapshotReferenceOrdinal: 1,
+        } },
+      ],
+    } },
+  } as unknown as OfficialEvaluatorProcessRequest;
+
+  assert.throws(
+    () => H05.OFFICIAL_EVALUATOR_HANDLER(request),
+    /snapshot ordinal changed its structural snapshot/u,
+  );
+});

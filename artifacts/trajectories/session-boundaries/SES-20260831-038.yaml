@@ -1,0 +1,163 @@
+schema_version: "1.1"
+session_id: "SES-20260831-038"
+started_at_utc: "2026-08-31T11:39:57Z"
+agent:
+  tool: "Codex coordinator"
+  purpose: "Close deterministic verifier bridges for BG-D04 and BG-H01 through BG-H06 before preparing POSTDECISION-004"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  base_head: "295890fe525697e36979a32a4c167d1eecc53d72"
+  clean_at_start: true
+
+contracts:
+  challenge: "read"
+  hackathon_rules: "read"
+  clean_room_policy: "read"
+  trace_policy: "read"
+  preflight_checklist: "read"
+  project_spec_v1_1: "read"
+  evaluation_v1_1: "read"
+  topic_projection: "read"
+
+authorization:
+  status: "approved"
+  boundary_creation_authorized: true
+  implementation_authorized: true
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-31T11:39:57Z"
+  approval_evidence: >-
+    The repository owner approved SES-20260831-038 and bounded verifier-bridge closure
+    from commit 295890f. BG-D04 disposal binding is governed by the frozen public
+    dispose signature. Later BG-D04 or BG-H01 through BG-H06 bridge corrections are
+    permitted only when one cited frozen line or signature uniquely determines the
+    correct form and a regression test is added. Ground-truth mismatch or ambiguity is
+    a mandatory stop. POSTDECISION-004 may be prepared but not executed; arm/model
+    calls, evaluation:run, commit, and push remain prohibited.
+  h03_identity_transport_approved: true
+  h03_identity_transport_evidence: >-
+    The owner later selected a BG-H03-only capture-wide identity transport. One
+    WeakMap must span every frame of one capture; opaque first-seen ordinals must be
+    assigned before immutable JSON serialization; two independent captures must
+    produce identical token sequences; the evaluator must rehydrate equal tokens to
+    equal references and different tokens to different references. Only the H03
+    observer normalization, evaluator bridge, related manifests, and regression tests
+    may change. Exactly one evaluator rehearsal is permitted after compile and
+    targeted tests; POSTDECISION-004, arm/model calls, commit, and push remain
+    prohibited.
+  h05_bridge_correction_approved: true
+  h05_bridge_correction_evidence: >-
+    The owner approved a BG-H05-only capture-wide store-snapshot identity transport
+    and retention of the terminal dispose frame as the eighth canonical observation.
+    The expected token sequence is 1,2,3,3,4,4,4,4 and two independent captures must
+    match. Only H05 normalization, evaluator bridge, related manifests, and regression
+    tests may change. Scenario-provider, public contract/harness, canonical oracle,
+    candidates, ground truth, scoring, POSTDECISION-004, arm/model calls, commit, and
+    push remain prohibited.
+
+immutable_source:
+  run_001_may_change: false
+  run_002_may_change: false
+  postdecision_002_may_change: false
+  postdecision_003_may_change: false
+  run_001_file_count: 4
+  run_002_file_count: 44
+  postdecision_002_file_count: 4
+  postdecision_003_file_count: 92
+  arm_decisions_final: 40
+
+proposed_scope_after_owner_approval:
+  - "BG-D04 only: pass transcript.disposal.observation directly to the unchanged oracle because the frozen public harness dispose signature returns the subscriber-count record directly."
+  - "Do not change the BG-D04 scenario-provider, public harness, oracle, candidates, ground truth, or scoring."
+  - "Re-run the non-official production-equivalent evaluator rehearsal after each bounded correction."
+  - "For BG-D04 or BG-H01 through BG-H06, correct only deterministic observer normalization or evaluator-bridge shape, naming, or cardinality defects whose correct form is fixed by one cited frozen artifact and exact line or signature."
+  - "Add a regression test for every bridge correction and maintain a cumulative correction journal with defect, governing artifact, exact contract location, change, and test."
+  - "Treat absence of one governing frozen artifact as ambiguity and stop for owner arbitration."
+  - "Require 20 scenarios, 80 fresh captures, 40 schema-valid evaluator records, exact frozen ground-truth agreement, and zero arm/model calls."
+  - "Prepare but do not execute the create-once POSTDECISION-004 continuation."
+  - "Run compile, tests, manifests, checksums, diff checks, and both safe preflight checks before requesting any checkpoint."
+  - "Produce a complete natural-Russian owner packet."
+
+forbidden_scope:
+  - "Modify, delete, overwrite, or regenerate RUN-001, RUN-002, POSTDECISION-002, or POSTDECISION-003."
+  - "Change BG-D01 or BG-D03 behavior established by SES-037."
+  - "Change any frozen scenario, oracle assertion, oracle semantics, candidate, ground truth, scoring, or evaluation v1.1."
+  - "Tune a bridge or transcript to obtain a desired ground-truth mapping."
+  - "Execute POSTDECISION-004, evaluation:run, any arm, or any model call."
+  - "Read or disclose private paths, raw traces, hidden values outside the role capability, browser state, MCP state, or another workspace."
+  - "Modify README.md, docs/README_RU.md, docs/REPRODUCTION.md, or docs/REPRODUCTION_RU.md."
+  - "Commit or push without a later explicit owner gate."
+
+stop_rules:
+  - "Stop before implementation until the repository owner approves this exact boundary."
+  - "Stop if a correction lacks one frozen artifact with an exact line or signature that determines the correct form."
+  - "Stop on any ground-truth mismatch after independently derived corrections; do not tune further."
+  - "Stop if any immutable source byte changes or an arm/model call becomes reachable."
+  - "Stop before POSTDECISION-004 execution, commit, or push."
+
+attestation:
+  inherited_private_transcript: false
+  external_workspace_read: false
+  browser_or_mcp_used: false
+  arm_or_model_calls: 0
+  postdecision_004_executed: false
+  repository_artifacts_status: "approved_scope_implemented; stopped before POSTDECISION-004 and commit"
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-31T11:39:57Z"
+  approval_evidence: "Owner supplied the exact SES-038 approval phrase in the coordinating task."
+
+verification:
+  compilation: "passed"
+  targeted_tests: "18/18 passed after H05 correction"
+  d04_governing_contract: "evaluation/arm-visible/BG-D04/harness.ts:32"
+  d04_disposal_binding: "passed; transcript.disposal.observation is passed directly to the unchanged oracle"
+  d04_manifest_reconciliation: "passed for the package-local runtime-export manifest"
+  h03_identity_transport: >-
+    passed in targeted tests; one WeakMap spans all eight frames, ordinal sequence is
+    1,1,1,2,2,2,3,3, two independent captures are byte-stable, divergent identity
+    fails closed, and the evaluator rehydrates reference identity before the unchanged
+    canonical oracle
+  h03_manifest_reconciliation: "passed for the package-local runtime-export manifest"
+  h05_identity_transport: >-
+    passed in targeted tests; one WeakMap spans all eight frames, ordinal sequence is
+    1,2,3,3,4,4,4,4, two independent captures are byte-stable, the evaluator
+    rehydrates equal tokens to equal store references, and changed structural bytes
+    under one token fail closed
+  h05_terminal_dispose_observation: >-
+    passed in targeted tests; the public dispose result is retained as the eighth
+    observation and is neither filtered nor duplicated before the unchanged canonical
+    oracle
+  h05_manifest_reconciliation: "passed for the package-local runtime-export manifest"
+  evaluator_rehearsal:
+    command: "MICRO1_EVALUATOR_REHEARSAL_SESSION_BOUNDARY=SES-20260831-038 npm run task -- evaluation:evaluator-rehearsal"
+    invocation_count_after_h03_correction: 1
+    first_result: >-
+      process completed, but the coordinator PTY transport did not return the terminal
+      result after background yield and the rehearsal creates no repository receipt;
+      PASS or FAIL is therefore not claimed and the command was not repeated
+    owner_approved_transport_recovery_result: "failed closed on frozen ground-truth mismatch for BG-H05:candidate-a"
+    invocation_count_after_h05_correction: 1
+    final_result: "passed"
+    slot_count: 20
+    scenario_count: 20
+    capture_count: 80
+    pair_count: 40
+    evaluator_record_count: 40
+    schema_valid_record_count: 40
+    frozen_ground_truth_match_count: 40
+    record_digest: "90b14804aea1aa9fb48a46732eee158a7e52088df3becb10f5a3374fb9c653f9"
+    official_or_scored_run: false
+    arm_execution_count: 0
+    model_invocation_count: 0
+  immutable_sources: "no repository diff under RUN-001, RUN-002, POSTDECISION-002, or POSTDECISION-003"
+  postdecision_004_exists: false
+
+completion:
+  completed_at_utc: "2026-08-31T12:28:23Z"
+  correction_journal: "artifacts/trajectories/reviews/BG-OFFICIAL-SES-038-VERIFIER-BRIDGE-JOURNAL_RU.md"
+  owner_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-SES-038-VERIFIER-BRIDGE-OWNER-PACKET_RU.md"
+  disposition: "EVALUATOR_REHEARSAL_PASS; stopped before POSTDECISION-004, commit, and push"
