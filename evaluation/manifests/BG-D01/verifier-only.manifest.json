@@ -19,9 +19,25 @@
       "sha256": "8b13d86bbdec726507d29ccf8725cd75cefa24c68580b4a8f0c23966b03923eb"
     },
     {
+      "path": "evaluation/verifier-only/BG-D01/official-runtime-exports.manifest.json",
+      "sha256": "883fe0bcf891020edfdf74e56d164cd16920a87afc6391a67ad430e4a5647b8f"
+    },
+    {
+      "path": "evaluation/verifier-only/BG-D01/official-runtime-exports.ts",
+      "sha256": "1632c86be03ba4fda63dd3e6bdfac91bcfd98dcb94c1af569f1a715cb5141871"
+    },
+    {
+      "path": "evaluation/verifier-only/BG-D01/scenario-provider.manifest.json",
+      "sha256": "822d5afe081079464521b458342ce0dc012509d685128bf0e8b0282961fb341a"
+    },
+    {
+      "path": "evaluation/verifier-only/BG-D01/scenario-provider.ts",
+      "sha256": "6bcae3cc9098aa922f028fdec79b5f75a764b7d6d4f9d09ef2e31f487b3a106d"
+    },
+    {
       "path": "evaluation/verifier-only/BG-D01/self-check.test.ts",
       "sha256": "6b9a2f3022c81904353d555c2db1366850480031247f13cbadc70d593b0ba328"
     }
   ],
-  "package_sha256": "b00e9ceeadb691f1b4c38c0e13219f554f7a0ee75f5e52fb5e8a3cda3a117175"
+  "package_sha256": "84cc797798eccbf95e4cf42f10fc6b44c2887655b0fe57cd2d4f10bae2668e94"
 }

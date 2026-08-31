@@ -54,7 +54,13 @@ function capability(role: RoleCapabilityPlan["role"]): RoleCapabilityPlan {
   return Object.freeze({
     role, fixtureId, candidateId: "candidate-a",
     entrypoint: { modulePath: ROLE_WORKER, exportName: "main", symbolKind: "runtime" },
-    allowReadPaths: ["src/official", "node_modules", "package.json", publicRole ? PUBLIC_BINDINGS : VERIFIER_BINDINGS],
+    allowReadPaths: [
+      "src/official/runtime",
+      "src/official/process",
+      "node_modules",
+      "package.json",
+      publicRole ? PUBLIC_BINDINGS : VERIFIER_BINDINGS,
+    ],
     denyReadPaths: [publicRole ? VERIFIER_BINDINGS : PUBLIC_BINDINGS],
     networkAllowed: false,
   });

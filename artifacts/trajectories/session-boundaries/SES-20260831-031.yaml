@@ -54,19 +54,29 @@ explicitly_prohibited_before_owner_approval:
   - "Open verifier outcomes or unblind hidden results."
 
 measured_results:
-  gate_status: "approved_pending_checkpoint_commit_and_owner_terminal_execution"
+  gate_status: "official_attempt_failed_before_first_arm_decision"
   static_preflight: "PASS"
   inventory_sha256: "71a4ec989ec4910e795fdeb5db97717b9a013d9084860f1818a773bda5d9ab7e"
   fixture_count: 10
   candidate_count: 20
   execution_slot_count: 20
   total_arm_plans: 40
-  command_started: false
-  command_completed: false
-  official_or_scored_run_count: 0
+  command_started: true
+  command_completed: true
+  command_exit_code: 1
+  failure_message: "Isolated process must emit exactly one JSONL response."
+  official_or_scored_run_count: 1
+  arm_decision_count: 0
+  live_model_invocation_count: 0
+  observation_capture_count: 0
+  evaluator_record_count: 0
   unblinding_performed: false
+  output_root_created: true
+  output_root_preserved_without_changes: true
+  retry_performed: false
 
 completion:
-  completed_at_utc: null
+  completed_at_utc: "2026-08-31T08:20:22Z"
   owner_gate_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-RUN-GATE_RU.md"
-  disposition: "Commit exactly the three owner-approved gate files. The repository owner then executes the exact command once from ordinary Terminal while the agent waits for pasted output."
+  post_run_owner_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-RUN-FAILURE-OWNER-PACKET_RU.md"
+  disposition: "Preserve the failed one-shot attempt and its partial output. Do not retry, delete, overwrite, repair, regenerate, score, aggregate, or unblind."

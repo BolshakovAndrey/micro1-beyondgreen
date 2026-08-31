@@ -68,7 +68,7 @@ const manifest = {
     candidate_a_sha256: candidateA.source_files[0]?.sha256,
     candidate_b_sha256: candidateB.source_files[0]?.sha256,
     pre_review_combined_d01_manifest_digest: "5273199f8d591068ae827874d80352947eb511844fdf6ccabbcbce9edacccdcf",
-    current_combined_d01_manifest_digest: "da73beb0b3b5aba72013a90388cbf457614479f9b8f02125b99f598b7487f69f",
+    current_combined_d01_manifest_digest: "a4469b1798963dbaa23b2f5901accedcd3650952db8345f70f5d2041a3d90524",
   },
   semantic_guards: {
     candidate_sources_changed: false,

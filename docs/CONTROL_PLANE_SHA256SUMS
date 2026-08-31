@@ -15,6 +15,10 @@ a0a5bc1abc892056378d990143d0241d9767199eb9e16fee4e807f27f23f1fe5  ./artifacts/ev
 4ba082113fae1e1f97139c26a3c42e807a1530c66777bc980f5a5346c889b9e0  ./artifacts/evaluation/BG-D01-OFFLINE-REPLAY.jsonl
 47d864ee9f25dafd458a104eedd2295ac5d6b5a14f6c93b9f2dc0b7964c5302b  ./artifacts/evaluation/BG-D01-VERTICAL-SLICE.html
 878c627c1801e8f61cadd23daa9140e9a5f32595b18ec58df5ea79649c9b0ff0  ./artifacts/evaluation/BG-D01-VERTICAL-SLICE.json
+1cad365be987b7237f7c01db8e6dd61cfdbf97cc59ef00176dd163f6d5d5a19c  ./artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/execution-plan.json
+f1ebb91425543943c8f3b64aead291e772c95ada183d9c34fd3a59b682047fde  ./artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/provenance.json
+14c42c2a6867fe6c3081b2f012c646e8841d2c6ef8da7377727372da6b330064  ./artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/run-manifest.json
+a76e37c53ef229690d4a42f0ae226a5b6beaefb429b3c1b51b80a7b632937488  ./artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/static-preflight.json
 688baad33e10966944f8d73dd09e03af1f7aa4301cd2d2c66d7efe1b03bf6b41  ./artifacts/phase-0.5-chromium-spike.json
 b14dc3e4e0384ea4b4c57304b33e15a219330fe83e49da2cc5301236bedc294c  ./artifacts/phase-0.5-cli-diagnostics.json
 6d9db0180ba92e775f5e4461d5815b6391fef7ac23302ca9160ddc059073b014  ./artifacts/phase-0.5-license-audit.json
@@ -138,7 +142,10 @@ f9f7f396d5520ca14867dd1e749471fedab1137d55b22b9be220afaf43583646  ./artifacts/tr
 76a96b8afe83dd2e7841d471164c1ae24229744e10aabd5790604f0c6d83ec86  ./artifacts/trajectories/reviews/BG-OFFICIAL-PRE-OFFICIAL-READINESS-OWNER-PACKET_RU.md
 40f14303ca4a31b785c1099eb8d563d98189d224e6372d8a1a6cfe965f43908f  ./artifacts/trajectories/reviews/BG-OFFICIAL-PRE-RUN-CORRECTION-OWNER-PACKET_RU.md
 c1cb05809bc4296bdb30bddff89d04b0cfa6b4559bb3e3333b38540912b58e3d  ./artifacts/trajectories/reviews/BG-OFFICIAL-PRODUCTION-COMPOSITION-OWNER-PACKET_RU.md
+937886b2afc11b34abf0c47c01fab0004e5475ecbb9ba243c1b4ae43f7be8592  ./artifacts/trajectories/reviews/BG-OFFICIAL-RECOVERY-RUN-GATE_RU.md
+1bd64b9d9769cc68b444c9633a8f927fd98ca57efee6d91b58b453ebe1a6166e  ./artifacts/trajectories/reviews/BG-OFFICIAL-RUN-FAILURE-OWNER-PACKET_RU.md
 791a8a3dfad34941494dab1a28c02f7423c7a362104ba04a680a46c82f02783f  ./artifacts/trajectories/reviews/BG-OFFICIAL-RUN-GATE_RU.md
+ffa5d66ef9a0a568050bee52339611a5d9a08dce90fbe1862b096bdfb40342a1  ./artifacts/trajectories/reviews/BG-OFFICIAL-RUN-RECOVERY-OWNER-PACKET_RU.md
 7654476c69073efdc093bc220ee501a610ad51c61512470a61599d78c7ca231f  ./artifacts/trajectories/reviews/BG-OFFICIAL-RUN-SESSION-BOUNDARY-CHECKPOINT_RU.md
 011017bd61ff63ad085c28bfa7c5efa0a2c0b8e85dde6c8f971f523e32783154  ./artifacts/trajectories/reviews/BG-OFFICIAL-RUNTIME-CLOSURE-OWNER-PACKET_RU.md
 0a55e3d5540586f9cf2d0434aa5a94a9c7ce564826346e2e64fcb98264fdd76e  ./artifacts/trajectories/reviews/BG-OFFICIAL-RUNTIME-COMPLETION-OWNER-PACKET_RU.md
@@ -241,7 +248,9 @@ fa64cda751522990092c1402b266ed9a159a61851489616914ac9779985d5120  ./artifacts/tr
 5b04b8cd59b18c769f7cf1c2be8bb86d5f5415be6049732556ce793f7ea490c1  ./artifacts/trajectories/session-boundaries/SES-20260831-028.yaml
 856ccac5336d0355e903daca6f5e0afd7cfc8bcd4603ffdfcedba832c723a991  ./artifacts/trajectories/session-boundaries/SES-20260831-029.yaml
 1774b287add857da65011c26bdc7086e2c7cd62d0262535acc445df39f01784c  ./artifacts/trajectories/session-boundaries/SES-20260831-030.yaml
-38f1d2e2486e505c060ad0497bbd88ab13c6c6e05e04744cd6f402df1e9ed810  ./artifacts/trajectories/session-boundaries/SES-20260831-031.yaml
+e4ab79aee4fc0e2dbd236cd6d7fd014164cdb60f3f02da7bc63153a6e9d48287  ./artifacts/trajectories/session-boundaries/SES-20260831-031.yaml
+e3fc1f7eb7a970e26bc6e784716c8416113db307c7b513ee01ee2b2a13894d38  ./artifacts/trajectories/session-boundaries/SES-20260831-032.yaml
+5d02f93cd4ba782c95c80a6c579a13f50803bd6ecdd1310ec1226cac50d79fb8  ./artifacts/trajectories/session-boundaries/SES-20260831-033.yaml
 f46b2ed8c85e8558b5c8812491c09d89530099b0890454415579ea4c5d69e8a5  ./candidates/BG-D01/candidate-a/MuseumBoard.ts
 9e2a9151531aa961cf0ace3e20520fdcfa45ff0bff0f13ae214f7e5fbdad7d2b  ./candidates/BG-D01/candidate-b/MuseumBoard.ts
 3360e495c3d5895e784be3b62a041de83666d8bd97239f044bb6032273e3e8a3  ./candidates/BG-D02/candidate-a/ParcelDispatchBoard.ts
@@ -385,8 +394,8 @@ eda5304e0f27a88b6d8040de2cd2a9c39cb2a60345a398d49e634c19dee699b0  ./evaluation/h
 38646e48c033a43ced083a6581f3135388afc297c27eb29cf7064f11047e9f02  ./evaluation/manifests/BG-D01/arm-visible.manifest.json
 9f97219f59478914801cb520c6e0b828adf09e6792b38ae6a742db09f0c3666c  ./evaluation/manifests/BG-D01/candidate-a.manifest.json
 131da1cb266d4f04d05620dbeee10566e9c28afdb861250ca66f93392c81472f  ./evaluation/manifests/BG-D01/candidate-b.manifest.json
-4db90457a79b2991cb7646f55a0697b78d99d878a317c9cff21548297124bcdf  ./evaluation/manifests/BG-D01/verifier-only.manifest.json
-ba13afd2221a80879f1aecc5c39fb8965811b3d7b6e7d6ba89dec75bb7fba916  ./evaluation/manifests/BG-D01/vertical-slice.manifest.json
+7b896a4fbd8109ce9a391defcf335239fb9d8fcd294af10cbe4ef17ef2b32da4  ./evaluation/manifests/BG-D01/verifier-only.manifest.json
+07a6a4a161099de78fb1623bd767a104d948a7e74fd4827e6150c597d1b0712f  ./evaluation/manifests/BG-D01/vertical-slice.manifest.json
 ed2a4ee3cb09a230ee23bcc11bc24b6d838976743c4d868eedd5030e6bea5f63  ./evaluation/manifests/BG-D02/SUBAGENT_REPORT_RU.md
 9405126390a63c9bf2421f982d1c5a2203afed00cd99e8e9cdeb47eb0853c72c  ./evaluation/manifests/BG-D02/arm-visible.manifest.json
 94c59bf42a9967e5d0436952d9a052526187eb27640e9b4c553bc08c0f2cdeb7  ./evaluation/manifests/BG-D02/candidate-a.manifest.json
@@ -525,7 +534,7 @@ fd528f541ad4c7474559a43a4691c31a1c86abe9e316acdc15f69d830e7a1cf7  ./package.json
 f48c056a45efc1ee6b2d25f3e4d7920e5e537e02586062f86dc0ed91e7bd6dff  ./scripts/BG-D04-verify.mjs
 955ce6450692377be80fa6caeb3ab7ac8e50e1166edae7ad1986828738b41bf4  ./scripts/d00-freeze-cardinality.ts
 1eb235be0be6d6004f26c4dde980b20db98ce2b196cd53388e636f4a17909cf6  ./scripts/d00-official-preflight.ts
-6db6c562f58d1af4423d27b69b009e948386f4876b1e6ee26244d4fbc2f15b6b  ./scripts/d00-official-run.ts
+443af1a466695b0f550a4a628ff37804b2f66cfcea0ff46377790855b1603765  ./scripts/d00-official-run.ts
 10c27f601e3344cd5f6b7917c1b899d30e07d91b5a78518e8f368d49ffbe1e85  ./scripts/d00-pre-unblinding-entrypoint.ts
 0a3a8a1648805f0545602a907ba69445ba87a31456ba11c310a2354a5f3167ce  ./scripts/d00-transport-canary.ts
 bf92b32f2a9ededaaaf159d7982b7d625b665a681cd9a4bfc913d1a66b389d90  ./scripts/d00-zip-rehearsal.ts
@@ -536,7 +545,7 @@ ef9cf7930d45222751c8d72ccdd78fe97b845aa9bea602ca660a7ae9f45c2440  ./scripts/d01-
 6d57917dff04b79eaa3177f642fffa2b6e33a8c0fa1a3c078106271a50fb9ed0  ./scripts/d01-hash-reconciliation.ts
 586b72aa03c4b842e6a229823862f9161bf5e371c55d7b306659aa63ff79cd4a  ./scripts/d01-manifests.ts
 7e5579e60309660288a3dcde139e8f0f6243d6e34775650931914bbf5550cb3e  ./scripts/d01-replay.ts
-96ea1a902e22c9ac5ddfa5393c153a0e921384b17da49df1b7277946df1a8199  ./scripts/d01-vertical-manifest.ts
+4d5125702e72deb93e1bc1555ac9c488280ecd8b982efa6540054b8711b91efc  ./scripts/d01-vertical-manifest.ts
 740cc3ccd2351f795917a8a9fb4f3bff2533a8f1f5fbdd106c264bb59fc32ee4  ./scripts/development-manifests.ts
 6801d90959d9982d2a8ef563f72906e7c8f64b4dd221f867ea642135decad889  ./scripts/held-out-leak-scan.ts
 bb1d7437bd4635e29946bd5f47fd42c78115e041ab4fd3950b72b04cbb66863e  ./scripts/held-out-manifests.ts
@@ -581,7 +590,7 @@ c629513bb08d08411287d58d726e53c78dad9f6ca9b38fd5aaf02b01cd3c2b25  ./spikes/phase
 ceef81d8d4dc787c555046378347d6e419fc19989c7b4b57771dd576e51c1277  ./src/d01/decision.ts
 0af3115e1748483c6451445448778868cc49cf4e1fa663145fdee6a462094d81  ./src/d01/engine.ts
 ea01eb64fcae642b1a1b5ea6f5eea45b094da4e9f117637e4caf3227c06016e3  ./src/d01/execution.ts
-271cb479e8cee487d5be52affaca4fd7f5916acaba738e925ed8432c1dc8f3a9  ./src/d01/fixture.ts
+7e66dfe92ebce269d7146f09dd15cffd0afb8ea70d6000074e67aed7fbfe8643  ./src/d01/fixture.ts
 f1d5945b9fc61eb3ccf6e5400bea85a75a2f99a1e7edb805b598eafe18b64539  ./src/d01/orchestrator.ts
 98718a383faf51505accc510b36c6e617f82495abda777719c328a66de942c4a  ./src/d01/reasoning.ts
 8fa18fe1778e839121d00b740b600cd563409bebaf660fbafa846e45f94e6ae1  ./src/d01/replay-core.ts
@@ -643,7 +652,7 @@ cd27e0a46b03d0afb512b42fc6529ab9216af58fed71473b36492311de1286d1  ./src/official
 14375ae08fddaf8a88b02e188a7d22155f16f8cae0f87bf11028afdf0e24b1b5  ./src/official/replay.ts
 f70c9660364109c196aab2b7bfb84972a2ac0fd4fda79ae5127e4d7b27a8817e  ./src/official/report.ts
 2ab68fda4e2c043b4769471dcf154d418bbcf3bc8ddb44af89735c6537ff1bb6  ./src/official/runner.ts
-83a542cb76b588b344aa4e6c453c88317512fbc03639c686d7e2e9cb0950b8af  ./src/official/runtime/arm-handler.ts
+5de5ca7e919f8b5d8a1237ae9a1a57d8408700c35ce1d3ae80f2a399918fb241  ./src/official/runtime/arm-handler.ts
 79a36ae35b2137b44e29f8f5ba1d79a9fdf1796d7d7094c7a76a7426a8bbe3b9  ./src/official/runtime/codex-transport.ts
 16d8f761a6dd8d9f7226ea0d092eedb72ac3e4476a92505c006b1c23646fb52a  ./src/official/runtime/d01-bridge.ts
 d694c467d2810be3e2a997cef603bde8db99b89e4491259d8ba0a34da72fddad  ./src/official/runtime/dispatch-observer.ts
@@ -652,8 +661,9 @@ d694c467d2810be3e2a997cef603bde8db99b89e4491259d8ba0a34da72fddad  ./src/official
 6b295a6903e216015fc89b133706308eaf5a3f0daa8f0b5e98bba965ff0b3115  ./src/official/runtime/macos-sandbox-backend.ts
 66ec8d63f9196f8b0b3dfb94ca582e015aee5a6a8c6867ab75134525224a26f9  ./src/official/runtime/process-launcher.ts
 4b44218ed4f88bb0e348521d7bee68f230c2c507ecb8e9421e3a94001dff450e  ./src/official/runtime/reasoning-aware-launcher.ts
-453827748711e3ea7877861acf1202003161dcb206d4ef7121a97d84b67fe697  ./src/official/runtime/role-process-entrypoint.ts
+36ba1652fc9791a8ddcfcd7e783c63da7bd505fa2da5fb23683daae73e7d07bd  ./src/official/runtime/role-process-entrypoint.ts
 159a5a713cf69887b66b4a61263c220f62037e63fc159f38019bacdacad5b5ab  ./src/official/runtime/specialized-observers.ts
+506318fa4a32eef0615d5c62a473ab4dbc0b7d6ec0827ff1e568aac44195d343  ./src/official/runtime/status-quo-arm-handler.ts
 2fc9b3b874e77a3ff4ff07d4a64f4554f275edd6503f7bbba78d5daac2f2d075  ./src/official/worker-contract.ts
 7caf48c72542d071da26ae93af0e91e65eca4d69f3433df4cc88378f04c9da30  ./templates/ITERATION_RECORD.md
 20288c22d76f72c131aa4cacf015f6d8438a58b26e56826369efafe08779cef8  ./templates/PROVENANCE_ENTRY.yaml
@@ -718,10 +728,10 @@ b6591fd94ab310e4a75ffbd1b21135661d26bfacb0a9adbc182868d74bce3c27  ./tests/offici
 5d25ddae50e5c08c0023eea7715d443cb6588d4d40add47dca52ab21e3c04e84  ./tests/official/runtime/fixtures/public-role-bindings.ts
 cd234371f8e1493a76b8b6965ab49c616d8b394427f1f9430388cea71e3be2c3  ./tests/official/runtime/fixtures/verifier-role-bindings.ts
 65c03cf8e79bda41e5b43d7026809e31825570f41fa2f13fdeb95b2434c601e2  ./tests/official/runtime/macos-sandbox-backend.test.ts
-71f3b8bfd975f1939ad994c6e26c0d5937b6c2eea5d12f16d550bf9f5cfa5014  ./tests/official/runtime/official-command-workdir.test.ts
+17396c538586cc91b6c0ac4e8b704a31f65f0ba99c53a0b21d611fe87b4a91ff  ./tests/official/runtime/official-command-workdir.test.ts
 7fd3afba57a4277469f28001c80a00957cbf59fd30db822045be45168a9ada90  ./tests/official/runtime/process-launcher.test.ts
 b2aa9414fc719cfcd98b57ff6a0a290e99eb0bd66464edb750a2923f06d0074e  ./tests/official/runtime/reasoning-aware-launcher.test.ts
-d59b10653be21886a81a706a55047336cca7869f767b12ff388b0fcf2e469f1e  ./tests/official/runtime/role-process-integration.test.ts
+4dbb7610382c99656c3e4e167dbf81ad62ad58a1f4c17eae53f70e8e79de47b8  ./tests/official/runtime/role-process-integration.test.ts
 c75ca156d4181f31e73afea3128b7f2ac2f92591774d2ed24cb29b68d749f50a  ./tests/official/runtime/specialized-observers.test.ts
 5d71c0320c155ab493390677d68036e20973d627800b9a92f6bfed26f286ac97  ./tests/official/runtime/transport-canary-command.test.ts
 e101f4348f6eb4a56639a26d5d1f5c650ad472c1589c3247005ef98c1317257a  ./tests/official/shared-interfaces.test.ts

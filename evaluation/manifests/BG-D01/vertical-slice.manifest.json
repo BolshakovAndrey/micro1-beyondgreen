@@ -41,7 +41,7 @@
     },
     {
       "path": "src/d01/fixture.ts",
-      "sha256": "271cb479e8cee487d5be52affaca4fd7f5916acaba738e925ed8432c1dc8f3a9"
+      "sha256": "7e66dfe92ebce269d7146f09dd15cffd0afb8ea70d6000074e67aed7fbfe8643"
     },
     {
       "path": "src/d01/orchestrator.ts",
@@ -117,7 +117,7 @@
     },
     {
       "path": "scripts/d01-vertical-manifest.ts",
-      "sha256": "96ea1a902e22c9ac5ddfa5393c153a0e921384b17da49df1b7277946df1a8199"
+      "sha256": "4d5125702e72deb93e1bc1555ac9c488280ecd8b982efa6540054b8711b91efc"
     },
     {
       "path": "scripts/tasks/d01.ts",
@@ -156,12 +156,12 @@
       "sha256": "4f66aff2f599b614aad061add10ec18c03d276244eb1096623b2c75e3d9c349e"
     }
   ],
-  "package_sha256": "47edb457f93a1d84bf9ebb84ec22eb17b11b94463eadab37c1cf92c169344440",
+  "package_sha256": "6009b50137e1e450b96cd0d3d329b5aecfef184ec394e30dea379bc2fa3efc9b",
   "frozen_foundation": {
     "candidate_a_sha256": "f46b2ed8c85e8558b5c8812491c09d89530099b0890454415579ea4c5d69e8a5",
     "candidate_b_sha256": "9e2a9151531aa961cf0ace3e20520fdcfa45ff0bff0f13ae214f7e5fbdad7d2b",
     "pre_review_combined_d01_manifest_digest": "5273199f8d591068ae827874d80352947eb511844fdf6ccabbcbce9edacccdcf",
-    "current_combined_d01_manifest_digest": "da73beb0b3b5aba72013a90388cbf457614479f9b8f02125b99f598b7487f69f"
+    "current_combined_d01_manifest_digest": "a4469b1798963dbaa23b2f5901accedcd3650952db8345f70f5d2041a3d90524"
   },
   "semantic_guards": {
     "candidate_sources_changed": false,

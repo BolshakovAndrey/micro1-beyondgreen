@@ -16,7 +16,8 @@ import {
   createMacOsSandboxBackend,
 } from "../src/official/runtime/index.ts";
 
-const OUTPUT_ROOT = "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001";
+const FAILED_OUTPUT_ROOT = "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001";
+export const OFFICIAL_OUTPUT_ROOT = "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002";
 
 function isInside(root: string, target: string): boolean {
   const relative = path.relative(root, target);
@@ -49,7 +50,7 @@ export async function runOfficialEvaluationCommand(
 ): Promise<void> {
   const result = await executeOfficialEvaluation({
     repositoryRoot,
-    outputRoot: path.resolve(repositoryRoot, OUTPUT_ROOT),
+    outputRoot: path.resolve(repositoryRoot, OFFICIAL_OUTPUT_ROOT),
     syntheticOnly: false,
     provenance: {
       schemaVersion: "beyondgreen-official-provenance@1.0.0",
@@ -58,6 +59,9 @@ export async function runOfficialEvaluationCommand(
       adapter: "codex-exec-jsonl-v1",
       attemptsPerArmCandidate: 1,
       retries: 0,
+      runOrdinal: 2,
+      recoveryOfOutputRoot: FAILED_OUTPUT_ROOT,
+      recoveryClassification: "pre-arm infrastructure failure with zero decisions, model calls, captures, evaluator records, or unblinding",
     },
     hooks,
   });

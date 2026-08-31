@@ -1,0 +1,64 @@
+schema_version: "1.1"
+session_id: "SES-20260831-032"
+started_at_utc: "2026-08-31T08:24:21Z"
+agent:
+  tool: "Codex coordinator"
+  purpose: "Preserve failed RUN-001, repair the pre-arm isolation import failure, and prepare a separately gated RUN-002 recovery"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  exact_head_at_start: "57f23c265b1059c3174c11929335f934cfff0f8f"
+  remote_state_contacted_or_verified: false
+
+authorization:
+  status: "approved_for_diagnosis_and_fix"
+  approver: "repository_owner"
+  approval_recorded_at_utc: "2026-08-31T08:24:21Z"
+  exact_approval_evidence: "Цель сдать работу и что бы ее зачли - я не могу сдать с текущими показателями - несмотря на то что сам сее запретил делаь больше одного прогона - надо все зафиксировать, найти причину исправить ее и довести задачу до успешного запуска результаты полученные в процесс запуска это уже другой вопрос"
+
+incident_classification:
+  failed_output_root: "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001"
+  failed_output_must_remain_immutable: true
+  arm_decisions_created: 0
+  candidate_executions_completed: 0
+  model_invocations: 0
+  unblinding_performed: false
+  classification: "pre-arm infrastructure failure; not a per-candidate scored attempt"
+
+allowed_actions:
+  - "Preserve and hash RUN-001 and write incident/recovery evidence outside it."
+  - "Correct the narrow production role import surface without changing candidates, verifier semantics, scoring, or model policy."
+  - "Add synthetic and physical-isolation regression tests that do not execute official candidates or a live model."
+  - "Run compile, tests, preflight, and checksum verification."
+  - "Prepare RUN-002 with create-once output semantics and stop before a separate recovered-run gate."
+
+explicitly_prohibited_until_recovered_run_gate:
+  - "Modify or delete any byte under RUN-001."
+  - "Run evaluation:run, execute an official candidate, invoke a live model, or unblind."
+  - "Change frozen candidates, verifier packages, assertions, evaluation methodology, scores, or model configuration."
+  - "Commit or push without a separate owner approval."
+
+measured_results:
+  status: "ready_for_recovery_checkpoint_and_separate_run_gate"
+  root_cause: "Production role capability denied a transitive src/official/reasoning import loaded by the shared entrypoint before status-quo main execution; the broad integration-test allowlist masked the defect."
+  implementation: "Status-quo handler now has a reasoning-free module imported directly by the isolated role entrypoint; the physical integration test uses the same narrow runtime/process allowlist as production."
+  manifest_reconciliation: "The D01 complete package manifest now declares four already-existing official runtime export/provider files; verifier bytes, candidate bytes, oracle behavior, and scoring semantics are unchanged."
+  typescript_compile: "pass"
+  full_test_suite: "pass: 220/220"
+  d01_vertical_slice: "pass: 19/19"
+  narrow_physical_role_suite: "pass: status-quo, scenario-provider, observer, and evaluator"
+  freeze_self_test: "pass: 10 fixtures, 20 candidates, 10 preserving and 10 reason-correct defects"
+  development_and_held_out_verification: "pass"
+  synthetic_execution: "pass: 20 slots, 40 decisions, 80 captures, 40 evaluator records"
+  static_preflight: "pass: inventory 4b9d4100667af58f7b995ff00d4c39b81922a8cf4656c0a93fa59c7ecc0a345c"
+  failed_output_root_hashes_reverified: true
+  recovered_output_root: "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002"
+  recovered_output_root_absent: true
+  recovered_run_started: false
+  unblinding_performed: false
+
+completion:
+  completed_at_utc: "2026-08-31T08:33:43Z"
+  owner_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-RUN-RECOVERY-OWNER-PACKET_RU.md"
+  disposition: "All non-live recovery gates passed. Stop before checkpoint commit and the separately approved one-shot RUN-002 execution."

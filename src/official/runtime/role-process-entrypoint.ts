@@ -13,7 +13,7 @@ import type {
   OfficialScenarioProviderHandlerOutput,
   OfficialScenarioProviderProcessRequest,
 } from "../process/ipc.ts";
-import { createStatusQuoArmHandler } from "./arm-handler.ts";
+import { createStatusQuoArmHandler } from "./status-quo-arm-handler.ts";
 import { captureD01ObserverBridgeTranscript } from "./d01-bridge.ts";
 import { captureDispatchObserverTranscript } from "./dispatch-observer.ts";
 import {

@@ -1,0 +1,71 @@
+schema_version: "1.1"
+session_id: "SES-20260831-033"
+started_at_utc: "2026-08-31T08:33:43Z"
+agent:
+  tool: "Repository owner through the recovered BeyondGreen production runner"
+  purpose: "Execute one recovered create-once RUN-002 after the pre-arm RUN-001 infrastructure failure"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  recovery_base_head: "57f23c265b1059c3174c11929335f934cfff0f8f"
+  required_platform: "macOS with /usr/bin/sandbox-exec and Node 22.22.3"
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approval_recorded_at_utc: "2026-08-31T08:40:04Z"
+  exact_approval_evidence: >-
+    Одобряю результаты recovery SES-20260831-032 и SESSION_BOUNDARY
+    SES-20260831-033. Разрешаю checkpoint commit
+    fix(Evaluation):[BeyondGreen] Recover pre-arm isolation failure без push.
+    После commit разрешаю ровно один owner-controlled RUN-002; команду запускаю
+    я сам из обычного Terminal, агенту запуск запрещён. RUN-001 сохранить
+    неизменным; RUN-002 не повторять, не удалять, не перезаписывать и не
+    регенерировать. Unblinding разрешён только после 40 immutable arm decisions.
+
+recovery_basis:
+  failed_run: "RUN-BG-OFFICIAL-EVAL-V1.1.0-001"
+  failed_run_preserved: true
+  failed_run_arm_decisions: 0
+  failed_run_candidate_executions: 0
+  failed_run_model_invocations: 0
+  failed_run_unblinding: false
+  classification: "pre-arm infrastructure failure; per-candidate one-attempt budget remains unused"
+  root_cause_fixed: true
+  full_test_suite: "220/220 pass"
+  physical_production_equivalent_roles: "pass"
+  freeze_and_preflight: "pass"
+
+run_contract:
+  evaluation_version: "eval-v1.1.0"
+  model: "gpt-5.6-sol"
+  adapter: "codex-exec-jsonl-v1"
+  attempts_per_arm_candidate: 1
+  retries: 0
+  expected_slots: 20
+  expected_arm_decisions: 40
+  expected_captures: 80
+  expected_evaluator_records: 40
+  output_root: "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002"
+  output_root_must_be_absent_before_start: true
+  exact_owner_terminal_command: "MICRO1_OFFICIAL_SESSION_BOUNDARY=SES-20260831-033 npm run task -- evaluation:run --evaluation-version eval-v1.1.0"
+
+stop_rules:
+  - "The repository owner executes the command from ordinary Terminal; the agent must not execute it."
+  - "Do not retry RUN-002 after any success, failure, interruption, timeout, or partial output."
+  - "Never delete, overwrite, repair, or regenerate RUN-001 or RUN-002."
+  - "Preserve all abstentions and failures exactly as produced."
+  - "Unblinding may occur only after all 40 immutable arm decisions exist."
+  - "Do not package, publish, or push without a separate approval."
+
+measured_results:
+  status: "owner_approved_pending_checkpoint_commit"
+  run_started: false
+  output_root_absent: true
+  unblinding_performed: false
+
+completion:
+  completed_at_utc: null
+  owner_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-RECOVERY-RUN-GATE_RU.md"
+  disposition: "Create the approved bounded checkpoint commit, then let the owner execute RUN-002 once."

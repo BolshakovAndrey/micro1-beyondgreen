@@ -3,7 +3,15 @@ import { realpath, rm } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
 
-import { createOfficialRuntimeWorkingDirectory } from "../../../scripts/d00-official-run.ts";
+import {
+  createOfficialRuntimeWorkingDirectory,
+  OFFICIAL_OUTPUT_ROOT,
+} from "../../../scripts/d00-official-run.ts";
+
+test("recovery output is create-once RUN-002 and cannot target preserved RUN-001", () => {
+  assert.equal(OFFICIAL_OUTPUT_ROOT, "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002");
+  assert.notEqual(OFFICIAL_OUTPUT_ROOT, "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001");
+});
 
 test("official command creates its disposable runtime root inside the clean repository", async () => {
   const repositoryRoot = await realpath(process.cwd());
