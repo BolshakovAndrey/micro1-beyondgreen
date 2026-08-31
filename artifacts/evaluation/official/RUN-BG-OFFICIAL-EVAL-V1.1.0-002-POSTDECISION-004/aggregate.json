@@ -1,0 +1,1 @@
+[{"arm":"status-quo","completedDecisions":20,"correctDecisions":10,"falseGreenTotal":10,"preservingBlocked":0,"preservingTotal":10,"reasonCorrectRejects":0,"total":20},{"arm":"beyondgreen","completedDecisions":19,"correctDecisions":19,"falseGreenTotal":10,"preservingBlocked":1,"preservingTotal":10,"reasonCorrectRejects":3,"total":20}]
