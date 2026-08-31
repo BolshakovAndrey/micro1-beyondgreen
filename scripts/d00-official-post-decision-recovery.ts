@@ -8,8 +8,11 @@ import path from "node:path";
 import {
   executeOfficialPostDecisionRecovery,
   loadOfficialPostDecisionRecoverySource,
+  OFFICIAL_POST_DECISION_CURRENT_INVENTORY_SHA256,
+  OFFICIAL_POST_DECISION_INVENTORY_DRIFT_REASON,
   OFFICIAL_POST_DECISION_OUTPUT_ROOT,
   OFFICIAL_POST_DECISION_SOURCE_MANIFEST,
+  OFFICIAL_POST_DECISION_SOURCE_INVENTORY_SHA256,
   OFFICIAL_POST_DECISION_SOURCE_ROOT,
 } from "../src/official/execution/post-decision-recovery.ts";
 import { createOfficialProductionRoot } from "../src/official/execution/production-root.ts";
@@ -67,6 +70,11 @@ export async function main(arguments_: readonly string[] = process.argv.slice(2)
         armExecutionCount: 0,
         modelInvocationCount: 0,
         retries: 0,
+      },
+      inventoryDriftDisclosure: {
+        expectedSourceInventorySha256: OFFICIAL_POST_DECISION_SOURCE_INVENTORY_SHA256,
+        expectedCurrentInventorySha256: OFFICIAL_POST_DECISION_CURRENT_INVENTORY_SHA256,
+        reason: OFFICIAL_POST_DECISION_INVENTORY_DRIFT_REASON,
       },
       hooks,
     });

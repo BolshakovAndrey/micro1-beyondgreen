@@ -1,0 +1,96 @@
+schema_version: "1.1"
+session_id: "SES-20260831-035"
+started_at_utc: "2026-08-31T10:06:29Z"
+agent:
+  tool: "Codex coordinator"
+  purpose: "Correct only post-decision plan compatibility after the pre-write continuation failure"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  base_head: "442956fd351b7812143f7405067b9aed6f1834f8"
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approval_recorded_at_utc: "2026-08-31T10:06:29Z"
+  exact_approval_evidence: >-
+    Одобряю SESSION_BOUNDARY SES-20260831-035 и bounded post-decision plan
+    compatibility correction. RUN-001 и RUN-002 сохранять побайтово неизменными.
+    Заменить только полное сравнение execution plan на каноническое сравнение всех
+    полей кроме inventorySha256; любое другое расхождение должно оставаться
+    блокирующим. Текущий frozen inventory обязан полностью пройти static validation,
+    а candidate bytes — пофайловую сверку с SHA-256 из RUN-002. Записать исходный и
+    текущий inventorySha256 в provenance с причиной разрешённого drift — verifier
+    repair SES-034. Добавить regression tests: изолированное изменение только
+    inventory hash допускается; изменение любого другого поля плана или candidate
+    bytes блокируется. Первую неудачную continuation сохранить в русском failure
+    packet; идентификатор POSTDECISION-001 повторно не использовать, подготовить новый
+    create-once root POSTDECISION-002. Continuation, arm/model calls, evaluation:run,
+    commit и push запрещены. После проверок остановиться с русским owner packet.
+
+immutable_source:
+  run_001_may_change: false
+  run_002_may_change: false
+  run_002_file_count: 44
+  run_002_bundle_sha256: "5df68dc714d66ca44852d2487213ae5bb222f8444cedc734ccaabdf2abbe6d95"
+  source_inventory_sha256: "4b9d4100667af58f7b995ff00d4c39b81922a8cf4656c0a93fa59c7ecc0a345c"
+  approved_current_inventory_sha256: "9bffe4f104f09ff576fcb12e7a79d66b45a54a7306efbef332b4446dae849db2"
+
+allowed_scope:
+  - "Compare the canonical execution-plan projection with only inventorySha256 omitted."
+  - "Keep every other execution-plan field decision-critical and fail closed on drift."
+  - "Require full current static-inventory validation and candidate-byte checks against RUN-002."
+  - "Record source/current inventory hashes and the SES-034 verifier-repair reason in recovery provenance."
+  - "Add deterministic compatibility and candidate-tamper regression tests."
+  - "Preserve the first failed continuation packet and reserve a new POSTDECISION-002 create-once root."
+  - "Run compile, tests, manifests, checksums, diff checks, and safe preflight."
+  - "Prepare a complete Russian owner packet."
+
+forbidden_scope:
+  - "Modify, delete, overwrite, or regenerate RUN-001 or RUN-002."
+  - "Reuse POSTDECISION-001 or execute POSTDECISION-002."
+  - "Execute any arm, model, evaluation:run, or post-decision continuation."
+  - "Change candidates, decisions, oracle semantics, ground truth, scoring, or evaluation v1.1."
+  - "Commit or push."
+
+stop_rules:
+  - "Stop if any RUN-001/RUN-002 source hash changes."
+  - "Stop if any plan field other than inventorySha256 differs in the approved compatibility test."
+  - "Stop if current inventory validation or candidate-byte validation fails."
+  - "Stop before any continuation command, commit, or push."
+
+attestation:
+  inherited_private_transcript: false
+  external_workspace_read: false
+  browser_or_mcp_used: false
+  continuation_executed: false
+  arm_or_model_calls: 0
+  repository_artifacts_status: "candidate_pending_owner_review"
+
+verification:
+  compilation: "passed"
+  repository_test_suite: "230/230 passed"
+  recovery_test_suite: "6/6 passed"
+  decision_critical_projection: "every execution-plan leaf except inventorySha256 remained blocking"
+  isolated_inventory_drift: "passed"
+  candidate_byte_drift: "blocked before output creation"
+  production_inventory_disclosure: "source and current hashes matched the approved constants"
+  static_inventory_validation: "passed without candidate execution"
+  immutable_source_verification: "44 files; bundle SHA-256 5df68dc714d66ca44852d2487213ae5bb222f8444cedc734ccaabdf2abbe6d95"
+  control_checksums: "802/802 verified"
+  diff_check: "passed"
+  preflight_control: "READY_FOR_CLEAN_BRANCH; four binary human-review notices"
+  preflight_implementation: "READY_FOR_IMPLEMENTATION; four binary human-review notices and expected dirty-worktree warning"
+  output_postdecision_001_exists: false
+  output_postdecision_002_exists: false
+  retries:
+    - "One mechanical patch failed to match the test import context and changed no files; the narrower patch then applied and passed compile/tests."
+  continuation_executed: false
+  arm_or_model_calls: 0
+  run_001_or_run_002_bytes_changed: false
+
+completion:
+  completed_at_utc: "2026-08-31T10:12:29Z"
+  owner_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-POSTDECISION-PLAN-COMPATIBILITY-OWNER-PACKET_RU.md"
+  disposition: "READY_FOR_OWNER_CHECKPOINT_APPROVAL; continuation, commit, and push remain blocked."

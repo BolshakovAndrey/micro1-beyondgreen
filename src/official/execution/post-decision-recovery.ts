@@ -58,7 +58,10 @@ const Sha256Schema = z.string().regex(/^[a-f0-9]{64}$/u);
 
 export const OFFICIAL_POST_DECISION_SOURCE_ROOT = "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002";
 export const OFFICIAL_POST_DECISION_SOURCE_MANIFEST = "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002.source-manifest.json";
-export const OFFICIAL_POST_DECISION_OUTPUT_ROOT = "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-001";
+export const OFFICIAL_POST_DECISION_OUTPUT_ROOT = "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-002";
+export const OFFICIAL_POST_DECISION_INVENTORY_DRIFT_REASON = "owner-approved verifier repair SES-20260831-034";
+export const OFFICIAL_POST_DECISION_SOURCE_INVENTORY_SHA256 = "4b9d4100667af58f7b995ff00d4c39b81922a8cf4656c0a93fa59c7ecc0a345c";
+export const OFFICIAL_POST_DECISION_CURRENT_INVENTORY_SHA256 = "9bffe4f104f09ff576fcb12e7a79d66b45a54a7306efbef332b4446dae849db2";
 
 const SourceFileSchema = z.object({
   path: z.string().min(1),
@@ -105,6 +108,12 @@ export type OfficialPostDecisionRecoverySource = Readonly<{
   manifest: OfficialPostDecisionSourceManifest;
   plan: OfficialExecutionPlan;
   decisions: readonly OfficialImmutableArmDecision[];
+}>;
+
+export type OfficialPostDecisionInventoryDriftDisclosure = Readonly<{
+  expectedSourceInventorySha256: string;
+  expectedCurrentInventorySha256: string;
+  reason: typeof OFFICIAL_POST_DECISION_INVENTORY_DRIFT_REASON;
 }>;
 
 export type OfficialPostDecisionRecoveryResult = Readonly<{
@@ -157,6 +166,50 @@ function expectedArmRecordPaths(plan: OfficialExecutionPlan): readonly string[] 
 
 function readJson(filePath: string): unknown {
   return JSON.parse(readFileSync(filePath, "utf8"));
+}
+
+/**
+ * Compare every decision-critical plan field while disclosing the separately
+ * validated inventory digest drift caused by the approved verifier repair.
+ */
+export function assertOfficialPostDecisionPlanCompatibility(
+  sourcePlan: OfficialExecutionPlan,
+  currentPlan: OfficialExecutionPlan,
+): void {
+  const { inventorySha256: _sourceInventorySha256, ...sourceDecisionCriticalPlan } = sourcePlan;
+  const { inventorySha256: _currentInventorySha256, ...currentDecisionCriticalPlan } = currentPlan;
+  if (canonicalJson(sourceDecisionCriticalPlan) !== canonicalJson(currentDecisionCriticalPlan)) {
+    throw new Error("Current decision-critical execution plan differs from the RUN-002 source plan.");
+  }
+}
+
+function buildRecoveryProvenance(
+  provenance: Readonly<Record<string, unknown>>,
+  disclosure: OfficialPostDecisionInventoryDriftDisclosure,
+  sourceInventorySha256: string,
+  currentInventorySha256: string,
+): Readonly<Record<string, unknown>> {
+  if (Sha256Schema.safeParse(disclosure.expectedSourceInventorySha256).success === false
+    || Sha256Schema.safeParse(disclosure.expectedCurrentInventorySha256).success === false
+    || disclosure.reason !== OFFICIAL_POST_DECISION_INVENTORY_DRIFT_REASON) {
+    throw new Error("Post-decision inventory drift disclosure is invalid.");
+  }
+  if (sourceInventorySha256 !== disclosure.expectedSourceInventorySha256
+    || currentInventorySha256 !== disclosure.expectedCurrentInventorySha256) {
+    throw new Error("Post-decision inventory hashes differ from the owner-approved disclosure.");
+  }
+  for (const reserved of ["sourceInventorySha256", "currentInventorySha256", "inventorySha256Match", "inventoryDriftReason"]) {
+    if (Object.hasOwn(provenance, reserved)) {
+      throw new Error("Post-decision provenance contains a reserved inventory disclosure field.");
+    }
+  }
+  return Object.freeze({
+    ...provenance,
+    sourceInventorySha256,
+    currentInventorySha256,
+    inventorySha256Match: sourceInventorySha256 === currentInventorySha256,
+    inventoryDriftReason: disclosure.reason,
+  });
 }
 
 /** Build an exact manifest without reading verifier or candidate content. */
@@ -358,14 +411,19 @@ export async function executeOfficialPostDecisionRecovery(input: Readonly<{
   relativeSourceRoot: string;
   sourceManifestPath: string;
   outputRoot: string;
-  provenance: unknown;
+  provenance: Readonly<Record<string, unknown>>;
+  inventoryDriftDisclosure: OfficialPostDecisionInventoryDriftDisclosure;
   hooks: OfficialExecutionHooks;
 }>): Promise<OfficialPostDecisionRecoveryResult> {
   const source = loadOfficialPostDecisionRecoverySource(input);
   const currentPreflight = await input.hooks.staticPreflight(input.repositoryRoot);
-  if (canonicalJson(currentPreflight.executionPlan) !== canonicalJson(source.plan)) {
-    throw new Error("Current frozen execution plan differs from the RUN-002 source plan.");
-  }
+  assertOfficialPostDecisionPlanCompatibility(source.plan, currentPreflight.executionPlan);
+  const recoveryProvenance = buildRecoveryProvenance(
+    input.provenance,
+    input.inventoryDriftDisclosure,
+    source.plan.inventorySha256,
+    currentPreflight.executionPlan.inventorySha256,
+  );
   for (const slot of source.plan.slots) {
     if (await input.hooks.hashCandidate(slot) !== slot.candidate.sha256) {
       throw new Error("Candidate hash differs from the immutable RUN-002 plan.");
@@ -373,7 +431,7 @@ export async function executeOfficialPostDecisionRecovery(input: Readonly<{
   }
 
   const writer = new OfficialCreateOncePostDecisionWriter(input.repositoryRoot, input.outputRoot);
-  writer.initialize({ source, provenance: input.provenance });
+  writer.initialize({ source, provenance: recoveryProvenance });
   const gate = await input.hooks.beginPostDecisionEvaluation({
     decisions: source.decisions,
     pairs: Object.freeze([]),
