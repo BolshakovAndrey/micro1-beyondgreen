@@ -1,0 +1,72 @@
+schema_version: "1.1"
+session_id: "SES-20260831-031"
+started_at_utc: "2026-08-31T08:07:10Z"
+agent:
+  tool: "Repository owner through the production BeyondGreen runner"
+  purpose: "Execute the single official eval-v1.1.0 run and unblind only after both arm decisions are immutable"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  exact_head_at_boundary_creation: "57e2e5222f6197ad3e12beded6fe5eda1be671e1"
+  remote_state_contacted_or_verified: false
+  required_platform: "macOS with /usr/bin/sandbox-exec and Node 22.22.3"
+  portability_disclosure: "The live scored runner is verified only on macOS. Platform-independent deterministic replay will be the judge reproduction path."
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  scope_to_approve: "Exactly one evaluation:run for eval-v1.1.0 using this boundary; no retry, substitute model, candidate edit, or methodology change."
+  approval_recorded_at_utc: "2026-08-31T08:15:11Z"
+  exact_approval_evidence: |-
+    Одобряю SESSION_BOUNDARY SES-20260831-031.
+    Разрешаю checkpoint commit docs(Evaluation):[BeyondGreen] Approve official run gate без push. Staged scope — ровно три файла: artifacts/trajectories/session-boundaries/SES-20260831-031.yaml, artifacts/trajectories/reviews/BG-OFFICIAL-RUN-GATE_RU.md, docs/CONTROL_PLANE_SHA256SUMS. Ничего сверх этого не добавлять.
+    После commit разрешаю ровно один owner-controlled official/scored run eval-v1.1.0: команда MICRO1_OFFICIAL_SESSION_BOUNDARY=SES-20260831-031 npm run task -- evaluation:run --evaluation-version eval-v1.1.0, модель gpt-5.6-sol, adapter codex-exec-jsonl-v1, одна попытка на плечо, ноль повторов. Команду запускаю я сам из обычного Terminal; агенту исполнять её запрещено — он ждёт мой вывод.
+    Каталог результата artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001 должен отсутствовать до старта. При любом исходе — успех, ошибка, прерывание, таймаут, частичный результат — повтор команды, удаление, перезапись, починка или регенерация этого каталога запрещены. Все abstain и failure сохраняются как есть.
+    Post-decision unblinding разрешаю только после фиксации всех 40 arm-решений по 20 слотам. После прогона разрешаю read-only review, агрегацию, replay, сверку hashes и русский owner packet. ZIP-упаковка, публикация и push — только по отдельному одобрению; там же остаётся открытым человеческий просмотр четырёх бинарных копий официальных материалов.
+
+preconditions:
+  expected_clean_head: "57e2e5222f6197ad3e12beded6fe5eda1be671e1 plus the committed SES-031 gate packet"
+  production_model: "gpt-5.6-sol"
+  production_adapter: "codex-exec-jsonl-v1"
+  attempts_per_arm_candidate: 1
+  retries: 0
+  expected_slots: 20
+  expected_arm_decisions: 40
+  expected_post_decision_captures: 80
+  expected_evaluator_records: 40
+  output_root: "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001"
+  output_root_must_be_absent_before_start: true
+  public_transport_canary: "PASS in SES-20260831-029; must not be repeated"
+
+exact_owner_terminal_command: "MICRO1_OFFICIAL_SESSION_BOUNDARY=SES-20260831-031 npm run task -- evaluation:run --evaluation-version eval-v1.1.0"
+
+stop_rules:
+  - "Do not retry the command after any success, failure, interruption, timeout, or partial output."
+  - "Do not delete, overwrite, repair, or regenerate the official output root."
+  - "Do not change candidates, verifier packages, assertions, model, adapter, scoring, or evaluation version."
+  - "Preserve every abstention and failure exactly as produced."
+  - "Do not publish or push before post-run review and packaging approval."
+
+explicitly_prohibited_before_owner_approval:
+  - "Run evaluation:run or either official arm."
+  - "Invoke the production live model."
+  - "Open verifier outcomes or unblind hidden results."
+
+measured_results:
+  gate_status: "approved_pending_checkpoint_commit_and_owner_terminal_execution"
+  static_preflight: "PASS"
+  inventory_sha256: "71a4ec989ec4910e795fdeb5db97717b9a013d9084860f1818a773bda5d9ab7e"
+  fixture_count: 10
+  candidate_count: 20
+  execution_slot_count: 20
+  total_arm_plans: 40
+  command_started: false
+  command_completed: false
+  official_or_scored_run_count: 0
+  unblinding_performed: false
+
+completion:
+  completed_at_utc: null
+  owner_gate_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-RUN-GATE_RU.md"
+  disposition: "Commit exactly the three owner-approved gate files. The repository owner then executes the exact command once from ordinary Terminal while the agent waits for pasted output."

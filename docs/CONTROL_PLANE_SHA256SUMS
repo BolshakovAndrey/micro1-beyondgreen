@@ -138,6 +138,7 @@ f9f7f396d5520ca14867dd1e749471fedab1137d55b22b9be220afaf43583646  ./artifacts/tr
 76a96b8afe83dd2e7841d471164c1ae24229744e10aabd5790604f0c6d83ec86  ./artifacts/trajectories/reviews/BG-OFFICIAL-PRE-OFFICIAL-READINESS-OWNER-PACKET_RU.md
 40f14303ca4a31b785c1099eb8d563d98189d224e6372d8a1a6cfe965f43908f  ./artifacts/trajectories/reviews/BG-OFFICIAL-PRE-RUN-CORRECTION-OWNER-PACKET_RU.md
 c1cb05809bc4296bdb30bddff89d04b0cfa6b4559bb3e3333b38540912b58e3d  ./artifacts/trajectories/reviews/BG-OFFICIAL-PRODUCTION-COMPOSITION-OWNER-PACKET_RU.md
+791a8a3dfad34941494dab1a28c02f7423c7a362104ba04a680a46c82f02783f  ./artifacts/trajectories/reviews/BG-OFFICIAL-RUN-GATE_RU.md
 7654476c69073efdc093bc220ee501a610ad51c61512470a61599d78c7ca231f  ./artifacts/trajectories/reviews/BG-OFFICIAL-RUN-SESSION-BOUNDARY-CHECKPOINT_RU.md
 011017bd61ff63ad085c28bfa7c5efa0a2c0b8e85dde6c8f971f523e32783154  ./artifacts/trajectories/reviews/BG-OFFICIAL-RUNTIME-CLOSURE-OWNER-PACKET_RU.md
 0a55e3d5540586f9cf2d0434aa5a94a9c7ce564826346e2e64fcb98264fdd76e  ./artifacts/trajectories/reviews/BG-OFFICIAL-RUNTIME-COMPLETION-OWNER-PACKET_RU.md
@@ -240,6 +241,7 @@ fa64cda751522990092c1402b266ed9a159a61851489616914ac9779985d5120  ./artifacts/tr
 5b04b8cd59b18c769f7cf1c2be8bb86d5f5415be6049732556ce793f7ea490c1  ./artifacts/trajectories/session-boundaries/SES-20260831-028.yaml
 856ccac5336d0355e903daca6f5e0afd7cfc8bcd4603ffdfcedba832c723a991  ./artifacts/trajectories/session-boundaries/SES-20260831-029.yaml
 1774b287add857da65011c26bdc7086e2c7cd62d0262535acc445df39f01784c  ./artifacts/trajectories/session-boundaries/SES-20260831-030.yaml
+38f1d2e2486e505c060ad0497bbd88ab13c6c6e05e04744cd6f402df1e9ed810  ./artifacts/trajectories/session-boundaries/SES-20260831-031.yaml
 f46b2ed8c85e8558b5c8812491c09d89530099b0890454415579ea4c5d69e8a5  ./candidates/BG-D01/candidate-a/MuseumBoard.ts
 9e2a9151531aa961cf0ace3e20520fdcfa45ff0bff0f13ae214f7e5fbdad7d2b  ./candidates/BG-D01/candidate-b/MuseumBoard.ts
 3360e495c3d5895e784be3b62a041de83666d8bd97239f044bb6032273e3e8a3  ./candidates/BG-D02/candidate-a/ParcelDispatchBoard.ts
