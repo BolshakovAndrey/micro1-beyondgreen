@@ -3,6 +3,6 @@
   "fixture_id": "BG-D03",
   "export_path": "evaluation/verifier-only/BG-D03/official-runtime-exports.ts",
   "export_names": ["OFFICIAL_SCENARIO_PROVIDER_HANDLER", "OFFICIAL_EVALUATOR_HANDLER"],
-  "export_sha256": "e5ce3e9f83a8a0612cc28a1d8d97e2b32f7d001b6c3d87987d0e9f61f5edd191",
+  "export_sha256": "bd41bbdf6a3c43c507356e446a265899d604390a02a1fde0dc0a56f871134417",
   "manifest_self_excluded": true
 }

@@ -34,6 +34,7 @@ const EvaluatorPayloadSchema = z.object({ evaluator: RelativeModuleBindingSchema
 const ObserverPayloadSchema = z.object({
   candidate: RelativeModuleBindingSchema,
   mount: RelativeModuleBindingSchema.nullable(),
+  summary: RelativeModuleBindingSchema.nullable(),
 }).strict();
 const JsonValueSchema = z.json();
 type JsonValue = z.infer<typeof JsonValueSchema>;
@@ -97,6 +98,9 @@ async function runObserver(): Promise<0 | 1> {
     const mount = payload.mount === null
       ? null
       : await atOfficialHandlerStage("LOAD_MOUNT", () => loadExport(payload.mount!));
+    const summary = payload.summary === null
+      ? null
+      : await atOfficialHandlerStage("LOAD_MOUNT", () => loadExport(payload.summary!));
     let transcript: JsonValue;
     switch (request.slot.fixtureId) {
       case "BG-D01":
@@ -104,8 +108,8 @@ async function runObserver(): Promise<0 | 1> {
         transcript = JsonValueSchema.parse(await captureD01ObserverBridgeTranscript({ bindings: { component: candidate as never, mount: mount as never }, scenario: request.scenario }));
         break;
       case "BG-D03":
-        if (typeof candidate !== "function") throw new Error("D03 constructor binding is invalid.");
-        transcript = await atOfficialHandlerStage("EXECUTE_STEP", async () => JsonValueSchema.parse(await captureBGD03SpecializedTranscript({ bindings: { Planner: candidate as never }, scenario: request.scenario })));
+        if (typeof candidate !== "function" || typeof summary !== "function") throw new Error("D03 observer bindings are invalid.");
+        transcript = await atOfficialHandlerStage("EXECUTE_STEP", async () => JsonValueSchema.parse(await captureBGD03SpecializedTranscript({ bindings: { Planner: candidate as never, Summary: summary as never }, scenario: request.scenario })));
         break;
       case "BG-H01":
         if (typeof mount !== "function") throw new Error("H01 mount binding is invalid.");

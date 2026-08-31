@@ -87,7 +87,7 @@ test("physical role worker completes status-quo, scenario, observer, and evaluat
     const observerResult = await launch({ role: "observer", capability: capability("observer"), attemptOrdinal: 1, request: {
       ...requestBase("observer:synthetic"), role: "observer", operation: "capture_after_decisions", targetArm: "status-quo",
       decisions: slotDecisions, scenario,
-      payload: { candidate: { modulePath: PUBLIC_BINDINGS, exportName: "SyntheticCandidate" }, mount: { modulePath: PUBLIC_BINDINGS, exportName: "mountSyntheticCandidate" } },
+      payload: { candidate: { modulePath: PUBLIC_BINDINGS, exportName: "SyntheticCandidate" }, mount: { modulePath: PUBLIC_BINDINGS, exportName: "mountSyntheticCandidate" }, summary: null },
     } });
     const capture = OfficialObserverProcessSuccessSchema.parse(observerResult.response).capture;
 
@@ -103,7 +103,7 @@ test("physical role worker completes status-quo, scenario, observer, and evaluat
     const failedObserver = await launch({ role: "observer", capability: capability("observer"), attemptOrdinal: 1, request: {
       ...requestBase("observer:missing-export"), role: "observer", operation: "capture_after_decisions", targetArm: "status-quo",
       decisions: slotDecisions, scenario,
-      payload: { candidate: { modulePath: PUBLIC_BINDINGS, exportName: "MissingCandidate" }, mount: { modulePath: PUBLIC_BINDINGS, exportName: "mountSyntheticCandidate" } },
+      payload: { candidate: { modulePath: PUBLIC_BINDINGS, exportName: "MissingCandidate" }, mount: { modulePath: PUBLIC_BINDINGS, exportName: "mountSyntheticCandidate" }, summary: null },
     } });
     const safeFailure = OfficialProcessFailureSchema.parse(failedObserver.response);
     assert.equal(safeFailure.errorCode, "HANDLER_FAILURE");

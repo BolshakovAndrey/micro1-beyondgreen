@@ -1,0 +1,101 @@
+schema_version: "1.1"
+session_id: "SES-20260831-037"
+started_at_utc: "2026-08-31T11:09:20Z"
+agent:
+  tool: "Codex coordinator"
+  purpose: "Correct the bounded D01/D03 verifier-runtime contracts, persist safe evaluator failures, and rehearse all forty evaluator results before POSTDECISION-004"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  base_head: "9292acc16a0fc30622eb1b6d7a587eb03a82ac91"
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approval_recorded_at_utc: "2026-08-31T11:09:20Z"
+  exact_approval_evidence: >-
+    The owner approved SES-20260831-037 as a bounded verifier-runtime correction.
+    The only D01 scenario change is the missing repeated reset required by the
+    unchanged canonical oracle. D03 must retain the unchanged scenario-provider and
+    oracle, preserve all five scenario actions as distinct transcript steps, and use
+    only the minimum observer binding, normalization, and evaluator-bridge changes.
+    The owner also authorized privacy-safe evaluator failure evidence, a
+    production-equivalent 20-slot by two-arm evaluator rehearsal with zero arm/model
+    calls, and preparation but not execution of POSTDECISION-004. Ground-truth
+    agreement is a verification stop condition, never a construction target.
+
+immutable_source:
+  run_001_may_change: false
+  run_002_may_change: false
+  postdecision_002_may_change: false
+  postdecision_003_may_change: false
+  run_001_file_count: 4
+  run_002_file_count: 44
+  run_002_bundle_sha256: "5df68dc714d66ca44852d2487213ae5bb222f8444cedc734ccaabdf2abbe6d95"
+  postdecision_002_file_count: 4
+  postdecision_002_total_bytes: 18625
+  postdecision_003_file_count: 92
+  postdecision_003_total_bytes: 592772
+  postdecision_003_bundle_sha256: "62e4012eb840f95b81c3b3cab393a865ed3292b5228abea4b0b90c10dd6bbe79"
+
+allowed_scope:
+  - "Add exactly one repeated reset to the BG-D01 neutral scenario and make no other D01 scenario change."
+  - "Keep the BG-D03 scenario-provider and oracle assertions byte-identical."
+  - "Preserve the exact names, order, and identity of all five BG-D03 scenario steps in the observer transcript."
+  - "Minimally change the D03 observer binding, transcript normalization, and evaluator bridge so every scenario frame is consumed exactly once."
+  - "If required, bind the public TrayPlannerSummary only in the observer process and verify its derived output against the snapshot."
+  - "Persist privacy-safe structured evaluator failure evidence without raw stderr, paths, stacks, or unchecked exception text."
+  - "Add and run one production-equivalent evaluator rehearsal for 20 slots and two arms: 40 evaluator records total."
+  - "Require 40 schema-valid evaluator records, exact frozen ground-truth agreement, and zero arm/model calls."
+  - "Prepare POSTDECISION-004 as a fresh create-once root that regenerates all 80 observer captures; do not execute it."
+  - "Run compile, tests, manifests, checksums, diff checks, and safe preflight."
+  - "Prepare a complete Russian owner packet."
+
+forbidden_scope:
+  - "Modify, delete, overwrite, or regenerate RUN-001, RUN-002, POSTDECISION-002, or POSTDECISION-003."
+  - "Reuse any POSTDECISION-003 observer capture in POSTDECISION-004."
+  - "Tune any scenario, transcript, bridge, or evaluator to obtain a desired ground-truth mapping."
+  - "Change decisions, candidates, oracle assertions, oracle semantics, ground truth, scoring, or evaluation v1.1."
+  - "Execute arm/model calls, evaluation:run, or POSTDECISION-004."
+  - "Expose raw stderr, private paths, stack traces, hidden scenario values, oracle content, or candidate bytes."
+  - "Commit or push."
+
+stop_rules:
+  - "Stop if any immutable source byte or recorded source property changes."
+  - "Stop if D01 requires any scenario change beyond the repeated reset."
+  - "Stop if D03 cannot preserve and consume all five exact scenario steps without changing its scenario-provider or oracle assertions."
+  - "Stop if any frozen ground-truth mapping differs after the independently derived corrections; do not tune further."
+  - "Stop if rehearsal invokes an arm or model, produces fewer or more than 40 evaluator records, or reports any schema-invalid record."
+  - "Stop before POSTDECISION-004, commit, or push."
+
+attestation:
+  inherited_private_transcript: false
+  external_workspace_read: false
+  browser_or_mcp_used: false
+  arm_or_model_calls: 0
+  postdecision_004_executed: false
+  repository_artifacts_status: "candidate_under_bounded_implementation"
+
+verification:
+  compilation: "passed"
+  targeted_tests: "23/23 passed after derived manifest reconciliation"
+  d01_canonical_alignment: "passed; exactly one repeated reset added"
+  d03_exact_transcript: "passed; construct, add, set-packet-count, observe, render-summary"
+  d03_frozen_ground_truth: "passed; preserving accepted and seeded defect rejected"
+  evaluator_failure_evidence: "passed; persisted projection excludes raw message, stderr, stack, and paths"
+  official_static_preflight: "passed; inventory 5eb206c286a7fba03885f2e2ebed0250fd154b42f13237c2525eb4781af541cf"
+  evaluator_rehearsal_attempts:
+    - "Attempt 1 stopped at EXECUTE_EVALUATOR with a generic safe HANDLER_FAILURE; no official writes, arms, or model calls."
+    - "Attempt 2 added only the safe requestId and localized the same deterministic failure to evaluator:BG-D04:preserving:status-quo."
+  auxiliary_yaml_parse_attempt: "failed before parsing because the optional yaml npm module is absent; no dependency or alternate runtime was introduced"
+  new_finding: "BG-D04 evaluator bridge reads disposal.observation.subscribers although the public harness returns the subscriber-count object directly."
+  full_40_record_gate: "blocked before completion by the out-of-scope BG-D04 bridge defect"
+  immutable_sources: "RUN-001 4 files; RUN-002 44 files; POSTDECISION-002 4 files; POSTDECISION-003 92 files and 592772 bytes; unchanged"
+  postdecision_004_exists: false
+  arm_or_model_calls: 0
+
+completion:
+  completed_at_utc: "2026-08-31T11:19:05Z"
+  owner_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-SES-037-VERIFIER-RUNTIME-OWNER-PACKET_RU.md"
+  disposition: "BLOCKED_ON_NEW_OUT_OF_SCOPE_BG_D04_BRIDGE_FINDING; commit and POSTDECISION-004 remain forbidden"

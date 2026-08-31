@@ -15,6 +15,8 @@ import type {
   UnitReadoutComponent,
 } from "../../../evaluation/arm-visible/BG-H05/contract.ts";
 import type { MountedUnitStoreFixture } from "../../../evaluation/arm-visible/BG-H05/harness.ts";
+import { createElement, type ReactElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import {
   OfficialNeutralScenarioEnvelopeSchema,
   type OfficialNeutralScenarioEnvelope,
@@ -173,13 +175,14 @@ type BGD03Planner = Readonly<{
 /** Already-loaded public class binding for the class-based BG-D03 fixture. */
 export type BGD03ObserverBindings = Readonly<{
   Planner: new (capacity: number, varieties: readonly BGD03Variety[]) => BGD03Planner;
+  Summary: (props: Readonly<{ planner: BGD03Planner }>) => ReactElement;
 }>;
 
 type BGD03Step =
   | Readonly<{ operation: "construct"; capacity: number; varieties: readonly BGD03Variety[] }>
-  | Readonly<{ operation: "snapshot" | "reset" }>
-  | Readonly<{ operation: "add" | "remove"; varietyId: string }>
-  | Readonly<{ operation: "setPacketCount"; varietyId: string; packetCount: number }>;
+  | Readonly<{ operation: "observe" | "render-summary" }>
+  | Readonly<{ operation: "add"; varietyId: string }>
+  | Readonly<{ operation: "set-packet-count"; varietyId: string; packetCount: number }>;
 
 function normalizeD03Step(step: OfficialNeutralScenarioEnvelope["steps"][number]): BGD03Step {
   if (!isPlainRecord(step.parameters)) throw new Error("D03 step parameters must be a plain object.");
@@ -203,22 +206,18 @@ function normalizeD03Step(step: OfficialNeutralScenarioEnvelope["steps"][number]
       varieties: Object.freeze(varieties),
     });
   }
-  if (step.action === "snapshot" || step.action === "observe" || step.action === "render-summary") {
-    emptyParameters(step.parameters, "D03 snapshot");
-    return Object.freeze({ operation: "snapshot" });
+  if (step.action === "observe" || step.action === "render-summary") {
+    emptyParameters(step.parameters, `D03 ${step.action}`);
+    return Object.freeze({ operation: step.action });
   }
-  if (step.action === "reset") {
-    emptyParameters(step.parameters, "D03 reset");
-    return Object.freeze({ operation: "reset" });
-  }
-  if (step.action === "add" || step.action === "remove") {
-    exactKeys(step.parameters, ["varietyId"], `D03 ${step.action}`);
+  if (step.action === "add") {
+    exactKeys(step.parameters, ["varietyId"], "D03 add");
     return Object.freeze({ operation: step.action, varietyId: requireString(step.parameters.varietyId, "D03 varietyId") });
   }
-  if (["setPacketCount", "set_packet_count", "set-packet-count"].includes(step.action)) {
-    exactKeys(step.parameters, ["varietyId", "packetCount"], "D03 setPacketCount");
+  if (step.action === "set-packet-count") {
+    exactKeys(step.parameters, ["varietyId", "packetCount"], "D03 set-packet-count");
     return Object.freeze({
-      operation: "setPacketCount",
+      operation: "set-packet-count",
       varietyId: requireString(step.parameters.varietyId, "D03 varietyId"),
       packetCount: requireInteger(step.parameters.packetCount, "D03 packetCount"),
     });
@@ -241,15 +240,22 @@ export async function captureBGD03SpecializedTranscript(input: Readonly<{
   const frames: SpecializedObserverFrame[] = [frame(1, "construct", null, planner.snapshot)];
   for (const [index, step] of steps.slice(1).entries()) {
     let result: unknown;
+    let observation: unknown;
     switch (step.operation) {
-      case "snapshot": result = null; break;
-      case "add": result = planner.add(step.varietyId); break;
-      case "remove": result = planner.remove(step.varietyId); break;
-      case "setPacketCount": result = planner.setPacketCount(step.varietyId, step.packetCount); break;
-      case "reset": result = planner.reset(); break;
+      case "observe": result = null; observation = planner.snapshot; break;
+      case "render-summary": {
+        result = null;
+        observation = Object.freeze({
+          snapshot: planner.snapshot,
+          markup: renderToStaticMarkup(createElement(input.bindings.Summary, { planner })),
+        });
+        break;
+      }
+      case "add": result = planner.add(step.varietyId); observation = planner.snapshot; break;
+      case "set-packet-count": result = planner.setPacketCount(step.varietyId, step.packetCount); observation = planner.snapshot; break;
       case "construct": throw new Error("D03 scenario cannot construct twice.");
     }
-    frames.push(frame(index + 2, step.operation, result, planner.snapshot));
+    frames.push(frame(index + 2, step.operation, result, observation));
   }
   return transcript({ fixtureId: "BG-D03", scenario, frames, disposalCalled: false, disposalObservation: undefined });
 }

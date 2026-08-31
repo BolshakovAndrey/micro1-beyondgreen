@@ -115,8 +115,8 @@ export const D01_FIXTURE = Object.freeze({
       "evaluation/verifier-only/BG-D01/scenario-provider.ts",
       "evaluation/verifier-only/BG-D01/self-check.test.ts",
     ],
-    expectedManifestSha256: "41b66ac370c8e6a9948cbe90f3ac37a74b6d7aa838bc87b8f50d1ef49259a094",
-    expectedPackageSha256: "e8f45d1dc0cc0e468e619ef31f92b1988b3abbf9ebd4a45eb4f5ec3cd1631055",
+    expectedManifestSha256: "227275331b4dde0b0d31516d409618d91c4dd79f54fb976d77bcfad1b13b9b90",
+    expectedPackageSha256: "17a10478e5e7a20272dd59f3d6913dbd42e369a8a081c7652fb01d332543b2d8",
   },
   scripts: {
     armWorker: "scripts/d01-arm-worker.ts",

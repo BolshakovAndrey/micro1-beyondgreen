@@ -10,6 +10,7 @@ export const NEUTRAL_SCENARIO_PROVIDER_EXPORT = Object.freeze({
     { action: "dispatch", parameters: { value: { type: "select-every-third" } } },
     { action: "dispatch", parameters: { value: { type: "remove", multiplicity: 1 } } },
     { action: "dispatch", parameters: { value: { type: "reset" } } },
+    { action: "dispatch", parameters: { value: { type: "reset" } } },
     { action: "dispose", parameters: {} },
   ]),
 });

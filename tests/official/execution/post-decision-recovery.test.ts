@@ -19,6 +19,7 @@ import {
 } from "../../../src/official/execution/post-decision-recovery.ts";
 import type { OfficialExecutionPlan } from "../../../src/official/integration/execution-plan.ts";
 import type { OfficialExecutionHooks } from "../../../src/official/execution/coordinator.ts";
+import { OfficialRoleProcessFailureError } from "../../../src/official/execution/production-composition.ts";
 import { runOfficialStaticPreflight } from "../../../src/official/integration/preflight.ts";
 import {
   sha256CanonicalJson,
@@ -271,14 +272,15 @@ test("candidate-byte drift remains blocking after approved inventory drift", asy
   }
 });
 
-test("production continuation reserves POSTDECISION-003", () => {
-  assert.match(OFFICIAL_POST_DECISION_OUTPUT_ROOT, /POSTDECISION-003$/u);
+test("production continuation reserves POSTDECISION-004", () => {
+  assert.match(OFFICIAL_POST_DECISION_OUTPUT_ROOT, /POSTDECISION-004$/u);
 });
 
 test("role failure evidence contains only the approved non-disclosing projection", () => {
   const record = buildOfficialSafeRoleFailureRecord({
     ordinal: 1,
     arm: "status-quo",
+    processPhase: "observer-capture",
     captureOrdinal: 1,
     failure: {
       schemaVersion: "beyondgreen-official-process-failure@1.0.0",
@@ -294,10 +296,120 @@ test("role failure evidence contains only the approved non-disclosing projection
   });
   assert.deepEqual(Object.keys(record).sort(), [
     "arm", "captureOrdinal", "disposition", "errorCode", "failureStage",
-    "ordinal", "requestId", "retryAllowed", "role", "schemaVersion",
+    "ordinal", "processPhase", "requestId", "retryAllowed", "role", "schemaVersion",
   ]);
   assert.equal(JSON.stringify(record).includes("This text"), false);
   assert.equal(Object.isFrozen(record), true);
+
+  const evaluatorRecord = buildOfficialSafeRoleFailureRecord({
+    ordinal: 5,
+    arm: "status-quo",
+    processPhase: "evaluator",
+    failure: {
+      schemaVersion: "beyondgreen-official-process-failure@1.0.0",
+      requestId: "evaluator:BG-D03:candidate-a:status-quo",
+      role: "evaluator",
+      status: "error",
+      disposition: "abstain",
+      retryAllowed: false,
+      errorCode: "HANDLER_FAILURE",
+      failureStage: "EXECUTE_EVALUATOR",
+      message: "Raw evaluator diagnostics must not be persisted.",
+    },
+  });
+  assert.equal(evaluatorRecord.processPhase, "evaluator");
+  assert.equal(evaluatorRecord.captureOrdinal, null);
+  assert.equal(JSON.stringify(evaluatorRecord).includes("Raw evaluator"), false);
+});
+
+test("post-decision recovery persists a privacy-safe evaluator failure before stopping", async () => {
+  const outputRoot = temporaryPath("evaluator-failure-output");
+  try {
+    const source = loadOfficialPostDecisionRecoverySource({
+      repositoryRoot: process.cwd(),
+      relativeSourceRoot: OFFICIAL_POST_DECISION_SOURCE_ROOT,
+      sourceManifestPath: OFFICIAL_POST_DECISION_SOURCE_MANIFEST,
+    });
+    const currentInventorySha256 = changedInventorySha256("evaluator-failure-test");
+    const currentPlan = Object.freeze({ ...source.plan, inventorySha256: currentInventorySha256 });
+    const hooks: OfficialExecutionHooks = {
+      staticPreflight: () => ({
+        schemaVersion: "beyondgreen-official-static-preflight@1.0.0",
+        inventorySha256: currentInventorySha256,
+        fixtureCount: 10,
+        candidateCount: 20,
+        executionPlan: currentPlan,
+        candidateImportsPerformed: false,
+        candidateExecutionPerformed: false,
+        verifierContentParsed: false,
+        officialOrScoredRun: false,
+        unblindingPerformed: false,
+        readyForSyntheticProcessRehearsal: true,
+      }),
+      hashCandidate: (slot) => slot.candidate.sha256,
+      executeArm() { throw new Error("Evaluator failure test must never execute an arm."); },
+      beginPostDecisionEvaluation: () => ({ unblindingPerformed: true }),
+      releaseNeutralScenario({ slot, decisions }) {
+        const core = {
+          schemaVersion: "beyondgreen-official-neutral-scenario@1.0.0" as const,
+          slot,
+          scenarioId: `scenario:${slot.fixtureId}`,
+          decisionSetSha256: sha256CanonicalJson(decisions),
+          steps: [{ action: "synthetic-action", parameters: {} }],
+          immutable: true as const,
+        };
+        return { ...core, scenarioSha256: sha256CanonicalJson(core) };
+      },
+      captureObservation({ slot, arm, decisions }) {
+        const selected = decisions.find((entry) => entry.arm === arm)!;
+        const transcript = { fixtureId: slot.fixtureId, candidateId: slot.candidateId, arm };
+        const core = {
+          schemaVersion: "beyondgreen-official-observer-capture@1.0.0" as const,
+          slot,
+          arm,
+          decisionSha256: selected.decisionSha256,
+          transcript,
+          transcriptSha256: sha256CanonicalJson(transcript),
+          immutable: true as const,
+        };
+        return { ...core, captureSha256: sha256CanonicalJson(core) };
+      },
+      evaluate() {
+        throw new OfficialRoleProcessFailureError({
+          schemaVersion: "beyondgreen-official-process-failure@1.0.0",
+          requestId: "evaluator:BG-D01:candidate-a:status-quo",
+          role: "evaluator",
+          status: "error",
+          disposition: "abstain",
+          retryAllowed: false,
+          errorCode: "HANDLER_FAILURE",
+          failureStage: "EXECUTE_EVALUATOR",
+          message: "Sensitive evaluator detail must remain absent.",
+        });
+      },
+    };
+    await assert.rejects(executeOfficialPostDecisionRecovery({
+      repositoryRoot: process.cwd(),
+      relativeSourceRoot: OFFICIAL_POST_DECISION_SOURCE_ROOT,
+      sourceManifestPath: OFFICIAL_POST_DECISION_SOURCE_MANIFEST,
+      outputRoot: path.resolve(outputRoot),
+      provenance: { syntheticEvaluatorFailureTest: true },
+      inventoryDriftDisclosure: {
+        expectedSourceInventorySha256: source.plan.inventorySha256,
+        expectedCurrentInventorySha256: currentInventorySha256,
+        reason: OFFICIAL_POST_DECISION_INVENTORY_DRIFT_REASON,
+      },
+      hooks,
+    }), OfficialRoleProcessFailureError);
+    const failurePath = path.join(outputRoot, "failure-records", "01-status-quo-evaluator.json");
+    const persisted = JSON.parse(readFileSync(failurePath, "utf8"));
+    assert.equal(persisted.processPhase, "evaluator");
+    assert.equal(persisted.captureOrdinal, null);
+    assert.equal(persisted.failureStage, "EXECUTE_EVALUATOR");
+    assert.equal(JSON.stringify(persisted).includes("Sensitive evaluator"), false);
+  } finally {
+    rmSync(outputRoot, { recursive: true, force: true });
+  }
 });
 
 test("production inventory disclosure matches RUN-002 and current static validation", () => {

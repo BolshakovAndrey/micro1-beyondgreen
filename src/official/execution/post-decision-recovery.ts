@@ -60,10 +60,10 @@ const Sha256Schema = z.string().regex(/^[a-f0-9]{64}$/u);
 
 export const OFFICIAL_POST_DECISION_SOURCE_ROOT = "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002";
 export const OFFICIAL_POST_DECISION_SOURCE_MANIFEST = "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002.source-manifest.json";
-export const OFFICIAL_POST_DECISION_OUTPUT_ROOT = "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-003";
-export const OFFICIAL_POST_DECISION_INVENTORY_DRIFT_REASON = "owner-approved verifier repair SES-20260831-034";
+export const OFFICIAL_POST_DECISION_OUTPUT_ROOT = "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004";
+export const OFFICIAL_POST_DECISION_INVENTORY_DRIFT_REASON = "owner-approved verifier repairs SES-20260831-034 and SES-20260831-037";
 export const OFFICIAL_POST_DECISION_SOURCE_INVENTORY_SHA256 = "4b9d4100667af58f7b995ff00d4c39b81922a8cf4656c0a93fa59c7ecc0a345c";
-export const OFFICIAL_POST_DECISION_CURRENT_INVENTORY_SHA256 = "9bffe4f104f09ff576fcb12e7a79d66b45a54a7306efbef332b4446dae849db2";
+export const OFFICIAL_POST_DECISION_CURRENT_INVENTORY_SHA256 = "5eb206c286a7fba03885f2e2ebed0250fd154b42f13237c2525eb4781af541cf";
 
 const SourceFileSchema = z.object({
   path: z.string().min(1),
@@ -138,7 +138,8 @@ export type OfficialSafeRoleFailureRecord = Readonly<{
   schemaVersion: "beyondgreen-official-role-failure-record@1.0.0";
   ordinal: number;
   arm: OfficialArm;
-  captureOrdinal: 1 | 2;
+  processPhase: "observer-capture" | "evaluator";
+  captureOrdinal: 1 | 2 | null;
   role: OfficialProcessFailure["role"];
   requestId: string | null;
   disposition: "abstain";
@@ -151,14 +152,16 @@ export type OfficialSafeRoleFailureRecord = Readonly<{
 export function buildOfficialSafeRoleFailureRecord(input: Readonly<{
   ordinal: number;
   arm: OfficialArm;
-  captureOrdinal: 1 | 2;
+  processPhase: "observer-capture" | "evaluator";
+  captureOrdinal?: 1 | 2;
   failure: OfficialProcessFailure;
 }>): OfficialSafeRoleFailureRecord {
   return Object.freeze({
     schemaVersion: "beyondgreen-official-role-failure-record@1.0.0",
     ordinal: input.ordinal,
     arm: input.arm,
-    captureOrdinal: input.captureOrdinal,
+    processPhase: input.processPhase,
+    captureOrdinal: input.captureOrdinal ?? null,
     role: input.failure.role,
     requestId: input.failure.requestId,
     disposition: input.failure.disposition,
@@ -425,7 +428,8 @@ class OfficialCreateOncePostDecisionWriter {
   public writeRoleFailure(input: Readonly<{
     ordinal: number;
     arm: OfficialArm;
-    captureOrdinal: 1 | 2;
+    processPhase: "observer-capture" | "evaluator";
+    captureOrdinal?: 1 | 2;
     failure: OfficialProcessFailure;
   }>): void {
     this.#assertInitialized();
@@ -433,7 +437,7 @@ class OfficialCreateOncePostDecisionWriter {
       path.join(
         this.#root,
         "failure-records",
-        `${String(input.ordinal).padStart(2, "0")}-${input.arm}-${input.captureOrdinal}.json`,
+        `${String(input.ordinal).padStart(2, "0")}-${input.arm}-${input.processPhase}${input.captureOrdinal ? `-${input.captureOrdinal}` : ""}.json`,
       ),
       `${canonicalJson(buildOfficialSafeRoleFailureRecord(input))}\n`,
     );
@@ -537,7 +541,7 @@ export async function executeOfficialPostDecisionRecovery(input: Readonly<{
           }));
         } catch (error) {
           if (error instanceof OfficialRoleProcessFailureError) {
-            writer.writeRoleFailure({ ordinal: slot.ordinal, arm, captureOrdinal, failure: error.failure });
+            writer.writeRoleFailure({ ordinal: slot.ordinal, arm, processPhase: "observer-capture", captureOrdinal, failure: error.failure });
           }
           throw error;
         }
@@ -563,13 +567,22 @@ export async function executeOfficialPostDecisionRecovery(input: Readonly<{
     const slotDecisions = decisionsBySlot.get(slot.slotId)!;
     for (const arm of ARMS) {
       const pair = pairs.find((entry) => entry.slot.slotId === slot.slotId && entry.arm === arm)!;
-      const record = Object.freeze(OfficialScoredRecordSchema.parse(await input.hooks.evaluate({
-        executionSlot: slot,
-        slot: processSlot,
-        arm,
-        decisions: slotDecisions,
-        observationPair: pair,
-      })));
+      let evaluated: unknown;
+      try {
+        evaluated = await input.hooks.evaluate({
+          executionSlot: slot,
+          slot: processSlot,
+          arm,
+          decisions: slotDecisions,
+          observationPair: pair,
+        });
+      } catch (error) {
+        if (error instanceof OfficialRoleProcessFailureError) {
+          writer.writeRoleFailure({ ordinal: slot.ordinal, arm, processPhase: "evaluator", failure: error.failure });
+        }
+        throw error;
+      }
+      const record = Object.freeze(OfficialScoredRecordSchema.parse(evaluated));
       if (record.fixtureId !== slot.fixtureId || record.candidateId !== slot.candidateId || record.arm !== arm) {
         throw new Error("Recovered evaluator record is bound to the wrong slot or arm.");
       }

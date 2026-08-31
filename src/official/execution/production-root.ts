@@ -122,6 +122,9 @@ export function resolveOfficialProductionSlotBinding(slot: OfficialExecutionSlot
     observerPayload: () => Object.freeze({
       candidate: Object.freeze({ modulePath: slot.candidate.modulePath, exportName: slot.candidate.exportName }),
       mount,
+      summary: slot.fixtureId === "BG-D03"
+        ? Object.freeze({ modulePath: slot.candidate.modulePath, exportName: "TrayPlannerSummary" })
+        : null,
     }),
     evaluatorPayload: () => Object.freeze({
       evaluator: Object.freeze({ modulePath: verifierModule, exportName: STANDARD_EVALUATOR_EXPORT }),

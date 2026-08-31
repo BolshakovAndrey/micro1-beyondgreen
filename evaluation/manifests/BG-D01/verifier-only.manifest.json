@@ -32,16 +32,16 @@
     },
     {
       "path": "evaluation/verifier-only/BG-D01/scenario-provider.manifest.json",
-      "sha256": "822d5afe081079464521b458342ce0dc012509d685128bf0e8b0282961fb341a"
+      "sha256": "c79cba11f12208b93a7080f121731f95ff25df0765bea7bb8b466a44f18a878e"
     },
     {
       "path": "evaluation/verifier-only/BG-D01/scenario-provider.ts",
-      "sha256": "6bcae3cc9098aa922f028fdec79b5f75a764b7d6d4f9d09ef2e31f487b3a106d"
+      "sha256": "3767e5feda5be481b5de07728f4e1fad0467f584ce149411ae19e91b1dac6d37"
     },
     {
       "path": "evaluation/verifier-only/BG-D01/self-check.test.ts",
       "sha256": "6b9a2f3022c81904353d555c2db1366850480031247f13cbadc70d593b0ba328"
     }
   ],
-  "package_sha256": "e8f45d1dc0cc0e468e619ef31f92b1988b3abbf9ebd4a45eb4f5ec3cd1631055"
+  "package_sha256": "17a10478e5e7a20272dd59f3d6913dbd42e369a8a081c7652fb01d332543b2d8"
 }

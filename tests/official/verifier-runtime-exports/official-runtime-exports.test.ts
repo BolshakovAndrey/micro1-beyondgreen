@@ -138,8 +138,8 @@ test("D01 scenario provider is package-local, neutral, and manifest-bound", asyn
   assert.equal(manifest.export_sha256, createHash("sha256").update(source).digest("hex"));
 });
 
-test("D03 evaluator consumes the public snapshot operation without legacy category leakage", async () => {
+test("D03 evaluator preserves and consumes every frozen scenario operation", async () => {
   const source = await readFile("evaluation/verifier-only/BG-D03/official-runtime-exports.ts", "utf8");
-  assert.match(source, /consume\("snapshot"\)/u);
-  assert.doesNotMatch(source, /render-summary/u);
+  assert.match(source, /"construct", "add", "set-packet-count", "observe", "render-summary"/u);
+  assert.match(source, /summaryMatches/u);
 });

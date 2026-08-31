@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { createElement } from "react";
 
 import type { DisplayCardEditorComponent } from "../../../evaluation/arm-visible/BG-H01/contract.ts";
 import type { StargazingGuideComponent } from "../../../evaluation/arm-visible/BG-H02/contract.ts";
@@ -64,16 +65,24 @@ function d03Bindings(): BGD03ObserverBindings {
     remove(varietyId: string): boolean { return this.#selected.delete(varietyId); }
     reset(): void { this.#selected.clear(); }
   }
-  return { Planner };
+  return {
+    Planner,
+    Summary: ({ planner }) => {
+      const { occupiedCells, remainingCells, overCapacity } = planner.snapshot as {
+        occupiedCells: number; remainingCells: number; overCapacity: boolean;
+      };
+      return createElement("output", { "data-testid": "tray-summary" },
+        `occupied=${occupiedCells};remaining=${remainingCells};overCapacity=${overCapacity}`);
+    },
+  };
 }
 
 const D03_SCENARIO = scenario("BG-D03", [
   { action: "construct", parameters: { capacity: 8, varieties: [{ id: "one", label: "One", cellsPerPacket: 2 }] } },
-  { action: "snapshot", parameters: {} },
-  { action: "render-summary", parameters: {} },
   { action: "add", parameters: { varietyId: "one" } },
-  { action: "setPacketCount", parameters: { varietyId: "one", packetCount: 3 } },
-  { action: "reset", parameters: {} },
+  { action: "set-packet-count", parameters: { varietyId: "one", packetCount: 3 } },
+  { action: "observe", parameters: {} },
+  { action: "render-summary", parameters: {} },
 ]);
 
 test("D03 routes constructor and class-method categories deterministically", async () => {
@@ -82,14 +91,14 @@ test("D03 routes constructor and class-method categories deterministically", asy
   assert.deepEqual(second, first);
   assert.deepEqual(first.frames.map(({ operation, result }) => ({ operation, result })), [
     { operation: "construct", result: null },
-    { operation: "snapshot", result: null },
-    { operation: "snapshot", result: null },
     { operation: "add", result: true },
-    { operation: "setPacketCount", result: true },
-    { operation: "reset", result: null },
+    { operation: "set-packet-count", result: true },
+    { operation: "observe", result: null },
+    { operation: "render-summary", result: null },
   ]);
   assert.equal(first.disposal.called, false);
-  assert.equal(Object.isFrozen(first.frames[2]!.observation), true);
+  assert.equal(Object.isFrozen(first.frames[4]!.observation), true);
+  assert.match(JSON.stringify(first.frames[4]!.observation), /occupied=6;remaining=2;overCapacity=false/u);
 });
 
 function h01Bindings(options: Readonly<{ throwOnDispatch?: boolean }> = {}): Readonly<{

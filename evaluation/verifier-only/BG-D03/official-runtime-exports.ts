@@ -13,22 +13,27 @@ function evaluateTranscript(request: OfficialEvaluatorProcessRequest): boolean {
   const transcript = record(request.capture.transcript, "Transcript");
   if (transcript.fixtureId !== FIXTURE_ID || !Array.isArray(transcript.frames)) throw new TypeError("D03 transcript binding is invalid.");
   const frames = transcript.frames.map((value, index) => record(value, `Frame ${index}`));
-  let cursor = 0;
-  const consume = (operation: string): Record<string, unknown> => {
-    const frame = frames[cursor++];
-    if (!frame || frame.operation !== operation) throw new TypeError(`D03 transcript operation ${operation} is missing or out of order.`);
-    return frame;
-  };
-  class TranscriptPlanner implements OraclePlanner {
-    constructor(_capacity: number, _varieties: readonly { readonly id: string; readonly label: string; readonly cellsPerPacket: number }[]) { consume("construct"); }
-    get snapshot(): OraclePlanner["snapshot"] { return consume("snapshot").observation as OraclePlanner["snapshot"]; }
-    add(_varietyId: string): boolean { return consume("add").result as boolean; }
-    setPacketCount(_varietyId: string, _packetCount: number): boolean { return consume("set-packet-count").result as boolean; }
+  const operations = ["construct", "add", "set-packet-count", "observe", "render-summary"] as const;
+  if (frames.length !== operations.length || frames.some((frame, index) => frame.operation !== operations[index])) {
+    throw new TypeError("D03 transcript does not preserve the exact frozen scenario order.");
   }
+  const [constructFrame, addFrame, packetFrame, observeFrame, summaryFrame] = frames as [
+    Record<string, unknown>, Record<string, unknown>, Record<string, unknown>, Record<string, unknown>, Record<string, unknown>,
+  ];
+  class TranscriptPlanner implements OraclePlanner {
+    constructor(_capacity: number, _varieties: readonly { readonly id: string; readonly label: string; readonly cellsPerPacket: number }[]) { void constructFrame; }
+    get snapshot(): OraclePlanner["snapshot"] { return observeFrame.observation as OraclePlanner["snapshot"]; }
+    add(_varietyId: string): boolean { return addFrame.result as boolean; }
+    setPacketCount(_varietyId: string, _packetCount: number): boolean { return packetFrame.result as boolean; }
+  }
+  const summary = record(summaryFrame.observation, "Rendered summary observation");
+  const snapshot = record(observeFrame.observation, "Observed D03 snapshot");
+  const expectedMarkup = `<output data-testid="tray-summary">occupied=${String(snapshot.occupiedCells)};remaining=${String(snapshot.remainingCells)};overCapacity=${String(snapshot.overCapacity)}</output>`;
+  const summaryMatches = JSON.stringify(summary.snapshot) === JSON.stringify(observeFrame.observation)
+    && summary.markup === expectedMarkup;
   try {
     assertDerivedStateOracle(TranscriptPlanner as OraclePlannerConstructor);
-    if (cursor !== frames.length) throw new TypeError("D03 transcript contains unconsumed operations.");
-    return true;
+    return summaryMatches;
   } catch (error) {
     if (error instanceof AssertionError) return false;
     throw error;
