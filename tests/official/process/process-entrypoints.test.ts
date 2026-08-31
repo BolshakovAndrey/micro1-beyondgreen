@@ -129,6 +129,7 @@ test("malformed and incomplete role IPC fails closed without retry", () => {
     disposition: "abstain",
     retryAllowed: false,
     errorCode: "MALFORMED_IPC",
+    failureStage: null,
     message: "Malformed IPC was rejected before role execution.",
   });
 

@@ -9,6 +9,7 @@ import {
   captureD01ObserverBridgeTranscript,
   type D01ObserverBridgeBindings,
 } from "../../../src/official/runtime/d01-bridge.ts";
+import { OfficialHandlerStageError } from "../../../src/official/process/handler-stage.ts";
 import {
   sha256CanonicalJson,
   type OfficialNeutralScenarioEnvelope,
@@ -88,6 +89,11 @@ const D01_SCENARIO = scenario([
   { action: "reset", parameters: {} },
 ]);
 
+const D01_SCENARIO_WITH_DISPOSE = scenario([
+  ...D01_SCENARIO.steps,
+  { action: "dispose", parameters: {} },
+]);
+
 test("D01 bridge reuses only the public mount and dispatch contract deterministically", async () => {
   const firstFixture = bindings();
   const first = await captureD01ObserverBridgeTranscript({ bindings: firstFixture.value, scenario: D01_SCENARIO });
@@ -125,8 +131,31 @@ test("D01 bridge disposes the public mount when dispatch fails", async () => {
   const fixture = bindings({ failOn: "allocate" });
   await assert.rejects(
     captureD01ObserverBridgeTranscript({ bindings: fixture.value, scenario: D01_SCENARIO }),
-    /synthetic D01 dispatch failure/u,
+    (error: unknown) => error instanceof OfficialHandlerStageError && error.stage === "EXECUTE_STEP",
   );
   assert.equal(fixture.mounts(), 1);
   assert.equal(fixture.disposals(), 1);
+});
+
+test("D01 bridge accepts one terminal dispose without running cleanup twice", async () => {
+  const fixture = bindings();
+  const transcript = await captureD01ObserverBridgeTranscript({
+    bindings: fixture.value,
+    scenario: D01_SCENARIO_WITH_DISPOSE,
+  });
+  assert.equal(transcript.frames.at(-1)?.operation, "dispose");
+  assert.equal(transcript.frames.at(-1)?.observation, null);
+  assert.equal(fixture.disposals(), 1);
+});
+
+test("D01 bridge rejects non-terminal or repeated dispose before mounting", async () => {
+  for (const invalid of [
+    scenario([{ action: "dispose", parameters: {} }, { action: "observe", parameters: {} }]),
+    scenario([{ action: "dispose", parameters: {} }, { action: "dispose", parameters: {} }]),
+  ]) {
+    const fixture = bindings();
+    await assert.rejects(captureD01ObserverBridgeTranscript({ bindings: fixture.value, scenario: invalid }));
+    assert.equal(fixture.mounts(), 0);
+    assert.equal(fixture.disposals(), 0);
+  }
 });

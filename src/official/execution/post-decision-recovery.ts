@@ -27,7 +27,9 @@ import {
   sha256CanonicalJson,
   type OfficialImmutableArmDecision,
   type OfficialNeutralScenarioEnvelope,
+  type OfficialProcessFailure,
 } from "../process/ipc.ts";
+import { OfficialRoleProcessFailureError } from "./production-composition.ts";
 import {
   finalizeOfficialObservationPair,
   parseOfficialNeutralScenario,
@@ -58,7 +60,7 @@ const Sha256Schema = z.string().regex(/^[a-f0-9]{64}$/u);
 
 export const OFFICIAL_POST_DECISION_SOURCE_ROOT = "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002";
 export const OFFICIAL_POST_DECISION_SOURCE_MANIFEST = "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002.source-manifest.json";
-export const OFFICIAL_POST_DECISION_OUTPUT_ROOT = "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-002";
+export const OFFICIAL_POST_DECISION_OUTPUT_ROOT = "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-003";
 export const OFFICIAL_POST_DECISION_INVENTORY_DRIFT_REASON = "owner-approved verifier repair SES-20260831-034";
 export const OFFICIAL_POST_DECISION_SOURCE_INVENTORY_SHA256 = "4b9d4100667af58f7b995ff00d4c39b81922a8cf4656c0a93fa59c7ecc0a345c";
 export const OFFICIAL_POST_DECISION_CURRENT_INVENTORY_SHA256 = "9bffe4f104f09ff576fcb12e7a79d66b45a54a7306efbef332b4446dae849db2";
@@ -131,6 +133,40 @@ export type OfficialPostDecisionRecoveryResult = Readonly<{
   evaluatorRecordCount: 40;
   unblindingPerformed: true;
 }>;
+
+export type OfficialSafeRoleFailureRecord = Readonly<{
+  schemaVersion: "beyondgreen-official-role-failure-record@1.0.0";
+  ordinal: number;
+  arm: OfficialArm;
+  captureOrdinal: 1 | 2;
+  role: OfficialProcessFailure["role"];
+  requestId: string | null;
+  disposition: "abstain";
+  retryAllowed: false;
+  errorCode: OfficialProcessFailure["errorCode"];
+  failureStage: OfficialProcessFailure["failureStage"];
+}>;
+
+/** Project a role failure to the only non-sensitive fields permitted in evidence. */
+export function buildOfficialSafeRoleFailureRecord(input: Readonly<{
+  ordinal: number;
+  arm: OfficialArm;
+  captureOrdinal: 1 | 2;
+  failure: OfficialProcessFailure;
+}>): OfficialSafeRoleFailureRecord {
+  return Object.freeze({
+    schemaVersion: "beyondgreen-official-role-failure-record@1.0.0",
+    ordinal: input.ordinal,
+    arm: input.arm,
+    captureOrdinal: input.captureOrdinal,
+    role: input.failure.role,
+    requestId: input.failure.requestId,
+    disposition: input.failure.disposition,
+    retryAllowed: input.failure.retryAllowed,
+    errorCode: input.failure.errorCode,
+    failureStage: input.failure.failureStage,
+  });
+}
 
 let temporaryOrdinal = 0;
 
@@ -348,6 +384,7 @@ class OfficialCreateOncePostDecisionWriter {
     mkdirSync(this.#root);
     mkdirSync(path.join(this.#root, "observer-records"));
     mkdirSync(path.join(this.#root, "evaluator-records"));
+    mkdirSync(path.join(this.#root, "failure-records"));
     atomicCreateFile(path.join(this.#root, "source-manifest.json"), `${canonicalJson(input.source.manifest)}\n`);
     atomicCreateFile(path.join(this.#root, "source-execution-plan.json"), `${canonicalJson(input.source.plan)}\n`);
     atomicCreateFile(path.join(this.#root, "provenance.json"), `${canonicalJson(input.provenance)}\n`);
@@ -382,6 +419,24 @@ class OfficialCreateOncePostDecisionWriter {
         })}\n`,
       );
     }
+  }
+
+  /** Persist only the bounded IPC failure projection; raw errors never enter evidence. */
+  public writeRoleFailure(input: Readonly<{
+    ordinal: number;
+    arm: OfficialArm;
+    captureOrdinal: 1 | 2;
+    failure: OfficialProcessFailure;
+  }>): void {
+    this.#assertInitialized();
+    atomicCreateFile(
+      path.join(
+        this.#root,
+        "failure-records",
+        `${String(input.ordinal).padStart(2, "0")}-${input.arm}-${input.captureOrdinal}.json`,
+      ),
+      `${canonicalJson(buildOfficialSafeRoleFailureRecord(input))}\n`,
+    );
   }
 
   public writeEvaluatorRecord(ordinal: number, record: OfficialScoredRecord): void {
@@ -471,14 +526,21 @@ export async function executeOfficialPostDecisionRecovery(input: Readonly<{
     for (const [armIndex, arm] of ARMS.entries()) {
       const captures = [];
       for (const captureOrdinal of [1, 2] as const) {
-        captures.push(await input.hooks.captureObservation({
-          executionSlot: slot,
-          slot: processSlot,
-          arm,
-          decisions: slotDecisions,
-          scenario,
-          captureOrdinal,
-        }));
+        try {
+          captures.push(await input.hooks.captureObservation({
+            executionSlot: slot,
+            slot: processSlot,
+            arm,
+            decisions: slotDecisions,
+            scenario,
+            captureOrdinal,
+          }));
+        } catch (error) {
+          if (error instanceof OfficialRoleProcessFailureError) {
+            writer.writeRoleFailure({ ordinal: slot.ordinal, arm, captureOrdinal, failure: error.failure });
+          }
+          throw error;
+        }
       }
       const pair = finalizeOfficialObservationPair({
         slot: processSlot,

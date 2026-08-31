@@ -7,6 +7,7 @@ import { serveOfficialArmProcess } from "../process/arm-entrypoint.ts";
 import { serveOfficialEvaluatorProcess } from "../process/evaluator-entrypoint.ts";
 import { serveOfficialScenarioBoundObserverProcess } from "../process/observer-entrypoint.ts";
 import { serveOfficialScenarioProviderProcess } from "../process/scenario-provider-entrypoint.ts";
+import { atOfficialHandlerStage } from "../process/handler-stage.ts";
 import type {
   OfficialEvaluatorHandlerOutput,
   OfficialEvaluatorProcessRequest,
@@ -70,27 +71,32 @@ async function loadExport(binding: OfficialRuntimeBinding): Promise<unknown> {
 
 async function runScenarioProvider(): Promise<0 | 1> {
   return serveOfficialScenarioProviderProcess(async (request: OfficialScenarioProviderProcessRequest) => {
-    const payload = ProviderPayloadSchema.parse(request.payload);
-    const exported = await loadExport(payload.provider);
-    const value = typeof exported === "function" ? await exported(request) : exported;
+    const payload = await atOfficialHandlerStage("REQUEST_BINDING", () => ProviderPayloadSchema.parse(request.payload));
+    const exported = await atOfficialHandlerStage("LOAD_PROVIDER", () => loadExport(payload.provider));
+    const value = await atOfficialHandlerStage(
+      "EXECUTE_PROVIDER",
+      () => typeof exported === "function" ? exported(request) : exported,
+    );
     return value as OfficialScenarioProviderHandlerOutput;
   });
 }
 
 async function runEvaluator(): Promise<0 | 1> {
   return serveOfficialEvaluatorProcess(async (request: OfficialEvaluatorProcessRequest) => {
-    const payload = EvaluatorPayloadSchema.parse(request.payload);
-    const exported = await loadExport(payload.evaluator);
+    const payload = await atOfficialHandlerStage("REQUEST_BINDING", () => EvaluatorPayloadSchema.parse(request.payload));
+    const exported = await atOfficialHandlerStage("LOAD_EVALUATOR", () => loadExport(payload.evaluator));
     if (typeof exported !== "function") throw new Error("Official evaluator wrapper must be callable.");
-    return await exported(request) as OfficialEvaluatorHandlerOutput;
+    return await atOfficialHandlerStage("EXECUTE_EVALUATOR", () => exported(request)) as OfficialEvaluatorHandlerOutput;
   });
 }
 
 async function runObserver(): Promise<0 | 1> {
   return serveOfficialScenarioBoundObserverProcess(async (request) => {
-    const payload = ObserverPayloadSchema.parse(request.payload);
-    const candidate = await loadExport(payload.candidate);
-    const mount = payload.mount === null ? null : await loadExport(payload.mount);
+    const payload = await atOfficialHandlerStage("REQUEST_BINDING", () => ObserverPayloadSchema.parse(request.payload));
+    const candidate = await atOfficialHandlerStage("LOAD_CANDIDATE", () => loadExport(payload.candidate));
+    const mount = payload.mount === null
+      ? null
+      : await atOfficialHandlerStage("LOAD_MOUNT", () => loadExport(payload.mount!));
     let transcript: JsonValue;
     switch (request.slot.fixtureId) {
       case "BG-D01":
@@ -99,23 +105,23 @@ async function runObserver(): Promise<0 | 1> {
         break;
       case "BG-D03":
         if (typeof candidate !== "function") throw new Error("D03 constructor binding is invalid.");
-        transcript = JsonValueSchema.parse(await captureBGD03SpecializedTranscript({ bindings: { Planner: candidate as never }, scenario: request.scenario }));
+        transcript = await atOfficialHandlerStage("EXECUTE_STEP", async () => JsonValueSchema.parse(await captureBGD03SpecializedTranscript({ bindings: { Planner: candidate as never }, scenario: request.scenario })));
         break;
       case "BG-H01":
         if (typeof mount !== "function") throw new Error("H01 mount binding is invalid.");
-        transcript = JsonValueSchema.parse(await captureBGH01SpecializedTranscript({ bindings: { component: candidate as never, mount: mount as never }, scenario: request.scenario }));
+        transcript = await atOfficialHandlerStage("EXECUTE_STEP", async () => JsonValueSchema.parse(await captureBGH01SpecializedTranscript({ bindings: { component: candidate as never, mount: mount as never }, scenario: request.scenario })));
         break;
       case "BG-H02":
         if (typeof mount !== "function") throw new Error("H02 mount binding is invalid.");
-        transcript = JsonValueSchema.parse(await captureBGH02SpecializedTranscript({ bindings: { component: candidate as never, mount: mount as never }, scenario: request.scenario }));
+        transcript = await atOfficialHandlerStage("EXECUTE_STEP", async () => JsonValueSchema.parse(await captureBGH02SpecializedTranscript({ bindings: { component: candidate as never, mount: mount as never }, scenario: request.scenario })));
         break;
       case "BG-H05":
         if (typeof mount !== "function") throw new Error("H05 mount binding is invalid.");
-        transcript = JsonValueSchema.parse(await captureBGH05SpecializedTranscript({ bindings: { component: candidate as never, mount: mount as never }, scenario: request.scenario }));
+        transcript = await atOfficialHandlerStage("EXECUTE_STEP", async () => JsonValueSchema.parse(await captureBGH05SpecializedTranscript({ bindings: { component: candidate as never, mount: mount as never }, scenario: request.scenario })));
         break;
       default:
         if (typeof mount !== "function") throw new Error("Dispatch observer mount binding is invalid.");
-        transcript = JsonValueSchema.parse(await captureDispatchObserverTranscript({ bindings: { candidate, mount: mount as never }, scenario: request.scenario }));
+        transcript = await atOfficialHandlerStage("EXECUTE_STEP", async () => JsonValueSchema.parse(await captureDispatchObserverTranscript({ bindings: { candidate, mount: mount as never }, scenario: request.scenario })));
     }
     return { transcript };
   });

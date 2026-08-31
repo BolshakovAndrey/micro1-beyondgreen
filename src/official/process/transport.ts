@@ -7,6 +7,7 @@ import {
   parseAndFreezeProcessIpc,
   type OfficialProcessFailure,
 } from "./ipc.ts";
+import { OfficialHandlerStageError } from "./handler-stage.ts";
 
 const MAX_IPC_BYTES = 1_048_576;
 
@@ -95,6 +96,7 @@ export async function serveOfficialProcessRequest<Request, Success>(options: Rea
   } catch (error) {
     const metadata = requestMetadata(raw);
     const contractError = error instanceof OfficialProcessContractError ? error : undefined;
+    const stageError = error instanceof OfficialHandlerStageError ? error : undefined;
     const errorCode = contractError?.code ?? "HANDLER_FAILURE";
     const failure = OfficialProcessFailureSchema.parse({
       schemaVersion: "beyondgreen-official-process-failure@1.0.0",
@@ -104,6 +106,8 @@ export async function serveOfficialProcessRequest<Request, Success>(options: Rea
       disposition: "abstain",
       retryAllowed: false,
       errorCode,
+      failureStage: stageError?.stage
+        ?? (errorCode === "OUTPUT_SCHEMA_FAILURE" ? "OUTPUT_SCHEMA" : null),
       message: errorCode === "MALFORMED_IPC"
         ? "Malformed IPC was rejected before role execution."
         : "Role process failed closed without a retry.",

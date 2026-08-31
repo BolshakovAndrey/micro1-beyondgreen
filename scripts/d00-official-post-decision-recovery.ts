@@ -37,8 +37,8 @@ export async function main(arguments_: readonly string[] = process.argv.slice(2)
     throw new Error("Post-decision recovery requires exactly --evaluation-version eval-v1.1.0.");
   }
   const sessionBoundary = process.env.MICRO1_OFFICIAL_SESSION_BOUNDARY;
-  if (sessionBoundary !== "SES-20260831-034") {
-    throw new Error("Post-decision recovery requires the approved SES-20260831-034 boundary.");
+  if (sessionBoundary !== "SES-20260831-036") {
+    throw new Error("Post-decision recovery requires the approved SES-20260831-036 boundary.");
   }
   const repositoryRoot = await realpath(process.cwd());
   const workingDirectoryRoot = await createOfficialRuntimeWorkingDirectory(repositoryRoot);
@@ -70,6 +70,11 @@ export async function main(arguments_: readonly string[] = process.argv.slice(2)
         armExecutionCount: 0,
         modelInvocationCount: 0,
         retries: 0,
+        recoveryAttemptOrdinal: 3,
+        previousCreateOnceRoots: [
+          "RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-001",
+          "RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-002",
+        ],
       },
       inventoryDriftDisclosure: {
         expectedSourceInventorySha256: OFFICIAL_POST_DECISION_SOURCE_INVENTORY_SHA256,

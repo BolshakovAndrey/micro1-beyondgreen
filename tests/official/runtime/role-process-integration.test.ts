@@ -99,6 +99,16 @@ test("physical role worker completes status-quo, scenario, observer, and evaluat
     const record = OfficialEvaluatorProcessSuccessSchema.parse(evaluatorResult.response).record;
     assert.equal(record.groundTruth, "preserving");
     assert.equal(record.schemaValidCompleteReport, true);
+
+    const failedObserver = await launch({ role: "observer", capability: capability("observer"), attemptOrdinal: 1, request: {
+      ...requestBase("observer:missing-export"), role: "observer", operation: "capture_after_decisions", targetArm: "status-quo",
+      decisions: slotDecisions, scenario,
+      payload: { candidate: { modulePath: PUBLIC_BINDINGS, exportName: "MissingCandidate" }, mount: { modulePath: PUBLIC_BINDINGS, exportName: "mountSyntheticCandidate" } },
+    } });
+    const safeFailure = OfficialProcessFailureSchema.parse(failedObserver.response);
+    assert.equal(safeFailure.errorCode, "HANDLER_FAILURE");
+    assert.equal(safeFailure.failureStage, "LOAD_CANDIDATE");
+    assert.equal(JSON.stringify(safeFailure).includes("MissingCandidate"), false);
   } finally {
     await rm(work, { recursive: true, force: true });
   }

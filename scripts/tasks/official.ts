@@ -4,6 +4,11 @@ import type { TaskDefinition } from "./types.ts";
 /** Register official controls separately from the explicitly owner-gated execution. */
 export const officialTasks: readonly TaskDefinition[] = [
   {
+    name: "evaluation:observer-rehearsal",
+    description: "Exercise all 80 production observer captures without arms, models, evaluators, or evidence writes.",
+    steps: [nodeStep("production-equivalent observer-only rehearsal", "scripts/d00-official-observer-rehearsal.ts")],
+  },
+  {
     name: "evaluation:recover-post-decision",
     description: "Continue only scenario, observer, evaluator, aggregation, and replay from frozen RUN-002 decisions.",
     acceptedArguments: ["--evaluation-version", "eval-v1.1.0"],

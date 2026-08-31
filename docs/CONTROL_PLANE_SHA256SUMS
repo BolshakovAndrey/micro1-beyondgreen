@@ -19,6 +19,10 @@ a0a5bc1abc892056378d990143d0241d9767199eb9e16fee4e807f27f23f1fe5  ./artifacts/ev
 f1ebb91425543943c8f3b64aead291e772c95ada183d9c34fd3a59b682047fde  ./artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/provenance.json
 14c42c2a6867fe6c3081b2f012c646e8841d2c6ef8da7377727372da6b330064  ./artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/run-manifest.json
 a76e37c53ef229690d4a42f0ae226a5b6beaefb429b3c1b51b80a7b632937488  ./artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001/static-preflight.json
+b4881881ddb129b02da60b28e56052ba615d6fb592e22213671f7fa6706cbb58  ./artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-002/provenance.json
+6c1fd03f35fe858ecb8b19f5fcd12feb973eb23e26983bf5f1ceaf28e31b9117  ./artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-002/recovery-manifest.json
+bbfb41f6656a48301ec28224c9f9244f7ce006474d47b94d0e18cb0dc49cb8c7  ./artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-002/source-execution-plan.json
+004852aaf66e25afb989a5ec29f1269edc497d3c64af426638fc881abd1c3f54  ./artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-002/source-manifest.json
 004852aaf66e25afb989a5ec29f1269edc497d3c64af426638fc881abd1c3f54  ./artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002.source-manifest.json
 228758fbaa5054f10c8cadffa30fffb9e38fd1b91a9f45b359cfc2e1340fde8a  ./artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002/arm-records/01-beyondgreen.json
 f0be6b487cfb44e99be18b7be6ff94dbeabe3c01829be2e9a9cfddd2b0aae165  ./artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002/arm-records/01-status-quo.json
@@ -184,6 +188,8 @@ fa2cd0aae8a43bef2056ad792c2c47ccb91b5cef924b45f436d8d70626dbbb7d  ./artifacts/tr
 50fc18c15faeee0944c25e613c199de45e4fe77f726fced380a3c16e289c197a  ./artifacts/trajectories/reviews/BG-OFFICIAL-DEADLINE-FIRST-SHARED-INTERFACES-OWNER-PACKET_RU.md
 fd43c7244c47d9214b3eea8f3b5ad6819b83ce8a8df2c836883d96d5ca743bd7  ./artifacts/trajectories/reviews/BG-OFFICIAL-DEADLINE-FIRST-SHARED-INTERFACES-STOP-OWNER-PACKET_RU.md
 f9f7f396d5520ca14867dd1e749471fedab1137d55b22b9be220afaf43583646  ./artifacts/trajectories/reviews/BG-OFFICIAL-FIXTURE-ADAPTER-WAVE-OWNER-PACKET_RU.md
+6973353bf14f672a19db7ad009fc96fe316c46b98f5803cfec1351eedb21ca8f  ./artifacts/trajectories/reviews/BG-OFFICIAL-POSTDECISION-002-OBSERVER-FAILURE_RU.md
+24a03943554ae70b5a6fd52bb77d1c18de3657364ad2828fdad80701a7a22ec7  ./artifacts/trajectories/reviews/BG-OFFICIAL-POSTDECISION-003-READINESS-OWNER-PACKET_RU.md
 da18d0755862f8420329fa86bb01c83cec8bd5c1bb3727144040cd59ca895fe9  ./artifacts/trajectories/reviews/BG-OFFICIAL-POSTDECISION-CONTINUATION-001-FAILURE_RU.md
 ca930d1b74ff41083cdc4f43ce0f77ff0e92e22fd30b235a29189fc482f9beaf  ./artifacts/trajectories/reviews/BG-OFFICIAL-POSTDECISION-PLAN-COMPATIBILITY-OWNER-PACKET_RU.md
 96f4534dc817bc4d68a328cf822c267f7b2bb4f596c378373f40d363d06e1e52  ./artifacts/trajectories/reviews/BG-OFFICIAL-POSTDECISION-RECOVERY-OWNER-PACKET_RU.md
@@ -301,6 +307,7 @@ e3fc1f7eb7a970e26bc6e784716c8416113db307c7b513ee01ee2b2a13894d38  ./artifacts/tr
 5d02f93cd4ba782c95c80a6c579a13f50803bd6ecdd1310ec1226cac50d79fb8  ./artifacts/trajectories/session-boundaries/SES-20260831-033.yaml
 cd9bb14fadbf030be85bda630ef5c5c856f79d6cbc57509d69321475f02182ca  ./artifacts/trajectories/session-boundaries/SES-20260831-034.yaml
 00a56be796c31d80642210912d0a6553cf9a164b4698e2527f8e7a46ea14258c  ./artifacts/trajectories/session-boundaries/SES-20260831-035.yaml
+379e7ebf0fa95c15bb33bd5ae750ba28285f38d7866d315f2be571ce74cc51f8  ./artifacts/trajectories/session-boundaries/SES-20260831-036.yaml
 f46b2ed8c85e8558b5c8812491c09d89530099b0890454415579ea4c5d69e8a5  ./candidates/BG-D01/candidate-a/MuseumBoard.ts
 9e2a9151531aa961cf0ace3e20520fdcfa45ff0bff0f13ae214f7e5fbdad7d2b  ./candidates/BG-D01/candidate-b/MuseumBoard.ts
 3360e495c3d5895e784be3b62a041de83666d8bd97239f044bb6032273e3e8a3  ./candidates/BG-D02/candidate-a/ParcelDispatchBoard.ts
@@ -331,7 +338,7 @@ ba14e9662c1b04955c36e39da1ebb6d4aea8183af2f2d27f77593dbac6d9c73a  ./config/clean
 30d80bcace6e62ca8f7e488c670c604bede6a8dc5085c79bbc126cc7830d1283  ./docs/DIAGRAMS_RU.md
 48da39f774b11f8af91a4acb67562a8020615ccc00c19115429b136b12366be2  ./docs/EVALUATION.md
 be08f592c3735134a75e20b76dc697e2ab786faa6fd245eed6813fdf10c98972  ./docs/HACKATHON_RULES.md
-f59d23fc456847cba8ac0ef01392402098024fb5ff4eb6276e7d58b7fa8b1727  ./docs/IMPROVEMENT_CHANGELOG.md
+7d6853e84a2edcfa18df981c7c1ba25df5dea128b490c7914747a4ca989f6613  ./docs/IMPROVEMENT_CHANGELOG.md
 80261cd4b72eb9698b544009ed178ec3cfe43146c2845d2f9102fd277d42ffa2  ./docs/MICRO1_INSTRUCTIONS_RU.md
 4a4a93d7b5d600643cc718a3ec6eee66c14bca68b48e8d76032449395f9aaed4  ./docs/PHASE_0_5_DECISIONS.md
 747c0e2c91a8e4061a7df5f2b9f269df7f681c46777eed6a9825be2a2ad80632  ./docs/PHASE_0_5_DECISIONS_RU.md
@@ -585,7 +592,8 @@ fd528f541ad4c7474559a43a4691c31a1c86abe9e316acdc15f69d830e7a1cf7  ./package.json
 49e44a1c4c9f32e9297a029fe78fa1a0b290fa4af36279685a0ba45c0fc61f7e  ./scripts/BG-D02-verify.mjs
 f48c056a45efc1ee6b2d25f3e4d7920e5e537e02586062f86dc0ed91e7bd6dff  ./scripts/BG-D04-verify.mjs
 955ce6450692377be80fa6caeb3ab7ac8e50e1166edae7ad1986828738b41bf4  ./scripts/d00-freeze-cardinality.ts
-a1f7fd3fd8af486942a646d2a7dbe1ec6cbebdc58b05e282a8274ab6c83e263a  ./scripts/d00-official-post-decision-recovery.ts
+2bedaac4589f5e37e249e4d19528f0515b2287b897459b9f5dcef4c8b70bc024  ./scripts/d00-official-observer-rehearsal.ts
+036aadc6f5232440bc8f2115eb1d0e7b96b2a351da83cc3cc70ab1b5ab81d8e0  ./scripts/d00-official-post-decision-recovery.ts
 1eb235be0be6d6004f26c4dde980b20db98ce2b196cd53388e636f4a17909cf6  ./scripts/d00-official-preflight.ts
 443af1a466695b0f550a4a628ff37804b2f66cfcea0ff46377790855b1603765  ./scripts/d00-official-run.ts
 a21f49d5ced41c1e05ad5615e18335463e02c3e710747d7a1ca1b2e392325a46  ./scripts/d00-post-decision-source-manifest.ts
@@ -614,7 +622,7 @@ db1ee8ef3e9b5523856e2fd8257f0eac88ee1fcaee1b24e8da697ce9125b012c  ./scripts/task
 7f86ccf5b1824ef93ae7f666fd32e12b66eb7ff16ff9973c3ba7fab5d8eb62b9  ./scripts/tasks/discovery.ts
 f6426656021b54b40c5b45ab7838277697c76c6716b0741a4997a15d1167d949  ./scripts/tasks/held-out.ts
 8638706c09981e5d6f1284ec6ecc756257f6ef41a4e0ef1b96d1c78493147b07  ./scripts/tasks/helpers.ts
-76be3821411d707787e15bf1561241d657f08eee6419c6659e44ea8aa572c7ed  ./scripts/tasks/official.ts
+13d51ff53629155bdb6732635cb065d4125db22fea2ae0f24ac1ab60ac29ce56  ./scripts/tasks/official.ts
 9b3717cef7d6f0a122d34e8fa68095b7270c040ce979332b3b46cd6d1f332333  ./scripts/tasks/phase0.5.ts
 54261ebffe1f45cdc7b66207f819ae7320a71b97fa3c46ab7e4486551657139a  ./scripts/tasks/pre-unblinding.ts
 efeea8d728d5f9378bab191cff87f6ec1b3efa4e6ba61fc344d4e3a296307591  ./scripts/tasks/registry.ts
@@ -670,8 +678,9 @@ be8cdac7a43e4f345b37fa55ea91b9a862e41b25b52790fabce0acbf09187852  ./src/official
 795026f73ba91f67ccaea10a908dcc2a3c286e223fbe9998470e68b38f079043  ./src/official/execution/contracts.ts
 13fff64b4b3762c46b44df2600b391a30cdb2985739568c0ee5b64a0ba9dadf5  ./src/official/execution/coordinator.ts
 b3c12245405b372d25b428e06c9e39f15ff8fe8cf355d484f0c286a8112ec3d5  ./src/official/execution/index.ts
-965a20fdf16a2ee6efbfe1a4abb60bcf113a56cdb08a31c7b9596b5b94fa6102  ./src/official/execution/post-decision-recovery.ts
-53ddce5db4426d67beae870e6b5e32d7e2e5b377eda6488b4b5101506edbb9aa  ./src/official/execution/production-composition.ts
+20d1bd3422420465527b452f734272529d8f5fec3365522ed7e9ba73277ff07b  ./src/official/execution/observer-rehearsal.ts
+43aefcdadee6222e08dc8a1d973be2a977840b1ce80fa6794c13807d8e7dc995  ./src/official/execution/post-decision-recovery.ts
+b40d6a14b3ed3f077ba6af251cc43cd19acc8ce7a072390cf8f64b007b8f11e0  ./src/official/execution/production-composition.ts
 457ecbffcd799131b279e6a6f4636548090c31c31bbd39f8797357b72ee0ff36  ./src/official/execution/production-registry.ts
 7bbbd0b877676073146859f8e4a8354a09a8a22c972f0bfe825a0dc3b7688be6  ./src/official/execution/production-root.ts
 4f673cbbcf8df59c2e8eec7f1295c8c67c49eb82115fec4da4545a402aa9856a  ./src/official/execution/writer.ts
@@ -695,10 +704,11 @@ e1c6ec3f7ed5d07ce8d20c33fff5c354cd92f6eb95c06cf250bbe59e510812b5  ./src/official
 9c6aaee95bf8f95b0f19f91f2427843f4dbb48e36b27a5883dd2c32688785766  ./src/official/inventory/registry.ts
 8aad16e8c52a483bd4c7adf0e5ac8375347477e76c67083777cc27c46d1966da  ./src/official/process/arm-entrypoint.ts
 09b954aec601653b4ecc602f43df62936fe5a44f60e0db3f2104a2c1d6a69f37  ./src/official/process/evaluator-entrypoint.ts
-3c06b30b63e90f33fdaf6cc38bc57f144158c528014eec919b1ddf4136a918e7  ./src/official/process/ipc.ts
+cfa0d06c8c32ef105aa33ae5e1086b9e35afcbcf2e82d55ecb25586b0cf52fc1  ./src/official/process/handler-stage.ts
+07320b7d7e59b535908fd3e19eafd788610e93d53c46a8884b412d549221c87f  ./src/official/process/ipc.ts
 0845e6005af266cd23ceaca7b711bea397c2e3fb81cdd269d025a03b36b166d4  ./src/official/process/observer-entrypoint.ts
 95b81c9cecc4598415033aa3247167ead7fcc8b2ba3fa874c452409e44fe255d  ./src/official/process/scenario-provider-entrypoint.ts
-011937580450e459109a2520d999f4f2be6132048cbd645b256a8d30eaa91acb  ./src/official/process/transport.ts
+bab407e767544f54a63cf617bde04f1f0dbdc1c7ceaf1634193ddaf64d352e2e  ./src/official/process/transport.ts
 cd3366bd2057fc9fe41825b9f135a40c6a11809417ff47482d8bc10f8178a590  ./src/official/reasoning/contract.ts
 7d19b40a3bdf6a3e4354e55b497585731adf8d2002672af18e15c3820aa50158  ./src/official/reasoning/errors.ts
 cd27e0a46b03d0afb512b42fc6529ab9216af58fed71473b36492311de1286d1  ./src/official/reasoning/index.ts
@@ -709,14 +719,14 @@ f70c9660364109c196aab2b7bfb84972a2ac0fd4fda79ae5127e4d7b27a8817e  ./src/official
 2ab68fda4e2c043b4769471dcf154d418bbcf3bc8ddb44af89735c6537ff1bb6  ./src/official/runner.ts
 5de5ca7e919f8b5d8a1237ae9a1a57d8408700c35ce1d3ae80f2a399918fb241  ./src/official/runtime/arm-handler.ts
 79a36ae35b2137b44e29f8f5ba1d79a9fdf1796d7d7094c7a76a7426a8bbe3b9  ./src/official/runtime/codex-transport.ts
-16d8f761a6dd8d9f7226ea0d092eedb72ac3e4476a92505c006b1c23646fb52a  ./src/official/runtime/d01-bridge.ts
+1b8e7c058a2e6c815304a75797fbaa507e2059ac22da37064921c34123b8d5d3  ./src/official/runtime/d01-bridge.ts
 d694c467d2810be3e2a997cef603bde8db99b89e4491259d8ba0a34da72fddad  ./src/official/runtime/dispatch-observer.ts
 9816ef50eb60c62f9270feed1717fd72d104c4a050813ce6d9be0dce25ba243a  ./src/official/runtime/evaluator-handler.ts
 5295e1af8e73feac35cc6374cabfe9a23221005fa25bb222ff60a1d4ff1041e6  ./src/official/runtime/index.ts
 6b295a6903e216015fc89b133706308eaf5a3f0daa8f0b5e98bba965ff0b3115  ./src/official/runtime/macos-sandbox-backend.ts
 66ec8d63f9196f8b0b3dfb94ca582e015aee5a6a8c6867ab75134525224a26f9  ./src/official/runtime/process-launcher.ts
 4b44218ed4f88bb0e348521d7bee68f230c2c507ecb8e9421e3a94001dff450e  ./src/official/runtime/reasoning-aware-launcher.ts
-36ba1652fc9791a8ddcfcd7e783c63da7bd505fa2da5fb23683daae73e7d07bd  ./src/official/runtime/role-process-entrypoint.ts
+52f398457e8a173ac3762de85abfc01f2814a66140961ebd2d1a2c24c5ebf50d  ./src/official/runtime/role-process-entrypoint.ts
 159a5a713cf69887b66b4a61263c220f62037e63fc159f38019bacdacad5b5ab  ./src/official/runtime/specialized-observers.ts
 506318fa4a32eef0615d5c62a473ab4dbc0b7d6ec0827ff1e568aac44195d343  ./src/official/runtime/status-quo-arm-handler.ts
 2fc9b3b874e77a3ff4ff07d4a64f4554f275edd6503f7bbba78d5daac2f2d075  ./src/official/worker-contract.ts
@@ -740,7 +750,7 @@ cca5424bb90b56b6d4c4808903a8b3e4ae5d064f9805187ea80d4e05a1086af4  ./tests/fixtur
 82568c719ed8f309931869b40972cb5aa338e7bfde6c22519ed586af7897eba0  ./tests/license-audit.test.ts
 df586974ce738b999c07916cd40baf95fb4e6b3640ec9a9f7e7d6008e7bf68c3  ./tests/official/aggregation-report-replay.test.ts
 2558af7b29e565135c8c1abd45cc5f28b3919f2d237463b9b50dfc112c8acdde  ./tests/official/execution/official-execution.test.ts
-a1cfbc01acf351df39779448345df3e8de1e758a0d577c25be4350daebe85dd0  ./tests/official/execution/post-decision-recovery.test.ts
+891129df3e6d980184ef2ef80d5bf7a00aa7fe86fd0ea7ef2c79d82417c825b8  ./tests/official/execution/post-decision-recovery.test.ts
 25ba324d54277a3d1bca33c4e6207961df157dab7b6f2b6776df82e74639fe9e  ./tests/official/execution/production-composition.test.ts
 1b5321bff095f85d27c49e71623d5ac1c59843f59b926df5a90e5cc0a05d0a99  ./tests/official/execution/production-registry.test.ts
 1479fd596e4f9dd42880e47e6574826a5af777a1a8e370cc9505e392db626613  ./tests/official/execution/production-root.test.ts
@@ -763,7 +773,7 @@ c81bd4c704c548bd65ba6aa768a823e4bef61dfe6a7207f775d54ad8832f60e0  ./tests/offici
 a63dc52e47dc2a4f624af0bdf47add6a17866deb1a43b95c445bea0389e54e40  ./tests/official/process/forbidden/evaluator-secret.txt
 b747c428a542d1e16cc00d90b1aeb5a0a4ca26667deeacb7808fb3cc86cb973e  ./tests/official/process/forbidden/observer-secret.txt
 a172e96ff7493d575598ebec504fb1ad4410275bc9ec8197178898e251074c43  ./tests/official/process/ipc-schema.test.ts
-23589703f70fc40bab4d002b1da8f4520aee3bd1c21ed0603f5f895bed7991d8  ./tests/official/process/process-entrypoints.test.ts
+1c6aa8904a06cbcc5d15ea643f2b568f96f418d25ba7a414e5cf7a710b3d2c54  ./tests/official/process/process-entrypoints.test.ts
 0e65f4e5ee351a8c26194dd0ba098f46de6208da0e5baaf23ca1a63ba8205431  ./tests/official/process/scenario-boundary.test.ts
 7d3db09701a7538528837b8799a07542bb4c07f53b57c175fefab9fe5ae097a7  ./tests/official/process/source-boundary.test.ts
 94714a52c7caa7c498768f5f4a300b810465bc64b2b7f625dee00932ad92f6df  ./tests/official/process/workers/synthetic-arm-worker.ts
@@ -778,7 +788,7 @@ ef4a58bfcf7b0762bd4d7c43d4f202f48b70fee48b41ce77c07678023e4a58ee  ./tests/offici
 8da7131f5becf1ee46377f1be5957b7c9523c045199110967fc8059c7436be50  ./tests/official/role-capability-boundary.test.ts
 ea7fb6fa52e96623592e263b0bee0100227c175529c4c74e0f8adff0d4cbba7f  ./tests/official/runtime/arm-evaluator-handlers.test.ts
 c49506f06f727481f8a02e6e3b2f74d50a6f91a0a3964b373e0082379e797d74  ./tests/official/runtime/codex-transport.test.ts
-7db32ac0c732579b437220b5398ec88cdda6d932abd859dd26d15d38caf95e9b  ./tests/official/runtime/d01-bridge.test.ts
+1daa1157474cafab985759b5c75270524f81c3eb17e5552f6d5a18dd172f8bc5  ./tests/official/runtime/d01-bridge.test.ts
 0a94322c3fb6b00867b44bfbf87f4c12714dd68bb69455a82db5cdc0daa1894a  ./tests/official/runtime/dispatch-observer.test.ts
 b6591fd94ab310e4a75ffbd1b21135661d26bfacb0a9adbc182868d74bce3c27  ./tests/official/runtime/fixtures/macos-sandbox-probe.ts
 5d25ddae50e5c08c0023eea7715d443cb6588d4d40add47dca52ab21e3c04e84  ./tests/official/runtime/fixtures/public-role-bindings.ts
@@ -790,7 +800,7 @@ cd234371f8e1493a76b8b6965ab49c616d8b394427f1f9430388cea71e3be2c3  ./tests/offici
 a628b003dce3464bfc27eca2f02fb0fcb6c9ca22913c3c94ae4a7dedfe907bed  ./tests/official/runtime/production-scenario-provider-integration.test.ts
 b2aa9414fc719cfcd98b57ff6a0a290e99eb0bd66464edb750a2923f06d0074e  ./tests/official/runtime/reasoning-aware-launcher.test.ts
 3b6564b87d03d97c09b46fbc600bcec4a4ea245066224b26c53ca24eab479441  ./tests/official/runtime/role-import-closure.test.ts
-4dbb7610382c99656c3e4e167dbf81ad62ad58a1f4c17eae53f70e8e79de47b8  ./tests/official/runtime/role-process-integration.test.ts
+4a5bddc3ecf939b4e5ba01d511432531287450946b9705283535f1e205b2648a  ./tests/official/runtime/role-process-integration.test.ts
 c75ca156d4181f31e73afea3128b7f2ac2f92591774d2ed24cb29b68d749f50a  ./tests/official/runtime/specialized-observers.test.ts
 5d71c0320c155ab493390677d68036e20973d627800b9a92f6bfed26f286ac97  ./tests/official/runtime/transport-canary-command.test.ts
 c3b8a6c614e6624d47d9f3d67cd5a0aab5649126a69576b8419b49982d4b74cd  ./tests/official/runtime/verifier-public-constant-mirrors.test.ts

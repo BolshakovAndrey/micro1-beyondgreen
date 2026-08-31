@@ -1781,3 +1781,29 @@ failure, and final hot take remain unclaimed until evidence exists.
   leak scan passed. No official/scored run or unblinding occurred.
 - **Decision:** keep the verified non-official integration uncommitted and request
   separate owner acceptance; do not claim the sandbox-limited full suite as green.
+
+## ITR-043 — Harden and rehearse post-decision observer execution
+
+- **Authorization and hypothesis:** owner-approved `SES-20260831-036`. The failed
+  `POSTDECISION-002` exposed only a generic observer failure before any capture. The
+  hypothesis was that the frozen BG-D01 terminal `dispose` step was incompatible
+  with its observer bridge and that a production-equivalent observer-only rehearsal
+  could validate the complete 20-slot surface without another arm or model call.
+- **Change:** added privacy-safe role stage categories, structured failure evidence
+  that omits raw errors, stacks, stderr, paths, and hidden values; added exactly one
+  terminal `dispose` to the BG-D01 bridge; registered a non-writing observer rehearsal;
+  and reserved create-once `POSTDECISION-003` under `SES-20260831-036`.
+- **Evaluation commands/version:** `npm run compile`; targeted physical role tests;
+  `MICRO1_OBSERVER_REHEARSAL_SESSION_BOUNDARY=SES-20260831-036 npm run task --
+  evaluation:observer-rehearsal`; `npm test`; evaluation version `eval-v1.1.0`.
+- **Evidence:** targeted tests passed `14/14`; the production-equivalent rehearsal
+  passed 20 scenario releases and all 80 observer captures with zero arm, model, and
+  evaluator invocations. Its capture digest is
+  `3d8d29d717495afd2bda1325cdf4270b62db53ca826b5dc034e76a427ad2b8ea`.
+  The complete ordinary suite passed `233/233`.
+- **Preserved surfaces:** RUN-001, RUN-002, and the four-file partial
+  `POSTDECISION-002` remain byte-for-byte unchanged. Candidates, 40 immutable arm
+  decisions, frozen scenarios, oracle semantics, ground truth, scoring, and
+  evaluation v1.1 were not changed.
+- **Decision:** `ready_for_owner_checkpoint_approval_before_postdecision_003`.
+  `POSTDECISION-003`, commit, push, ZIP, and publication remain blocked.

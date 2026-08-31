@@ -2,6 +2,8 @@ import { createHash } from "node:crypto";
 
 import { z } from "zod";
 
+import { OFFICIAL_HANDLER_FAILURE_STAGES } from "./handler-stage.ts";
+
 const Sha256Schema = z.string().regex(/^[a-f0-9]{64}$/u);
 const FixtureIdSchema = z.string().regex(/^BG-(?:D0[1-4]|H0[1-6])$/u);
 const IdentifierSchema = z.string().min(1).max(160).regex(/^[A-Za-z0-9._:-]+$/u);
@@ -316,6 +318,7 @@ export const OfficialProcessFailureSchema = z.object({
     "OUTPUT_SCHEMA_FAILURE",
     "REQUEST_BINDING_FAILURE",
   ]),
+  failureStage: z.enum(OFFICIAL_HANDLER_FAILURE_STAGES).nullable(),
   message: z.string().min(1),
 }).strict();
 export type OfficialProcessFailure = z.infer<typeof OfficialProcessFailureSchema>;

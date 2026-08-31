@@ -7,6 +7,7 @@ import {
   OfficialNeutralScenarioEnvelopeSchema,
   type OfficialNeutralScenarioEnvelope,
 } from "../process/ipc.ts";
+import { atOfficialHandlerStage } from "../process/handler-stage.ts";
 
 type JsonPrimitive = null | boolean | number | string;
 type JsonValue = JsonPrimitive | readonly JsonValue[] | Readonly<{ [key: string]: JsonValue }>;
@@ -20,7 +21,7 @@ export type D01ObserverBridgeBindings = Readonly<{
 /** One D01 public dispatch and its settled observation. */
 export type D01ObserverBridgeFrame = Readonly<{
   ordinal: number;
-  operation: "observe" | "dispatch";
+  operation: "observe" | "dispatch" | "dispose";
   actionType: BoardAction["type"] | null;
   observation: JsonValue;
 }>;
@@ -109,7 +110,7 @@ function parseBoardAction(value: unknown): BoardAction {
   }
 }
 
-type NormalizedD01Step = Readonly<{ operation: "observe" }> | Readonly<{
+type NormalizedD01Step = Readonly<{ operation: "observe" | "dispose" }> | Readonly<{
   operation: "dispatch";
   action: BoardAction;
 }>;
@@ -119,6 +120,10 @@ function normalizeStep(step: OfficialNeutralScenarioEnvelope["steps"][number]): 
   if (step.action === "observe") {
     exactKeys(step.parameters, [], "D01 observe");
     return Object.freeze({ operation: "observe" });
+  }
+  if (step.action === "dispose") {
+    exactKeys(step.parameters, [], "D01 dispose");
+    return Object.freeze({ operation: "dispose" });
   }
   if (step.action === "dispatch") {
     const actionKey = "action" in step.parameters ? "action" : "value";
@@ -163,14 +168,29 @@ export async function captureD01ObserverBridgeTranscript(input: Readonly<{
     throw new Error(`D01 observer bridge does not support fixture ${scenario.slot.fixtureId}.`);
   }
   // Validate the entire action surface before candidate work begins.
-  const steps = scenario.steps.map(normalizeStep);
-  const mounted = await input.bindings.mount(input.bindings.component);
+  const steps = await atOfficialHandlerStage("NORMALIZE_SCENARIO", () => {
+    const normalized = scenario.steps.map(normalizeStep);
+    const disposeIndex = normalized.findIndex(({ operation }) => operation === "dispose");
+    if (disposeIndex !== -1 && (disposeIndex !== normalized.length - 1
+      || normalized.filter(({ operation }) => operation === "dispose").length !== 1)) {
+      throw new Error("D01 dispose must occur exactly once and be terminal when present.");
+    }
+    return normalized;
+  });
+  const mounted = await atOfficialHandlerStage("MOUNT", () => input.bindings.mount(input.bindings.component));
   const frames: D01ObserverBridgeFrame[] = [];
+  let disposed = false;
   try {
     for (const [index, step] of steps.entries()) {
       const observation = step.operation === "observe"
-        ? mounted.observe()
-        : await mounted.dispatch(step.action);
+        ? await atOfficialHandlerStage("EXECUTE_STEP", () => mounted.observe())
+        : step.operation === "dispatch"
+          ? await atOfficialHandlerStage("EXECUTE_STEP", () => mounted.dispatch(step.action))
+          : await atOfficialHandlerStage("DISPOSE", async () => {
+            await mounted.dispose();
+            disposed = true;
+            return null;
+          });
       frames.push(Object.freeze({
         ordinal: index + 1,
         operation: step.operation,
@@ -179,7 +199,7 @@ export async function captureD01ObserverBridgeTranscript(input: Readonly<{
       }));
     }
   } finally {
-    await mounted.dispose();
+    if (!disposed) await atOfficialHandlerStage("DISPOSE", () => mounted.dispose());
   }
   return Object.freeze({
     schemaVersion: "beyondgreen-d01-observer-bridge@1.0.0",

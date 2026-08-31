@@ -6,6 +6,7 @@ import test from "node:test";
 import { canonicalJson } from "../../../src/official/canonical-json.ts";
 import {
   buildOfficialPostDecisionSourceManifest,
+  buildOfficialSafeRoleFailureRecord,
   assertOfficialPostDecisionPlanCompatibility,
   executeOfficialPostDecisionRecovery,
   loadOfficialPostDecisionRecoverySource,
@@ -270,8 +271,33 @@ test("candidate-byte drift remains blocking after approved inventory drift", asy
   }
 });
 
-test("production continuation reserves POSTDECISION-002", () => {
-  assert.match(OFFICIAL_POST_DECISION_OUTPUT_ROOT, /POSTDECISION-002$/u);
+test("production continuation reserves POSTDECISION-003", () => {
+  assert.match(OFFICIAL_POST_DECISION_OUTPUT_ROOT, /POSTDECISION-003$/u);
+});
+
+test("role failure evidence contains only the approved non-disclosing projection", () => {
+  const record = buildOfficialSafeRoleFailureRecord({
+    ordinal: 1,
+    arm: "status-quo",
+    captureOrdinal: 1,
+    failure: {
+      schemaVersion: "beyondgreen-official-process-failure@1.0.0",
+      requestId: "observer:BG-D01:candidate-a:status-quo:1",
+      role: "observer",
+      status: "error",
+      disposition: "abstain",
+      retryAllowed: false,
+      errorCode: "HANDLER_FAILURE",
+      failureStage: "NORMALIZE_SCENARIO",
+      message: "This text must never enter persisted evidence.",
+    },
+  });
+  assert.deepEqual(Object.keys(record).sort(), [
+    "arm", "captureOrdinal", "disposition", "errorCode", "failureStage",
+    "ordinal", "requestId", "retryAllowed", "role", "schemaVersion",
+  ]);
+  assert.equal(JSON.stringify(record).includes("This text"), false);
+  assert.equal(Object.isFrozen(record), true);
 });
 
 test("production inventory disclosure matches RUN-002 and current static validation", () => {

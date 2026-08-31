@@ -1,0 +1,97 @@
+schema_version: "1.1"
+session_id: "SES-20260831-036"
+started_at_utc: "2026-08-31T10:28:11Z"
+agent:
+  tool: "Codex coordinator"
+  purpose: "Harden observer diagnostics, correct BG-D01 lifecycle handling, and rehearse all observer captures before POSTDECISION-003"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  base_head: "2a6d2469e3f3fb41ee4a308484c6e8c249df30c4"
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approval_recorded_at_utc: "2026-08-31T10:28:11Z"
+  exact_approval_evidence: >-
+    Согласен! Вперед! Owner accepted the proposed SES-036 scope: privacy-safe
+    observer failure stages without raw diagnostics; the terminal BG-D01 dispose
+    correction; one production-equivalent rehearsal of all 80 observer captures;
+    and preparation, but not execution, of the create-once POSTDECISION-003 root.
+
+immutable_source:
+  run_001_may_change: false
+  run_002_may_change: false
+  postdecision_002_may_change: false
+  run_002_file_count: 44
+  run_002_bundle_sha256: "5df68dc714d66ca44852d2487213ae5bb222f8444cedc734ccaabdf2abbe6d95"
+  postdecision_002_file_count: 4
+  postdecision_002_total_bytes: 18625
+  postdecision_002_files:
+    provenance.json: "b4881881ddb129b02da60b28e56052ba615d6fb592e22213671f7fa6706cbb58"
+    recovery-manifest.json: "6c1fd03f35fe858ecb8b19f5fcd12feb973eb23e26983bf5f1ceaf28e31b9117"
+    source-execution-plan.json: "bbfb41f6656a48301ec28224c9f9244f7ce006474d47b94d0e18cb0dc49cb8c7"
+    source-manifest.json: "004852aaf66e25afb989a5ec29f1269edc497d3c64af426638fc881abd1c3f54"
+
+allowed_scope:
+  - "Add privacy-safe structured failure stages without raw error messages, stacks, stderr, paths, or hidden values."
+  - "Persist only the safe structured role-failure projection in a future create-once recovery output."
+  - "Support exactly one terminal dispose step in the BG-D01 observer bridge while retaining automatic cleanup when omitted."
+  - "Add regression tests for lifecycle behavior and structured non-disclosing diagnostics."
+  - "Run one production-equivalent observer-only rehearsal for 20 slots, two arms, and two captures: 80 captures total."
+  - "Use frozen RUN-002 decisions and scenarios without arm/model calls or evaluator scoring."
+  - "Prepare POSTDECISION-003 and its owner gate without executing the continuation."
+  - "Run compile, tests, manifests, checksums, diff checks, and safe preflight."
+  - "Prepare a complete Russian owner packet."
+
+forbidden_scope:
+  - "Modify, delete, overwrite, or regenerate RUN-001, RUN-002, or POSTDECISION-002."
+  - "Expose raw exceptions, stack traces, stderr, external paths, hidden scenario values, oracle content, or candidate bytes."
+  - "Execute arms, models, evaluator scoring, evaluation:run, or POSTDECISION-003."
+  - "Change candidates, immutable decisions, frozen scenarios, oracle semantics, ground truth, scoring, or evaluation v1.1."
+  - "Commit or push."
+
+stop_rules:
+  - "Stop if any immutable source byte or digest changes."
+  - "Stop if the rehearsal executes anything other than scenario-provider and observer roles."
+  - "Stop on the first new production-equivalent observer failure and preserve only its safe stage projection."
+  - "Stop before POSTDECISION-003, commit, or push."
+
+attestation:
+  inherited_private_transcript: false
+  external_workspace_read: false
+  browser_or_mcp_used: false
+  arm_or_model_calls: 0
+  evaluator_scoring_calls: 0
+  postdecision_003_executed: false
+  repository_artifacts_status: "candidate_pending_owner_checkpoint_approval"
+
+verification:
+  compilation: "passed"
+  targeted_process_runtime_recovery_tests: "14/14 passed"
+  repository_test_suite: "233/233 passed"
+  d01_manifests: "verified"
+  frozen_self_test: "passed; 10 fixtures, 20 candidates, 42 visible tests, 21 evaluator checks, reciprocal physical denial"
+  official_static_preflight: "passed; inventory 9bffe4f104f09ff576fcb12e7a79d66b45a54a7306efbef332b4446dae849db2; no candidate execution or scored run"
+  observer_rehearsal:
+    status: "passed"
+    scenarios: 20
+    captures: 80
+    arm_executions: 0
+    model_invocations: 0
+    evaluator_invocations: 0
+    capture_digest: "3d8d29d717495afd2bda1325cdf4270b62db53ca826b5dc034e76a427ad2b8ea"
+  immutable_sources: "RUN-001 and RUN-002 tracked bytes unchanged; POSTDECISION-002 exact four hashes and 18625 bytes unchanged"
+  postdecision_003_exists: false
+  retries:
+    - "One targeted D01 test retained the former raw-error expectation after privacy-safe staging; only that expectation changed to EXECUTE_STEP, then all tests passed."
+  control_checksums: "812/812 verified after final reconciliation"
+  diff_check: "passed"
+  preflight_control: "READY_FOR_CLEAN_BRANCH; four binary human-review notices"
+  preflight_implementation: "READY_FOR_IMPLEMENTATION; four binary human-review notices and expected dirty-worktree warning"
+
+completion:
+  completed_at_utc: "2026-08-31T10:39:11Z"
+  owner_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-POSTDECISION-003-READINESS-OWNER-PACKET_RU.md"
+  disposition: "READY_FOR_OWNER_CHECKPOINT_APPROVAL; POSTDECISION-003, commit, and push remain blocked."

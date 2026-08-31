@@ -9,6 +9,7 @@ import {
   OfficialObserverProcessSuccessSchema,
   parseAndFreezeProcessIpc,
   sha256CanonicalJson,
+  type OfficialProcessFailure,
   type OfficialNeutralScenarioEnvelope,
 } from "../process/ipc.ts";
 import type { RoleCapabilityPlan } from "../adapters/types.ts";
@@ -78,6 +79,17 @@ function assertCapability(
   }
 }
 
+/** Structured role failure that retains only the privacy-safe IPC projection. */
+export class OfficialRoleProcessFailureError extends Error {
+  public readonly failure: OfficialProcessFailure;
+
+  public constructor(failure: OfficialProcessFailure) {
+    super(`${failure.role?.toUpperCase() ?? "ROLE"}_PROCESS_FAILURE:${failure.errorCode}`);
+    this.name = "OfficialRoleProcessFailureError";
+    this.failure = failure;
+  }
+}
+
 function requireSuccess<Output>(input: Readonly<{
   response: unknown;
   schema: { parse(value: unknown): Output };
@@ -85,7 +97,7 @@ function requireSuccess<Output>(input: Readonly<{
 }>): Output {
   const failure = OfficialProcessFailureSchema.safeParse(input.response);
   if (failure.success) {
-    throw new Error(`${input.role.toUpperCase()}_PROCESS_FAILURE:${failure.data.errorCode}`);
+    throw new OfficialRoleProcessFailureError(failure.data);
   }
   return input.schema.parse(input.response);
 }
