@@ -38,7 +38,12 @@ test("production root binds D01 and registry fixtures to one role worker without
       assert.equal(capability.entrypoint.modulePath, "src/official/runtime/role-process-entrypoint.ts");
       assert.equal(capability.networkAllowed, false);
     }
-    assert.match(JSON.stringify(binding.scenarioProviderPayload()), /OFFICIAL_SCENARIO_PROVIDER_HANDLER/u);
+    assert.deepEqual(binding.scenarioProviderPayload(), {
+      provider: {
+        modulePath: `evaluation/verifier-only/${executionSlot.fixtureId}/scenario-provider.ts`,
+        exportName: "NEUTRAL_SCENARIO_PROVIDER_EXPORT",
+      },
+    });
     assert.match(JSON.stringify(binding.evaluatorPayload("status-quo")), /OFFICIAL_EVALUATOR_HANDLER/u);
     assert.equal(JSON.stringify(binding.armPayload("beyondgreen")).includes("verifier"), false);
   }

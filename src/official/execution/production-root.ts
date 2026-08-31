@@ -25,7 +25,7 @@ const TRUSTED_RUNTIME_READS = Object.freeze([
   "node_modules",
   "package.json",
 ]);
-const STANDARD_PROVIDER_EXPORT = "OFFICIAL_SCENARIO_PROVIDER_HANDLER";
+const STANDARD_PROVIDER_EXPORT = "NEUTRAL_SCENARIO_PROVIDER_EXPORT";
 const STANDARD_EVALUATOR_EXPORT = "OFFICIAL_EVALUATOR_HANDLER";
 
 function unique(values: readonly string[]): readonly string[] {
@@ -101,6 +101,7 @@ export function resolveOfficialProductionSlotBinding(slot: OfficialExecutionSlot
       });
   }
   const verifierModule = `evaluation/verifier-only/${slot.fixtureId}/official-runtime-exports.ts`;
+  const neutralScenarioModule = `evaluation/verifier-only/${slot.fixtureId}/scenario-provider.ts`;
   return Object.freeze({
     arm,
     scenarioProvider,
@@ -114,7 +115,9 @@ export function resolveOfficialProductionSlotBinding(slot: OfficialExecutionSlot
       })
       : Object.freeze({ source: "reasoning-aware-launcher" }),
     scenarioProviderPayload: () => Object.freeze({
-      provider: Object.freeze({ modulePath: verifierModule, exportName: STANDARD_PROVIDER_EXPORT }),
+      // Loading the neutral module directly prevents scenario release from importing
+      // evaluator/oracle dependencies before the observer handoff exists.
+      provider: Object.freeze({ modulePath: neutralScenarioModule, exportName: STANDARD_PROVIDER_EXPORT }),
     }),
     observerPayload: () => Object.freeze({
       candidate: Object.freeze({ modulePath: slot.candidate.modulePath, exportName: slot.candidate.exportName }),

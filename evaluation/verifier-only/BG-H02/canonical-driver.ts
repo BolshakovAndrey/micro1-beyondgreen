@@ -2,7 +2,6 @@
 import assert from "node:assert/strict";
 
 import type { GuidePreviewObservation, StargazingGuideComponent } from "../../arm-visible/BG-H02/contract.ts";
-import { mountStargazingGuidePreview } from "../../arm-visible/BG-H02/harness.ts";
 
 type Expected = Readonly<{ label: string; selectedGuideId: string; status: string; content: string; log: readonly string[]; requests: readonly string[] }>;
 const expected: readonly Expected[] = [
@@ -29,6 +28,8 @@ export function evaluateCanonicalObservations(observations: readonly GuidePrevie
 
 /** Runs the canonical reverse-completion scenario only in verifier self-checks. */
 export async function evaluateCanonicalScenario(Component: StargazingGuideComponent): Promise<OracleResult> {
+  // This path is used only by outside-isolation verifier self-checks.
+  const { mountStargazingGuidePreview } = await import("../../arm-visible/BG-H02/harness.ts");
   const preview = await mountStargazingGuidePreview(Component);
   try {
     const observations = [preview.observe()];

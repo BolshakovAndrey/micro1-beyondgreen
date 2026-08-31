@@ -2,7 +2,6 @@
 import assert from "node:assert/strict";
 
 import type { AstronomyDrawerComponent, DrawerAction, DrawerObservation } from "../../arm-visible/BG-H04/contract.ts";
-import { mountAstronomyDrawer } from "../../arm-visible/BG-H04/harness.ts";
 
 const ACTIONS: readonly DrawerAction[] = Object.freeze([
   { type: "activate" }, { type: "edit-draft", value: "check" }, { type: "deactivate" },
@@ -45,6 +44,8 @@ export function evaluateCanonicalObservations(values: readonly DrawerObservation
 
 /** Executes the canonical scenario only for evaluator self-checks owning both capabilities. */
 export async function evaluateCanonicalScenario(Component: AstronomyDrawerComponent): Promise<OracleResult> {
+  // The hidden evaluator's production path uses only captured observations.
+  const { mountAstronomyDrawer } = await import("../../arm-visible/BG-H04/harness.ts");
   const drawer = await mountAstronomyDrawer(Component);
   const observations: DrawerObservation[] = [drawer.observe()];
   for (const action of ACTIONS) observations.push(await drawer.dispatch(action));

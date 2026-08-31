@@ -3,7 +3,6 @@ import assert from "node:assert/strict";
 import type { ComponentType, Ref } from "react";
 
 import type { BulletinAction, BulletinObservation, BulletinPanelHandle } from "../../arm-visible/BG-D04/contract.ts";
-import { mountBulletinPanel } from "../../arm-visible/BG-D04/harness.ts";
 
 type BulletinPanelComponent = ComponentType<{ ref?: Ref<BulletinPanelHandle> }>;
 
@@ -55,6 +54,8 @@ export function evaluateCanonicalObservations(observations: readonly BulletinObs
 
 /** Executes the canonical scenario solely for verifier self-checks. */
 export async function evaluateCanonicalScenario(Component: BulletinPanelComponent): Promise<OracleResult> {
+  // Lazy loading keeps production evaluator startup inside its verifier-only reads.
+  const { mountBulletinPanel } = await import("../../arm-visible/BG-D04/harness.ts");
   const panel = await mountBulletinPanel(Component);
   try {
     const observations: BulletinObservation[] = [panel.observe()];

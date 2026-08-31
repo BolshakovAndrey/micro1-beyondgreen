@@ -7,7 +7,7 @@
   "behavior_sha256": "6eb2496241b95c68af04e10046271f5b86c9b6b8e3db05d7057048e1460a11ce",
   "provenance_sha256": "b20ae9741085b17e75af725c57e20ab73a2ba3b33308a85b06e41441d78be66f",
   "files": {
-    "evaluation/verifier-only/BG-H06/canonical-driver.ts": "8d751cf5f28cf696ea6164adf6899f41792df89639f292ba3732c35d51875432",
+    "evaluation/verifier-only/BG-H06/canonical-driver.ts": "444f9cd779071d90ee09c04389cabc060ebe6868765f0966f750c9cd212e83a0",
     "evaluation/verifier-only/BG-H06/ground-truth.json": "19178acd418e9d1ebcc75e5463800caea377dfe21490e6ab63d33c0f593d341d",
     "evaluation/verifier-only/BG-H06/evaluator-denied-probe.mjs": "58af789d852f528820a5b0e9433d0d4fa8c7f874c691790c3c08d1c559a57b1d",
     "evaluation/verifier-only/BG-H06/self-check.test.ts": "c6e483bf45bc29ba7049f6ac1fb15d5c510f95e9b173e5a590514f9f4905811b",

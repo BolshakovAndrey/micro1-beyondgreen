@@ -2,7 +2,6 @@
 import assert from "node:assert/strict";
 
 import type { ThemeAction, ThemeObservation, ThemePanelComponent } from "../../arm-visible/BG-H06/contract.ts";
-import { mountThemePanel } from "../../arm-visible/BG-H06/harness.ts";
 
 type CanonicalStep = Readonly<{ label: string; action: ThemeAction | null; expected: ThemeObservation }>;
 const state = (displayedTheme: "light" | "dark", committedTheme: "light" | "dark", status: "idle" | "saving", error: "save_failed" | null, pendingCount: 0 | 1): ThemeObservation =>
@@ -35,6 +34,8 @@ export function evaluateCanonicalObservations(observations: readonly ThemeObserv
 
 /** Runs the canonical scenario solely for verifier self-checks. */
 export async function evaluateCanonicalScenario(Component: ThemePanelComponent): Promise<OracleResult> {
+  // Self-check ownership permits this lazy import; production evaluation does not.
+  const { mountThemePanel } = await import("../../arm-visible/BG-H06/harness.ts");
   const panel = await mountThemePanel(Component);
   try {
     const observations: ThemeObservation[] = [panel.observe()];

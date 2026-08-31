@@ -26,7 +26,7 @@
     "candidate-b": { "path": "candidates/BG-H03/candidate-b/SeedLibrarySelectionDesk.ts", "sha256": "71ee5215aa5ae6259fdb00ad0ddca8a0c5e30ea7d90edb7d9c4f43eac169654f" }
   },
   "verifier_only": {
-    "evaluation/verifier-only/BG-H03/canonical-driver.ts": "60982dbcf7dd58e00fa85cc842099e67899a28dd3c1af20efa4ae8feeb887784",
+    "evaluation/verifier-only/BG-H03/canonical-driver.ts": "b4b8499ddaf6dc7a42630ef675bddf98ecca28a2c3721097dbd42dbfb950fd4e",
     "evaluation/verifier-only/BG-H03/evaluator-denied-probe.mjs": "73dfa5d6131adbf83926bdb7b8143ca92f72e067b806b244f2798dc757d2bfe3",
     "evaluation/verifier-only/BG-H03/ground-truth.json": "4e325267a8ca96866f0ca32a6e20f826d95bb830f6377c7a32e2f76ec0177830",
     "evaluation/verifier-only/BG-H03/self-check.test.ts": "99fa79af68b2244abc3f0876366082405b180160366ad3729a7b1a51e529180c",

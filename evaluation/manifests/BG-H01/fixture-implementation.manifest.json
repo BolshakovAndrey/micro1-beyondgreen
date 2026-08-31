@@ -15,10 +15,10 @@
     { "path": "evaluation/manifests/BG-H01/PROVENANCE.md", "sha256": "68c5cf6ea0f39b011251fdd4d8fc6aece2f8e7f2e2326391c05a0f822a65c944" },
     { "path": "evaluation/manifests/BG-H01/OWNER_CHECKPOINT_RU.md", "sha256": "c9380dc50c773d51ec8f29657778292d46463b717fbbfdca831f4636b02b708c" },
     { "path": "evaluation/manifests/BG-H01/arm-visible.manifest.json", "sha256": "e3993f14b233066d0bb45ae8c0b294d820f01a303fe1e319c0e4c938d3504efe" },
-    { "path": "evaluation/manifests/BG-H01/verifier-only.manifest.json", "sha256": "6cd588f57fad623489713bc67dabdf8534c5eed28d499b09203d85f2ab7c854f" },
+    { "path": "evaluation/manifests/BG-H01/verifier-only.manifest.json", "sha256": "ece0abe9a49160d2e4dea5056f1e97bc468bf9c2e81322b3be0636876fa22863" },
     { "path": "evaluation/manifests/BG-H01/candidate-a.manifest.json", "sha256": "7724bf06a19aa78ff9cca15b518c76fc3e50818642799c7bf463ab75f604ceb9" },
     { "path": "evaluation/manifests/BG-H01/candidate-b.manifest.json", "sha256": "3378aff2f53e4f91e684f83f9caf5d773983244f803b83025a44655240d45d45" },
     { "path": "evaluation/manifests/BG-H01/SUBAGENT_REPORT_RU.md", "sha256": "82dd0358b2d8f70f4c1caa29e3bc0940b99b9670c477e5ab320b4f0cfc1b5fa7" }
   ],
-  "package_sha256": "fcf91f4dc1e6e37b82f2dbe8b88111f047ddd7be1218de3890be85a02ec1769c"
+  "package_sha256": "c3ae4711b908ec588c102c3b009c1be8e70ac17f17ede94892196742fac34d6b"
 }

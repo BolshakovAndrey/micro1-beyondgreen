@@ -1,0 +1,111 @@
+schema_version: "1.1"
+session_id: "SES-20260831-034"
+started_at_utc: "2026-08-31T09:04:07Z"
+agent:
+  tool: "Codex coordinator"
+  purpose: "Implement a bounded post-decision continuation without repeating any arm or model call"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  base_head: "e81f769c22a1b683b9004c4e6fc39c85bba53aa3"
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approval_recorded_at_utc: "2026-08-31T09:04:07Z"
+  exact_approval_evidence: >-
+    Подтверждаю, что 40 immutable arm decisions RUN-002 являются окончательными
+    и повторному выполнению не подлежат. Post-decision unblinding разрешён.
+    Одобряю SESSION_BOUNDARY SES-20260831-034 и bounded post-decision recovery:
+    исправить только scenario-provider binding, добавить production-equivalent
+    regression tests и реализовать create-once continuation, которая проверяет и
+    загружает решения RUN-002, после чего выполняет только scenario-provider,
+    observer, evaluator, aggregation и replay. RUN-001 и RUN-002 сохранять
+    побайтово неизменными. Новые arm/model calls, третий evaluation:run, изменение
+    decisions, candidates, oracle semantics и scoring запрещены. До отдельного
+    одобрения continuation не запускать, commit и push не выполнять.
+  extended_scope_approval_recorded_at_utc: "2026-08-31T09:46:15Z"
+  extended_scope_approval_evidence: >-
+    Разрешаю расширить SES-20260831-034 только детерминированным refactor verifier
+    runtime imports: удалить eager arm-visible runtime imports из девяти canonical
+    drivers — D01, D02, D04 и H01–H06; BG-D03 не изменять. Arm-visible harness
+    загружать только внутри существующих self-check функций. Необходимые публичные
+    D01/D02 константы CARD_IDS, everyThirdCardIds, LANE_IDS, evenLaneIds точно
+    воспроизвести внутри verifier-only слоя. Обязательный гейт: вне изоляции глубоко
+    сравнить каждую воспроизведённую константу с исходной arm-visible версией. Любое
+    расхождение является блокирующим отказом. Разрешаю добавить статический guard-тест,
+    который вычисляет замыкание value-imports для entrypoint каждой роли и всех
+    динамически загружаемых canonical drivers и сверяет его с allowlist/denylist
+    соответствующей роли. RUN-001 и RUN-002 сохранять побайтово неизменными. Oracle
+    assertions, ground truth, candidates, scoring и evaluation v1.1 не менять.
+    Согласовать только производные manifests/hashes и добавить production-equivalent
+    physical evaluator regression tests. Все десять evaluator self-checks, константный
+    гейт, import-closure guard и существующие reciprocal-denial tests должны пройти.
+    Continuation, новые arm/model calls, commit и push остаются запрещены. После
+    проверок остановиться с русским approval packet.
+
+immutable_source:
+  run_id: "RUN-BG-OFFICIAL-EVAL-V1.1.0-002"
+  file_count: 44
+  total_bytes: 68699
+  source_bundle_sha256: "5df68dc714d66ca44852d2487213ae5bb222f8444cedc734ccaabdf2abbe6d95"
+  arm_records: 40
+  immutable_decisions: 40
+  model_invocations: 20
+  retries: 0
+  observer_records: 0
+  evaluator_records: 0
+  source_bytes_may_change: false
+
+allowed_scope:
+  - "Record the exact source-run file inventory and hashes outside RUN-002."
+  - "Point scenario-provider bindings directly at neutral scenario-provider modules."
+  - "Add production-equivalent physical regression tests."
+  - "Implement a create-once post-decision loader, writer, task, and synthetic tests."
+  - "Run compile, synthetic tests, physical boundary tests, checksum checks, and preflight."
+  - "Prepare complete English and Russian owner review artifacts."
+  - "Remove eager arm-visible runtime imports from the nine affected verifier canonical drivers."
+  - "Mirror the exact public D01/D02 identifier constants inside their fixture-specific verifier capabilities."
+  - "Prove mirror equality outside isolation and guard every role value-import closure against its capability."
+  - "Reconcile only the verifier package manifests and hashes derived from the approved refactor."
+
+forbidden_scope:
+  - "Modify, delete, overwrite, or regenerate any byte in RUN-001 or RUN-002."
+  - "Execute an arm, invoke a live model, or run evaluation:run."
+  - "Execute the post-decision continuation before a separate owner approval."
+  - "Change candidates, decisions, visible assertions, oracle semantics, scoring, or evaluation v1.1."
+  - "Commit, push, package, or publish."
+
+stop_rules:
+  - "Stop if source hashes change or any of the 40 decisions fails exact validation."
+  - "Stop if a test performs an arm/model invocation or writes into RUN-001/RUN-002."
+  - "Stop before the create-once continuation command."
+
+verification:
+  compilation: "passed"
+  repository_test_suite: "226/226 passed"
+  evaluator_self_checks: "10/10 fixture packages passed; 21 test cases passed"
+  public_constant_mirror_gate: "passed"
+  role_value_import_closure_guard: "passed for all 20 slots and four roles"
+  physical_evaluator_import_regression: "9/9 affected evaluators passed under exact macOS deny rules"
+  physical_scenario_provider_regression: "10/10 providers passed"
+  reciprocal_denial: "D01, D02, D03, D04, and H01-H06 passed"
+  manifest_verification: "D01-D04 and H01-H06 passed after approved derived reconciliation"
+  immutable_source_verification: "44 files; bundle SHA-256 5df68dc714d66ca44852d2487213ae5bb222f8444cedc734ccaabdf2abbe6d95"
+  control_checksums: "799/799 verified"
+  diff_check: "passed"
+  preflight_control: "READY_FOR_CLEAN_BRANCH; four binary human-review notices"
+  preflight_implementation: "READY_FOR_IMPLEMENTATION; four binary human-review notices and expected dirty-worktree warning"
+  retries:
+    - "The first guard fixture builder included one schema-extra candidateId field; corrected before graph evaluation."
+    - "The guard rejected a shared verifier mirror outside fixture allowlists; mirrors were relocated into BG-D01 and BG-D02 verifier roots."
+    - "The first combined regression run stopped on intentionally stale derived manifests; only approved verifier hashes and package bindings were reconciled."
+  continuation_executed: false
+  arm_or_model_calls: 0
+  run_001_or_run_002_bytes_changed: false
+
+completion:
+  completed_at_utc: "2026-08-31T09:51:11Z"
+  owner_packet: "artifacts/trajectories/reviews/BG-OFFICIAL-POSTDECISION-RECOVERY-OWNER-PACKET_RU.md"
+  disposition: "READY_FOR_OWNER_CONTINUATION_APPROVAL; continuation and commit remain blocked."

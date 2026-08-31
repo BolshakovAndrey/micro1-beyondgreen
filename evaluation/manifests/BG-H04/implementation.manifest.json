@@ -26,7 +26,7 @@
     "candidate-b": { "path": "candidates/BG-H04/candidate-b/AstronomyChecklist.ts", "sha256": "a2cef5b772bff47db9dce9d8473d8fdc367fb5036593df83f0b23ec96bfb321c" }
   },
   "verifier_only": {
-    "evaluation/verifier-only/BG-H04/canonical-driver.ts": "a26019074ff523b805bb11dd9d037a102a9a63e6ba2a0929f63de687f46b9877",
+    "evaluation/verifier-only/BG-H04/canonical-driver.ts": "427947b1af69ae93a0d06efd17a8b82812210bcddb6df6fe53e266e0ae914e77",
     "evaluation/verifier-only/BG-H04/evaluator-denied-probe.mjs": "ec3716a7b6bf495ba33ac3ea60e256c4797aa9e7c968d0e4ae3d6dbddfe1412a",
     "evaluation/verifier-only/BG-H04/ground-truth.json": "0a20c5d90c21ef0a82e6383dcf7923d20e78952113bc7c25f283186a62cacb80",
     "evaluation/verifier-only/BG-H04/self-check.test.ts": "85e7bb3f92b26dd7fc5c8b2051a0996fca6c76a6a62c375f9dfb72f551809daa",

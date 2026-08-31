@@ -1,8 +1,8 @@
 /** Implements the verifier-only BG-D02 canonical oracle over post-decision observations. */
 import assert from "node:assert/strict";
 
-import { LANE_IDS, evenLaneIds, type DispatchAction, type DispatchObservation, type ParcelDispatchComponent } from "../../arm-visible/BG-D02/contract.ts";
-import { mountParcelDispatchBoard } from "../../arm-visible/BG-D02/harness.ts";
+import type { DispatchAction, DispatchObservation, ParcelDispatchComponent } from "../../arm-visible/BG-D02/contract.ts";
+import { D02_LANE_IDS as LANE_IDS, d02EvenLaneIds as evenLaneIds } from "./public-contract-mirror.ts";
 
 const CANONICAL_LOG = Object.freeze(["mount", "select-all", "queue-1x2", "flush", "unit-3", "queue-3x2", "select-even", "flush", "reset"]);
 type CanonicalStep = Readonly<{ action: DispatchAction | null; label: string; pending: readonly number[]; dispatched: readonly number[]; selectedIds: readonly string[]; unit: number; log: readonly string[] }>;
@@ -50,6 +50,8 @@ export function evaluateCanonicalObservations(observations: readonly DispatchObs
 
 /** Runs the scenario only for verifier self-checks that intentionally own both capabilities. */
 export async function evaluateCanonicalScenario(Component: ParcelDispatchComponent): Promise<OracleResult> {
+  // The arm-visible harness is intentionally available only to verifier self-checks.
+  const { mountParcelDispatchBoard } = await import("../../arm-visible/BG-D02/harness.ts");
   const board = await mountParcelDispatchBoard(Component);
   try {
     const observations: DispatchObservation[] = [board.observe()];

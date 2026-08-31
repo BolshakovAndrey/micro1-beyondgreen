@@ -2,7 +2,6 @@
 import assert from "node:assert/strict";
 
 import type { UnitReadoutComponent, UnitStoreObservation } from "../../arm-visible/BG-H05/contract.ts";
-import { mountUnitStoreFixture } from "../../arm-visible/BG-H05/harness.ts";
 
 type CanonicalStep = Readonly<{ label: string; expected: UnitStoreObservation }>;
 const observation = (
@@ -42,6 +41,8 @@ export function evaluateCanonicalObservations(observations: readonly UnitStoreOb
 
 /** Runs the canonical scenario solely for verifier self-checks. */
 export async function evaluateCanonicalScenario(Component: UnitReadoutComponent): Promise<OracleResult> {
+  // Resolve the public harness only in verifier self-checks that own that capability.
+  const { mountUnitStoreFixture } = await import("../../arm-visible/BG-H05/harness.ts");
   const fixture = await mountUnitStoreFixture(Component);
   const observations: UnitStoreObservation[] = [fixture.observe()];
   observations.push(await fixture.toolbarWrite("imperial"));

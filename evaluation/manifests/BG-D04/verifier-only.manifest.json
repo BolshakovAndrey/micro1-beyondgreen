@@ -3,7 +3,7 @@
   "fixture_id": "BG-D04",
   "package": "verifier-only",
   "files": {
-    "evaluation/verifier-only/BG-D04/canonical-driver.ts": "877c49d7279b7090ed755a6d6a47e3a6c0fd6474c5ee18ec5d09e7f11de98b3d",
+    "evaluation/verifier-only/BG-D04/canonical-driver.ts": "f84a51f1b4044bb34b15c42c838fde914be6e6e1298f98de78797979d708dffd",
     "evaluation/verifier-only/BG-D04/ground-truth.json": "3117e08c14142d303a35592134d3d723fd5d94b1c4e16dc6de27b866a405eeb7",
     "evaluation/verifier-only/BG-D04/self-check.test.ts": "466670f3a541167d20c67e29f16882bffe0bef086ecdb2ac9978fec2307fa5ad",
     "evaluation/verifier-only/BG-D04/scenario-provider.ts": "21887afd70608770b43fbb02812d3bb369dc1a5462b63912f787054acb8f938e",

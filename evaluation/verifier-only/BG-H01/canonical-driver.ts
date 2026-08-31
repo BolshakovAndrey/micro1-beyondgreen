@@ -2,7 +2,6 @@
 import assert from "node:assert/strict";
 
 import type { DisplayCardEditorComponent, DisplayCardObservation } from "../../arm-visible/BG-H01/contract.ts";
-import { mountDisplayCardEditor } from "../../arm-visible/BG-H01/harness.ts";
 
 const CARD_01 = Object.freeze({ cardId: "CARD-01", initialTitle: "Moon map", initialTheme: "blue" as const });
 const CARD_02 = Object.freeze({ cardId: "CARD-02", initialTitle: "Meteor guide", initialTheme: "amber" as const });
@@ -39,6 +38,8 @@ export function evaluateCanonicalObservations(observations: readonly DisplayCard
 
 /** Runs the canonical scenario only in a self-check owning both capabilities. */
 export async function evaluateCanonicalScenario(Component: DisplayCardEditorComponent): Promise<OracleResult> {
+  // Self-checks may import the public harness; production evaluator imports may not.
+  const { mountDisplayCardEditor } = await import("../../arm-visible/BG-H01/harness.ts");
   const editor = await mountDisplayCardEditor(Component, CARD_01);
   try {
     const observations = [editor.observe()];

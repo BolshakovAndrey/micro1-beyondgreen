@@ -8,7 +8,7 @@
   "source_files": [
     {
       "path": "evaluation/verifier-only/BG-D01/canonical-driver.ts",
-      "sha256": "f837a1d88404aee3b16769436f574387c22bf73ee082851de138cad512e8b40f"
+      "sha256": "b139a2fb33daaaf2fc38c1a77ece8249ccce8f921a8d37107b6fd6c328b1be6b"
     },
     {
       "path": "evaluation/verifier-only/BG-D01/evaluator-denied-probe.mjs",
@@ -27,6 +27,10 @@
       "sha256": "1632c86be03ba4fda63dd3e6bdfac91bcfd98dcb94c1af569f1a715cb5141871"
     },
     {
+      "path": "evaluation/verifier-only/BG-D01/public-contract-mirror.ts",
+      "sha256": "d74500bf3533644b9cf72f0c83426adc7fff8dad6fdc488c2aec1552cc114ff2"
+    },
+    {
       "path": "evaluation/verifier-only/BG-D01/scenario-provider.manifest.json",
       "sha256": "822d5afe081079464521b458342ce0dc012509d685128bf0e8b0282961fb341a"
     },
@@ -39,5 +43,5 @@
       "sha256": "6b9a2f3022c81904353d555c2db1366850480031247f13cbadc70d593b0ba328"
     }
   ],
-  "package_sha256": "84cc797798eccbf95e4cf42f10fc6b44c2887655b0fe57cd2d4f10bae2668e94"
+  "package_sha256": "e8f45d1dc0cc0e468e619ef31f92b1988b3abbf9ebd4a45eb4f5ec3cd1631055"
 }

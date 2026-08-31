@@ -4,14 +4,15 @@
  */
 import assert from "node:assert/strict";
 
-import {
-  CARD_IDS,
-  everyThirdCardIds,
-  type BoardAction,
-  type BoardObservation,
-  type MuseumBoardComponent,
+import type {
+  BoardAction,
+  BoardObservation,
+  MuseumBoardComponent,
 } from "../../arm-visible/BG-D01/contract.ts";
-import { mountMuseumBoard } from "../../arm-visible/BG-D01/harness.ts";
+import {
+  D01_CARD_IDS as CARD_IDS,
+  d01EveryThirdCardIds as everyThirdCardIds,
+} from "./public-contract-mirror.ts";
 
 const CANONICAL_LOG = Object.freeze([
   "mount",
@@ -103,6 +104,9 @@ export function evaluateCanonicalObservations(observations: readonly BoardObserv
 
 /** Executes the canonical scenario when verifier self-checks intentionally own the component. */
 export async function evaluateCanonicalScenario(Component: MuseumBoardComponent): Promise<OracleResult> {
+  // Only verifier self-checks own both capabilities. Production evaluation calls
+  // evaluateCanonicalObservations and therefore never resolves this denied import.
+  const { mountMuseumBoard } = await import("../../arm-visible/BG-D01/harness.ts");
   const board = await mountMuseumBoard(Component);
   try {
     const observations: BoardObservation[] = [board.observe()];

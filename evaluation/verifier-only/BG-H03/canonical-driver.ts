@@ -2,7 +2,6 @@
 import assert from "node:assert/strict";
 
 import type { SelectionAction, SelectionDeskComponent, SelectionObservation } from "../../arm-visible/BG-H03/contract.ts";
-import { mountSelectionDesk } from "../../arm-visible/BG-H03/harness.ts";
 
 const ACTIONS: readonly SelectionAction[] = Object.freeze([
   { type: "set-note", value: "spring" }, { type: "set-note", value: "summer" },
@@ -39,6 +38,8 @@ export function evaluateCanonicalObservations(values: readonly SelectionObservat
 
 /** Executes the canonical scenario only for evaluator self-checks owning both capabilities. */
 export async function evaluateCanonicalScenario(Component: SelectionDeskComponent): Promise<OracleResult> {
+  // Production evaluation consumes observations and never loads the public harness.
+  const { mountSelectionDesk } = await import("../../arm-visible/BG-H03/harness.ts");
   const desk = await mountSelectionDesk(Component);
   try {
     const observations: SelectionObservation[] = [desk.observe()];
