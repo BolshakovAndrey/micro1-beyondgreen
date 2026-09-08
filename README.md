@@ -40,19 +40,35 @@ visible legacy tests at freeze**, which is what makes the benchmark hard.
 
 | Metric | Status quo baseline | BeyondGreen | Target |
 |---|---|---|---|
-| Decision accuracy | `[[x]]/20` | `[[x]]/20` | ≥ 16/20 |
-| Accuracy advantage over baseline | — | `[[x]]/20` | ≥ 6/20 |
-| Defect recall | `[[x]]/10` | `[[x]]/10` | ≥ 8/10 |
-| False alarms on preserving candidates | `[[x]]/10` | `[[x]]/10` | ≤ 2/10 |
-| Completion | `[[x]]/20` | `[[x]]/20` | ≥ 18/20 |
+| Decision accuracy | `10/20` | `19/20` | ≥ 16/20 — met |
+| Accuracy advantage over baseline | — | `+9/20` | ≥ 6/20 — met |
+| Reason-correct defect recall | `0/10` | `3/10` | ≥ 8/10 — **missed** |
+| False alarms on preserving candidates | `0/10` | `1/10` | ≤ 2/10 — met |
+| Completion | `20/20` | `19/20` | ≥ 18/20 — met |
 
 Targets were predeclared in [`docs/EVALUATION.md`](docs/EVALUATION.md) before any fixture
 was written. Where a target is missed, both the unchanged target and the honest result are
 published. `BG-H02` (async ordering) was labeled the challenging case before its code
 existed.
 
-Full comparison, per-candidate records, and the challenging-case analysis:
+The single incomplete decision is a preserving-case abstention on `BG-H06`. The frozen
+reason-correct scorer credited `3/10` through a strict lexical proxy: a normalized rationale
+must literally contain the verifier-owned behavior-class token or failed-action label. Seven
+decision-correct rejects did not match that token contract, even when their explanations were
+diagnostically specific; the unchanged `3/10` therefore measures this strict operational
+proxy, not all semantically correct diagnoses. Full comparison and challenging-case analysis:
 [`docs/EVALUATION.md`](docs/EVALUATION.md).
+
+---
+
+## Demo video
+
+- Primary, verified without sign-in: [YouTube](https://youtu.be/R_AA3WqmVyw)
+- Public backup mirror: [Vimeo](https://vimeo.com/1222716472)
+
+The final cut is 4:54, below the five-minute limit. It includes the problem, fair
+baseline, complete workflow, measured comparison, strongest retained change, removed
+scope, honest limitation, and the evidence-backed hot take.
 
 ---
 
@@ -62,11 +78,12 @@ Requires Node `22.22.3` (see `.node-version`). Runtime dependencies are React,
 `@preact/signals-react`, jsdom, and Zod; tests run on `node:test`.
 
 ```bash
-npm ci
+make setup                    # pinned install: npm ci --ignore-scripts
 npm run task -- list          # every supported task, with descriptions
 npm test                      # the whole ordinary suite
-npm run task -- d01:demo      # one full verification, JSON + static HTML
+npm run task -- d01:demo      # macOS only: physical sandbox, JSON + static HTML
 npm run task -- d01:replay    # deterministic replay, no network, no subprocess
+npm run task -- replay --evaluation-version eval-v1.1.0 # official evidence replay
 ```
 
 `d01:demo` writes the evidence bundle to
@@ -144,8 +161,12 @@ Task catalog, fixture-by-fixture verification, immutable manifests, clean-room a
 policies, and the phase history are documented separately:
 
 - [`docs/REVIEWER_GUIDE.md`](docs/REVIEWER_GUIDE.md) — task catalog and what each command proves
+- [`docs/SUBMISSION_REPORT.md`](docs/SUBMISSION_REPORT.md) — concise evidence-first judging report
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — components, process boundaries, and data flow
 - [`docs/PROJECT_SPEC.md`](docs/PROJECT_SPEC.md) — normative product contract
 - [`docs/EVALUATION.md`](docs/EVALUATION.md) — evaluation methodology and metrics
+- [`docs/REPRODUCTION.md`](docs/REPRODUCTION.md) — safe judge path and official offline replay
+- [`docs/DISCLOSURES.md`](docs/DISCLOSURES.md) — provenance, tools, safety, and honest limits
 - [`docs/D01_REPRODUCTION.md`](docs/D01_REPRODUCTION.md) — evidence paths and limitations for the D01 slice
 - [`docs/CLEAN_ROOM_POLICY.md`](docs/CLEAN_ROOM_POLICY.md), [`docs/TRACE_POLICY.md`](docs/TRACE_POLICY.md), [`docs/PROVENANCE.md`](docs/PROVENANCE.md)
 
@@ -154,4 +175,6 @@ policies, and the phase history are documented separately:
 - The benchmark is synthetic. Fixtures were authored independently per fixture, but they
   are not production code, and generalization to real repositories is not demonstrated.
 - v1 covers React state to signals only.
-- `[[Строка про live adapter — заполнить после прогона]]`
+- The official adapter was `codex-exec-jsonl-v1` with `gpt-5.6-sol`, one invocation per
+  BeyondGreen candidate and zero retries. Fixed-subscription marginal USD and stable
+  token totals were not measured.

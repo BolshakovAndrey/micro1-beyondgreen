@@ -1,6 +1,6 @@
 # Scope: owner-approved contracts plus current bounded development and held-out integration checkpoints.
-# Excludes this self-referential manifest and two local-only documents excluded
-# by the clean task boundary. Private denylist and raw traces are external and
+# Excludes this self-referential manifest, two local-only documents, and the
+# submission metadata that hashes this manifest. Private denylist and raw traces are external and
 # intentionally absent. Pending implementation trace review is recorded by category.
 755f6182f34243435e4ee06ec2d152a3182d90a094b35dea118070cfdcad4a73  ./.agents/skills/claude/SKILL.md
 4cbc369194aaa2d38ec5d224c6d326039a645770bbcf12ab8fd2e9aa1713f16a  ./.agents/skills/claude/agents/openai.yaml
@@ -9,8 +9,10 @@ f19a7c539ed4054fad6f5671b4e2eac5f3a663562c18b29906165d72831ec429  ./.agents/skil
 48333e12de2350e15d5172316cf9777c34b06d8d12c6ee70f7e24be582c4743d  ./.gitignore
 9c579c4eab1d526e689fe7cda201a0ab2f39070304043bb55c459a3d90954250  ./.node-version
 e7aea3bdedaf0d4ccadb26b0c39434dc78b057548358d93f3598850b6e104e1f  ./AGENTS.md
-fc462247dce0fd0fada00fd6f209869ac715d2c4f199ecb3ac552b646a60609d  ./README.md
-6345e22330c67f4091526d3b516bf5a2e06c2694e61b057cd05aabfd8a6f35de  ./THIRD_PARTY_NOTICES.md
+c67d9222c5874b00a9f047ed44ebe55695cb9b9a612f25258ffe0f52d6765c24  ./Makefile
+cdcf5d245b8b7e635880f2aeba6850589e16cce45aebc78c6e801b5ab786d935  ./README.md
+e4a8a59008a0332702a561eb4cb420c1b4a3b0759669b6e43f3aa8229942ccc9  ./THIRD_PARTY_NOTICES.md
+b88ceebf28fab10b8cea0aef450b9adddd5da40b5ae3f0813ee911645058c1a0  ./artifacts/claims.yaml
 a0a5bc1abc892056378d990143d0241d9767199eb9e16fee4e807f27f23f1fe5  ./artifacts/evaluation/BG-D01-FOUNDATION-CHECKPOINT.json
 4ba082113fae1e1f97139c26a3c42e807a1530c66777bc980f5a5346c889b9e0  ./artifacts/evaluation/BG-D01-OFFLINE-REPLAY.jsonl
 47d864ee9f25dafd458a104eedd2295ac5d6b5a14f6c93b9f2dc0b7964c5302b  ./artifacts/evaluation/BG-D01-VERTICAL-SLICE.html
@@ -298,7 +300,7 @@ c45041d1501c10df52db9034060a86b480f1f3e845fd8e02a1c59ad29a4f1f37  ./artifacts/pr
 d6c86f5e25f1cf57aa59ed55f17a3edde7012ffcdf3e48fc87108f28add0992c  ./artifacts/provenance/BG-D01-VERTICAL-SLICE.yaml
 dff6021e486839ef80989ef31a740ddf93418991f517a88f55838ec9592c4d2b  ./artifacts/provenance/index.yaml
 dd549160809e21e1ea72797ad3ca0080d66c9751e3125a00b4a30edf0733b018  ./artifacts/trajectories/TRACE_CAPTURE_DRY_RUN.md
-ba413921e471bda95b0a3304e7cd11331fd37cafcd213eae3ea27c1a2ddc7742  ./artifacts/trajectories/index.yaml
+728b8fa8fd986c33e2a3f27bb81955bc9ab4fc7e621e7a4d45c0eac05c71c5f9  ./artifacts/trajectories/index.yaml
 427698ec572acc7ac70d53dc87983af97eb5f82495968ba53c3b829577edf139  ./artifacts/trajectories/instructions/TRC-BG-D01-001.md
 68d8fc0b1b872256753eec7f739742826771e19712f8ce1ee75a8eaddf1d661b  ./artifacts/trajectories/instructions/TRC-BG-D01-DOCS-001-CONT-001.md
 3472e7c5cb188b4eb88bdf33e156370273f668f1684ca63c1c8d0109260393c4  ./artifacts/trajectories/instructions/TRC-BG-D01-DOCS-001-CONT-002.md
@@ -399,6 +401,9 @@ f852dc494e1d7fbc1596ca8df978dff50f1e791d7ea7bc70450dc9f10eb18e78  ./artifacts/tr
 682bd451a9ade07b458bff17de79ed1c95d8898d0a99fdde7159befdd2744292  ./artifacts/trajectories/reviews/BG-D02-SESSION-BOUNDARY-CHECKPOINT_RU.md
 7e849bd87ee10d89d92a75e278dd8c9dbd9fc9620f7405c800331a3feccef90c  ./artifacts/trajectories/reviews/BG-D03-SESSION-BOUNDARY-SES-20260830-007-CHECKPOINT_RU.md
 18f20ff94f5afd0fae8b1224a940e0d776019f6cef29d9979150bd8b18f4d225  ./artifacts/trajectories/reviews/BG-D04-SESSION-BOUNDARY-008-CHECKPOINT_RU.md
+aeeb3e9fc7d1fb48f0e9ca3c55e986c0131169201495af94f8750a5db936c6cc  ./artifacts/trajectories/reviews/BG-FINAL-SUBMISSION-CLAUDE-CHECKPOINT.md
+7767187a15f93434c7cbb232fa7c40aad53357fb97e561239c00e3b1372c8c2e  ./artifacts/trajectories/reviews/BG-FINAL-SUBMISSION-CLAUDE-CHECKPOINT_RU.md
+5126b5c3f8edc7d2ee328de65551ed20cb97ce25616e0b0298bda6e2f104c8f6  ./artifacts/trajectories/reviews/BG-FINAL-SUBMISSION-SES-040-OWNER-PACKET_RU.md
 fb0bfcf7c5df6b0d8b54f0b54622dd5698fa9e36c67f7ab5aa34cc638b6792fd  ./artifacts/trajectories/reviews/BG-HELDOUT-COORDINATOR-TRACE-SESSION-BOUNDARY-CHECKPOINT_RU.md
 42e4e709b5b2bc99a0b3c8bbd7f784d89b7dfdb8e2d6d58c3ab58b1b541ecb84  ./artifacts/trajectories/reviews/BG-HELDOUT-FIXTURES-SESSION-BOUNDARY-CHECKPOINT_RU.md
 8f304b9da6a4e0c3a6f4d28de93f9e0a03a417b002a50ec5660244b511a61c32  ./artifacts/trajectories/reviews/BG-HELDOUT-FREEZE-SESSION-BOUNDARY-CHECKPOINT_RU.md
@@ -536,6 +541,8 @@ cd9bb14fadbf030be85bda630ef5c5c856f79d6cbc57509d69321475f02182ca  ./artifacts/tr
 379e7ebf0fa95c15bb33bd5ae750ba28285f38d7866d315f2be571ce74cc51f8  ./artifacts/trajectories/session-boundaries/SES-20260831-036.yaml
 6e80b36e06d2de2992682827768369b4b239ca1c39d51297bf97d6e292efb147  ./artifacts/trajectories/session-boundaries/SES-20260831-037.yaml
 22dda37a7d0a028f90f51e9fa5d8865affb54cc1b1ce891180b27516d00f3f72  ./artifacts/trajectories/session-boundaries/SES-20260831-038.yaml
+7751dfa7ebdda866f683831ae563887cad76ea074b1e3e172059c5590d5bca2b  ./artifacts/trajectories/session-boundaries/SES-20260831-039.yaml
+9a81e307b31098c4be7b048a6a0fbaf02a07bc84b12718faa35cddd347e16bde  ./artifacts/trajectories/session-boundaries/SES-20260831-040.yaml
 f46b2ed8c85e8558b5c8812491c09d89530099b0890454415579ea4c5d69e8a5  ./candidates/BG-D01/candidate-a/MuseumBoard.ts
 9e2a9151531aa961cf0ace3e20520fdcfa45ff0bff0f13ae214f7e5fbdad7d2b  ./candidates/BG-D01/candidate-b/MuseumBoard.ts
 3360e495c3d5895e784be3b62a041de83666d8bd97239f044bb6032273e3e8a3  ./candidates/BG-D02/candidate-a/ParcelDispatchBoard.ts
@@ -556,31 +563,36 @@ baa724f84da41303041dbae4ca7d53f4c98ed1371b857b68c648d0657767d9ea  ./candidates/B
 9071f73330d96bdcbcac9f77225ea4f0edf63aa39028d7dfc09db7bc4dd1e4ce  ./candidates/BG-H05/candidate-b/UnitReadout.ts
 42821d07822b12e98c5dac0cd09cb4b07efa635d2266b76446e77674dc82321d  ./candidates/BG-H06/candidate-a/ThemePanel.ts
 3cc5ea584fd1dfe7fbc2cdc5acc2203cf0c273a291b81d6497e883f04814847e  ./candidates/BG-H06/candidate-b/ThemePanel.ts
-ba14e9662c1b04955c36e39da1ebb6d4aea8183af2f2d27f77593dbac6d9c73a  ./config/cleanroom.json
+4850e95771572301cbd90ff91f6c2272b20ed0d3a3d17baae4fd5f81e6b1c4e5  ./config/cleanroom.json
 8cd10753af79c5774bfb19f78238ca3c9e0dc89217750aed39bf7079a79e48e0  ./config/phase-0.5.candidate.yaml
-2f1465cdc016866c9fe3eae95d609d11342838f1904833d71528f432c343d5c5  ./config/topic.yaml
+c85c76c95068f83cc4054ae1763be50f8b8a10df88bd9d8ac5c387cf3f34b8fb  ./config/topic.yaml
+c24b7c6c69e1ecab1f14b3c84afd8a6257324e4e70b34a9c1f9fda399868d647  ./docs/ARCHITECTURE.md
 2f62f6015b04d3b3cc692bd7f207d0cdf1df1c5f994955c85daa8639831c60cd  ./docs/CHALLENGE.md
 037c8b943a211eb100ebea288877f9ecc9439ccf53528dc24fcec3e6c34a5afa  ./docs/CLEAN_ROOM_POLICY.md
 2387a038826853ba76bb31db25e64dbabba547e57827009e8fef93346680697d  ./docs/CONTROL_PLANE_LOG.md
 964ffa6d1908e3ff77f797dd2fb604255bb6aed93015bb032940fd1ec01d1495  ./docs/D01_REPRODUCTION.md
-30d80bcace6e62ca8f7e488c670c604bede6a8dc5085c79bbc126cc7830d1283  ./docs/DIAGRAMS_RU.md
-48da39f774b11f8af91a4acb67562a8020615ccc00c19115429b136b12366be2  ./docs/EVALUATION.md
+23e73bb772352171a1efa0dae81b361bd89871a1b6c940ace8c316a0b608c5ee  ./docs/DIAGRAMS_RU.md
+7708dcc3f0d36770d4177887adf4ca86cd7a695fda9a45cc8269a7d7a7f3b535  ./docs/DISCLOSURES.md
+1dd2ef98be3131ea7c57692098e321aae0f6fd954154d9fa075b43cf9e78464e  ./docs/EVALUATION.md
 be08f592c3735134a75e20b76dc697e2ab786faa6fd245eed6813fdf10c98972  ./docs/HACKATHON_RULES.md
-7d6853e84a2edcfa18df981c7c1ba25df5dea128b490c7914747a4ca989f6613  ./docs/IMPROVEMENT_CHANGELOG.md
+aeb70023ad76bf613f585c90ba64c878d9f21189b0a31c529ee876b5ab3a5e42  ./docs/IMPROVEMENT_CHANGELOG.md
 80261cd4b72eb9698b544009ed178ec3cfe43146c2845d2f9102fd277d42ffa2  ./docs/MICRO1_INSTRUCTIONS_RU.md
 4a4a93d7b5d600643cc718a3ec6eee66c14bca68b48e8d76032449395f9aaed4  ./docs/PHASE_0_5_DECISIONS.md
 747c0e2c91a8e4061a7df5f2b9f269df7f681c46777eed6a9825be2a2ad80632  ./docs/PHASE_0_5_DECISIONS_RU.md
 f29034d51e9522f1bb22c639e5d71eabd1b65fa8158798ea7c6dc271edbccd3e  ./docs/PHASE_0_5_REVIEW_RU.md
-8d9bf0299be6589a88e8f90f3fc1d2b79167b5f5302367db6b227b5b793009cf  ./docs/PREFLIGHT_CHECKLIST.md
-060f0aa14f0a290487e7bc847c124992f4b94ae2cc646e45e448120b7354cdf3  ./docs/PROJECT_SPEC.md
-6e0412832f9b87dc321797751cefe1ebe46ba5f00dd59ee96e0ab099acdd2e5b  ./docs/PROJECT_SPEC_RU.md
-f2b5ccec13806266a343647b9850678555ce19b683d0f67085402f295526f585  ./docs/PROVENANCE.md
-5193a6dbd8e9cccefad21f26d1a73034d032d92504e171f04d0e1f9510345768  ./docs/README_RU.md
-af881c732bc958a19a47850826470fee7ec5c2d1b5081f705ec7fb4e579163c8  ./docs/REPRODUCTION.md
-533f30d53fe5dbc3d8d377d500315daae6e0c89cad4f07fc036e72b41be58355  ./docs/REPRODUCTION_RU.md
-94dfab832ff939fe6f83beff3685fe31e0d14995cffb36fc5e2d55e875a8a314  ./docs/REVIEWER_GUIDE.md
+641cadbf526ecb2d68962d73ecfa669e92c2ff4df56c669e1abc84b1a43f312a  ./docs/PREFLIGHT_CHECKLIST.md
+8afd849bbf32523eb5393e1c124d92052109cf3f585359e4758b728976d84ec9  ./docs/PROJECT_SPEC.md
+5601da3ccd343aab2d1d328efa643dafab5d5b38a268a655014ff8d5426aedd7  ./docs/PROJECT_SPEC_RU.md
+1146eca2414d283e56cc87b71226c4c86d1980a9597795fa5ca329523168081e  ./docs/PROVENANCE.md
+5403365c6524641ca38c197d762be13dfd3158c509fd5564ddf7dc864473867c  ./docs/README_RU.md
+252d099d4fe22039f027475bcd3b4dafa3bb744ab9e865365ed86b8ca7b04234  ./docs/REPRODUCTION.md
+3f066d9b62465ecb41201bf0caf6a54d5f1ab72081b7038427865b2b5a78a11d  ./docs/REPRODUCTION_RU.md
+01e2cb1b049eb0123182ffb888901bd8ce2d91fa07ae7db3d527f06a495cc071  ./docs/REVIEWER_GUIDE.md
 f60234d69816de324fbad015d126db4b0cb681830ec57afdbd8f9fdf1f67752b  ./docs/SUBMISSION_ARTIFACTS_SPEC.md
-7be2ca952bb96289b474f6e991a52e74337831a1d931907d48c98566efd2dcfc  ./docs/TRACE_POLICY.md
+30b9f32a5c44340cf222e49946507b425c170bdb7dcaf6117caf543c23362728  ./docs/SUBMISSION_REPORT.md
+6ecf48c24271c8e96a158d82c98ff24488bf8ecdcbee0dc8741ff632351cabf5  ./docs/TRACE_POLICY.md
+748c1031e2a999dadc34070de3b6747b2ad1f60ab58a237adceca7865e9389b0  ./docs/VIDEO_LINK.md
+b98ffb948c62bda1e233554daab29d47d7da1aeea7d8fc7cfe8e8ee70b61ae3c  ./docs/VIDEO_SCRIPT.md
 1c2549ef51abee35a558a14f9f86531eddcc44183ad05326d498837cb914b7c3  ./docs/evidence/2026-08-27-reminder-email.md
 91fa449f442968be825b2b2f0a8537317c0cfc874c38b092cd4ec53b944916fe  ./docs/evidence/SHA256SUMS
 55eb8908085982e7ed0747cf2200fc6207acfce540166891c34fe27c6f5642eb  ./docs/evidence/judging-rubric.png
@@ -826,11 +838,13 @@ f48c056a45efc1ee6b2d25f3e4d7920e5e537e02586062f86dc0ed91e7bd6dff  ./scripts/BG-D
 2bedaac4589f5e37e249e4d19528f0515b2287b897459b9f5dcef4c8b70bc024  ./scripts/d00-official-observer-rehearsal.ts
 c1e5bdd2ee6cde95905ca917be96e8bcb472116db44449e3e7326c98078338cd  ./scripts/d00-official-post-decision-recovery.ts
 1eb235be0be6d6004f26c4dde980b20db98ce2b196cd53388e636f4a17909cf6  ./scripts/d00-official-preflight.ts
+ff7ebd157e68674c6c96787bdc4a57e3d188e2a70c8a1e6c7275144fc7d889bd  ./scripts/d00-official-replay.ts
 443af1a466695b0f550a4a628ff37804b2f66cfcea0ff46377790855b1603765  ./scripts/d00-official-run.ts
 a21f49d5ced41c1e05ad5615e18335463e02c3e710747d7a1ca1b2e392325a46  ./scripts/d00-post-decision-source-manifest.ts
 10c27f601e3344cd5f6b7917c1b899d30e07d91b5a78518e8f368d49ffbe1e85  ./scripts/d00-pre-unblinding-entrypoint.ts
+fda61f97a9754f41389d6b9ac9ceffd59ccc67e75d92403efc47513827f78995  ./scripts/d00-submission-metadata.ts
 0a3a8a1648805f0545602a907ba69445ba87a31456ba11c310a2354a5f3167ce  ./scripts/d00-transport-canary.ts
-bf92b32f2a9ededaaaf159d7982b7d625b665a681cd9a4bfc913d1a66b389d90  ./scripts/d00-zip-rehearsal.ts
+7b3f96bae679aadbfff38a03a33a4c9d60f6ad24ef30e2412028e1390095fc3f  ./scripts/d00-zip-rehearsal.ts
 1de53b5ce15bad496b88cc7e147144accaff46dfe1dbaca91673640d79626aa2  ./scripts/d01-arm-worker.ts
 52c9ab0008ae01beb89f5d782d62ea3fcdbbb26e2fc703fb239214303d3b3544  ./scripts/d01-candidate-observer-worker.ts
 01e1cd09956af97013957650b2d5f427e0f3a6298d66bf18eeb8f829adfe665a  ./scripts/d01-demo.ts
@@ -844,8 +858,9 @@ ef9cf7930d45222751c8d72ccdd78fe97b845aa9bea602ca660a7ae9f45c2440  ./scripts/d01-
 bb1d7437bd4635e29946bd5f47fd42c78115e041ab4fd3950b72b04cbb66863e  ./scripts/held-out-manifests.ts
 cba8893c814b32e887237b102ec3f94c6f58f844cba9e58019edef431f3888e7  ./scripts/license-audit.ts
 74bb1aafea802ed65535ce61a51418b9324b19a39e2d7192eb7ea1624bbe0b97  ./scripts/preflight-check.ts
-a2b3da6c48ed7ad4740bebc5fc130a36093f1d5eec29d4c707cc65d5b2c1506f  ./scripts/reconcile-control-checksums.ts
+6bcfae33e8790192b2370e256c9fe7bf91e59894411a31790686517f5edbca81  ./scripts/reconcile-control-checksums.ts
 dea3d41d3085f3783a871f2ad631fa79c7096afb36ad881d5490e1b6a6b5b1c1  ./scripts/run-trace-continuation.ts
+5ff08fc91e13b433605be3b5cd7ccd84c363f455691c89d2bd562fd4b0c0129a  ./scripts/submission-membership.ts
 b3da4c2f32a0ed33f5ae86351a9f7425a6afdf6f0d4076169a1ce2ad428bb358  ./scripts/task.ts
 e6abb97ac7b2934d241d06fe64af29869e5354e8715d114270c6f066cb85e24a  ./scripts/tasks/common.ts
 39d2ea2a9fb00ea4135c0a761d6222e4d8703b8fd7cf7ed9aa9fdf5f16de1870  ./scripts/tasks/d01.ts
@@ -855,7 +870,7 @@ f6426656021b54b40c5b45ab7838277697c76c6716b0741a4997a15d1167d949  ./scripts/task
 8638706c09981e5d6f1284ec6ecc756257f6ef41a4e0ef1b96d1c78493147b07  ./scripts/tasks/helpers.ts
 fe9ce00501d6653adedc8438eb55088ac3a089edd843069e6fbfb210fe6c9e6a  ./scripts/tasks/official.ts
 9b3717cef7d6f0a122d34e8fa68095b7270c040ce979332b3b46cd6d1f332333  ./scripts/tasks/phase0.5.ts
-54261ebffe1f45cdc7b66207f819ae7320a71b97fa3c46ab7e4486551657139a  ./scripts/tasks/pre-unblinding.ts
+fc11018818237b62c301407104f27b568fa85d95a341b979421a9c8fcec8544b  ./scripts/tasks/pre-unblinding.ts
 efeea8d728d5f9378bab191cff87f6ec1b3efa4e6ba61fc344d4e3a296307591  ./scripts/tasks/registry.ts
 c72fee3e20a5615ab6929f1d6b3cc7a3f285200ed33dd091e7e2e7182d0e649d  ./scripts/tasks/runner.ts
 5ab5cddff55e5d8464f6094daa8ced5a2461022c09109a653b224b85693bccbe  ./scripts/tasks/types.ts
@@ -962,13 +977,14 @@ f70c9660364109c196aab2b7bfb84972a2ac0fd4fda79ae5127e4d7b27a8817e  ./src/official
 f979153c34036e708bd4267e680f3ab03058390daccd6adc9d3eae82a6780b20  ./src/official/runtime/specialized-observers.ts
 506318fa4a32eef0615d5c62a473ab4dbc0b7d6ec0827ff1e568aac44195d343  ./src/official/runtime/status-quo-arm-handler.ts
 2fc9b3b874e77a3ff4ff07d4a64f4554f275edd6503f7bbba78d5daac2f2d075  ./src/official/worker-contract.ts
+7ec91848b0afcd2897818b5ce61823bac5ed2b144402922923798616e6be9627  ./submission/CHECKLIST.md
 7caf48c72542d071da26ae93af0e91e65eca4d69f3433df4cc88378f04c9da30  ./templates/ITERATION_RECORD.md
 20288c22d76f72c131aa4cacf015f6d8438a58b26e56826369efafe08779cef8  ./templates/PROVENANCE_ENTRY.yaml
 95e865cf835fdab789671e1f62f091b7009758426be2c8790d45f7109432f491  ./templates/SESSION_BOUNDARY.yaml
 ebdfb65e754fc5bcab64e63aa4c8753d39d63e1ee966a5d288688357e9e775c2  ./tests/BG-D03-derived-state.test.ts
 bbe172b04d7c1633a4b05da3fffabc379744111d1076a327e188722cbb3675cd  ./tests/BG-D04-isolation.test.ts
 6a3b31c8583937d62ba206daec454669cd7203c93854f9f25ec956061e70d15d  ./tests/all-fixtures.integration.test.ts
-445cc244a386d3ba256c20e6e396aa9d805d39e31c2c855aa40378643182daf1  ./tests/d00-pre-unblinding-entrypoints.test.ts
+b837841da8b7ddd8a5bc7b8a392b3357994728bc3bad4511c58038cbf0059829  ./tests/d00-pre-unblinding-entrypoints.test.ts
 1bb2f17c68493b82dd1d95048bcae7079403d302c80ba79d887c0806ba7102a1  ./tests/d01-boundary.test.ts
 43d55fb097b7be687383ffbec8a1e91c3550bf2be69dc33940b269082fe3959d  ./tests/d01-descriptor-injection.test.ts
 8e437ae243b2d8c3b24a8ce08efde4f28c0f09cf5341a7665951c66f66f1a9a0  ./tests/d01-package-binding.test.ts

@@ -3,7 +3,36 @@
 **Projection of:** `docs/PROJECT_SPEC.md@1.1.0`
 **Normative:** no; the global product-semantics specification wins on conflict
 **Evaluation version:** `eval-v1.1.0`
-**State:** Phase 0.5 inputs are frozen under the explicit nested-CLI waiver.
+**State:** official `eval-v1.1.0` evidence is complete and immutable. The historical
+readiness narrative below is retained for provenance; the final result is stated next.
+
+## Final official result
+
+RUN-002 preserved 40 immutable arm decisions: 20 status-quo decisions with zero model
+calls and 20 BeyondGreen decisions with one `gpt-5.6-sol` call each and zero retries.
+Create-once `POSTDECISION-004` then produced 80 captures and 40 evaluator records with
+zero additional arm or model calls. Deterministic evidence SHA-256:
+`972cf43f76d0e68534b481a15bfc9f6b9e2db3bf83b4cb5c80d654d07b378f07`.
+
+| Metric | Status quo | BeyondGreen | Frozen target |
+| --- | ---: | ---: | ---: |
+| Correct decisions | 10/20 | 19/20 | ≥16/20 — met |
+| Accuracy advantage | — | +9/20 | ≥6/20 — met |
+| Reason-correct defect recall | 0/10 | 3/10 | ≥8/10 — **missed** |
+| Preserving candidates blocked | 0/10 | 1/10 | ≤2/10 — met |
+| Completed decisions | 20/20 | 19/20 | ≥18/20 — met |
+
+The single incomplete/blocked preserving result is a `BG-H06` abstention. The frozen
+reason-correct implementation credited `3/10` through the lexical operationalization
+documented below. Seven decision-correct rejects did not match its required verifier-owned
+token or label. No result, rationale, scorer, or oracle was changed after unblinding.
+
+## Historical readiness record
+
+The following chronology records the controls that existed before the official run. Its
+statements about unavailable results and separately gated unblinding are historical, not
+the current project state.
+
 `TRC-BG-D01-VERIFY-002` remains an eligible historical verification of the prior
 unscored D01 state, but it does not cover the scale-readiness implementation in
 `SES-20260830-001`. Those corrections are repo-locally validated, and exact native
@@ -52,7 +81,8 @@ or run record. These readiness controls are not evaluation results and make no s
 claim; official/scored execution and the single unblinding remain separately gated.
 
 This projection specializes `FR-001`–`FR-012`, `NFR-001`–`NFR-009`,
-`EV-001`–`EV-013`, and `AR-003`–`AR-007`. It claims no result.
+`EV-001`–`EV-013`, and `AR-003`–`AR-007`. Its final result is the immutable table above;
+the remainder preserves the predeclared method and pre-run chronology.
 
 ## Fixed cases and decisions
 
@@ -97,15 +127,15 @@ Phase 0.5. Actual runtime, calls, human time, tokens only when stably reported,
 fixed-subscription billing, and monetary-cost applicability/status are reported;
 per-run USD is not calculated, estimated, or capped.
 
-The optional live adapter contract is frozen as `codex-exec-jsonl-v1` targeting
-`gpt-5.6-sol` through locally ChatGPT-authenticated `codex exec`, with one call,
-zero retries, a read-only sandbox, and a 180-second total deadline. Nested-desktop
-runtime validation is owner-waived and remains deferred/unverified; two historical
-failures remain failures. Model unavailability or transport failure produces
-`abstain`, never a substitute or retry. Deterministic `offline-replay-jsonl-v1` is
-the verified reproducibility path but does not prove live model behavior. Fixed
-subscription per-run USD is `not_applicable` or `not_measured` and is not calculated
-or estimated. Tokens are recorded only when reported explicitly and stably.
+The live adapter is frozen as `codex-exec-jsonl-v1` targeting `gpt-5.6-sol` through
+locally ChatGPT-authenticated `codex exec`, with one call per BeyondGreen candidate,
+zero retries, a read-only sandbox, and a 180-second total deadline. RUN-002 recorded all
+20 model invocations and 40 immutable arm decisions; the preserved RUN-001 and transport
+failures remain disclosed. Model unavailability or transport failure produces
+`abstain`, never a substitute or retry. Deterministic `offline-replay-jsonl-v1` is the
+judge-facing reproducibility path and verifies the recorded live-run evidence without a
+new model call. Fixed-subscription per-run USD is `not_measured` and is not calculated or
+estimated. Tokens are recorded only when reported explicitly and stably.
 
 ## Metrics and exact target semantics (`EV-007`, `EV-008`)
 
@@ -115,7 +145,9 @@ correct_decision =
   (verdict == reject AND ground_truth == false_green)
 
 decision_accuracy = correct_decisions / 20
-reason_correct_reject = verdict == reject AND rationale identifies the violated frozen behavior class or invariant family
+normalize(value) = lowercase(value) with each non-[a-z0-9] run replaced by "-"
+reason_correct_reject = verdict == reject AND normalize(rationale) literally contains
+                        normalize(verifier_behavior_class OR verifier_failed_action)
 defect_recall = false_green_candidates_with_reason_correct_reject / 10
 false_alarm_rate = preserving_candidates_blocked / 10
 preserving_candidate_blocked = verdict == reject OR verdict == abstain
@@ -128,6 +160,17 @@ An abstention blocks merge but is not a correct decision, not defect recall, not
 completion, and is a false alarm when ground truth is preserving.
 Reason correctness is evaluated only after verdict immutability and creates no
 pre-decision feedback.
+
+This is a strict lexical proxy, not a semantic-rationale grader. The behavior-class
+vocabulary is arm-visible only for `BG-D03`; for the other fixtures the matcher can still
+credit a rationale when it independently uses the same words or failed-action label. The
+contrast is observable in immutable evidence: `BG-H02` cites
+`BG-H02-INV-CURRENT-EPOCH` and describes the stale completion precisely but misses the
+verifier tokens `async-ordering` / `complete-r1`, while the structurally comparable
+`BG-H04` rationale is credited because `BG-H04-INV-CONDITIONAL-LIFECYCLE` happens to
+contain `conditional-lifecycle`. The published `3/10` is retained unchanged and must be
+read as recall under this operational token contract, not as a count of every semantically
+correct diagnostic explanation.
 
 Predeclared BeyondGreen targets, without rounded substitutes:
 
@@ -267,3 +310,10 @@ Before fixture code, at least one fixture is recorded in
 `evaluation/challenging-cases.yaml` with its behavior class and reason for difficulty.
 The final report explains what its result revealed, including a failure or abstention
 without suppression.
+
+**Final `BG-H02` result.** Both arms accepted preserving `candidate-a`. The status-quo
+arm also accepted false-green `candidate-b`, while BeyondGreen rejected it. That reject
+was decision-correct and diagnostically specific, but it did not contain the lexical tokens
+required by the frozen operational matcher. The case therefore demonstrates the product's
+merge-blocking advantage while exposing a measurement-validity limit in the unchanged
+`3/10` reason-correct total.

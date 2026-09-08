@@ -4,7 +4,7 @@ requirement_ids:
   - "AR-002"
   - "AR-005"
   - "NFR-004"
-status: "h01_h06_coordinator_bundle_owner_approved_and_indexed_in_actual_traces"
+status: "final_official_evidence_and_submission_closure_boundaries_indexed"
 session_boundaries:
   - session_id: "SES-20260828-001"
     path: "artifacts/trajectories/session-boundaries/SES-20260828-001.yaml"
@@ -109,6 +109,111 @@ session_boundaries:
     approval_status: "approved_review_only_completed_and_trace_promoted"
     approval_scope: "Deterministically review the exact coordinator H01-H06 trace allowlist, create sanitized projections and indexes, and stop before actual_traces promotion."
     authoring_transcript_eligible: true
+  - session_id: "SES-20260831-020"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-020.yaml"
+    approval_status: "approved_synthetic_runtime_correction"
+    authoring_transcript_eligible: false
+    reason: "Boundary is retained as control evidence; its authoring transcript was not promoted through the representative-trace review pipeline."
+  - session_id: "SES-20260831-021"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-021.yaml"
+    approval_status: "approved_production_composition"
+    authoring_transcript_eligible: false
+    reason: "Boundary is retained as control evidence; no separately reviewed representative trace was promoted."
+  - session_id: "SES-20260831-022"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-022.yaml"
+    approval_status: "approved_isolated_verifier_authoring"
+    authoring_transcript_eligible: false
+    reason: "Verifier-authoring boundary is retained; no hidden content is claimed as an arm-visible or representative coding trace."
+  - session_id: "SES-20260831-023"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-023.yaml"
+    approval_status: "approved_shared_integration"
+    authoring_transcript_eligible: false
+    reason: "Boundary is retained as integration control evidence without representative-trace promotion."
+  - session_id: "SES-20260831-024"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-024.yaml"
+    approval_status: "approved_runtime_completion"
+    authoring_transcript_eligible: false
+    reason: "Synthetic runtime work is documented by its boundary and tests; its transcript was not separately promoted."
+  - session_id: "SES-20260831-025"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-025.yaml"
+    approval_status: "approved_runtime_closure"
+    authoring_transcript_eligible: false
+    reason: "Boundary records contaminated/no-deliverable replacements honestly; no representative trace is claimed."
+  - session_id: "SES-20260831-026"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-026.yaml"
+    approval_status: "approved_pre_official_hardening"
+    authoring_transcript_eligible: false
+    reason: "Pre-official hardening is retained as boundary/test evidence, not a reviewed representative trace."
+  - session_id: "SES-20260831-027"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-027.yaml"
+    approval_status: "approved_failed_public_canary"
+    authoring_transcript_eligible: false
+    reason: "The single failed canary is preserved as operational evidence and is not implementation-trace credit."
+  - session_id: "SES-20260831-028"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-028.yaml"
+    approval_status: "approved_no_model_diagnosis"
+    authoring_transcript_eligible: false
+    reason: "Read-only transport diagnosis is retained as a boundary, not representative implementation evidence."
+  - session_id: "SES-20260831-029"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-029.yaml"
+    approval_status: "approved_owner_terminal_canary"
+    authoring_transcript_eligible: false
+    reason: "The successful public canary is transport evidence, not a coding-agent trajectory."
+  - session_id: "SES-20260831-030"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-030.yaml"
+    approval_status: "approved_final_runtime_preflight"
+    authoring_transcript_eligible: false
+    reason: "Checkpoint/preflight boundary is retained without representative-trace promotion."
+  - session_id: "SES-20260831-031"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-031.yaml"
+    approval_status: "approved_failed_official_run_001"
+    authoring_transcript_eligible: false
+    reason: "Official execution is immutable run evidence rather than coding-agent authoring-trace credit."
+  - session_id: "SES-20260831-032"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-032.yaml"
+    approval_status: "approved_pre_arm_recovery"
+    authoring_transcript_eligible: false
+    reason: "Recovery is documented by boundary, tests, and preserved RUN-001; no representative trace was promoted."
+  - session_id: "SES-20260831-033"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-033.yaml"
+    approval_status: "approved_run_002"
+    authoring_transcript_eligible: false
+    reason: "RUN-002 provenance cites this owner-controlled execution boundary; it is not coding-agent authoring evidence."
+  - session_id: "SES-20260831-034"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-034.yaml"
+    approval_status: "approved_post_decision_recovery"
+    authoring_transcript_eligible: false
+    reason: "Post-decision work is covered by immutable decisions, boundary controls, tests, and failure packets; no transcript promotion is claimed."
+  - session_id: "SES-20260831-035"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-035.yaml"
+    approval_status: "approved_plan_compatibility_correction"
+    authoring_transcript_eligible: false
+    reason: "Compatibility correction is boundary/test evidence without a separately promoted trace."
+  - session_id: "SES-20260831-036"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-036.yaml"
+    approval_status: "approved_observer_hardening"
+    authoring_transcript_eligible: false
+    reason: "Observer repair is documented by preserved failure evidence and tests; no representative trace is claimed."
+  - session_id: "SES-20260831-037"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-037.yaml"
+    approval_status: "approved_verifier_runtime_correction"
+    authoring_transcript_eligible: false
+    reason: "Verifier-runtime repair is recorded as owner-controlled post-decision evidence, not an arm-visible representative trace."
+  - session_id: "SES-20260831-038"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-038.yaml"
+    approval_status: "approved_verifier_bridge_closure"
+    authoring_transcript_eligible: false
+    reason: "Final bridge closure is covered by its audit journal, regression tests, and owner boundary; no unreviewed trace is promoted."
+  - session_id: "SES-20260831-039"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-039.yaml"
+    approval_status: "approved_submission_preparation"
+    authoring_transcript_eligible: false
+    reason: "Submission preparation is release-control evidence, not a representative coding-agent trace."
+  - session_id: "SES-20260831-040"
+    path: "artifacts/trajectories/session-boundaries/SES-20260831-040.yaml"
+    approval_status: "approved_final_submission_closure"
+    authoring_transcript_eligible: false
+    reason: "Final closure is release-control evidence; its Claude checkpoint is indexed separately as review evidence."
 capture_validation:
   status: "pipeline_canary_passed_not_a_representative_trace"
   category: "external_raw_trace_canary"
@@ -601,6 +706,20 @@ actual_traces:
     indexed_in_actual_traces: true
     eligible_representative_trace: true
     approval_scope: "Promote only CONT-003, CONT-004, and owner-controlled post-capture acceptance; preserve initial, CONT-001, and CONT-002 as retry records only. No product/code/test changes, official/scored run, commit, or push."
+reviewed_not_promoted:
+  - trace_id: "TRC-BG-PRE-UNBLINDING-VERIFY-001"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-PRE-UNBLINDING-VERIFY-001.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-PRE-UNBLINDING-VERIFY-001_RU.md"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-PRE-UNBLINDING-VERIFY-001.yaml"
+    eligibility_disposition: "reviewed_but_not_promoted"
+    reason: "The read-only pre-unblinding verification is retained as review evidence and is not claimed as implementation evidence for the later official runtime."
+  - trace_id: "TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-002"
+    trace_path_en: "artifacts/trajectories/reviewed/TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-002.md"
+    trace_path_ru: "artifacts/trajectories/reviewed/TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-002_RU.md"
+    structural_projection_path: "artifacts/trajectories/reviewed/TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-002-STRUCTURAL.json"
+    review_path: "artifacts/trajectories/reviews/TRC-BG-PRE-UNBLINDING-VERIFY-001-CONT-002.yaml"
+    eligibility_disposition: "reviewed_but_not_promoted"
+    reason: "The continuation verifies transport/projection integrity; it is not promoted as final implementation evidence."
 pending_trace_review:
   - trace_id: "TRC-BG-D01-RECOVERY-001"
     agent_id: "COD-CODEX-006"
@@ -758,6 +877,36 @@ declared_agents:
       eligible_trace_id: "TRC-BG-D01-VERIFY-002"
       eligible_representative_trace: true
       reason: "Exact capture identity, strict UTF-8, independent semantic review, reviewed-layer private-denylist scan, and repository-owner review passed."
+    - agent_id: "COD-CODEX-008"
+      tool_and_model: "Codex Desktop / GPT-5 family; exact runtime identity not machine-exported"
+      purpose: "D01 scale-readiness correction round 1."
+      eligible_trace_id: "TRC-BG-D01-SCALE-001"
+      eligible_representative_trace: true
+      reason: "Exact reviewed capture, safe scan, owner approval, and independent checkpoint passed."
+    - agent_id: "COD-CODEX-009"
+      tool_and_model: "Codex Desktop / GPT-5 family; exact runtime identity not machine-exported"
+      purpose: "D01 descriptor and capability-evidence scale correction round 2."
+      eligible_trace_id: "TRC-BG-D01-SCALE-002"
+      eligible_representative_trace: true
+      reason: "Complete reviewed capture, EN/RU reconciliation, safe scan, and owner approval passed."
+    - agent_id: "COD-CODEX-010"
+      tool_and_model: "Codex Desktop / GPT-5 family; exact runtime identity not machine-exported"
+      purpose: "D01 bounded scale acceptance correction round 3."
+      eligible_trace_id: "TRC-BG-D01-SCALE-003"
+      eligible_representative_trace: true
+      reason: "Exact native capture, safe scan, technical review, and owner promotion passed."
+    - agent_id: "COD-CODEX-011"
+      tool_and_model: "Codex Desktop / GPT-5 family; exact runtime identity not machine-exported"
+      purpose: "D01 scale round 4 and seven reviewed continuations."
+      eligible_trace_id: "TRC-BG-D01-SCALE-004"
+      eligible_representative_trace: true
+      reason: "Main capture and seven continuations passed the ten acceptance criteria and owner promotion."
+    - agent_id: "COD-CODEX-012"
+      tool_and_model: "Codex CLI / GPT-5 family; exact runtime identity not machine-exported"
+      purpose: "D01 documentation and structured-comment correction family."
+      eligible_trace_id: "TRC-BG-D01-DOCS-001"
+      eligible_representative_trace: true
+      reason: "Documentation trace family passed capture, scan, review, and owner bundle approval."
     - agent_id: "COD-CODEX-013"
       tool_and_model: "Codex CLI / gpt-5.6-sol"
       purpose: "BG-H01 through BG-H06 fixture integration coordinator."
@@ -786,17 +935,28 @@ declared_agents:
         - "ITR-002"
       raw_review_status: "not_saved_to_repository; safe findings summary pending trace review"
       eligible_representative_trace: false
+    - agent_id: "REV-CLAUDE-003"
+      tool_and_model: "Claude Opus 5 through the local opus alias; Claude Code 2.1.251"
+      purpose: "Independent final qualification and 100-point rubric audit."
+      adopted_findings_iteration_ids:
+        - "ITR-045"
+      review_path: "artifacts/trajectories/reviews/BG-FINAL-SUBMISSION-CLAUDE-CHECKPOINT.md"
+      owner_companion_ru_path: "artifacts/trajectories/reviews/BG-FINAL-SUBMISSION-CLAUDE-CHECKPOINT_RU.md"
+      raw_response_sha256: "6e010164523449527835aebeb514be3e3c9fbdb49518dc0c0d4db6103d1587cc"
+      raw_review_status: "complete_read_only_checkpoint_preserved_as_safe_review_card"
+      eligible_representative_trace: false
 verifier_boundary:
   agent: false
   purpose: "Future deterministic owner of verifier-only oracle manifests and correctness facts."
 tool_call_audit:
-  browser_calls: 0
+  reconciled_through_session: "SES-20260831-040"
+  browser_calls: 2
   connected_app_calls: 0
   private_mcp_calls: 0
   unauthorized_outside_root_calls: 0
-  public_web_documentation_calls: 2
-  claude_read_only_review_invocations: 2
-  claude_review_completed_invocations: 1
+  public_web_documentation_calls: 4
+  claude_read_only_review_invocations: 3
+  claude_review_completed_invocations: 2
   d01_implementation_model_invocations: 0
   d01_implementation_chromium_calls: 0
   d01_vertical_slice_model_invocations: 0

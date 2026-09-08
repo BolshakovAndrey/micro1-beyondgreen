@@ -4,6 +4,11 @@ import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import { resolveTask } from "../scripts/tasks/registry.ts";
+import {
+  isSubmissionExcluded,
+  loadSubmissionExclusions,
+  partitionSubmissionPaths,
+} from "../scripts/submission-membership.ts";
 
 const exactVersionArguments = ["--evaluation-version", "eval-v1.1.0"] as const;
 const taskNames = ["baseline:verify", "beyondgreen:verify", "evaluation:run", "replay"] as const;
@@ -60,14 +65,45 @@ test("evaluation:run is registered to the gated production runner without execut
   assert.match(source, /createOfficialProductionRoot/);
 });
 
-test("ZIP rehearsal is temporary, manifest-backed, and cannot create a final archive", () => {
+test("ZIP rehearsal is temporary, manifest-backed, and cannot execute an official run", () => {
   const source = readFileSync("scripts/d00-zip-rehearsal.ts", "utf8");
   assert.match(source, /mkdtempSync/);
   assert.match(source, /PRE_UNBLINDING_REHEARSAL_MANIFEST\.json/);
-  assert.match(source, /SES-20260830-014\.yaml/);
+  assert.match(source, /loadSubmissionExclusions/);
+  assert.match(source, /partitionSubmissionPaths/);
+  assert.match(source, /RUN-BG-OFFICIAL-EVAL-V1\.1\.0-002\/observer-records/);
   assert.match(source, /sourceSha256/);
   assert.match(source, /rmSync\(temporaryRoot/);
   assert.doesNotMatch(source, /dist\/submission\.zip|finalSubmissionArchive:\s*true/);
+  assert.doesNotMatch(source, /"evaluation:run"/);
   assert.equal(resolveTask("submission:rehearse", []).name, "submission:rehearse");
   assert.throws(() => resolveTask("submission:rehearse", ["--keep"]), /does not accept arguments/);
+});
+
+test("submission membership is derived from every configured file and directory exclusion", () => {
+  const exclusions = loadSubmissionExclusions(process.cwd());
+  const examples = [
+    "README.md",
+    "docs/CHALLENGE.md",
+    "docs/HACKATHON_RULES.md",
+    "docs/CONTROL_STATUS_RU.md",
+    "docs/PREMORTEM_RU.md",
+    "docs/evidence/timeline.png",
+    "tmp/private-output.txt",
+    "artifacts/trajectories/session-boundaries/SES-20260830-014.yaml",
+  ] as const;
+  const partition = partitionSubmissionPaths(examples, exclusions);
+  assert.deepEqual(partition.included, ["README.md", "docs/CHALLENGE.md", "docs/HACKATHON_RULES.md"]);
+  assert.deepEqual(partition.excluded, examples.filter((file) => isSubmissionExcluded(file, exclusions)).sort());
+  for (const file of partition.included) assert.equal(isSubmissionExcluded(file, exclusions), false);
+  for (const file of partition.excluded) assert.equal(isSubmissionExcluded(file, exclusions), true);
+
+  const metadataSource = readFileSync("scripts/d00-submission-metadata.ts", "utf8");
+  const rehearsalSource = readFileSync("scripts/d00-zip-rehearsal.ts", "utf8");
+  for (const source of [metadataSource, rehearsalSource]) {
+    assert.match(source, /loadSubmissionExclusions/);
+    assert.match(source, /partitionSubmissionPaths/);
+  }
+  assert.doesNotMatch(metadataSource, /const EXCLUDED = new Set/);
+  assert.doesNotMatch(rehearsalSource, /approvedExclusions/);
 });

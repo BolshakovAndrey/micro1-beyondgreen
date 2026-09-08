@@ -28,7 +28,7 @@ Dependencies are exact-pinned and installed from the lockfile only.
 
 ```bash
 node --version          # v22.22.3
-npm ci
+make setup              # npm ci --ignore-scripts
 npm run task -- list    # the full task catalog with descriptions
 ```
 
@@ -44,11 +44,14 @@ reported success would invalidate the isolation claim. Level A is platform-indep
 ## 2. Level A — deterministic offline replay (any platform)
 
 ```bash
-npm run task -- d01:replay
-npm run task -- d01:replay
+make setup
+make eval
+make eval
 ```
 
-Both invocations must print identical JSON and HTML digests. The replay core validates
+Both replay invocations must finish with `OFFICIAL_OFFLINE_REPLAY_VERIFIED` and the same
+evidence SHA-256 `972cf43f76d0e68534b481a15bfc9f6b9e2db3bf83b4cb5c80d654d07b378f07`.
+The replay core validates
 both finalized decision hashes, both observation pairs, every evaluator-to-decision
 binding, each runner/worker capability proof, and the stored JSON against its Zod schema
 before rebuilding the report entirely in memory. It imports no filesystem-write, network,
@@ -130,6 +133,18 @@ run is preserved, not deleted: recovery continues from the frozen decisions with
 `evaluation:recover-post-decision`, which can reach scenarios, observers, evaluators,
 aggregation, and replay — never an arm and never a model.
 
+The `execution-plan.json` stored in RUN-002 is the non-executable static-preflight plan,
+so its `officialOrScoredRun:false`, `unblindingPerformed:false`, and
+`candidateExecutionAllowed:false` fields describe plan creation rather than the later
+official execution. The 40 immutable arm records and provenance in the same root are the
+execution evidence.
+
+`POSTDECISION-004/provenance.json` also discloses `inventorySha256Match:false`. The drift
+comes from owner-approved transcript-cardinality and identity-transport bridge repairs in
+SES-034/037, not candidate, decision, oracle-semantics, or scoring changes. The predeclared
+construction control still reproduced exactly 10/20 for status quo and the same 10/10
+ground-truth split.
+
 ### What the protocol enforces
 
 - 20 candidates × 2 arms = 40 arm plans, one attempt each, zero retries.
@@ -178,7 +193,7 @@ never printed.
 
 ## 7. State of the official run
 
-The arm phase is complete and frozen; the post-decision oracle phase is not. As recorded
+The arm phase and post-decision oracle phase are complete and frozen. As recorded
 in `artifacts/evaluation/official/`:
 
 | Root | State |
@@ -187,13 +202,30 @@ in `artifacts/evaluation/official/`:
 | `RUN-…-002` | 40 immutable arm records — 20 status-quo (0 model invocations) and 20 BeyondGreen (1 each) |
 | `…-POSTDECISION-002` | observer-stage failure before any capture |
 | `…-POSTDECISION-003` | partial: 80/80 observer captures, schema-valid, all 40 capture pairs digest-identical; 8/40 evaluator records; no aggregate, report, or replay |
+| `…-POSTDECISION-004` | complete: 80 captures, 40 evaluator records, aggregate, JSON/HTML report, and exact offline replay |
 
 Every failed and partial root is preserved byte-for-byte as honest evidence. Scored
-aggregates therefore do not exist yet: the metric cells in the README stay unfilled until
-a completed post-decision root produces all 40 evaluator records from the already-frozen
-decisions. The arms are never re-run to obtain them.
+aggregates come only from the completed `POSTDECISION-004` root and the already-frozen
+RUN-002 decisions. The recovery recorded zero arm executions and zero model invocations.
 
-## 8. Limits
+## 8. Stable commands
+
+| Command | Purpose | Typical runtime / cost |
+| --- | --- | --- |
+| `make setup` | lockfile-only install | under one minute; network for npm |
+| `make baseline` | validate frozen baseline contract | seconds; no model |
+| `make solution` | validate frozen BeyondGreen contract | seconds; no model |
+| `make test` | complete deterministic suite | about 25 seconds on reference macOS |
+| `make eval` / `make replay` | verify official evidence offline | seconds; no model |
+| `make demo` | write the unscored D01 JSON/HTML demo | seconds; no model |
+| `make artifacts-check` | compile, checksums, official replay | under a minute; no model |
+| `make submission` | temporary clean-extraction rehearsal | several minutes; final release ZIP remains a separate owner-gated artifact |
+
+The historical one-shot `evaluation:run` command is documented above for provenance but
+must not be used for judge reproduction. It would be a new, unscored execution. The safe
+judge path is `make eval`.
+
+## 9. Troubleshooting and limits
 
 - The benchmark is synthetic, and generalisation to production repositories is not
   demonstrated.
@@ -201,3 +233,7 @@ decisions. The arms are never re-run to obtain them.
 - Level B and level C require macOS; the isolation runner fails closed elsewhere.
 - The official run is create-once. A reviewer reproduces it by replaying its immutable
   evidence, not by re-executing it.
+- On Linux, use `make eval` and `make artifacts-check`; production isolation tests fail
+  closed because `/usr/bin/sandbox-exec` is unavailable.
+- A checksum mismatch means repository bytes differ from the reviewed manifest; do not
+  regenerate checksums unless intentionally reviewing a changed submission candidate.

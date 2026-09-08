@@ -3,8 +3,22 @@
 **Статус перевода:** полная ненормативная русская копия для проверки человеком
 **Нормативный источник:** `docs/PROJECT_SPEC.md`
 **Версия:** `1.1.0`
-**Состояние:** нормативная v1.1 одобрена; этап 0.5 зафиксирован с явным исключением
-для вложенного интерфейса командной строки. Для неоцениваемого вертикального сценария
+**Состояние:** нормативная v1.1 остаётся замороженной и неизменной. Реализация завершена;
+официальные доказательства `eval-v1.1.0` неизменяемо зафиксированы в
+`POSTDECISION-004`: 40 решений плеч из RUN-002, 80 captures, 40 записей оценщика,
+точность базового плеча 10/20 и точность BeyondGreen 19/20. Post-decision recovery не
+выполнял новых запусков плеч или модели. Финальное видео использует формулировку
+`40+ ITERATIONS`; основная ссылка YouTube проверена без входа, а публичное зеркало Vimeo
+зафиксировано. Заключительная независимая проверка и выведенная из конфигурации репетиция
+чистой распаковки прошли; владелец разрешил создание финального архива после полного
+набора выпускных проверок. Загрузка остаётся действием владельца.
+Этот статус не меняет нормативную семантику ниже.
+
+### Исторические контрольные точки реализации
+
+Следующая хронология сохранена как provenance (описание происхождения) и не является
+текущим статусом. Этап 0.5 был зафиксирован с явным исключением для вложенного интерфейса
+командной строки. Для неоцениваемого вертикального сценария
 D01 существует одобренная владельцем допустимая историческая трасса проверки
 `TRC-BG-D01-VERIFY-002`. В одобренной границе `SES-20260830-001` перечисленные
 исправления готовности к масштабированию реализованы и локально проверены. Старая
@@ -375,7 +389,9 @@ correct_decision =
   (verdict == reject AND ground_truth == false_green)
 
 decision_accuracy = correct_decisions / 20
-reason_correct_reject = verdict == reject AND rationale identifies the violated frozen behavior class or invariant family
+normalize(value) = lowercase(value) with each non-[a-z0-9] run replaced by "-"
+reason_correct_reject = verdict == reject AND normalize(rationale) literally contains
+                        normalize(verifier_behavior_class OR verifier_failed_action)
 defect_recall = false_green_candidates_with_reason_correct_reject / 10
 false_alarm_rate = preserving_candidates_blocked / 10
 preserving_candidate_blocked = verdict == reject OR verdict == abstain
@@ -390,6 +406,11 @@ preserving candidate и не считается completion.
 
 Reason correctness оценивает post hoc только independent evaluator после фиксации
 arm verdict и rationale. Это не создаёт evaluator feedback и не ослабляет `K=0`.
+
+Замороженная рабочая реализация зафиксирована буквально: это лексический показатель по
+токенам, а не смысловая оценка текста обоснования. Поэтому её результат следует описывать
+как полноту обнаружения в рамках этого словарного контракта, а не как количество всех
+смыслово верных диагностических объяснений.
 
 По construction все 20 candidates компилируются и проходят visible legacy tests.
 Status-quo policy поэтому заранее должна принять все 20: ровно `10/20` correct

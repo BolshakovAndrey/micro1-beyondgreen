@@ -1,6 +1,6 @@
 # Provenance Ledger
 
-**Status:** active from preflight  
+**Status:** current through final submission-candidate preparation<br>
 **Rule:** every submitted source, fixture, dataset, instruction, and evidence artifact
 must have an independently reviewable origin.
 
@@ -29,6 +29,11 @@ behavior specifications and recorded public sources.
 | BG-D03 derived-state development fixture | Independently authored synthetic package under `SES-20260830-007`; frozen package manifest | During event | Integrated and deterministically verified; trajectory review pending |
 | BG-D04 subscription-cleanup development fixture | Independently authored synthetic package under `SES-20260830-008`; frozen behavior and source manifests | During event | Integrated and deterministically verified; trajectory review pending |
 | D02-D04 integration and path normalization | Owner-authorized Codex continuation family under `SES-20260830-009` | During event | Repo-local verification complete; capture/review/owner promotion pending |
+| Held-out H01-H06 integration coordinator evidence | Owner-authorized Codex bundle under `SES-20260830-012` | During event | Reviewed, privacy-normalized, owner-approved, and indexed in `actual_traces`; failed/no-change attempts retained only as retries |
+| Official RUN-002 arm decisions | Owner-controlled `eval-v1.1.0` execution under `SES-20260831-033` | During event | Included as immutable official evidence; 40 decisions, 20 live BeyondGreen calls, zero retries |
+| `POSTDECISION-004` evidence and replay | Owner-controlled recovery from immutable RUN-002 decisions after verifier-runtime corrections | During event | Included; 80 captures, 40 evaluator records, zero new arm/model calls, evidence SHA-256 recorded |
+| Final judge-facing documentation and submission metadata | Codex-assisted synthesis from committed code and official evidence | During event | Submission candidate; video links, independent review, config-derived clean-extraction rehearsal, and owner ZIP authorization complete; upload remains owner-controlled |
+| Final demo video | Owner-authored edit from privacy-reviewed context footage and repository evidence | During event | External only: verified YouTube primary and public Vimeo mirror; local media excluded from ZIP; no identifiable real-product UI or code is shown, and legible values are synthetic |
 
 ## 3. Source admission rule
 

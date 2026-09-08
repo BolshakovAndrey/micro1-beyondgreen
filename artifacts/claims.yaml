@@ -1,0 +1,55 @@
+schema_version: "1.0"
+claims:
+  - id: "CLM-001"
+    statement: "BeyondGreen made 19 correct decisions out of 20 versus 10 out of 20 for the status-quo baseline."
+    rubric_criteria: ["Measured Improvement", "End-to-End Quality"]
+    metric: "correct_decisions"
+    baseline_value: "10/20"
+    advanced_value: "19/20"
+    evidence_paths:
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004/aggregate.json"
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004/offline-replay.jsonl"
+    run_ids: ["RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004"]
+    limitations: "Synthetic benchmark; one preserving candidate abstained."
+  - id: "CLM-002"
+    statement: "BeyondGreen improved decision accuracy by 9 out of 20 decisions."
+    rubric_criteria: ["Measured Improvement"]
+    metric: "accuracy_advantage"
+    baseline_value: "10/20"
+    advanced_value: "19/20"
+    evidence_paths:
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004/report.json"
+    run_ids: ["RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004"]
+    limitations: "Difference on the fixed synthetic eval-v1.1.0 set only."
+  - id: "CLM-003"
+    statement: "BeyondGreen blocked one of ten preserving candidates and completed 19 of 20 decisions."
+    rubric_criteria: ["Measured Improvement", "Agent Solution & Engineering"]
+    metric: "false_alarms_and_completion"
+    baseline_value: "0/10 blocked; 20/20 complete"
+    advanced_value: "1/10 blocked; 19/20 complete"
+    evidence_paths:
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004/aggregate.json"
+    run_ids: ["RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004"]
+    limitations: "The preserving BG-H06 case abstained and counts as blocked and incomplete."
+  - id: "CLM-004"
+    statement: "Reason-correct defect recall was 3/10 and missed the frozen 8/10 target."
+    rubric_criteria: ["Measured Improvement", "Hot Take / Insights"]
+    metric: "reason_correct_defect_recall"
+    baseline_value: "0/10"
+    advanced_value: "3/10"
+    evidence_paths:
+      - "docs/EVALUATION.md"
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004/offline-replay.jsonl"
+    run_ids: ["RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004"]
+    limitations: "Seven correct rejects did not identify the frozen invariant family precisely enough."
+  - id: "CLM-005"
+    statement: "Official post-decision recovery replayed 40 immutable decisions into 80 captures and 40 evaluator records with zero arm or model calls."
+    rubric_criteria: ["Agent Solution & Engineering", "Reproducibility"]
+    metric: "recovery_integrity"
+    baseline_value: null
+    advanced_value: "40 decisions; 80 captures; 40 evaluator records; 0 arm/model calls"
+    evidence_paths:
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004/provenance.json"
+      - "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004/recovery-manifest.json"
+    run_ids: ["RUN-BG-OFFICIAL-EVAL-V1.1.0-002", "RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004"]
+    limitations: "Post-decision recovery followed failed infrastructure attempts, all retained as evidence."

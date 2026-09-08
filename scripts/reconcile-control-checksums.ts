@@ -9,6 +9,8 @@ const excluded = new Set([
   manifestPath,
   "docs/CONTROL_STATUS_RU.md",
   "docs/PREMORTEM_RU.md",
+  "submission/MANIFEST.yaml",
+  "submission/SHA256SUMS",
 ]);
 
 const files = execFileSync(
@@ -23,8 +25,8 @@ const files = execFileSync(
 
 const header = [
   "# Scope: owner-approved contracts plus current bounded development and held-out integration checkpoints.",
-  "# Excludes this self-referential manifest and two local-only documents excluded",
-  "# by the clean task boundary. Private denylist and raw traces are external and",
+  "# Excludes this self-referential manifest, two local-only documents, and the",
+  "# submission metadata that hashes this manifest. Private denylist and raw traces are external and",
   "# intentionally absent. Pending implementation trace review is recorded by category.",
 ];
 const entries = files.map((file) => {

@@ -1,5 +1,31 @@
 # Clean-Room Preflight Checklist
 
+## Current final-submission state
+
+- [x] Normative v1.1, all ten fixture packages, twenty candidates, manifests, and
+      physical hidden-oracle controls are frozen and implemented.
+- [x] Representative coding-agent trajectories required by the submission are reviewed
+      and indexed; failed/no-change attempts remain retry records.
+- [x] RUN-002 contains 40 immutable arm decisions; `POSTDECISION-004` contains 80
+      captures, 40 evaluator records, aggregates, reports, and exact offline replay.
+- [x] Official result is disclosed without target suppression: status quo 10/20,
+      BeyondGreen 19/20, reason-correct recall 3/10 against the frozen 8/10 target.
+- [x] The current submission candidate passed a 1054-file config-derived clean-extraction rehearsal
+      (1053 release files plus its temporary rehearsal-only manifest) and
+      the 54/54 license audit.
+- [x] Four binary reference inputs were human-reviewed and excluded from the archive.
+- [x] Video wording is corrected from `43` to `40+`; public URL is recorded and verified
+      signed out.
+- [x] Whole-candidate checksums, scans, both safe preflights, and the post-video-URL
+      clean-extraction rehearsal pass on the current candidate.
+- [x] Final independent review and explicit owner ZIP approval are complete.
+
+Scanner readiness is evidence, not human approval. The historical checkpoints below are
+retained to explain how the project reached this state; statements that work was then
+unauthorized or incomplete are not the current status.
+
+## Historical gate record
+
 **Current scanner state:** `READY_FOR_IMPLEMENTATION` (automated structure only).
 **Product work state:** normative `docs/PROJECT_SPEC.md@1.1.0`, the Phase 0.5 freeze,
 and the BG-D01 behavior/provenance freeze are human-approved. Historical recovery
@@ -118,9 +144,9 @@ READY_FOR_CLEAN_BRANCH
 - [x] Status-quo and BeyondGreen scored arms receive the same 20 immutable candidates.
 - [x] Decision accuracy, defect recall, false alarms, completion, formulas,
       denominators, and exact targets are defined in the candidate global specification.
-- [ ] Ten fixture specifications and 20 candidates exist; the 4/6 membership and all
+- [x] Ten fixture specifications and 20 candidates exist; the 4/6 membership and all
       candidate/oracle hashes are frozen.
-- [ ] Hidden-oracle access controls are implemented and tested; their conceptual typed
+- [x] Hidden-oracle access controls are implemented and tested; their conceptual typed
       boundary is specified without relying on prompt wording.
 - [x] `docs/EVALUATION.md` projects v1.1 scoring, oracle controls, targets, and the
       one-attempt/three-minute policy; exact package/model cap decisions remain Phase 0.5 gates.

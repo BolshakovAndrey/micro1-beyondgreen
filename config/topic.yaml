@@ -8,7 +8,7 @@ requirement_ids:
   - "AR-001..AR-009"
 project:
   name: "BeyondGreen"
-  normative_spec_status: "approved_phase_0_5_frozen_scale_ready_true_all_10_fixtures_integrated_held_out_trace_promoted_pre_unblinding_readiness_passed_official_scored_unblinding_commit_push_unauthorized"
+  normative_spec_status: "approved_v1_1_implementation_complete_official_evidence_postdecision_004_immutable_video_verified_submission_pending_final_review_owner_zip_gate"
   normative_spec_approved_at_utc: "2026-08-29T10:46:39Z"
   one_sentence_summary: "An evidence-backed verify-existing workflow for deciding whether immutable React state-to-signals candidates are safe to merge despite incomplete legacy tests."
   rename_scope: "Marketing rename only; proven v1 scope remains React state to signals."
@@ -93,7 +93,7 @@ phase_0_5:
   lockfile: {path: "package-lock.json", version: 3, clean_install: "npm ci"}
   license_audit: {status: "passed_54_of_54", notices: "THIRD_PARTY_NOTICES.md"}
   live_adapter:
-    status: "optional_runtime_deferred_unverified_in_nested_desktop_environment"
+    status: "official_run_completed_run_002_20_beyondgreen_invocations_zero_retries"
     adapter: "codex-exec-jsonl-v1"
     model: "gpt-5.6-sol"
     attempts_per_candidate: 1
@@ -270,4 +270,38 @@ pre_unblinding_readiness_checkpoint:
   browser_or_mcp_calls: 0
   claude_calls: 0
   commit_authorized: false
+  push_authorized: false
+official_evaluation:
+  evaluation_version: "eval-v1.1.0"
+  status: "complete_immutable_postdecision_004"
+  source_arm_run: "RUN-BG-OFFICIAL-EVAL-V1.1.0-002"
+  evidence_root: "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004"
+  evidence_sha256: "972cf43f76d0e68534b481a15bfc9f6b9e2db3bf83b4cb5c80d654d07b378f07"
+  immutable_arm_decisions: 40
+  status_quo_model_invocations: 0
+  beyondgreen_model_invocations: 20
+  automatic_retries: 0
+  post_decision_arm_executions: 0
+  post_decision_model_invocations: 0
+  observer_captures: 80
+  evaluator_records: 40
+  result:
+    status_quo_correct_decisions: "10/20"
+    beyondgreen_correct_decisions: "19/20"
+    accuracy_advantage: "+9/20"
+    reason_correct_defect_recall: "3/10"
+    preserving_candidates_blocked: "1/10"
+    beyondgreen_completion: "19/20"
+    sole_abstention: "BG-H06_preserving"
+    frozen_reason_recall_target_met: false
+submission:
+  status: "candidate_video_verified_pending_final_independent_review_checks_and_owner_zip_gate"
+  clean_extraction_rehearsal: "passed_1056_files"
+  license_audit: "passed_54_of_54"
+  public_video_url_status: "youtube_primary_signed_out_verified_vimeo_public_mirror_recorded"
+  public_video_primary_url: "https://youtu.be/R_AA3WqmVyw"
+  public_video_backup_url: "https://vimeo.com/1222716472"
+  uploaded_video_sha256: "78dbefc9868a1734ae416478403386ede80a6d3c0545ee67a66d4a677e3f6d80"
+  local_video_review_status: "final_40plus_export_technical_privacy_audio_and_closing_disclosure_passed"
+  final_archive_created: false
   push_authorized: false

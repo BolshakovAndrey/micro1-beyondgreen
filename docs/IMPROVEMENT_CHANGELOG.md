@@ -2,7 +2,10 @@
 
 **Projection of:** `docs/PROJECT_SPEC.md@1.1.0`
 **Requirements:** `AR-003`, `AR-004`, `AR-009`, `EV-008`–`EV-010`
-**State:** approved contracts plus one unscored BG-D01 vertical slice; no official/scored benchmark run exists
+**State:** 46 documented iterations (`ITR-000`–`ITR-045`) culminating in immutable
+official `eval-v1.1.0` evidence: status quo 10/20, BeyondGreen 19/20, and exact offline
+replay of `POSTDECISION-004`. Entries retain the state known at the time of each
+iteration; earlier “no official run” statements are historical, not current.
 
 ## ITR-000 — Superseded generation-first candidate
 
@@ -1807,3 +1810,59 @@ failure, and final hot take remain unclaimed until evidence exists.
   evaluation v1.1 were not changed.
 - **Decision:** `ready_for_owner_checkpoint_approval_before_postdecision_003`.
   `POSTDECISION-003`, commit, push, ZIP, and publication remain blocked.
+
+## ITR-044 — Close verifier bridges and finalize official evidence
+
+- **Hypothesis:** deterministic observer/evaluator bridge defects can be corrected from
+  already frozen public contracts without repeating any of the 40 immutable arm decisions.
+- **Change:** reconciled D01/D03/D04/H03/H05 transcript cardinality and identity transport,
+  added production-equivalent 20-scenario / 80-capture / 40-evaluator rehearsal, safe
+  structured failure evidence, and create-once post-decision recovery.
+- **Failures preserved:** RUN-001 stopped before an arm decision; RUN-002 froze all 40 arm
+  decisions and then failed at scenario-provider; POSTDECISION-002 failed at observer;
+  POSTDECISION-003 captured 80 observations and stopped after 8 evaluator records. None was
+  deleted or overwritten. Their diagnostics drove regression tests rather than arm retries.
+- **Evidence:** `POSTDECISION-004` reused only RUN-002 decisions and recorded 0 arm calls,
+  0 model calls, 80 captures, 40 evaluator records, and evidence SHA-256
+  `972cf43f76d0e68534b481a15bfc9f6b9e2db3bf83b4cb5c80d654d07b378f07`.
+  Offline replay gives status quo 10/20 and BeyondGreen 19/20. BeyondGreen meets accuracy,
+  advantage, false-alarm, and completion targets, but reason-correct recall is 3/10 versus
+  the frozen 8/10 target.
+- **Decision:** retain the completed official evidence and publish the missed diagnostic
+  target and `BG-H06` preserving abstention without further tuning.
+
+## ITR-045 — Close the final measurement and packaging controls
+
+- **Hypothesis:** an independent rubric audit can find claim-to-code and
+  package-to-config drift without changing any scored output.
+- **Change:** preserved the Claude Opus 5 read-only checkpoint; documented the exact
+  lexical `reason_correct_reject` implementation while retaining `3/10`; derived ZIP and
+  metadata membership from the single cleanroom exclusion contract; added prefix-aware
+  regression coverage; reconciled final trajectory boundaries, agents, and review status;
+  and corrected the confirmed command, language, plan-flag, and provenance disclosures.
+- **Independent evidence:** Claude returned `PASS_WITH_CONCERNS`, qualification `PASS`
+  after mechanical gates, and a most-likely score of 84/100. Codex verified every adopted
+  finding against repository bytes and independently forecast 85/100.
+- **Preserved surfaces:** RUN-001, RUN-002, POSTDECISION-004, candidates, decisions,
+  captures, evaluator records, oracle semantics, scoring, and `eval-v1.1.0` remain
+  byte-for-byte unchanged.
+- **Decision:** accept only the documentation and release-control corrections, run the
+  complete mechanical release gates, and create one final owner-uploaded archive without
+  commit, push, official execution, arm calls, or model calls.
+
+## Final iteration summary
+
+- **Strongest retained change:** descriptor-driven process composition with explicit
+  capability proofs. It enabled ten heterogeneous fixtures while preserving `K=0` and
+  reciprocal oracle/candidate denial.
+- **Removed experiment:** the initial generation-and-repair product scope. It was cut in
+  favor of a measurable verify-existing decision and never entered the scored benchmark.
+- **Main remaining failure:** BeyondGreen rejects most defective candidates correctly but
+  the frozen lexical reason matcher credits only 3/10 because it requires a literal
+  verifier-owned behavior-class token or failed-action label. Seven decision-correct
+  rejects miss that token contract, including semantically specific explanations; the
+  unchanged 3/10 is therefore a strict operational proxy. BeyondGreen also abstains on
+  preserving `BG-H06`.
+- **Hot take:** process isolation relocates correctness risk into bridge vocabulary,
+  cardinality, and serialization. A secure boundary is only useful when those transport
+  contracts are tested as executable product behavior.

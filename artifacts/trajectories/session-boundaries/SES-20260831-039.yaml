@@ -1,0 +1,92 @@
+schema_version: "1.1"
+session_id: "SES-20260831-039"
+started_at_utc: "2026-08-31T12:59:53Z"
+agent:
+  tool: "Codex coordinator with bounded Claude Opus read-only checkpoint"
+  purpose: "Prepare and independently review the final clean-extracted submission candidate"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  base_head: "6f22944406067f09ded0307c431a6e5e26131d7a"
+  clean_at_start: true
+
+contracts:
+  challenge: "read"
+  hackathon_rules: "read"
+  clean_room_policy: "read"
+  trace_policy: "read"
+  preflight_checklist: "read"
+  project_spec_v1_1: "read"
+  evaluation_v1_1: "read"
+  submission_artifacts_spec: "read"
+  topic_projection: "read"
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-31T12:59:53Z"
+  approval_evidence: >-
+    The repository owner authorized the next stage as final submission-package
+    preparation: human review of the four binary source materials, the final Claude
+    checkpoint, and a ZIP rehearsal before creation of the final archive.
+
+allowed_scope:
+  - "Visually inspect the four official binary reference inputs and record their disposition."
+  - "Exclude binary reference inputs from the rehearsal ZIP when their content is already preserved in redistributable text contracts and they are not required for reproduction."
+  - "Correct only final packaging/rehearsal tooling that would otherwise execute a live or official run."
+  - "Add a deterministic offline verifier for the immutable POSTDECISION-004 result."
+  - "Reconcile judge-facing status, comparison, claims, changelog, reproduction, checklist, manifest, and video-link projections only from committed evidence."
+  - "Build a temporary manifest-backed ZIP, clean-extract it, and run the documented non-live reproduction checks."
+  - "Run the third required Claude Opus checkpoint read-only against the minimum sufficient clean-extracted candidate and exact evaluation evidence."
+  - "Run checksums, privacy scans, preflight checks, and diff checks."
+  - "Prepare complete English and natural-Russian final review packets."
+
+forbidden_scope:
+  - "Execute evaluation:run, evaluation:recover-post-decision, any arm, candidate, live model, browser, Chromium, or unblinding action."
+  - "Change RUN-001, RUN-002, POSTDECISION-002, POSTDECISION-003, POSTDECISION-004, candidates, arm decisions, observations, evaluator records, oracles, scoring, or eval-v1.1.0."
+  - "Suppress the 3/10 reason-correct defect-recall miss, the BG-H06 abstention, earlier failed runs, or any other negative evidence."
+  - "Include raw traces, private paths, private denylist values, credentials, caches, node_modules, temporary files, .git, or unreviewed external state."
+  - "Create the final dist/submission.zip, push, publish, deploy, or change the public video without a later explicit owner gate."
+  - "Commit without a later explicit owner gate."
+
+binary_reference_review:
+  docs/evidence/judging-rubric.png:
+    sha256: "55eb8908085982e7ed0747cf2200fc6207acfce540166891c34fe27c6f5642eb"
+    visual_status: "passed"
+    archive_disposition: "exclude_reference_only"
+  docs/evidence/micro1-first-hackathon-instructions.pdf:
+    sha256: "be811a1d09ebedef2fc853544132b287924fd0f76d04301ea554b4c7e2d88fc4"
+    page_count: 10
+    visual_status: "passed_all_pages"
+    archive_disposition: "exclude_reference_only"
+  docs/evidence/tie-break-order.png:
+    sha256: "10901ec7d06f49163a4fbd54d499b7de33ba7442e5cf7e1586f5d5a07ca5f296"
+    visual_status: "passed"
+    archive_disposition: "exclude_reference_only"
+  docs/evidence/timeline.png:
+    sha256: "5914a6e00d393aa43dfc30824f3c94318f1b4d1f84bc4c9046a94ee77c67e76c"
+    visual_status: "passed_historical_superseded_deadline"
+    archive_disposition: "exclude_reference_only"
+
+stop_rules:
+  - "Stop on any qualification-gate failure, privacy finding, checksum mismatch, missing required artifact, unsupported claim, or clean-extraction failure."
+  - "Stop if rehearsal can reach official execution, a candidate, an arm, a model, or immutable output mutation."
+  - "Stop and report any Claude model mismatch or any HIGH/BLOCK finding before final archive creation."
+  - "Stop before checkpoint commit and before final ZIP creation."
+
+attestation:
+  inherited_private_transcript: false
+  external_private_workspace_read: false
+  browser_or_mcp_used: false
+  official_or_scored_run_count: 0
+  arm_execution_count: 0
+  model_invocation_count: 0
+  final_archive_created: false
+  push_performed: false
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-31T12:59:53Z"
+  approval_evidence: "Owner message authorizing final package preparation, binary review, final Claude checkpoint, and ZIP rehearsal."

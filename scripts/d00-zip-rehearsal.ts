@@ -13,22 +13,32 @@ import {
   rmSync,
   writeFileSync,
 } from "node:fs";
-import os from "node:os";
 import path from "node:path";
+import {
+  loadSubmissionExclusions,
+  partitionSubmissionPaths,
+} from "./submission-membership.ts";
 
 type ManifestEntry = Readonly<{path: string; sha256: string}>;
 type ManifestExclusion = Readonly<{path: string; sourceSha256: string; reason: string}>;
 
 const repositoryRoot = process.cwd();
-const temporaryRoot = mkdtempSync(path.join(os.tmpdir(), "beyondgreen-pre-unblinding-zip-"));
+const temporaryParent = path.join(repositoryRoot, "tmp");
+mkdirSync(temporaryParent, { recursive: true });
+const temporaryRoot = mkdtempSync(path.join(temporaryParent, "beyondgreen-submission-rehearsal-"));
 const stagingRoot = path.join(temporaryRoot, "staging");
 const extractionRoot = path.join(temporaryRoot, "extracted");
 const archivePath = path.join(temporaryRoot, "beyondgreen-pre-unblinding-rehearsal.zip");
 const rehearsalManifestPath = "submission/PRE_UNBLINDING_REHEARSAL_MANIFEST.json";
-const approvedControlPlaneExclusions = new Set([
+const configuredExclusions = loadSubmissionExclusions(repositoryRoot);
+const controlPlaneServiceRecords = new Set([
   "artifacts/trajectories/session-boundaries/SES-20260830-014.yaml",
   "artifacts/trajectories/reviews/BG-CHROMIUM-TS2532-INTEGRATION-SESSION-BOUNDARY-CHECKPOINT_RU.md",
 ]);
+const requiredEmptyDirectories = [
+  "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002/evaluator-records",
+  "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002/observer-records",
+] as const;
 
 function sha256(filePath: string): string {
   return createHash("sha256").update(readFileSync(filePath)).digest("hex");
@@ -51,7 +61,12 @@ function run(
   if (echoOutput && result.stdout) process.stdout.write(result.stdout);
   if (result.stderr) process.stderr.write(result.stderr);
   if (result.error || result.status !== 0) {
-    throw new Error(`${label} failed with exit ${result.status ?? "null"}: ${result.error?.message ?? "process failure"}`);
+    const failedTests = result.stdout.match(/^not ok .*$/gmu) ?? [];
+    const errorLines = result.stdout.match(/^\s+(?:error|code):.*$/gmu) ?? [];
+    const failureSummary = failedTests.length > 0
+      ? `; ${[...failedTests, ...errorLines].join("; ")}`
+      : "";
+    throw new Error(`${label} failed with exit ${result.status ?? "null"}: ${result.error?.message ?? "process failure"}${failureSummary}`);
   }
   return result.stdout;
 }
@@ -65,17 +80,18 @@ function repositoryFiles(): Readonly<{included: readonly string[]; excluded: rea
     false,
   );
   const allFiles = output.split("\0").filter(Boolean).sort();
-  const files = allFiles.filter((file) => !approvedControlPlaneExclusions.has(file));
-  const excluded = allFiles
-    .filter((file) => approvedControlPlaneExclusions.has(file))
+  const partition = partitionSubmissionPaths(allFiles, configuredExclusions);
+  const files = partition.included;
+  const excluded = partition.excluded
     .map((file): ManifestExclusion => ({
       path: file,
       sourceSha256: sha256(path.join(repositoryRoot, file)),
-      reason: "Owner-approved exclusion of a non-indexed control-plane service record containing a machine-local control path.",
+      reason: controlPlaneServiceRecords.has(file)
+        ? "Owner-approved exclusion of a non-indexed control-plane service record containing a machine-local control path."
+        : file.startsWith("docs/evidence/")
+          ? "Source/reference evidence excluded because maintained redistributable text contracts ship instead."
+          : "Owner-only projection excluded by the configured clean-room release contract.",
     }));
-  if (excluded.length !== approvedControlPlaneExclusions.size) {
-    throw new Error("The exact owner-approved control-plane exclusion set is not present.");
-  }
   if (files.length === 0 || new Set(files).size !== files.length) {
     throw new Error("Rehearsal repository membership is empty or duplicated.");
   }
@@ -118,6 +134,9 @@ try {
     copyFileSync(source, target);
     entries.push({ path: file, sha256: sha256(target) });
   }
+  for (const directory of requiredEmptyDirectories) {
+    mkdirSync(path.join(stagingRoot, directory), { recursive: true });
+  }
 
   const manifest = {
     schemaVersion: "beyondgreen-pre-unblinding-zip-rehearsal@1.0.0",
@@ -128,7 +147,7 @@ try {
     hashAlgorithm: "SHA-256",
     fileCountExcludingManifest: entries.length,
     entries,
-    excludedControlPlaneRecords: excluded,
+    excludedSourceRecords: excluded,
   };
   const manifestTarget = path.join(stagingRoot, rehearsalManifestPath);
   mkdirSync(path.dirname(manifestTarget), { recursive: true });
@@ -143,9 +162,10 @@ try {
   if (extractedManifest.fileCountExcludingManifest !== entries.length) {
     throw new Error("Extracted rehearsal manifest cardinality mismatch.");
   }
-  if (extractedManifest.excludedControlPlaneRecords.length !== approvedControlPlaneExclusions.size ||
-      extractedManifest.excludedControlPlaneRecords.some(({ path: excludedPath, sourceSha256 }) =>
-        !approvedControlPlaneExclusions.has(excludedPath) ||
+  const expectedExcludedPaths = new Set(excluded.map(({ path: excludedPath }) => excludedPath));
+  if (extractedManifest.excludedSourceRecords.length !== expectedExcludedPaths.size ||
+      extractedManifest.excludedSourceRecords.some(({ path: excludedPath, sourceSha256 }) =>
+        !expectedExcludedPaths.has(excludedPath) ||
         sourceSha256 !== sha256(path.join(repositoryRoot, excludedPath)))) {
     throw new Error("Extracted rehearsal manifest exclusion evidence mismatch.");
   }
@@ -162,9 +182,9 @@ try {
 
   run("npm", ["ci", "--ignore-scripts"], extractionRoot, "judge setup npm ci --ignore-scripts");
   run("npm", ["run", "compile"], extractionRoot, "judge compile");
-  run("npm", ["test"], extractionRoot, "judge ordinary tests");
+  run("npm", ["test"], extractionRoot, "judge ordinary tests", false);
   run("npm", ["run", "task", "--", "freeze:self-test"], extractionRoot, "judge freeze self-test");
-  for (const task of ["baseline:verify", "beyondgreen:verify", "evaluation:run", "replay"] as const) {
+  for (const task of ["baseline:verify", "beyondgreen:verify", "replay"] as const) {
     run(
       "npm",
       ["run", "task", "--", task, "--evaluation-version", "eval-v1.1.0"],

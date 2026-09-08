@@ -1,7 +1,7 @@
 # Third-Party Notices
 
 This reproducible inventory is generated from the dependency lockfile and installed
-package metadata by `npm run audit:licenses`. It does not state that `node_modules`
+package metadata by `node scripts/license-audit.ts`. It does not state that `node_modules`
 is shipped. Before packaging, regenerate this file and retain the entries for every
 dependency actually bundled or otherwise distributed with BeyondGreen.
 

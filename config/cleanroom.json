@@ -76,14 +76,14 @@
     "node_modules/",
     "tmp/",
     "raw-traces/",
+    "artifacts/trajectories/session-boundaries/SES-20260830-014.yaml",
+    "artifacts/trajectories/reviews/BG-CHROMIUM-TS2532-INTEGRATION-SESSION-BOUNDARY-CHECKPOINT_RU.md",
     "docs/evidence/",
     "docs/MICRO1_INSTRUCTIONS_RU.md",
     "docs/PROJECT_SPEC_RU.md",
     "docs/CONTROL_STATUS_RU.md",
     "docs/DIAGRAMS_RU.md",
-    "docs/PREMORTEM_RU.md",
-    "docs/CHALLENGE.md",
-    "docs/HACKATHON_RULES.md"
+    "docs/PREMORTEM_RU.md"
   ],
   "binary_extensions_requiring_human_review": [
     ".gif",

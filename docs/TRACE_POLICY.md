@@ -156,31 +156,22 @@ Unavoidable technical identifiers may remain, but each must be explained in Russ
 at first use; unexplained English-language jargon is forbidden in the owner review
 card.
 
-## 9. Current BeyondGreen trace-first status
+## 9. Current BeyondGreen trace status
 
-`TRC-BG-TRACEFIRST-001` passed automated and repository-owner human review after both
-required Russian companions were available. It is the eligible representative trace
-for `COD-CODEX-002`; `TRC-BG-PHASE05-001` is its separately approved Phase 0.5
-trajectory. The original SES-007 recovery trace remains blocked because its exact
-immutable source could not be reviewed. Replacement `TRC-BG-D01-VERIFY-002` passed
-exact byte and UTF-8 identity, independent semantic review, reviewed-layer
-private-denylist scan, and repository-owner review and is indexed as the eligible
-representative trace for `COD-CODEX-007`. Hidden reasoning and internal Codex
-Desktop events are not claimed for the native `Copy as Markdown` capture. These
-approvals authorize trace indexing only; official/scored execution, product repair,
-additional fixtures, commit, push, and publication remain separately gated.
+The trace-first, Phase 0.5, D01 verification/correction, D02–D04 integration, held-out
+fixture integration, documentation, and coordinator bundles required for representative
+coding-agent evidence have passed their recorded automated, semantic, privacy, Russian
+owner-companion, and owner-promotion gates. Eligible projections are listed only in
+`artifacts/trajectories/index.yaml`; failed and no-change attempts remain disclosed as
+retry records and are not presented as implementation evidence.
 
-The current eligible implementation candidate is `TRC-BG-D01-SCALE-003`, authorized
-by owner-approved boundary `SES-20260830-003`. Its bounded corrections passed
-repository-local compile, all 55 ordinary tests, and targeted `d01:verify`. The
-recorded stop-and-retry chain comprises the missing local Node type dependency,
-five bounded TypeScript errors, one incomplete test-output capture, and four D01
-observation failures traced to a mismatched observer launch arm; every corrective
-step and retry was separately authorized. The native `Copy as Markdown` capture is
-externally anchored at 49,485 bytes and passed exact receipt identity, strict UTF-8,
-safe raw scanning, and complete EN/RU technical review. Two absolute machine paths
-are categorically omitted from the submission layer; no private term, email, or
-secret assignment was found. Repository-owner trace promotion passed. The repeated
-Codex acceptance matrix confirmed five bounded runtime/capability blockers; a fresh
-SCALE-004 trace, repeated matrix, and explicit owner approval control scaling.
-`SCALE_READY=false`.
+`SCALE_READY=true`. Official RUN-002 arm decisions and create-once
+`POSTDECISION-004` evidence are complete, but raw official execution output is evaluation
+evidence rather than a coding-agent trajectory. The 2026-08-31 implementation, official,
+recovery, and submission boundaries are indexed with explicit eligibility dispositions;
+they are not retroactively presented as promoted representative traces. The two reviewed
+pre-unblinding verification projections are also indexed as reviewed-but-not-promoted.
+Raw traces and private denylist data stay outside the worktree. The primary public video
+URL has passed signed-out playback and a public backup mirror is recorded. The final
+Claude checkpoint is preserved in English with a complete Russian owner companion.
+Commit, push, and owner upload remain separately gated operations.

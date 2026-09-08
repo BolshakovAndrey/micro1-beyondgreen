@@ -85,7 +85,7 @@ export const preUnblindingTasks: readonly TaskDefinition[] = [
   },
   {
     name: "replay",
-    description: "Validate the frozen offline replay contract and reproduce existing unscored D01 evidence.",
+    description: "Validate the frozen replay contract and reproduce the committed official evidence offline.",
     acceptedArguments: ["--evaluation-version", "eval-v1.1.0"],
     steps: [
       nodeStep(
@@ -95,12 +95,22 @@ export const preUnblindingTasks: readonly TaskDefinition[] = [
         "--evaluation-version",
         "eval-v1.1.0",
       ),
-      nodeStep("existing unscored D01 offline replay", "scripts/d01-replay.ts"),
+      nodeStep("committed official offline replay", "scripts/d00-official-replay.ts"),
     ],
   },
   {
     name: "submission:rehearse",
     description: "Build, clean-extract, verify, and delete a temporary manifest-backed non-release ZIP.",
     steps: [nodeStep("temporary clean-extraction ZIP rehearsal", "scripts/d00-zip-rehearsal.ts")],
+  },
+  {
+    name: "submission:metadata:write",
+    description: "Regenerate the candidate manifest and complete package checksums without creating an archive.",
+    steps: [nodeStep("submission metadata generation", "scripts/d00-submission-metadata.ts", "--write")],
+  },
+  {
+    name: "submission:artifacts:check",
+    description: "Verify required artifact membership and complete package checksums without modifying evidence.",
+    steps: [nodeStep("submission metadata verification", "scripts/d00-submission-metadata.ts")],
   },
 ];

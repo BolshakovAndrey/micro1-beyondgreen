@@ -33,6 +33,7 @@ npm run task -- development:verify
 npm run task -- held-out:verify
 npm run task -- freeze:self-test
 npm run task -- official:preflight
+npm run task -- replay --evaluation-version eval-v1.1.0
 ```
 
 Expected success markers:
@@ -49,6 +50,7 @@ TASK_PASSED development:verify
 TASK_PASSED held-out:verify
 TASK_PASSED freeze:self-test
 TASK_PASSED official:preflight
+TASK_PASSED replay
 ```
 
 ## What each command proves
@@ -64,6 +66,7 @@ TASK_PASSED official:preflight
 | `held-out:verify` | Integrated H01–H06 controls — visible gates, evaluator self-checks, reciprocal denial probes, and the oracle-leak scan — without official execution or unblinding. |
 | `freeze:self-test` | All 20 frozen candidates, their manifests, evaluator controls, and oracle boundaries, without scoring. |
 | `official:preflight` | The frozen 10×2 inventory and a non-executable 20-slot, two-arm execution plan. |
+| `replay --evaluation-version eval-v1.1.0` | Exact offline verification of the committed `POSTDECISION-004` official evidence; no arm, model, network, or candidate execution. |
 
 ## Isolation boundary
 
@@ -73,15 +76,17 @@ permissive cross-platform fallback is registered, because a weaker sandbox that 
 reported success would invalidate the isolation claim. Deterministic replay
 (`d01:replay`) is platform-independent.
 
-## What the catalog deliberately excludes
+## Owner-gated and maintainer-only commands
 
-The ordinary catalog contains no live-model, network-diagnostic, or Chromium-launch
-command. Historical runs of those remain documented as evidence in `artifacts/`, but
-cannot be started accidentally through `npm run task`.
+The catalog exposes the historical `evaluation:run` entrypoint for provenance, but it is
+create-once, requires an explicit approved session boundary, and is not a judge
+reproduction command. The official run is complete and must not be executed again.
+Reviewers use `make eval` or `npm run task -- replay --evaluation-version eval-v1.1.0`.
+Network-diagnostic and Chromium-launch commands are not part of the ordinary judge path.
 
 Tasks ending in `:write` are maintainer-only reconciliation commands for immutable
 manifests or checksum projections. Reviewers normally use `test:all`, the `*:verify`
-family, `d01:demo`, `d01:replay`, and `freeze:self-test`.
+family, `d01:demo`, `d01:replay`, `freeze:self-test`, and the official offline replay.
 
 ## Fixture membership
 

@@ -2,7 +2,20 @@
 
 **Normative status:** single source of truth
 **Version:** `1.1.0`
-**State:** normative v1.1 approved; Phase 0.5 frozen under explicit nested-CLI waiver.
+**State:** normative v1.1 remains frozen and unchanged. Implementation is complete;
+official `eval-v1.1.0` evidence is immutable at `POSTDECISION-004`: 40 RUN-002 arm
+decisions, 80 captures, 40 evaluator records, 10/20 status-quo accuracy and 19/20
+BeyondGreen accuracy. Post-decision recovery made zero new arm or model calls. The final
+video uses `40+ ITERATIONS`; its primary YouTube URL is verified without sign-in and a
+public Vimeo mirror is recorded. The final independent review and config-derived
+clean-extraction rehearsal passed, and the owner authorized final archive creation after
+the complete release gates. Upload remains owner-controlled. This status does not amend
+the normative semantics below.
+
+### Historical implementation checkpoints
+
+The following chronological record is retained as provenance and must not be read as the
+current project state. Phase 0.5 was frozen under an explicit nested-CLI waiver.
 The unscored D01 vertical slice has an owner-approved eligible historical
 verification trace, `TRC-BG-D01-VERIFY-002`. Under approved boundary
 `SES-20260830-001`, the enumerated scale-readiness corrections are implemented and
@@ -376,7 +389,9 @@ correct_decision =
   (verdict == reject AND ground_truth == false_green)
 
 decision_accuracy = correct_decisions / 20
-reason_correct_reject = verdict == reject AND rationale identifies the violated frozen behavior class or invariant family
+normalize(value) = lowercase(value) with each non-[a-z0-9] run replaced by "-"
+reason_correct_reject = verdict == reject AND normalize(rationale) literally contains
+                        normalize(verifier_behavior_class OR verifier_failed_action)
 defect_recall = false_green_candidates_with_reason_correct_reject / 10
 false_alarm_rate = preserving_candidates_blocked / 10
 preserving_candidate_blocked = verdict == reject OR verdict == abstain
@@ -392,6 +407,11 @@ candidate, and does not count as completion.
 Reason correctness is scored post hoc by the independent evaluator only after the arm
 verdict and rationale are immutable. This does not create evaluator feedback and does
 not weaken `K=0`.
+
+The frozen production operationalization is recorded exactly: it is a lexical token
+proxy rather than a semantic-rationale grader. Its result must therefore be reported as
+recall under that token contract and must not be generalized into a count of all
+semantically correct diagnostic explanations.
 
 By construction, all 20 candidates compile and pass visible legacy tests. The
 status-quo policy is therefore predicted before execution to accept all 20: exactly

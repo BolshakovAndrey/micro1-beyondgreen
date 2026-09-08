@@ -1,0 +1,91 @@
+schema_version: "1.1"
+session_id: "SES-20260831-040"
+started_at_utc: "2026-08-31T16:30:13Z"
+agent:
+  tool: "Codex coordinator with completed Claude Opus 5 read-only review"
+  purpose: "Close the final submission candidate without changing scored evidence"
+
+repository:
+  root: "."
+  branch: "codex/beyondgreen-official-runner"
+  base_head: "6f22944406067f09ded0307c431a6e5e26131d7a"
+  dirty_at_start: true
+
+contracts:
+  challenge: "read"
+  hackathon_rules: "read"
+  clean_room_policy: "read"
+  trace_policy: "read"
+  preflight_checklist: "read"
+  project_spec_v1_1: "read"
+  evaluation_v1_1: "read"
+  topic_projection: "read"
+
+authorization:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-31T16:30:13Z"
+  exact_approval_evidence: >-
+    Одобряю SESSION_BOUNDARY SES-20260831-040 и deadline-first final submission
+    closure. Разрешаю сохранить полный Claude Opus 5 checkpoint и русскую
+    owner-карточку; исправить только документирование операционной семантики
+    reason_correct_reject без изменения результата 3/10, scorer, oracle или
+    official evidence; привести ZIP и submission metadata к config/cleanroom.json
+    с regression-тестом; обновить trajectory index и подтверждённые пояснения
+    F4–F7. RUN-001, RUN-002 и POSTDECISION-004 сохранять побайтово неизменными.
+    После полного test suite, checksums, обеих preflight-проверок и
+    clean-extraction rehearsal разрешаю создать финальный ZIP и остановиться с
+    путём, размером, количеством файлов и SHA-256. Official/model calls,
+    evaluation:run, commit, push и загрузка запрещены.
+
+immutable_evidence:
+  run_001:
+    path: "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-001"
+    file_count: 4
+    session_start_tree_digest: "6aa273c70f017f752fe90fec0ecfb1de990d5b9829fb7d8139d49e51d317ffee"
+  run_002:
+    path: "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002"
+    file_count: 44
+    source_bundle_sha256: "5df68dc714d66ca44852d2487213ae5bb222f8444cedc734ccaabdf2abbe6d95"
+    session_start_tree_digest: "51309562d8df535865c4de2df897c026b9634fb38d25a81223ebb4d4f1602885"
+  postdecision_004:
+    path: "artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004"
+    file_count: 128
+    evidence_sha256: "972cf43f76d0e68534b481a15bfc9f6b9e2db3bf83b4cb5c80d654d07b378f07"
+    session_start_tree_digest: "b8d971e27aca491e8171e93f93e4bfe081a8d66fe90c9d407e3fd1a12668f1f5"
+
+allowed_scope:
+  - "Preserve the complete Claude Opus 5 read-only checkpoint and a natural-Russian owner card."
+  - "Correct only documentation of the already-frozen operational reason-correct matcher; retain 3/10 unchanged."
+  - "Derive ZIP and submission-metadata membership from config/cleanroom.json and add deterministic regression coverage."
+  - "Reconcile the trajectory index with the final approved sessions, reviewed traces, agents, and tool-call audit."
+  - "Add only the independently verified F4-F7 explanatory and command corrections."
+  - "Reconcile derived manifests and checksums, run the complete release gates, and create one final archive."
+
+forbidden_scope:
+  - "Modify RUN-001, RUN-002, POSTDECISION-004, any candidate, decision, capture, evaluator record, oracle, scorer, or eval-v1.1.0 semantics."
+  - "Execute evaluation:run, recovery, an arm, a candidate, an official model, Chromium, browser automation, or unblinding."
+  - "Change the official 3/10 reason-correct result or translate immutable arm rationales."
+  - "Commit, push, upload, publish, deploy, delete the PRE-CLAUDE archive, or overwrite external media."
+
+stop_rules:
+  - "Stop on immutable-evidence drift, a new qualification finding, a privacy finding, a test failure, or a clean-extraction failure."
+  - "Stop if packaging membership is not exactly derived from the configured exclusion contract."
+  - "Stop after creating and reporting the final archive; owner upload remains separate."
+
+attestation:
+  inherited_private_transcript: false
+  external_private_workspace_read: false
+  official_or_scored_run_count: 0
+  arm_execution_count: 0
+  model_invocation_count: 0
+  commit_performed: false
+  push_performed: false
+  upload_performed: false
+  final_archive_created: false
+
+human_approval:
+  status: "approved"
+  approver: "repository_owner"
+  approved_at_utc: "2026-08-31T16:30:13Z"
+  approval_evidence: "Owner message authorizing bounded deadline-first SES-040 final submission closure."

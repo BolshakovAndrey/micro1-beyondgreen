@@ -2,13 +2,14 @@
 
 **Статус:** ненормативная русская проекция для review и будущего видео
 **Нормативный источник:** `docs/PROJECT_SPEC.md@1.1.0`
-**Submission status:** исключён до независимой проверки фактической реализации
+**Submission status:** фактическая архитектура подтверждена реализацией и тестами;
+диаграммы остаются вспомогательной русской проекцией, а не нормативным источником
 
 ## 1. Единственный scored workflow
 
 ```mermaid
 flowchart LR
-    E["Existing immutable<br/>state-to-signals candidate"] --> H["Hash and freeze identity"]
+    CAND["Existing immutable<br/>state-to-signals candidate"] --> H["Hash and freeze identity"]
     H --> I["Inventory migration risks"]
     I --> L["Compile and run visible<br/>legacy tests"]
     L --> P["Derive risk-linked probes<br/>and contracts"]
@@ -22,9 +23,9 @@ flowchart LR
     A --> J
     J --> T["Static HTML report"]
     T --> F["Freeze arm verdict"]
-    F --> E["Independent evaluator"]
-    O[("Verifier-only oracle")] --> E
-    E --> Q["Post-decision score<br/>and evidence digests"]
+    F --> EVAL["Independent evaluator"]
+    O[("Verifier-only oracle")] --> EVAL
+    EVAL --> Q["Post-decision score<br/>and evidence digests"]
 
     classDef input fill:#f3f4f6,stroke:#4b5563,color:#111827;
     classDef bg fill:#dbeafe,stroke:#2563eb,color:#172554;
@@ -33,9 +34,9 @@ flowchart LR
     classDef rejected fill:#fee2e2,stroke:#dc2626,color:#7f1d1d;
     classDef abstain fill:#fff4cc,stroke:#a66b00,color:#713f12;
 
-    class E,H input;
+    class CAND,H input;
     class I,L,P,V,J,T,F bg;
-    class O,E,Q verifier;
+    class O,EVAL,Q verifier;
     class D verifier;
     class A accepted;
     class R rejected;
@@ -155,26 +156,28 @@ flowchart LR
 Главная мысль: performance сравнивается только после доказанной behavioral
 equivalence и никогда не влияет на 20 scored decisions.
 
-## 6. Critical path
+## 6. Пройденный critical path
 
 ```mermaid
 flowchart LR
-    S["Approved normative v1.1"] --> T["Eligible trace-first gate"]
-    T --> D1["Complete BG-D01 vertical slice"]
-    D1 --> Z["Early ZIP clean-extraction dry run"]
-    Z --> D10["BG-D02–BG-D04 and<br/>BG-H01–BG-H06"]
-    D10 --> U["Single held-out unblinding"]
-    U --> F["Final package and clean extraction"]
+    S["Approved normative v1.1 ✓"] --> T["Eligible trace-first gate ✓"]
+    T --> D1["Complete BG-D01 vertical slice ✓"]
+    D1 --> Z["Early ZIP clean-extraction dry run ✓"]
+    Z --> D10["BG-D02–BG-D04 and<br/>BG-H01–BG-H06 ✓"]
+    D10 --> U["Single held-out unblinding ✓"]
+    U --> EVID["Official evidence + offline replay ✓"]
+    EVID --> VIDEO["Public video URLs verified ✓"]
+    VIDEO --> F["Final review + ZIP"]
 ```
 
 ## 7. Gate переноса в judge-facing материалы
 
-До переноса диаграмм в submission или видео необходимо:
+Перед окончательным переносом диаграмм в submission или видео необходимо:
 
-- получить final human approval нормативной v1.1;
-- связать фактические компоненты с `FR-001`–`FR-012`, `EV-001`–`EV-013` и
+- [x] получить final human approval нормативной v1.1;
+- [x] связать фактические компоненты с `FR-001`–`FR-012`, `EV-001`–`EV-013` и
   `NFR-001`–`NFR-009`;
-- подтвердить implemented process/filesystem boundaries и denied-access test;
-- заменить planned labels фактическими component и artifact names;
-- не добавлять результаты без immutable evidence/run IDs; и
-- пройти human privacy, provenance и accuracy review.
+- [x] подтвердить process/filesystem boundaries и denied-access tests;
+- [x] заменить плановые подписи фактическими component и artifact names;
+- [x] привязать результаты к immutable evidence и run IDs;
+- [ ] пройти финальный общий privacy, provenance и accuracy review уже собранного ZIP.
