@@ -22,7 +22,7 @@ artifacts:
     purpose: "Project entry point, problem, result, and fastest reproduction"
     rubric_criteria: "Problem & User Value; Measured Improvement"
     inclusion_status: "included"
-    sha256: "51d05cfe546ab8fe76b605818af3d457c5d6f498422b44933b9fec2de4c03b37"
+    sha256: "40cf9e9ae934b51213b40571c7da12a9c4743b4b890316f303a3ff6519db6e23"
   - path: "Makefile"
     purpose: "Stable judge command surface"
     rubric_criteria: "Reproducibility"

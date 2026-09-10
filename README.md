@@ -11,6 +11,7 @@
 
 <p align="center">
   <a href="https://youtu.be/R_AA3WqmVyw"><strong>Watch the demo · 4:54</strong></a> ·
+  <a href="https://www.hackerearth.com/community/challenges/hackathon/micro1-frontier-engineering-challenge-2026/">Hackathon</a> ·
   <a href="#quick-start">Quick start</a> ·
   <a href="#results">Results</a> ·
   <a href="docs/README_RU.md">Русский</a>
@@ -21,7 +22,7 @@
     <img src="docs/assets/micro1-participation.png" width="640" alt="Certificate of Participation in the micro1 Frontier Engineering Challenge 2026, dated September 10, 2026">
   </a>
   <br>
-  <sub>Participant · micro1 Frontier Engineering Challenge 2026</sub>
+  <sub>Participant · <a href="https://www.hackerearth.com/community/challenges/hackathon/micro1-frontier-engineering-challenge-2026/">micro1 Frontier Engineering Challenge 2026</a></sub>
 </p>
 
 <p align="center">
