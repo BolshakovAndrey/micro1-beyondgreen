@@ -1866,3 +1866,60 @@ failure, and final hot take remain unclaimed until evidence exists.
 - **Hot take:** process isolation relocates correctness risk into bridge vocabulary,
   cardinality, and serialization. A secure boundary is only useful when those transport
   contracts are tested as executable product behavior.
+
+
+## Post-publication presentation — 2026-09-10
+
+This documentation-only update follows the original public release. It is not a
+hackathon product iteration, a new scored run, or additional performance evidence.
+
+- **Authorization and hypothesis:** the repository owner requested a more attractive
+  README and supplied a participation certificate. Leading with the engineering
+  problem, a concise comparison, and clear navigation should make the project easier
+  to assess. Readability improvement has not been measured with readers.
+- **Change:** rewrote the English and complete Russian README; added the unaltered
+  certificate rendering and two original workflow diagrams; retained deep-document
+  links, exact reproduction commands, synthetic scope, the missed `3/10` reason
+  target, and the preserving-case abstention. The workflow now makes the committed
+  verdict / post-decision evaluation boundary explicit.
+- **Evaluation commands:** `make eval baseline solution`; local Markdown rendering,
+  relative-link and SVG validation; `make artifacts-check` for final reconciliation.
+- **Evidence:** official offline replay verified the existing evidence digest
+  `972cf43f76d0e68534b481a15bfc9f6b9e2db3bf83b4cb5c80d654d07b378f07`
+  with 40 decisions, 80 captures, 40 evaluator records, and zero new model calls.
+  Baseline and solution contract checks passed. All 60 local README references and
+  both self-contained SVGs passed validation. Local previews were inspected at
+  desktop and mobile widths. No new production-accuracy, cost, or time-saving claim
+  was introduced.
+- **Decision:** retain as an uncommitted presentation update. Reconcile derived file
+  inventories and checksums; preserve source, fixtures, evaluation rules, and official
+  evidence byte-for-byte. Do not promote this presentation session into scored
+  trajectories or imply an award from a participation certificate.
+
+### Русский
+
+Обновление оформления от 10 сентября 2026 года выполнено после исходной публикации.
+Оно не является этапом разработки для конкурса, новым оцениваемым запуском или
+дополнительным доказательством эффективности.
+
+- **Запрос и предположение:** владелец попросил сделать README привлекательнее и
+  предоставил сертификат участия. Описание инженерной проблемы, краткое сравнение
+  и понятная навигация должны облегчить знакомство с проектом. Проверка удобства
+  чтения с участием пользователей не проводилась.
+- **Изменения:** полностью переработаны английская и русская версии README,
+  добавлены изображение неизменённого сертификата и две оригинальные схемы.
+  Сохранены ссылки на подробную документацию, точные команды воспроизведения,
+  синтетические границы эксперимента, недостигнутая цель по объяснениям (`3/10`)
+  и воздержание на корректной миграции. Схема явно отделяет окончательный вердикт
+  от последующей независимой оценки.
+- **Проверки:** `make eval baseline solution`; локальное преобразование Markdown,
+  проверка относительных ссылок и SVG; `make artifacts-check` для итоговой сверки.
+  Официальное воспроизведение подтвердило прежнюю контрольную сумму доказательств:
+  40 решений, 80 наблюдений, 40 записей оценки, без новых вызовов модели.
+  Контракты обоих методов, все 60 локальных ссылок и обе схемы прошли проверку.
+  Оформление просмотрено на широком и мобильном экранах.
+- **Решение:** сохранить оформление без коммита и обновить производные перечни
+  файлов и контрольные суммы. Код, сценарии, правила оценки и официальные
+  доказательства остаются неизменными. Эта сессия оформления не добавляется в
+  записи оцениваемой разработки. Сертификат представлен как подтверждение участия,
+  без утверждения о награде. Новых обещаний точности, экономии денег или времени нет.

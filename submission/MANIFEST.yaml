@@ -1,6 +1,6 @@
 schema_version: "1.0"
 status: "submission_candidate_pending_final_owner_gate"
-file_count_excluding_sha256sums: 1052
+file_count_excluding_sha256sums: 1056
 configured_submission_exclusions:
   - ".git/"
   - ".idea/"
@@ -22,7 +22,7 @@ artifacts:
     purpose: "Project entry point, problem, result, and fastest reproduction"
     rubric_criteria: "Problem & User Value; Measured Improvement"
     inclusion_status: "included"
-    sha256: "cdcf5d245b8b7e635880f2aeba6850589e16cce45aebc78c6e801b5ab786d935"
+    sha256: "51d05cfe546ab8fe76b605818af3d457c5d6f498422b44933b9fec2de4c03b37"
   - path: "Makefile"
     purpose: "Stable judge command surface"
     rubric_criteria: "Reproducibility"
@@ -47,7 +47,7 @@ artifacts:
     purpose: "Evidence-linked iteration history"
     rubric_criteria: "Measured Improvement; Hot Take / Insights"
     inclusion_status: "included"
-    sha256: "aeb70023ad76bf613f585c90ba64c878d9f21189b0a31c529ee876b5ab3a5e42"
+    sha256: "1b2470d6f93288de54b953daebc3ece97105946021c5d2ec87c95de6e7285a5e"
   - path: "docs/REPRODUCTION.md"
     purpose: "Clean-environment reproduction guide"
     rubric_criteria: "Reproducibility"

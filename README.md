@@ -1,180 +1,234 @@
-# BeyondGreen
+<h1 align="center">BeyondGreen</h1>
 
-**Verify a React state-to-signals migration that your tests already call green.**
+<p align="center">
+  <strong>Your tests are green. Is your migration correct?</strong>
+</p>
 
-A migration that compiles and passes every legacy test can still be broken. BeyondGreen
-takes an existing, immutable candidate, inventories what the migration puts at risk,
-derives behavioral probes from evidence the arm can actually see, executes them against
-a physically isolated oracle, and returns an evidence bundle with an accept / reject /
-abstain decision.
+<p align="center">
+  AI verification for React state-to-signals migrations.<br>
+  Find the behavior your inherited tests leave unchecked — and keep the evidence.
+</p>
 
-> Green compilation and legacy tests are evidence, not proof.
+<p align="center">
+  <a href="https://youtu.be/R_AA3WqmVyw"><strong>Watch the demo · 4:54</strong></a> ·
+  <a href="#quick-start">Quick start</a> ·
+  <a href="#results">Results</a> ·
+  <a href="docs/README_RU.md">Русский</a>
+</p>
+
+<p align="center">
+  <a href="docs/assets/micro1-participation.png">
+    <img src="docs/assets/micro1-participation.png" width="640" alt="Certificate of Participation in the micro1 Frontier Engineering Challenge 2026, dated September 10, 2026">
+  </a>
+  <br>
+  <sub>Participant · micro1 Frontier Engineering Challenge 2026</sub>
+</p>
+
+<p align="center">
+  <strong>19/20 correct decisions</strong> vs. <strong>10/20</strong> from compilation and legacy tests.<br>
+  <sub>Recorded on 20 frozen synthetic candidates · <a href="docs/EVALUATION.md">Methodology, evidence, and limits</a></sub>
+</p>
 
 ---
 
-## Who has this problem
+## Why BeyondGreen
 
-A frontend engineer migrating mature React code from `useState`-style state to signals.
+You migrate a React component to signals. It compiles. Every inherited test passes.
+Then a delayed response overwrites fresh state, a subscription survives unmount, or a
+rollback restores the wrong value.
 
-The code is inherited, it is slow, and the suite that came with it was written for the
-old implementation. It checks what the component renders. It does not check the things a
-signals migration actually breaks: update ordering, identity stability, subscription
-cleanup, lifecycle, rollback.
+**The test suite stayed green because it never checked that behavior.**
 
-**The bottleneck.** The engineer has to decide whether to merge, and a green suite is the
-only signal available. There is no cheap way to tell a faithful migration apart from one
-that quietly changed an unobserved invariant. So teams either merge on hope, or keep the
-slow code — and both outcomes cost real money.
+BeyondGreen is a verification prototype for frontend engineers facing that merge
+decision. It inspects an existing candidate, identifies migration risks, and derives
+additional behavioral checks. Its decision is fixed before an independent evaluator
+can reveal hidden expectations.
 
-**Why solving it matters.** The failure is silent and it ships. It surfaces later as a
-lost update, a stale card, a leaked subscription — far from the commit that caused it,
-where it is orders of magnitude more expensive to find.
+You get a verdict you can inspect, evidence you can replay, and an explicit abstention
+when the system cannot support a decision.
 
----
+## What you get
+
+| Output | Why it matters |
+| --- | --- |
+| **Accept / reject / abstain** | Distinguish a supported decision from an inconclusive run. An abstention blocks merge. |
+| **Migration risk inventory and probe plan** | Inspect which assumptions about updates, identity, subscriptions, and lifecycle were investigated. |
+| **Validated JSON and readable HTML** | Follow the decision back to its recorded evidence. |
+| **Deterministic offline replay** | Verify the published result without another model call or credentials. |
+
+**Current scope:** React state-to-signals migrations on independently authored synthetic
+fixtures. Generalization to production repositories has not been demonstrated.
 
 ## Results
 
-Ten synthetic fixtures, ten behavior classes, twenty frozen candidates: ten that preserve
-behavior and ten with a single seeded defect. **All twenty compile and pass 100% of their
-visible legacy tests at freeze**, which is what makes the benchmark hard.
+**All 20 candidates compiled and passed every visible legacy test. Only 10 preserved
+the intended behavior.**
 
-| Metric | Status quo baseline | BeyondGreen | Target |
-|---|---|---|---|
-| Decision accuracy | `10/20` | `19/20` | ≥ 16/20 — met |
-| Accuracy advantage over baseline | — | `+9/20` | ≥ 6/20 — met |
-| Reason-correct defect recall | `0/10` | `3/10` | ≥ 8/10 — **missed** |
-| False alarms on preserving candidates | `0/10` | `1/10` | ≤ 2/10 — met |
-| Completion | `20/20` | `19/20` | ≥ 18/20 — met |
+The experiment covers ten behavior classes, with one correct migration and one version
+containing a single seeded defect per scenario. Both methods receive identical frozen
+candidate code, visible inputs, the same environment, and one attempt per candidate.
 
-Targets were predeclared in [`docs/EVALUATION.md`](docs/EVALUATION.md) before any fixture
-was written. Where a target is missed, both the unchanged target and the honest result are
-published. `BG-H02` (async ordering) was labeled the challenging case before its code
-existed.
+| Metric | Compilation + legacy tests | BeyondGreen | Predeclared target |
+| --- | ---: | ---: | --- |
+| Correct decisions | 10/20 | **19/20** | ≥16/20 — met |
+| Additional correct decisions | — | **+9/20** | ≥6/20 — met |
+| Defects credited with a correct reason | 0/10 | **3/10** | ≥8/10 — **missed** |
+| Correct migrations blocked | 0/10 | **1/10** | ≤2/10 — met |
+| Completed decisions | 20/20 | **19/20** | ≥18/20 — met |
 
-The single incomplete decision is a preserving-case abstention on `BG-H06`. The frozen
-reason-correct scorer credited `3/10` through a strict lexical proxy: a normalized rationale
-must literally contain the verifier-owned behavior-class token or failed-action label. Seven
-decision-correct rejects did not match that token contract, even when their explanations were
-diagnostically specific; the unchanged `3/10` therefore measures this strict operational
-proxy, not all semantically correct diagnoses. Full comparison and challenging-case analysis:
-[`docs/EVALUATION.md`](docs/EVALUATION.md).
+The single blocked correct migration received an **abstention**, not a proven-defect
+verdict. The reason score uses a strict wording match: seven correct rejections missed
+the required token or action label. The published **3/10 remains unchanged**.
 
----
+The baseline makes no model calls; BeyondGreen uses one per candidate. This measures
+decision quality, not equal compute cost or a demonstrated saving in review time.
 
-## Demo video
+<details>
+<summary>What the benchmark measures — and what it does not</summary>
 
-- Primary, verified without sign-in: [YouTube](https://youtu.be/R_AA3WqmVyw)
-- Public backup mirror: [Vimeo](https://vimeo.com/1222716472)
+- Targets, candidate code, and scoring were frozen before the official evaluation.
+- The reason scorer requires the normalized rationale to literally contain the
+  evaluator's behavior-class token or failed-action label. It is a lexical proxy,
+  not a semantic assessment of every explanation.
+- The predeclared challenging case, `BG-H02` (async ordering), exposes this distinction:
+  BeyondGreen rejected the defective migration and described the stale completion,
+  but its wording did not satisfy the frozen matcher.
+- `BG-H06` accounts for the one preserving-case abstention. It counts as blocked,
+  incomplete, and incorrect under the predeclared rules.
+- This is one fixed synthetic evaluation, `eval-v1.1.0`; it does not establish
+  production accuracy or general-purpose repository verification.
 
-The final cut is 4:54, below the five-minute limit. It includes the problem, fair
-baseline, complete workflow, measured comparison, strongest retained change, removed
-scope, honest limitation, and the evidence-backed hot take.
+</details>
 
----
-
-## Quick start
-
-Requires Node `22.22.3` (see `.node-version`). Runtime dependencies are React,
-`@preact/signals-react`, jsdom, and Zod; tests run on `node:test`.
-
-```bash
-make setup                    # pinned install: npm ci --ignore-scripts
-npm run task -- list          # every supported task, with descriptions
-npm test                      # the whole ordinary suite
-npm run task -- d01:demo      # macOS only: physical sandbox, JSON + static HTML
-npm run task -- d01:replay    # deterministic replay, no network, no subprocess
-npm run task -- replay --evaluation-version eval-v1.1.0 # official evidence replay
-```
-
-`d01:demo` writes the evidence bundle to
-`artifacts/evaluation/BG-D01-VERTICAL-SLICE.html` — open it to see what the engineer
-actually receives.
-
-Full reproduction from a clean environment, including the baseline arm, the scored run,
-expected output, runtime and cost: [`docs/REPRODUCTION.md`](docs/REPRODUCTION.md).
-
-**Platform limit.** The isolation runner uses macOS `/usr/bin/sandbox-exec` to deny
-network egress on top of Node's permission model. It fails closed on other platforms
-rather than silently weakening isolation. Deterministic replay works everywhere.
-
----
+[Full evaluation](docs/EVALUATION.md) · [Claims and evidence](artifacts/claims.yaml) ·
+[Recorded aggregate](artifacts/evaluation/official/RUN-BG-OFFICIAL-EVAL-V1.1.0-002-POSTDECISION-004/aggregate.json)
 
 ## How it works
 
-Both arms receive the same immutable candidate, the same visible inputs, the same
-environment, and exactly one attempt.
+![BeyondGreen workflow: frozen candidate, risk inventory and probe plan, immutable verdict, then isolated evaluation and replayable evidence](docs/assets/workflow.svg)
 
-| | Status quo | BeyondGreen |
-|---|---|---|
-| Inputs | candidate, compilation, visible legacy tests | identical |
-| Method | accept if compilation and all visible tests pass | risk inventory → derived probes → independent execution |
-| Oracle visibility | none | none until the verdict is immutable |
+1. **Inspect the unchanged candidate.** Inventory risks and derive a probe plan from
+   visible code and contracts.
+2. **Commit a verdict.** Fix the accept, reject, or abstain decision before hidden
+   evaluation expectations become available. The candidate is never repaired during
+   a scored run.
+3. **Evaluate independently.** After the decisions are final, isolated observers capture
+   behavior twice and a separate evaluator checks the evidence against the frozen oracle.
+4. **Make the result checkable.** Bind the decision, observations, and report with hashes;
+   reproduce the JSON and HTML through offline replay.
 
-Four design choices carry most of the result:
+<details>
+<summary>The trust boundaries behind the verdict</summary>
 
-**The oracle is a separate process, not a flag.** The arm cannot enumerate, read, hash, or
-error-probe the verifier-only package, and the reciprocal probe proves the evaluator
-cannot read the candidates either. Both denials are asserted in tests, not assumed.
+- **Physical isolation.** Decision-making processes cannot enumerate, read, hash, or
+  error-probe the verifier-only package. The evaluator cannot read candidate source.
+  Tests assert both directions of denial.
+- **No hidden feedback (`K=0`).** Evaluation findings cannot reach either method before
+  its verdict is final. No feedback or repair rounds influence the scored decision.
+- **Immutable inputs.** Candidate hashes are checked before and after execution.
+- **Fail-closed evidence.** Duplicate captures must match. Hash drift, invalid schemas,
+  and inconsistent observations stop verification instead of producing a success claim.
+- **Replayable reports.** Canonical JSON, recorded hash chains, and deterministic replay
+  make tampering detectable.
 
-**`K=0`.** Zero evaluator-derived feedback or repair rounds reach the arm before its
-verdict is final. The evaluator process starts only after both arms have committed.
+[Architecture](docs/ARCHITECTURE.md) · [Product specification](docs/PROJECT_SPEC.md)
 
-**The candidate is immutable.** It is hash-checked before and after every run. BeyondGreen
-never repairs during a scored run — once the artifact under judgement changes, the verdict
-can no longer be checked against a fixed ground truth.
+</details>
 
-**Every claim is bound to recorded evidence.** Canonical JSON, a hash chain over the
-reasoning record, and an offline replay that independently rebuilds both the JSON and the
-HTML and rejects tampering.
+## Quick start
 
-Architecture, requirement IDs, and the full contract: [`docs/PROJECT_SPEC.md`](docs/PROJECT_SPEC.md).
+Use **Node.js 22.22.3**, as pinned in [`.node-version`](.node-version), and `make`.
+Start by verifying the recorded result:
+
+```bash
+git clone https://github.com/BolshakovAndrey/micro1-beyondgreen.git
+cd micro1-beyondgreen
+make setup
+make eval
+```
+
+`make setup` installs locked dependencies. After installation, `make eval` runs offline
+and prints **`OFFICIAL_OFFLINE_REPLAY_VERIFIED`**. It verifies the stored evidence;
+it does not rerun the model or create another scored evaluation.
+
+**No API key, login, or model call is needed for offline replay.**
+
+### Explore the local demo
+
+On **macOS**, generate the unscored D01 demonstration:
+
+```bash
+make demo
+```
+
+Open `artifacts/evaluation/BG-D01-VERTICAL-SLICE.html` to inspect the report an engineer
+receives. Prefer a walkthrough? [Watch the 4:54 demo on YouTube](https://youtu.be/R_AA3WqmVyw)
+or use the [Vimeo mirror](https://vimeo.com/1222716472).
+
+<details>
+<summary>Verification commands and platform requirements</summary>
+
+| Command | What it does |
+| --- | --- |
+| `npm run task -- list` | List every supported task and its purpose. |
+| `make baseline` | Validate the frozen baseline command contract; no scored execution. |
+| `make solution` | Validate the frozen BeyondGreen command contract; no scored execution. |
+| `npm test` | Run the full ordinary suite, including macOS isolation checks. |
+| `npm run task -- d01:replay` | Replay the unscored D01 evidence offline. |
+| `make artifacts-check` | Check compilation, checksums, official replay, and submission metadata. |
+
+Offline replay is cross-platform. Live isolation and the full local verification suite
+require macOS `/usr/bin/sandbox-exec` plus Node's permission model. Unsupported platforms
+fail closed; there is no weaker fallback.
+
+The official scored run is immutable and create-once. Verify it with `make eval`;
+the reproduction guide preserves its original execution commands for provenance.
+
+</details>
+
+[Complete reproduction guide](docs/REPRODUCTION.md) · [D01 demo details](docs/D01_REPRODUCTION.md)
+
+## Built with
+
+**TypeScript · Node.js · React · Preact Signals · jsdom · Zod · node:test**
+
+The official evaluation used `gpt-5.6-sol` through `codex-exec-jsonl-v1`, one invocation
+per BeyondGreen candidate and zero retries. Fixed-subscription marginal cost and stable
+token totals were not measured. Exact versions, agent roles, and provenance are recorded
+in [Disclosures](docs/DISCLOSURES.md) and [Third-party notices](THIRD_PARTY_NOTICES.md).
+
+## What building it taught me
+
+**A process boundary needs tests as much as the code it protects.**
+
+The preserved failed official attempts broke in launch, observation, and evaluation
+bridges. Isolating the oracle made decisions checkable, while moving correctness risks
+into the messages crossing that boundary.
+
+The strongest retained change was a shared execution pipeline driven by fixture
+descriptions and explicit permissions. It supported ten different scenarios while
+preserving isolation. The broader generation-and-repair scope was removed so the
+experiment could focus on one measurable question: **should this migration be accepted?**
+
+[Improvement Changelog](docs/IMPROVEMENT_CHANGELOG.md) records the changes, failed attempts,
+and evidence behind these decisions; see ITR-043 onward for the boundary failures.
+
+## Go deeper
+
+| Read | For |
+| --- | --- |
+| [Reviewer guide](docs/REVIEWER_GUIDE.md) | What to inspect and what each command proves. |
+| [Submission report](docs/SUBMISSION_REPORT.md) | The original engineering summary and measured comparison. |
+| [Architecture](docs/ARCHITECTURE.md) | Components, process boundaries, and data flow. |
+| [Product specification](docs/PROJECT_SPEC.md) | The normative behavior contract. |
+| [Evaluation](docs/EVALUATION.md) | Frozen methodology, targets, results, and limitations. |
+| [Reproduction](docs/REPRODUCTION.md) | Setup, expected output, runtime, and cost accounting. |
+| [Agent trajectories](artifacts/trajectories/index.yaml) | Reviewed instructions, tool responses, retries, and human checkpoints. |
+| [Disclosures](docs/DISCLOSURES.md) | Scope, provenance, tools, and limitations. |
+
+[Clean-room policy](docs/CLEAN_ROOM_POLICY.md) · [Trace policy](docs/TRACE_POLICY.md) ·
+[Provenance](docs/PROVENANCE.md) · [Presentation assets](docs/assets/README.md)
 
 ---
 
-## Improvement changelog
-
-How the solution got here, which change moved which number, and the experiments that were
-removed: [`docs/IMPROVEMENT_CHANGELOG.md`](docs/IMPROVEMENT_CHANGELOG.md).
-
-## Hot take
-
-Isolating the oracle in its own process is what makes a verdict checkable, but it
-relocates the risk instead of removing it — every official run we lost failed in the
-infrastructure around that boundary (the pre-arm launcher, then the observer bridge,
-then the evaluator transcript) and none of them failed in the agent's reasoning, which is
-why a process boundary needs the same asserted vocabulary, cardinality, and schemas you
-would demand of the code it is judging.
-
-Evidence: [`docs/IMPROVEMENT_CHANGELOG.md`, ITR-043 onward](docs/IMPROVEMENT_CHANGELOG.md#itr-043--harden-and-rehearse-post-decision-observer-execution).
-
-## Agent trajectories
-
-Representative coding-agent trajectories with instructions, tool responses, retries, and
-human checkpoints: [`artifacts/trajectories/`](artifacts/trajectories/), indexed in
-[`artifacts/trajectories/index.yaml`](artifacts/trajectories/index.yaml).
-
----
-
-## For reviewers who want the engineering detail
-
-Task catalog, fixture-by-fixture verification, immutable manifests, clean-room and trace
-policies, and the phase history are documented separately:
-
-- [`docs/REVIEWER_GUIDE.md`](docs/REVIEWER_GUIDE.md) — task catalog and what each command proves
-- [`docs/SUBMISSION_REPORT.md`](docs/SUBMISSION_REPORT.md) — concise evidence-first judging report
-- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — components, process boundaries, and data flow
-- [`docs/PROJECT_SPEC.md`](docs/PROJECT_SPEC.md) — normative product contract
-- [`docs/EVALUATION.md`](docs/EVALUATION.md) — evaluation methodology and metrics
-- [`docs/REPRODUCTION.md`](docs/REPRODUCTION.md) — safe judge path and official offline replay
-- [`docs/DISCLOSURES.md`](docs/DISCLOSURES.md) — provenance, tools, safety, and honest limits
-- [`docs/D01_REPRODUCTION.md`](docs/D01_REPRODUCTION.md) — evidence paths and limitations for the D01 slice
-- [`docs/CLEAN_ROOM_POLICY.md`](docs/CLEAN_ROOM_POLICY.md), [`docs/TRACE_POLICY.md`](docs/TRACE_POLICY.md), [`docs/PROVENANCE.md`](docs/PROVENANCE.md)
-
-## Scope and honest limits
-
-- The benchmark is synthetic. Fixtures were authored independently per fixture, but they
-  are not production code, and generalization to real repositories is not demonstrated.
-- v1 covers React state to signals only.
-- The official adapter was `codex-exec-jsonl-v1` with `gpt-5.6-sol`, one invocation per
-  BeyondGreen candidate and zero retries. Fixed-subscription marginal USD and stable
-  token totals were not measured.
+**Green tests are a starting point. A merge decision needs evidence.**
